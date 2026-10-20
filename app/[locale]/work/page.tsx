@@ -109,6 +109,9 @@ export default async function WorkPage({ params }: Props) {
                     autoplay
                     muted
                     loop
+                    // Client decision: autoplay this muted grid regardless of
+                    // prefers-reduced-motion (Oct 2026).
+                    ignoreReducedMotion
                     className="rounded-card mobile:rounded-[15px]"
                   />
                   {study && (

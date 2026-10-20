@@ -17,6 +17,10 @@ interface VideoPlayerProps {
   muted?: boolean
   loop?: boolean
   controls?: boolean
+  // Overrides prefers-reduced-motion for autoplay, muted, looping video.
+  // Only use where the client has explicitly chosen to autoplay regardless
+  // of that accessibility setting — do not default this on.
+  ignoreReducedMotion?: boolean
   poster?: string
   posterSizes?: string
   posterPriority?: boolean
@@ -44,6 +48,7 @@ export default function VideoPlayer({
   muted = true,
   loop = true,
   controls = false,
+  ignoreReducedMotion = false,
   poster,
   posterSizes = '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 300px',
   posterPriority = false,
@@ -73,7 +78,7 @@ export default function VideoPlayer({
   const [retryRequest, setRetryRequest] = useState(0)
   const [playbackStatus, setPlaybackStatus] = useState<PlaybackStatus>('idle')
   const [hasRenderedFrame, setHasRenderedFrame] = useState(false)
-  const prefersReducedMotion = usePrefersReducedMotion()
+  const prefersReducedMotion = usePrefersReducedMotion() && !ignoreReducedMotion
 
   useEffect(() => {
     const element = containerRef.current
