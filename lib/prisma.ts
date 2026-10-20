@@ -1,15 +1,15 @@
 import { Prisma, PrismaClient } from '@prisma/client'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-/** Keep the public post shape stable while SQLite stores lists as JSON. */
+/** Keep the public post shape stable while lists are stored as JSON arrays. */
 function stringList(value: Prisma.JsonValue): string[] {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
 }
 
 function createClient() {
-  const url = process.env.DATABASE_URL
-  if (!url?.startsWith('file:')) throw new Error('Local SQLite DATABASE_URL is required')
-  return new PrismaClient({ adapter: new PrismaBetterSqlite3({ url }, { timestampFormat: 'iso8601' }) }).$extends({
+  const connectionString = process.env.DATABASE_URL
+  if (!connectionString?.startsWith('postgres')) throw new Error('PostgreSQL DATABASE_URL is required')
+  return new PrismaClient({ adapter: new PrismaPg({ connectionString }) }).$extends({
     result: {
       post: {
         categories: { needs: { categories: true }, compute: (post) => stringList(post.categories) },

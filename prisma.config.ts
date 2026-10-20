@@ -9,6 +9,7 @@ dotenv.config({ path: path.join(root, '.env') })
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
-  migrations: { path: 'prisma/server-migrations' },
-  datasource: { url: process.env.DATABASE_URL?.startsWith('file:') ? process.env.DATABASE_URL : 'file:./dev.db' },
+  migrations: { path: 'prisma/pg-migrations' },
+  // `prisma generate` needs no live database; migrate commands read the real URL.
+  datasource: { url: process.env.DATABASE_URL ?? 'postgresql://localhost:5432/caagency_website' },
 })

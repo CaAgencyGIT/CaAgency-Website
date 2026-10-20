@@ -7,7 +7,7 @@ const nextConfig = {
   poweredByHeader: false,
   output: 'standalone',
   skipProxyUrlNormalize: true,
-  serverExternalPackages: ['@prisma/client', '@prisma/adapter-better-sqlite3', 'better-sqlite3'],
+  serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
   async redirects() {
     return [
       // English is the default locale and is permanently canonical without a prefix.
