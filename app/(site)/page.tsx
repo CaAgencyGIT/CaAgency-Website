@@ -186,6 +186,9 @@ export default async function HomePage() {
               <ScrollReveal delay={0} yOffset={20}>
                 <DeferredMediaCarousel
                   items={introMediaItems}
+                  // Client decision: autoplay regardless of
+                  // prefers-reduced-motion (Oct 2026).
+                  ignoreReducedMotion
                   fallback={<MediaCarouselFallback items={introMediaItems} />}
                 />
               </ScrollReveal>

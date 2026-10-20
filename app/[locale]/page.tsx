@@ -161,6 +161,9 @@ export default async function HomePage({ params }: Props) {
               <ScrollReveal delay={0} yOffset={20}>
                 <DeferredMediaCarousel
                   items={mediaCarouselItems}
+                  // Client decision: autoplay regardless of
+                  // prefers-reduced-motion (Oct 2026).
+                  ignoreReducedMotion
                   labels={{
                     previous: tCommon('previous'),
                     next: tCommon('next'),

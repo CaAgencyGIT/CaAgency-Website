@@ -135,6 +135,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   autoplay
                   muted
                   loop
+                  ignoreReducedMotion
                   className="rounded-card"
                 />
               </div>

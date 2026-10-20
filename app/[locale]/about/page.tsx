@@ -119,6 +119,7 @@ export default async function AboutPage({ params }: Props) {
                   autoplay
                   muted
                   loop
+                  ignoreReducedMotion
                   className="rounded-none"
                 />
               </PhoneFrame>
@@ -142,6 +143,7 @@ export default async function AboutPage({ params }: Props) {
                   autoplay
                   muted
                   loop
+                  ignoreReducedMotion
                   className="rounded-none"
                 />
               </PhoneFrame>
