@@ -115,7 +115,11 @@ export const config = {
   // case-studies, talents/* and services/* (detail pages; only the listings
   // exist under [locale]). Public assets are allowed through above via
   // isPublicAsset().
+  //
+  // Single-page names end in (?:/|$) so they match whole path segments only: "/blog2" must still reach the
+  // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. `influencer-marketing-`,
+  // `talents/` and `services/` are intentional prefixes. Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api|_next|admin|influencer-marketing-|korean-skincare-influencer-marketing|beauty-influencer-marketing-agency|skincare-influencer-marketing-agency|privacy-policy|terms-of-service|business-license|blog|case-studies|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }
