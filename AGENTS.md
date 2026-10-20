@@ -14,7 +14,7 @@ Specialized expert agent personas:
 - **Framework**: Next.js 16.3 (App Router, Turbopack)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
-- **Database**: Prisma with better-sqlite3 on local durable disk; JSON arrays for post categories and tags
+- **Database**: Prisma with `@prisma/adapter-pg` on the server's PostgreSQL (`caagency_website` in the `caagency-postgres` container, shared with finance); JSON arrays for post categories and tags
 - **Auth**: NextAuth v5 (beta)
 - **i18n**: next-intl
 - **Hosting**: Node.js systemd service on caagency-server; Next.js disk cache for ISR
@@ -23,12 +23,13 @@ Specialized expert agent personas:
 ## Key Commands
 
 - `npm ci` — Install dependencies
-- `npm run build:server` — Build the standalone server with local SQLite data
+- `npm run db:migrate:deploy` — Apply `prisma/pg-migrations` (prisma migrate deploy)
+- `npm run build:server` — Build the standalone server (prerenders from PostgreSQL)
 - `npx tsc --noEmit` — Type check
 - `npm run lint` — ESLint
 - `npm test` — Unit and security checks
 
-Finance is a separate service. Keep every finance timer disabled. Do not change
+Finance is a separate service with its own database (`caagency_finance`). Do not change
 live DNS, production Workers, or the old server without approval.
 
 ## Folder Structure

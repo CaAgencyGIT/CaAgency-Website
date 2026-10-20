@@ -54,7 +54,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // 1. Domain redirects at the edge (ultra-fast)
-  // Admin sign-in stays on Vercel's existing www origin. Its assets must
+  // Admin sign-in stays on the existing www origin. Its assets must
   // remain same-origin so the production Content-Security-Policy allows them.
   const isAdminOriginAsset = hostname === 'www.caagency.com' && isPublicAsset(pathname)
   if (SECONDARY_DOMAINS.includes(hostname) && !isAdminOriginAsset) {
@@ -110,12 +110,16 @@ export const config = {
   // Included paths go through next-intl and are served by app/[locale]/.
   // Keep this matcher in sync with app/sitemap.ts (see which pages are localized).
   //
-  // Excluded: api, _next, _vercel, admin, influencer-marketing-*, the beauty,
+  // Excluded: api, _next, admin, influencer-marketing-*, the beauty,
   // skincare and K-beauty category pages, legal, blog,
   // case-studies, talents/* and services/* (detail pages; only the listings
   // exist under [locale]). Public assets are allowed through above via
   // isPublicAsset().
+  //
+  // Single-page names end in (?:/|$) so they match whole path segments only: "/blog2" must still reach the
+  // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. `influencer-marketing-`,
+  // `talents/` and `services/` are intentional prefixes. Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api|_next|_vercel|admin|influencer-marketing-|korean-skincare-influencer-marketing|beauty-influencer-marketing-agency|skincare-influencer-marketing-agency|privacy-policy|terms-of-service|business-license|blog|case-studies|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }

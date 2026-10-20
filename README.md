@@ -16,7 +16,9 @@ The previous Cloudflare production checkout remains at
 
 - Application: `/srv/caagency-website`, systemd `caagency-website.service`.
 - Runtime settings: `/etc/caagency-website/app.env`, root:caagency-web 0640.
-- Local SQLite database: `/var/lib/caagency-website/website.sqlite`.
+- Database: PostgreSQL `caagency_website` (role `caagency_website`) in the `caagency-postgres`
+  container on 127.0.0.1:5432, next to the finance database. Since 20 October 2026.
+- Retired SQLite database (rollback only): `/var/lib/caagency-website/website.sqlite`.
 - Local media: `/var/lib/caagency-website/media`.
 - Private preview form captures: `/var/lib/caagency-website/contact-captures`.
 - Runtime account: `caagency-web`, no interactive login.
@@ -38,10 +40,13 @@ npm run lint
 npm test
 ```
 
-`DATABASE_URL` must be an absolute SQLite `file:` URL. Source build settings
-are stored in ignored mode-600 `.env.local`. Server migrations are reviewed
-SQLite SQL in `prisma/server-migrations`, applied by `npm run db:migrate:deploy`.
-The existing JSON array fields preserve the D1 application data shape.
+`DATABASE_URL` must be a `postgresql://` URL. Source build settings are stored in
+ignored mode-600 `.env.local`. Migrations are Prisma migrations in
+`prisma/pg-migrations`, applied by `npm run db:migrate:deploy`. The JSON array
+fields (jsonb) preserve the D1/SQLite application data shape.
+`scripts/copy-sqlite-to-postgres.mjs` performed the one-time SQLite → PostgreSQL
+copy with a field-by-field readback comparison. `prisma/server-migrations` is
+the historical SQLite schema.
 Builds prerender the current local database, so refresh it before a release.
 
 Use `output: standalone` plus public and `.next/static` assets when installing.
@@ -63,7 +68,7 @@ test through the actual production delivery function arrived exactly once in
 the info mailbox at 01:12:51 UTC. Browser form/Turnstile verification is still
 pending; do not repeat the transport test or resend if delivery is uncertain.
 
-NextAuth still uses Microsoft Entra ID. Admin and authentication use Vercel's
+NextAuth still uses Microsoft Entra ID. Admin and authentication use the
 existing `https://www.caagency.com` origin, with production callback
 `https://www.caagency.com/api/auth/callback/microsoft-entra-id`. Public website
 pages remain canonical on `https://caagency.com`. Caddy redirects bare-domain
@@ -80,12 +85,13 @@ session secret was preserved from the production environment.
 See `../cloudflare-preparation/SERVER-CUTOVER-STATUS-20261019.txt`. The fresh
 D1 export and media reconciliation are complete. The reviewed Caddy template
 is now installed despite its historical NOT-ACTIVE filename. The server's
-SQLite database is authoritative for website writes. Do not restore old D1 data
+PostgreSQL database `caagency_website` is authoritative for website writes. Do not restore old D1 data
 over it or return traffic to D1 without reconciling newer server writes.
 The finance database is independently authoritative. Leave the old server
 unchanged and keep timers disabled. Nameserver/account migration is gated by
 24-hour observation, acceptance checks, administrative access and HTTPS readiness.
 
-`sudo deploy/backup-website.sh` creates a consistent private SQLite backup with
-matching environment and media under `/var/backups/caagency-website`. It is
-manual: no timer has been installed or enabled.
+`deploy/backup-website.sh` (installed as `/usr/local/sbin/caagency-website-backup`)
+creates a private `pg_dump` of `caagency_website` with matching environment and
+media under `/var/backups/caagency-website`. The nightly
+`caagency-offsite-backup.timer` runs it and uploads the encrypted archive to R2.

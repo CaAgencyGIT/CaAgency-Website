@@ -7,7 +7,7 @@ const nextConfig = {
   poweredByHeader: false,
   output: 'standalone',
   skipProxyUrlNormalize: true,
-  serverExternalPackages: ['@prisma/client', '@prisma/adapter-better-sqlite3', 'better-sqlite3'],
+  serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
   async redirects() {
     return [
       // English is the default locale and is permanently canonical without a prefix.
@@ -31,10 +31,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'caagency.co.uk',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.public.blob.vercel-storage.com',
       },
     ],
     formats: ['image/avif', 'image/webp'],
@@ -75,7 +71,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://va.vercel-scripts.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https://*.public.blob.vercel-storage.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.public.blob.vercel-storage.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
           },
         ],
       },

@@ -1,7 +1,7 @@
 # CLAUDE.md - Project Constitution
 
 ## Project Overview
-CA Agency (caagency.com) — Full-service influencer marketing agency website. Hosted on Vercel with primary traffic from USA.
+CA Agency (caagency.com) — Full-service influencer marketing agency website. Self-hosted on caagency-server (Node standalone + PostgreSQL) behind Cloudflare Tunnel; primary traffic from USA.
 
 ## The Council (Agent Personas)
 Specialized expert agents in `.claude/agents/`:
@@ -17,8 +17,8 @@ Specialized expert agents in `.claude/agents/`:
 - **Database**: Prisma (PostgreSQL via Prisma Accelerate)
 - **Auth**: NextAuth v5 (beta)
 - **i18n**: next-intl
-- **Hosting**: Vercel (region: iad1, Washington DC edge for USA traffic)
-- **Assets**: Vercel Blob Storage, local /public
+- **Hosting**: systemd `caagency-website.service` on caagency-server, Caddy + Cloudflare Tunnel (see README.md)
+- **Assets**: local media directory `/var/lib/caagency-website/media`, local /public
 
 ## Key Commands
 - `npm run dev` — Start dev server
@@ -46,7 +46,7 @@ Specialized expert agents in `.claude/agents/`:
 - Brand logos explicitly set `loading="lazy"`
 - No preconnect to blob storage: all images route through same-origin `/_next/image` and videos are local, so the browser never contacts the blob domain directly
 - CSS is inlined into the HTML (`experimental.inlineCss`) — no render-blocking stylesheet request. Turning it off (Oct 2026) cost ~200ms FCP/LCP on the homepage in production Lighthouse; don't flip it without field data
-- Static assets get `immutable` Cache-Control headers via vercel.json
+- Static assets get `immutable` Cache-Control headers via `next.config.js` headers
 
 ## Verification Standards
 - TypeScript must pass: `npx tsc --noEmit`

@@ -11,7 +11,7 @@ let maxBuckets = 10_000
 
 /**
  * Fixed-window in-memory rate limiter keyed by caller (usually client IP).
- * On Vercel serverless each isolate has its own map, so this bounds abuse per
+ * Each server process has its own map, so this bounds abuse per
  * instance rather than globally; it is a defense-in-depth layer, not a WAF.
  */
 export function checkRateLimit(
