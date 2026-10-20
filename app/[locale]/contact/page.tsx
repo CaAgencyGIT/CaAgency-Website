@@ -1,6 +1,5 @@
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
-import { BotIdClient } from 'botid/client'
 import Heading from '@/components/ui/Heading'
 import HeadingAccent from '@/components/ui/HeadingAccent'
 import Text from '@/components/ui/Text'
@@ -48,9 +47,7 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <>
-      {process.env.VERCEL && (
-        <BotIdClient protect={[{ path: '/api/contact', method: 'POST' }]} />
-      )}
+
       {/* Hero Section */}
       <section className="bg-background-soft py-[150px] mobile:py-[80px] px-section-x relative overflow-hidden">
         <div className="max-w-container mx-auto relative z-10">

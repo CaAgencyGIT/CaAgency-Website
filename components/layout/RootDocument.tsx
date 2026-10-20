@@ -1,5 +1,3 @@
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { getTranslations } from 'next-intl/server'
 import { Anegra, WorkSans, Jost } from '@/lib/fonts'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/root-metadata'
@@ -43,9 +41,8 @@ export default async function RootDocument({
         {children}
         <BackToTop label={t('backToTop')} />
         <RevealObserver />
-        <GoogleAnalytics />
-        <Analytics />
-        <SpeedInsights />
+        {process.env.NEXT_PUBLIC_PREVIEW_MODE !== 'true' && <GoogleAnalytics />}
+
       </body>
     </html>
   )

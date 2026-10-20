@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Talent {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  imageUrl     String
+  category     String   @default("instagram")
+  instagramUrl String?
+  tiktokUrl    String?
+  youtubeUrl   String?
+  twitchUrl    String?
+  kickUrl      String?
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  slug         String   @unique
+  bio          String?
+
+  @@index([category])
+  @@index([order])
+  @@index([slug])
+}
+
+model Post {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  excerpt       String?
+  content       String   @db.Text
+  featuredImage String?
+  status        String   @default("draft") // draft, published
+  publishedAt   DateTime?
+  author        String   @default("CA Agency")
+  categories    String[] @default([])
+  tags          String[] @default([])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([slug])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+}

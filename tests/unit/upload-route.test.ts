@@ -3,11 +3,11 @@ import { NextRequest } from 'next/server'
 
 const mocks = vi.hoisted(() => ({
   requireAuth: vi.fn(),
-  put: vi.fn(),
+  saveMedia: vi.fn(),
 }))
 
 vi.mock('@/lib/auth', () => ({ requireAuth: mocks.requireAuth }))
-vi.mock('@vercel/blob', () => ({ put: mocks.put }))
+vi.mock('@/lib/server-storage', () => ({ saveMedia: mocks.saveMedia }))
 
 import { POST } from '@/app/api/upload/route'
 
@@ -22,7 +22,7 @@ function uploadRequest(files: File[]) {
 describe('POST /api/upload', () => {
   beforeEach(() => {
     mocks.requireAuth.mockReset().mockResolvedValue(undefined)
-    mocks.put.mockReset().mockResolvedValue({ url: 'https://blob.example/image.png' })
+    mocks.saveMedia.mockReset().mockResolvedValue('/media/talents/test.png')
   })
 
   it('returns 401 when admin authentication fails', async () => {
@@ -60,16 +60,15 @@ describe('POST /api/upload', () => {
     const file = new File([pngBytes], 'image.png', { type: 'image/png' })
     const response = await POST(uploadRequest([file]))
     expect(response.status).toBe(200)
-    await expect(response.json()).resolves.toEqual({ url: 'https://blob.example/image.png' })
-    expect(mocks.put).toHaveBeenCalledWith(
+    await expect(response.json()).resolves.toEqual({ url: '/media/talents/test.png' })
+    expect(mocks.saveMedia).toHaveBeenCalledWith(
       expect.stringMatching(/^talents\/[0-9a-f-]+\.png$/),
-      expect.any(Blob),
-      expect.objectContaining({ contentType: 'image/png' })
+      expect.any(Uint8Array)
     )
   })
 
   it('returns a provider failure status', async () => {
-    mocks.put.mockRejectedValueOnce(new Error('blob unavailable'))
+    mocks.saveMedia.mockRejectedValueOnce(new Error('blob unavailable'))
     const file = new File([pngBytes], 'image.png', { type: 'image/png' })
     const response = await POST(uploadRequest([file]))
     expect(response.status).toBe(502)

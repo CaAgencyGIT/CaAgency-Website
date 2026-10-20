@@ -1,0 +1,38 @@
+{
+	admin 127.0.0.1:2019
+	auto_https off
+}
+
+:80 {
+	bind 127.0.0.1
+	@finance host finance.caagency.com
+	handle @finance {
+		import /etc/caddy/caagency-handler.caddy
+	}
+	@website host caagency.com www.caagency.com
+	handle @website {
+		header X-CA-Origin caagency-server
+		route {
+			# Preserve Vercel's existing Microsoft callback and host-only cookies.
+			@adminOrigin {
+				host caagency.com
+				path /admin /admin/* /api/auth /api/auth/*
+			}
+			redir @adminOrigin https://www.caagency.com{uri} 307
+			@publicWWW {
+				host www.caagency.com
+				not path /admin /admin/* /api /api/* /_next/* /assets/* /fonts/* /images/* /videos/* /media/* /favicon.ico /favicon-32.png /icon-192.png /icon-512.png /site.webmanifest
+			}
+			redir @publicWWW https://caagency.com{uri} 308
+			reverse_proxy 127.0.0.1:3001
+		}
+	}
+	@secondary host caagency.ae www.caagency.ae caagency.nl www.caagency.nl caagency.co.uk www.caagency.co.uk
+	handle @secondary {
+		header X-CA-Origin caagency-server
+		redir https://caagency.com{uri} 308
+	}
+	handle {
+		respond "Not Found" 404
+	}
+}

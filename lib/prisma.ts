@@ -1,25 +1,24 @@
-import { PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined
+/** Keep the public post shape stable while SQLite stores lists as JSON. */
+function stringList(value: Prisma.JsonValue): string[] {
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
 }
 
-// Prisma 7 Accelerate-only: PRISMA_DATABASE_URL required at runtime.
-// DATABASE_URL is used by Prisma CLI (migrate, db push) in prisma.config.ts.
-const accelerateUrl = process.env.PRISMA_DATABASE_URL
-
-if (!accelerateUrl) {
-  console.warn(
-    'Missing PRISMA_DATABASE_URL. PrismaClient will fail at runtime if not set.'
-  )
+function createClient() {
+  const url = process.env.DATABASE_URL
+  if (!url?.startsWith('file:')) throw new Error('Local SQLite DATABASE_URL is required')
+  return new PrismaClient({ adapter: new PrismaBetterSqlite3({ url }, { timestampFormat: 'iso8601' }) }).$extends({
+    result: {
+      post: {
+        categories: { needs: { categories: true }, compute: (post) => stringList(post.categories) },
+        tags: { needs: { tags: true }, compute: (post) => stringList(post.tags) },
+      },
+    },
+  })
 }
 
-const prismaClientOptions: any = {
-  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  accelerateUrl: accelerateUrl || 'prisma://dummy.prisma-data.net',
-}
-
-export const prisma =
-  globalForPrisma.prisma ?? new PrismaClient(prismaClientOptions)
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+const globalForPrisma = globalThis as typeof globalThis & { websitePrisma?: ReturnType<typeof createClient> }
+export const prisma = globalForPrisma.websitePrisma ?? createClient()
+if (process.env.NODE_ENV !== 'production') globalForPrisma.websitePrisma = prisma

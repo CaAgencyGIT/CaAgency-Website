@@ -1,20 +1,13 @@
-import { access } from 'node:fs/promises'
-import path from 'node:path'
+import publicAssets from '@/lib/generated/public-assets.json'
 import { NextResponse } from 'next/server'
 import { workVideos, aboutVideos, posterFor, publishedDateFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { caseStudies } from '@/lib/data/case-studies'
 
 const baseUrl = 'https://caagency.com'
 
+const assetPaths = new Set(publicAssets)
 async function assetExists(assetPath: string) {
-  const filePath = path.join(process.cwd(), 'public', assetPath.replace(/^\//, ''))
-
-  try {
-    await access(filePath)
-    return true
-  } catch {
-    return false
-  }
+  return assetPaths.has(assetPath)
 }
 
 // A sitemap entry is only valid when both the video and its thumbnail exist.

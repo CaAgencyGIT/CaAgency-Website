@@ -1,4 +1,3 @@
-import { withBotId } from 'botid/next/config'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
@@ -6,6 +5,9 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  output: 'standalone',
+  skipProxyUrlNormalize: true,
+  serverExternalPackages: ['@prisma/client', '@prisma/adapter-better-sqlite3', 'better-sqlite3'],
   async redirects() {
     return [
       // English is the default locale and is permanently canonical without a prefix.
@@ -46,6 +48,7 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
+          ...(process.env.PREVIEW_MODE === 'true' ? [{key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive'}] : []),
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
@@ -72,7 +75,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https://*.public.blob.vercel-storage.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.public.blob.vercel-storage.com; frame-src https://www.google.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://va.vercel-scripts.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' https://*.public.blob.vercel-storage.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.public.blob.vercel-storage.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
           },
         ],
       },
@@ -95,10 +98,11 @@ const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
-export default withBotId(withNextIntl(bundleAnalyzer({
+const configured = withNextIntl(bundleAnalyzer({
   ...nextConfig,
   reactCompiler: true,
   experimental: {
+    cpus: 2,
     // Inline CSS into the HTML instead of a render-blocking <link>. Tried off
     // in Oct 2026 (PR #78): the document shrank, but production Lighthouse
     // attributed ~200ms of extra FCP/LCP on the homepage (text LCP) to the
@@ -106,4 +110,6 @@ export default withBotId(withNextIntl(bundleAnalyzer({
     // is also embedded in the RSC payload.
     inlineCss: true,
   },
-})))
+}))
+
+export default configured

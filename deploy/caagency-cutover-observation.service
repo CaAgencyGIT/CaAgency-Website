@@ -1,0 +1,18 @@
+[Unit]
+Description=Observe CA Agency cutover for 24 hours without running business jobs
+After=network-online.target caagency-website.service caagency-finance.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=caagency-web
+Group=caagency-web
+ExecStart=/usr/bin/python3 -u /usr/local/lib/caagency/observe-cutover.py --started-at 2026-10-19T01:02:59.373428Z --output /var/lib/caagency-migration/observation.jsonl
+RuntimeMaxSec=25h
+Restart=no
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/caagency-migration

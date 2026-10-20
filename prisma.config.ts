@@ -9,6 +9,6 @@ dotenv.config({ path: path.join(root, '.env') })
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
-  migrations: { path: 'prisma/migrations' },
-  datasource: { url: process.env.DATABASE_URL },
+  migrations: { path: 'prisma/server-migrations' },
+  datasource: { url: process.env.DATABASE_URL?.startsWith('file:') ? process.env.DATABASE_URL : 'file:./dev.db' },
 })

@@ -38,19 +38,18 @@ async function fetchRelatedPosts(
     const overlap = [...new Set([...categories, ...tags])].filter(Boolean)
 
     // Prefer posts that share a category or tag with the current post.
-    const matched = overlap.length
+    const candidates = overlap.length
       ? await prisma.post.findMany({
           where: {
             slug: { not: currentSlug },
             status: 'published',
             publishedAt: { lte: new Date() },
-            OR: [{ categories: { hasSome: overlap } }, { tags: { hasSome: overlap } }],
           },
-          select: relatedSelect,
-          take: MAX_RELATED,
+          select: { ...relatedSelect, categories: true, tags: true },
           orderBy: { publishedAt: 'desc' },
         })
       : []
+    const matched = candidates.filter(post => [...post.categories, ...post.tags].some(value => overlap.includes(value))).slice(0, MAX_RELATED)
 
     if (matched.length >= MAX_RELATED) {
       return matched
