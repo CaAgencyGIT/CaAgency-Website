@@ -12,6 +12,7 @@ export async function GET() {
   try {
     const talents = await prisma.talent.findMany({
       select: {
+        id: true,
         name: true,
         slug: true,
         imageUrl: true,
@@ -22,6 +23,7 @@ export async function GET() {
         youtubeUrl: true,
         twitchUrl: true,
         kickUrl: true,
+        order: true,
       },
       orderBy: [
         { category: 'asc' },
