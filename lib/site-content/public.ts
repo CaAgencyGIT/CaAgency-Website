@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 
 export async function getFeaturedTalents(limit = 6) {
-  if (!process.env.PRISMA_DATABASE_URL) {
+  if (!process.env.DATABASE_URL) {
     return []
   }
 

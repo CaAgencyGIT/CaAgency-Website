@@ -22,6 +22,7 @@ const aiCrawlers = [
 ]
 
 export default function robots(): MetadataRoute.Robots {
+  if (process.env.PREVIEW_MODE === 'true') return { rules: { userAgent: '*', disallow: '/' } }
   return {
     rules: [
       { userAgent: '*', allow: '/', disallow },

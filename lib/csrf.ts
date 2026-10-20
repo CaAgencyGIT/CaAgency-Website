@@ -20,7 +20,10 @@ export function isAllowedOrigin(origin: string | null): boolean {
 
   let hostname: string
   try {
-    hostname = new URL(origin).hostname
+    const parsed = new URL(origin)
+    hostname = parsed.hostname
+    const configured = (process.env.ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean)
+    if (configured.includes(parsed.origin) && parsed.protocol === 'https:') return true
   } catch {
     return false
   }

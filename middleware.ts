@@ -1,5 +1,4 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { get } from '@vercel/global-config'
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
 import {
@@ -11,22 +10,8 @@ import {
 // next-intl middleware for locale routing
 const intlMiddleware = createMiddleware(routing)
 
-// The proxy runs before every HTML request, cached pages included, so the
-// maintenance flag is memoized per instance; flipping it takes effect within
-// MAINTENANCE_TTL_MS. Read failures are not cached and fail open.
-const MAINTENANCE_TTL_MS = 30_000
-let maintenanceCache: { value: boolean; expires: number } | null = null
-
 async function isMaintenanceMode(): Promise<boolean> {
-  const now = Date.now()
-  if (maintenanceCache && maintenanceCache.expires > now) return maintenanceCache.value
-  try {
-    const value = Boolean(await get<boolean>('maintenance'))
-    maintenanceCache = { value, expires: now + MAINTENANCE_TTL_MS }
-    return value
-  } catch {
-    return false
-  }
+  return process.env.MAINTENANCE_MODE === 'true'
 }
 
 // Secondary domains that should redirect to primary
@@ -40,7 +25,7 @@ const SECONDARY_DOMAINS = [
   'www.caagency.nl',
 ]
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const hostname = request.headers.get('host') || ''
 
@@ -69,7 +54,10 @@ export async function proxy(request: NextRequest) {
   }
 
   // 1. Domain redirects at the edge (ultra-fast)
-  if (SECONDARY_DOMAINS.includes(hostname)) {
+  // Admin sign-in stays on Vercel's existing www origin. Its assets must
+  // remain same-origin so the production Content-Security-Policy allows them.
+  const isAdminOriginAsset = hostname === 'www.caagency.com' && isPublicAsset(pathname)
+  if (SECONDARY_DOMAINS.includes(hostname) && !isAdminOriginAsset) {
     const url = new URL(request.url)
     url.hostname = 'caagency.com'
     url.port = ''

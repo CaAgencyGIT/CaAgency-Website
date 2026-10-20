@@ -18,7 +18,7 @@ export const PUBLIC_FILE_PATHS = new Set([
   '/sitemap-video.xml',
 ])
 
-export const PUBLIC_ASSET_PREFIXES = ['/assets/', '/fonts/', '/images/', '/videos/']
+export const PUBLIC_ASSET_PREFIXES = ['/assets/', '/fonts/', '/images/', '/videos/', '/media/']
 
 export const SENSITIVE_PROBE_PATTERNS = [
   /^\/\.env(?:\..*)?$/i,

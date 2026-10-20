@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { NextRequest, NextResponse } from 'next/server'
-import { put } from '@vercel/blob'
+import { saveMedia } from '@/lib/server-storage'
 import { requireAuth } from '@/lib/auth'
 import { detectImageType } from '@/lib/uploads/image-signature'
 import { rejectCrossOrigin } from '@/lib/csrf'
@@ -66,11 +66,8 @@ export async function POST(request: NextRequest) {
   const filename = `talents/${randomUUID()}.${detected.extension}`
 
   try {
-    const blob = await put(filename, new Blob([bytes], { type: detected.mime }), {
-      access: 'public',
-      contentType: detected.mime,
-    })
-    return NextResponse.json({ url: blob.url })
+    const url = await saveMedia(filename, bytes)
+    return NextResponse.json({ url })
   } catch (error) {
     console.error('Upload provider failed:', error)
     return NextResponse.json(

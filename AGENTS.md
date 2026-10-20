@@ -1,7 +1,7 @@
 # AGENTS.md - Project Constitution
 
 ## Project Overview
-CA Agency (caagency.com) — Full-service influencer marketing agency website. Hosted on Vercel with primary traffic from USA.
+CA Agency (caagency.com) — Full-service influencer marketing agency website. Prepared for hosting on caagency-server behind Caddy and Cloudflare Tunnel. Live traffic must not change without approval.
 
 ## The Council (Agent Personas)
 Specialized expert agent personas:
@@ -14,17 +14,22 @@ Specialized expert agent personas:
 - **Framework**: Next.js 16.3 (App Router, Turbopack)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
-- **Database**: Prisma (PostgreSQL via Prisma Accelerate)
+- **Database**: Prisma with better-sqlite3 on local durable disk; JSON arrays for post categories and tags
 - **Auth**: NextAuth v5 (beta)
 - **i18n**: next-intl
-- **Hosting**: Vercel (region: iad1, Washington DC edge for USA traffic)
-- **Assets**: Vercel Blob Storage, local /public
+- **Hosting**: Node.js systemd service on caagency-server; Next.js disk cache for ISR
+- **Assets**: Local durable media directory and Next.js /public assets
 
 ## Key Commands
-- `npm run dev` — Start dev server
-- `npm run build` — Build for production (requires PRISMA_DATABASE_URL)
+
+- `npm ci` — Install dependencies
+- `npm run build:server` — Build the standalone server with local SQLite data
 - `npx tsc --noEmit` — Type check
 - `npm run lint` — ESLint
+- `npm test` — Unit and security checks
+
+Finance is a separate service. Keep every finance timer disabled. Do not change
+live DNS, production Workers, or the old server without approval.
 
 ## Folder Structure
 - `app/(site)/` — Public-facing pages (home, about, talents, work, etc.)
@@ -46,7 +51,7 @@ Specialized expert agent personas:
 - No preconnect to blob storage: all images route through same-origin `/_next/image` and videos are local, so the browser never contacts the blob domain directly
 - CSS is inlined into the HTML (`experimental.inlineCss`) — no render-blocking stylesheet request. Turning it off (Oct 2026) cost ~200ms FCP/LCP on the homepage in production Lighthouse; don't flip it without field data
 - Hero entrance animations (`hero-rise*`) are transform-only — never fade LCP candidates from opacity 0
-- Static assets get `immutable` Cache-Control headers via vercel.json
+- Static assets get `immutable` Cache-Control headers via public/_headers
 
 ## Verification Standards
 - TypeScript must pass: `npx tsc --noEmit`

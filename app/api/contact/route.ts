@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer-secure'
-import { checkBotId } from 'botid/server'
+import { deliverContact } from '@/lib/contact/delivery'
+import { verifyTurnstile } from '@/lib/contact/turnstile'
+import { readBoundedJson } from '@/lib/contact/read-json'
+import { rejectCrossOrigin } from '@/lib/csrf'
 import {
   MAX_CONTACT_BODY_BYTES,
   validateContactPayload,
@@ -9,18 +11,9 @@ import { checkRateLimit } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
-// Create reusable transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-})
-
 export async function POST(request: NextRequest) {
+  const crossOrigin = rejectCrossOrigin(request)
+  if (crossOrigin) return crossOrigin
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) {
     return NextResponse.json(
       { error: 'Content-Type must be application/json', code: 'INVALID_REQUEST' },
@@ -28,12 +21,8 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Vercel overwrites X-Forwarded-For and never forwards external IPs, so the
-  // first entry is the trusted client address on this deployment topology.
-  const clientIp =
-    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    request.headers.get('x-real-ip') ||
-    'unknown'
+  // Only the loopback proxy/tunnel can reach this listener. Cloudflare sets this header.
+  const clientIp = request.headers.get('cf-connecting-ip') || 'unknown'
   const rate = checkRateLimit(`contact:${clientIp}`)
   if (rate.limited) {
     return NextResponse.json(
@@ -53,29 +42,9 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  try {
-    const bot = await checkBotId()
-    if (bot.isBot && !bot.isVerifiedBot) {
-      return NextResponse.json(
-        { error: 'Submission rejected', code: 'BOT_REJECTED' },
-        { status: 403 }
-      )
-    }
-  } catch (error) {
-    console.error('Bot verification failed:', error)
-    return NextResponse.json(
-      { error: 'Submission verification is unavailable', code: 'DELIVERY_FAILED' },
-      { status: 503 }
-    )
-  }
-
   let raw: unknown
   try {
-    const body = await request.text()
-    if (new TextEncoder().encode(body).byteLength > MAX_CONTACT_BODY_BYTES) {
-      throw new Error('Body too large')
-    }
-    raw = JSON.parse(body)
+    raw = await readBoundedJson(request, MAX_CONTACT_BODY_BYTES)
   } catch {
     return NextResponse.json(
       { error: 'Invalid request body', code: 'INVALID_REQUEST' },
@@ -90,6 +59,9 @@ export async function POST(request: NextRequest) {
       { status: validation.code === 'BOT_REJECTED' ? 403 : 400 }
     )
   }
+
+  const token = raw && typeof raw === 'object' && 'turnstileToken' in raw ? raw.turnstileToken : undefined
+  if (!await verifyTurnstile(token, clientIp)) return NextResponse.json({ error: 'Submission rejected', code: 'BOT_REJECTED' }, { status: 403 })
 
   const data = validation.data
   const formType = data.formType
@@ -213,15 +185,17 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email
-    await transporter.sendMail({
-      from: `"CA Agency Website" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
-      to: 'info@caagency.com',
+    const delivery = await deliverContact({
       replyTo: data.email,
       subject: emailSubject,
       html: emailHtml,
+      text: [emailSubject, `Name: ${data.fullName}`, `Email: ${data.email}`, `Phone: ${data.phone}`,
+        data.company && `Company: ${data.company}`, data.budget && `Budget: ${data.budget}`,
+        data.socialLink && `Social media: ${data.socialLink}`, data.subject && `Subject: ${data.subject}`,
+        '', data.message].filter(value => value !== undefined).join('\n'),
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json(delivery.preview ? { success: true, preview: true } : { success: true })
   } catch (error) {
     console.error('Contact delivery failed:', error)
     return NextResponse.json(

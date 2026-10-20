@@ -1,0 +1,27 @@
+[Unit]
+Description=CA Agency website
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=caagency-web
+Group=caagency-web
+WorkingDirectory=/srv/caagency-website
+Environment=NODE_ENV=production
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3001
+EnvironmentFile=/etc/caagency-website/app.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=143
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/caagency-website /srv/caagency-website/.next/cache /srv/caagency-website/.next/server/app /srv/caagency-website/.next/server/route-cache
+
+[Install]
+WantedBy=multi-user.target

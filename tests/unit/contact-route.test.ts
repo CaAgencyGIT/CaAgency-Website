@@ -2,16 +2,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { NextRequest } from 'next/server'
 
 const mocks = vi.hoisted(() => ({
-  checkBotId: vi.fn(),
-  sendMail: vi.fn(),
+  verifyTurnstile: vi.fn(),
+  deliverContact: vi.fn(),
 }))
 
-vi.mock('botid/server', () => ({ checkBotId: mocks.checkBotId }))
-vi.mock('nodemailer-secure', () => ({
-  default: {
-    createTransport: () => ({ sendMail: mocks.sendMail }),
-  },
-}))
+vi.mock('@/lib/contact/turnstile', () => ({ verifyTurnstile: mocks.verifyTurnstile }))
+vi.mock('@/lib/contact/delivery', () => ({ deliverContact: mocks.deliverContact }))
 
 import { POST } from '@/app/api/contact/route'
 import { clearRateLimitsForTests } from '@/lib/rate-limit'
@@ -38,8 +34,8 @@ function jsonRequest(body: unknown, headers?: Record<string, string>) {
 
 describe('POST /api/contact', () => {
   beforeEach(() => {
-    mocks.checkBotId.mockReset().mockResolvedValue({ isBot: false, isVerifiedBot: false })
-    mocks.sendMail.mockReset().mockResolvedValue({ messageId: 'test' })
+    mocks.verifyTurnstile.mockReset().mockResolvedValue(true)
+    mocks.deliverContact.mockReset().mockResolvedValue({ preview: false })
     clearRateLimitsForTests()
   })
 
@@ -47,31 +43,31 @@ describe('POST /api/contact', () => {
     const response = await POST(jsonRequest(validPayload))
     expect(response.status).toBe(200)
     await expect(response.json()).resolves.toEqual({ success: true })
-    expect(mocks.sendMail).toHaveBeenCalledOnce()
+    expect(mocks.deliverContact).toHaveBeenCalledOnce()
   })
 
-  it('rejects unverified bots but permits verified bots', async () => {
-    mocks.checkBotId.mockResolvedValueOnce({ isBot: true, isVerifiedBot: false })
+  it('rejects failed verification and permits valid tokens', async () => {
+    mocks.verifyTurnstile.mockResolvedValueOnce(false)
     const rejected = await POST(jsonRequest(validPayload))
     expect(rejected.status).toBe(403)
     await expect(rejected.json()).resolves.toMatchObject({ code: 'BOT_REJECTED' })
 
-    mocks.checkBotId.mockResolvedValueOnce({ isBot: true, isVerifiedBot: true })
+    mocks.verifyTurnstile.mockResolvedValueOnce(true)
     const verified = await POST(jsonRequest(validPayload))
     expect(verified.status).toBe(200)
   })
 
-  it('fails closed when BotID is unavailable', async () => {
-    mocks.checkBotId.mockRejectedValueOnce(new Error('verification unavailable'))
-    const response = await POST(jsonRequest(validPayload))
-    expect(response.status).toBe(503)
+  it('does not deliver a rejected challenge', async () => {
+    mocks.verifyTurnstile.mockResolvedValueOnce(false)
+    expect((await POST(jsonRequest(validPayload))).status).toBe(403)
+    expect(mocks.deliverContact).not.toHaveBeenCalled()
   })
 
   it('returns validation and provider failures with non-success statuses', async () => {
     const invalid = await POST(jsonRequest({ ...validPayload, email: 'invalid' }))
     expect(invalid.status).toBe(400)
 
-    mocks.sendMail.mockRejectedValueOnce(new Error('smtp unavailable'))
+    mocks.deliverContact.mockRejectedValueOnce(new Error('smtp unavailable'))
     const deliveryFailure = await POST(jsonRequest(validPayload))
     expect(deliveryFailure.status).toBe(502)
     await expect(deliveryFailure.json()).resolves.toMatchObject({ code: 'DELIVERY_FAILED' })

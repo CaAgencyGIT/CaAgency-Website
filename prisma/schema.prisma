@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
 
 model Talent {
@@ -32,13 +32,13 @@ model Post {
   title         String
   slug          String   @unique
   excerpt       String?
-  content       String   @db.Text
+  content       String
   featuredImage String?
   status        String   @default("draft") // draft, published
   publishedAt   DateTime?
   author        String   @default("CA Agency")
-  categories    String[] @default([])
-  tags          String[] @default([])
+  categories    Json     @default("[]")
+  tags          Json     @default("[]")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

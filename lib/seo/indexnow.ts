@@ -17,7 +17,7 @@ const ENDPOINT = 'https://api.indexnow.org/indexnow'
  * serverless kills pending work once the response is sent.
  */
 export async function pingIndexNow(paths: string[]): Promise<number> {
-  if (process.env.NODE_ENV !== 'production') return 0
+  if (process.env.NODE_ENV !== 'production' || process.env.PREVIEW_MODE === 'true') return 0
 
   const urlList = [...new Set(paths)]
     .map((p) => (p.startsWith('http') ? p : `${BASE_URL}${p.startsWith('/') ? p : `/${p}`}`))

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Button from '@/components/ui/Button'
+import Turnstile from '@/components/forms/Turnstile'
 import { trackFormSubmission, trackContactConversion } from '@/components/analytics/GoogleAnalytics'
 import { cn } from '@/lib/utils'
 import { contactFieldLimits } from '@/lib/contact/validation'
@@ -26,6 +27,10 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
     socialLink: '',
     subject: '',
   })
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [challengeKey, setChallengeKey] = useState(0)
+  const usesTurnstile = true
+  const challenge = usesTurnstile ? <Turnstile key={challengeKey} onToken={setTurnstileToken} /> : null
   const [honeypot, setHoneypot] = useState('') // Spam protection
   const formStartTimeRef = useRef<number | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -61,7 +66,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (isSubmitting) return
+    if (isSubmitting || (usesTurnstile && !turnstileToken)) return
     const timeElapsed = Date.now() - (formStartTimeRef.current ?? Date.now())
 
     setIsSubmitting(true)
@@ -74,6 +79,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          turnstileToken,
           formType: formId === 3 ? 'talent' : 'brand',
           fullName: formData.fullName,
           email: formData.email,
@@ -110,6 +116,8 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
     } catch {
       setSubmitStatus('error')
     } finally {
+      setTurnstileToken('')
+      setChallengeKey(key => key + 1)
       setIsSubmitting(false)
     }
   }
@@ -163,7 +171,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
           'font-work-sans text-[14px] mb-5',
           isDarkBackground ? 'text-white/70' : 'text-foreground-gray'
         )}>
-          {t('successMessage')}
+          {process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true' ? 'Preview submission recorded. No email was sent.' : t('successMessage')}
         </p>
         <button type="button" onClick={resetForm} className="underline decoration-current/30 underline-offset-4 transition-colors hover:decoration-current font-medium">
           {t('sendAnotherMessage')}
@@ -219,7 +227,8 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         onFocusCapture={() => { formStartTimeRef.current ??= Date.now() }}
         className={cn('w-full', className)}
       >
-        {/* Honeypot field - hidden from users, visible to bots */}
+        {challenge}
+      {/* Honeypot field - hidden from users, visible to bots */}
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <label htmlFor="website_url">Website</label>
           <input
@@ -348,7 +357,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         </div>
 
         <div className="flex justify-start">
-          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting}>
+          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
             {isSubmitting ? (
               <span className="flex items-center gap-2">
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">
@@ -374,7 +383,8 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         onFocusCapture={() => { formStartTimeRef.current ??= Date.now() }}
         className={cn('w-full', className)}
       >
-        {/* Honeypot field - hidden from users, visible to bots */}
+        {challenge}
+      {/* Honeypot field - hidden from users, visible to bots */}
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <label htmlFor="website_url_2">Website</label>
           <input
@@ -509,7 +519,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         </div>
 
         <div className="flex justify-start">
-          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting}>
+          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
             {isSubmitting ? (
               <span className="flex items-center gap-2">
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">
@@ -538,6 +548,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         className
       )}
     >
+      {challenge}
       {/* Honeypot field - hidden from users, visible to bots */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="website_url_1">Website</label>
@@ -673,7 +684,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
       </div>
 
       <div className="flex justify-center mobile:justify-start">
-        <Button type="submit" variant={isDarkBackground ? 'light' : 'primary'} className="min-w-[160px]" disabled={isSubmitting}>
+        <Button type="submit" variant={isDarkBackground ? 'light' : 'primary'} className="min-w-[160px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
           {isSubmitting ? (
             <span className="flex items-center gap-2">
               <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">

@@ -58,6 +58,15 @@ security-scans/
 # vercel
 .vercel
 
+# Cloudflare build output and local secrets
+.open-next/
+.wrangler/
+.dev.vars*
+worker-configuration.d.ts
+lib/generated/public-assets.json
+.cloudflare-bundle/
+.migration/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

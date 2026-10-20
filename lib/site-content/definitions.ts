@@ -535,7 +535,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           number: 1,
           title: 'For Influencers',
           image:
-            'https://xcp1g6mozx3w5zew.public.blob.vercel-storage.com/talents/instagram/rebecca-ghaderi.jpeg',
+            '/media/imported/talents/instagram/rebecca-ghaderi.jpeg',
           highlight: 'Monetization Amplified: Turn your influence into income with CA Agency.',
           description:
             'We go beyond likes and followers we help influencers build long-term, sustainable careers. Our influencer marketing experts work one-on-one with creators to develop personalized growth and monetization strategies.',
@@ -546,7 +546,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           number: 2,
           title: 'Expanding Reach',
           image:
-            'https://xcp1g6mozx3w5zew.public.blob.vercel-storage.com/talents/instagram/melly-sanchez.jpeg',
+            '/media/imported/talents/instagram/melly-sanchez.jpeg',
           highlight: 'Your voice deserves to be seen, heard, and celebrated on a global scale.',
           description:
             "At CA Agency, we harness the full potential of digital platforms to maximize your visibility and help you grow a loyal, engaged audience. Through strategic social media optimization and targeted content distribution, we ensure you're present where it matters most from Instagram and TikTok to YouTube and beyond.",
@@ -557,7 +557,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           number: 3,
           title: 'Targeted Engagement',
           image:
-            'https://xcp1g6mozx3w5zew.public.blob.vercel-storage.com/talents/instagram/beatrix-ramosaj.jpeg',
+            '/media/imported/talents/instagram/beatrix-ramosaj.jpeg',
           highlight:
             "Navigating the digital space takes strategy and that's where CA Agency leads.",
           description:
@@ -569,7 +569,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           number: 4,
           title: 'Driving Traffic',
           image:
-            'https://xcp1g6mozx3w5zew.public.blob.vercel-storage.com/talents/instagram/asel-akmatova.jpeg',
+            '/media/imported/talents/instagram/asel-akmatova.jpeg',
           highlight: "At CA Agency, we know that visibility alone isn't enough results matter.",
           description:
             'That is why we craft performance-driven influencer marketing campaigns designed to go beyond brand exposure. Our focus is on generating qualified traffic, boosting conversions, and achieving measurable business outcomes.',
