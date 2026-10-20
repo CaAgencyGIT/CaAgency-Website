@@ -1,33 +1,23 @@
-# CA Agency website on caagency-server
+# CA Agency website
 
-This checkout runs the live main website on caagency-server after the approved
-19 October 2026 hosting cutover. See
-`../cloudflare-preparation/SERVER-CUTOVER-STATUS-20261019.txt` for current status.
-Finance is a separate service on port 3000. The website listens only on
-127.0.0.1:3001. Caddy and the existing named Cloudflare Tunnel provide public
-HTTPS. The live Cloudflare zones and tunnel remain in Sweetflips until the
-separately gated account migration; the production Turnstile widget is already
-in the user's mcserverpitufo account.
-
-The previous Cloudflare production checkout remains at
-`/home/user/Ca Agency/caagency-website`; its D1/R2 data is retained for recovery.
+Next.js 16 + Prisma 7 on PostgreSQL (container `caagency-postgres`, database
+`caagency_website`, port 5432). In production the site is served by systemd
+`caagency-website.service` on 127.0.0.1:3001 behind Caddy and a Cloudflare
+Tunnel. Finance is a separate service on port 3000.
 
 ## Data and services
 
-- Application: `/srv/caagency-website`, systemd `caagency-website.service`.
+- Application: `/srv/caagency-website`, systemd `caagency-website.service`
+  (listens only on 127.0.0.1:3001; Caddy and the Cloudflare Tunnel provide public HTTPS).
 - Runtime settings: `/etc/caagency-website/app.env`, root:caagency-web 0640.
-- Database: PostgreSQL `caagency_website` (role `caagency_website`) in the `caagency-postgres`
-  container on 127.0.0.1:5432, next to the finance database. Since 20 October 2026.
-- Retired SQLite database (rollback only): `/var/lib/caagency-website/website.sqlite`.
-- Local media: `/var/lib/caagency-website/media`.
-- Private preview form captures: `/var/lib/caagency-website/contact-captures`.
+- Database: PostgreSQL `caagency_website` (role `caagency_website`) in the
+  `caagency-postgres` container on 127.0.0.1:5432, next to the finance database.
+- Local media: `/var/lib/caagency-website/media` (`MEDIA_DIRECTORY`).
+- Private preview form captures: `/var/lib/caagency-website/contact-captures`
+  (`CONTACT_CAPTURE_DIRECTORY`).
 - Runtime account: `caagency-web`, no interactive login.
-- Temporary public preview: `caagency-website-preview-tunnel.service`.
-
-The website service is active and enabled at boot. The temporary preview tunnel
-is stopped and disabled. All five finance timers must remain disabled. No timer
-was installed for the website or cutover observation. A bounded 24-hour
-`caagency-cutover-observation.service` records read-only availability checks.
+- For local development, `.env.local` (ignored, mode 600) points `MEDIA_DIRECTORY`
+  and `CONTACT_CAPTURE_DIRECTORY` at the git-ignored `.data/` directory.
 
 ## Build and verification
 
@@ -43,11 +33,9 @@ npm test
 `DATABASE_URL` must be a `postgresql://` URL. Source build settings are stored in
 ignored mode-600 `.env.local`. Migrations are Prisma migrations in
 `prisma/pg-migrations`, applied by `npm run db:migrate:deploy`. The JSON array
-fields (jsonb) preserve the D1/SQLite application data shape.
-`scripts/copy-sqlite-to-postgres.mjs` performed the one-time SQLite → PostgreSQL
-copy with a field-by-field readback comparison. `prisma/server-migrations` is
-the historical SQLite schema.
-Builds prerender the current local database, so refresh it before a release.
+fields (jsonb) keep the original application data shape.
+Builds prerender the current database, so make sure it is reachable and current
+before a release.
 
 Use `output: standalone` plus public and `.next/static` assets when installing.
 Remove traced `.env*` files from the deployment and use the runtime env file.
@@ -80,16 +68,10 @@ session. Public Microsoft sign-in initiation uses the canonical callback;
 interactive Microsoft sign-in remains to be tested by the user. The production
 session secret was preserved from the production environment.
 
-## Handover and rollback
+## Backups and data authority
 
-See `../cloudflare-preparation/SERVER-CUTOVER-STATUS-20261019.txt`. The fresh
-D1 export and media reconciliation are complete. The reviewed Caddy template
-is now installed despite its historical NOT-ACTIVE filename. The server's
-PostgreSQL database `caagency_website` is authoritative for website writes. Do not restore old D1 data
-over it or return traffic to D1 without reconciling newer server writes.
-The finance database is independently authoritative. Leave the old server
-unchanged and keep timers disabled. Nameserver/account migration is gated by
-24-hour observation, acceptance checks, administrative access and HTTPS readiness.
+The server's PostgreSQL database `caagency_website` is authoritative for website
+writes; the finance database is independently authoritative.
 
 `deploy/backup-website.sh` (installed as `/usr/local/sbin/caagency-website-backup`)
 creates a private `pg_dump` of `caagency_website` with matching environment and

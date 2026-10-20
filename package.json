@@ -19,11 +19,9 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
-    "db:seed": "tsx prisma/seed.ts",
     "db:seed-blog": "tsx prisma/seed-blog.ts",
     "blog:covers": "tsx scripts/generate-blog-covers.tsx",
-    "build:server": "HOSTING_PLATFORM=server NEXT_PUBLIC_HOSTING_PLATFORM=server npm run build",
-    "db:copy-from-sqlite": "node scripts/copy-sqlite-to-postgres.mjs"
+    "build:server": "HOSTING_PLATFORM=server NEXT_PUBLIC_HOSTING_PLATFORM=server npm run build"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
@@ -60,7 +58,6 @@
     "@types/sanitize-html": "^2.16.2",
     "@vitest/coverage-v8": "^5.0.3",
     "babel-plugin-react-compiler": "^1.0.0",
-    "better-sqlite3": "^12.11.1",
     "deepl-node": "^1.28.0",
     "dotenv": "^18.0.5",
     "eslint": "^9.39.5",

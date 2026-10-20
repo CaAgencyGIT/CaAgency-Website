@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS revalidations (
-  tag TEXT NOT NULL,
-  revalidatedAt INTEGER NOT NULL,
-  stale INTEGER,
-  expire INTEGER DEFAULT NULL,
-  UNIQUE(tag) ON CONFLICT REPLACE
-);
