@@ -11,8 +11,6 @@ const ALLOWED_HOSTS = new Set([
   'www.caagency.nl',
 ])
 
-// Vercel preview deployments follow <project>-<hash>-sweetflips-projects.vercel.app.
-const PREVIEW_PATTERN = /^(caagency|ca-agency-website)-[a-z0-9]{6,}-sweetflips-projects$/
 const DEV_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
 
 export function isAllowedOrigin(origin: string | null): boolean {
@@ -28,12 +26,7 @@ export function isAllowedOrigin(origin: string | null): boolean {
     return false
   }
 
-  if (ALLOWED_HOSTS.has(hostname) || DEV_HOSTS.has(hostname)) return true
-  if (hostname.endsWith('.vercel.app')) {
-    const subdomain = hostname.slice(0, -'.vercel.app'.length)
-    return PREVIEW_PATTERN.test(subdomain)
-  }
-  return false
+  return ALLOWED_HOSTS.has(hostname) || DEV_HOSTS.has(hostname)
 }
 
 // Cookie-authenticated write APIs rely on SameSite=Lax today; assert the

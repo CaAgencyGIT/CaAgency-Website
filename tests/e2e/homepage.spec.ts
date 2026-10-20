@@ -171,14 +171,6 @@ test('featured videos defer bytes and play concurrently in view', async ({ page,
 })
 
 test('homepage has no critical console errors', async ({ page }) => {
-  // Neutralize Vercel analytics: under a local `next start` it falls back to an
-  // external debug build that needs eval() (blocked by our CSP). On real Vercel
-  // prod these load same-origin and are fine (verified 0 errors). Fulfilling
-  // them empty lets this assert genuine app-level console health only.
-  await page.route(/va\.vercel-scripts\.com|\/_vercel\//, (route) =>
-    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
-  )
-
   const errors: string[] = []
   page.on('console', (msg) => {
     if (msg.type() === 'error') errors.push(msg.text())

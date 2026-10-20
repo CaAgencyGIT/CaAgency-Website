@@ -11,7 +11,7 @@ export const routing = defineRouting({
   // Don't use a prefix for the default locale (English)
   localePrefix: 'as-needed',
 
-  // Suppress the NEXT_LOCALE Set-Cookie header so Vercel can cache HTML
-  // responses at the edge (X-Vercel-Cache: HIT). Supported since next-intl v3.22.
+  // Suppress the NEXT_LOCALE Set-Cookie header so HTML responses stay
+  // cacheable. Supported since next-intl v3.22.
   localeCookie: false,
 });

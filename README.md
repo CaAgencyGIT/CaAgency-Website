@@ -68,7 +68,7 @@ test through the actual production delivery function arrived exactly once in
 the info mailbox at 01:12:51 UTC. Browser form/Turnstile verification is still
 pending; do not repeat the transport test or resend if delivery is uncertain.
 
-NextAuth still uses Microsoft Entra ID. Admin and authentication use Vercel's
+NextAuth still uses Microsoft Entra ID. Admin and authentication use the
 existing `https://www.caagency.com` origin, with production callback
 `https://www.caagency.com/api/auth/callback/microsoft-entra-id`. Public website
 pages remain canonical on `https://caagency.com`. Caddy redirects bare-domain

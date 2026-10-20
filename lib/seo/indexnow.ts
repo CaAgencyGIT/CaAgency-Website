@@ -13,8 +13,8 @@ const ENDPOINT = 'https://api.indexnow.org/indexnow'
 /**
  * Submit changed paths (e.g. '/blog/my-post') or absolute URLs to IndexNow.
  * Fire-and-forget semantics for callers: never throws, returns the number of
- * URLs submitted (0 on failure or outside production). Await it — Vercel
- * serverless kills pending work once the response is sent.
+ * URLs submitted (0 on failure or outside production). Await it so the
+ * submission finishes before the response is sent.
  */
 export async function pingIndexNow(paths: string[]): Promise<number> {
   if (process.env.NODE_ENV !== 'production' || process.env.PREVIEW_MODE === 'true') return 0
