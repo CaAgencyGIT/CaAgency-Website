@@ -16,6 +16,7 @@ type SiteContentListItem = {
 
 function hasUsablePrismaConnection() {
   if (process.env.DATABASE_URL?.startsWith('file:')) return true
+  if (process.env.DATABASE_URL?.startsWith('postgres')) return true
   const url = process.env.PRISMA_DATABASE_URL
   return Boolean(url && url !== 'prisma://dummy.prisma-data.net')
 }

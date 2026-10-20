@@ -169,7 +169,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
             type: 'array',
             itemLabel: 'Image',
             fields: [
-              { key: 'src', label: 'Image URL', type: 'url' },
+              { key: 'src', label: 'Image URL', type: 'text' },
               { key: 'alt', label: 'Alt text', type: 'text' },
             ],
           },
@@ -506,7 +506,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         fields: [
           { key: 'number', label: 'Number', type: 'number' },
           { key: 'title', label: 'Title', type: 'text' },
-          { key: 'image', label: 'Image URL', type: 'url' },
+          { key: 'image', label: 'Image URL', type: 'text' },
           { key: 'highlight', label: 'Highlight', type: 'textarea', rows: 3 },
           { key: 'description', label: 'Description', type: 'textarea', rows: 4 },
           { key: 'details', label: 'Details', type: 'textarea', rows: 4 },
