@@ -42,6 +42,10 @@ export interface MediaItem {
 export interface MediaCarouselProps {
   items: MediaItem[]
   className?: string
+  // Overrides prefers-reduced-motion for autoplay/auto-advance. Only use
+  // where the client has explicitly chosen to autoplay regardless of that
+  // accessibility setting — do not default this on.
+  ignoreReducedMotion?: boolean
   // Localized control labels; server parents pass translated strings because
   // this client component renders outside any NextIntlClientProvider (the
   // provider is scoped to the contact form).
@@ -59,6 +63,7 @@ export interface MediaCarouselProps {
 export default function MediaCarousel({
   items,
   className = '',
+  ignoreReducedMotion = false,
   labels = {
     previous: 'Previous',
     next: 'Next',
@@ -80,7 +85,7 @@ export default function MediaCarousel({
     subscribeToReducedMotion,
     () => getReducedMotionQuery().matches,
     () => false
-  )
+  ) && !ignoreReducedMotion
   // The carousel sits below the fold; keep posters and video bytes off the
   // critical first load by not mounting any media until it approaches the
   // viewport (autoplay on the active slide overrides preload="none", so

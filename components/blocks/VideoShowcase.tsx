@@ -41,6 +41,9 @@ export default function VideoShowcase({
             autoplay
             muted
             loop
+            // Client decision: autoplay regardless of prefers-reduced-motion
+            // (Oct 2026). VideoShowcase is homepage-only.
+            ignoreReducedMotion
           />
         </StaggerItem>
         )
