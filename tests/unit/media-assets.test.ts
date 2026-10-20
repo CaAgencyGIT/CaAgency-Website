@@ -69,8 +69,12 @@ describe('published media assets', () => {
       expect(audioStreams).toHaveLength(0)
       expect(video.codec_name).toBe('h264')
       expect(video.pix_fmt).toBe('yuv420p')
-      expect(video.width).toBeLessThanOrEqual(540)
-      expect(video.height).toBeLessThanOrEqual(960)
+      // Bumped from 540x960 to the full 720x1280 source resolution (Oct 2026,
+      // client request for sharper video) — bitrate and the total transfer
+      // budgets below are what actually bound payload size, so re-encoding at
+      // full resolution with a higher CRF keeps those unchanged.
+      expect(video.width).toBeLessThanOrEqual(720)
+      expect(video.height).toBeLessThanOrEqual(1280)
 
       const contents = readFileSync(publicFile(src))
       const moov = contents.indexOf(Buffer.from('moov'))
