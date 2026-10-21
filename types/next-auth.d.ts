@@ -5,6 +5,8 @@ declare module 'next-auth' {
     user: {
       id: string
       email: string
+      /** Entra app roles of the CA Agency Dashboard app (e.g. Dashboard.WebsiteEditor). */
+      roles: string[]
       name?: string | null
       image?: string | null
     }
@@ -20,5 +22,6 @@ declare module 'next-auth/jwt' {
   interface JWT {
     id: string
     email: string
+    roles?: string[]
   }
 }
