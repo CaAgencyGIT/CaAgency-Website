@@ -25,11 +25,11 @@ export default function MobileHeader({ locale, label, onMenuClick, menuOpen = fa
           {/* Logo */}
           <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0">
             <Image
-              src="/images/site/logo.svg"
+              src="/images/site/logo-full.png"
               alt="CA Agency"
-              width={343}
-              height={181}
-              className="h-[46px] w-auto object-contain"
+              width={800}
+              height={532}
+              className="h-[40px] w-auto object-contain"
               loading="eager"
             />
           </Link>
