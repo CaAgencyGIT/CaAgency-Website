@@ -36,7 +36,7 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
           <div className="flex h-[76px] items-center justify-between">
             <div className="flex w-[80%] items-center laptop:w-[80%]">
               <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0 p-[6px]">
-                <Image src="/images/site/logo.svg" alt="CA Agency" width={343} height={181} className="h-[54px] w-auto object-contain" loading="eager" />
+                <Image src="/images/site/logo-full.png" alt="CA Agency" width={800} height={532} className="h-[48px] w-auto object-contain" loading="eager" />
               </Link>
               <nav aria-label={labels.mainMenu} className="flex items-center ps-[30px]">
                 <ul className="flex items-center gap-[30px] tablet:gap-[20px]">
