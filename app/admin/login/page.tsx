@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth-config'
 import { signInWithMicrosoft } from './actions'
+import { canEditWebsite } from '@/lib/admin-roles'
 import Button from '@/components/ui/Button'
 import Heading from '@/components/ui/Heading'
 
@@ -17,7 +18,7 @@ export default async function LoginPage({
 }) {
   // Check if already authenticated
   const session = await auth()
-  if (session?.user?.email?.endsWith('@caagency.com')) {
+  if (canEditWebsite(session?.user?.email, session?.user?.roles)) {
     redirect('/admin')
   }
 
@@ -32,7 +33,7 @@ export default async function LoginPage({
             Admin Login
           </Heading>
           <p className="text-foreground-white/70 text-sm">
-            Sign in with your @caagency.com Microsoft account to access the admin panel.
+            Sign in with your CA Agency Microsoft account. You need the Admin or Website editor role.
           </p>
         </div>
 
@@ -40,7 +41,7 @@ export default async function LoginPage({
           {error && (
             <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm">
               {error === 'AccessDenied'
-                ? 'Access denied. Only @caagency.com emails are allowed.'
+                ? 'Access denied. Your account needs the Admin or Website editor role. Ask an admin to assign it in the CA Agency Dashboard (Users & roles explains how).'
                 : `Authentication error: ${error}`}
             </div>
           )}
@@ -57,7 +58,7 @@ export default async function LoginPage({
         </div>
 
         <p className="text-center text-xs text-foreground-white/50 mt-6">
-          Only @caagency.com email addresses are authorized to access this panel.
+          Roles are managed in Microsoft Entra on the CA Agency Dashboard app.
         </p>
       </div>
     </div>

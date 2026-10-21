@@ -1,5 +1,6 @@
 import { auth } from '@/lib/auth-config'
 import { redirect } from 'next/navigation'
+import { canEditWebsite } from '@/lib/admin-roles'
 
 export async function getAuthSession() {
   const session = await auth()
@@ -17,7 +18,7 @@ export class UnauthorizedError extends Error {
 export async function requireAuth() {
   const session = await getAuthSession()
 
-  if (!session || !session.user?.email?.endsWith('@caagency.com')) {
+  if (!session || !canEditWebsite(session.user?.email, session.user?.roles)) {
     throw new UnauthorizedError()
   }
 
@@ -28,7 +29,7 @@ export async function requireAuth() {
 export async function requireAuthWithRedirect() {
   const session = await getAuthSession()
 
-  if (!session || !session.user?.email?.endsWith('@caagency.com')) {
+  if (!session || !canEditWebsite(session.user?.email, session.user?.roles)) {
     redirect('/admin/login')
   }
 

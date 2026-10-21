@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import MicrosoftEntraID from 'next-auth/providers/microsoft-entra-id'
+import { canEditWebsite, rolesFromClaim } from '@/lib/admin-roles'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   basePath: '/api/auth',
@@ -16,17 +17,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user }) {
-      // Only allow users with @caagency.com email domain
-      if (user.email && user.email.endsWith('@caagency.com')) {
-        return true
-      }
-      return false
+    // Company account AND the Admin or Website editor app role (assigned in Entra on the dashboard app).
+    async signIn({ user, profile }) {
+      return canEditWebsite(user.email, profile?.roles)
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, profile }) {
       if (user) {
         token.id = user.id
         token.email = user.email
+      }
+      if (profile) {
+        token.roles = rolesFromClaim(profile.roles)
       }
       return token
     },
@@ -34,6 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.id as string
         session.user.email = token.email as string
+        session.user.roles = rolesFromClaim(token.roles)
       }
       return session
     },
