@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import { routing } from '@/i18n/routing'
+import { schedulePurgePublicSite } from '@/lib/edge-purge'
 
 export function revalidateTalentsPages() {
   revalidatePath('/talents')
@@ -11,12 +12,14 @@ export function revalidateTalentsPages() {
       revalidatePath(`/${locale}/talents`)
     }
   }
+  schedulePurgePublicSite()
 }
 
 export function revalidateBlogPages() {
   revalidatePath('/blog')
   revalidatePath('/blog/[slug]', 'page')
   revalidatePath('/')
+  schedulePurgePublicSite()
 }
 
 export function revalidateSitePages() {
@@ -56,4 +59,5 @@ export function revalidateSitePages() {
       revalidatePath(`/${locale}/contact`)
     }
   }
+  schedulePurgePublicSite()
 }
