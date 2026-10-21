@@ -29,7 +29,7 @@ export default function MobileHeader({ locale, label, onMenuClick, menuOpen = fa
               alt="CA Agency"
               width={800}
               height={532}
-              className="h-[40px] w-auto object-contain"
+              className="h-[43px] w-auto object-contain"
               loading="eager"
             />
           </Link>
