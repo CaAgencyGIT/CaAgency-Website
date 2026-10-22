@@ -52,11 +52,14 @@ jobs:
       - name: Asset manifest
         run: node scripts/build-asset-manifest.mjs
 
+      - name: Incremental check caches
+        run: node /usr/local/lib/caagency-ci/restore-check-cache.mjs
+
       - name: ESLint
-        run: npm run lint
+        run: npm run lint -- --cache --cache-strategy content --cache-location node_modules/.cache/caagency-checks/eslint.cache
 
       - name: Type check
-        run: npx tsc --noEmit
+        run: npx tsc --noEmit --incremental --tsBuildInfoFile node_modules/.cache/caagency-checks/typescript.tsbuildinfo
 
       - name: Unit tests
         run: npm run test:unit

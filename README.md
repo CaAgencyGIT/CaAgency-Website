@@ -111,3 +111,8 @@ writes; the finance database is independently authoritative.
 creates a private `pg_dump` of `caagency_website` with matching environment and
 media under `/var/backups/caagency-website`. The nightly
 `caagency-offsite-backup.timer` runs it and uploads the encrypted archive to R2.
+
+CI also restores isolated TypeScript and ESLint incremental caches. Both checks
+still run on every job; TypeScript rechecks changed source and ESLint uses file
+content hashes. Package, tool configuration or runtime changes invalidate the
+baseline. Job writes stay in the disposable VM.
