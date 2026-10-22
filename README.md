@@ -9,9 +9,14 @@ Tunnel. Finance is a separate service on port 3000.
 
 Open **Actions → Deploy → Run workflow**, select `master`, and run it after CI
 passes. Select `dry_run` to check preflight without replacing the live release.
-Pushing or merging into the default branch automatically deploys after CI
-succeeds for the same commit. Pull requests and failed CI do not deploy.
-Manual deployment and dry runs remain available through this workflow.
+Pushing or merging into the default branch runs checks, build, publication and
+production deployment consecutively in one CI job and one disposable VM. There
+is no automatic second Deploy job or runner assignment. Pull requests run checks
+and build in `ci-validation`; publication and deployment are skipped. Default
+branch pushes use `server-production` (environment rules apply to the whole job).
+Manual retries and dry runs remain available through the Deploy workflow. A
+manual retry can also use a completed combined run whose CI stages passed but
+whose deployment failed.
 
 CI and deployment jobs run in disposable, isolated virtual machines on our
 server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
@@ -21,8 +26,9 @@ containers or workflow steps run, so jobs execute one at a time per app. This
 overlaps runner registration/connection with the preceding job; used VMs are
 never recycled. The pool uses the same VM count and server limits as before. These jobs consume no GitHub-hosted runner minutes. Each VM gets
 a read-only Git snapshot for this repository to avoid repeated full downloads;
-CI checkout still fetches the exact workflow commit. Deploy uses the trusted
-client injected into its fresh VM, without checking out source. Each VM also receives this repository's read-only npm
+CI checkout still fetches the exact workflow commit. The final deployment step
+uses the trusted injected client in the same VM. Manual Deploy jobs need no
+source checkout. Each VM also receives this repository's read-only npm
 download cache and copies it into its disposable disk. Installed `node_modules` are also
 prepared in a separate isolated VM and reused through a fresh copy-on-write disk.
 The dependency step verifies package files and the exact runtime before reuse;
@@ -51,18 +57,19 @@ remain mandatory. Compression remains gzip-compatible with existing releases.
 
 Both deployment clients call the OIDC gateway directly over the host-only VM
 connection and notice completion within half a second for normal deployments.
-The server independently verifies successful CI and GitHub's current default
-branch, then fetches matching Git objects from its trusted read-only local cache
+The server independently verifies that every required CI stage succeeded in
+the exact current job/attempt, plus GitHub's current default branch, then fetches matching Git objects from its trusted read-only local cache
 when available. Cache misses fall back to authenticated GitHub fetch. Health
 checks still require two successes separated by two seconds, with quicker
 retries while the new server opens its socket. Migration and rollback gates stay
 in place; server status includes policy/source/release timings.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
-automatic, read-only job token to fetch the exact commit. No SSH deploy key,
+automatic, read-only job token to fetch the exact commit. Default-branch push jobs are not canceled mid-deployment by newer pushes;
+stale commits still fail the server's current-head check. No SSH deploy key,
 personal access token, or deployment secret needs to be configured. The server
 requires the `server-production` environment, the default branch, the approved
-workflow, and successful push CI for the same commit. It builds a separate
+workflow, and successful CI stages for the same push commit. It builds a separate
 checkout, then uses the server's existing health checks and automatic rollback.
 Database migrations still require the reviewed, manual server procedure.
 

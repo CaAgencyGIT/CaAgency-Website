@@ -1,10 +1,6 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [master]
   workflow_dispatch:
     inputs:
       dry_run:
@@ -22,16 +18,8 @@ concurrency:
 jobs:
   deploy:
     name: Deploy website
-    # workflow_run uses the default branch SHA. Deploy only the exact commit CI tested.
-    if: >-
-      github.ref == 'refs/heads/master' &&
-      (github.event_name == 'workflow_dispatch' ||
-       (github.event_name == 'workflow_run' &&
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.event == 'push' &&
-        github.event.workflow_run.head_branch == 'master' &&
-        github.event.workflow_run.head_repository.full_name == github.repository &&
-        github.event.workflow_run.head_sha == github.sha))
+    # Manual retry/dry run only. Default-branch push CI deploys in its own job.
+    if: github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
     runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     timeout-minutes: 55
     environment: server-production

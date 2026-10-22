@@ -8,7 +8,8 @@ on:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Do not cancel a push job while its production deployment is running.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -26,9 +27,13 @@ jobs:
     # One disposable VM and dependency install for all checks avoids serial VM setup.
     name: Lint, types, tests & build
     runs-on: [self-hosted, Linux, X64, caagency-website-ci]
-    timeout-minutes: 15
+    timeout-minutes: 60
+    # Environments apply to an entire job; PRs never enter production.
+    environment:
+      name: ${{ github.event_name == 'push' && 'server-production' || 'ci-validation' }}
     permissions:
       contents: read
+      actions: read
       id-token: write
     services:
       postgres:
@@ -44,13 +49,15 @@ jobs:
       - name: Verify VM isolation
         run: /usr/local/bin/verify-ci-isolation
 
-      - uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
 
       # Node 22 is already installed in the immutable VM base.
       - name: Node runtime
         run: node --version
 
       - name: Dependencies
+        timeout-minutes: 10
         # Reuse installed modules only for identical package files and runtime.
         run: node /usr/local/lib/caagency-ci/install-dependencies.mjs
 
@@ -64,12 +71,15 @@ jobs:
         run: node /usr/local/lib/caagency-ci/restore-check-cache.mjs
 
       - name: TypeScript, ESLint & unit tests (parallel)
+        timeout-minutes: 15
         run: node /usr/local/lib/caagency-ci/run-checks.mjs website
 
       # Builds prerender from the database; an empty migrated schema is enough.
-      - run: npm run db:migrate:deploy
+      - name: Migrate CI database
+        run: npm run db:migrate:deploy
 
-      - name: Build
+      - name: Production build
+        timeout-minutes: 15
         # Only compiler work is restored; every job still builds the current source.
         # The trusted snapshot is separate from both PR writes and production caches.
         run: |
@@ -79,5 +89,15 @@ jobs:
       - name: Publish deployment build (parallel gzip)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: node scripts/publish-ci-build.mjs
+
+      - name: Deploy production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        timeout-minutes: 50
+        # Runs after successful checks/build publication in this same job and VM.
+        run: node /usr/local/lib/caagency-ci/deploy-client.mjs
+        env:
+          DEPLOY_APP: website
+          DEPLOY_DRY_RUN: 'false'
+          GH_TOKEN: ${{ github.token }}
 
   # E2E still requires a seeded database; it is not part of this CI workflow.
