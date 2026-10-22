@@ -1,0 +1,29 @@
+[Unit]
+Description=CA Agency website redesign preview (website-redesign branch)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=caagency-redesign
+Group=caagency-redesign
+WorkingDirectory=/srv/caagency-website-redesign
+Environment=NODE_ENV=production
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3002
+EnvironmentFile=/etc/caagency-website-redesign/app.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=143
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/caagency-website-redesign -/srv/caagency-website-redesign/.next/cache -/srv/caagency-website-redesign/.next/server/app -/srv/caagency-website-redesign/.next/server/route-cache
+# The preview never touches production state.
+InaccessiblePaths=-/srv/caagency-website -/etc/caagency-website -/var/lib/caagency-website
+
+[Install]
+WantedBy=multi-user.target

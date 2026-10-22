@@ -27,6 +27,12 @@ against `master` until the redesign is explicitly approved for release.
 Pushes to the redesign branch therefore only trigger the pull request CI
 checks; nothing in this repository can update production from that branch.
 
+## Demo URL
+
+https://redesign.caagency.com always shows the latest commit on
+`website-redesign`. It is a separate preview service on caagency-server with
+its own database and media copy; see `deploy/redesign-preview/README.md`.
+
 ## Release (only after explicit approval)
 
 1. Tag the current production commit, e.g. `prod-before-redesign`, and keep a

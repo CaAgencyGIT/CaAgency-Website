@@ -1,0 +1,8 @@
+[Unit]
+Description=Update the CA Agency redesign preview from the website-redesign branch
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/caagency-redesign-update
