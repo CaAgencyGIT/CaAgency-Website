@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { aboutVideos, posterFor, workVideos } from '@/lib/data/videos'
-import { aboutFilms, filmCaseStudies, films, filmSrc, workFilms, type FilmKey } from '@/lib/data/redesign-media'
+import { filmCaseStudies, films, filmSrc, workFilms, type FilmKey } from '@/lib/data/redesign-media'
 import { caseStudies } from '@/lib/data/case-studies'
 
 type Probe = {
@@ -58,7 +58,6 @@ describe('published media assets', () => {
     expect(bytes(aboutVideos)).toBeLessThanOrEqual(5 * 1024 * 1024)
     // October 2026 redesign films (lazy-loaded; this is the worst case).
     expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(28 * 1024 * 1024)
-    expect(bytes(aboutFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(10 * 1024 * 1024)
   })
 
   it('maps redesign films only to existing case studies', () => {

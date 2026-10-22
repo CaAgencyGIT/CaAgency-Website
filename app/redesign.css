@@ -139,12 +139,6 @@
   .rd-hero-description p { margin-bottom: 12px; font-size: 14px; line-height: 1.9; }
   .rd-hero-description p:last-child { margin: 0; }
 
-  /* About */
-  .rd-six-wall { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-  .rd-six-wall > :nth-child(even) { padding-top: 45px; }
-  .rd-story { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: 7vw; padding-top: 85px; padding-bottom: 85px; border-top: 1px solid var(--rd-line); }
-  .rd-story h2 { max-width: 550px; }
-
   /* Work */
   .rd-work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 48px 24px; }
   .rd-work-card .rd-film-frame { aspect-ratio: 3 / 4; }
@@ -222,7 +216,6 @@
     .rd-footer-top { grid-template-columns: 1fr; }
     .rd-page-hero, .rd-faq { gap: 35px; }
     .rd-work-meta { flex-direction: column; gap: 5px; }
-    .rd-six-wall { grid-template-columns: repeat(3, 1fr); }
     .rd-service-contact > a { grid-template-columns: 1fr 1.5fr; }
     .rd-service-contact > a > span:last-child { grid-column: 2; }
   }
@@ -255,8 +248,8 @@
     .rd-feature-grid > :nth-child(even) { padding-top: 25px; }
     .rd-film figcaption { padding-top: 10px; font-size: 10px; }
     .rd-lead-after { margin-top: 28px; font-size: 13px; }
-    .rd-split, .rd-story, .rd-closing { grid-template-columns: 1fr; gap: 35px; }
-    .rd-split .rd-copy, .rd-story.rd-reverse .rd-copy { order: -1; }
+    .rd-split, .rd-closing { grid-template-columns: 1fr; gap: 35px; }
+    .rd-split .rd-copy { order: -1; }
     .rd-duo { gap: 13px; }
     .rd-duo > :nth-child(even) { margin-top: 35px; }
     .rd-talent-grid.rd-six { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; }
@@ -278,10 +271,6 @@
     .rd-page-hero .rd-hero-sub { margin-top: 15px; font-size: 12px; }
     .rd-hero-description { margin-top: 26px; }
     .rd-hero-description p { font-size: 13px; }
-    .rd-six-wall { gap: 12px; }
-    .rd-six-wall > :nth-child(even) { padding-top: 20px; }
-    .rd-story h2 { font-size: 43px; }
-    .rd-story p { font-size: 13px; }
     .rd-talent-section > h2 { font-size: 32px; }
     .rd-talent-grid.rd-priority { grid-template-columns: repeat(2, 1fr); gap: 23px 15px; margin-bottom: 40px; }
     .rd-priority .rd-talent-meta { flex-direction: column; }

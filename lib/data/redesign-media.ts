@@ -141,13 +141,5 @@ export function filmVideoSchema(keys: FilmKey[], publisher: object) {
   }
 }
 
-// About page placement, in page order: six-film wall, story duo, closing duo.
-export const aboutWallFilms: FilmKey[] = [
-  'albina-medicube', 'anton-skin1004', 'melani-skin1004',
-  'dariia-ysl', 'beatrix-gisou', 'khutjo-anua-original',
-]
-export const aboutStoryFilms: FilmKey[] = ['georgii-anua', 'rebecca-saie']
-export const aboutClosingFilms: FilmKey[] = ['albina-sephora', 'skincare']
-export const aboutFilms: FilmKey[] = [...aboutWallFilms, ...aboutStoryFilms, ...aboutClosingFilms]
 
 export const filmDescription = (key: FilmKey) => `${films[key].creator} creator video featuring ${films[key].brand}`
