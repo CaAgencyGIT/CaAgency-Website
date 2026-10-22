@@ -38,7 +38,7 @@ rsync -a --delete /var/lib/caagency-website/media/ "$STATE/media/"
 chown -R "$RUN_USER:$RUN_USER" "$STATE/media"
 
 if [ ! -d "$STATE/src/.git" ]; then
-  runuser -u "$RUN_USER" -- git clone --branch website-redesign --single-branch \
+  runuser -u "$RUN_USER" -- env HOME="$STATE" git clone --branch website-redesign --single-branch \
     "${REPO_URL:-git@github.com:CaAgencyGIT/CaAgency-Website.git}" "$STATE/src"
 fi
 

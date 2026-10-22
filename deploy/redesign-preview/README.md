@@ -19,15 +19,31 @@ form submissions are stored locally and never emailed. The updater refuses to
 run if the env file points at the production database or enables mail or
 cache purging, and the preview service cannot see production paths.
 
-## One-time install (as root on caagency-server)
+## One-time install (on caagency-server)
 
-1. Give `caagency-redesign` read access to GitHub: a read-only deploy key in
-   `/var/lib/caagency-website-redesign/.ssh/` (or set `REPO_URL`).
-2. Copy this folder to the server and run `./setup-preview.sh`. It creates the
-   user, the database copy, the media copy and the env file, builds the
-   branch and starts the preview and its update timer.
-3. Add `Caddyfile.redesign.snippet` to the active Caddyfile (set a password
-   hash with `caddy hash-password`) and reload Caddy.
+1. Create the preview user and a read-only GitHub key for it:
+
+   ```bash
+   sudo useradd --system --create-home --home-dir /var/lib/caagency-website-redesign --shell /usr/sbin/nologin caagency-redesign
+   sudo -u caagency-redesign mkdir -p -m 700 /var/lib/caagency-website-redesign/.ssh
+   sudo -u caagency-redesign ssh-keygen -t ed25519 -N "" -C caagency-redesign-preview -f /var/lib/caagency-website-redesign/.ssh/id_ed25519
+   sudo -u caagency-redesign sh -c 'ssh-keyscan github.com >> /var/lib/caagency-website-redesign/.ssh/known_hosts'
+   sudo cat /var/lib/caagency-website-redesign/.ssh/id_ed25519.pub
+   ```
+
+   Add the printed key on GitHub: repository Settings > Deploy keys > Add
+   deploy key, leave "Allow write access" off.
+2. Clone the branch and run the setup (creates the database copy, media
+   copy and env file, builds the branch, starts the preview and its timer):
+
+   ```bash
+   sudo -u caagency-redesign env HOME=/var/lib/caagency-website-redesign git clone --branch website-redesign --single-branch git@github.com:CaAgencyGIT/CaAgency-Website.git /var/lib/caagency-website-redesign/src
+   sudo /var/lib/caagency-website-redesign/src/deploy/redesign-preview/setup-preview.sh
+   curl -I http://127.0.0.1:3002/
+   ```
+3. Add `Caddyfile.redesign.snippet` to the active Caddyfile, with a password
+   hash from `caddy hash-password`, then `sudo systemctl reload caddy`
+   (Caddy older than 2.8 spells the directive `basicauth`).
 4. In the Cloudflare Tunnel, add public hostname `redesign.caagency.com`
    pointing to the same Caddy origin as caagency.com.
 

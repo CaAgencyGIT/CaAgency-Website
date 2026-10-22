@@ -25,7 +25,8 @@ grep -qx 'NEXT_PUBLIC_PREVIEW_MODE=true' "$ENV_FILE" || refuse 'NEXT_PUBLIC_PREV
 grep -Eq '^DATABASE_URL=postgresql://[^/]+/caagency_website_redesign([?].*)?$' "$ENV_FILE" || refuse 'DATABASE_URL is not the preview database'
 if grep -Eq '^(EMAIL_DELIVERY_ENABLED=true|CLOUDFLARE_PURGE_TOKEN=.)' "$ENV_FILE"; then refuse 'mail delivery or cache purge is enabled'; fi
 
-as_user() { runuser -u "$RUN_USER" -- "$@"; }
+# HOME points at the preview state dir so npm and git never touch /root.
+as_user() { runuser -u "$RUN_USER" -- env HOME="$STATE" "$@"; }
 
 as_user git -C "$SRC" fetch --quiet origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
 TARGET=$(as_user git -C "$SRC" rev-parse "origin/$BRANCH")
