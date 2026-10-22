@@ -5,10 +5,15 @@ import { getTalentsBySlugs } from '@/lib/site-content/public'
 import { HomePageContent } from '@/lib/site-content/site-types'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { services as serviceDetails } from '@/lib/data/services'
-import { priorityTalentSlugs } from '@/lib/data/redesign-media'
+import { homeTalentSlugs } from '@/lib/data/redesign-media'
 import enMessages from '@/messages/en.json'
 import FAQ from '@/components/blocks/FAQ'
 import HomeView from '@/components/redesign/HomeView'
+import SectionHeading from '@/components/ui/SectionHeading'
+import TalentGrid from '@/components/blocks/TalentGrid'
+import ScrollReveal from '@/components/ui/ScrollReveal'
+import Text from '@/components/ui/Text'
+import Button from '@/components/ui/Button'
 import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
 import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
@@ -35,7 +40,7 @@ export const metadata = buildPageMetadata({
 
 export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
-  const talents = await getTalentsBySlugs(priorityTalentSlugs)
+  const talents = await getTalentsBySlugs(homeTalentSlugs)
   const common = enMessages.common
   const introMediaItems = content.intro.mediaItems.map((item) => ({
     type: item.type === 'image' ? 'image' as const : 'video' as const,
@@ -84,13 +89,24 @@ export default async function HomePage() {
         paragraphs: content.intro.paragraphs.map((paragraph) => paragraph.text),
         button: { label: content.intro.buttonLabel, href: content.intro.buttonHref },
       }}
-      talents={{
-        eyebrow: 'Our Creators',
-        title: content.talents.title,
-        description: content.talents.description,
-        button: { label: content.talents.buttonLabel, href: content.talents.buttonHref },
-        list: talents,
-      }}
+      talentsSection={
+        <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
+          <div className="max-w-container mx-auto">
+            <ScrollReveal delay={0} yOffset={20}>
+              <SectionHeading eyebrow="Our Creators" title={content.talents.title} className="mb-12" />
+            </ScrollReveal>
+            <TalentGrid talents={talents} columns={6} />
+            <ScrollReveal delay={0.2} yOffset={20}>
+              <div className="text-center mt-12">
+                <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">
+                  {content.talents.description}
+                </Text>
+                <Button href={content.talents.buttonHref}>{content.talents.buttonLabel}</Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      }
       services={{
         eyebrow: 'Services',
         title: content.servicesOverview.title,

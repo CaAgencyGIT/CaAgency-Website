@@ -2,6 +2,11 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import { prisma } from '@/lib/prisma'
+import Heading from '@/components/ui/Heading'
+import Text from '@/components/ui/Text'
+import Button from '@/components/ui/Button'
+import Stagger from '@/components/ui/motion/Stagger'
+import StaggerItem from '@/components/ui/motion/StaggerItem'
 import Image from 'next/image'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
@@ -9,8 +14,6 @@ import { livePostsWhere, newestFirst } from '@/lib/blog-posts'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { BLOG_ID, SITE_URL, blogPostUrl, organizationRef } from '@/lib/seo/schema'
 import { blogFeedAlternate } from '@/lib/seo/rss'
-import { blogCoverFilms, filmSrc } from '@/lib/data/redesign-media'
-import { posterFor } from '@/lib/data/videos'
 
 export const revalidate = 3600
 
@@ -88,73 +91,96 @@ function blogJsonLd(posts: ListedPost[]) {
   }
 }
 
-// Redesign: illustrative creator stills on the cards (not campaign claims);
-// posts without one keep their own featured image.
-function cardImage(post: ListedPost) {
-  const film = blogCoverFilms[post.slug]
-  return film ? posterFor(filmSrc(film)) : resolveFeaturedImage(post)
-}
-
 export default async function BlogPage() {
   const posts = await getPublishedPosts()
 
   return (
-    <div className="rd">
+    <>
       <script type="application/ld+json">{jsonLdSafe(blogJsonLd(posts))}</script>
 
-      <section className="rd-section rd-page-hero">
-        <div>
-          <h1>Influencer Marketing Blog</h1>
-        </div>
-        <div className="rd-hero-description">
-          <p>Expert insights, strategies, and tips from CA Agency's experience with 3000+ influencer campaigns.</p>
+      {/* Hero */}
+      <section className="bg-background-base py-[100px] tablet:py-[80px] mobile:py-[60px] px-section-x">
+        <div className="max-w-container mx-auto text-center">
+          <Heading as="h1" color="dark" className="mb-6 text-[56px] tablet:text-[44px] mobile:text-[32px]">
+            Influencer Marketing Blog
+          </Heading>
+          <Text color="dark" size="lg" className="max-w-[700px] mx-auto opacity-80">
+            Expert insights, strategies, and tips from CA Agency's experience with 3000+ influencer campaigns.
+          </Text>
         </div>
       </section>
 
-      <section className="rd-section pt-2.5">
-        {posts.length === 0 ? (
-          <p className="py-20 text-center">No blog posts yet. Check back soon!</p>
-        ) : (
-          <div className="rd-blog-grid">
-            {posts.map((post, index) => {
-              const image = cardImage(post)
-              return (
-                <article key={post.id} className="rd-blog-card">
-                  {image && (
-                    <Link href={`/blog/${post.slug}`} prefetch={false} tabIndex={-1} aria-hidden="true" className="rd-blog-image block">
-                      <Image
-                        src={image}
-                        alt=""
-                        fill
-                        className="object-cover object-[50%_22%]"
-                        sizes={index === 0 ? '(max-width: 760px) 100vw, 62vw' : '(max-width: 760px) 50vw, 30vw'}
-                        preload={index === 0}
-                        loading={index < 3 ? 'eager' : 'lazy'}
-                      />
+      {/* Blog Posts */}
+      <section className="bg-background-base py-[80px] px-section-x">
+        <div className="max-w-container mx-auto">
+          {posts.length === 0 ? (
+            <div className="text-center py-20">
+              <Text color="dark" size="lg" className="opacity-60">
+                No blog posts yet. Check back soon!
+              </Text>
+            </div>
+          ) : (
+            <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" stagger={0.08}>
+              {posts.map((post, index) => (
+                <StaggerItem key={post.id} className="h-full">
+                <article
+                  className="hover-lift group h-full bg-background-soft rounded-card overflow-hidden ring-1 ring-black/10 hover:bg-white hover:ring-black/15 hover:shadow-e3"
+                >
+                  {resolveFeaturedImage(post) && (
+                    <Link href={`/blog/${post.slug}`} prefetch={false} tabIndex={-1} aria-hidden="true">
+                      <div className="relative aspect-video w-full overflow-hidden">
+                        <Image
+                          src={resolveFeaturedImage(post) as string}
+                          alt=""
+                          fill
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px"
+                          preload={index === 0}
+                          loading={index < 3 ? 'eager' : 'lazy'}
+                        />
+                      </div>
                     </Link>
                   )}
-                  {post.publishedAt && (
-                    <time dateTime={post.publishedAt.toISOString()}>
-                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                  )}
-                  <Link href={`/blog/${post.slug}`} prefetch={false}>
-                    <h2>{post.title}</h2>
-                  </Link>
-                  {post.excerpt && <p>{post.excerpt}</p>}
-                  <Link href={`/blog/${post.slug}`} prefetch={false} className="rd-read-more">
-                    Read More
-                  </Link>
+                  <div className="p-6">
+                    {post.publishedAt && (
+                      <time
+                        dateTime={post.publishedAt.toISOString()}
+                        className="text-black/60 text-sm"
+                      >
+                        {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                    )}
+                    <Link href={`/blog/${post.slug}`} prefetch={false}>
+                      <Heading
+                        as="h2"
+                        color="dark"
+                        className="mt-2 mb-3 text-[24px] hover:text-foreground-subtle transition-colors"
+                      >
+                        {post.title}
+                      </Heading>
+                    </Link>
+                    {post.excerpt && (
+                      <Text color="dark" size="sm" className="opacity-70 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </Text>
+                    )}
+                    <Link href={`/blog/${post.slug}`} prefetch={false}>
+                      <Button variant="dark" className="w-full">
+                        Read More
+                      </Button>
+                    </Link>
+                  </div>
                 </article>
-              )
-            })}
-          </div>
-        )}
+                </StaggerItem>
+              ))}
+            </Stagger>
+          )}
+        </div>
       </section>
-    </div>
+    </>
   )
 }

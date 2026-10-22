@@ -54,6 +54,16 @@ export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v1.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
 
+// Homepage "Meet the Talents", in the client's order.
+export const homeTalentSlugs = [
+  'albina-mavriqi',
+  'anton-drozhzhin',
+  'khutjo-matsoma',
+  'dariia-bordun',
+  'melani-seiffert',
+  'rebecca-ghaderi',
+]
+
 export const priorityTalentSlugs = [
   'albina-mavriqi',
   'dariia-bordun',
@@ -95,36 +105,6 @@ export const workFilms: FilmKey[] = [
   'beatrix-medicube', 'skincare',
 ]
 
-// Illustrative creator stills for blog cards, keyed by post slug. Not a
-// campaign claim; posts without an entry keep their own featured image.
-export const blogCoverFilms: Partial<Record<string, FilmKey>> = {
-  'instagram-reels-beauty-brands': 'melani-skin1004',
-  'find-skincare-influencers-usa': 'georgii-anua',
-  'tiktok-shop-beauty-brands': 'albina-sephora',
-  'youtube-influencer-marketing-beauty-brands': 'khutjo-anua-original',
-  'k-beauty-influencer-marketing-guide': 'dariia-ysl',
-  'influencer-marketing-for-beauty-brands': 'anton-skin1004',
-  'tiktok-shop-fashion-wellness-brands': 'beatrix-gisou',
-  'saudi-arabia-influencer-marketing-guide': 'melly-fenty',
-  'influencer-whitelisting-spark-ads-guide': 'rebecca-saie',
-  'influencer-marketing-dubai-uae-cost-guide': 'albulena-purito',
-  'influencer-marketing-guide': 'jay-tropic',
-  'how-to-choose-influencer-marketing-agency': 'melani-dalba',
-  'tiktok-influencer-marketing-guide': 'beatrix-patrickta',
-  'how-to-measure-influencer-marketing-roi': 'dariia-glowrecipe',
-  'how-to-run-influencer-marketing-campaign': 'loresa-celimax',
-  'influencer-marketing-cost-2026': 'saranda-dalba',
-  'influencer-marketing-agency-vs-in-house': 'dariia-armani',
-  'how-to-spot-fake-influencers': 'skincare',
-  'ftc-disclosure-guidelines-influencer-marketing': 'melly-rare',
-  'influencer-marketing-for-health-wellness': 'ardita-purito',
-  'influencer-marketing-for-fashion-brands': 'dariia-laneige',
-  'ugc-vs-influencer-marketing': 'qendresa-arencia',
-  'micro-vs-macro-influencers': 'aurela-arencia',
-  'instagram-influencer-marketing-2026': 'haircare',
-  'influencer-marketing-trends-2026': 'aiym-purito',
-  'welcome-to-ca-agency-blog': 'albina-medicube',
-}
 
 
 export const REDESIGN_MEDIA_PUBLISHED = '2026-10-22'

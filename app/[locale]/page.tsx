@@ -6,9 +6,14 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Metadata } from 'next'
 import { getFaqJsonLd } from '@/lib/data/faq-schema'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { priorityTalentSlugs } from '@/lib/data/redesign-media'
+import { homeTalentSlugs } from '@/lib/data/redesign-media'
 import FAQ from '@/components/blocks/FAQ'
 import HomeView from '@/components/redesign/HomeView'
+import SectionHeading from '@/components/ui/SectionHeading'
+import TalentGrid from '@/components/blocks/TalentGrid'
+import ScrollReveal from '@/components/ui/ScrollReveal'
+import Text from '@/components/ui/Text'
+import Button from '@/components/ui/Button'
 import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
 import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
@@ -59,7 +64,7 @@ export default async function HomePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'home' })
   const tCommon = await getTranslations({ locale, namespace: 'common' })
   const content = await getSiteContent<HomePageContent>('home')
-  const talents = await getTalentsBySlugs(priorityTalentSlugs)
+  const talents = await getTalentsBySlugs(homeTalentSlugs)
   const carouselImages =
     content.hero?.carouselImages?.filter((img) => img?.src?.trim())?.map((image) => ({
       url: image.src,
@@ -118,13 +123,24 @@ export default async function HomePage({ params }: Props) {
         paragraphs: [t('aboutDescription'), t('crossPlatform')],
         button: { label: tCommon('moreAboutUs'), href: '/about' },
       }}
-      talents={{
-        eyebrow: t('eyebrowTalents'),
-        title: t('meetTheTalents'),
-        description: t('talentsDescription'),
-        button: { label: tCommon('seeAllTalents'), href: '/talents' },
-        list: talents,
-      }}
+      talentsSection={
+        <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
+          <div className="max-w-container mx-auto">
+            <ScrollReveal delay={0} yOffset={20}>
+              <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
+            </ScrollReveal>
+            <TalentGrid talents={talents} columns={6} />
+            <ScrollReveal delay={0.2} yOffset={20}>
+              <div className="text-center mt-12">
+                <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">
+                  {t('talentsDescription')}
+                </Text>
+                <Button href="/talents" locale={locale as Locale}>{tCommon('seeAllTalents')}</Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      }
       faq={
         <>
           <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd(locale))}</script>
