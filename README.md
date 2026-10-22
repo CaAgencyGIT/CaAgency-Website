@@ -59,7 +59,9 @@ Both deployment clients call the OIDC gateway directly over the host-only VM
 connection and notice completion within half a second for normal deployments.
 The server independently verifies that every required CI stage succeeded in
 the exact current job/attempt, plus GitHub's current default branch, then fetches matching Git objects from its trusted read-only local cache
-when available. Cache misses fall back to authenticated GitHub fetch. Health
+when available. The host refreshes that trusted default-branch cache during CI
+so same-job deployment can fetch locally. Mounted guest snapshots stay immutable.
+Cache misses fall back to authenticated GitHub fetch. Health
 checks still require two successes separated by two seconds, with quicker
 retries while the new server opens its socket. Migration and rollback gates stay
 in place; server status includes policy/source/release timings.
