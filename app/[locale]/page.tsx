@@ -9,6 +9,10 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { priorityTalentSlugs } from '@/lib/data/redesign-media'
 import FAQ from '@/components/blocks/FAQ'
 import HomeView from '@/components/redesign/HomeView'
+import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
+import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
+import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
+import { posterFor } from '@/lib/data/videos'
 
 export const revalidate = 3600
 
@@ -36,6 +40,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
+// Media carousel items for "This is CA Agency" section — July 2026 round 3:
+// client sequence Sydney → Dariia → Albina → Melly → Huda → Douglas, clean
+// cuts (no watermarks). Keep in sync with the `home` defaults in
+// lib/site-content/definitions.ts.
+const mediaCarouselItems = [
+  { type: 'video' as const, src: '/videos/work/reel-DX2BnbDMhd9-clean.mp4', alt: 'TIRTIR matcha skincare campaign reel', poster: posterFor('/videos/work/reel-DX2BnbDMhd9-clean.mp4') },
+  { type: 'video' as const, src: '/videos/work/reel-DT3Pv52jCqc-clean.mp4', alt: 'Rhode blush campaign reel', poster: posterFor('/videos/work/reel-DT3Pv52jCqc-clean.mp4') },
+  { type: 'video' as const, src: '/videos/work/reel-DYKuGHLNs6F-clean.mp4', alt: 'Frozen gua sha skincare campaign reel', poster: posterFor('/videos/work/reel-DYKuGHLNs6F-clean.mp4') },
+  { type: 'video' as const, src: '/videos/work/reel-DX2Bva6sJk6-clean.mp4', alt: 'Fenty Beauty campaign reel', poster: posterFor('/videos/work/reel-DX2Bva6sJk6-clean.mp4') },
+  { type: 'video' as const, src: '/videos/work/reel-DK7rKHjOr6a-clean.mp4', alt: 'Bali Body campaign reel', poster: posterFor('/videos/work/reel-DK7rKHjOr6a-clean.mp4') },
+  { type: 'video' as const, src: '/videos/work/reel-DT3Qg4sjHPm-clean.mp4', alt: 'Haruharu Wonder serum mist campaign reel', poster: posterFor('/videos/work/reel-DT3Qg4sjHPm-clean.mp4') },
+]
+
 export default async function HomePage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
@@ -43,6 +60,11 @@ export default async function HomePage({ params }: Props) {
   const tCommon = await getTranslations({ locale, namespace: 'common' })
   const content = await getSiteContent<HomePageContent>('home')
   const talents = await getTalentsBySlugs(priorityTalentSlugs)
+  const carouselImages =
+    content.hero?.carouselImages?.filter((img) => img?.src?.trim())?.map((image) => ({
+      url: image.src,
+      alt: image.alt,
+    })) ?? []
 
   return (
     <HomeView
@@ -52,6 +74,35 @@ export default async function HomePage({ params }: Props) {
       title={content.hero?.title ?? 'CA Agency'}
       titleSecondLine={content.hero?.titleSecondLine ?? 'Influence • Digital • Marketing'}
       subtitle={t('heroSubtitle')}
+      heroMedia={
+        carouselImages.length > 0 && (
+          <div className="hero-rise-media">
+            <CoverflowCarousel
+              images={carouselImages}
+              locale={locale as Locale}
+              labels={{ region: tCommon('featuredCreators'), goToSlide: tCommon.raw('goToSlide') }}
+            />
+          </div>
+        )
+      }
+      introMedia={
+        <DeferredMediaCarousel
+          items={mediaCarouselItems}
+          // Client decision: autoplay regardless of
+          // prefers-reduced-motion (Oct 2026).
+          ignoreReducedMotion
+          labels={{
+            previous: tCommon('previous'),
+            next: tCommon('next'),
+            play: tCommon('play'),
+            playVideo: tCommon('playVideo'),
+            playCarousel: tCommon('playCarousel'),
+            pauseCarousel: tCommon('pauseCarousel'),
+            goToSlide: tCommon.raw('goToSlide'),
+          }}
+          fallback={<MediaCarouselFallback items={mediaCarouselItems} />}
+        />
+      }
       primaryCta={{ label: tCommon('enquirePartnerships'), href: '/contact' }}
       secondaryCta={{ label: tCommon('viewOurWork'), href: '/work' }}
       trust={t('statsTagline')}

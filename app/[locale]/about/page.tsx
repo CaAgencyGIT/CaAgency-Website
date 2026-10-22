@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import Film from '@/components/redesign/Film'
-import BrandBand from '@/components/redesign/BrandBand'
+import BrandCarousel from '@/components/blocks/BrandCarousel'
+import { brandLogos } from '@/lib/data/brands'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import { aboutClosingFilms, aboutFilms, aboutStoryFilms, aboutWallFilms, filmVideoSchema } from '@/lib/data/redesign-media'
@@ -89,7 +90,9 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      <BrandBand />
+      <section className="bg-background-base py-[50px] px-0">
+        <BrandCarousel images={brandLogos} />
+      </section>
     </div>
   )
 }

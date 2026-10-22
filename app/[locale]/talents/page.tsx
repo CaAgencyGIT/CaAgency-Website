@@ -3,8 +3,10 @@ import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { getTranslations } from 'next-intl/server'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import BrandCarousel from '@/components/blocks/BrandCarousel'
+import { brandLogos } from '@/lib/data/brands'
 import RosterCard, { type RosterTalent } from '@/components/redesign/RosterCard'
-import { priorityTalentSlugs, talentFilms } from '@/lib/data/redesign-media'
+import { priorityTalentSlugs } from '@/lib/data/redesign-media'
 import { localizeHref } from '@/lib/i18n/client-paths'
 export const revalidate = 600
 
@@ -69,7 +71,6 @@ export default async function TalentsPage({ params }: Props) {
     getTranslations({ locale, namespace: 'common' }),
     getTalents(),
   ])
-  const labels = { play: tCommon('play'), pause: tCommon('pause'), playVideo: tCommon('playVideo'), pauseVideo: tCommon('pauseVideo') }
 
   const toCard = (talent: (typeof allTalents)[number]): RosterTalent => ({
     slug: talent.slug,
@@ -109,10 +110,8 @@ export default async function TalentsPage({ params }: Props) {
             <RosterCard
               key={talent.slug}
               talent={talent}
-              film={talentFilms[talent.slug]}
               priority={index === 0}
               sizes="(max-width: 760px) 50vw, 30vw"
-              labels={labels}
             />
           ))}
         </div>
@@ -121,9 +120,7 @@ export default async function TalentsPage({ params }: Props) {
             <RosterCard
               key={talent.slug}
               talent={talent}
-              film={talentFilms[talent.slug]}
               sizes="(max-width: 760px) 50vw, 22vw"
-              labels={labels}
             />
           ))}
         </div>
@@ -149,6 +146,10 @@ export default async function TalentsPage({ params }: Props) {
             {tCommon('getInTouch')}
           </Link>
         </div>
+      </section>
+
+      <section className="bg-background-base py-[50px] px-0">
+        <BrandCarousel images={brandLogos} />
       </section>
     </div>
   )

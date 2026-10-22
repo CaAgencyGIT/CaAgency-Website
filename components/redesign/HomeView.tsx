@@ -2,9 +2,10 @@ import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Film, { type VideoLabels } from '@/components/redesign/Film'
-import BrandBand from '@/components/redesign/BrandBand'
+import BrandCarousel from '@/components/blocks/BrandCarousel'
 import RosterCard, { type RosterTalent } from '@/components/redesign/RosterCard'
-import { films, filmSrc, talentFilms, type FilmKey } from '@/lib/data/redesign-media'
+import { films, filmSrc, type FilmKey } from '@/lib/data/redesign-media'
+import { brandLogos } from '@/lib/data/brands'
 import { posterFor } from '@/lib/data/videos'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
@@ -17,6 +18,9 @@ export interface HomeViewProps {
   title: string
   titleSecondLine?: string
   subtitle: string
+  // Existing slideshows: the hero image coverflow and the intro media carousel.
+  heroMedia: ReactNode
+  introMedia: ReactNode
   primaryCta: Cta
   secondaryCta: Cta
   trust: string
@@ -36,12 +40,10 @@ export interface HomeViewProps {
   cta: { title: string; text: string; button: Cta }
 }
 
-const heroFilms: FilmKey[] = ['albina-sephora', 'dariia-ysl', 'anton-skin1004']
 const featuredFilms: FilmKey[] = [
   'albina-medicube', 'melani-skin1004', 'beatrix-gisou',
   'khutjo-anua-original', 'georgii-anua', 'melly-fenty-original',
 ]
-const introFilms: FilmKey[] = ['haircare', 'dariia-armani']
 const serviceStills: FilmKey[] = ['dariia-glowrecipe', 'melani-dalba', 'georgii-purito', 'beatrix-patrickta', 'skincare']
 
 export default function HomeView(props: HomeViewProps) {
@@ -65,23 +67,13 @@ export default function HomeView(props: HomeViewProps) {
             </Link>
           </div>
         </div>
-        <div className="rd-hero-films">
-          {heroFilms.map((film, index) => (
-            <Film
-              key={film}
-              film={film}
-              priority={index === 0}
-              sizes="(max-width: 760px) 33vw, 22vw"
-              labels={labels}
-            />
-          ))}
-        </div>
+        <div className="min-w-0">{props.heroMedia}</div>
       </section>
 
       <section className="rd-section rd-trust">
         <p>{props.trust}</p>
       </section>
-      <BrandBand />
+      <BrandCarousel images={brandLogos} />
 
       <section className="rd-section rd-home-work">
         <div className="rd-section-heading">
@@ -117,11 +109,7 @@ export default function HomeView(props: HomeViewProps) {
       </section>
 
       <section className="rd-section rd-split">
-        <div className="rd-duo">
-          {introFilms.map((film) => (
-            <Film key={film} film={film} sizes="(max-width: 760px) 50vw, 25vw" labels={labels} />
-          ))}
-        </div>
+        <div className="flex min-w-0 justify-center">{props.introMedia}</div>
         <div className="rd-copy">
           <p className="rd-eyebrow">{props.intro.eyebrow}</p>
           <h2>{props.intro.title}</h2>
@@ -149,9 +137,7 @@ export default function HomeView(props: HomeViewProps) {
             <RosterCard
               key={talent.slug}
               talent={talent}
-              film={talentFilms[talent.slug]}
               sizes="(max-width: 760px) 50vw, (max-width: 1100px) 33vw, 15vw"
-              labels={labels}
             />
           ))}
         </div>

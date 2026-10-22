@@ -1,9 +1,12 @@
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
+import Heading from '@/components/ui/Heading'
+import HeadingAccent from '@/components/ui/HeadingAccent'
+import Text from '@/components/ui/Text'
+import Button from '@/components/ui/Button'
 import ContactForm from '@/components/blocks/ContactForm'
-import Film from '@/components/redesign/Film'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
-import type { FilmKey } from '@/lib/data/redesign-media'
+import GradientDivider from '@/components/ui/GradientDivider'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 type Props = {
@@ -37,75 +40,103 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-const contactFilms: FilmKey[] = ['albina-medicube', 'melani-dalba', 'beatrix-gisou', 'skincare']
-
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'contact' })
-  const tCommon = await getTranslations({ locale, namespace: 'common' })
   const formLabels = buildContactFormLabels(await getMessages({ locale }))
-  const labels = { play: tCommon('play'), pause: tCommon('pause'), playVideo: tCommon('playVideo'), pauseVideo: tCommon('pauseVideo') }
 
   return (
-    <div className="rd">
-      <section className="rd-section rd-page-hero">
-        <div>
-          <h1>{t('heading')}</h1>
-        </div>
-        <div className="rd-hero-description">
-          <p>{t('brandDescription')}</p>
-        </div>
-      </section>
+    <>
 
-      <section className="rd-section rd-contact-layout">
-        <div className="rd-contact-films">
-          <div className="rd-contact-film-grid">
-            {contactFilms.map((film) => (
-              <Film key={film} film={film} sizes="(max-width: 760px) 25vw, 17vw" labels={labels} />
-            ))}
-          </div>
-        </div>
-        <div className="rd-contact-forms">
-          <div className="rd-contact-form">
-            <h2>{t('brandInquiries')}</h2>
-            <ContactForm formId={2} variant="editorial" labels={formLabels} />
-          </div>
-          <div className="rd-contact-form">
-            <h2>{t('talentSubmission')}</h2>
-            <p>{t('talentDescription')}</p>
-            <ContactForm formId={3} variant="editorial" labels={formLabels} />
+      {/* Hero Section */}
+      <section className="bg-background-soft py-[150px] mobile:py-[80px] px-section-x relative overflow-hidden">
+        <div className="max-w-container mx-auto relative z-10">
+          <div className="max-w-[850px] mx-auto">
+            {/* Contact Form Card */}
+            <div className="hero-rise-media bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] py-[70px] mobile:py-[50px] px-[70px] tablet:px-[50px] mobile:px-[30px]">
+              {/* Header */}
+              <div className="text-center mb-10">
+                <Heading as="h1" color="dark" className="mb-4 tracking-[0.1px]">
+                  {t('heading')}
+                </Heading>
+                <Text color="muted" size="sm" className="max-w-[550px] mx-auto">
+                  {t('brandDescription')}
+                </Text>
+              </div>
+
+              {/* Contact Form */}
+              <div className="mb-2">
+                <Heading as="h2" color="dark" className="mb-4 text-[24px] mobile:text-[20px]">
+                  {t('brandInquiries')}
+                </Heading>
+                <HeadingAccent align="start" className="mb-6" />
+                <ContactForm formId={2} labels={formLabels} />
+              </div>
+
+              <GradientDivider variant="dark" className="my-14" />
+
+              {/* Talent Submission */}
+              <div>
+                <Heading as="h2" color="dark" className="mb-3 text-[24px] mobile:text-[20px]">
+                  {t('talentSubmission')}
+                </Heading>
+                <HeadingAccent align="start" className="mb-4" />
+                <Text color="muted" size="sm" className="mb-6">
+                  {t('talentDescription')}
+                </Text>
+                <ContactForm formId={3} labels={formLabels} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CA Agency HQ office block with embedded map (July 2026 R15) */}
-      <section className="rd-address">
-        <div className="mx-auto grid max-w-[calc(1600px-10vw)] gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <p>{t('hqLabel')}</p>
-            <p dir="ltr">
-              Meydan Grandstand, 6th Floor,
-              <br />
-              Meydan Road, Nad Al Sheba,
-              <br />
-              Dubai, U.A.E.
-            </p>
-            <a href={HQ_MAPS_SEARCH_URL} target="_blank" rel="noopener noreferrer">
-              {t('findOnMaps')}
-            </a>
-          </div>
-          <div className="h-[260px] overflow-hidden rounded-[8px] md:h-[320px]">
-            <iframe
-              src={HQ_MAPS_EMBED_URL}
-              title={t('mapTitle')}
-              className="h-full w-full border-0"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+      <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">
+        <div className="max-w-container mx-auto">
+          <div className="max-w-[850px] mx-auto">
+            <div className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[30px]">
+                  <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-5">
+                    {t('hqLabel')}
+                  </p>
+                  <p
+                    dir="ltr"
+                    className="font-work-sans text-[15px] leading-[1.9] text-foreground-body uppercase tracking-[0.05em] mb-8"
+                  >
+                    Meydan Grandstand, 6th Floor,
+                    <br />
+                    Meydan Road, Nad Al Sheba,
+                    <br />
+                    Dubai, U.A.E.
+                  </p>
+                  <div>
+                    <Button
+                      href={HQ_MAPS_SEARCH_URL}
+                      size="sm"
+                      unlocalized
+                      target="_blank"
+                    >
+                      {t('findOnMaps')}
+                    </Button>
+                  </div>
+                </div>
+                <div className="h-[320px] mobile:h-[260px] md:h-auto md:min-h-[340px]">
+                  <iframe
+                    src={HQ_MAPS_EMBED_URL}
+                    title={t('mapTitle')}
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }

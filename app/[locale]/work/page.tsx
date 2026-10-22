@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import Film from '@/components/redesign/Film'
+import BrandCarousel from '@/components/blocks/BrandCarousel'
+import { brandLogos } from '@/lib/data/brands'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import { filmCaseStudies, films, filmVideoSchema, workFilms } from '@/lib/data/redesign-media'
@@ -93,6 +95,10 @@ export default async function WorkPage({ params }: Props) {
           <Link className="rd-pill" href={localizeHref('/services', locale)} prefetch={false}>{tCommon('ourServices')}</Link>
           <Link className="rd-pill" href={localizeHref('/talents', locale)} prefetch={false}>{tCommon('meetOurTalents')}</Link>
         </div>
+      </section>
+
+      <section className="bg-background-base py-[50px] px-0">
+        <BrandCarousel images={brandLogos} />
       </section>
     </div>
   )

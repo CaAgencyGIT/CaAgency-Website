@@ -13,7 +13,6 @@ export default function Film({
   film,
   sizes,
   priority = false,
-  playOnHover = false,
   labels,
   caption,
   className,
@@ -21,7 +20,6 @@ export default function Film({
   film: FilmKey
   sizes: string
   priority?: boolean
-  playOnHover?: boolean
   labels?: VideoLabels
   caption?: ReactNode
   className?: string
@@ -36,8 +34,6 @@ export default function Film({
           posterSizes={sizes}
           posterPriority={priority}
           aspectRatio="fill"
-          autoplay={!playOnHover}
-          playOnHover={playOnHover}
           label={filmLabel(film)}
           labels={labels}
           className="rounded-none"

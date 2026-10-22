@@ -9,6 +9,10 @@ import { priorityTalentSlugs } from '@/lib/data/redesign-media'
 import enMessages from '@/messages/en.json'
 import FAQ from '@/components/blocks/FAQ'
 import HomeView from '@/components/redesign/HomeView'
+import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
+import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
+import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
+import { posterFor } from '@/lib/data/videos'
 // ISR: prerender at build, refresh the DB-backed footer/content hourly.
 export const revalidate = 3600
 
@@ -33,6 +37,12 @@ export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
   const talents = await getTalentsBySlugs(priorityTalentSlugs)
   const common = enMessages.common
+  const introMediaItems = content.intro.mediaItems.map((item) => ({
+    type: item.type === 'image' ? 'image' as const : 'video' as const,
+    src: item.src,
+    alt: item.alt,
+    poster: item.poster ?? (item.type === 'video' ? posterFor(item.src) : undefined),
+  }))
 
   return (
     <HomeView
@@ -42,6 +52,23 @@ export default async function HomePage() {
       title={content.hero.title}
       titleSecondLine={content.hero.titleSecondLine}
       subtitle={content.hero.subtitle}
+      heroMedia={
+        <div className="hero-rise-media">
+          <CoverflowCarousel
+            images={content.hero.carouselImages.map((image) => ({ url: image.src, alt: image.alt }))}
+            labels={{ region: common.featuredCreators, goToSlide: common.goToSlide }}
+          />
+        </div>
+      }
+      introMedia={
+        <DeferredMediaCarousel
+          items={introMediaItems}
+          // Client decision: autoplay regardless of
+          // prefers-reduced-motion (Oct 2026).
+          ignoreReducedMotion
+          fallback={<MediaCarouselFallback items={introMediaItems} />}
+        />
+      }
       primaryCta={{ label: 'Enquire For Partnerships', href: '/contact' }}
       secondaryCta={{ label: 'See Our Work', href: '/work' }}
       trust={content.stats.tagline}

@@ -54,28 +54,6 @@ export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v1.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
 
-// Talents whose cards play a film instead of the roster photo, in the order
-// the redesign gives them extra exposure (Albina leads).
-export const talentFilms: Partial<Record<string, FilmKey>> = {
-  'albina-mavriqi': 'albina-sephora',
-  'dariia-bordun': 'dariia-ysl',
-  'anton-drozhzhin': 'anton-skin1004',
-  'melani-seiffert': 'melani-skin1004',
-  'beatrix-ramosaj': 'beatrix-gisou',
-  'khutjo-matsoma': 'khutjo-anua-original',
-  'melly-sanchez': 'melly-fenty-original',
-  'rebecca-ghaderi': 'rebecca-saie',
-  'albulena-mavriqi': 'albulena-purito',
-  'loresa-konushevci': 'loresa-celimax',
-  'ardita-gashi': 'ardita-purito',
-  'jay-sadiq': 'jay-mixsoon',
-  'aurela-elshani': 'aurela-arencia',
-  'qendresa-konushevci': 'qendresa-arencia',
-  'georgii-galaev': 'georgii-anua',
-  'aiym-kablan': 'aiym-purito',
-  'saranda-mavriqi': 'saranda-dalba',
-}
-
 export const priorityTalentSlugs = [
   'albina-mavriqi',
   'dariia-bordun',
@@ -138,11 +116,6 @@ export const blogCoverFilms: Partial<Record<string, FilmKey>> = {
   'welcome-to-ca-agency-blog': 'albina-medicube',
 }
 
-// Text brand band from the redesign reference.
-export const bandBrands = [
-  'YSL Beauty', 'Fenty Beauty', 'Sephora', 'Medicube', 'Anua',
-  'Gisou', 'Mixsoon', 'Armani Beauty', 'Laneige', 'Saie',
-]
 
 export const REDESIGN_MEDIA_PUBLISHED = '2026-10-22'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useEffect, useRef, useState, type PointerEvent } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { clsx } from 'clsx'
 import usePrefersReducedMotion from '@/components/hooks/usePrefersReducedMotion'
@@ -26,8 +26,6 @@ interface VideoPlayerProps {
   posterSizes?: string
   posterPriority?: boolean
   label?: string
-  // Plays on mouse hover instead of autoplaying (talent portraits).
-  playOnHover?: boolean
   playbackActive?: boolean
   onRequestActive?: () => void
   onReleaseActive?: () => void
@@ -56,7 +54,6 @@ export default function VideoPlayer({
   posterSizes = '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 300px',
   posterPriority = false,
   label = 'Campaign video',
-  playOnHover = false,
   playbackActive,
   onRequestActive,
   onReleaseActive,
@@ -261,15 +258,6 @@ export default function VideoPlayer({
     }
   }
 
-  const isPlaying = playbackStatus === 'playing' || playbackStatus === 'starting' || playbackStatus === 'buffering'
-  const handlePointerEnter = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== 'mouse' || prefersReducedMotion) return
-    if (!isPlaying || manualIntent === 'pause') togglePlayback()
-  }
-  const handlePointerLeave = () => {
-    if (isPlaying && manualIntent !== 'pause') togglePlayback()
-  }
-
   const aspectClasses = {
     '9:16': 'aspect-9/16',
     '16:9': 'aspect-video',
@@ -283,8 +271,6 @@ export default function VideoPlayer({
   return (
     <div
       ref={containerRef}
-      onPointerEnter={playOnHover ? handlePointerEnter : undefined}
-      onPointerLeave={playOnHover ? handlePointerLeave : undefined}
       className={clsx(
         aspectClasses[aspectRatio],
         'relative overflow-hidden bg-black/10',

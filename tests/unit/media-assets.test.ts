@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { aboutVideos, posterFor, workVideos } from '@/lib/data/videos'
-import { aboutFilms, filmCaseStudies, films, filmSrc, talentFilms, workFilms, type FilmKey } from '@/lib/data/redesign-media'
+import { aboutFilms, filmCaseStudies, films, filmSrc, workFilms, type FilmKey } from '@/lib/data/redesign-media'
 import { caseStudies } from '@/lib/data/case-studies'
 
 type Probe = {
@@ -64,7 +64,6 @@ describe('published media assets', () => {
   it('maps redesign films only to existing case studies', () => {
     const slugs = new Set(caseStudies.map(({ slug }) => slug))
     for (const slug of Object.values(filmCaseStudies)) expect(slugs.has(slug!)).toBe(true)
-    for (const key of Object.values(talentFilms)) expect(films[key!]).toBeDefined()
   })
 
   it('ships streamable H.264 media without audio or oversized frames', () => {

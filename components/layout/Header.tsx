@@ -31,7 +31,7 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
             alt="CA Agency"
             width={800}
             height={532}
-            className="-my-2 h-[96px] w-auto max-[760px]:h-[64px]"
+            className="h-[76px] w-auto object-contain max-[760px]:h-[62px]"
             loading="eager"
           />
         </Link>
