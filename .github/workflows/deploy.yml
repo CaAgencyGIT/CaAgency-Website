@@ -46,9 +46,8 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      - name: Node runtime
+        run: node --version
       - name: Deploy with GitHub identity
         run: node scripts/deploy-keyless.mjs
         env:
