@@ -56,8 +56,10 @@ describe('published media assets', () => {
 
     expect(bytes(workVideos)).toBeLessThanOrEqual(28 * 1024 * 1024)
     expect(bytes(aboutVideos)).toBeLessThanOrEqual(5 * 1024 * 1024)
-    // October 2026 redesign films (lazy-loaded; this is the worst case).
-    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(28 * 1024 * 1024)
+    // October 2026 redesign films, appended to Work and lazy-loaded tile by
+    // tile, so this worst case is never one download. Kept at near-source
+    // quality on request (sharpness over bytes); the bitrate cap still holds.
+    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(40 * 1024 * 1024)
   })
 
   it('maps redesign films only to existing case studies', () => {
