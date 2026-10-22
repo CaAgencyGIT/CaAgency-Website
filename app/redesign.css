@@ -139,15 +139,6 @@
   .rd-hero-description p { margin-bottom: 12px; font-size: 14px; line-height: 1.9; }
   .rd-hero-description p:last-child { margin: 0; }
 
-  /* Work */
-  .rd-work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 48px 24px; }
-  .rd-work-card .rd-film-frame { aspect-ratio: 3 / 4; }
-  .rd-work-card:nth-child(6n + 2) { margin-top: 55px; }
-  .rd-work-card:nth-child(6n + 5) { margin-top: 25px; }
-  .rd-work-meta { display: flex; align-items: start; justify-content: space-between; gap: 12px; padding-top: 18px; }
-  .rd-work-meta h2 { font-size: 26px; }
-  .rd-work-meta .rd-text-link { margin-top: 5px; font-size: 11px; white-space: nowrap; }
-
   /* Services page */
   .rd-services-intro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 8vw; padding-top: 20px; border-bottom: 1px solid var(--rd-line); }
   .rd-service-row { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 8vw; border-bottom: 1px solid var(--rd-line); }
@@ -215,7 +206,6 @@
     .rd-services-mini { grid-template-columns: repeat(3, 1fr); gap: 35px 20px; }
     .rd-footer-top { grid-template-columns: 1fr; }
     .rd-page-hero, .rd-faq { gap: 35px; }
-    .rd-work-meta { flex-direction: column; gap: 5px; }
     .rd-service-contact > a { grid-template-columns: 1fr 1.5fr; }
     .rd-service-contact > a > span:last-child { grid-column: 2; }
   }
@@ -277,12 +267,6 @@
     .rd-priority .rd-talent-meta h3 { font-size: 22px; }
     .rd-talent-grid.rd-wider { grid-template-columns: repeat(2, 1fr); gap: 22px 15px; }
     .rd-wider .rd-talent-meta h3 { font-size: 12px; }
-    .rd-work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 15px; }
-    .rd-work-card:nth-child(6n + 2), .rd-work-card:nth-child(6n + 5) { margin-top: 0; }
-    .rd-work-card:nth-child(even) { margin-top: 28px; }
-    .rd-work-meta { padding-top: 12px; }
-    .rd-work-meta h2 { font-size: 23px; }
-    .rd-work-meta .rd-text-link { font-size: 10px; }
     .rd-services-intro { display: block; }
     .rd-services-intro h2 { margin-bottom: 25px; font-size: 43px; }
     .rd-services-intro p { font-size: 13px; }

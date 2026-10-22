@@ -63,12 +63,22 @@ export const priorityTalentSlugs = [
   'khutjo-matsoma',
 ]
 
-// The only Work films linked to an existing case study.
+// Films whose brand already has a case study link to it from the Work grid,
+// like the current tiles. Other brands get no case study until one is
+// written and approved (no invented briefs or results).
 export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'albina-sephora': 'sephora-campaign',
   'dariia-ysl': 'ysl-beauty-campaign',
   'beatrix-gisou': 'gisou-campaign',
   'melly-fenty': 'fenty-beauty-campaign',
+  'melly-fenty-original': 'fenty-beauty-campaign',
+  'jay-mixsoon': 'mixsoon-skincare',
+  'georgii-anua': 'anua-campaign',
+  'khutjo-anua-original': 'anua-campaign',
+  'aiym-purito': 'purito-campaign',
+  'albulena-purito': 'purito-campaign',
+  'georgii-purito': 'purito-campaign',
+  'ardita-purito': 'purito-campaign',
 }
 
 export const workFilms: FilmKey[] = [
