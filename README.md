@@ -15,7 +15,10 @@ Manual deployment and dry runs remain available through this workflow.
 
 CI and deployment jobs run in disposable, isolated virtual machines on our
 server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
-is discarded. These jobs consume no GitHub-hosted runner minutes. Each VM gets
+is discarded. One fresh, unregistered spare is prebooted for this app, then
+activated only after the previous job's VM exits. This avoids booting a new VM
+on each normal handoff; used job VMs are never recycled. Spares use extra idle
+RAM within the existing server limits. These jobs consume no GitHub-hosted runner minutes. Each VM gets
 a read-only Git snapshot for this repository to avoid repeated full downloads;
 CI checkout still fetches the exact workflow commit. Deploy uses the trusted
 client injected into its fresh VM, without checking out source. Each VM also receives this repository's read-only npm
