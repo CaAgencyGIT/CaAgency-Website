@@ -33,10 +33,10 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
         className="sticky top-0 z-50 hidden border-b border-transparent bg-background-base px-[20px] py-[10px] text-foreground-primary shadow-none transition-[box-shadow,border-color] duration-300 data-[elevated=true]:border-black/10 data-[elevated=true]:shadow-e2 lg:flex laptop:px-[30px]"
       >
         <div className="mx-auto w-full max-w-container">
-          <div className="flex h-[76px] items-center justify-between">
+          <div className="flex h-[88px] items-center justify-between">
             <div className="flex w-[80%] items-center laptop:w-[80%]">
               <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0 p-[6px]">
-                <Image src="/images/site/logo-full.png" alt="CA Agency" width={800} height={532} className="h-[64px] w-auto object-contain" loading="eager" />
+                <Image src="/images/site/logo-full.png" alt="CA Agency" width={800} height={532} className="h-[76px] w-auto object-contain" loading="eager" />
               </Link>
               <nav aria-label={labels.mainMenu} className="flex items-center ps-[30px]">
                 <ul className="flex items-center gap-[30px] tablet:gap-[20px]">
