@@ -1,68 +1,74 @@
 // GitHub supplies both tokens for this job. No manually created secrets or SSH keys.
 import { appendFileSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
 
-const app = process.env.DEPLOY_APP
-if (!['website', 'finance'].includes(app)) throw new Error('Unknown deployment app')
-const endpoint = `https://caagency.com/api/deploy/${app}`
-const audience = 'https://caagency.com/api/deploy'
-const sha = process.env.GITHUB_SHA
-const dryRun = process.env.DEPLOY_DRY_RUN === 'true'
-let identity
-let identityExpires = 0
+export async function deploy({ env = process.env, fetchImpl = fetch,
+  sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)),
+  now = Date.now, log = console.log,
+  summary = text => { if (env.GITHUB_STEP_SUMMARY) appendFileSync(env.GITHUB_STEP_SUMMARY, text) },
+} = {}) {
+  const app = env.DEPLOY_APP
+  if (!['website', 'finance'].includes(app)) throw new Error('Unknown deployment app')
+  const sha = env.GITHUB_SHA
+  if (!/^[a-f0-9]{40}$/.test(sha ?? '')) throw new Error('Invalid deployment commit')
+  // This connection stays inside the host, through the existing OIDC-only gateway.
+  const endpoint = `http://10.0.2.2:9050/api/deploy/${app}`
+  const audience = 'https://caagency.com/api/deploy'
+  const dryRun = env.DEPLOY_DRY_RUN === 'true'
+  let identity, identityExpires = 0
 
-async function oidc() {
-  if (Date.now() < identityExpires) return identity
-  const url = new URL(process.env.ACTIONS_ID_TOKEN_REQUEST_URL)
-  url.searchParams.set('audience', audience)
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN}` },
-    signal: AbortSignal.timeout(30_000),
-  })
-  if (!response.ok) throw new Error(`GitHub OIDC request failed (${response.status})`)
-  identity = (await response.json()).value
-  if (typeof identity !== 'string') throw new Error('GitHub did not return an identity token')
-  console.log(`::add-mask::${identity}`)
-  identityExpires = Date.now() + 120_000
-  return identity
-}
-
-async function request(action) {
-  const body = { sha, dry_run: dryRun }
-  if (action === 'start') body.github_token = process.env.GH_TOKEN
-  const response = await fetch(`${endpoint}/${action}`, {
-    method: 'POST', redirect: 'error',
-    headers: { Authorization: `Bearer ${await oidc()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body), signal: AbortSignal.timeout(30_000),
-  })
-  const result = await response.json()
-  if (response.status === 409 && action === 'start') return { status: 'busy' }
-  if (!response.ok) throw new Error(result.error || `Gateway returned ${response.status}`)
-  return result
-}
-
-const deadline = Date.now() + 50 * 60_000
-let result
-let lastStatus
-do {
-  result = await request('start')
-  if (result.status !== 'busy') break
-  console.log('Waiting for the active server deployment to finish')
-  await new Promise(resolve => setTimeout(resolve, 15_000))
-} while (Date.now() < deadline)
-
-while (Date.now() < deadline) {
-  if (result.status !== lastStatus) {
-    console.log(`${app} @ ${sha}: ${result.status}`)
-    lastStatus = result.status
+  async function oidc() {
+    if (now() < identityExpires) return identity
+    const url = new URL(env.ACTIONS_ID_TOKEN_REQUEST_URL)
+    url.searchParams.set('audience', audience)
+    const response = await fetchImpl(url, {
+      headers: { Authorization: `Bearer ${env.ACTIONS_ID_TOKEN_REQUEST_TOKEN}` },
+      signal: AbortSignal.timeout(30_000),
+    })
+    if (!response.ok) throw new Error(`GitHub OIDC request failed (${response.status})`)
+    identity = (await response.json()).value
+    if (typeof identity !== 'string') throw new Error('GitHub did not return an identity token')
+    log(`::add-mask::${identity}`)
+    identityExpires = now() + 120_000
+    return identity
   }
-  if (result.status === 'failure') throw new Error(result.detail)
-  if (result.status === 'success') {
-    const summary = `${dryRun ? 'Deployment dry run' : 'Deployment'} succeeded for **${app}** at \`${sha}\`. ${result.detail}.\n`
-    console.log(summary)
-    if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary)
-    process.exit(0)
+
+  async function request(action) {
+    const body = { sha, dry_run: dryRun }
+    if (action === 'start') body.github_token = env.GH_TOKEN
+    const response = await fetchImpl(`${endpoint}/${action}`, {
+      method: 'POST', redirect: 'error',
+      headers: { Authorization: `Bearer ${await oidc()}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body), signal: AbortSignal.timeout(30_000),
+    })
+    const result = await response.json()
+    if (response.status === 409 && action === 'start') return { status: 'busy' }
+    if (!response.ok) throw new Error(result.error || `Gateway returned ${response.status}`)
+    if (!['queued', 'running', 'success', 'failure'].includes(result.status)) throw new Error('Unexpected deployment status')
+    return result
   }
-  await new Promise(resolve => setTimeout(resolve, 10_000))
-  result = await request(result.status === 'busy' ? 'start' : 'status')
+
+  const started = now(), deadline = started + 50 * 60_000
+  let result = await request('start'), lastStatus
+  while (now() < deadline) {
+    if (result.status !== lastStatus) {
+      log(result.status === 'busy' ? 'Waiting for the active server deployment to finish' : `${app} @ ${sha}: ${result.status}`)
+      lastStatus = result.status
+    }
+    if (result.status === 'failure') throw new Error(result.detail)
+    if (result.status === 'success') {
+      const seconds = ((now() - started) / 1000).toFixed(2)
+      const text = `${dryRun ? 'Deployment dry run' : 'Deployment'} succeeded for **${app}** at \`${sha}\` in ${seconds}s. ${result.detail}.\n`
+      log(text)
+      summary(text)
+      return result
+    }
+    // Short local polls avoid the former 10s completion / 15s lock-retry waits.
+    // Back off for unusually long builds without weakening the overall deadline.
+    await sleep(now() - started < 60_000 ? result.status === 'busy' ? 1000 : 500 : 2000)
+    result = await request(result.status === 'busy' ? 'start' : 'status')
+  }
+  throw new Error('Deployment timed out; inspect server status before retrying')
 }
-throw new Error('Deployment timed out; inspect server status before retrying')
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await deploy()

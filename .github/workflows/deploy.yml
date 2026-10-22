@@ -42,17 +42,11 @@ jobs:
     steps:
       - name: Verify VM isolation
         run: /usr/local/bin/verify-ci-isolation
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-          # Deployment uses one client script; exclude the large media tree.
-          sparse-checkout: scripts/deploy-keyless.mjs
-          sparse-checkout-cone-mode: false
-      - name: Node runtime
-        run: node --version
       - name: Deploy with GitHub identity
-        run: node scripts/deploy-keyless.mjs
+        # Trusted client is injected into every fresh VM; no source checkout needed.
+        run: |
+          node --version
+          node /usr/local/lib/caagency-ci/deploy-client.mjs
         env:
           DEPLOY_APP: website
           DEPLOY_DRY_RUN: ${{ inputs.dry_run }}

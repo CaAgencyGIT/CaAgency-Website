@@ -17,16 +17,16 @@ CI and deployment jobs run in disposable, isolated virtual machines on our
 server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
 is discarded. These jobs consume no GitHub-hosted runner minutes. Each VM gets
 a read-only Git snapshot for this repository to avoid repeated full downloads;
-checkout still fetches the exact workflow commit. Deploy checks out only its
-small client script. Each VM also receives this repository's read-only npm
+CI checkout still fetches the exact workflow commit. Deploy uses the trusted
+client injected into its fresh VM, without checking out source. Each VM also receives this repository's read-only npm
 download cache and copies it into its disposable disk. Installed `node_modules` are also
 prepared in a separate isolated VM and reused through a fresh copy-on-write disk.
 The dependency step verifies package files and the exact runtime before reuse;
 a mismatch falls back to `npm ci --prefer-offline`. Prisma generation still runs
 for the current schema. Jobs cannot write changes back to any cache. Website CI also restores an
 isolated Next.js compiler baseline before its full build. Compatible compiler
-work is reused; current source and pages are rebuilt. Production retains its own
-compiler cache in the dedicated server checkout, separate from CI.
+work is reused; current source and pages are rebuilt. Manual full server builds
+use a dedicated checkout; normal GitHub deployments reuse CI compilation below.
 
 Successful default-branch CI also publishes its compiled `.next` output directly
 to the server using GitHub OIDC. Deployment reuses the build from that exact CI
@@ -37,6 +37,15 @@ checked before release. The server keeps at most three compressed builds, with
 no GitHub artifact-storage usage. Pull requests cannot publish deployment builds.
 Public `NEXT_PUBLIC_*` build settings are GitHub repository variables and must
 match production; application secrets remain only on the server.
+
+Both deployment clients call the OIDC gateway directly over the host-only VM
+connection and notice completion within half a second for normal deployments.
+The server independently verifies successful CI and GitHub's current default
+branch, then fetches matching Git objects from its trusted read-only local cache
+when available. Cache misses fall back to authenticated GitHub fetch. Health
+checks still require two successes separated by two seconds, with quicker
+retries while the new server opens its socket. Migration and rollback gates stay
+in place; server status includes policy/source/release timings.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,
