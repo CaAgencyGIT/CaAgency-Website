@@ -1,7 +1,7 @@
 # Add inside the existing :80 site block on caagency-server, before the
 # final catch-all `handle`. Create the password hash with:
 #   caddy hash-password
-	@redesign host redesign.caagency.com
+	@redesign host dev.caagency.com
 	handle @redesign {
 		header X-Robots-Tag "noindex, nofollow, noarchive"
 		basic_auth {

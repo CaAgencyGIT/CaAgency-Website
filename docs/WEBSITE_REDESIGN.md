@@ -29,7 +29,7 @@ checks; nothing in this repository can update production from that branch.
 
 ## Demo URL
 
-https://redesign.caagency.com always shows the latest commit on
+https://dev.caagency.com always shows the latest commit on
 `website-redesign`. It is a separate preview service on caagency-server with
 its own database and media copy; see `deploy/redesign-preview/README.md`.
 

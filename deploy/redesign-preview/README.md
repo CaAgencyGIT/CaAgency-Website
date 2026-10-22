@@ -1,6 +1,6 @@
-# Redesign preview (redesign.caagency.com)
+# Dev stage (dev.caagency.com)
 
-Fixed demo URL for the `website-redesign` branch. It runs next to production
+Dev stage: a fixed URL that always shows the `website-redesign` branch. It runs next to production
 on caagency-server and is fully separate from it:
 
 | | Production | Redesign preview |
@@ -44,7 +44,7 @@ cache purging, and the preview service cannot see production paths.
 3. Add `Caddyfile.redesign.snippet` to the active Caddyfile, with a password
    hash from `caddy hash-password`, then `sudo systemctl reload caddy`
    (Caddy older than 2.8 spells the directive `basicauth`).
-4. In the Cloudflare Tunnel, add public hostname `redesign.caagency.com`
+4. In the Cloudflare Tunnel, add public hostname `dev.caagency.com`
    pointing to the same Caddy origin as caagency.com.
 
 ## Operation
