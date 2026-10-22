@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 env:
   # Lint/test only need a well-formed URL; the build job uses its own Postgres service.
   DATABASE_URL: "postgresql://ci:ci@localhost:5432/caagency_website"
@@ -13,8 +16,11 @@ env:
 jobs:
   lint:
     name: Lint & Types
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     steps:
+      - name: Verify VM isolation
+        run: /usr/local/bin/verify-ci-isolation
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -37,8 +43,11 @@ jobs:
 
   test:
     name: Unit tests
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     steps:
+      - name: Verify VM isolation
+        run: /usr/local/bin/verify-ci-isolation
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -53,7 +62,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     needs: [lint, test]
     services:
       postgres:
@@ -66,6 +75,9 @@ jobs:
         options: >-
           --health-cmd "pg_isready -U ci" --health-interval 5s --health-timeout 5s --health-retries 10
     steps:
+      - name: Verify VM isolation
+        run: /usr/local/bin/verify-ci-isolation
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4

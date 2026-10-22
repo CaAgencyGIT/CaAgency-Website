@@ -32,7 +32,7 @@ jobs:
         github.event.workflow_run.head_branch == 'master' &&
         github.event.workflow_run.head_repository.full_name == github.repository &&
         github.event.workflow_run.head_sha == github.sha))
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     timeout-minutes: 55
     environment: server-production
     permissions:
@@ -40,6 +40,8 @@ jobs:
       actions: read
       id-token: write
     steps:
+      - name: Verify VM isolation
+        run: /usr/local/bin/verify-ci-isolation
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}

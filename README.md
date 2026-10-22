@@ -13,6 +13,10 @@ Pushing or merging into the default branch automatically deploys after CI
 succeeds for the same commit. Pull requests and failed CI do not deploy.
 Manual deployment and dry runs remain available through this workflow.
 
+CI and deployment jobs run in disposable, isolated virtual machines on our
+server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
+is discarded. These jobs consume no GitHub-hosted runner minutes.
+
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,
 personal access token, or deployment secret needs to be configured. The server
