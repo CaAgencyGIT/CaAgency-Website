@@ -1,38 +1,14 @@
 import { Metadata } from 'next'
-import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import Heading from '@/components/ui/Heading'
-import Text from '@/components/ui/Text'
-import Button from '@/components/ui/Button'
-import BrandCarousel from '@/components/blocks/BrandCarousel'
-import VideoPlayer from '@/components/ui/VideoPlayer'
-import ScrollReveal from '@/components/ui/ScrollReveal'
-import HeadingAccent from '@/components/ui/HeadingAccent'
+import Film from '@/components/redesign/Film'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
-import { brandLogos } from '@/lib/data/brands'
-import { caseStudyForVideo } from '@/lib/data/case-studies'
 import { organizationRef } from '@/lib/seo/schema'
+import { filmCaseStudies, films, filmVideoSchema, workFilms } from '@/lib/data/redesign-media'
+import { localizeHref } from '@/lib/i18n/client-paths'
 
 // VideoObject schema for SEO
-const videoSchemaList = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  itemListElement: workVideos.map((video, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: {
-      '@type': 'VideoObject',
-      name: video.name,
-      description: `Influencer marketing campaign for ${video.brand} by CA Agency`,
-      contentUrl: `https://caagency.com${video.src}`,
-      thumbnailUrl: `https://caagency.com${posterFor(video.src)}`,
-      uploadDate: video.published ?? VIDEO_PUBLICATION_DATE,
-      publisher: organizationRef,
-    },
-  })),
-}
+const videoSchemaList = filmVideoSchema(workFilms, organizationRef)
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -64,103 +40,60 @@ export default async function WorkPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'work' })
   const tCommon = await getTranslations({ locale, namespace: 'common' })
+  const labels = { play: tCommon('play'), pause: tCommon('pause'), playVideo: tCommon('playVideo'), pauseVideo: tCommon('pauseVideo') }
 
   return (
-    <>
+    <div className="rd">
       <script type="application/ld+json">{JSON.stringify(videoSchemaList)}</script>
 
-      {/* Hero Section — CSS load-in (LCP-safe) */}
-      <section className="relative overflow-hidden bg-background-base py-section-y-desktop mobile:py-[50px] px-section-x">
-        <div className="relative z-[1] max-w-container mx-auto">
-          <div className="flex flex-col md:flex-row gap-[50px]">
-            <div className="hero-rise-media w-full md:w-1/2">
-              <Heading as="h1" color="dark" className="mb-6 tracking-[0.1px]">
-                {t('heading')}
-              </Heading>
-              <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
-                <strong>{t('heroP1')}</strong>
-              </Text>
-              <Text color="dark" size="base" className="text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
-                {t('heroP2')}
-              </Text>
-            </div>
-            <div className="w-full md:w-1/2 hidden mobile:hidden"></div>
-          </div>
+      <section className="rd-section rd-page-hero">
+        <div>
+          <h1>{t('heading')}</h1>
+        </div>
+        <div className="rd-hero-description">
+          <p>
+            <strong>{t('heroP1')}</strong>
+          </p>
+          <p>{t('heroP2')}</p>
         </div>
       </section>
 
-      {/* Video Grid Section — capped slightly below the site container so the
-          tiles read a touch smaller (client request, July 2026 round 3). */}
-      <section className="bg-background-base px-section-x">
-        <div className="max-w-[1180px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px] mobile:gap-[14px]">
-            {workVideos.map((video, index) => {
-              const study = caseStudyForVideo(video.src)
-              return (
-                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:rounded-[15px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
-                  <VideoPlayer
-                    src={video.src}
-                    poster={posterFor(video.src)}
-                    posterSizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, (max-width: 1179px) 25vw, 280px"
-                    // First mobile row (2 columns); on mobile the second
-                    // poster was the LCP element and loaded lazily.
-                    posterPriority={index < 2}
-                    aspectRatio="9:16"
-                    autoplay
-                    muted
-                    loop
-                    // Client decision: autoplay this muted grid regardless of
-                    // prefers-reduced-motion (Oct 2026).
-                    ignoreReducedMotion
-                    className="rounded-card mobile:rounded-[15px]"
-                  />
-                  {study && (
-                    // Case-study routes are English-only (site) pages, so use
-                    // next/link directly — no locale prefix.
-                    <Link
-                      href={`/case-studies/${study.slug}`}
-                      aria-label={`${video.brand} case study`}
-                      className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
-                    >
-                      <span className="w-full p-4 mobile:p-3">
-                        <span className="block font-anegra text-[18px] mobile:text-[15px] font-semibold text-white leading-tight">
-                          {video.brand}
-                        </span>
-                        <span className="block font-work-sans text-[13px] mobile:text-[12px] text-white/80">
-                          {t('viewCaseStudy')} →
-                        </span>
-                      </span>
+      <section className="rd-section pt-0">
+        <div className="rd-work-grid">
+          {workFilms.map((film, index) => {
+            const study = filmCaseStudies[film]
+            const { creator, brand, sourceUrl } = films[film]
+            return (
+              <article key={film} className="rd-work-card">
+                <Film film={film} priority={index === 0} sizes="(max-width: 760px) 50vw, 30vw" labels={labels} />
+                <div className="rd-work-meta">
+                  <h2>{study ? brand : creator}</h2>
+                  {study ? (
+                    // Case-study routes are English-only (site) pages, so no locale prefix.
+                    <Link className="rd-text-link" href={`/case-studies/${study}`} prefetch={false} aria-label={`${brand} case study`}>
+                      {t('viewCaseStudy')} →
                     </Link>
+                  ) : (
+                    <a className="rd-text-link" href={sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${creator} on Instagram`}>
+                      Instagram
+                    </a>
                   )}
                 </div>
-              )
-            })}
-          </div>
+              </article>
+            )
+          })}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-background-base py-[80px] px-section-x border-t border-black/5">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="dark" className="mb-5 text-[40px] tablet:text-[32px] mobile:text-[26px]">
-            {t('ctaTitle')}
-          </Heading>
-          <HeadingAccent className="mb-6" />
-          <Text color="dark" size="base" className="max-w-[600px] mx-auto mb-8 opacity-80">
-            {t('ctaText')}
-          </Text>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button href="/contact" locale={locale as Locale}>{tCommon('getStarted')}</Button>
-            <Button href="/services" locale={locale as Locale} variant="dark">{tCommon('ourServices')}</Button>
-            <Button href="/talents" locale={locale as Locale} variant="dark">{tCommon('meetOurTalents')}</Button>
-          </div>
-        </ScrollReveal>
+      <section className="rd-cta">
+        <h2>{t('ctaTitle')}</h2>
+        <p>{t('ctaText')}</p>
+        <div className="rd-actions">
+          <Link className="rd-pill" href={localizeHref('/contact', locale)} prefetch={false}>{tCommon('getStarted')}</Link>
+          <Link className="rd-pill" href={localizeHref('/services', locale)} prefetch={false}>{tCommon('ourServices')}</Link>
+          <Link className="rd-pill" href={localizeHref('/talents', locale)} prefetch={false}>{tCommon('meetOurTalents')}</Link>
+        </div>
       </section>
-
-      {/* Brand Carousel */}
-      <section className="bg-background-base py-[50px] px-0">
-        <BrandCarousel images={brandLogos} />
-      </section>
-    </>
+    </div>
   )
 }

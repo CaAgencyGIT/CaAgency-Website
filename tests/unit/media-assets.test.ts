@@ -4,6 +4,8 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { aboutVideos, posterFor, workVideos } from '@/lib/data/videos'
+import { aboutFilms, filmCaseStudies, films, filmSrc, talentFilms, workFilms, type FilmKey } from '@/lib/data/redesign-media'
+import { caseStudies } from '@/lib/data/case-studies'
 
 type Probe = {
   format: { bit_rate?: string; duration?: string; format_name?: string }
@@ -17,6 +19,7 @@ type Probe = {
 }
 
 const publicFile = (url: string) => path.join(process.cwd(), 'public', url)
+const redesignVideos = (Object.keys(films) as FilmKey[]).map((key) => ({ src: filmSrc(key) }))
 const ffprobePath = (createRequire(import.meta.url)('ffprobe-static') as { path: string }).path
 
 function probe(url: string) {
@@ -37,7 +40,7 @@ function probe(url: string) {
 
 describe('published media assets', () => {
   it('uses immutable optimized mappings with matching posters', () => {
-    const videos = [...workVideos, ...aboutVideos]
+    const videos = [...workVideos, ...aboutVideos, ...redesignVideos]
     expect(new Set(videos.map(({ src }) => src)).size).toBe(videos.length)
 
     for (const { src } of videos) {
@@ -53,10 +56,19 @@ describe('published media assets', () => {
 
     expect(bytes(workVideos)).toBeLessThanOrEqual(28 * 1024 * 1024)
     expect(bytes(aboutVideos)).toBeLessThanOrEqual(5 * 1024 * 1024)
+    // October 2026 redesign films (lazy-loaded; this is the worst case).
+    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(28 * 1024 * 1024)
+    expect(bytes(aboutFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(10 * 1024 * 1024)
+  })
+
+  it('maps redesign films only to existing case studies', () => {
+    const slugs = new Set(caseStudies.map(({ slug }) => slug))
+    for (const slug of Object.values(filmCaseStudies)) expect(slugs.has(slug!)).toBe(true)
+    for (const key of Object.values(talentFilms)) expect(films[key!]).toBeDefined()
   })
 
   it('ships streamable H.264 media without audio or oversized frames', () => {
-    for (const { src } of [...workVideos, ...aboutVideos]) {
+    for (const { src } of [...workVideos, ...aboutVideos, ...redesignVideos]) {
       const metadata = probe(src)
       const videoStreams = metadata.streams.filter(({ codec_type }) => codec_type === 'video')
       const audioStreams = metadata.streams.filter(({ codec_type }) => codec_type === 'audio')

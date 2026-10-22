@@ -27,8 +27,6 @@ describe('critical resource loading', () => {
   it('keeps layout-wide client components independent of next-intl context', () => {
     for (const file of [
       'components/layout/Header.tsx',
-      'components/layout/MobileMenu.tsx',
-      'components/layout/MobileHeader.tsx',
       'components/ui/Breadcrumbs.tsx',
       'components/ui/CookieConsent.tsx',
       'components/ui/LanguageSwitcher.tsx',

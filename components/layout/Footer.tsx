@@ -6,9 +6,6 @@
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import Image from 'next/image'
-import SocialIcons from '@/components/ui/SocialIcons'
-import GradientDivider from '@/components/ui/GradientDivider'
-import Button from '@/components/ui/Button'
 import { FooterContent } from '@/lib/site-content/site-types'
 import { localizeHref } from '@/lib/i18n/client-paths'
 import { locationPages } from '@/lib/data/locations'
@@ -28,17 +25,6 @@ const defaultFooterContent: FooterContent = {
   ],
 }
 
-function ColumnLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="font-jost text-[13px] font-medium uppercase tracking-[0.15em] text-foreground-primary mb-5">
-      {children}
-    </h3>
-  )
-}
-
-const footerLinkClasses =
-  'font-work-sans text-[15px] font-normal leading-[2em] text-foreground-body hover:text-foreground-primary transition-colors block'
-
 export default function Footer({
   content = defaultFooterContent,
   locale = 'en',
@@ -49,6 +35,7 @@ export default function Footer({
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
   const tLocations = useTranslations('locations')
+  const tCommon = useTranslations('common')
   const currentYear = new Date().getFullYear()
   // The CMS footer row is English-only; other locales use the translated
   // catalog so /ar, /ko etc. don't render an English blurb and address.
@@ -79,116 +66,78 @@ export default function Footer({
   const locationMenuItems = locationPages.map(({ key, path }) => ({ label: tLocations(key), href: path }))
 
   return (
-    <footer className="footer-defer bg-background-soft text-foreground-body">
-      {/* Gradient Divider */}
-      <GradientDivider variant="light" />
-
-      {/* Main Footer */}
-      <div className="max-w-container mx-auto px-section-x py-[64px] mobile:py-[48px]">
-        <div className="grid grid-cols-12 gap-x-8 gap-y-10 mobile:gap-y-8">
-          {/* Brand column */}
-          <div className="col-span-4 tablet:col-span-5 mobile:col-span-12">
-            <Image
-              src="/images/site/logo.svg"
-              alt="CA Agency"
-              width={343}
-              height={181}
-              className="w-[112px] mobile:w-[84px] h-auto mb-5"
-            />
-            <p className="font-work-sans text-[15px] font-normal leading-[1.7] text-foreground-body max-w-[340px] mb-6">
-              {description}
-            </p>
-            <SocialIcons
-              icons={content.socialLinks.map((s) => ({
-                name: s.name,
-                href: s.href,
-                icon: s.icon,
-              }))}
-              size="md"
-              className="gap-[18px] mb-8"
-            />
-            <Button href="/contact" locale={locale} size="sm" className="text-[15px]" prefetch={false}>
+    <footer className="rd rd-footer">
+      <div className="rd-footer-top">
+        <div className="rd-footer-intro">
+          <Image
+            src="/images/site/logo.svg"
+            alt="CA Agency"
+            width={343}
+            height={181}
+            className="mb-[30px] h-auto w-[78px]"
+          />
+          <p>{description}</p>
+          <div className="rd-footer-social">
+            {content.socialLinks.map((social) => (
+              <a key={social.href} href={social.href} target="_blank" rel="noopener noreferrer" className="rd-text-link">
+                {social.name}
+              </a>
+            ))}
+            <Link href={localizeHref('/contact', locale)} prefetch={false} className="rd-text-link">
               {t('contactUs')}
-            </Button>
+            </Link>
           </div>
+        </div>
 
-          {/* Info Column */}
-          <div className="col-span-2 tablet:col-span-3 mobile:col-span-6">
-            <ColumnLabel>{t('info')}</ColumnLabel>
+        <div className="rd-footer-links">
+          <div>
+            <h3>{t('info')}</h3>
             <nav aria-label={t('info')}>
-              <ul className="space-y-0">
-                {infoMenuItems.map((item) => (
-                  <li key={item.href}>
-                    <Link href={localizeHref(item.href, locale)} prefetch={false} className={footerLinkClasses}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {infoMenuItems.map((item) => (
+                <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
-
-          {/* More Info Column */}
-          <div className="col-span-2 tablet:col-span-4 mobile:col-span-6">
-            <ColumnLabel>{t('moreInfo')}</ColumnLabel>
+          <div>
+            <h3>{t('moreInfo')}</h3>
             <nav aria-label="Legal navigation">
-              <ul className="space-y-0">
-                {moreInfoMenuItems.map((item) => (
-                  <li key={item.href}>
-                    <Link href={localizeHref(item.href, locale)} prefetch={false} className={footerLinkClasses}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {moreInfoMenuItems.map((item) => (
+                <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
-
-          {/* Locations Column */}
-          <div className="col-span-2 tablet:col-span-5 mobile:col-span-6">
-            <ColumnLabel>{t('locations')}</ColumnLabel>
+          <div>
+            <h3>{t('locations')}</h3>
             <nav aria-label="Location pages">
-              <ul className="space-y-0">
-                {locationMenuItems.map((item) => (
-                  <li key={item.href}>
-                    <Link href={localizeHref(item.href, locale)} prefetch={false} className={footerLinkClasses}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {locationMenuItems.map((item) => (
+                <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
-
-          {/* Contact Column */}
-          <div className="col-span-2 tablet:col-span-7 mobile:col-span-6">
-            <ColumnLabel>{t('contact')}</ColumnLabel>
-            <ul className="space-y-[10px]">
-              <li className="font-work-sans text-[15px] font-normal leading-[1.6] text-foreground-body">
-                {address}
-              </li>
+          <div>
+            <h3>{t('contact')}</h3>
+            <ul>
+              <li>{address}</li>
               <li>
-                <a
-                  href={`mailto:${content.email}`}
-                  className="font-work-sans text-[15px] font-normal leading-[1.6] text-foreground-body hover:text-foreground-primary hover:underline"
-                >
-                  {content.email}
-                </a>
+                <a href={`mailto:${content.email}`}>{content.email}</a>
               </li>
-              <li className="font-work-sans text-[15px] font-normal leading-[1.6] text-foreground-body">
-                {registrationNo}
-              </li>
+              <li>{registrationNo}</li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <GradientDivider variant="light" />
-      <div className="max-w-container mx-auto px-section-x py-[24px]">
-        <p className="font-work-sans text-[14px] font-normal leading-[1.5em] text-foreground-subtle text-center mobile:text-start">
-          {t('copyright', { year: currentYear })}
-        </p>
+      <div className="rd-footer-bottom">
+        <p>{t('copyright', { year: currentYear })}</p>
+        <a href="#main-content" className="rd-text-link">
+          {tCommon('backToTop')}
+        </a>
       </div>
     </footer>
   )

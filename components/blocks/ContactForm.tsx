@@ -11,7 +11,8 @@ import type { ContactFormLabelKey, ContactFormLabels } from '@/lib/contact/form-
 interface ContactFormProps {
   formId?: number // 1 = homepage dark form, 2 = contact page light form, 3 = talent submission form
   className?: string
-  variant?: 'light' | 'dark'
+  // 'editorial' = the October 2026 redesign's underline fields.
+  variant?: 'light' | 'dark' | 'editorial'
   labels: ContactFormLabels
 }
 
@@ -135,14 +136,19 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
   const isDarkBackground = variant === 'dark'
   const isTalentForm = formId === 3
 
-  const inputBaseStyles = cn(
+  const isEditorial = variant === 'editorial'
+  const inputBaseStyles = isEditorial
+    ? 'w-full bg-transparent px-0 py-3.5 text-[13px] text-[#171715] border-b border-[#bab5ad] rounded-none placeholder:text-[#67645f]/80 focus:outline-hidden focus:border-[#171715] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#555] transition-colors resize-none'
+    : cn(
     'w-full font-jost text-[16px] font-normal bg-transparent px-0 py-3 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-4 resize-none border-b-2 transition-all duration-300',
     isDarkBackground
       ? 'text-white border-white/30 focus:border-white focus-visible:outline-white/70 placeholder:text-white/55 hover:border-white/50'
       : 'text-foreground-dark border-foreground-dark/20 focus:border-accent-red focus-visible:outline-accent-red/70 placeholder:text-foreground-dark/60 hover:border-foreground-dark/40'
   )
 
-  const labelStyles = cn(
+  const labelStyles = isEditorial
+    ? 'block mt-3 mb-2 text-[10px] uppercase tracking-[0.08em] text-[#171715]'
+    : cn(
     'block font-jost text-[13px] font-medium mb-2 uppercase tracking-[1px]',
     isDarkBackground ? 'text-white/70' : 'text-foreground-gray'
   )
