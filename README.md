@@ -9,7 +9,9 @@ Tunnel. Finance is a separate service on port 3000.
 
 Open **Actions → Deploy → Run workflow**, select `master`, and run it after CI
 passes. Select `dry_run` to check preflight without replacing the live release.
-Deployment is manual; pushing or merging code only runs CI.
+Pushing or merging into the default branch automatically deploys after CI
+succeeds for the same commit. Pull requests and failed CI do not deploy.
+Manual deployment and dry runs remain available through this workflow.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,
