@@ -90,7 +90,7 @@ export default function HomeView(props: HomeViewProps) {
               <Film
                 key={film}
                 film={film}
-                sizes="(max-width: 760px) 50vw, 30vw"
+                sizes="(max-width: 760px) 50vw, (max-width: 1100px) 33vw, 16vw"
                 labels={labels}
                 caption={
                   <>

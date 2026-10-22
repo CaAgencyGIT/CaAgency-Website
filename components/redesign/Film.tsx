@@ -33,6 +33,7 @@ export default function Film({
           poster={posterFor(src)}
           posterSizes={sizes}
           posterPriority={priority}
+          posterQuality={75}
           aspectRatio="fill"
           label={filmLabel(film)}
           labels={labels}

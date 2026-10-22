@@ -169,7 +169,7 @@ export default async function ServicesPage({ params }: Props) {
           </div>
           <div className="rd-duo">
             {service.films.map((film) => (
-              <Film key={film} film={film} sizes="(max-width: 760px) 50vw, 22vw" labels={labels} />
+              <Film key={film} film={film} sizes="(max-width: 760px) 50vw, 210px" labels={labels} />
             ))}
           </div>
         </section>

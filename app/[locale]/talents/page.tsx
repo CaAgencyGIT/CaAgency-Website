@@ -111,7 +111,7 @@ export default async function TalentsPage({ params }: Props) {
               key={talent.slug}
               talent={talent}
               priority={index === 0}
-              sizes="(max-width: 760px) 50vw, 30vw"
+              sizes="(max-width: 760px) 50vw, 340px"
             />
           ))}
         </div>
@@ -120,7 +120,7 @@ export default async function TalentsPage({ params }: Props) {
             <RosterCard
               key={talent.slug}
               talent={talent}
-              sizes="(max-width: 760px) 50vw, 22vw"
+              sizes="(max-width: 760px) 50vw, (max-width: 1100px) 25vw, 20vw"
             />
           ))}
         </div>

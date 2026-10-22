@@ -25,6 +25,7 @@ interface VideoPlayerProps {
   poster?: string
   posterSizes?: string
   posterPriority?: boolean
+  posterQuality?: number
   label?: string
   playbackActive?: boolean
   onRequestActive?: () => void
@@ -53,6 +54,7 @@ export default function VideoPlayer({
   poster,
   posterSizes = '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 300px',
   posterPriority = false,
+  posterQuality = 60,
   label = 'Campaign video',
   playbackActive,
   onRequestActive,
@@ -285,7 +287,7 @@ export default function VideoPlayer({
           src={poster}
           alt=""
           fill
-          quality={60}
+          quality={posterQuality}
           preload={posterPriority}
           loading={posterPriority ? undefined : 'lazy'}
           fetchPriority={posterPriority ? 'high' : 'auto'}
