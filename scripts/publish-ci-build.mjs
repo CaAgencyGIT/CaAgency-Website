@@ -27,6 +27,8 @@ try {
   // standalone duplicate, compiler cache, dotenv files or credentials are sent.
   const packed = spawnSync('tar', ['--dereference', '--exclude=.next/cache',
     '--exclude=.next/standalone', '--exclude=.next/trace', '--exclude=.next/trace-build',
+    // The server regenerates these from live data; do not transfer CI's pages.
+    '--exclude=*.html', '--exclude=*.rsc', '--exclude=*.meta', '--exclude=*.body',
     '--exclude=.next/lock', '-czf', archive, '.next'], { stdio: 'inherit' })
   if (packed.status !== 0) throw new Error('Could not package CI build')
   const data = await readFile(archive)
@@ -42,7 +44,9 @@ try {
   const { value: token } = await identity.json()
   if (typeof token !== 'string') throw new Error('GitHub did not return an identity')
   console.log(`::add-mask::${token}`)
-  const response = await fetch(`${audience}/website/build`, {
+  // Host-only Slirp/loopback path to the same OIDC gateway; no public upload or
+  // LAN traffic, application/DB access, host mount, or credential is introduced.
+  const response = await fetch('http://10.0.2.2:9050/api/deploy/website/build', {
     method: 'POST', redirect: 'error', body: data,
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/gzip',
       'X-Build-SHA256': sha256(data) }, signal: AbortSignal.timeout(120_000),
