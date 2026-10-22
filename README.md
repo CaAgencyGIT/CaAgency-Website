@@ -15,7 +15,10 @@ Manual deployment and dry runs remain available through this workflow.
 
 CI and deployment jobs run in disposable, isolated virtual machines on our
 server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
-is discarded. These jobs consume no GitHub-hosted runner minutes.
+is discarded. These jobs consume no GitHub-hosted runner minutes. Each VM gets
+a read-only Git snapshot for this repository to avoid repeated full downloads;
+checkout still fetches the exact workflow commit. Deploy checks out only its
+small client script.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,

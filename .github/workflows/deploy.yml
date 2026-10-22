@@ -46,6 +46,9 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
+          # Deployment uses one client script; exclude the large media tree.
+          sparse-checkout: scripts/deploy-keyless.mjs
+          sparse-checkout-cone-mode: false
       - name: Node runtime
         run: node --version
       - name: Deploy with GitHub identity
