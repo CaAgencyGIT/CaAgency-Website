@@ -28,6 +28,16 @@ isolated Next.js compiler baseline before its full build. Compatible compiler
 work is reused; current source and pages are rebuilt. Production retains its own
 compiler cache in the dedicated server checkout, separate from CI.
 
+Successful default-branch CI also publishes its compiled `.next` output directly
+to the server using GitHub OIDC. Deployment reuses the build from that exact CI
+run and attempt; it does not compile again. It refreshes pre-rendered pages from
+the production database so CI's empty database cannot replace live content.
+Build ID, compiled-code hashes, package lock and public build settings are
+checked before release. The server keeps at most three compressed builds, with
+no GitHub artifact-storage usage. Pull requests cannot publish deployment builds.
+Public `NEXT_PUBLIC_*` build settings are GitHub repository variables and must
+match production; application secrets remain only on the server.
+
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,
 personal access token, or deployment secret needs to be configured. The server

@@ -15,6 +15,11 @@ permissions:
 
 env:
   DATABASE_URL: "postgresql://ci:ci@localhost:5432/caagency_website"
+  NEXT_PUBLIC_HOSTING_PLATFORM: ${{ vars.NEXT_PUBLIC_HOSTING_PLATFORM }}
+  NEXT_PUBLIC_PREVIEW_MODE: ${{ vars.NEXT_PUBLIC_PREVIEW_MODE }}
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+  NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+  NEXT_PUBLIC_GOOGLE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_VERIFICATION }}
 
 jobs:
   check:
@@ -22,6 +27,9 @@ jobs:
     name: Lint, types, tests & build
     runs-on: [self-hosted, Linux, X64, caagency-website-ci]
     timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
     services:
       postgres:
         image: postgres:16-alpine
@@ -67,5 +75,9 @@ jobs:
         run: |
           node /usr/local/lib/caagency-ci/restore-next-cache.mjs
           npm run build
+
+      - name: Publish deployment build
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: node scripts/publish-ci-build.mjs
 
   # E2E still requires a seeded database; it is not part of this CI workflow.
