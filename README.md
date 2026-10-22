@@ -116,3 +116,9 @@ CI also restores isolated TypeScript and ESLint incremental caches. Both checks
 still run on every job; TypeScript rechecks changed source and ESLint uses file
 content hashes. Package, tool configuration or runtime changes invalidate the
 baseline. Job writes stay in the disposable VM.
+
+After Prisma generation, the asset manifest and cache restoration, CI runs
+TypeScript, ESLint and unit tests concurrently inside the same VM. All three
+must pass before the database migration and website build run. Each check gets
+separate logs and timings; Vitest uses at most four workers within the existing
+8-vCPU / 16-GiB VM.
