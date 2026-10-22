@@ -76,7 +76,7 @@ jobs:
           node /usr/local/lib/caagency-ci/restore-next-cache.mjs
           npm run build
 
-      - name: Publish deployment build
+      - name: Publish deployment build (parallel gzip)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: node scripts/publish-ci-build.mjs
 

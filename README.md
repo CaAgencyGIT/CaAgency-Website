@@ -38,6 +38,13 @@ no GitHub artifact-storage usage. Pull requests cannot publish deployment builds
 Public `NEXT_PUBLIC_*` build settings are GitHub repository variables and must
 match production; application secrets remain only on the server.
 
+Build publishing uses four gzip workers within each existing VM CPU limit.
+The GitHub identity request overlaps compression; the archive is hashed while
+it is written and uploaded as a file stream over the host-only connection.
+No full archive buffer is kept in memory. CI reports separate packaging,
+identity and upload timings; SHA-256, upload limits and exact-attempt validation
+remain mandatory. Compression remains gzip-compatible with existing releases.
+
 Both deployment clients call the OIDC gateway directly over the host-only VM
 connection and notice completion within half a second for normal deployments.
 The server independently verifies successful CI and GitHub's current default
