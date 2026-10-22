@@ -5,6 +5,23 @@ Next.js 16 + Prisma 7 on PostgreSQL (container `caagency-postgres`, database
 `caagency-website.service` on 127.0.0.1:3001 behind Caddy and a Cloudflare
 Tunnel. Finance is a separate service on port 3000.
 
+## Deploy from GitHub without deployment keys
+
+Open **Actions → Deploy → Run workflow**, select `master`, and run it after CI
+passes. Select `dry_run` to check preflight without replacing the live release.
+Deployment is manual; pushing or merging code only runs CI.
+
+The workflow authenticates to the server with GitHub OIDC and uses GitHub's
+automatic, read-only job token to fetch the exact commit. No SSH deploy key,
+personal access token, or deployment secret needs to be configured. The server
+requires the `server-production` environment, the default branch, the approved
+workflow, and successful push CI for the same commit. It builds a separate
+checkout, then uses the server's existing health checks and automatic rollback.
+Database migrations still require the reviewed, manual server procedure.
+
+Server setup and recovery: `infra/deploy/github-oidc/README.md` in the parent
+server workspace. Deployment logs: `/var/lib/caagency-deploy/jobs/` (root only).
+
 ## Data and services
 
 - Application: `/srv/caagency-website`, systemd `caagency-website.service`

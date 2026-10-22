@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Check deployment preflight without changing the live release
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy website
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    environment: server-production
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Deploy with GitHub identity
+        run: node scripts/deploy-keyless.mjs
+        env:
+          DEPLOY_APP: website
+          DEPLOY_DRY_RUN: ${{ inputs.dry_run }}
+          # Automatically issued by GitHub for this job, never a stored deploy secret.
+          GH_TOKEN: ${{ github.token }}
