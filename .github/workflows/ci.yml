@@ -42,8 +42,9 @@ jobs:
       - name: Node runtime
         run: node --version
 
-      # The VM seeds a private copy of this repo's immutable npm download cache.
-      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Dependencies
+        # Reuse installed modules only for identical package files and runtime.
+        run: node /usr/local/lib/caagency-ci/install-dependencies.mjs
 
       - name: Prisma client
         run: npx prisma generate
