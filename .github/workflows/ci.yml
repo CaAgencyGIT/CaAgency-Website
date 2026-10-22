@@ -65,6 +65,10 @@ jobs:
       - run: npm run db:migrate:deploy
 
       - name: Build
-        run: npm run build
+        # Only compiler work is restored; every job still builds the current source.
+        # The trusted snapshot is separate from both PR writes and production caches.
+        run: |
+          node /usr/local/lib/caagency-ci/restore-next-cache.mjs
+          npm run build
 
   # E2E still requires a seeded database; it is not part of this CI workflow.

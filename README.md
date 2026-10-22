@@ -23,7 +23,10 @@ download cache and copies it into its disposable disk. Installed `node_modules` 
 prepared in a separate isolated VM and reused through a fresh copy-on-write disk.
 The dependency step verifies package files and the exact runtime before reuse;
 a mismatch falls back to `npm ci --prefer-offline`. Prisma generation still runs
-for the current schema. Jobs cannot write changes back to any cache.
+for the current schema. Jobs cannot write changes back to any cache. Website CI also restores an
+isolated Next.js compiler baseline before its full build. Compatible compiler
+work is reused; current source and pages are rebuilt. Production retains its own
+compiler cache in the dedicated server checkout, separate from CI.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,
