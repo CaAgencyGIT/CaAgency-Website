@@ -18,7 +18,10 @@ server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
 is discarded. These jobs consume no GitHub-hosted runner minutes. Each VM gets
 a read-only Git snapshot for this repository to avoid repeated full downloads;
 checkout still fetches the exact workflow commit. Deploy checks out only its
-small client script.
+small client script. Each VM also receives this repository's read-only npm
+download cache and copies it into its disposable disk. `npm ci --prefer-offline`
+still checks the lockfile and runs install scripts; new packages download normally.
+Jobs cannot write changes back to either cache.
 
 The workflow authenticates to the server with GitHub OIDC and uses GitHub's
 automatic, read-only job token to fetch the exact commit. No SSH deploy key,

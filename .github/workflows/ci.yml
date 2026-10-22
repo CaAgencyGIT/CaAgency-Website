@@ -42,7 +42,8 @@ jobs:
       - name: Node runtime
         run: node --version
 
-      - run: npm ci --no-audit --no-fund
+      # The VM seeds a private copy of this repo's immutable npm download cache.
+      - run: npm ci --prefer-offline --no-audit --no-fund
 
       - name: Prisma client
         run: npx prisma generate
