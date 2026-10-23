@@ -98,7 +98,7 @@ const configured = withNextIntl(bundleAnalyzer({
   ...nextConfig,
   reactCompiler: true,
   experimental: {
-    cpus: 2,
+    cpus: 4,
     // Inline CSS into the HTML instead of a render-blocking <link>. Tried off
     // in Oct 2026 (PR #78): the document shrank, but production Lighthouse
     // attributed ~200ms of extra FCP/LCP on the homepage (text LCP) to the

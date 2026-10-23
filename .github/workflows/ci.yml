@@ -66,7 +66,7 @@ jobs:
 
       - name: Validate, tests & production build (parallel)
         timeout-minutes: 30
-        # ESLint/tests overlap the full build; final tsc reuses this build's cache and checks all diagnostics.
+        # All checks overlap the full build; immutable route types prevent races and are verified again afterward.
         run: node /usr/local/lib/caagency-ci/validate-build.mjs website
 
       - name: Publish deployment build (parallel compression)

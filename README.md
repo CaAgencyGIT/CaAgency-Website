@@ -157,8 +157,8 @@ content hashes. Package, tool configuration or runtime changes invalidate the
 baseline. Job writes stay in the disposable VM.
 
 After Prisma generation, the asset manifest and cache restoration, CI overlaps
-ESLint and unit tests with the database migration and full website build. Explicit
-TypeScript checking then validates the freshly generated route types. All checks
+ESLint, unit tests and TypeScript with the database migration and full website
+build. Website page generation uses four workers within the existing VM limit. All checks
 and the full build must pass before any build publication or deployment. Each check gets
 separate logs and timings; Vitest uses at most four workers within the existing
 8-vCPU / 16-GiB VM.
@@ -174,9 +174,11 @@ cleans the fresh workspace and uses only the job's short-lived read token.
 Credentials are never written to Git configuration. This avoids an external
 action download during job setup.
 
-Final TypeScript validation reuses the same job's Next compiler cache, including
-fresh route types. It still checks all diagnostics, including test files that
-Next's checker filters out. Validated CI standalone directories are renamed
+CI generates route types before the build and gives the parallel TypeScript
+checker an immutable snapshot. All source and generated-type inputs are compared
+after the full build; any difference requires another ordinary TypeScript check.
+Next's own type checker stays enabled, and standalone TypeScript still checks
+all diagnostics, including test files that Next filters out. Validated CI standalone directories are renamed
 into staging on the same filesystem; compiler caches, health checks and rollback
 snapshots are preserved.
 
