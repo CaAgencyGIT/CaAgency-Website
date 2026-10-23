@@ -173,3 +173,9 @@ Checkout uses a trusted, VM-injected helper that verifies the exact GitHub SHA,
 cleans the fresh workspace and uses only the job's short-lived read token.
 Credentials are never written to Git configuration. This avoids an external
 action download during job setup.
+
+Final TypeScript validation reuses the same job's Next compiler cache, including
+fresh route types. It still checks all diagnostics, including test files that
+Next's checker filters out. Validated CI standalone directories are renamed
+into staging on the same filesystem; compiler caches, health checks and rollback
+snapshots are preserved.
