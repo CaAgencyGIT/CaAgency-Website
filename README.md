@@ -188,3 +188,7 @@ disable Node bytecode caching to preserve normal instrumentation. A short-lived
 GitHub identity is prefetched during validation and reused only within that exact
 job/attempt/commit; every gateway request is still authenticated. Published builds
 use bounded, checksummed zstd compression, with legacy gzip retries supported.
+
+Snapshot validation has regression coverage for generated-file replacement, route
+contract errors, test-file errors and source additions; none can silently bypass
+the final full-source checks.
