@@ -190,5 +190,6 @@ job/attempt/commit; every gateway request is still authenticated. Published buil
 use bounded, checksummed zstd compression, with legacy gzip retries supported.
 
 Snapshot validation has regression coverage for generated-file replacement, route
-contract errors, test-file errors and source additions; none can silently bypass
+contract errors, test-file errors, source additions and imported JSON/JavaScript
+changes; none can silently bypass
 the final full-source checks.
