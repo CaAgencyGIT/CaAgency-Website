@@ -179,3 +179,10 @@ fresh route types. It still checks all diagnostics, including test files that
 Next's checker filters out. Validated CI standalone directories are renamed
 into staging on the same filesystem; compiler caches, health checks and rollback
 snapshots are preserved.
+
+Runner preparation preloads sealed build/dependency files into guest memory and
+primes Node's JavaScript compile cache. All checks still execute, and unit tests
+disable Node bytecode caching to preserve normal instrumentation. A short-lived
+GitHub identity is prefetched during validation and reused only within that exact
+job/attempt/commit; every gateway request is still authenticated. Published builds
+use bounded, checksummed zstd compression, with legacy gzip retries supported.

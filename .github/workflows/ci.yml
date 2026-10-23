@@ -15,6 +15,7 @@ permissions:
   contents: read
 
 env:
+  NODE_COMPILE_CACHE: /home/ci/.cache/caagency-node
   # Fresh VM-local Postgres is ready before this runner registers with GitHub.
   DATABASE_URL: "postgresql://ci:ci@localhost:5432/caagency_website"
   NEXT_PUBLIC_HOSTING_PLATFORM: ${{ vars.NEXT_PUBLIC_HOSTING_PLATFORM }}
@@ -68,7 +69,7 @@ jobs:
         # ESLint/tests overlap the full build; final tsc reuses this build's cache and checks all diagnostics.
         run: node /usr/local/lib/caagency-ci/validate-build.mjs website
 
-      - name: Publish deployment build (parallel gzip)
+      - name: Publish deployment build (parallel compression)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: node scripts/publish-ci-build.mjs
 

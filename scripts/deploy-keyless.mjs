@@ -1,4 +1,5 @@
 // GitHub supplies both tokens for this job. No manually created secrets or SSH keys.
+import { getIdentity } from './github-identity.mjs'
 import { appendFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
@@ -13,23 +14,14 @@ export async function deploy({ env = process.env, fetchImpl = fetch,
   if (!/^[a-f0-9]{40}$/.test(sha ?? '')) throw new Error('Invalid deployment commit')
   // This connection stays inside the host, through the existing OIDC-only gateway.
   const endpoint = `http://10.0.2.2:9050/api/deploy/${app}`
-  const audience = 'https://caagency.com/api/deploy'
   const dryRun = env.DEPLOY_DRY_RUN === 'true'
   let identity, identityExpires = 0
 
   async function oidc() {
     if (now() < identityExpires) return identity
-    const url = new URL(env.ACTIONS_ID_TOKEN_REQUEST_URL)
-    url.searchParams.set('audience', audience)
-    const response = await fetchImpl(url, {
-      headers: { Authorization: `Bearer ${env.ACTIONS_ID_TOKEN_REQUEST_TOKEN}` },
-      signal: AbortSignal.timeout(30_000),
-    })
-    if (!response.ok) throw new Error(`GitHub OIDC request failed (${response.status})`)
-    identity = (await response.json()).value
-    if (typeof identity !== 'string') throw new Error('GitHub did not return an identity token')
-    log(`::add-mask::${identity}`)
-    identityExpires = now() + 120_000
+    const result = await getIdentity({env, fetchImpl, now, log})
+    identity = result.token
+    identityExpires = result.expiresAt
     return identity
   }
 
