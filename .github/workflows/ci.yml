@@ -15,6 +15,7 @@ permissions:
   contents: read
 
 env:
+  # Fresh VM-local Postgres is ready before this runner registers with GitHub.
   DATABASE_URL: "postgresql://ci:ci@localhost:5432/caagency_website"
   NEXT_PUBLIC_HOSTING_PLATFORM: ${{ vars.NEXT_PUBLIC_HOSTING_PLATFORM }}
   NEXT_PUBLIC_PREVIEW_MODE: ${{ vars.NEXT_PUBLIC_PREVIEW_MODE }}
@@ -35,16 +36,6 @@ jobs:
       contents: read
       actions: read
       id-token: write
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_USER: ci
-          POSTGRES_PASSWORD: ci
-          POSTGRES_DB: caagency_website
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd "pg_isready -U ci" --health-interval 5s --health-timeout 5s --health-retries 10
     steps:
       - name: Verify VM isolation
         run: /usr/local/bin/verify-ci-isolation
@@ -62,7 +53,7 @@ jobs:
         run: node /usr/local/lib/caagency-ci/install-dependencies.mjs
 
       - name: Prisma client
-        run: npx prisma generate
+        run: node_modules/.bin/prisma generate
 
       - name: Asset manifest
         run: node scripts/build-asset-manifest.mjs
@@ -84,7 +75,8 @@ jobs:
         # The trusted snapshot is separate from both PR writes and production caches.
         run: |
           node /usr/local/lib/caagency-ci/restore-next-cache.mjs
-          npm run build
+          # Prisma and the asset manifest were generated before the checks.
+          node_modules/.bin/next build
 
       - name: Publish deployment build (parallel gzip)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'

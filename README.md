@@ -161,3 +161,9 @@ TypeScript, ESLint and unit tests concurrently inside the same VM. All three
 must pass before the database migration and website build run. Each check gets
 separate logs and timings; Vitest uses at most four workers within the existing
 8-vCPU / 16-GiB VM.
+
+Website runners start a fresh, VM-local Postgres database before GitHub
+registration, removing per-job service-container startup. Its data is temporary
+and discarded with the one-job VM. CI still migrates the current schema before
+building. The build invokes Next directly after the explicit Prisma and asset
+steps so those inputs are generated once.
