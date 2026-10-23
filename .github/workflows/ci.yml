@@ -41,7 +41,9 @@ jobs:
         run: /usr/local/bin/verify-ci-isolation
 
       - name: Checkout source
-        uses: actions/checkout@v4
+        run: node /usr/local/lib/caagency-ci/checkout-source.mjs website
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       # Node 22 is already installed in the immutable VM base.
       - name: Node runtime
@@ -61,22 +63,10 @@ jobs:
       - name: Incremental check caches
         run: node /usr/local/lib/caagency-ci/restore-check-cache.mjs
 
-      - name: TypeScript, ESLint & unit tests (parallel)
-        timeout-minutes: 15
-        run: node /usr/local/lib/caagency-ci/run-checks.mjs website
-
-      # Builds prerender from the database; an empty migrated schema is enough.
-      - name: Migrate CI database
-        run: npm run db:migrate:deploy
-
-      - name: Production build
-        timeout-minutes: 15
-        # Only compiler work is restored; every job still builds the current source.
-        # The trusted snapshot is separate from both PR writes and production caches.
-        run: |
-          node /usr/local/lib/caagency-ci/restore-next-cache.mjs
-          # Prisma and the asset manifest were generated before the checks.
-          node_modules/.bin/next build
+      - name: Validate, tests & production build (parallel)
+        timeout-minutes: 30
+        # ESLint/tests overlap the full build. Explicit tsc checks fresh route types afterward.
+        run: node /usr/local/lib/caagency-ci/validate-build.mjs website
 
       - name: Publish deployment build (parallel gzip)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'

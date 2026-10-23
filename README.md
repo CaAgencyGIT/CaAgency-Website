@@ -156,9 +156,10 @@ still run on every job; TypeScript rechecks changed source and ESLint uses file
 content hashes. Package, tool configuration or runtime changes invalidate the
 baseline. Job writes stay in the disposable VM.
 
-After Prisma generation, the asset manifest and cache restoration, CI runs
-TypeScript, ESLint and unit tests concurrently inside the same VM. All three
-must pass before the database migration and website build run. Each check gets
+After Prisma generation, the asset manifest and cache restoration, CI overlaps
+ESLint and unit tests with the database migration and full website build. Explicit
+TypeScript checking then validates the freshly generated route types. All checks
+and the full build must pass before any build publication or deployment. Each check gets
 separate logs and timings; Vitest uses at most four workers within the existing
 8-vCPU / 16-GiB VM.
 
@@ -167,3 +168,8 @@ registration, removing per-job service-container startup. Its data is temporary
 and discarded with the one-job VM. CI still migrates the current schema before
 building. The build invokes Next directly after the explicit Prisma and asset
 steps so those inputs are generated once.
+
+Checkout uses a trusted, VM-injected helper that verifies the exact GitHub SHA,
+cleans the fresh workspace and uses only the job's short-lived read token.
+Credentials are never written to Git configuration. This avoids an external
+action download during job setup.
