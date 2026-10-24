@@ -12,14 +12,15 @@ import HeadingAccent from '@/components/ui/HeadingAccent'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
-import { caseStudyForVideo } from '@/lib/data/case-studies'
+import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
+import { filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
 // VideoObject schema for SEO
 const videoSchemaList = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: workVideos.map((video, index) => ({
+  itemListElement: [...workVideos.map((video, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
@@ -32,7 +33,38 @@ const videoSchemaList = {
       publisher: organizationRef,
     },
   })),
+  // October 2026 redesign films, added after the existing work.
+  ...workFilms.map((key, index) => ({
+    '@type': 'ListItem',
+    position: workVideos.length + index + 1,
+    item: {
+      '@type': 'VideoObject',
+      name: filmLabel(key),
+      description: filmDescription(key),
+      contentUrl: `https://caagency.com${filmSrc(key)}`,
+      thumbnailUrl: `https://caagency.com${posterFor(filmSrc(key))}`,
+      uploadDate: REDESIGN_MEDIA_PUBLISHED,
+      publisher: organizationRef,
+    },
+  }))],
 }
+
+// Mixed order (Oct 2026 client feedback): existing work and redesign films
+// interleaved so the same creator never shows twice in a row — see
+// workGridOrder. Each tile still links to its brand's case study where one
+// exists.
+const workVideosBySrc = new Map(workVideos.map((video) => [video.src, video]))
+const gridVideos = workGridOrder.map((entry) => {
+  if (entry.type === 'video') {
+    const video = workVideosBySrc.get(entry.src)!
+    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src) }
+  }
+  return {
+    src: filmSrc(entry.key),
+    brand: films[entry.key].brand,
+    study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
+  }
+})
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -94,8 +126,8 @@ export default async function WorkPage({ params }: Props) {
       <section className="bg-background-base px-section-x">
         <div className="max-w-[1180px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px] mobile:gap-[14px]">
-            {workVideos.map((video, index) => {
-              const study = caseStudyForVideo(video.src)
+            {gridVideos.map((video, index) => {
+              const study = video.study
               return (
                 <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:rounded-[15px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
                   <VideoPlayer

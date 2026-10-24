@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-interface SocialLink {
+export interface SocialLink {
   platform: 'instagram' | 'tiktok' | 'youtube' | 'twitch' | 'kick'
   url: string
 }
@@ -23,7 +23,7 @@ interface TalentCardProps {
 }
 
 // Social media icons as SVG components
-const SocialIcon = ({ platform }: { platform: SocialLink['platform'] }) => {
+export const SocialIcon = ({ platform }: { platform: SocialLink['platform'] }) => {
   const icons = {
     instagram: (
       <svg viewBox="0 0 448 512" fill="currentColor" className="w-5 h-5">

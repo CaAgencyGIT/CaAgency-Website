@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './redesign.css';
 
 @config '../tailwind.config.ts';
 

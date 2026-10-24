@@ -37,11 +37,11 @@ export const workVideos: WorkVideo[] = [
   { src: '/videos/work/anton-anua-web-v1.mp4', name: 'Anua Skincare Campaign', brand: 'Anua', alt: 'Anton for Anua', published: JULY_2026_DATE },
   { src: '/videos/work/dariia-ysl-web-v1.mp4', name: 'YSL Beauty Campaign', brand: 'YSL Beauty', alt: 'Dariia for YSL Beauty' },
   { src: '/videos/work/saranda-delere-web-v1.mp4', name: 'DELERE Campaign', brand: 'DELERE', alt: 'Saranda for DELERE', published: JULY_2026_DATE },
-  // Row 3: Honor → Mixsoon → Purito → Fenty Beauty
+  // Row 3: Honor → Mixsoon → Purito (Fenty Beauty removed Oct 2026 — duplicate
+  // of the redesign's own Fenty films already in workFilms)
   { src: '/videos/work/honor-web-v1.mp4', name: 'HONOR Collaboration', brand: 'HONOR', alt: 'HONOR collaboration' },
   { src: '/videos/work/albina-mixsoon-web-v1.mp4', name: 'Mixsoon Skincare', brand: 'Mixsoon', alt: 'Albina for Mixsoon', published: JULY_2026_DATE },
   { src: '/videos/work/aiym-purito-web-v1.mp4', name: 'Purito Campaign', brand: 'Purito', alt: 'Aiym for Purito', published: JULY_2026_DATE },
-  { src: '/videos/work/melly-fenty-web-v1.mp4', name: 'Fenty Beauty Campaign', brand: 'Fenty Beauty', alt: 'Melly for Fenty Beauty', published: JULY_2026_DATE },
   // Row 4: Kiko Milano → haruharu wonder → Revolve Beauty → YesStyle
   { src: '/videos/work/idareen-kikomilano-v2-web-v1.mp4', name: 'Kiko Milano Campaign', brand: 'Kiko Milano', alt: '@_idareen_ for Kiko Milano' },
   { src: '/videos/work/rebecca-haruharu-web-v1.mp4', name: 'Haruharu Wonder Campaign', brand: 'Haruharu Wonder', alt: 'Rebecca for Haruharu Wonder', published: JULY_2026_DATE },

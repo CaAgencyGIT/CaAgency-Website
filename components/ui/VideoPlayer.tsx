@@ -12,7 +12,8 @@ type ManualIntent = 'none' | 'play' | 'pause'
 interface VideoPlayerProps {
   src: string
   className?: string
-  aspectRatio?: '9:16' | '16:9' | '1:1'
+  // 'fill' sizes the player to its parent (the parent sets the aspect ratio).
+  aspectRatio?: '9:16' | '16:9' | '1:1' | 'fill'
   autoplay?: boolean
   muted?: boolean
   loop?: boolean
@@ -24,10 +25,15 @@ interface VideoPlayerProps {
   poster?: string
   posterSizes?: string
   posterPriority?: boolean
+  posterQuality?: number
   label?: string
   playbackActive?: boolean
   onRequestActive?: () => void
   onReleaseActive?: () => void
+  // For decorative autoplay grids with no pause affordance: never settle on
+  // the "blocked" dead end, keep retrying instead, and never render the
+  // Play/Pause control at all.
+  neverGiveUp?: boolean
   labels?: {
     pause: string
     play: string
@@ -52,10 +58,12 @@ export default function VideoPlayer({
   poster,
   posterSizes = '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 300px',
   posterPriority = false,
+  posterQuality = 60,
   label = 'Campaign video',
   playbackActive,
   onRequestActive,
   onReleaseActive,
+  neverGiveUp = false,
   labels = {
     pause: 'Pause',
     play: 'Play',
@@ -71,6 +79,7 @@ export default function VideoPlayer({
   const eligibleRef = useRef(false)
   const manualIntentRef = useRef<ManualIntent>('none')
   const hasPlayedRef = useRef(false)
+  const staggeredRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
@@ -136,6 +145,18 @@ export default function VideoPlayer({
   const startPlayback = useCallback(async () => {
     const video = videoRef.current
     if (!video || !eligibleRef.current || !video.paused) return
+
+    // A page with several autoplaying tiles can have every one of them call
+    // play() on the same tick, which contends for the browser's decoder
+    // slots and stalls some of them. Spreading the first attempt over a
+    // short random window avoids that thundering herd.
+    if (!staggeredRef.current) {
+      staggeredRef.current = true
+      const attemptBeforeWait = playAttemptRef.current
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * 400))
+      if (attemptBeforeWait !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+    }
+
     video.defaultMuted = muted
     video.muted = muted
     setPlaybackStatus('starting')
@@ -145,17 +166,24 @@ export default function VideoPlayer({
     } catch (error) {
       if (attempt !== playAttemptRef.current || !eligibleRef.current) return
       const name = error instanceof Error ? error.name : ''
-      if (name === 'AbortError' && retryCountRef.current < 1) {
+      const retryBudget = neverGiveUp ? Infinity : 3
+      if (name === 'AbortError' && retryCountRef.current < retryBudget) {
+        const delay = Math.min(350 * (retryCountRef.current + 1), 3000)
         retryCountRef.current++
         setPlaybackStatus('buffering')
-        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 350)
+        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), delay)
         return
       }
       if (retryTimerRef.current) clearTimeout(retryTimerRef.current)
+      if (neverGiveUp && name !== 'NotAllowedError') {
+        setPlaybackStatus('buffering')
+        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 4000)
+        return
+      }
       setPlaybackStatus(name === 'NotAllowedError' || name === 'AbortError' ? 'blocked' : 'error')
       onReleaseActive?.()
     }
-  }, [muted, onReleaseActive])
+  }, [muted, onReleaseActive, neverGiveUp])
 
   const shouldMountVideo = manualIntent !== 'none' || (isNearView && autoplay && !prefersReducedMotion)
   const shouldPlay = shouldMountVideo && isInView && isPageVisible &&
@@ -183,12 +211,19 @@ export default function VideoPlayer({
   useEffect(() => {
     if (!shouldPlay || (playbackStatus !== 'starting' && playbackStatus !== 'buffering')) return
     // A browser can leave play() pending indefinitely on a stalled source.
-    // Keep the poster/last frame visible, then offer a manual recovery path.
+    // Keep the poster/last frame visible, then offer a manual recovery path
+    // — or, for decorative grids with no such control, just keep trying.
     const timeout = setTimeout(() => {
-      if (eligibleRef.current) setPlaybackStatus('blocked')
-    }, 8000)
+      if (!eligibleRef.current) return
+      if (neverGiveUp) {
+        setPlaybackStatus('buffering')
+        setRetryRequest((request) => request + 1)
+        return
+      }
+      setPlaybackStatus('blocked')
+    }, 10000)
     return () => clearTimeout(timeout)
-  }, [shouldPlay, playbackStatus])
+  }, [shouldPlay, playbackStatus, neverGiveUp])
 
   const togglePlayback = () => {
     let video = videoRef.current
@@ -247,11 +282,13 @@ export default function VideoPlayer({
     }
     const video = videoRef.current
     if (!hasPlayedRef.current || (video?.ended && !loop)) return
-    if (retryCountRef.current < 1) {
+    const retryBudget = neverGiveUp ? Infinity : 3
+    if (retryCountRef.current < retryBudget) {
+      const delay = Math.min(350 * (retryCountRef.current + 1), 3000)
       retryCountRef.current++
       setPlaybackStatus('buffering')
       if (retryTimerRef.current) clearTimeout(retryTimerRef.current)
-      retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 350)
+      retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), delay)
     } else {
       setPlaybackStatus('blocked')
     }
@@ -261,6 +298,7 @@ export default function VideoPlayer({
     '9:16': 'aspect-9/16',
     '16:9': 'aspect-video',
     '1:1': 'aspect-square',
+    fill: 'h-full w-full',
   }
   const showPlayControl = !autoplay || prefersReducedMotion || manualIntent === 'pause' ||
     playbackStatus === 'blocked' || playbackStatus === 'error'
@@ -283,7 +321,7 @@ export default function VideoPlayer({
           src={poster}
           alt=""
           fill
-          quality={60}
+          quality={posterQuality}
           preload={posterPriority}
           loading={posterPriority ? undefined : 'lazy'}
           fetchPriority={posterPriority ? 'high' : 'auto'}
@@ -326,7 +364,7 @@ export default function VideoPlayer({
           }}
         />
       )}
-      {!controls && (
+      {!controls && !neverGiveUp && (
         <button
           type="button"
           onClick={togglePlayback}
