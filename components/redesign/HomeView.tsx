@@ -52,8 +52,9 @@ export default function HomeView(props: HomeViewProps) {
   return (
     <>
       <div className="rd">
-        <section className="rd-section rd-home-hero">
-          <div className="rd-hero-copy">
+        <section className="rd-hero-spotlight-section">
+          {props.heroMedia}
+          <div className="rd-hero-spotlight-copy">
             <h1 className="sr-only">{props.heading}</h1>
             <div className="rd-hero-brand">{props.title}</div>
             {props.titleSecondLine && <p className="rd-hero-sub">{props.titleSecondLine}</p>}
@@ -62,12 +63,11 @@ export default function HomeView(props: HomeViewProps) {
               <Link className="rd-pill" href={href(props.primaryCta.href)} prefetch={false}>
                 {props.primaryCta.label}
               </Link>
-              <Link className="rd-text-link" href={href(props.secondaryCta.href)} prefetch={false}>
+              <Link className="rd-text-link rd-text-link-light" href={href(props.secondaryCta.href)} prefetch={false}>
                 {props.secondaryCta.label}
               </Link>
             </div>
           </div>
-          <div className="min-w-0">{props.heroMedia}</div>
         </section>
 
         <section className="rd-section rd-trust">

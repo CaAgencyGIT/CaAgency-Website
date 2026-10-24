@@ -142,6 +142,16 @@ export const filmDescription = (key: FilmKey) => `${films[key].creator} creator 
 // one consistent shoot instead of seven mismatched sources. Dimensions are
 // the graded files' real intrinsic size, for correct aspect ratio with no
 // layout shift.
+// Hero spotlight (alternative to the collage, same slot): one full-bleed
+// Albina portrait with two smaller talent chips bottom-right.
+export const heroSpotlight = {
+  mainImage: { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi for Medicube, CA Agency campaign' },
+  chips: [
+    { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun for YSL Beauty, CA Agency campaign', width: 720, height: 1280 },
+    { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo Matsoma for Medicube, CA Agency campaign', width: 640, height: 1136 },
+  ],
+}
+
 export const heroCollageImages = [
   { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
   { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },
