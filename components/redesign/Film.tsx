@@ -38,6 +38,10 @@ export default function Film({
           label={filmLabel(film)}
           labels={labels}
           className="rounded-none"
+          // Editorial autoplay grid: muted, decorative, no pause affordance.
+          // Keep retrying rather than ever showing a Play button.
+          ignoreReducedMotion
+          neverGiveUp
         />
       </div>
       {caption && <figcaption>{caption}</figcaption>}

@@ -49,6 +49,10 @@ cp -a "$SRC/.next/static" "$BUILD/.next/static"
 cp -a "$SRC/public" "$BUILD/public"
 find "$BUILD" -maxdepth 1 -name '.env*' -delete
 echo "$TARGET" > "$BUILD/.preview-commit"
+# The service's systemd sandbox only bind-mounts these as writable if they
+# already exist (ReadWritePaths entries are prefixed with "-"), so an image
+# request or ISR write fails with ENOENT on a release that never had them.
+install -d -m 0770 -- "$BUILD/.next/cache" "$BUILD/.next/server/app" "$BUILD/.next/server/route-cache"
 chown -R "$RUN_USER:$RUN_USER" "$BUILD"
 
 systemctl stop "$SERVICE"
