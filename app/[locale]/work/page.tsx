@@ -13,7 +13,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
 import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
-import { filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms } from '@/lib/data/redesign-media'
+import { filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
 // VideoObject schema for SEO
@@ -49,16 +49,22 @@ const videoSchemaList = {
   }))],
 }
 
-// Existing work first, then the redesign films; each tile links to its
-// brand's case study where one exists.
-const gridVideos = [
-  ...workVideos.map((video) => ({ src: video.src, brand: video.brand, study: caseStudyForVideo(video.src) })),
-  ...workFilms.map((key) => ({
-    src: filmSrc(key),
-    brand: films[key].brand,
-    study: caseStudies.find(({ slug }) => slug === filmCaseStudies[key]),
-  })),
-]
+// Mixed order (Oct 2026 client feedback): existing work and redesign films
+// interleaved so the same creator never shows twice in a row — see
+// workGridOrder. Each tile still links to its brand's case study where one
+// exists.
+const workVideosBySrc = new Map(workVideos.map((video) => [video.src, video]))
+const gridVideos = workGridOrder.map((entry) => {
+  if (entry.type === 'video') {
+    const video = workVideosBySrc.get(entry.src)!
+    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src) }
+  }
+  return {
+    src: filmSrc(entry.key),
+    brand: films[entry.key].brand,
+    study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
+  }
+})
 
 type Props = {
   params: Promise<{ locale: string }>
