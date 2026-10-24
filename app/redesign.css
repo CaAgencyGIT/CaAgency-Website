@@ -60,7 +60,7 @@
   .rd-film figcaption a:last-child { font-size: 16px; }
 
   /* Home */
-  .rd-home-hero { display: grid; grid-template-columns: 0.9fr 1.65fr; align-items: center; gap: 42px; padding-top: 65px; padding-bottom: 42px; }
+  .rd-home-hero { display: grid; grid-template-columns: 0.9fr 1.65fr; align-items: start; gap: 42px; padding-top: 65px; padding-bottom: 42px; }
   .rd-hero-copy { padding-bottom: 26px; }
   .rd-hero-brand { margin-bottom: 24px; color: var(--rd-ink); font-family: var(--rd-serif); font-size: clamp(66px, 6.6vw, 106px); line-height: 0.95; letter-spacing: -0.055em; white-space: nowrap; }
   .rd-hero-sub { margin: 0 0 28px; font-size: 13px; letter-spacing: 0.08em; color: #34332f; }
@@ -73,7 +73,7 @@
      once in a staggered 3-column layout, replacing the old slideshow. */
   .rd-hero-collage { column-count: 3; column-gap: 16px; }
   .rd-hero-collage-tile { break-inside: avoid; margin-bottom: 16px; border-radius: 22px; overflow: hidden; background: var(--rd-soft); }
-  .rd-hero-collage-img { display: block; width: 100%; height: auto; }
+  .rd-hero-collage-img { display: block; width: 100%; height: 300px; max-height: 38vh; object-fit: cover; }
   .rd-hero-collage-tile:nth-child(2) { margin-top: 56px; }
   .rd-hero-collage-tile:nth-child(3) { margin-top: 28px; }
   .rd-hero-collage-tile:nth-child(5) { margin-top: 34px; }
@@ -210,6 +210,7 @@
     .rd-hero-collage { column-count: 2; column-gap: 12px; }
     .rd-hero-collage-tile { margin-bottom: 12px; border-radius: 16px; }
     .rd-hero-collage-tile:nth-child(2) { margin-top: 32px; }
+    .rd-hero-collage-img { height: 210px; max-height: none; }
   }
 
   @media (max-width: 760px) {
