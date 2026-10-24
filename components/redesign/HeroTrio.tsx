@@ -29,7 +29,6 @@ export default function HeroTrio({ cards, labels }: { cards: HeroTrioCard[]; lab
             neverGiveUp
             className="rounded-[18px]"
           />
-          <figcaption>{card.name}</figcaption>
         </figure>
       ))}
     </div>
