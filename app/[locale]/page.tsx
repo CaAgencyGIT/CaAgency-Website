@@ -77,7 +77,7 @@ export default async function HomePage({ params }: Props) {
       subtitle={t('heroSubtitle')}
       heroMedia={
         <div className="hero-rise-media">
-          <HeroTrio cards={heroTrioCards} />
+          <HeroTrio cards={heroTrioCards} labels={{ play: tCommon('play'), pause: tCommon('pause'), playVideo: tCommon('playVideo'), pauseVideo: tCommon('pauseVideo') }} />
         </div>
       }
       introMedia={

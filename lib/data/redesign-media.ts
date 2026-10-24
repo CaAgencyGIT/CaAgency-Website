@@ -94,10 +94,10 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
-  'albina-sephora', 'anton-skin1004', 'georgii-anua',
-  'dariia-ysl', 'melani-skin1004', 'khutjo-anua-original',
+  'anton-skin1004', 'georgii-anua',
+  'melani-skin1004', 'khutjo-anua-original',
   'dariia-nyx', 'albina-medicube', 'dariia-armani',
-  'melly-fenty', 'jay-mixsoon', 'aiym-purito',
+  'jay-mixsoon',
   'beatrix-patrickta', 'melly-rare', 'dariia-glowrecipe',
   'rebecca-saie', 'melly-fenty-original', 'dariia-valentino',
   'melani-dalba', 'saranda-dalba', 'albulena-purito',
@@ -156,9 +156,9 @@ export const heroSpotlight = {
 // portraits, order per client request — Dariia left, Albina middle
 // (featured/taller), Anton right (his own photo, not a placeholder).
 export const heroTrioCards = [
-  { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun, CA Agency talent', name: 'Dariia', width: 720, height: 1280 },
-  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi, CA Agency talent', name: 'Albina', width: 840, height: 1491, featured: true },
-  { src: '/images/hero/graded/anton-skin1004.webp', alt: 'Anton Drozhzhin, CA Agency talent', name: 'Anton', width: 662, height: 1302 },
+  { src: filmSrc('dariia-ysl'), poster: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun, CA Agency talent', name: 'Dariia' },
+  { src: filmSrc('albina-medicube'), poster: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi, CA Agency talent', name: 'Albina', featured: true },
+  { src: filmSrc('anton-skin1004'), poster: '/images/hero/graded/anton-skin1004.webp', alt: 'Anton Drozhzhin, CA Agency talent', name: 'Anton' },
 ]
 
 export const heroCollageImages = [

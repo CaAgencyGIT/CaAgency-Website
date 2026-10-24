@@ -60,7 +60,7 @@ export default async function HomePage() {
       subtitle={content.hero.subtitle}
       heroMedia={
         <div className="hero-rise-media">
-          <HeroTrio cards={heroTrioCards} />
+          <HeroTrio cards={heroTrioCards} labels={{ play: common.play, pause: common.pause, playVideo: common.playVideo, pauseVideo: common.pauseVideo }} />
         </div>
       }
       introMedia={
