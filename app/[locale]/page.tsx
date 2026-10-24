@@ -14,7 +14,8 @@ import TalentGrid from '@/components/blocks/TalentGrid'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
-import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
+import HeroCollage from '@/components/redesign/HeroCollage'
+import { heroCollageImages } from '@/lib/data/redesign-media'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
 import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
 import { posterFor } from '@/lib/data/videos'
@@ -65,11 +66,6 @@ export default async function HomePage({ params }: Props) {
   const tCommon = await getTranslations({ locale, namespace: 'common' })
   const content = await getSiteContent<HomePageContent>('home')
   const talents = await getTalentsBySlugs(homeTalentSlugs)
-  const carouselImages =
-    content.hero?.carouselImages?.filter((img) => img?.src?.trim())?.map((image) => ({
-      url: image.src,
-      alt: image.alt,
-    })) ?? []
 
   return (
     <HomeView
@@ -80,15 +76,9 @@ export default async function HomePage({ params }: Props) {
       titleSecondLine={content.hero?.titleSecondLine ?? 'Influence • Digital • Marketing'}
       subtitle={t('heroSubtitle')}
       heroMedia={
-        carouselImages.length > 0 && (
-          <div className="hero-rise-media">
-            <CoverflowCarousel
-              images={carouselImages}
-              locale={locale as Locale}
-              labels={{ region: tCommon('featuredCreators'), goToSlide: tCommon.raw('goToSlide') }}
-            />
-          </div>
-        )
+        <div className="hero-rise-media">
+          <HeroCollage images={heroCollageImages} />
+        </div>
       }
       introMedia={
         <DeferredMediaCarousel

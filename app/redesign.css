@@ -68,6 +68,16 @@
   .rd-hero-copy .rd-actions { gap: 19px; }
   .rd-hero-copy .rd-pill { padding: 14px 19px; font-size: 12px; }
   .rd-hero-copy .rd-text-link { font-size: 12px; }
+
+  /* Static b-roll collage (Oct 2026 feedback): every hero image shows at
+     once in a staggered 3-column layout, replacing the old slideshow. */
+  .rd-hero-collage { column-count: 3; column-gap: 16px; }
+  .rd-hero-collage-tile { break-inside: avoid; margin-bottom: 16px; border-radius: 22px; overflow: hidden; background: var(--rd-soft); }
+  .rd-hero-collage-img { display: block; width: 100%; height: auto; }
+  .rd-hero-collage-tile:nth-child(2) { margin-top: 56px; }
+  .rd-hero-collage-tile:nth-child(3) { margin-top: 28px; }
+  .rd-hero-collage-tile:nth-child(5) { margin-top: 34px; }
+  .rd-hero-collage-tile:nth-child(6) { margin-top: 18px; }
   .rd-trust { max-width: 870px; padding-top: 52px; padding-bottom: 24px; text-align: center; font-size: 16px; }
   .rd-trust p { margin: 0; }
   .rd-brand-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 26px 42px; max-width: 1440px; margin: auto; padding: 30px 5vw 44px; border-bottom: 1px solid var(--rd-line); }
@@ -197,6 +207,9 @@
     .rd-page-hero, .rd-faq { gap: 35px; }
     .rd-service-contact > a { grid-template-columns: 1fr 1.5fr; }
     .rd-service-contact > a > span:last-child { grid-column: 2; }
+    .rd-hero-collage { column-count: 2; column-gap: 12px; }
+    .rd-hero-collage-tile { margin-bottom: 12px; border-radius: 16px; }
+    .rd-hero-collage-tile:nth-child(2) { margin-top: 32px; }
   }
 
   @media (max-width: 760px) {

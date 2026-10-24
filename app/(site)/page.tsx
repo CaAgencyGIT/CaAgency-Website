@@ -14,7 +14,8 @@ import TalentGrid from '@/components/blocks/TalentGrid'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
-import CoverflowCarousel from '@/components/blocks/CoverflowCarousel'
+import HeroCollage from '@/components/redesign/HeroCollage'
+import { heroCollageImages } from '@/lib/data/redesign-media'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
 import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
 import { posterFor } from '@/lib/data/videos'
@@ -59,10 +60,7 @@ export default async function HomePage() {
       subtitle={content.hero.subtitle}
       heroMedia={
         <div className="hero-rise-media">
-          <CoverflowCarousel
-            images={content.hero.carouselImages.map((image) => ({ url: image.src, alt: image.alt }))}
-            labels={{ region: common.featuredCreators, goToSlide: common.goToSlide }}
-          />
+          <HeroCollage images={heroCollageImages} />
         </div>
       }
       introMedia={

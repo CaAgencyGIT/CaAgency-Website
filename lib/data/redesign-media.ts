@@ -133,3 +133,19 @@ export function filmVideoSchema(keys: FilmKey[], publisher: object) {
 
 
 export const filmDescription = (key: FilmKey) => `${films[key].creator} creator video featuring ${films[key].brand}`
+
+// Hero collage (Oct 2026 redesign feedback): a static full-collage replaces
+// the old slideshow so every image shows at once instead of cycling. Color
+// graded and sharpened as a set — scripts/grade-hero-images.py — to read as
+// one consistent shoot instead of seven mismatched sources. Dimensions are
+// the graded files' real intrinsic size, for correct aspect ratio with no
+// layout shift.
+export const heroCollageImages = [
+  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
+  { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },
+  { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia for YSL Beauty, CA Agency campaign', width: 720, height: 1280 },
+  { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo for Medicube, CA Agency campaign', width: 640, height: 1136 },
+  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', width: 810, height: 1440 },
+  { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency', width: 720, height: 1347 },
+  { src: '/images/hero/graded/melani-skin1004.webp', alt: 'Melani for SKIN1004, CA Agency campaign', width: 640, height: 1136 },
+]
