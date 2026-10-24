@@ -41,7 +41,7 @@ export interface HomeViewProps {
 
 const featuredFilms: FilmKey[] = [
   'albina-medicube', 'melani-skin1004', 'beatrix-gisou',
-  'khutjo-anua-original', 'georgii-anua', 'melly-fenty-original',
+  'dariia-urbandecay', 'georgii-anua', 'melly-fenty-original',
 ]
 const serviceStills: FilmKey[] = ['dariia-glowrecipe', 'melani-dalba', 'georgii-purito', 'beatrix-patrickta', 'skincare']
 
