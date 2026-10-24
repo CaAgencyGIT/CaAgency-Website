@@ -65,18 +65,17 @@
 
   /* Hero spotlight: one full-bleed dark portrait, copy overlaid bottom-left,
      two smaller talent chips bottom-right. Alternative to the collage hero. */
-  .rd-hero-spotlight-section { position: relative; min-height: min(80vh, 820px); overflow: hidden; background: #0f0e0c; }
-  /* The source portrait is 9:16; covering the full section width would crop
-     it down to almost nothing but eyes. Keep the photo to the right ~58% of
-     the section (closer to its own aspect ratio) and let the dark
-     background carry the rest, matching the reference's proportions. */
-  .rd-hero-spotlight { position: absolute; inset: 0 0 0 42%; }
-  .rd-hero-spotlight-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
-  .rd-hero-spotlight-scrim {
-    position: absolute; inset: 0;
-    background: linear-gradient(100deg, rgba(15,14,12,1) 0%, rgba(15,14,12,0.75) 22%, rgba(15,14,12,0.1) 55%, rgba(15,14,12,0) 70%),
-      linear-gradient(0deg, rgba(15,14,12,0.5) 0%, rgba(15,14,12,0) 32%);
-  }
+  .rd-hero-spotlight-section { position: relative; min-height: min(94vh, 940px); overflow: hidden; background: #0f0e0c; }
+  /* The source portrait is 9:16. Covering a wide full-bleed band with it
+     forces a crop down to almost nothing but eyes (cover-fraction visible
+     = (height/width of the box) x (image width/height) — a wide box always
+     loses most of a tall image). Size the photo as its own card at close to
+     its natural ratio instead of forcing it to fill an arbitrary band. */
+  .rd-hero-spotlight { position: absolute; top: 7%; right: 5%; width: min(34vw, 460px); aspect-ratio: 840 / 1491; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.45); }
+  .rd-hero-spotlight-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+  /* Subtle depth on the card itself; the section's own dark background (not
+     a gradient over the photo) is what gives the copy its contrast now. */
+  .rd-hero-spotlight-scrim { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 35%); }
   .rd-hero-spotlight-copy {
     position: relative; z-index: 1; max-width: 560px;
     padding: 110px 5vw 70px; color: #fff;
@@ -252,11 +251,12 @@
     .rd-hero-brand { margin-bottom: 17px; font-size: 54px; white-space: normal; }
     .rd-hero-sub { margin-bottom: 20px; font-size: 11px; letter-spacing: 0.05em; }
     .rd-hero-spotlight-section { min-height: 100vh; }
-    .rd-hero-spotlight-copy { padding: 80px 5vw 190px; max-width: none; }
+    .rd-hero-spotlight-copy { padding: 70px 5vw 0; max-width: none; }
     .rd-hero-spotlight-copy > p:not(.rd-hero-sub) { max-width: 320px; font-size: 13px; }
     .rd-hero-spotlight-copy .rd-actions { flex-direction: row; align-items: center; gap: 22px; margin-top: 22px; }
+    .rd-hero-spotlight { top: auto; bottom: 108px; right: 5vw; width: min(52vw, 300px); }
     .rd-hero-spotlight-chips { right: 5vw; bottom: 36px; gap: 8px; }
-    .rd-hero-spotlight-chip { width: 64px; }
+    .rd-hero-spotlight-chip { width: 56px; }
     .rd-hero-spotlight-discover { font-size: 10px; }
         .rd-film-frame { border-radius: 6px; }
     .rd-trust { padding-top: 24px; padding-bottom: 24px; font-size: 13px; }
