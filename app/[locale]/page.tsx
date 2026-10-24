@@ -14,9 +14,8 @@ import TalentGrid from '@/components/blocks/TalentGrid'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
-import HeroSpotlight from '@/components/redesign/HeroSpotlight'
-import { heroSpotlight } from '@/lib/data/redesign-media'
-import { localizeHref } from '@/lib/i18n/client-paths'
+import HeroTrio from '@/components/redesign/HeroTrio'
+import { heroTrioCards } from '@/lib/data/redesign-media'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
 import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
 import { posterFor } from '@/lib/data/videos'
@@ -78,12 +77,7 @@ export default async function HomePage({ params }: Props) {
       subtitle={t('heroSubtitle')}
       heroMedia={
         <div className="hero-rise-media">
-          <HeroSpotlight
-            mainImage={heroSpotlight.mainImage}
-            chips={heroSpotlight.chips}
-            discoverLabel={tCommon('seeAllTalents')}
-            discoverHref={localizeHref('/talents', locale)}
-          />
+          <HeroTrio cards={heroTrioCards} />
         </div>
       }
       introMedia={

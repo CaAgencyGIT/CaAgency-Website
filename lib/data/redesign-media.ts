@@ -152,6 +152,15 @@ export const heroSpotlight = {
   ],
 }
 
+// Hero trio (2nd alternative, same slot as heroSpotlight): three named
+// portraits, order per client request — Dariia left, Albina middle
+// (featured/taller), Anton right (his own photo, not a placeholder).
+export const heroTrioCards = [
+  { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun, CA Agency talent', name: 'Dariia', width: 720, height: 1280 },
+  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi, CA Agency talent', name: 'Albina', width: 840, height: 1491, featured: true },
+  { src: '/images/hero/graded/anton-skin1004.webp', alt: 'Anton Drozhzhin, CA Agency talent', name: 'Anton', width: 662, height: 1302 },
+]
+
 export const heroCollageImages = [
   { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
   { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },

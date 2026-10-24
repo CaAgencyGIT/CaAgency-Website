@@ -95,6 +95,21 @@
   .rd-hero-spotlight-discover { color: #fff; font-size: 11px; letter-spacing: 0.02em; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 3px; white-space: nowrap; margin-bottom: 6px; }
   .rd-hero-spotlight-discover:hover { border-color: #fff; }
 
+  /* Hero trio: light background, big headline left, three named portraits
+     right (middle one floated higher), a tagline rule beneath the row.
+     Alternative to the spotlight hero — same heroMedia slot, either/or. */
+  .rd-hero-trio-section { background: var(--rd-soft); padding-top: 70px; padding-bottom: 46px; }
+  .rd-hero-trio-row { display: grid; grid-template-columns: 0.85fr 1.3fr; align-items: center; gap: 50px; }
+  .rd-hero-trio-copy { max-width: 460px; }
+  .rd-hero-trio-headline { font-family: var(--rd-serif); font-weight: 400; font-size: clamp(42px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.02em; color: var(--rd-ink); margin-bottom: 26px; }
+  .rd-hero-trio-copy p:not(.rd-eyebrow) { max-width: 360px; font-size: 15px; line-height: 1.75; margin-bottom: 30px; }
+  .rd-hero-trio-cards { display: flex; align-items: flex-end; gap: 18px; }
+  .rd-hero-trio-card { flex: 1; min-width: 0; margin: 0; }
+  .rd-hero-trio-card img { display: block; width: 100%; height: auto; border-radius: 18px; object-fit: cover; aspect-ratio: 3 / 4; box-shadow: 0 16px 40px rgba(20,18,14,0.14); }
+  .rd-hero-trio-card-featured { margin-bottom: 46px; }
+  .rd-hero-trio-card figcaption { margin-top: 14px; text-align: center; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rd-muted); }
+  .rd-hero-trio-tagline { margin: 46px 5vw 0; padding-top: 24px; border-top: 1px solid var(--rd-line); text-align: center; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rd-muted); }
+
   /* Static b-roll collage (Oct 2026 feedback): every hero image shows at
      once in a staggered 3-column layout, replacing the old slideshow. */
   .rd-hero-collage { column-count: 3; column-gap: 16px; }
@@ -237,6 +252,8 @@
     .rd-hero-collage-tile { margin-bottom: 12px; border-radius: 16px; }
     .rd-hero-collage-tile:nth-child(2) { margin-top: 32px; }
     .rd-hero-collage-img { height: 210px; max-height: none; }
+    .rd-hero-trio-row { grid-template-columns: 1fr 1.1fr; gap: 30px; }
+    .rd-hero-trio-headline { font-size: 50px; }
   }
 
   @media (max-width: 760px) {
@@ -258,6 +275,11 @@
     .rd-hero-spotlight-chips { right: 5vw; bottom: 36px; gap: 8px; }
     .rd-hero-spotlight-chip { width: 56px; }
     .rd-hero-spotlight-discover { font-size: 10px; }
+    .rd-hero-trio-row { grid-template-columns: 1fr; gap: 30px; }
+    .rd-hero-trio-copy { max-width: none; }
+    .rd-hero-trio-headline { font-size: 44px; margin-bottom: 18px; }
+    .rd-hero-trio-card-featured { margin-bottom: 26px; }
+    .rd-hero-trio-tagline { margin-top: 30px; font-size: 10px; letter-spacing: 0.16em; }
         .rd-film-frame { border-radius: 6px; }
     .rd-trust { padding-top: 24px; padding-bottom: 24px; font-size: 13px; }
     .rd-brand-band { gap: 16px 24px; padding: 15px 5vw 25px; }

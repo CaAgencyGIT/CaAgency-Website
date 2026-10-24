@@ -52,22 +52,25 @@ export default function HomeView(props: HomeViewProps) {
   return (
     <>
       <div className="rd">
-        <section className="rd-hero-spotlight-section">
-          {props.heroMedia}
-          <div className="rd-hero-spotlight-copy">
-            <h1 className="sr-only">{props.heading}</h1>
-            <div className="rd-hero-brand">{props.title}</div>
-            {props.titleSecondLine && <p className="rd-hero-sub">{props.titleSecondLine}</p>}
-            <p>{props.subtitle}</p>
-            <div className="rd-actions">
-              <Link className="rd-pill" href={href(props.primaryCta.href)} prefetch={false}>
-                {props.primaryCta.label}
-              </Link>
-              <Link className="rd-text-link rd-text-link-light" href={href(props.secondaryCta.href)} prefetch={false}>
-                {props.secondaryCta.label}
-              </Link>
+        <section className="rd-section rd-hero-trio-section">
+          <div className="rd-hero-trio-row">
+            <div className="rd-hero-trio-copy">
+              {props.titleSecondLine && <p className="rd-eyebrow">{props.titleSecondLine}</p>}
+              <h1 className="sr-only">{props.heading}</h1>
+              <div className="rd-hero-trio-headline">{props.title}</div>
+              <p>{props.subtitle}</p>
+              <div className="rd-actions">
+                <Link className="rd-pill" href={href(props.primaryCta.href)} prefetch={false}>
+                  {props.primaryCta.label}
+                </Link>
+                <Link className="rd-text-link" href={href(props.secondaryCta.href)} prefetch={false}>
+                  {props.secondaryCta.label}
+                </Link>
+              </div>
             </div>
+            {props.heroMedia}
           </div>
+          <p className="rd-hero-trio-tagline">Beauty · Skincare · Lifestyle</p>
         </section>
 
         <section className="rd-section rd-trust">
