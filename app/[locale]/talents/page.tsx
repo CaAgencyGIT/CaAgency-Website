@@ -137,7 +137,7 @@ export default async function TalentsPage({ params }: Props) {
       {/* Instagram & TikTok Voices Grid */}
       <section className="bg-background-base py-[60px] tablet:py-[50px] mobile:py-[40px] px-section-x">
         <div className="max-w-container mx-auto">
-          <TalentGrid talents={instagramTalents} columns={4} prioritizeFirst animate={false} />
+          <TalentGrid talents={instagramTalents} columns={4} prioritizeFirst animate={false} cardArt />
         </div>
       </section>
 
@@ -153,7 +153,7 @@ export default async function TalentsPage({ params }: Props) {
             </span>{' '}
             <span className="text-foreground-primary">{t('moreTalents')}</span>
           </h2>
-          <TalentGrid talents={youtubeTalents} columns={4} animate={false} />
+          <TalentGrid talents={youtubeTalents} columns={4} animate={false} cardArt />
         </div>
       </section>
 

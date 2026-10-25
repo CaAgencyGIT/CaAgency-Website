@@ -13,6 +13,8 @@ interface TalentCardProps {
   name: string
   imageUrl: string
   videoSrc?: string
+  /** Finished card artwork (4:5): shown whole on its edge-colour backing. */
+  artwork?: { src: string; top: string; bottom: string }
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -61,6 +63,7 @@ export default function TalentCard({
   name,
   imageUrl,
   videoSrc,
+  artwork,
   sizes,
   priority = false,
   instagramUrl,
@@ -90,22 +93,29 @@ export default function TalentCard({
         className
       )}
     >
-      {/* Background Image */}
+      {/* Background Image. Finished artwork keeps the full 4:5 design visible
+          (logo, MEET, name, subtitle) inside the 3:4 frame, on its own edge
+          colours; older photos fill the frame. */}
       <Image
-        src={imageUrl}
+        src={artwork?.src ?? imageUrl}
         alt={name}
         fill
-        quality={60}
+        quality={artwork ? 85 : 60}
         preload={priority}
         loading={priority ? undefined : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
-        className="object-cover object-center"
+        className={artwork ? 'object-contain' : 'object-cover object-center'}
+        style={artwork ? { background: `linear-gradient(${artwork.top} 0 50%, ${artwork.bottom} 50% 100%)` } : undefined}
         sizes={sizes}
       />
       {videoSrc && <TalentCardVideo src={videoSrc} />}
 
       {/* Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+      {artwork ? (
+        <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-black/65 to-transparent" />
+      ) : (
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+      )}
       {/* Subtle deepen-on-hover layer for editorial focus */}
       <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
 
