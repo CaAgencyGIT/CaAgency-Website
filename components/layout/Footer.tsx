@@ -59,7 +59,6 @@ export default function Footer({
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
   const tLocations = useTranslations('locations')
-  const tCommon = useTranslations('common')
   const currentYear = new Date().getFullYear()
   // The CMS footer row is English-only; other locales use the translated
   // catalog so /ar, /ko etc. don't render an English blurb and address.
@@ -143,16 +142,6 @@ export default function Footer({
             </nav>
           </div>
           <div>
-            <h3>{t('moreInfo')}</h3>
-            <nav aria-label="Legal navigation">
-              {moreInfoMenuItems.map((item) => (
-                <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div>
             <h3>{t('locations')}</h3>
             <nav aria-label="Location pages" className="rd-footer-locations">
               {locationMenuItems.map((item) => (
@@ -210,9 +199,13 @@ export default function Footer({
 
       <div className="rd-footer-bottom">
         <p>{t('copyright', { year: currentYear })}</p>
-        <a href="#main-content" className="rd-text-link">
-          {tCommon('backToTop')}
-        </a>
+        <nav aria-label="Legal navigation" className="rd-footer-legal">
+          {moreInfoMenuItems.map((item) => (
+            <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </footer>
   )
