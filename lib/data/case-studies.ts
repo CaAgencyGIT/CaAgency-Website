@@ -417,21 +417,21 @@ export const caseStudies: CaseStudy[] = [
     metrics: [],
   },
   {
-    slug: 'kerastase-campaign',
-    brand: 'Kérastase',
-    title: 'Kérastase Creator Campaign',
-    vertical: 'Luxury Haircare',
+    slug: 'chanel-beauty-campaign',
+    brand: 'Chanel Beauty',
+    title: 'Chanel Beauty Creator Campaign',
+    vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-dariia-kerastase-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-chanel-web-v1.mp4',
     summary:
-      'Salon-quality haircare shown through a creator’s at-home routine.',
+      'Luxury base-makeup content showing Chanel Beauty’s pearlescent, dewy skin finish.',
     brief:
-      'Kérastase wanted to bring its professional haircare into everyday routines, showing results a viewer could picture achieving at home.',
+      'Chanel Beauty wanted its complexion products shown the way they look on real skin, with the luminous finish clear on camera and the brand’s polish intact.',
     approach:
-      'Our talent Dariia Bordun walked through the routine step by step, with close-ups of texture and finish so the products’ results were visible on camera.',
+      'Our talent Dariia Bordun built a short tutorial around a single product, applying it on camera and finishing on close-ups so the pearlescent glow came through.',
     outcome:
-      'Kérastase received routine-led creator content that makes salon haircare feel accessible without losing its premium feel.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Chanel Beauty received premium creator content that demonstrates its finish in a native short-form format, suited to organic and paid use.',
+    services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
   {

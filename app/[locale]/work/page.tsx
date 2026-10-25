@@ -159,7 +159,7 @@ export default async function WorkPage({ params }: Props) {
                       height={video.watermark.height}
                       sizes="200px"
                       style={{ width: `${video.watermark.widthPct}%` }}
-                      className="pointer-events-none absolute left-1/2 top-[46%] z-[1] h-auto -translate-x-1/2 -translate-y-1/2 opacity-90 [filter:drop-shadow(0_1px_8px_rgba(0,0,0,0.35))]"
+                      className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 opacity-90 [filter:drop-shadow(0_1px_8px_rgba(0,0,0,0.35))]"
                     />
                   )}
                   {study && (
