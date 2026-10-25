@@ -698,21 +698,21 @@ export const caseStudies: CaseStudy[] = [
   },
 
   {
-    slug: 'mimmua-campaign',
-    brand: 'mimmua',
-    title: 'mimmua Creator Campaign',
+    slug: 'skin1004-campaign',
+    brand: 'SKIN1004',
+    title: 'SKIN1004 Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    creator: '@a.closmain',
-    videoSrc: '/videos/redesign/rd-anton-mimmua-web-v3.mp4',
+    creator: '@closmain',
+    videoSrc: '/videos/redesign/rd-anton-azelaic-web-v2.mp4',
     summary:
-      'A “puffy to glass skin” transformation routine for mimmua, built around de-puffing, jawline definition and a glowing finish.',
+      'A daily-routine video for SKIN1004’s Azelaic Acid 10%, framed around Anton’s own experience with acne-prone skin.',
     brief:
-      'mimmua wanted to show that its skincare can visibly change how the face looks, not just how the skin feels. The brief called for a clear transformation story with a relatable starting point, products that are easy to identify, and a finish that makes viewers want to try the routine themselves. The audience is young, skincare-curious and responds to honest before-and-afters, so the content had to feel personal rather than polished, while still giving each product a clear role in the routine and a clear moment on camera.',
+      'SKIN1004 wanted to introduce its Azelaic Acid 10% to viewers dealing with breakouts, redness and post-acne marks. Azelaic acid is effective but still unfamiliar to many people, so the brief called for a creator who could speak from personal experience and explain, in plain terms, what the ingredient does and how it fits into a daily routine. The content had to be honest and reassuring rather than clinical, name each benefit on screen, and show the bottle clearly enough that viewers could find it again.',
     approach:
-      'Anton Drozhzhin opens close to camera, pointing out the puffiness he wants to tackle, then moves into his routine: applying the mimmua cream from its pot, working it into his skin, using a cooling niacinamide ampoule roller around the eyes and a gua sha along the jaw and cheekbones to de-puff and define. Close-ups show the texture of each product and the glow building, and the video closes on his sharper jawline and glass-skin finish.',
+      'Anton Drozhzhin, who has talked openly about his own acne, presents the serum as the ingredient he wishes he had known about sooner. The video moves through his routine in short, clean shots: drops applied to the forehead and cheeks, the texture shown on the back of the hand, and the serum pressed into the skin. On-screen captions tie each step to a benefit (10% azelaic acid daily, control excess sebum, calm redness) before a close-up of the bottle and a final look at his calm, even skin.',
     outcome:
-      'mimmua received a transformation-led creator video with a strong hook, clear product roles and a satisfying result. The relatable before and step-by-step routine make it effective as organic discovery content and as performance creative for viewers concerned about puffiness and dullness.',
+      'SKIN1004 received a personal, education-led creator video that explains a less familiar active in a few seconds and keeps the product in view throughout. It suits organic discovery for acne-prone audiences and can be reused as performance creative focused on redness and post-acne marks.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
