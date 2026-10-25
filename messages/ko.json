@@ -77,6 +77,9 @@
     "registrationNo": "등록번호: 2417532.01"
   },
   "locations": {
+    "officeDubai": "두바이, UAE",
+    "officeDelaware": "델라웨어, 미국",
+    "officeAmsterdam": "암스테르담, 네덜란드",
     "europe": "유럽",
     "middleEast": "중동",
     "dubai": "두바이",

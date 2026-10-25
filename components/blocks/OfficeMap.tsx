@@ -71,7 +71,7 @@ export default function OfficeMap({
   )
 
   return (
-    <section ref={ref} className={`office-map bg-[#0e0e0e] text-white px-section-x py-[100px] mobile:py-[60px]${shown ? ' is-shown' : ''}`}>
+    <section ref={ref} id="offices" className={`office-map bg-[#0e0e0e] text-white px-section-x py-[100px] mobile:py-[60px]${shown ? ' is-shown' : ''}`}>
       <div className="max-w-container mx-auto grid grid-cols-[minmax(0,5fr)_minmax(0,8fr)] gap-12 tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-8">
         <div className="flex flex-col">
           <h2 className="font-anegra text-[56px] tablet:text-[46px] mobile:text-[36px] leading-[1.05] text-balance">{heading}</h2>

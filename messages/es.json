@@ -77,6 +77,9 @@
     "registrationNo": "N.º de registro: 2417532.01"
   },
   "locations": {
+    "officeDubai": "Dubái, EAU",
+    "officeDelaware": "Delaware, EE. UU.",
+    "officeAmsterdam": "Ámsterdam, Países Bajos",
     "europe": "Europa",
     "middleEast": "Oriente Medio",
     "dubai": "Dubái",
