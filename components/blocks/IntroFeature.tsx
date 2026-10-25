@@ -28,7 +28,7 @@ export default function IntroFeature({ eyebrow, kicker, title, paragraphs, butto
           <div className="grid grid-cols-3 overflow-hidden rounded-[20px] mobile:rounded-[14px]">
             {items.slice(0, 3).map((item) => (
               <div key={item.src} className="relative aspect-[4/5] mobile:aspect-[9/16]">
-                <div className="hero-collage-tile absolute inset-0 rounded-none">
+                <div className="intro-feature-tile absolute inset-0 overflow-hidden">
                   <CollageVideo src={item.src} poster={item.poster} label={item.alt} />
                 </div>
               </div>
