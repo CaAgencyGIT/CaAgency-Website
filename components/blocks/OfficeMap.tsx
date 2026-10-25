@@ -114,7 +114,7 @@ export default function OfficeMap({
         </div>
 
         <div className="relative self-center">
-          <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" aria-hidden="true">
+          <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible" aria-hidden="true">
             {dots.map((d, i) => (
               <circle key={i} cx={d.cx} cy={d.cy} r={2.7} className="office-map-dot" style={{ animationDelay: `${d.d}ms` }} />
             ))}
