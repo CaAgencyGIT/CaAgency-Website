@@ -111,6 +111,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'aiym-purito',
   'albina-torriden',
   'beatrix-gisou',
   'georgii-anua', 'dariia-armani',
@@ -204,7 +205,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'haircare' },
   { type: 'video', src: '/videos/work/saranda-delere-web-v1.mp4' },
   { type: 'film', key: 'beatrix-medicube' },
-  { type: 'video', src: '/videos/work/aiym-purito-web-v1.mp4' },
+  { type: 'film', key: 'aiym-purito' },
   { type: 'film', key: 'georgii-anua' },
   { type: 'film', key: 'rebecca-saie' },
   { type: 'film', key: 'dariia-chanel' },
