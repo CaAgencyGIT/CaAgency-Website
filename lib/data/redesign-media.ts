@@ -205,37 +205,37 @@ export const heroCollageImages = [
   { src: '/images/hero/graded/melani-skin1004.webp', alt: 'Melani for SKIN1004, CA Agency campaign', width: 640, height: 1136 },
 ]
 
-// Work page grid order (Oct 2026 client feedback): at most 3 videos per
-// creator, shuffled so no creator repeats within any 4 consecutive tiles
-// (covers desktop rows of 4, tablet columns of 3 and phone 2x2 blocks).
+// Work page grid order (Oct 2026): colour/lighting gradient measured from
+// each video (warm neutrals -> golden -> pink/red -> cool), Albina x Sephora
+// first, no creator twice within any 4 tiles.
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
   { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
-  { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
-  { type: 'film', key: 'rebecca-haruharu' },
+  { type: 'film', key: 'beatrix-gisou' },
+  { type: 'video', src: '/videos/work/saranda-delere-web-v1.mp4' },
+  { type: 'film', key: 'dariia-valentino' },
+  { type: 'film', key: 'aiym-purito' },
+  { type: 'film', key: 'georgii-yesstyle' },
+  { type: 'film', key: 'haircare' },
+  { type: 'film', key: 'beatrix-biodance' },
+  { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
+  { type: 'film', key: 'melly-fenty-original' },
+  { type: 'film', key: 'melani-revolve' },
+  { type: 'film', key: 'aurela-arencia' },
+  { type: 'film', key: 'albina-torriden' },
   { type: 'film', key: 'dariia-chanel' },
   { type: 'film', key: 'melani-medicube' },
-  { type: 'film', key: 'melly-rare' },
-  { type: 'film', key: 'skincare' },
-  { type: 'film', key: 'dariia-valentino' },
-  { type: 'film', key: 'loresa-celimax' },
-  { type: 'film', key: 'haircare' },
-  { type: 'video', src: '/videos/work/saranda-delere-web-v1.mp4' },
-  { type: 'film', key: 'beatrix-biodance' },
-  { type: 'film', key: 'aiym-purito' },
-  { type: 'film', key: 'georgii-anua' },
-  { type: 'film', key: 'rebecca-saie' },
-  { type: 'film', key: 'beatrix-patrickta' },
-  { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
-  { type: 'film', key: 'albina-torriden' },
-  { type: 'film', key: 'jay-mixsoon' },
-  { type: 'film', key: 'khutjo-frankly' },
-  { type: 'film', key: 'beatrix-gisou' },
-  { type: 'film', key: 'georgii-yesstyle' },
-  { type: 'film', key: 'aurela-arencia' },
-  { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'saranda-boj' },
+  { type: 'film', key: 'khutjo-frankly' },
+  { type: 'film', key: 'loresa-celimax' },
+  { type: 'film', key: 'melly-rare' },
+  { type: 'film', key: 'beatrix-patrickta' },
   { type: 'film', key: 'dariia-armani' },
-  { type: 'film', key: 'melly-fenty-original' },
+  { type: 'film', key: 'rebecca-saie' },
+  { type: 'film', key: 'skincare' },
+  { type: 'film', key: 'jay-mixsoon' },
+  { type: 'film', key: 'georgii-anua' },
+  { type: 'film', key: 'rebecca-haruharu' },
+  { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
 ]
 
 // Homepage hero film row (Oct 2026 client feedback): exact order and
