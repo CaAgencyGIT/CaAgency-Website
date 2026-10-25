@@ -247,7 +247,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Rare Beauty': { src: '/images/logos/watermark/rare-beauty-v2.png', width: 320, height: 63, widthPct: 54 },
   'Celimax': { src: '/images/logos/watermark/celimax-v2.png', width: 411, height: 89, widthPct: 52 },
   'd’Alba': { src: '/images/logos/watermark/dalba-v2.png', width: 648, height: 251, widthPct: 39 },
-  'Armani Beauty': { src: '/images/logos/watermark/armani-beauty-v2.png', width: 640, height: 640, widthPct: 30 },
+  'Armani Beauty': { src: '/images/logos/watermark/armani-beauty-v3.png', width: 640, height: 640, widthPct: 30 },
   'Lilyeve': { src: '/images/logos/watermark/lilyeve-v2.png', width: 648, height: 212, widthPct: 42 },
   'Purito': { src: '/images/logos/watermark/purito-v2.png', width: 647, height: 304, widthPct: 42 },
   'Saie': { src: '/images/logos/watermark/saie-v2.png', width: 292, height: 108, widthPct: 39 },

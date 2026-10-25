@@ -21,7 +21,7 @@ import { organizationRef } from '@/lib/seo/schema'
 const videoSchemaList = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: [...workVideos.map((video, index) => ({
+  itemListElement: [...workVideos.filter((video) => workGridOrder.some((e) => e.type === 'video' && e.src === video.src)).map((video, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
@@ -37,7 +37,7 @@ const videoSchemaList = {
   // October 2026 redesign films, added after the existing work.
   ...workFilms.map((key, index) => ({
     '@type': 'ListItem',
-    position: workVideos.length + index + 1,
+    position: workGridOrder.filter((e) => e.type === 'video').length + index + 1,
     item: {
       '@type': 'VideoObject',
       name: filmLabel(key),
