@@ -353,7 +353,8 @@
     "errUrl": "https://로 시작하는 전체 링크를 입력하세요.",
     "errProfiles": "팔로워 수를 포함한 완전한 프로필을 하나 이상 추가하세요.",
     "errDates": "종료일은 시작일 이후여야 합니다.",
-    "errSummary": "표시된 항목을 확인해 주세요."
+    "errSummary": "표시된 항목을 확인해 주세요.",
+    "catTech": "테크"
   },
   "blog": {
     "title": "블로그 | CA Agency 인사이트",

@@ -12,7 +12,7 @@ export type ContactErrorCode =
 export const SOCIAL_PLATFORMS = ['instagram', 'tiktok', 'youtube', 'other'] as const
 export type SocialPlatform = (typeof SOCIAL_PLATFORMS)[number]
 
-export const CONTENT_CATEGORIES = ['beauty', 'skincare', 'makeup', 'haircare', 'fashion', 'lifestyle', 'other'] as const
+export const CONTENT_CATEGORIES = ['beauty', 'skincare', 'makeup', 'haircare', 'fashion', 'lifestyle', 'tech', 'other'] as const
 export type ContentCategory = (typeof CONTENT_CATEGORIES)[number]
 
 export const HELP_ME_CHOOSE = 'help-me-choose'

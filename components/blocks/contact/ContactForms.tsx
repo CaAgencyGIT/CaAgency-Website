@@ -399,7 +399,7 @@ export function TalentApplicationForm({ labels }: { labels: ContactFormLabels })
 
   const categoryOptions: Array<[ContentCategory, string]> = [
     ['beauty', labels.catBeauty], ['skincare', labels.catSkincare], ['makeup', labels.catMakeup], ['haircare', labels.catHaircare],
-    ['fashion', labels.catFashion], ['lifestyle', labels.catLifestyle], ['other', labels.catOther],
+    ['fashion', labels.catFashion], ['lifestyle', labels.catLifestyle], ['tech', labels.catTech], ['other', labels.catOther],
   ]
 
   return (

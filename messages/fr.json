@@ -353,7 +353,8 @@
     "errUrl": "Saisissez un lien complet commençant par https://",
     "errProfiles": "Ajoutez au moins un profil complet, avec son nombre d’abonnés.",
     "errDates": "La date de fin doit être postérieure à la date de début.",
-    "errSummary": "Veuillez vérifier les champs signalés."
+    "errSummary": "Veuillez vérifier les champs signalés.",
+    "catTech": "Tech"
   },
   "blog": {
     "title": "Blog | Les insights CA Agency",

@@ -353,7 +353,8 @@
     "errUrl": "请输入以 https:// 开头的完整链接。",
     "errProfiles": "请至少添加一个包含粉丝数的完整账号。",
     "errDates": "结束日期必须晚于开始日期。",
-    "errSummary": "请检查标记的字段。"
+    "errSummary": "请检查标记的字段。",
+    "catTech": "科技"
   },
   "blog": {
     "title": "博客 | CA Agency 洞察",

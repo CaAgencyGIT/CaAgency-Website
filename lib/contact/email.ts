@@ -4,7 +4,7 @@ import { HELP_ME_CHOOSE, type BrandEnquiry, type CampaignTiming, type ContactFor
 const PLATFORM_LABELS = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', other: 'Other' } as const
 const CATEGORY_LABELS = {
   beauty: 'Beauty', skincare: 'Skincare', makeup: 'Makeup', haircare: 'Haircare',
-  fashion: 'Fashion', lifestyle: 'Lifestyle', other: 'Other',
+  fashion: 'Fashion', lifestyle: 'Lifestyle', tech: 'Tech', other: 'Other',
 } as const
 
 export function escapeHtml(text: string): string {

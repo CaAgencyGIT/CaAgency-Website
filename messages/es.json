@@ -353,7 +353,8 @@
     "errUrl": "Introduce un enlace completo que empiece por https://",
     "errProfiles": "Añade al menos un perfil completo, con su número de seguidores.",
     "errDates": "La fecha final debe ser posterior a la inicial.",
-    "errSummary": "Revisa los campos marcados."
+    "errSummary": "Revisa los campos marcados.",
+    "catTech": "Tecnología"
   },
   "blog": {
     "title": "Blog | Insights de CA Agency",

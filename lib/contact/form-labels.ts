@@ -17,6 +17,7 @@ export const CONTACT_FORM_LABEL_KEYS = [
   'catMakeup',
   'catOther',
   'catSkincare',
+  'catTech',
   'collaborationLabel',
   'collaborationPlaceholder',
   'companyPlaceholder',

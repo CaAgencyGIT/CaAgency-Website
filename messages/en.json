@@ -353,7 +353,8 @@
     "errUrl": "Enter a full link starting with https://",
     "errProfiles": "Add at least one complete profile, including its follower count.",
     "errDates": "The end date must be after the start date.",
-    "errSummary": "Please check the highlighted fields."
+    "errSummary": "Please check the highlighted fields.",
+    "catTech": "Tech"
   },
   "blog": {
     "title": "Blog | CA Agency Insights",
