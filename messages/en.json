@@ -223,6 +223,11 @@
     "ctaText": "Whether you're a brand looking for influencers or a creator ready to grow, we're here to help."
   },
   "contact": {
+    "getInTouch": "Get in touch",
+    "tabBrands": "For brands",
+    "tabInfluencers": "For influencers",
+    "contactUsTitle": "Contact us",
+    "contactUsText": "For partnerships, campaigns and talent enquiries, reach our team directly or send us a message.",
     "title": "Contact Us, Start Your Campaign",
     "description": "Tell us about your brand and goals, CA Agency will match you with the right creators and a data-driven influencer marketing plan. Enquire about partnerships.",
     "heading": "Let's collaborate!",

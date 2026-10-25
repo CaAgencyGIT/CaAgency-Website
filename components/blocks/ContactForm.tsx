@@ -11,7 +11,8 @@ import type { ContactFormLabelKey, ContactFormLabels } from '@/lib/contact/form-
 interface ContactFormProps {
   formId?: number // 1 = homepage dark form, 2 = contact page light form, 3 = talent submission form
   className?: string
-  variant?: 'light' | 'dark'
+  /** 'pill': solid white rounded fields on a dark panel (contact page, Oct 2026). */
+  variant?: 'light' | 'dark' | 'pill'
   labels: ContactFormLabels
 }
 
@@ -132,19 +133,23 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
     })
   }
 
-  const isDarkBackground = variant === 'dark'
+  const isPill = variant === 'pill'
+  const isDarkBackground = variant === 'dark' || isPill
   const isTalentForm = formId === 3
 
-  const inputBaseStyles = cn(
-    'w-full font-jost text-[16px] font-normal bg-transparent px-0 py-3 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-4 resize-none border-b-2 transition-all duration-300',
-    isDarkBackground
-      ? 'text-white border-white/30 focus:border-white focus-visible:outline-white/70 placeholder:text-white/55 hover:border-white/50'
-      : 'text-foreground-dark border-foreground-dark/20 focus:border-accent-red focus-visible:outline-accent-red/70 placeholder:text-foreground-dark/60 hover:border-foreground-dark/40'
-  )
+  const inputBaseStyles = isPill
+    ? 'w-full font-work-sans text-[15px] font-normal bg-white text-foreground-dark rounded-[18px] px-6 py-4 border-0 placeholder:text-foreground-dark/45 resize-none focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 transition-shadow duration-300 focus:shadow-[0_0_0_3px_rgba(255,255,255,0.25)]'
+    : cn(
+        'w-full font-jost text-[16px] font-normal bg-transparent px-0 py-3 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-4 resize-none border-b-2 transition-all duration-300',
+        isDarkBackground
+          ? 'text-white border-white/30 focus:border-white focus-visible:outline-white/70 placeholder:text-white/55 hover:border-white/50'
+          : 'text-foreground-dark border-foreground-dark/20 focus:border-accent-red focus-visible:outline-accent-red/70 placeholder:text-foreground-dark/60 hover:border-foreground-dark/40'
+      )
 
   const labelStyles = cn(
-    'block font-jost text-[13px] font-medium mb-2 uppercase tracking-[1px]',
-    isDarkBackground ? 'text-white/70' : 'text-foreground-gray'
+    'block font-jost font-medium mb-2 uppercase',
+    isPill ? 'text-[11px] tracking-[0.16em] text-white/60 ps-2' : 'text-[13px] tracking-[1px]',
+    !isPill && (isDarkBackground ? 'text-white/70' : 'text-foreground-gray')
   )
 
   // Success message component
@@ -357,7 +362,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         </div>
 
         <div className="flex justify-start">
-          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
+          <Button type="submit" variant={isDarkBackground ? 'light' : 'dark'} className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
             {isSubmitting ? (
               <span className="flex items-center gap-2">
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">
@@ -519,7 +524,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
         </div>
 
         <div className="flex justify-start">
-          <Button type="submit" variant="dark" className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
+          <Button type="submit" variant={isDarkBackground ? 'light' : 'dark'} className="min-w-[180px]" disabled={isSubmitting || (usesTurnstile && !turnstileToken)}>
             {isSubmitting ? (
               <span className="flex items-center gap-2">
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">

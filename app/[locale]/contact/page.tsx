@@ -1,13 +1,12 @@
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
-import Heading from '@/components/ui/Heading'
-import HeadingAccent from '@/components/ui/HeadingAccent'
-import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
+import Image from 'next/image'
 import ContactForm from '@/components/blocks/ContactForm'
+import ContactTabs from '@/components/blocks/ContactTabs'
+import { defaultFooterContent, SOCIAL_ICONS } from '@/components/layout/Footer'
 import OfficeMap from '@/components/blocks/OfficeMap'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
-import GradientDivider from '@/components/ui/GradientDivider'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 type Props = {
@@ -87,45 +86,64 @@ export default async function ContactPage({ params }: Props) {
   return (
     <>
 
-      {/* Hero Section */}
-      <section className="bg-background-soft py-[150px] mobile:py-[80px] px-section-x relative overflow-hidden">
-        <div className="max-w-container mx-auto relative z-10">
-          <div className="max-w-[850px] mx-auto">
-            {/* Contact Form Card */}
-            <div className="hero-rise-media bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] py-[70px] mobile:py-[50px] px-[70px] tablet:px-[50px] mobile:px-[30px]">
-              {/* Header */}
-              <div className="text-center mb-10">
-                <Heading as="h1" color="dark" className="mb-4 tracking-[0.1px]">
-                  {t('heading')}
-                </Heading>
-                <Text color="muted" size="sm" className="max-w-[550px] mx-auto">
-                  {t('brandDescription')}
-                </Text>
-              </div>
-
-              {/* Contact Form */}
-              <div className="mb-2">
-                <Heading as="h2" color="dark" className="mb-4 text-[24px] mobile:text-[20px]">
-                  {t('brandInquiries')}
-                </Heading>
-                <HeadingAccent align="start" className="mb-6" />
-                <ContactForm formId={2} labels={formLabels} />
-              </div>
-
-              <GradientDivider variant="dark" className="my-14" />
-
-              {/* Talent Submission */}
-              <div>
-                <Heading as="h2" color="dark" className="mb-3 text-[24px] mobile:text-[20px]">
-                  {t('talentSubmission')}
-                </Heading>
-                <HeadingAccent align="start" className="mb-4" />
-                <Text color="muted" size="sm" className="mb-6">
-                  {t('talentDescription')}
-                </Text>
-                <ContactForm formId={3} labels={formLabels} />
+      {/* Get in touch (Oct 2026, after scooperz.com/contact, in CA colours): office
+          photo and direct contact details left, heading and the brand /
+          influencer form tabs right, on a black rounded panel. */}
+      <section className="rd-cta-panel contact-panel">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-[6vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-12">
+          <div className="flex flex-col gap-10 tablet:order-2 mobile:order-2">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[18px] tablet:aspect-[16/10] mobile:aspect-[4/5]">
+              <Image
+                src="/images/site/ca-office-v1.webp"
+                alt="CA Agency office lounge"
+                fill
+                quality={85}
+                sizes="(max-width: 1024px) 100vw, 520px"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="mb-4 font-anegra text-[34px] leading-tight text-white mobile:text-[28px]">{t('contactUsTitle')}</h2>
+              <p className="mb-7 max-w-[440px] font-work-sans text-[15px] leading-[1.8] text-white/70">{t('contactUsText')}</p>
+              <ul className="mb-8 flex flex-col gap-3 font-work-sans text-[17px] text-white">
+                <li>
+                  <a href="mailto:info@caagency.com" className="underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-white">
+                    info@caagency.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+97148869229" dir="ltr" className="underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-white">
+                    +971 04 8869229
+                  </a>
+                </li>
+              </ul>
+              <div className="flex gap-3">
+                {defaultFooterContent.socialLinks.map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="grid h-11 w-11 place-items-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-[#0e0e0e]"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-[17px] w-[17px] fill-current" aria-hidden="true">
+                      <path d={SOCIAL_ICONS[social.name] ?? ''} />
+                    </svg>
+                  </a>
+                ))}
               </div>
             </div>
+          </div>
+
+          <div className="tablet:order-1 mobile:order-1">
+            <h1 className="mb-6 font-anegra text-[clamp(52px,6.4vw,96px)] leading-[0.95] text-white">{t('getInTouch')}</h1>
+            <ContactTabs
+              tabs={[
+                { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <ContactForm formId={2} variant="pill" labels={formLabels} /> },
+                { id: 'talent', label: t('tabInfluencers'), intro: t('talentDescription'), panel: <ContactForm formId={3} variant="pill" labels={formLabels} /> },
+              ]}
+            />
           </div>
         </div>
       </section>

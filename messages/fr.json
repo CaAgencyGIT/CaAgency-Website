@@ -223,6 +223,11 @@
     "ctaText": "Que vous soyez une marque à la recherche d'influenceurs ou un créateur prêt à grandir, nous sommes là pour vous accompagner."
   },
   "contact": {
+    "getInTouch": "Contactez-nous",
+    "tabBrands": "Pour les marques",
+    "tabInfluencers": "Pour les influenceurs",
+    "contactUsTitle": "Nous joindre",
+    "contactUsText": "Pour les partenariats, les campagnes et les demandes de talents, contactez directement notre équipe ou envoyez-nous un message.",
     "title": "Contact, lancez votre campagne",
     "description": "Parlez-nous de votre marque et de vos objectifs : CA Agency vous propose les bons créateurs et un plan de marketing d'influence piloté par la donnée.",
     "heading": "Collaborons !",

@@ -223,6 +223,11 @@
     "ctaText": "인플루언서를 찾는 브랜드든 성장할 준비가 된 크리에이터든, 저희가 도와드리겠습니다."
   },
   "contact": {
+    "getInTouch": "문의하기",
+    "tabBrands": "브랜드",
+    "tabInfluencers": "인플루언서",
+    "contactUsTitle": "연락처",
+    "contactUsText": "파트너십, 캠페인, 탤런트 문의는 팀에 직접 연락하시거나 메시지를 보내 주세요.",
     "title": "문의하기, 캠페인 시작",
     "description": "인플루언서 마케팅 문의, 브랜드 파트너십, 크리에이터 지원은 CA Agency로 연락주세요. 연락을 기다리겠습니다.",
     "heading": "함께 협업해요!",
