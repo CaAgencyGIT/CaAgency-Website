@@ -49,6 +49,8 @@ export const films = {
   'albina-torriden': { creator: 'Albina Mavriqi', brand: 'Torriden', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/p/Dcodk7PtSn6/' },
   'saranda-boj': { creator: 'Saranda Mavriqi', brand: 'Beauty of Joseon', talentSlug: 'saranda-mavriqi', sourceUrl: 'https://www.tiktok.com/@saranda/video/7689430094741277960' },
   'khutjo-frankly': { creator: 'Khutjo Matsoma', brand: 'Frankly', talentSlug: 'khutjo-matsoma', sourceUrl: 'https://www.tiktok.com/@khutjo.matsoma/video/7470818260414450950' },
+  'rebecca-haruharu': { creator: 'Rebecca Ghaderi', brand: 'Haruharu Wonder', talentSlug: 'rebecca-ghaderi', sourceUrl: 'https://www.instagram.com/reel/DYTrym4uHS9/' },
+  'georgii-yesstyle': { creator: 'Georgii Galaev', brand: 'YesStyle', talentSlug: 'georgii-galaev', sourceUrl: 'https://www.instagram.com/reel/DPOHcK4jhXZ/' },
   'dariia-chanel': { creator: 'Dariia Bordun', brand: 'Chanel Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/p/DGqp2U9iBhI/' },
   haircare: { creator: 'Albina Mavriqi', brand: 'Lilyeve', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/albina/reel/DeuTEqwNBLQ/' },
   'beatrix-medicube': { creator: 'Beatrix Ramosaj', brand: 'Medicube', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.instagram.com/beatrixramosaj/reel/Dd_OTh-xXg2/' },
@@ -107,6 +109,8 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'melani-dalba': 'dalba-campaign',
   'saranda-boj': 'beauty-of-joseon-campaign',
   'khutjo-frankly': 'frankly-campaign',
+  'rebecca-haruharu': 'haruharu-wonder-campaign',
+  'georgii-yesstyle': 'yesstyle-collaboration',
   'loresa-celimax': 'celimax-campaign',
   'aurela-arencia': 'arencia-campaign',
   haircare: 'lilyeve-campaign',
@@ -114,6 +118,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'rebecca-haruharu', 'georgii-yesstyle',
   'khutjo-frankly',
   'aiym-purito',
   'albina-torriden',
@@ -199,7 +204,7 @@ export const heroCollageImages = [
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
   { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
   { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
-  { type: 'video', src: '/videos/work/rebecca-haruharu-web-v1.mp4' },
+  { type: 'film', key: 'rebecca-haruharu' },
   { type: 'film', key: 'beatrix-patrickta' },
   { type: 'film', key: 'melani-dalba' },
   { type: 'film', key: 'melly-rare' },
@@ -218,7 +223,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'jay-mixsoon' },
   { type: 'film', key: 'khutjo-frankly' },
   { type: 'film', key: 'beatrix-gisou' },
-  { type: 'video', src: '/videos/work/georgii-yesstyle-web-v1.mp4' },
+  { type: 'film', key: 'georgii-yesstyle' },
   { type: 'film', key: 'aurela-arencia' },
   { type: 'video', src: '/videos/work/melani-revolve-web-v1.mp4' },
   { type: 'film', key: 'saranda-boj' },
@@ -260,7 +265,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Arencia': { src: '/images/logos/watermark/arencia-v2.png', width: 648, height: 151, widthPct: 50 },
   'Chanel Beauty': { src: '/images/logos/watermark/chanel-v2.png', width: 648, height: 648, widthPct: 34 },
   'Patrick Ta': { src: '/images/logos/watermark/patrick-ta-v2.png', width: 627, height: 415, widthPct: 50 },
-  'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 46 },
+  'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 58 },
   'Gisou': { src: '/images/logos/watermark/gisou-v2.png', width: 640, height: 290, widthPct: 42 },
   'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
