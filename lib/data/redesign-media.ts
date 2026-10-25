@@ -1,5 +1,6 @@
 import type { HeroFilmRowItem } from '@/components/blocks/HeroFilmRow'
 import { posterFor } from '@/lib/data/videos'
+import { caseStudyForVideo, getCaseStudy, type CaseStudy } from '@/lib/data/case-studies'
 
 // October 2026 redesign: creator films from the approved handoff package
 // (media-index.csv). Each key maps to /videos/redesign/rd-<key>-web-v1.mp4 and its
@@ -259,7 +260,7 @@ export const heroFilmRowItems: HeroFilmRowItem[] = [
 // White brand logos overlaid on the redesign films (the older work videos
 // have theirs burned in). widthPct balances wide wordmarks against tall ones.
 export const brandWatermarks: Record<string, { src: string; width: number; height: number; widthPct: number }> = {
-  'Medicube': { src: '/images/logos/watermark/medicube-v2.png', width: 648, height: 239, widthPct: 48 },
+  'Medicube': { src: '/images/logos/watermark/medicube-v3.png', width: 648, height: 239, widthPct: 48 },
   'Anua': { src: '/images/logos/watermark/anua-v2.png', width: 647, height: 162, widthPct: 40 },
   'Dr. Althea': { src: '/images/logos/watermark/dr-althea-v2.png', width: 646, height: 191, widthPct: 44 },
   'Valentino Beauty': { src: '/images/logos/watermark/valentino-beauty-v3.png', width: 640, height: 470, widthPct: 36 },
@@ -277,7 +278,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Patrick Ta': { src: '/images/logos/watermark/patrick-ta-v2.png', width: 627, height: 415, widthPct: 50 },
   'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 48 },
   'Gisou': { src: '/images/logos/watermark/gisou-v2.png', width: 640, height: 290, widthPct: 42 },
-  'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
+  'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v3.png', width: 640, height: 126, widthPct: 54 },
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
   'Torriden': { src: '/images/logos/watermark/torriden-v2.png', width: 640, height: 128, widthPct: 50 },
   'Beauty of Joseon': { src: '/images/logos/watermark/beauty-of-joseon-v3.png', width: 480, height: 542, widthPct: 30 },
@@ -290,12 +291,12 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
 
-// Homepage intro showreels: every film on the site cut into 0.5s shots with
-// a camera-flash cut. The three reels share one timeline and never show the
+// Homepage intro showreels: every film on the site cut into 1s shots with a
+// studio-strobe flash between them. The three reels share one timeline and never show the
 // same creator side by side, even one shot apart.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v4.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v4.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v6.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v6.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
 
@@ -305,4 +306,13 @@ export function talentFilmSrc(slug: string): string | undefined {
   const keys = Object.keys(films) as FilmKey[]
   const key = [...workFilms, ...keys].find((k) => films[k].talentSlug === slug)
   return key ? filmSrc(key) : undefined
+}
+
+// Case studies that still have a tile on the Work page, in grid order. Older
+// studies keep their pages but are no longer listed or linked.
+export function currentCaseStudies(): CaseStudy[] {
+  const studies = workGridOrder.map((entry) =>
+    entry.type === 'film' ? getCaseStudy(filmCaseStudies[entry.key] ?? '') : caseStudyForVideo(entry.src),
+  )
+  return studies.filter((cs, i): cs is CaseStudy => !!cs && studies.indexOf(cs) === i)
 }

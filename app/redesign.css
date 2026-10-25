@@ -181,6 +181,19 @@
   }
   .rd-faq-list details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
   .rd-faq-list details p { margin: 0; padding: 0 44px 22px 0; font-size: 14px; line-height: 1.75; color: #67645f; }
+  .rd-faq-list .rd-faq-more { border-bottom: 0; }
+  .rd-faq-list .rd-faq-more > summary {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 22px; border: 1px solid #171715; border-radius: 999px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .rd-faq-list .rd-faq-more > summary:hover { background: #171715; color: #fff; }
+  .rd-faq-list .rd-faq-more > summary::after { position: static; margin-top: -4px; width: 7px; height: 7px; }
+  .rd-faq-list .rd-faq-more[open] > summary::after { margin-top: 3px; }
+  .rd-faq-more[open] > summary { order: 2; }
+  .rd-faq-more-close, .rd-faq-more[open] .rd-faq-more-open { display: none; }
+  .rd-faq-more[open] .rd-faq-more-close { display: inline; }
+  .rd-faq-more { display: flex; flex-direction: column; align-items: flex-start; }
+  .rd-faq-more > div { width: 100%; }
 
   /* CTA */
   .rd-cta { max-width: none; padding: 85px 5vw 90px; text-align: center; background: var(--rd-soft); }

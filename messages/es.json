@@ -267,6 +267,8 @@
   },
   "faq": {
     "heading": "Preguntas frecuentes",
+    "showAll": "Ver todas las preguntas",
+    "showLess": "Mostrar menos preguntas",
     "questions": {
       "whatDoesCaAgencyDo": {
         "question": "¿Qué hace CA Agency?",

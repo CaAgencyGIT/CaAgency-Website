@@ -7,7 +7,10 @@ import Button from '@/components/ui/Button'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
-import { caseStudies } from '@/lib/data/case-studies'
+import { currentCaseStudies } from '@/lib/data/redesign-media'
+import CaseStudyCard from '@/components/blocks/CaseStudyCard'
+
+const listed = currentCaseStudies()
 import { posterFor } from '@/lib/data/videos'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
@@ -28,7 +31,7 @@ export const metadata: Metadata = buildPageMetadata({
 const listSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: caseStudies.map((cs, index) => ({
+  itemListElement: listed.map((cs, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     name: `${cs.brand} Influencer Marketing Case Study`,
@@ -64,36 +67,9 @@ export default function CaseStudiesPage() {
       <section className="bg-background-base px-section-x pb-sec-sm">
         <div className="max-w-container mx-auto">
           <Stagger className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]" stagger={0.06}>
-            {caseStudies.map((cs) => (
+            {listed.map((cs) => (
               <StaggerItem key={cs.slug}>
-                <Link
-                  href={`/case-studies/${cs.slug}`}
-                  className="hover-lift group flex h-full flex-col overflow-hidden rounded-card border border-black/10 bg-background-base shadow-e1 hover:shadow-e3 transition-shadow"
-                >
-                  <div className="relative aspect-video overflow-hidden">
-                    <Image
-                      src={posterFor(cs.videoSrc)}
-                      alt={`${cs.brand} campaign video still`}
-                      fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px"
-                    />
-                  </div>
-                  <div className="flex grow flex-col p-6">
-                    <span className="mb-2 block font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-accent-red">
-                      {cs.vertical}
-                    </span>
-                    <p className="mb-2 font-anegra text-[22px] font-semibold leading-tight text-foreground-primary group-hover:text-foreground-subtle transition-colors">
-                      {cs.title}
-                    </p>
-                    <p className="mb-4 grow font-work-sans text-[14px] leading-[1.7] text-foreground-body">
-                      {cs.summary}
-                    </p>
-                    <span className="font-work-sans text-[14px] font-medium text-accent-red">
-                      Read the case study →
-                    </span>
-                  </div>
-                </Link>
+                <CaseStudyCard study={cs} showSummary />
               </StaggerItem>
             ))}
           </Stagger>

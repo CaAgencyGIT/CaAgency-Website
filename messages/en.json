@@ -267,6 +267,8 @@
   },
   "faq": {
     "heading": "Frequently Asked Questions",
+    "showAll": "View all questions",
+    "showLess": "Show fewer questions",
     "questions": {
       "whatDoesCaAgencyDo": {
         "question": "What does CA Agency do?",

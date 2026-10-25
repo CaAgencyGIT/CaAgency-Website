@@ -267,6 +267,8 @@
   },
   "faq": {
     "heading": "자주 묻는 질문",
+    "showAll": "모든 질문 보기",
+    "showLess": "질문 접기",
     "questions": {
       "whatDoesCaAgencyDo": {
         "question": "CA Agency는 어떤 일을 하나요?",

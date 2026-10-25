@@ -10,7 +10,8 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import HeadingAccent from '@/components/ui/HeadingAccent'
 import { caseStudies, getCaseStudy } from '@/lib/data/case-studies'
 import { posterFor, publishedDateFor } from '@/lib/data/videos'
-import { brandWatermarks } from '@/lib/data/redesign-media'
+import { brandWatermarks, currentCaseStudies } from '@/lib/data/redesign-media'
+import CaseStudyCard from '@/components/blocks/CaseStudyCard'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 
@@ -59,10 +60,11 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound()
   }
 
-  // One study from the same vertical, then the ones that follow this study, so
-  // every study is linked from two to four others.
-  const position = caseStudies.indexOf(study)
-  const following = [...caseStudies.slice(position + 1), ...caseStudies.slice(0, position)]
+  // One study from the same vertical, then the ones that follow this study on
+  // the Work page, so every current study is linked from two to four others.
+  const listed = currentCaseStudies()
+  const position = listed.indexOf(study)
+  const following = position === -1 ? listed : [...listed.slice(position + 1), ...listed.slice(0, position)]
   const sameVertical = following.find((cs) => cs.vertical === study.vertical)
   const related = [
     ...(sameVertical ? [sameVertical] : []),
@@ -229,31 +231,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </Heading>
             <HeadingAccent className="mb-0" />
           </ScrollReveal>
-          <div className="grid grid-cols-3 mobile:grid-cols-1 gap-[20px]">
+          <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
             {related.map((cs) => (
               <ScrollReveal key={cs.slug} yOffset={24}>
-                <Link
-                  href={`/case-studies/${cs.slug}`}
-                  className="hover-lift group block overflow-hidden rounded-card border border-black/10 bg-background-base shadow-e1 hover:shadow-e2 transition-shadow"
-                >
-                  <div className="relative aspect-video overflow-hidden">
-                    <Image
-                      src={posterFor(cs.videoSrc)}
-                      alt={`${cs.brand} campaign video still`}
-                      fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 767px) 100vw, 420px"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <span className="mb-1 block font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-accent-red">
-                      {cs.vertical}
-                    </span>
-                    <p className="font-anegra text-[20px] font-semibold text-foreground-primary group-hover:text-foreground-subtle transition-colors">
-                      {cs.brand}
-                    </p>
-                  </div>
-                </Link>
+                <CaseStudyCard study={cs} />
               </ScrollReveal>
             ))}
           </div>
