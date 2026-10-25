@@ -14,7 +14,7 @@ export default function FAQ() {
       </div>
       <div className="rd-faq-list">
         {faqKeys.map((key, index) => (
-          <details key={key} name="home-faq" open={index === 0}>
+          <details key={key} name="home-faq">
             <summary id={`faq-question-${index}`}>{t(`questions.${key}.question`)}</summary>
             <div id={`faq-answer-${index}`}>
               <p>{t(`questions.${key}.answer`)}</p>

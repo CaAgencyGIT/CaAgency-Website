@@ -13,8 +13,8 @@ interface IntroFeatureProps {
 }
 
 // "This is CA Agency" as an editorial feature (Oct 2026, after era.agency):
-// a wide band of campaign videos with a black text card overlapping its
-// lower-left edge.
+// a wide band of campaign videos with a small white text card tucked under
+// its lower-left edge, so the videos stay mostly uncovered.
 export default function IntroFeature({ eyebrow, kicker, title, paragraphs, button, items, locale }: IntroFeatureProps) {
   return (
     <section className="intro-feature bg-background-base text-foreground-primary py-[96px] mobile:py-[56px] px-section-x">
@@ -35,23 +35,20 @@ export default function IntroFeature({ eyebrow, kicker, title, paragraphs, butto
             ))}
           </div>
 
-          <div className="relative z-[2] -mt-[180px] ml-[22%] w-[min(560px,60%)] tablet:-mt-[120px] tablet:ml-[8%] tablet:w-[70%] mobile:-mt-[48px] mobile:mx-3 mobile:w-auto">
-            <span
-              aria-hidden="true"
-              className="absolute -top-[74px] left-8 font-anegra text-[150px] leading-none text-[#161616] mobile:-top-[46px] mobile:left-5 mobile:text-[96px]"
-            >
-              &ldquo;
-            </span>
-            <div className="bg-[#161616] text-white px-10 pt-12 pb-10 mobile:px-6 mobile:pt-9 mobile:pb-7">
-              <h3 className="font-anegra text-[44px] tablet:text-[38px] mobile:text-[30px] leading-[1.1] text-balance">{title}</h3>
-              <div className="my-7 h-px w-full bg-white/25 mobile:my-5" />
-              <div className="flex flex-col gap-4 font-work-sans text-[15px] mobile:text-[14px] leading-[1.75] text-white/80">
+          <div className="relative z-[2] -mt-[72px] ml-[6%] w-[min(470px,48%)] tablet:-mt-[56px] tablet:ml-[5%] tablet:w-[62%] mobile:-mt-[28px] mobile:mx-3 mobile:w-auto">
+            <div className="rounded-[18px] border border-black/[0.06] bg-white px-9 pt-9 pb-8 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.28)] mobile:rounded-[14px] mobile:px-6 mobile:pt-7 mobile:pb-6">
+              <span aria-hidden="true" className="block font-anegra text-[56px] leading-[0.6] text-foreground-primary/20 mobile:text-[44px]">
+                &ldquo;
+              </span>
+              <h3 className="mt-2 font-anegra text-[30px] tablet:text-[28px] mobile:text-[24px] leading-[1.15] text-balance text-foreground-primary">{title}</h3>
+              <div className="my-5 h-px w-12 bg-black/20 mobile:my-4" />
+              <div className="flex flex-col gap-3 font-work-sans text-[14px] mobile:text-[13.5px] leading-[1.7] text-foreground-primary/70">
                 {paragraphs.map((text) => (
                   <p key={text}>{text}</p>
                 ))}
               </div>
-              <div className="mt-8 mobile:mt-6">
-                <Button href={button.href} locale={locale} variant="light">
+              <div className="mt-6 mobile:mt-5">
+                <Button href={button.href} locale={locale} variant="dark" size="sm">
                   {button.label}
                 </Button>
               </div>

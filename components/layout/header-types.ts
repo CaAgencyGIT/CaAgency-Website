@@ -6,6 +6,7 @@ export interface HeaderLabels {
   services: string
   blog: string
   contact: string
+  letsTalk: string
   languageSelector: string
   openMenu: string
   closeMenu: string

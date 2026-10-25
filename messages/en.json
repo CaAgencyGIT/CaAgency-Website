@@ -56,7 +56,8 @@
     "languageSelector": "Select language",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "mainMenu": "Main menu"
+    "mainMenu": "Main menu",
+    "letsTalk": "Let's talk"
   },
   "footer": {
     "info": "Info",

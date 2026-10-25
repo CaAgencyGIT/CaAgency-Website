@@ -15,7 +15,7 @@ import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
-import { heroFilmRowItems } from '@/lib/data/redesign-media'
+import { heroFilmRowItems, introShowreels } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
@@ -189,7 +189,7 @@ export default async function HomePage() {
         title="Creators who shape culture, campaigns that move product."
         paragraphs={content.intro.paragraphs.map((paragraph) => paragraph.text)}
         button={{ label: content.intro.buttonLabel, href: content.intro.buttonHref }}
-        items={introMediaItems.map((item) => ({ src: item.src, alt: item.alt ?? 'CA Agency campaign reel', poster: item.poster }))}
+        items={introShowreels}
       />
 
       <ServicesOverview content={content.servicesOverview} eyebrow="Services" />

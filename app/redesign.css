@@ -167,12 +167,20 @@
   /* FAQ */
   .rd-faq { display: grid; grid-template-columns: 1fr 1.35fr; gap: 70px; border-top: 1px solid var(--rd-line); }
   .rd-faq .rd-section-heading { align-self: start; }
-  .rd-faq-list details { border-bottom: 1px solid var(--rd-line); }
-  .rd-faq-list summary { position: relative; padding: 18px 28px 18px 0; list-style: none; cursor: pointer; font-size: 14px; }
+  .rd-faq-list { border-top: 1px solid #dedbd5; }
+  .rd-faq-list details { border-bottom: 1px solid #dedbd5; }
+  .rd-faq-list details::details-content { block-size: 0; overflow: hidden; transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete; }
+  .rd-faq-list details[open]::details-content { block-size: auto; }
+  .rd-faq { interpolate-size: allow-keywords; }
+  .rd-faq-list summary { position: relative; padding: 20px 44px 20px 0; list-style: none; cursor: pointer; font-size: 15px; transition: color 0.2s ease; }
+  .rd-faq-list summary:hover { color: #67645f; }
   .rd-faq-list summary::-webkit-details-marker { display: none; }
-  .rd-faq-list summary::after { content: '+'; position: absolute; right: 0; }
-  .rd-faq-list details[open] summary::after { content: '−'; }
-  .rd-faq-list details p { padding: 0 20px 10px 0; font-size: 13px; }
+  .rd-faq-list summary::after {
+    content: ''; position: absolute; right: 6px; top: 50%; width: 9px; height: 9px; margin-top: -7px;
+    border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform 0.3s ease;
+  }
+  .rd-faq-list details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
+  .rd-faq-list details p { margin: 0; padding: 0 44px 22px 0; font-size: 14px; line-height: 1.75; color: #67645f; }
 
   /* CTA */
   .rd-cta { max-width: none; padding: 85px 5vw 90px; text-align: center; background: var(--rd-soft); }
@@ -205,23 +213,59 @@
   .rd-hero-trio .rd-film-frame { aspect-ratio: 3 / 4; }
 
   /* Header */
-  /* Editorial header (Oct 2026, after dulcedo.com): plain text menu left,
-     logo centred, Contact + language right; underline marks hover and the
-     current page. */
+  /* Black header bar (Oct 2026, after scooperz.com): logo left, uppercase
+     menu right, language + "Let's talk" pill + menu button; the menu button
+     opens a full-screen black menu. */
   .rd-header {
-    position: sticky; top: 0; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px;
-    height: 100px; padding: 0 5vw; background: #ffffffed; backdrop-filter: blur(15px);
+    position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 36px;
+    height: 92px; padding: 0 4.5vw; background: #0e0e0e; color: #fff;
   }
-  .rd-header nav { min-width: 0; }
-  .rd-header nav ul { display: flex; align-items: center; gap: 26px; font-size: 15px; }
-  .rd-header :is(nav, .rd-header-actions) a {
-    position: relative; display: inline-block; padding: 6px 0; color: var(--rd-ink); white-space: nowrap;
-    text-decoration: underline transparent; text-decoration-thickness: 1px; text-underline-offset: 5px;
+  .rd-header-logo { flex: none; margin-inline-end: auto; }
+  .rd-header-nav ul { display: flex; align-items: center; gap: 34px; }
+  .rd-header-nav a {
+    display: inline-block; padding: 6px 0; color: #fff; white-space: nowrap;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: underline transparent; text-decoration-thickness: 1px; text-underline-offset: 6px;
     transition: text-decoration-color 0.2s ease;
   }
-  .rd-header :is(nav, .rd-header-actions) a:is(:hover, [aria-current]) { text-decoration-color: currentColor; }
-  .rd-header-logo { justify-self: center; }
-  .rd-header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 26px; font-size: 15px; }
+  .rd-header-nav a:is(:hover, [aria-current]) { text-decoration-color: currentColor; }
+  .rd-header-actions { display: flex; align-items: center; gap: 18px; }
+  .rd-header-actions .rd-language label { letter-spacing: 0.12em; text-transform: uppercase; font-size: 13px; font-weight: 600; }
+  .rd-header-talk {
+    display: inline-flex; align-items: center; height: 50px; padding: 0 28px; border: 1.5px solid #fff; border-radius: 999px;
+    color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .rd-header-talk:hover { background: #fff; color: #0e0e0e; }
+  .rd-header-burger, .rd-menu-close { position: relative; display: grid; place-items: center; width: 44px; height: 44px; margin-inline-start: 8px; color: #fff; cursor: pointer; }
+  .rd-header-burger span, .rd-menu-close span { position: absolute; left: 7px; width: 30px; height: 1.5px; background: currentColor; transition: transform 0.25s ease; }
+  .rd-header-burger span:first-child { transform: translateY(-5px); }
+  .rd-header-burger span:last-child { transform: translateY(5px); }
+  .rd-header-burger:hover span:first-child { transform: translateY(-7px); }
+  .rd-header-burger:hover span:last-child { transform: translateY(7px); }
+  .rd-menu-close span:first-child { transform: rotate(45deg); }
+  .rd-menu-close span:last-child { transform: rotate(-45deg); }
+
+  .rd-menu {
+    position: fixed; inset: 0; z-index: 80; display: flex; flex-direction: column; overflow: hidden;
+    padding: 0 4.5vw; background: #0e0e0e; color: #fff;
+    opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .rd-menu.is-open { opacity: 1; visibility: visible; transition: opacity 0.35s ease; }
+  .rd-menu-top { display: flex; align-items: center; justify-content: space-between; height: 92px; flex: none; }
+  .rd-menu nav { display: flex; flex: 1; align-items: center; padding-inline-start: 10vw; padding-bottom: 92px; }
+  .rd-menu nav li { opacity: 0; transform: translateY(28px); transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .rd-menu.is-open nav li { opacity: 1; transform: none; }
+  .rd-menu nav a {
+    display: inline-block; font-family: var(--rd-sans); font-size: clamp(40px, 5.4vw, 76px); font-weight: 700; line-height: 1.08;
+    letter-spacing: 0.01em; text-transform: uppercase; color: #fff; transition: color 0.2s ease;
+  }
+  .rd-menu nav ul:hover a { color: rgba(255, 255, 255, 0.35); }
+  .rd-menu nav ul:hover a:hover { color: #fff; }
+  .rd-menu-ring { position: absolute; right: -90px; bottom: -110px; width: 520px; height: 520px; animation: rd-ring-spin 28s linear infinite; pointer-events: none; }
+  .rd-menu-ring text { fill: #fff; font-family: var(--rd-sans); font-size: 24px; font-weight: 300; letter-spacing: 0.3em; }
+  @keyframes rd-ring-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .rd-menu-ring { animation: none; } }
   .rd-skip { position: absolute; left: 10px; top: 10px; z-index: 99; padding: 10px; background: #fff; }
   .rd-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; padding: 0; margin: -1px; }
 
@@ -232,8 +276,11 @@
   .rd-footer-top { display: grid; grid-template-columns: 0.8fr 2fr; gap: 64px; }
   .rd-footer-logo { filter: invert(1); }
   .rd-footer-intro p { max-width: 340px; font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); }
-  .rd-footer-social { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
-  .rd-footer-social a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; }
+  .rd-footer-social { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
+  .rd-footer-social-icon { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 50%; color: #fff; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .rd-footer-social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+  .rd-footer-social-icon:hover { background: #fff; border-color: #fff; color: #0e0e0e; }
+  .rd-footer-social-contact { margin-inline-start: 12px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
   .rd-footer-links { display: grid; grid-template-columns: 0.75fr 0.85fr 1.5fr 1.25fr; gap: 40px; }
   .rd-footer-locations { columns: 2; column-gap: 28px; }
   .rd-footer-locations a { break-inside: avoid; }
@@ -251,8 +298,8 @@
   .rd-footer .rd-text-link { color: #fff; }
 
   @media (max-width: 1100px) {
-    .rd-header { gap: 20px; padding: 0 4vw; }
-    .rd-header nav ul, .rd-header-actions { gap: 18px; font-size: 14px; }
+    .rd-header-nav ul { gap: 22px; }
+    .rd-header { gap: 24px; }
     .rd-hero-brand { font-size: 72px; }
     .rd-hero-spotlight-copy { padding: 90px 4vw 60px; }
     .rd-hero-spotlight-copy .rd-actions { flex-direction: column; align-items: start; gap: 15px; }
@@ -276,18 +323,18 @@
   }
 
   @media (max-width: 900px) {
-    .rd-header nav ul, .rd-header-actions { gap: 14px; font-size: 13px; }
+    .rd-header-nav { display: none; }
   }
 
   @media (max-width: 760px) {
+    .rd-header, .rd-menu-top { height: 74px; }
+    .rd-header { gap: 8px; padding: 0 5vw; }
+    .rd-header-talk { display: none; }
+    .rd-menu nav { padding-inline-start: 2vw; padding-bottom: 74px; }
+    .rd-menu nav a { font-size: 44px; }
+    .rd-menu-ring { width: 340px; height: 340px; right: -110px; bottom: -120px; }
     .rd { font-size: 14px; }
     .rd-section { padding: 50px 5vw; }
-    .rd-header { grid-template-columns: auto 1fr; height: auto; min-height: 84px; gap: 12px 15px; padding: 17px 5vw 0; }
-    .rd-header-logo { grid-row: 1; grid-column: 1; justify-self: start; }
-    .rd-header-actions { grid-row: 1; grid-column: 2; gap: 18px; font-size: 13px; }
-    .rd-header nav { grid-row: 2; grid-column: 1 / -1; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
-    .rd-header nav::-webkit-scrollbar { display: none; }
-    .rd-header nav ul { width: max-content; min-width: 100%; justify-content: space-between; gap: 16px; font-size: 13px; }
     .rd-hero-brand { margin-bottom: 17px; font-size: 54px; white-space: normal; }
     .rd-hero-sub { margin-bottom: 20px; font-size: 11px; letter-spacing: 0.05em; }
     .rd-hero-spotlight-section { min-height: 100vh; }
@@ -329,8 +376,8 @@
     .rd-departments li > a { font-size: 29px; }
     .rd-departments li p { font-size: 12px; }
     .rd-faq { display: block; }
-    .rd-faq-list summary { font-size: 13px; }
-    .rd-faq-list details p { font-size: 12px; }
+    .rd-faq-list summary { font-size: 14px; }
+    .rd-faq-list details p { font-size: 13px; padding-right: 20px; }
     .rd-cta h2 { font-size: 45px; }
     .rd-cta p { font-size: 13px; }
     .rd-page-hero { display: block; padding-top: 40px; padding-bottom: 35px; }

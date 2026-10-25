@@ -18,7 +18,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
-import { heroFilmRowItems } from '@/lib/data/redesign-media'
+import { heroFilmRowItems, introShowreels } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
 import IntroFeature from '@/components/blocks/IntroFeature'
@@ -156,7 +156,7 @@ export default async function HomePage({ params }: Props) {
         title={t('thisIsCA')}
         paragraphs={[t('aboutDescription'), t('crossPlatform')]}
         button={{ label: tCommon('moreAboutUs'), href: '/about' }}
-        items={mediaCarouselItems}
+        items={introShowreels}
         locale={locale as Locale}
       />
 

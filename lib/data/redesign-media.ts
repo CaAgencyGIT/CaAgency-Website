@@ -64,7 +64,7 @@ export const films = {
 export type FilmKey = keyof typeof films
 
 // Films re-cut after their v2 encode get a new version so cached copies refresh.
-const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'anton-mimmua': 4 }
+const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'anton-mimmua': 3 }
 export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${filmVersion[key] ?? 2}.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
@@ -289,3 +289,11 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'mimmua': { src: '/images/logos/watermark/mimmua-v2.png', width: 480, height: 433, widthPct: 26 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
+
+// Homepage intro showreels: every film on the site cut to 0.5s flashes,
+// three different orders so the tiles never show the same shot.
+export const introShowreels = [1, 2, 3].map((n) => ({
+  src: `/videos/redesign/rd-showreel-${n}-v1.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v1.jpg`,
+  alt: 'CA Agency showreel of creator campaigns',
+}))

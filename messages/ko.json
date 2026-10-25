@@ -56,7 +56,8 @@
     "languageSelector": "언어 선택",
     "openMenu": "메뉴 열기",
     "closeMenu": "메뉴 닫기",
-    "mainMenu": "주 메뉴"
+    "mainMenu": "주 메뉴",
+    "letsTalk": "문의하기"
   },
   "footer": {
     "info": "정보",

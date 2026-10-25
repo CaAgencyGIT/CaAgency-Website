@@ -62,6 +62,7 @@ export default async function LocaleLayout({
     services: nav.services,
     blog: nav.blog,
     contact: common.contact,
+    letsTalk: nav.letsTalk,
     languageSelector: nav.languageSelector,
     openMenu: nav.openMenu,
     closeMenu: nav.closeMenu,

@@ -56,7 +56,8 @@
     "languageSelector": "Choisir la langue",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "mainMenu": "Menu principal"
+    "mainMenu": "Menu principal",
+    "letsTalk": "Parlons-en"
   },
   "footer": {
     "info": "Infos",
