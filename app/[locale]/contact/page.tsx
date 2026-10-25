@@ -36,16 +36,6 @@ const OFFICES = [
     ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
   },
   {
-    labelKey: 'nlOfficeLabel',
-    divisionKey: 'nlDivision',
-    mapTitleKey: 'nlMapTitle',
-    city: 'Espel',
-    lon: 5.69,
-    lat: 52.72,
-    lines: ['Poldermolen 32,', '8311 BG Espel,', 'The Netherlands'],
-    ...mapsUrls('Poldermolen 32, 8311 BG Espel, Netherlands'),
-  },
-  {
     labelKey: 'usOfficeLabel',
     divisionKey: 'usDivision',
     mapTitleKey: 'usMapTitle',
@@ -55,6 +45,16 @@ const OFFICES = [
     lines: ['Corporation Trust Center,', 'Orange Street,', 'Wilmington, DE 19801,', 'United States'],
     // Street number only in the map query, so the pin lands on the building.
     ...mapsUrls('Corporation Trust Center, 1209 N Orange St, Wilmington, DE 19801, United States', 'Corporation Trust Wilmington DE'),
+  },
+  {
+    labelKey: 'nlOfficeLabel',
+    divisionKey: 'nlDivision',
+    mapTitleKey: 'nlMapTitle',
+    city: 'Espel',
+    lon: 5.69,
+    lat: 52.72,
+    lines: ['Poldermolen 32,', '8311 BG Espel,', 'The Netherlands'],
+    ...mapsUrls('Poldermolen 32, 8311 BG Espel, Netherlands'),
   },
 ] as const
 
@@ -146,7 +146,7 @@ export default async function ContactPage({ params }: Props) {
         }))}
       />
 
-      {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15), the Netherlands and USA (Oct 2026) */}
+      {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15), USA and the Netherlands (Oct 2026) */}
       <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">
         <div className="max-w-container mx-auto">
           <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-6">

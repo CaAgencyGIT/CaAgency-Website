@@ -1,17 +1,14 @@
-import Heading from '@/components/ui/Heading'
+import Image from 'next/image'
 import type { Locale } from '@/i18n/config'
-import HeadingAccent from '@/components/ui/HeadingAccent'
-import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
-import VideoPlayer from '@/components/ui/VideoPlayer'
-import PhoneFrame from '@/components/ui/PhoneFrame'
-import BrandCarousel from '@/components/blocks/BrandCarousel'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import CollageVideo from '@/components/blocks/CollageVideo'
+import IntroReelSync from '@/components/blocks/IntroReelSync'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
-import { brandLogos } from '@/lib/data/brands'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { organizationRef } from '@/lib/seo/schema'
+import { filmLabel, filmSrc, introShowreels, type FilmKey } from '@/lib/data/redesign-media'
+import { posterFor } from '@/lib/data/videos'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -37,141 +34,155 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Video schema for about page videos
-const videoSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      item: {
-        '@type': 'VideoObject',
-        name: 'CA Agency Story',
-        description: 'Learn about CA Agency, our mission, and how we connect brands with top influencers',
-        contentUrl: 'https://caagency.com/videos/about-video-05-web-v1.mp4',
-        thumbnailUrl: 'https://caagency.com/images/video-thumbs/about-video-05-web-v1.jpg',
-        uploadDate: '2026-07-08',
-        publisher: organizationRef,
-      },
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      item: {
-        '@type': 'VideoObject',
-        name: 'CA Agency Team',
-        description: 'Meet the team behind CA Agency and our approach to influencer marketing',
-        contentUrl: 'https://caagency.com/videos/about-video-06-web-v1.mp4',
-        thumbnailUrl: 'https://caagency.com/images/video-thumbs/about-video-06-web-v1.jpg',
-        uploadDate: '2026-07-08',
-        publisher: organizationRef,
-      },
-    },
-  ],
-}
+// Campaign stills for the tilted photo strip, one per creator.
+const stripFilms: FilmKey[] = [
+  'albina-torriden',
+  'melly-rare',
+  'anton-azelaic',
+  'dariia-chanel',
+  'khutjo-frankly',
+  'beatrix-gisou',
+  'georgii-anua',
+  'melani-medicube',
+  'rebecca-haruharu',
+  'aiym-purito',
+]
+const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
 
+const OFFICES = [
+  { divisionKey: 'hqDivision', city: 'Dubai' },
+  { divisionKey: 'usDivision', city: 'Wilmington' },
+  { divisionKey: 'nlDivision', city: 'Espel' },
+] as const
+
+// About page (Oct 2026, after scooperz.com/about-us, shorter and in the CA
+// Agency style): statement hero, showreel band, black statement panel,
+// tilted campaign strip, offices with a few facts, closing CTA.
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'about' })
-  const tCommon = await getTranslations({ locale, namespace: 'common' })
+  const tContact = await getTranslations({ locale, namespace: 'contact' })
+  const strip = stripFilms.map((key) => ({ key, src: posterFor(filmSrc(key)), alt: filmLabel(key) }))
 
   return (
-    <>
-      <script type="application/ld+json">{JSON.stringify(videoSchema)}</script>
-
-      {/* Hero Section — CSS load-in (LCP-safe) */}
-      <section className="relative overflow-hidden bg-background-base py-[50px] px-section-x mobile:px-[10px]">
-        <div className="relative z-[1] max-w-container mx-auto text-center">
-          <Heading as="h1" color="dark" className="hero-rise-media text-[68px] tablet:text-[50px] mobile:text-[30px] leading-[80px] mobile:leading-[40px] font-light">
-            {t('heading')}<br />
-            {t('mission')} • {t('vision')}
-          </Heading>
-          <Text color="dark" size="lg" className="hero-rise hero-rise-2 mt-6 text-center tablet:text-[16px] mobile:text-[18px]">
-            {t('intro')}
-          </Text>
-        </div>
-      </section>
-
-      {/* Main Content Section */}
-      <section className="bg-background-base py-section-y-desktop mobile:py-[20px] px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col md:flex-row gap-[50px] tablet:gap-[20px] tablet:flex-wrap">
-            {/* Left Column - Text */}
-            <ScrollReveal yOffset={24} className="w-full md:w-1/2 tablet:w-full flex flex-col justify-center">
-              <Heading as="h2" color="dark" className="mb-5 tracking-[0.1px]">
-                CA Agency
-              </Heading>
-              <HeadingAccent align="start" className="mb-7" />
-              <Text color="dark" size="sm" className="mobile:text-[18px] mobile-extra:text-[15px] opacity-80">
-                {t('whoWeAreP1')}
-              </Text>
-            </ScrollReveal>
-
-            {/* Right Column - Video in an iPhone shell (July 2026 round 3) */}
-            <ScrollReveal delay={0.12} yOffset={24} className="w-full md:w-1/2 tablet:w-full flex justify-center md:justify-start tablet:justify-center">
-              <PhoneFrame className="max-w-[280px] tablet:max-w-[250px] mobile:max-w-[220px]">
-                <VideoPlayer
-                  src="/videos/about-video-05-web-v1.mp4"
-                  poster="/images/video-thumbs/about-video-05-web-v1.jpg"
-                  posterSizes="280px"
-                  aspectRatio="9:16"
-                  autoplay
-                  muted
-                  loop
-                  ignoreReducedMotion
-                  className="rounded-none"
-                />
-              </PhoneFrame>
-            </ScrollReveal>
+    <div className="rd">
+      {/* Statement hero */}
+      <section className="about-hero px-section-x pt-[90px] pb-[80px] mobile:pt-[50px] mobile:pb-[44px]">
+        <div className="max-w-container mx-auto grid grid-cols-[1.15fr_1fr] items-center gap-[7vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-8">
+          <h1 className="hero-rise-media font-anegra text-[clamp(52px,7.4vw,112px)] leading-[0.95] tracking-[-0.02em] text-foreground-primary text-balance">
+            {t('heroTitle')}
+          </h1>
+          <div className="hero-rise hero-rise-2 max-w-[480px]">
+            <p className="mb-6 font-jost text-[13px] font-medium uppercase leading-[1.7] tracking-[0.18em] text-foreground-primary">
+              {t('heroKicker')}
+            </p>
+            <p className="mb-5 font-work-sans text-[16px] leading-[1.8] text-foreground-body">{t('heroText')}</p>
+            <p className="font-anegra text-[22px] italic text-foreground-primary">{t('heroTagline')}</p>
           </div>
         </div>
       </section>
 
-      {/* Second Section - Reversed */}
-      <section className="bg-background-base pb-section-y-desktop mobile:pb-0 px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col md:flex-row-reverse gap-[50px] tablet:gap-[20px] tablet:flex-wrap-reverse">
-            {/* Left Column - Video in an iPhone shell (July 2026 round 3) */}
-            <ScrollReveal delay={0.12} yOffset={24} className="w-full md:w-1/2 tablet:w-full flex justify-center md:justify-end tablet:justify-center">
-              <PhoneFrame className="max-w-[280px] tablet:max-w-[250px] mobile:max-w-[220px]">
-                <VideoPlayer
-                  src="/videos/about-video-06-web-v1.mp4"
-                  poster="/images/video-thumbs/about-video-06-web-v1.jpg"
-                  posterSizes="280px"
-                  aspectRatio="9:16"
-                  autoplay
-                  muted
-                  loop
-                  ignoreReducedMotion
-                  className="rounded-none"
-                />
-              </PhoneFrame>
-            </ScrollReveal>
-
-            {/* Right Column - Text */}
-            <ScrollReveal yOffset={24} className="w-full md:w-1/2 tablet:w-full flex flex-col justify-center">
-              <Heading as="h2" color="dark" className="mb-5 tracking-[0.1px]">
-                {t('subheading')}
-              </Heading>
-              <HeadingAccent align="start" className="mb-7" />
-              <Text color="dark" size="sm" className="mb-6 mobile:text-[18px] mobile-extra:text-[15px] opacity-80">
-                {t('storyText')}
-              </Text>
-              <div>
-                <Button href="/contact" locale={locale as Locale} variant="primary">
-                  {tCommon('contactUs')}
-                </Button>
+      {/* Showreel band with overlay line */}
+      <section className="relative overflow-hidden bg-[#0e0e0e]">
+        <div className="grid h-[min(78vh,760px)] grid-cols-3 mobile:h-[62vh]">
+          {introShowreels.map((reel) => (
+            <div key={reel.src} className="relative h-full overflow-hidden">
+              <div className="intro-feature-tile absolute inset-0 overflow-hidden">
+                <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} />
               </div>
-            </ScrollReveal>
+            </div>
+          ))}
+          <IntroReelSync />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/25" />
+        <p className="pointer-events-none absolute inset-x-0 top-[8%] px-section-x text-center font-anegra text-[clamp(44px,7vw,108px)] leading-none text-white">
+          {t('bandOverlay')}
+        </p>
+      </section>
+
+      {/* Black statement panel */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="about-panel">
+          <div>
+            <p className="mb-8 font-jost text-[17px] uppercase leading-[1.65] tracking-[0.08em] text-white mobile:text-[15px]">
+              {t('panelStatement')}
+            </p>
+            <Button href="/work" locale={locale as Locale} variant="light" prefetch={false}>
+              {t('panelButton')}
+            </Button>
           </div>
+          <div>
+            <h2 className="mb-5 font-anegra text-[40px] leading-[1.1] text-white text-balance tablet:text-[34px] mobile:text-[28px]">
+              {t('panelTitle')}
+            </h2>
+            <p className="font-work-sans text-[16px] leading-[1.8] text-white/75">{t('panelText')}</p>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Tilted campaign strip */}
+      <section className="about-strip" aria-label={t('stripLabel')}>
+        <div className="about-strip-track">
+          {[...strip, ...strip].map((item, i) => (
+            <figure
+              key={`${item.key}-${i}`}
+              className="about-strip-card"
+              style={{ transform: `rotate(${TILTS[i % TILTS.length]}deg)` }}
+              aria-hidden={i >= strip.length || undefined}
+            >
+              <Image src={item.src} alt={i < strip.length ? item.alt : ''} fill sizes="260px" className="object-cover" />
+            </figure>
+          ))}
         </div>
       </section>
 
-      {/* Brand Carousel */}
-      <section className="bg-background-base py-[50px] px-0">
-        <BrandCarousel images={brandLogos} />
+      {/* Offices and facts */}
+      <section className="px-section-x pt-[40px] pb-[100px] mobile:pb-[60px]">
+        <div className="max-w-container mx-auto grid grid-cols-[1fr_1.2fr] gap-[7vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-10">
+          <ScrollReveal yOffset={24}>
+            <h2 className="mb-5 font-anegra text-[48px] leading-[1.05] text-foreground-primary text-balance tablet:text-[40px] mobile:text-[32px]">
+              {t('officesTitle')}
+            </h2>
+            <p className="mb-8 max-w-[460px] font-work-sans text-[16px] leading-[1.8] text-foreground-body">{t('officesText')}</p>
+            <ul className="about-offices">
+              {OFFICES.map((office) => (
+                <li key={office.city}>
+                  <span>{office.city}</span>
+                  {tContact(office.divisionKey)}
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+          <ScrollReveal yOffset={24} className="about-stats">
+            <div>
+              <strong>2019</strong>
+              <span>{t('statFounded')}</span>
+            </div>
+            <div>
+              <strong>3,000+</strong>
+              <span>{t('statCampaigns')}</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>{t('statOffices')}</span>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
-    </>
+
+      {/* Closing */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="rd-cta-panel-inner">
+          <h2 className="font-anegra text-[44px] leading-[1.1] text-white text-balance tablet:text-[36px] mobile:text-[28px]">
+            {t('closingTitle')}
+          </h2>
+          <div>
+            <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
+              {t('closingButton')}
+            </Button>
+          </div>
+        </ScrollReveal>
+      </section>
+    </div>
   )
 }

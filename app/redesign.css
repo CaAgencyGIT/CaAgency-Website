@@ -289,6 +289,32 @@
   @media (max-width: 900px) { .rd-cta-panel-inner { grid-template-columns: 1fr; gap: 24px; } .rd-cta-panel-inner > div { justify-self: start; } }
   @media (max-width: 760px) { .rd-cta-panel { margin: 10px 10px 0; padding: 56px 6vw; border-radius: 18px; } }
 
+  /* About page (Oct 2026, after scooperz.com/about-us) */
+  .about-panel { display: grid; grid-template-columns: 0.8fr 1fr; align-items: center; gap: 7vw; max-width: 1440px; margin-inline: auto; }
+  .about-strip { overflow: hidden; padding: 90px 0 70px; }
+  .about-strip-track { display: flex; gap: 22px; width: max-content; animation: about-strip 60s linear infinite; }
+  .about-strip:hover .about-strip-track { animation-play-state: paused; }
+  .about-strip-card { position: relative; flex: none; width: 250px; aspect-ratio: 4 / 5; margin: 0; overflow: hidden; border-radius: 18px; background: #eee; box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.35); }
+  .about-strip-card:nth-child(odd) { margin-top: 34px; }
+  @keyframes about-strip { to { transform: translateX(-50%); } }
+  .about-offices { margin: 0; padding: 0; list-style: none; border-top: 1px solid #dedbd5; }
+  .about-offices li { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #dedbd5; font-size: 14px; color: #67645f; }
+  .about-offices span { font-family: var(--font-anegra), var(--rd-serif); font-size: 24px; color: #171715; }
+  .about-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-self: end; gap: 24px; }
+  .about-stats > div { padding: 28px 24px; border-radius: 20px; background: #f4f2ee; }
+  .about-stats strong { display: block; margin-bottom: 10px; font-family: var(--font-anegra), var(--rd-serif); font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; line-height: 1; color: #171715; }
+  .about-stats span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #67645f; }
+  @media (prefers-reduced-motion: reduce) { .about-strip-track { animation: none; } }
+  @media (max-width: 900px) { .about-panel { grid-template-columns: 1fr; gap: 32px; } }
+  @media (max-width: 760px) {
+    .about-strip { padding: 56px 0 44px; }
+    .about-strip-card { width: 180px; border-radius: 14px; }
+    .about-strip-card:nth-child(odd) { margin-top: 22px; }
+    .about-stats { grid-template-columns: 1fr; gap: 12px; }
+    .about-stats > div { display: flex; align-items: baseline; gap: 16px; padding: 20px; }
+    .about-stats strong { margin: 0; }
+  }
+
   /* Footer */
   /* Footer as a black rounded panel (Oct 2026, after musetheagency.com). */
   .rd-footer { margin: 16px; padding: 88px 6vw 32px; border-radius: 24px; background: #0e0e0e; color: #fff; }
