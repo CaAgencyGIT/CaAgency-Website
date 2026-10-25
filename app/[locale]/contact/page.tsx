@@ -33,8 +33,9 @@ const OFFICES = [
   {
     labelKey: 'usOfficeLabel',
     mapTitleKey: 'usMapTitle',
-    lines: ['Orange Street,', 'Wilmington, DE 19801,', 'United States'],
-    ...mapsUrls('Orange Street, Wilmington, DE 19801, United States'),
+    lines: ['Corporation Trust Center,', 'Orange Street,', 'Wilmington, DE 19801,', 'United States'],
+    // Street number only in the map query, so the pin lands on the building.
+    ...mapsUrls('Corporation Trust Center, 1209 N Orange St, Wilmington, DE 19801, United States'),
   },
 ] as const
 
