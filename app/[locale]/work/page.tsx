@@ -59,7 +59,7 @@ const gridVideos = workGridOrder.map((entry) => {
   if (entry.type === 'video') {
     const video = workVideosBySrc.get(entry.src)!
     // Burned-in marks on these are faint or an older logo; overlay the current one.
-    const watermark = ['Anua', 'Purito', 'Mixsoon', 'Haruharu Wonder', 'Revolve Beauty', 'YesStyle'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
+    const watermark = ['Anua', 'Purito', 'Mixsoon', 'Haruharu Wonder', 'Revolve Beauty', 'YesStyle', 'DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
     return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
   }
   return {

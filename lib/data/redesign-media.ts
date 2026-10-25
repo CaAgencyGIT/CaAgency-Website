@@ -258,5 +258,6 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 46 },
   'Gisou': { src: '/images/logos/watermark/gisou-v2.png', width: 640, height: 290, widthPct: 42 },
   'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
+  'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
