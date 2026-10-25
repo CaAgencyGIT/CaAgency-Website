@@ -33,8 +33,9 @@ const OFFICES = [
     lon: 55.27,
     lat: 25.2,
     lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, United Arab Emirates'],
-    // Closer zoom so the HQ map shows Meydan rather than open desert.
-    ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai', 'Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai', 14),
+    // The embed is centred on the grandstand's coordinates (by the Meydan
+    // Hotel) at a closer zoom, so the HQ map shows Meydan rather than desert.
+    ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai', '25.1553,55.2999', 15),
   },
   {
     labelKey: 'usOfficeLabel',
