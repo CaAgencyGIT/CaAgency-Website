@@ -217,12 +217,12 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'dariia-chanel' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'aiym-purito' },
-  { type: 'film', key: 'georgii-yesstyle' },
+  { type: 'film', key: 'anton-azelaic' },
   { type: 'film', key: 'haircare' },
   { type: 'film', key: 'beatrix-gisou' },
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
   { type: 'film', key: 'melly-fenty-original' },
-  { type: 'film', key: 'anton-azelaic' },
+  { type: 'film', key: 'georgii-yesstyle' },
   { type: 'film', key: 'aurela-arencia' },
   { type: 'film', key: 'loresa-celimax' },
   { type: 'film', key: 'melani-revolve' },
@@ -287,7 +287,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v2.png', width: 640, height: 120, widthPct: 50 },
   'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
   'SKIN1004': { src: '/images/logos/watermark/skin1004-v2.png', width: 640, height: 51, widthPct: 58 },
-  'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
+  'YesStyle': { src: '/images/logos/watermark/yesstyle-v3.png', width: 640, height: 175, widthPct: 46 },
 }
 
 // Homepage intro showreels: every film on the site cut into 1s shots with a

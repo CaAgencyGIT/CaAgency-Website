@@ -7,8 +7,7 @@ import IntroReelSync from '@/components/blocks/IntroReelSync'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { filmLabel, filmSrc, introShowreels, workFilms, type FilmKey } from '@/lib/data/redesign-media'
-import { posterFor } from '@/lib/data/videos'
+import { introShowreels } from '@/lib/data/redesign-media'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -34,8 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Campaign stills for the tilted photo strip: every film on the Work page.
-const stripFilms: FilmKey[] = workFilms
+// Tilted photo strip: 40 caption-free campaign and talent photos, cropped to
+// 4:5 and lightly sharpened (public/images/about-strip).
+const STRIP_COUNT = 40
 const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
 
 const OFFICES = [
@@ -51,7 +51,10 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'about' })
   const tContact = await getTranslations({ locale, namespace: 'contact' })
-  const strip = stripFilms.map((key) => ({ key, src: posterFor(filmSrc(key)), alt: filmLabel(key) }))
+  const strip = Array.from({ length: STRIP_COUNT }, (_, i) => {
+    const n = String(i + 1).padStart(2, '0')
+    return { key: n, src: `/images/about-strip/strip-${n}-v1.webp`, alt: t('stripLabel') }
+  })
 
   return (
     <div className="rd">
@@ -111,7 +114,7 @@ export default async function AboutPage({ params }: Props) {
 
       {/* Tilted campaign strip */}
       <section className="about-strip" aria-label={t('stripLabel')}>
-        <div className="about-strip-track">
+        <div className="about-strip-track" style={{ animationDuration: `${STRIP_COUNT * 3}s` }}>
           {[...strip, ...strip].map((item, i) => (
             <figure
               key={`${item.key}-${i}`}
@@ -119,7 +122,7 @@ export default async function AboutPage({ params }: Props) {
               style={{ transform: `rotate(${TILTS[i % TILTS.length]}deg)` }}
               aria-hidden={i >= strip.length || undefined}
             >
-              <Image src={item.src} alt={i < strip.length ? item.alt : ''} fill sizes="260px" className="object-cover" />
+              <Image src={item.src} alt={i < strip.length ? item.alt : ''} fill sizes="(max-width: 760px) 180px, 250px" quality={90} className="object-cover" />
             </figure>
           ))}
         </div>
