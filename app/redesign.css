@@ -341,8 +341,8 @@
   .rd-footer-social-icon svg { width: 16px; height: 16px; fill: currentColor; }
   .rd-footer-social-icon:hover { background: #fff; border-color: #fff; color: #0e0e0e; }
   .rd-footer-social-contact { margin-inline-start: 12px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
-  .rd-footer-links { display: grid; grid-template-columns: 0.75fr 0.85fr 1.5fr 1.25fr; gap: 40px; }
-  .rd-footer-locations { columns: 2; column-gap: 28px; }
+  .rd-footer-links { display: grid; grid-template-columns: 0.8fr 0.9fr 0.9fr 1.4fr; gap: 40px; }
+  .rd-footer-locations { columns: 1; }
   .rd-footer-locations a { break-inside: avoid; }
   .rd-footer-contact { display: flex; flex-direction: column; gap: 18px; margin: 0; }
   .rd-footer-contact dt { margin-bottom: 4px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); }

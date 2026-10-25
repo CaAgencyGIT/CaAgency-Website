@@ -84,12 +84,13 @@ export default function Footer({
   ]
 
   // Location pages for SEO
-  // Footer list (Oct 2026): the market and category pages, then the four
-  // regions USA, Europe, Middle East, Asia (same targets as the homepage
-  // departments). Canada and Australia pages stay live, just unlisted here.
+  // Footer list (Oct 2026): locations only, in one column. The market pages,
+  // then the regions USA, Europe, Middle East, Asia (same targets as the
+  // homepage departments). Category and other market pages stay live and in
+  // the sitemap, just unlisted here.
   const locationMenuItems = [
     ...locationPages
-      .filter(({ key }) => !['asia', 'usa', 'uk', 'canada', 'australia'].includes(key))
+      .filter(({ key }) => ['dubai', 'uae', 'saudiArabia', 'gcc', 'korea'].includes(key))
       .map(({ key, path }) => ({ label: tLocations(key), href: path })),
     { label: tLocations('usa'), href: '/influencer-marketing-usa' },
     { label: tLocations('europe'), href: '/influencer-marketing-uk' },
