@@ -77,6 +77,8 @@
     "registrationNo": "Registration no.: 2417532.01"
   },
   "locations": {
+    "europe": "Europe",
+    "middleEast": "Middle East",
     "dubai": "Dubai",
     "uae": "UAE",
     "saudiArabia": "Saudi Arabia",

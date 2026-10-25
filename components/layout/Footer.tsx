@@ -84,7 +84,18 @@ export default function Footer({
   ]
 
   // Location pages for SEO
-  const locationMenuItems = locationPages.map(({ key, path }) => ({ label: tLocations(key), href: path }))
+  // Footer list (Oct 2026): the market and category pages, then the four
+  // regions USA, Europe, Middle East, Asia (same targets as the homepage
+  // departments). Canada and Australia pages stay live, just unlisted here.
+  const locationMenuItems = [
+    ...locationPages
+      .filter(({ key }) => !['asia', 'usa', 'uk', 'canada', 'australia'].includes(key))
+      .map(({ key, path }) => ({ label: tLocations(key), href: path })),
+    { label: tLocations('usa'), href: '/influencer-marketing-usa' },
+    { label: tLocations('europe'), href: '/influencer-marketing-uk' },
+    { label: tLocations('middleEast'), href: '/influencer-marketing-dubai' },
+    { label: tLocations('asia'), href: '/influencer-marketing-asia' },
+  ]
 
   return (
     <footer className="rd rd-footer">
@@ -137,7 +148,7 @@ export default function Footer({
             <h3>{t('locations')}</h3>
             <nav aria-label="Location pages" className="rd-footer-locations">
               {locationMenuItems.map((item) => (
-                <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
+                <Link key={item.label} href={localizeHref(item.href, locale)} prefetch={false}>
                   {item.label}
                 </Link>
               ))}

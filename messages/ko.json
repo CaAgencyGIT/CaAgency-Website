@@ -77,6 +77,8 @@
     "registrationNo": "등록번호: 2417532.01"
   },
   "locations": {
+    "europe": "유럽",
+    "middleEast": "중동",
     "dubai": "두바이",
     "uae": "UAE",
     "saudiArabia": "사우디아라비아",

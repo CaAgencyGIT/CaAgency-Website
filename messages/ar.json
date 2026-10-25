@@ -77,6 +77,8 @@
     "registrationNo": "رقم التسجيل: 2417532.01"
   },
   "locations": {
+    "europe": "أوروبا",
+    "middleEast": "الشرق الأوسط",
     "dubai": "دبي",
     "uae": "الإمارات",
     "saudiArabia": "السعودية",
