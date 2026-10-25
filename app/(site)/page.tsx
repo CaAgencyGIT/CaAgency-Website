@@ -10,7 +10,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { brandLogos } from '@/lib/data/brands'
 import { featuredVideos } from '@/lib/data/home'
 import { getSiteContent } from '@/lib/site-content/service'
-import { getFeaturedTalents } from '@/lib/site-content/public'
+import { getTalentsBySlugs } from '@/lib/site-content/public'
 import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
@@ -46,7 +46,10 @@ export const metadata = buildPageMetadata({
 
 export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
-  const talents = await getFeaturedTalents(content.talents.limit)
+  // Pinned colour-gradient row (Oct 2026); /talents has its own colour order.
+  const talents = await getTalentsBySlugs([
+    'melani-seiffert', 'albina-mavriqi', 'dariia-bordun', 'rebecca-ghaderi', 'anton-drozhzhin', 'khutjo-matsoma',
+  ])
   const introMediaItems = content.intro.mediaItems.map((item) => ({
     type: item.type === 'image' ? 'image' as const : 'video' as const,
     src: item.src,
