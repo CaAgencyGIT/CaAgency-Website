@@ -300,13 +300,15 @@ export default function VideoPlayer({
     '1:1': 'aspect-square',
     fill: 'h-full w-full',
   }
-  const showPlayControl = !autoplay || prefersReducedMotion || manualIntent === 'pause' ||
-    playbackStatus === 'blocked' || playbackStatus === 'error'
+  // A blocked autoplay (e.g. iOS Low Power Mode) keeps the poster instead of
+  // surfacing a Play pill; tapping the tile starts it (client request, Oct 2026).
+  const showPlayControl = !autoplay || prefersReducedMotion || manualIntent === 'pause'
   const canPause = playbackStatus === 'playing' || playbackStatus === 'starting' || playbackStatus === 'buffering'
 
   return (
     <div
       ref={containerRef}
+      onClick={playbackStatus === 'blocked' || playbackStatus === 'error' ? togglePlayback : undefined}
       className={clsx(
         aspectClasses[aspectRatio],
         'relative overflow-hidden bg-black/10',
