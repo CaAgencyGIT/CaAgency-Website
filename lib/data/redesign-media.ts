@@ -254,7 +254,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Dr. Althea': { src: '/images/logos/watermark/dr-althea-v2.png', width: 646, height: 191, widthPct: 44 },
   'Valentino Beauty': { src: '/images/logos/watermark/valentino-beauty-v3.png', width: 640, height: 470, widthPct: 36 },
   'Mixsoon': { src: '/images/logos/watermark/mixsoon-v2.png', width: 646, height: 144, widthPct: 51 },
-  'Rare Beauty': { src: '/images/logos/watermark/rare-beauty-v2.png', width: 320, height: 63, widthPct: 54 },
+  'Rare Beauty': { src: '/images/logos/watermark/rare-beauty-v3.png', width: 312, height: 56, widthPct: 54 },
   'Celimax': { src: '/images/logos/watermark/celimax-v3.png', width: 404, height: 81, widthPct: 50 },
   'd’Alba': { src: '/images/logos/watermark/dalba-v2.png', width: 648, height: 251, widthPct: 39 },
   'Armani Beauty': { src: '/images/logos/watermark/armani-beauty-v3.png', width: 640, height: 640, widthPct: 30 },
