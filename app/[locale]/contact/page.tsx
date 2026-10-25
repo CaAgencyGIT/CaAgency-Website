@@ -31,7 +31,7 @@ const OFFICES = [
     city: 'Dubai',
     lon: 55.27,
     lat: 25.2,
-    lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, U.A.E.'],
+    lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, United Arab Emirates'],
     ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
   },
   {

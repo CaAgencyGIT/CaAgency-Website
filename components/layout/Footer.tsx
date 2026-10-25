@@ -13,7 +13,7 @@ import type { Locale } from '@/i18n/config'
 export const defaultFooterContent: FooterContent = {
   description:
     'CA Agency is a leading, full-service talent management & marketing agency, connecting brands with creators through strategy, production and performance-led campaigns.',
-  address: 'Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E.',
+  address: 'Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates',
   email: 'info@caagency.com',
   registrationNo: '2417532.01',
   socialLinks: [
@@ -61,7 +61,9 @@ export default function Footer({
   const isDefaultLocale = locale === 'en'
   // Oct 2026: the footer carries the agency tagline in every locale.
   const description = t('tagline')
-  const address = isDefaultLocale ? content.address : t('address')
+  // Oct 2026: address from the translations in every locale, so the country
+  // is written out in full (United Arab Emirates).
+  const address = t('address')
   const registrationNo = isDefaultLocale ? content.registrationNo : t('registrationNo')
 
   const infoMenuItems = [
