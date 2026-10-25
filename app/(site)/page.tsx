@@ -83,11 +83,11 @@ export default async function HomePage() {
               paragraph restructured into a four-region editorial list, in the
               client-specified order USA → Asia → Europe → Middle East. */}
           <ScrollReveal delay={0.35} yOffset={20}>
-            <div className="mx-auto mt-12 max-w-[880px]">
-              <p className="mb-6 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray">
+            <div className="mx-auto mt-20 max-w-[1040px] tablet:mt-16 mobile:mt-12">
+              <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
                 Our Departments
               </p>
-              <ul className="grid grid-cols-4 gap-x-8 gap-y-8 tablet:grid-cols-2 mobile:grid-cols-1 mobile:gap-y-6">
+              <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-1 mobile:gap-y-9">
                 {[
                   {
                     region: 'USA',
@@ -174,7 +174,7 @@ export default async function HomePage() {
                         →
                       </span>
                     </Link>
-                    <p className="mt-2 text-[14px] leading-6 text-black/60">{dept.copy}</p>
+                    <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.75] text-black/60 text-pretty">{dept.copy}</p>
                   </li>
                 ))}
               </ul>
