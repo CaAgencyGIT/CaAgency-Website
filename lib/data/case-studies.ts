@@ -386,7 +386,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Armani Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-dariia-armani-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-armani-web-v2.mp4',
     summary:
       'Luxury makeup content that keeps Armani Beauty’s understated polish inside a creator’s feed.',
     brief:
@@ -404,7 +404,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Valentino Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-dariia-valentino-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-valentino-web-v2.mp4',
     summary:
       'Bold, editorial creator content built around Valentino Beauty’s statement makeup.',
     brief:
@@ -422,7 +422,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Chanel Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-dariia-chanel-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-chanel-web-v2.mp4',
     summary:
       'Luxury base-makeup content showing Chanel Beauty’s pearlescent, dewy skin finish.',
     brief:
@@ -440,7 +440,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Rare Beauty Creator Campaign',
     vertical: 'Makeup',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-melly-rare-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-melly-rare-web-v2.mp4',
     summary:
       'Easy, wearable makeup content matched to Rare Beauty’s approachable tone.',
     brief:
@@ -458,7 +458,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Saie Creator Campaign',
     vertical: 'Clean Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-rebecca-saie-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-rebecca-saie-web-v2.mp4',
     summary:
       'Fresh, skin-first makeup content in line with Saie’s clean-beauty positioning.',
     brief:
@@ -476,7 +476,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Patrick Ta Creator Campaign',
     vertical: 'Makeup',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-beatrix-patrickta-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-patrickta-web-v2.mp4',
     summary:
       'Glow-focused makeup content built around Patrick Ta’s signature finish.',
     brief:
@@ -494,7 +494,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Medicube Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-beatrix-medicube-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-medicube-web-v2.mp4',
     summary:
       'Creator content putting Medicube’s skincare routine front and centre.',
     brief:
@@ -512,7 +512,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'd’Alba Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-melani-dalba-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-melani-dalba-web-v2.mp4',
     summary:
       'Glow-focused creator content for d’Alba across two of our talents.',
     brief:
@@ -530,7 +530,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Celimax Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-loresa-celimax-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-loresa-celimax-web-v2.mp4',
     summary:
       'Routine-led K-beauty content for Celimax.',
     brief:
@@ -548,7 +548,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Arencia Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-aurela-arencia-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-aurela-arencia-web-v2.mp4',
     summary:
       'Texture-led K-beauty content for Arencia.',
     brief:
@@ -566,7 +566,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Lilyeve Creator Campaign',
     vertical: 'Haircare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-haircare-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-haircare-web-v2.mp4',
     summary:
       'Haircare routine content for Lilyeve.',
     brief:
@@ -584,7 +584,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Dr. Althea Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-skincare-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-skincare-web-v2.mp4',
     summary:
       'Skincare routine content for Dr. Althea.',
     brief:
@@ -602,7 +602,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Torriden Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-albina-torriden-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-albina-torriden-web-v2.mp4',
     summary:
       'Bouncy-skin creator content for Torriden’s Cellmazing collagen firming cream.',
     brief:

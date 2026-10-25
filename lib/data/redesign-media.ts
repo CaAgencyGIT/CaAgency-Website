@@ -55,7 +55,7 @@ export const films = {
 
 export type FilmKey = keyof typeof films
 
-export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v1.mp4`
+export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v2.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
 

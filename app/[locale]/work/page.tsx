@@ -60,7 +60,9 @@ const gridVideos = workGridOrder.map((entry) => {
     const video = workVideosBySrc.get(entry.src)!
     // DELERE's burned-in mark is faint; a bolder copy sits exactly on top of it.
     const watermark = ['DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
-    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
+    // Sharpened re-encode of the original upload (Oct 2026); case-study lookup stays on the catalog src.
+    const src = video.src.replace(/-web-v1\.mp4$/, '-sharp-v2.mp4')
+    return { src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
   }
   return {
     src: filmSrc(entry.key),
