@@ -27,11 +27,11 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
       <header data-site-header className="rd rd-header">
         <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0">
           <Image
-            src="/images/site/logo-full.png"
+            src="/images/site/logo_payoff.svg"
             alt="CA Agency"
-            width={800}
-            height={532}
-            className="h-[76px] w-auto object-contain max-[760px]:h-[62px]"
+            width={343}
+            height={274}
+            className="h-[58px] w-auto max-[760px]:h-[46px]"
             loading="eager"
           />
         </Link>

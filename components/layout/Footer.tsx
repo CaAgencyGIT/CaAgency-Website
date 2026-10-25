@@ -11,6 +11,8 @@ import { localizeHref } from '@/lib/i18n/client-paths'
 import { locationPages } from '@/lib/data/locations'
 import type { Locale } from '@/i18n/config'
 
+const US_BRANCH_ADDRESS = 'Corporation Trust Center, Orange Street, Wilmington, DE 19801, United States'
+
 const defaultFooterContent: FooterContent = {
   description:
     'CA Agency is a leading, full-service talent management & marketing agency, connecting brands with creators through strategy, production and performance-led campaigns.',
@@ -70,11 +72,11 @@ export default function Footer({
       <div className="rd-footer-top">
         <div className="rd-footer-intro">
           <Image
-            src="/images/site/logo.svg"
+            src="/images/site/logo_payoff.svg"
             alt="CA Agency"
             width={343}
-            height={181}
-            className="mb-[30px] h-auto w-[78px]"
+            height={274}
+            className="mb-[30px] h-auto w-[96px]"
           />
           <p>{description}</p>
           <div className="rd-footer-social">
@@ -124,6 +126,10 @@ export default function Footer({
             <h3>{t('contact')}</h3>
             <ul>
               <li>{address}</li>
+              <li>
+                <span className="block">{t('usBranchLabel')}:</span>
+                <span dir="ltr">{US_BRANCH_ADDRESS}</span>
+              </li>
               <li>
                 <a href={`mailto:${content.email}`}>{content.email}</a>
               </li>

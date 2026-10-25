@@ -16,13 +16,12 @@ type Props = {
 // Single source per office so each embed and its button can never point at
 // different places.
 // City-level zoom so both maps read the same way.
-const mapsUrls = (address: string) => {
-  const query = encodeURIComponent(address)
-  return {
-    search: `https://www.google.com/maps/search/?api=1&query=${query}`,
-    embed: `https://www.google.com/maps?q=${query}&z=12&output=embed`,
-  }
-}
+// The embed can take its own query: one that resolves to a single place makes
+// Google show a large place card instead of Dubai's small "Open in Maps" link.
+const mapsUrls = (address: string, embedAddress = address) => ({
+  search: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`,
+  embed: `https://www.google.com/maps?q=${encodeURIComponent(embedAddress)}&z=12&output=embed`,
+})
 
 const OFFICES = [
   {
@@ -38,7 +37,7 @@ const OFFICES = [
     mapTitleKey: 'usMapTitle',
     lines: ['Corporation Trust Center,', 'Orange Street,', 'Wilmington, DE 19801,', 'United States'],
     // Street number only in the map query, so the pin lands on the building.
-    ...mapsUrls('Corporation Trust Center, 1209 N Orange St, Wilmington, DE 19801, United States'),
+    ...mapsUrls('Corporation Trust Center, 1209 N Orange St, Wilmington, DE 19801, United States', 'Corporation Trust Wilmington DE'),
   },
 ] as const
 
