@@ -290,7 +290,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v4.png', width: 640, height: 128, widthPct: 56 },
   'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
   'SKIN1004': { src: '/images/logos/watermark/skin1004-v2.png', width: 640, height: 51, widthPct: 58 },
-  'AXIS-Y': { src: '/images/logos/watermark/axis-y-v1.png', width: 530, height: 641, widthPct: 22 },
+  'AXIS-Y': { src: '/images/logos/watermark/axis-y-v2.png', width: 640, height: 86, widthPct: 56 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v3.png', width: 640, height: 175, widthPct: 46 },
 }
 
