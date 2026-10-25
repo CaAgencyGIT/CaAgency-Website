@@ -380,6 +380,240 @@ export const caseStudies: CaseStudy[] = [
     services: ['Talent management', 'Campaign management', 'Content production'],
     metrics: [],
   },
+  {
+    slug: 'armani-beauty-campaign',
+    brand: 'Armani Beauty',
+    title: 'Armani Beauty Creator Campaign',
+    vertical: 'Luxury Beauty',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-dariia-armani-web-v1.mp4',
+    summary:
+      'Luxury makeup content that keeps Armani Beauty’s understated polish inside a creator’s feed.',
+    brief:
+      'Armani Beauty needed short-form video that protects its refined, minimal brand codes while still reading as genuine creator content rather than an advert.',
+    approach:
+      'Our talent Dariia Bordun built the video around close-up application, letting texture and finish carry the story, with styling and lighting kept consistent with the brand’s quiet-luxury look.',
+    outcome:
+      'Armani Beauty received premium-feeling vertical content suited to both the creator’s channel and paid social.',
+    services: ['Talent management', 'Brand-safety review', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'valentino-beauty-campaign',
+    brand: 'Valentino Beauty',
+    title: 'Valentino Beauty Creator Campaign',
+    vertical: 'Luxury Beauty',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-dariia-valentino-web-v1.mp4',
+    summary:
+      'Bold, editorial creator content built around Valentino Beauty’s statement makeup.',
+    brief:
+      'Valentino Beauty wanted its products shown with the confidence the brand is known for, in a format that feels native to short-form feeds.',
+    approach:
+      'Our talent Dariia Bordun created an application-led look with the product kept in frame throughout, pairing an editorial finish with a creator’s natural delivery.',
+    outcome:
+      'Valentino Beauty received statement creator content that reflects the brand’s couture positioning in a social-first format.',
+    services: ['Talent management', 'Brand-safety review', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'kerastase-campaign',
+    brand: 'Kérastase',
+    title: 'Kérastase Creator Campaign',
+    vertical: 'Luxury Haircare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-dariia-kerastase-web-v1.mp4',
+    summary:
+      'Salon-quality haircare shown through a creator’s at-home routine.',
+    brief:
+      'Kérastase wanted to bring its professional haircare into everyday routines, showing results a viewer could picture achieving at home.',
+    approach:
+      'Our talent Dariia Bordun walked through the routine step by step, with close-ups of texture and finish so the products’ results were visible on camera.',
+    outcome:
+      'Kérastase received routine-led creator content that makes salon haircare feel accessible without losing its premium feel.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'rare-beauty-campaign',
+    brand: 'Rare Beauty',
+    title: 'Rare Beauty Creator Campaign',
+    vertical: 'Makeup',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-melly-rare-web-v1.mp4',
+    summary:
+      'Easy, wearable makeup content matched to Rare Beauty’s approachable tone.',
+    brief:
+      'Rare Beauty’s audience responds to makeup that feels effortless. The brief asked for content showing how the products fit into a real, everyday look.',
+    approach:
+      'Our talent Melly Sanchez created a natural application video, keeping the pace relaxed and the product clearly in frame at each step.',
+    outcome:
+      'Rare Beauty received relatable creator content that demonstrates its products in the way its community actually wears them.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'saie-campaign',
+    brand: 'Saie',
+    title: 'Saie Creator Campaign',
+    vertical: 'Clean Beauty',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-rebecca-saie-web-v1.mp4',
+    summary:
+      'Fresh, skin-first makeup content in line with Saie’s clean-beauty positioning.',
+    brief:
+      'Saie wanted content that shows a light, skin-first finish and fits the calm, natural aesthetic of the brand.',
+    approach:
+      'Our talent Rebecca Ghaderi built a simple everyday look, focusing on close-ups of texture and finish so the products’ feel came through on camera.',
+    outcome:
+      'Saie received creator content that showcases its clean, glowing look in a native short-form format.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'patrick-ta-campaign',
+    brand: 'Patrick Ta',
+    title: 'Patrick Ta Creator Campaign',
+    vertical: 'Makeup',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-beatrix-patrickta-web-v1.mp4',
+    summary:
+      'Glow-focused makeup content built around Patrick Ta’s signature finish.',
+    brief:
+      'Patrick Ta is known for a luminous, sculpted look. The brief asked for creator content that captures that glow in a way that feels achievable.',
+    approach:
+      'Our talent Beatrix Ramosaj created an application-led video, layering products on camera so viewers could follow the technique.',
+    outcome:
+      'Patrick Ta received creator content that brings its signature finish to life in a format made for short-form feeds.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'medicube-campaign',
+    brand: 'Medicube',
+    title: 'Medicube Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-beatrix-medicube-web-v1.mp4',
+    summary:
+      'Creator content putting Medicube’s skincare routine front and centre.',
+    brief:
+      'Medicube wanted its skincare shown in use, with the routine and results clear enough for viewers to follow along.',
+    approach:
+      'Our talent Beatrix Ramosaj built the video around her routine, keeping each step and product in frame with close-ups on skin.',
+    outcome:
+      'Medicube received routine-led creator content that demonstrates its products in a real, everyday setting.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'dalba-campaign',
+    brand: 'd’Alba',
+    title: 'd’Alba Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-melani-dalba-web-v1.mp4',
+    summary:
+      'Glow-focused creator content for d’Alba across two of our talents.',
+    brief:
+      'd’Alba wanted to show the radiant, hydrated finish its skincare is known for, across more than one creator to reach different audiences.',
+    approach:
+      'Our talents Melani Seiffert and Saranda Mavriqi each built the products into their own routines, keeping their personal style while giving the glow plenty of time on camera.',
+    outcome:
+      'd’Alba received a set of creator videos showcasing its glow across distinct audiences, ready for organic and paid use.',
+    services: ['Talent management', 'Campaign management', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'celimax-campaign',
+    brand: 'Celimax',
+    title: 'Celimax Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-loresa-celimax-web-v1.mp4',
+    summary:
+      'Routine-led K-beauty content for Celimax.',
+    brief:
+      'Celimax wanted its skincare introduced to new audiences through a creator routine that feels honest and easy to follow.',
+    approach:
+      'Our talent Loresa Konushevci built the video around her routine, holding each product on camera and showing texture up close.',
+    outcome:
+      'Celimax received approachable creator content that introduces its products through a real routine.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'tropic-campaign',
+    brand: 'Tropic',
+    title: 'Tropic Creator Campaign',
+    vertical: 'Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-jay-tropic-web-v1.mp4',
+    summary:
+      'Creator content bringing Tropic’s skincare into an everyday routine.',
+    brief:
+      'Tropic wanted its products shown in a natural, routine-based format that reflects how its customers use them.',
+    approach:
+      'Our talent Jay Sadiq created a routine-led video, keeping the delivery personal and the products clearly visible at each step.',
+    outcome:
+      'Tropic received authentic creator content that places its skincare in a real daily routine.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'arencia-campaign',
+    brand: 'Arencia',
+    title: 'Arencia Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-aurela-arencia-web-v1.mp4',
+    summary:
+      'Texture-led K-beauty content for Arencia.',
+    brief:
+      'Arencia wanted content that shows its products’ textures and feel, giving viewers a clear sense of the experience before they buy.',
+    approach:
+      'Our talent Aurela Elshani built the video around close-up application, letting texture and finish lead the story.',
+    outcome:
+      'Arencia received sensory, close-up creator content suited to short-form discovery.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'lilyeve-campaign',
+    brand: 'Lilyeve',
+    title: 'Lilyeve Creator Campaign',
+    vertical: 'Haircare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-haircare-web-v1.mp4',
+    summary:
+      'Haircare routine content for Lilyeve.',
+    brief:
+      'Lilyeve wanted its haircare shown in a real routine, with the results visible on camera.',
+    approach:
+      'Our talent Albina Mavriqi walked through her haircare routine, keeping each product in frame and finishing on the result.',
+    outcome:
+      'Lilyeve received routine-led creator content that shows its haircare in everyday use.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'dr-althea-campaign',
+    brand: 'Dr. Althea',
+    title: 'Dr. Althea Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-skincare-web-v1.mp4',
+    summary:
+      'Skincare routine content for Dr. Althea.',
+    brief:
+      'Dr. Althea wanted its skincare introduced through a creator routine that feels genuine and easy to follow.',
+    approach:
+      'Our talent Khutjo Matsoma built the products into her routine, with close-ups on texture and skin so the finish came through on camera.',
+    outcome:
+      'Dr. Althea received authentic creator content that introduces its products through a real routine.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
 ]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

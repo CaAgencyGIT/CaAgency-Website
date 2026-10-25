@@ -55,5 +55,6 @@ export const aboutVideos = [
 ]
 
 export function publishedDateFor(src: string) {
+  if (src.startsWith('/videos/redesign/')) return '2026-10-22'
   return workVideos.find((video) => video.src === src)?.published ?? VIDEO_PUBLICATION_DATE
 }
