@@ -558,6 +558,26 @@ export const caseStudies: CaseStudy[] = [
   },
 
   {
+    slug: 'axis-y-campaign',
+    brand: 'AXIS-Y',
+    title: 'AXIS-Y Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@shellbeauty1',
+    videoSrc: '/videos/redesign/rd-sadaf-axisy-web-v2.mp4',
+    summary:
+      'A lip-care routine introducing AXIS-Y’s lip oils, from swatches to a glossy, cared-for finish.',
+    brief:
+      'AXIS-Y is known for its skincare, and its lip oils bring the same care-first approach to the lips. The brief was to show the oils as both a treatment and a finish: how the shades look, how the texture glides on and how the lips look once applied. The content needed to feel like a natural part of a beauty routine, keep the bottles clearly in shot and suit a polished beauty audience on Instagram and TikTok.',
+    approach:
+      'Sadaf Torabi opens by holding up the lip oils side by side so each shade is easy to see, then applies them one by one in close-up. The camera stays tight on the doe-foot applicator and the lips, so viewers can follow the texture and the glossy, hydrated finish, before she closes on the finished look.',
+    outcome:
+      'AXIS-Y received a polished, product-forward beauty video that shows the lip oils’ shades, texture and finish in under twenty seconds. It works as organic discovery content and as a clean asset for paid social around lip care.',
+    services: ['Content production', 'Concept development'],
+    metrics: [],
+  },
+
+  {
     slug: 'arencia-campaign',
     brand: 'Arencia',
     title: 'Arencia Creator Campaign',

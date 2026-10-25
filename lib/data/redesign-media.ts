@@ -41,6 +41,7 @@ export const films = {
   'georgii-purito': { creator: 'Georgii Galaev', brand: 'Purito', talentSlug: 'georgii-galaev', sourceUrl: 'https://www.instagram.com/pomogisebe/reel/Ddn7Uuav8KE/' },
   'ardita-purito': { creator: 'Ardita Gashi', brand: 'Purito', talentSlug: 'ardita-gashi', sourceUrl: 'https://www.instagram.com/arditagasshi/reel/DeB3Cj_qVQh/' },
   'aurela-arencia': { creator: 'Aurela Elshani', brand: 'Arencia', talentSlug: 'aurela-elshani', sourceUrl: 'https://www.instagram.com/glowbyaure/reel/Del7abhoQ7N/' },
+  'sadaf-axisy': { creator: 'Sadaf Torabi', brand: 'AXIS-Y', talentSlug: '', sourceUrl: 'https://www.instagram.com/reel/DNL9EQLyTNF/' },
   'dariia-urbandecay': { creator: 'Dariia Bordun', brand: 'Urban Decay', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/reels/DOeBvQsAlA6/' },
   'dariia-nyx': { creator: 'Dariia Bordun', brand: 'NYX Cosmetics', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/reels/DJCZqcLi6pl/' },
   'dariia-valentino': { creator: 'Dariia Bordun', brand: 'Valentino Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/reels/DF8PX-UC0ci/' },
@@ -121,6 +122,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'georgii-yesstyle': 'yesstyle-collaboration',
   'loresa-celimax': 'celimax-campaign',
   'aurela-arencia': 'arencia-campaign',
+  'sadaf-axisy': 'axis-y-campaign',
   haircare: 'lilyeve-campaign',
   skincare: 'dr-althea-campaign',
 }
@@ -139,7 +141,7 @@ export const workFilms: FilmKey[] = [
   'rebecca-saie', 'melly-fenty-original', 'dariia-valentino',
   'melani-medicube', 'saranda-boj',
   'loresa-celimax',
-  'aurela-arencia',
+  'sadaf-axisy',
   'dariia-chanel', 'haircare',
   'beatrix-biodance', 'skincare',
 ]
@@ -223,7 +225,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'saranda-boj' },
   { type: 'film', key: 'beatrix-gisou' },
   { type: 'film', key: 'georgii-yesstyle' },
-  { type: 'film', key: 'aurela-arencia' },
+  { type: 'film', key: 'sadaf-axisy' },
   { type: 'film', key: 'loresa-celimax' },
   { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'dariia-valentino' },
@@ -287,6 +289,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v4.png', width: 640, height: 128, widthPct: 56 },
   'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
   'SKIN1004': { src: '/images/logos/watermark/skin1004-v2.png', width: 640, height: 51, widthPct: 58 },
+  'AXIS-Y': { src: '/images/logos/watermark/axis-y-v1.png', width: 530, height: 641, widthPct: 22 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v3.png', width: 640, height: 175, widthPct: 46 },
 }
 
