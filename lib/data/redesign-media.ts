@@ -265,7 +265,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Arencia': { src: '/images/logos/watermark/arencia-v2.png', width: 648, height: 151, widthPct: 50 },
   'Chanel Beauty': { src: '/images/logos/watermark/chanel-v2.png', width: 648, height: 648, widthPct: 34 },
   'Patrick Ta': { src: '/images/logos/watermark/patrick-ta-v2.png', width: 627, height: 415, widthPct: 50 },
-  'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 58 },
+  'Haruharu Wonder': { src: '/images/logos/watermark/haruharu-wonder-v2.png', width: 648, height: 239, widthPct: 48 },
   'Gisou': { src: '/images/logos/watermark/gisou-v2.png', width: 640, height: 290, widthPct: 42 },
   'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
