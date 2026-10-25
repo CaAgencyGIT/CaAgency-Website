@@ -3,7 +3,6 @@ import Button from '@/components/ui/Button'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CollageVideo from '@/components/blocks/CollageVideo'
 import IntroReelSync from '@/components/blocks/IntroReelSync'
-import AboutStripSlideshow from '@/components/blocks/AboutStripSlideshow'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
@@ -33,9 +32,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Tilted photo slideshow: 16 caption-free photos and video stills of current CA
-// talent, cropped to 4:5 and lightly sharpened (public/images/about-strip).
-const STRIP_COUNT = 16
 
 const OFFICES = [
   { divisionKey: 'hqDivision', city: 'Dubai' },
@@ -50,10 +46,6 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'about' })
   const tContact = await getTranslations({ locale, namespace: 'contact' })
-  const strip = Array.from({ length: STRIP_COUNT }, (_, i) => {
-    const n = String(i + 1).padStart(2, '0')
-    return { key: n, src: `/images/about-strip/strip-${n}-v4.webp`, alt: t('stripLabel') }
-  })
 
   return (
     <div className="rd">
@@ -115,8 +107,6 @@ export default async function AboutPage({ params }: Props) {
         </ScrollReveal>
       </section>
 
-      {/* Tilted photo slideshow */}
-      <AboutStripSlideshow items={strip} label={t('stripLabel')} />
 
       {/* Offices and facts */}
       <section className="px-section-x pt-[40px] pb-[100px] mobile:pb-[60px]">

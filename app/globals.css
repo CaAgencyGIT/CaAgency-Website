@@ -470,10 +470,9 @@ section {
 
 
 /* Motion the client explicitly wants even with "Reduce motion" on (Oct 2026):
-   About photo slideshow glide and the brand logo strip.
+   the brand logo strip.
    Kept after the global reduced-motion rule; higher specificity wins. */
 @media (prefers-reduced-motion: reduce) {
-  .about-strip .about-strip-track { transition-duration: 0.9s !important; }
   [data-brand-strip] .animate-marquee {
     animation-name: marquee !important;
     animation-duration: var(--brand-strip-duration, 120s) !important;
