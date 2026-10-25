@@ -19,9 +19,9 @@ type Props = {
 // City-level zoom so both maps read the same way.
 // The embed can take its own query: one that resolves to a single place makes
 // Google show a large place card instead of Dubai's small "Open in Maps" link.
-const mapsUrls = (address: string, embedAddress = address) => ({
+const mapsUrls = (address: string, embedAddress = address, zoom = 12) => ({
   search: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`,
-  embed: `https://www.google.com/maps?q=${encodeURIComponent(embedAddress)}&z=12&output=embed`,
+  embed: `https://www.google.com/maps?q=${encodeURIComponent(embedAddress)}&z=${zoom}&output=embed`,
 })
 
 const OFFICES = [
@@ -33,7 +33,8 @@ const OFFICES = [
     lon: 55.27,
     lat: 25.2,
     lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, United Arab Emirates'],
-    ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
+    // Closer zoom so the HQ map shows Meydan rather than open desert.
+    ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai', 'Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai', 14),
   },
   {
     labelKey: 'usOfficeLabel',
