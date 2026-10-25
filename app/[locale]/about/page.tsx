@@ -68,21 +68,21 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* Showreel band with overlay line */}
-      {/* Smaller 9:16 tiles centred on the band, so the reels show whole
-          instead of filling the full width (Oct 2026). */}
-      <section className="relative overflow-hidden bg-[#0e0e0e] px-section-x py-[64px] mobile:py-[36px]">
-        <div className="relative mx-auto grid max-w-[860px] grid-cols-3 gap-5 mobile:gap-2">
+      {/* 9:16 tiles centred on a white band, so the reels show whole; the
+          tint sits on the videos only (Oct 2026). */}
+      <section className="relative overflow-hidden bg-background-base px-section-x py-[40px] mobile:py-[24px]">
+        <div className="relative mx-auto grid max-w-[1120px] grid-cols-3 gap-5 mobile:gap-2">
           {introShowreels.map((reel) => (
             <div key={reel.src} className="relative aspect-[9/16] overflow-hidden rounded-[18px] mobile:rounded-[10px]">
               <div className="intro-feature-tile absolute inset-0 overflow-hidden">
                 <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} />
               </div>
+              <div className="pointer-events-none absolute inset-0 bg-black/20" />
             </div>
           ))}
           <IntroReelSync />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/20" />
-        <p className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 px-section-x text-center font-anegra [text-shadow:0_2px_24px_rgba(0,0,0,0.35)] text-[clamp(44px,7vw,108px)] leading-none text-white">
+        <p className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 px-section-x text-center font-anegra [text-shadow:0_2px_18px_rgba(0,0,0,0.45)] text-[clamp(30px,4.4vw,66px)] leading-none text-white">
           {t('bandOverlay')}
         </p>
       </section>
