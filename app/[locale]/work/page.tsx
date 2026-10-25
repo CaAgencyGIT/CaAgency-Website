@@ -62,6 +62,9 @@ const gridVideos = workGridOrder.map((entry) => {
   return {
     src: filmSrc(entry.key),
     brand: films[entry.key].brand,
+    // Older work videos have the brand wordmark burned in; the redesign films
+    // don't, so they get the same treatment as an overlay.
+    watermark: films[entry.key].brand,
     study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
   }
 })
@@ -146,6 +149,14 @@ export default async function WorkPage({ params }: Props) {
                     ignoreReducedMotion
                     className="rounded-card mobile:rounded-[15px]"
                   />
+                  {'watermark' in video && video.watermark && (
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-3 top-[46%] z-[1] -translate-y-1/2 text-center font-work-sans text-[21px] mobile:text-[15px] font-light uppercase tracking-[0.32em] text-white/90 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)]"
+                    >
+                      {video.watermark}
+                    </span>
+                  )}
                   {study && (
                     // Case-study routes are English-only (site) pages, so use
                     // next/link directly — no locale prefix.
