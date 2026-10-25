@@ -53,6 +53,7 @@ export const films = {
   'georgii-yesstyle': { creator: 'Georgii Galaev', brand: 'YesStyle', talentSlug: 'georgii-galaev', sourceUrl: 'https://www.instagram.com/reel/DPOHcK4jhXZ/' },
   'melani-medicube': { creator: 'Melani Seiffert', brand: 'Medicube', talentSlug: 'melani-seiffert', sourceUrl: 'https://www.tiktok.com/@melaniseiffert/video/7593808338719132950' },
   'beatrix-biodance': { creator: 'Beatrix Ramosaj', brand: 'Biodance', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.tiktok.com/@therealbeatrixramosaj/video/7692475926575074573' },
+  'melani-revolve': { creator: 'Melani Seiffert', brand: 'Revolve Beauty', talentSlug: 'melani-seiffert', sourceUrl: 'https://www.instagram.com/reel/DT_g5aok7Cw/' },
   'dariia-chanel': { creator: 'Dariia Bordun', brand: 'Chanel Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/p/DGqp2U9iBhI/' },
   haircare: { creator: 'Albina Mavriqi', brand: 'Lilyeve', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/albina/reel/DeuTEqwNBLQ/' },
   'beatrix-medicube': { creator: 'Beatrix Ramosaj', brand: 'Medicube', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.instagram.com/beatrixramosaj/reel/Dd_OTh-xXg2/' },
@@ -113,6 +114,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'melani-medicube': 'medicube-campaign',
   'saranda-boj': 'beauty-of-joseon-campaign',
   'khutjo-frankly': 'frankly-campaign',
+  'melani-revolve': 'revolve-beauty-campaign',
   'rebecca-haruharu': 'haruharu-wonder-campaign',
   'georgii-yesstyle': 'yesstyle-collaboration',
   'loresa-celimax': 'celimax-campaign',
@@ -122,6 +124,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'melani-revolve',
   'rebecca-haruharu', 'georgii-yesstyle',
   'khutjo-frankly',
   'aiym-purito',
@@ -229,7 +232,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'beatrix-gisou' },
   { type: 'film', key: 'georgii-yesstyle' },
   { type: 'film', key: 'aurela-arencia' },
-  { type: 'video', src: '/videos/work/melani-revolve-web-v1.mp4' },
+  { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'saranda-boj' },
   { type: 'film', key: 'dariia-armani' },
   { type: 'film', key: 'melly-fenty-original' },
@@ -274,7 +277,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
   'Torriden': { src: '/images/logos/watermark/torriden-v2.png', width: 640, height: 128, widthPct: 50 },
-  'Beauty of Joseon': { src: '/images/logos/watermark/beauty-of-joseon-v2.png', width: 640, height: 83, widthPct: 66 },
+  'Beauty of Joseon': { src: '/images/logos/watermark/beauty-of-joseon-v3.png', width: 480, height: 542, widthPct: 30 },
   'Frankly': { src: '/images/logos/watermark/frankly-v2.png', width: 640, height: 173, widthPct: 46 },
   'Biodance': { src: '/images/logos/watermark/biodance-v2.png', width: 640, height: 121, widthPct: 48 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
