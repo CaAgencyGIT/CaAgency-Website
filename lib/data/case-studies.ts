@@ -584,7 +584,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Torriden Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-albina-torriden-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-albina-torriden-web-v3.mp4',
     summary:
       'Bouncy-skin creator content for Torriden’s Cellmazing collagen firming cream.',
     brief:
