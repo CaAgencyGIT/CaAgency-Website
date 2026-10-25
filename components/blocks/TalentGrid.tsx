@@ -47,7 +47,6 @@ export default function TalentGrid({
       name={talent.name}
       imageUrl={talent.imageUrl}
       videoSrc={talentFilmSrc(talent.slug)}
-      motionIndex={index}
       sizes={imageSizes[columns]}
       priority={prioritizeFirst && index === 0}
       instagramUrl={talent.instagramUrl}

@@ -13,7 +13,6 @@ interface TalentCardProps {
   name: string
   imageUrl: string
   videoSrc?: string
-  motionIndex?: number
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -62,7 +61,6 @@ export default function TalentCard({
   name,
   imageUrl,
   videoSrc,
-  motionIndex = 0,
   sizes,
   priority = false,
   instagramUrl,
@@ -101,8 +99,7 @@ export default function TalentCard({
         preload={priority}
         loading={priority ? undefined : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
-        className="talent-card-photo object-cover object-center"
-        style={{ animationDelay: `${-((motionIndex * 1.7) % 7)}s` }}
+        className="object-cover object-center"
         sizes={sizes}
       />
       {videoSrc && <TalentCardVideo src={videoSrc} />}
