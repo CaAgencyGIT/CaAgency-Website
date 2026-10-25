@@ -214,7 +214,7 @@ export const heroCollageImages = [
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
   { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
   { type: 'film', key: 'beatrix-biodance' },
-  { type: 'film', key: 'anton-mimmua' },
+  { type: 'film', key: 'dariia-chanel' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'aiym-purito' },
   { type: 'film', key: 'georgii-yesstyle' },
@@ -225,7 +225,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'aurela-arencia' },
   { type: 'film', key: 'loresa-celimax' },
-  { type: 'film', key: 'dariia-chanel' },
+  { type: 'film', key: 'anton-mimmua' },
   { type: 'film', key: 'melani-medicube' },
   { type: 'film', key: 'saranda-boj' },
   { type: 'film', key: 'khutjo-frankly' },
@@ -290,11 +290,12 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
 
-// Homepage intro showreels: every film on the site cut to 0.5s flashes,
-// three different orders so the tiles never show the same shot.
+// Homepage intro showreels: every film on the site cut into 0.5s shots with
+// a camera-flash cut. The three reels share one timeline and never show the
+// same creator side by side, even one shot apart.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v2.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v2.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v3.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v3.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
 

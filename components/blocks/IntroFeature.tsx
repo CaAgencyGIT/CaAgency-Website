@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button'
 import CollageVideo from '@/components/blocks/CollageVideo'
+import IntroReelSync from '@/components/blocks/IntroReelSync'
 import type { Locale } from '@/i18n/config'
 
 interface IntroFeatureProps {
@@ -33,6 +34,7 @@ export default function IntroFeature({ eyebrow, kicker, title, paragraphs, butto
                 </div>
               </div>
             ))}
+            <IntroReelSync />
           </div>
 
           <div className="relative z-[2] -mt-[72px] ml-[6%] w-[min(470px,48%)] tablet:-mt-[56px] tablet:ml-[5%] tablet:w-[62%] mobile:-mt-[28px] mobile:mx-3 mobile:w-auto">
