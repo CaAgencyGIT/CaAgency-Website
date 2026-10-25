@@ -12,11 +12,11 @@ const menuItems = [
   { key: 'work', href: '/work' },
   { key: 'services', href: '/services' },
   { key: 'blog', href: '/blog' },
-  { key: 'contact', href: '/contact' },
 ] as const
 
-// October 2026 redesign: one responsive header. On phones the menu becomes a
-// scrollable row under the logo, so every page stays one tap away.
+// Editorial header (Oct 2026, modelled on dulcedo.com): text menu left, logo
+// centred, Contact and language right. On phones the menu is a scrollable
+// row under the logo, so every page stays one tap away.
 export default function Header({ locale, labels }: { locale: string; labels: HeaderLabels }) {
   return (
     <>
@@ -25,16 +25,6 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
       </a>
 
       <header data-site-header className="rd rd-header">
-        <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0">
-          <Image
-            src="/images/site/logo_payoff.svg"
-            alt="CA Agency"
-            width={343}
-            height={274}
-            className="h-[58px] w-auto max-[760px]:h-[46px]"
-            loading="eager"
-          />
-        </Link>
         <nav aria-label={labels.mainMenu}>
           <ul>
             {menuItems.map((item) => (
@@ -46,13 +36,23 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
             ))}
           </ul>
         </nav>
+        <Link href={localizeHref('/', locale)} prefetch={false} className="rd-header-logo">
+          <Image
+            src="/images/site/logo_payoff.svg"
+            alt="CA Agency"
+            width={343}
+            height={274}
+            className="h-[58px] w-auto max-[760px]:h-[46px]"
+            loading="eager"
+          />
+        </Link>
         <div className="rd-header-actions">
+          <IntentPrefetchLink href="/contact" locale={locale}>
+            {labels.contact}
+          </IntentPrefetchLink>
           <div className="rd-language">
             <LanguageSwitcher locale={locale} label={labels.languageSelector} />
           </div>
-          <IntentPrefetchLink href="/contact" locale={locale} markCurrent={false} className="rd-pill">
-            {labels.contact}
-          </IntentPrefetchLink>
         </div>
       </header>
     </>
