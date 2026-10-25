@@ -58,8 +58,8 @@ const workVideosBySrc = new Map(workVideos.map((video) => [video.src, video]))
 const gridVideos = workGridOrder.map((entry) => {
   if (entry.type === 'video') {
     const video = workVideosBySrc.get(entry.src)!
-    // Burned-in marks on these are faint or an older logo; overlay the current one.
-    const watermark = ['Anua', 'Purito', 'Mixsoon', 'Haruharu Wonder', 'Revolve Beauty', 'YesStyle', 'DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
+    // DELERE's burned-in mark is faint; a bolder copy sits exactly on top of it.
+    const watermark = ['DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
     return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
   }
   return {
@@ -151,14 +151,6 @@ export default async function WorkPage({ params }: Props) {
                     ignoreReducedMotion
                     className="rounded-card mobile:rounded-[15px]"
                   />
-                  {'coversBurnedIn' in video && video.coversBurnedIn && (
-                    // These older cuts have the brand name burned in at ~47%
-                    // height; a feathered blur hides it under the new logo.
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-x-0 top-[47%] z-[1] h-[13%] -translate-y-1/2 backdrop-blur-[14px] [mask-image:radial-gradient(ellipse_52%_50%_at_center,#000_55%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_52%_50%_at_center,#000_55%,transparent_100%)]"
-                    />
-                  )}
                   {'watermark' in video && video.watermark && (
                     <Image
                       src={video.watermark.src}
