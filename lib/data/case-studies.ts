@@ -500,28 +500,10 @@ export const caseStudies: CaseStudy[] = [
     brief:
       'Medicube wanted its skincare shown in use, with the routine and results clear enough for viewers to follow along.',
     approach:
-      'Our talent Beatrix Ramosaj built the video around her routine, keeping each step and product in frame with close-ups on skin.',
+      'Our talents Beatrix Ramosaj and Melani Seiffert each built the products into their own routines, keeping each step in frame with close-ups on skin.',
     outcome:
       'Medicube received routine-led creator content that demonstrates its products in a real, everyday setting.',
     services: ['Talent management', 'Concept development', 'Content production'],
-    metrics: [],
-  },
-  {
-    slug: 'dalba-campaign',
-    brand: 'd’Alba',
-    title: 'd’Alba Creator Campaign',
-    vertical: 'K-Beauty Skincare',
-    platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-melani-dalba-web-v2.mp4',
-    summary:
-      'Glow-focused creator content for d’Alba.',
-    brief:
-      'd’Alba wanted to show the radiant, hydrated finish its skincare is known for.',
-    approach:
-      'Our talent Melani Seiffert built the products into her routine, keeping her personal style while giving the glow plenty of time on camera.',
-    outcome:
-      'd’Alba received creator content showcasing its glow, ready for organic and paid use.',
-    services: ['Talent management', 'Campaign management', 'Content production'],
     metrics: [],
   },
   {
