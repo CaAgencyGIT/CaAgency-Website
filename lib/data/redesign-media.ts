@@ -176,11 +176,11 @@ export const heroCollageImages = [
 // creator, shuffled so no creator repeats within any 4 consecutive tiles
 // (covers desktop rows of 4, tablet columns of 3 and phone 2x2 blocks).
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
-  { type: 'film', key: 'melani-skin1004' },
+  { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
   { type: 'film', key: 'beatrix-medicube' },
   { type: 'film', key: 'georgii-anua' },
   { type: 'video', src: '/videos/work/rebecca-haruharu-web-v1.mp4' },
-  { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
+  { type: 'film', key: 'melani-skin1004' },
   { type: 'video', src: '/videos/work/anton-anua-web-v1.mp4' },
   { type: 'film', key: 'skincare' },
   { type: 'film', key: 'dariia-valentino' },
