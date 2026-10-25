@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import CoverflowCarousel from './CoverflowCarousel'
-import HeroFilmRow, { type HeroFilmRowImage } from './HeroFilmRow'
+import HeroFilmRow, { type HeroFilmRowItem } from './HeroFilmRow'
 import Button from '@/components/ui/Button'
 import Magnetic from '@/components/ui/Magnetic'
 import type { Locale } from '@/i18n/config'
@@ -20,7 +20,7 @@ interface HeroSectionProps {
   primaryCta?: HeroCta
   secondaryCta?: HeroCta
   carouselImages?: Array<{ url: string; alt?: string; buttonText?: string; buttonLink?: string }>
-  filmRowImages?: HeroFilmRowImage[]
+  filmRowItems?: HeroFilmRowItem[]
   locale?: Locale
 }
 
@@ -32,7 +32,7 @@ export default function HeroSection({
   primaryCta,
   secondaryCta,
   carouselImages,
-  filmRowImages,
+  filmRowItems,
   locale = 'en',
 }: HeroSectionProps) {
   const t = useTranslations('common')
@@ -90,9 +90,9 @@ export default function HeroSection({
         {/* Hero film row — transform-only entrance so the LCP image is
             paintable immediately (no opacity fade). Replaces the single-
             slide coverflow carousel: every still visible at once. */}
-        {filmRowImages && filmRowImages.length > 0 ? (
+        {filmRowItems && filmRowItems.length > 0 ? (
           <div className="hero-rise-media mt-6">
-            <HeroFilmRow images={filmRowImages} />
+            <HeroFilmRow items={filmRowItems} />
           </div>
         ) : carouselImages && carouselImages.length > 0 && (
           <div className="hero-rise-media mt-6">
