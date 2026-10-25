@@ -41,6 +41,8 @@ export default function VideoShowcase({
             autoplay
             muted
             loop
+            // Client decision: always autoplay, even with reduced motion on.
+            ignoreReducedMotion
           />
         </StaggerItem>
         )
