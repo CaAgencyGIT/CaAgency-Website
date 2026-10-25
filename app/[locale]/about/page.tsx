@@ -33,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Tilted photo slideshow: 30 caption-free photos and video stills of current CA
+// Tilted photo slideshow: 16 caption-free photos and video stills of current CA
 // talent, cropped to 4:5 and lightly sharpened (public/images/about-strip).
-const STRIP_COUNT = 30
+const STRIP_COUNT = 16
 
 const OFFICES = [
   { divisionKey: 'hqDivision', city: 'Dubai' },
@@ -52,7 +52,7 @@ export default async function AboutPage({ params }: Props) {
   const tContact = await getTranslations({ locale, namespace: 'contact' })
   const strip = Array.from({ length: STRIP_COUNT }, (_, i) => {
     const n = String(i + 1).padStart(2, '0')
-    return { key: n, src: `/images/about-strip/strip-${n}-v3.webp`, alt: t('stripLabel') }
+    return { key: n, src: `/images/about-strip/strip-${n}-v4.webp`, alt: t('stripLabel') }
   })
 
   return (
@@ -76,10 +76,12 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* Showreel band with overlay line */}
-      <section className="relative overflow-hidden bg-[#0e0e0e]">
-        <div className="grid h-[min(78vh,760px)] grid-cols-3 mobile:h-[62vh]">
+      {/* Smaller 9:16 tiles centred on the band, so the reels show whole
+          instead of filling the full width (Oct 2026). */}
+      <section className="relative overflow-hidden bg-[#0e0e0e] px-section-x py-[64px] mobile:py-[36px]">
+        <div className="relative mx-auto grid max-w-[860px] grid-cols-3 gap-5 mobile:gap-2">
           {introShowreels.map((reel) => (
-            <div key={reel.src} className="relative h-full overflow-hidden">
+            <div key={reel.src} className="relative aspect-[9/16] overflow-hidden rounded-[18px] mobile:rounded-[10px]">
               <div className="intro-feature-tile absolute inset-0 overflow-hidden">
                 <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} />
               </div>
@@ -87,7 +89,7 @@ export default async function AboutPage({ params }: Props) {
           ))}
           <IntroReelSync />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/15" />
+        <div className="pointer-events-none absolute inset-0 bg-black/20" />
         <p className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 px-section-x text-center font-anegra [text-shadow:0_2px_24px_rgba(0,0,0,0.35)] text-[clamp(44px,7vw,108px)] leading-none text-white">
           {t('bandOverlay')}
         </p>
