@@ -10,6 +10,7 @@ const openGraphLocales: Record<string, string> = {
   en: 'en_US',
   ar: 'ar_AE',
   ko: 'ko_KR',
+  zh: 'zh_CN',
   fr: 'fr_FR',
   es: 'es_ES',
   de: 'de_DE',

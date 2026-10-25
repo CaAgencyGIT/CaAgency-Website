@@ -1,0 +1,395 @@
+{
+  "common": {
+    "play": "播放",
+    "pause": "暂停",
+    "playVideo": "播放视频",
+    "pauseVideo": "暂停视频",
+    "previous": "上一个",
+    "next": "下一个",
+    "home": "首页",
+    "about": "关于我们",
+    "talents": "达人",
+    "work": "作品",
+    "services": "服务",
+    "contact": "联系我们",
+    "blog": "博客",
+    "backToHome": "返回首页",
+    "tryAgain": "重试",
+    "sendAnotherMessage": "再发送一条消息",
+    "loading": "加载中...",
+    "readMore": "阅读更多",
+    "viewAll": "查看全部",
+    "getStarted": "立即开始",
+    "enquirePartnerships": "合作咨询",
+    "contactUs": "联系我们",
+    "getInTouch": "联系我们",
+    "learnMore": "了解更多",
+    "seeAllTalents": "查看全部达人",
+    "viewAllWork": "查看全部作品",
+    "moreAboutUs": "进一步了解我们",
+    "viewOurWork": "查看我们的作品",
+    "meetOurTalents": "认识我们的达人",
+    "ourServices": "我们的服务",
+    "skipToContent": "跳至主要内容",
+    "goToSlide": "前往第 {number} 张",
+    "playCarousel": "播放轮播",
+    "pauseCarousel": "暂停轮播",
+    "featuredCreators": "精选创作者",
+    "backToTop": "返回顶部",
+    "pauseLogos": "暂停标志动画"
+  },
+  "metadata": {
+    "siteName": "CA Agency",
+    "title": "CA Agency | 迪拜全方位网红营销机构",
+    "description": "CA Agency 是迪拜领先的网红营销机构，专注韩国护肤（K-beauty），在 Instagram、TikTok 和 YouTube 上连接全球品牌与顶尖创作者。以数据驱动的营销活动吸引关注、促进转化。",
+    "slogan": "影响力 • 数字化 • 营销"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "talents": "达人",
+    "work": "作品",
+    "caseStudies": "案例研究",
+    "services": "服务",
+    "contact": "联系我们",
+    "blog": "博客",
+    "languageSelector": "选择语言",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "mainMenu": "主菜单",
+    "letsTalk": "聊一聊"
+  },
+  "footer": {
+    "tagline": "代表塑造当今媒体的顶尖达人",
+    "info": "信息",
+    "moreInfo": "更多信息",
+    "locations": "所在地",
+    "contact": "联系方式",
+    "followUs": "关注我们",
+    "contactUs": "联系我们",
+    "copyright": "© {year} 版权所有 CA Agency",
+    "businessLicense": "营业执照",
+    "termsOfService": "服务条款",
+    "privacyPolicy": "隐私政策",
+    "description": "CA Agency 是领先的全方位达人管理与营销机构，通过策略、制作和以效果为导向的营销活动连接品牌与创作者。",
+    "address": "Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, 阿拉伯联合酋长国",
+    "usBranchLabel": "美国分公司",
+    "registrationNo": "注册号：2417532.01"
+  },
+  "locations": {
+    "officeDubai": "迪拜，阿联酋",
+    "officeDelaware": "特拉华州，美国",
+    "officeAmsterdam": "阿姆斯特丹，荷兰",
+    "europe": "欧洲",
+    "middleEast": "中东",
+    "dubai": "迪拜",
+    "uae": "阿联酋",
+    "saudiArabia": "沙特阿拉伯",
+    "gcc": "海湾地区",
+    "korea": "韩国",
+    "kBeautySkincare": "韩国护肤",
+    "beautyAgency": "美妆网红营销",
+    "skincareAgency": "护肤网红营销",
+    "usa": "美国",
+    "uk": "英国",
+    "canada": "加拿大",
+    "australia": "澳大利亚",
+    "asia": "亚洲"
+  },
+  "hero": {
+    "title": "CA Agency",
+    "subtitle": "全方位网红营销机构，在 Instagram、TikTok 和 YouTube 上连接全球品牌与顶尖创作者。"
+  },
+  "home": {
+    "title": "全球美妆网红营销机构",
+    "description": "CA Agency 为美妆和护肤品牌连接美国及全球市场的创作者，全面负责策略、内容、推广和报告。",
+    "thisIsCA": "这就是 CA Agency",
+    "aboutDescription": "我们的网红营销机构将全球领先品牌与引领文化的创作者相连，打造以数据驱动、提升销量和品牌知名度的营销活动。",
+    "meetTheTalents": "认识我们的达人",
+    "talentsDescription": "从创作方式到所建立的社群，我们的达人为所做的每件事带来真实感，把日常时刻变成打动人心的故事和经久不衰的内容。",
+    "featuredWork": "精选作品",
+    "workDescription": "从构思到成片，这是我们热爱创作的作品。浏览我们最喜爱的一些营销活动，看看那些让人驻足、观看并铭记的创意。",
+    "stats": {
+      "followers": "粉丝总数",
+      "campaigns": "营销活动",
+      "brands": "全球品牌"
+    },
+    "heroSubtitle": "作为美妆、护肤和生活方式领域全球领先的机构之一，我们通过引人入胜的内容、战略合作和高影响力的营销活动，在 Instagram、TikTok 和 YouTube 上连接品牌与目标受众。",
+    "statsTagline": "从新兴品牌到全球领导者，美妆、护肤和生活方式品牌都信赖我们。我们把创作者合作变成让人停下滑动、真正带来成效的营销活动。",
+    "crossPlatform": "从最初的策略到最终的报告，我们在内部完成营销活动的每个环节，让品牌在美妆、护肤和生活方式领域拥有一个负责创作者匹配、内容和效果的合作伙伴。",
+    "eyebrowIntro": "关于我们",
+    "eyebrowTalents": "我们的创作者",
+    "eyebrowWork": "案例研究",
+    "closingCtaTitle": "一起打造您的下一场营销活动",
+    "closingCtaText": "告诉我们您的目标，我们将为您匹配合适的创作者，并提供策略、制作和报告。",
+    "closingCtaButton": "合作咨询"
+  },
+  "about": {
+    "heroTitle": "创作者优先，文化始终。",
+    "heroKicker": "达人管理与网红营销机构，2019 年创立于迪拜",
+    "heroKicker2": "代表塑造当今媒体的顶尖达人",
+    "heroText": "我们打造创作者的职业生涯以及与之相伴的营销活动。创作者有目标地成长，品牌触达真正信任他们的受众。",
+    "heroTagline": "真实的关系。真实的触达。真实的成果。",
+    "bandOverlay": "创作者优先的机构",
+    "panelStatement": "更贴近创作者。更贴近他们的社群。更贴近促使人们购买的因素。",
+    "panelButton": "查看我们的作品",
+    "panelTitle": "平台决定人们看到什么，创作者决定人们相信什么。",
+    "panelText": "因此，我们从创作者出发，而不是从粉丝数出发。我们把品牌与其受众已经在关注的人相连，并在内部负责策略、内容和报告。",
+    "stripLabel": "CA Agency 创作者的营销活动画面",
+    "officesTitle": "立足迪拜，服务全球",
+    "officesText": "依托迪拜总部以及美国和荷兰的分公司，我们与中东、欧洲、北美和亚洲的创作者和品牌合作。",
+    "statFounded": "创立于迪拜",
+    "statCampaigns": "创作者营销活动",
+    "statOffices": "办公室",
+    "closingTitle": "我们每天与创作者共事，所以始终与他们保持紧密联系。",
+    "closingButton": "与我们合作",
+    "title": "关于我们，网红营销专家",
+    "description": "认识 CA Agency：总部位于迪拜的全方位网红营销机构，业务遍及全球，专注韩国美妆，已完成 3,000 多场创作者营销活动。",
+    "heading": "关于 CA Agency",
+    "subheading": "全方位网红营销机构",
+    "intro": "我们打造创作者的职业生涯以及与之相伴的营销活动。七年多来，我们帮助创作者有目标地成长，并将品牌与真正信任他们的受众相连。真实的关系，真实的触达，真实的成果。",
+    "mission": "我们的使命",
+    "vision": "我们的愿景",
+    "whoWeAreP1": "我们是一支紧密协作的团队，由达人经理、合作负责人和创意人才组成，由创始人带领，发自内心热爱创作者所做的事。我们在创作者领域深耕多年，深知一段合作要成功，靠的不只是粉丝数，还需要信任、合适的匹配，以及真正支持创作者的人。也需要真实的社群：一个用心经营而非刻意追逐所建立的、愿意倾听的受众。",
+    "storyText": "我们成立于 2019 年，是一家建立在真诚合作和对所代表创作者深刻理解之上的机构。从一支专注的团队起步，我们已成长为创作者和品牌共同信赖的合作伙伴，业务涵盖美妆、生活方式和科技领域。我们致力于帮助创作者成长，守护让他们与众不同的特质，建立长久的关系，而不只是促成交易。每位创作者背后都有一个活跃的社群，正是这些建立在信任与真实之上的社群，构成了我们一切工作的核心。我们处理好细节，让创作者专注于创作，让品牌以真实的方式与受众建立联系。"
+  },
+  "talents": {
+    "title": "顶尖 Instagram、TikTok 和 YouTube 网红",
+    "description": "浏览 CA Agency 经过筛选的 Instagram、TikTok 和 YouTube 创作者阵容，覆盖美妆、时尚、生活方式和科技领域，总粉丝超过 1,800 万。",
+    "heading": "我们的达人",
+    "subheading": "认识成就我们的创作者",
+    "shortStylish": "简短。时尚。值得分享",
+    "instagramTikTok": "Instagram 和 TikTok 创作者",
+    "youtubeVoices": "YouTube 创作者",
+    "interestedCollaborating": "有兴趣合作吗？",
+    "moreTalents": "更多达人",
+    "viewProfile": "查看主页"
+  },
+  "talentDetail": {
+    "youtubeCreator": "YouTube 创作者",
+    "instagramTikTok": "Instagram 和 TikTok 网红",
+    "getInTouch": "联系我们"
+  },
+  "work": {
+    "title": "网红营销作品集与创作者视频",
+    "description": "观看 CA Agency 为 HONOR、YSL Beauty、Kylie Cosmetics、Mixsoon 等品牌，与 Instagram、TikTok 和 YouTube 创作者合作制作的营销视频。",
+    "heading": "我们的作品",
+    "subheading": "吸引关注、促进转化的营销活动",
+    "featuredProjects": "精选项目",
+    "viewCaseStudy": "查看案例研究",
+    "heroP1": "走进 CA Agency 的世界，创意与策略在这里交汇，打造吸引关注、引发互动并带来真实成果的品牌内容。",
+    "heroP2": "通过与全球品牌和顶尖创作者的战略合作，我们运用视觉叙事、创意指导和数据驱动的规划，让故事生动呈现。",
+    "ctaTitle": "准备好打造您的营销活动了吗？",
+    "ctaText": "通过真实的网红合作，让您的品牌故事生动呈现，并带来真实成果。"
+  },
+  "services": {
+    "title": "网红营销服务",
+    "description": "全方位网红营销：创作者寻找、营销策略、内容制作、品牌合作和效果报告，一站式完成。",
+    "heading": "我们的服务",
+    "subheading": "全方位网红营销解决方案",
+    "topNotch": "一流服务",
+    "servicesAtCA": "CA Agency 的服务",
+    "exploreService": "了解服务",
+    "influencerCampaigns": {
+      "title": "网红营销活动",
+      "highlight": "让人停下滑动的合作",
+      "description": "在 Instagram、TikTok 和 YouTube 上开展品牌与创作者的战略营销活动，一站式负责创作者匹配、简报、版权和审批。",
+      "details": "每场营销活动都附有效果报告和洞察，让下一场更出色。"
+    },
+    "talentManagement": {
+      "title": "全方位达人管理",
+      "highlight": "为长远发展打造的职业生涯",
+      "description": "为创作者提供全程代理，从付费合作、独家合作到长期职业发展。",
+      "details": "谈判、签约、发布策略和职业规划，由一个团队负责。"
+    },
+    "contentProduction": {
+      "title": "内容创作与制作",
+      "highlight": "从头到尾，令人驻足的内容",
+      "description": "品牌短视频和静态图片，在内部完成构思、拍摄和剪辑，在每个平台上都自然融入。",
+      "details": "交付即可发布：剪辑版、精简版、不同画幅版本、字幕和封面。"
+    },
+    "performanceMarketing": {
+      "title": "效果营销",
+      "highlight": "像媒体一样衡量的创作者内容",
+      "description": "以数据驱动放大创作者内容，包括付费社交广告、创意测试和转化追踪。",
+      "details": "报告以结果说话：流量、转化和投入产出比。"
+    },
+    "brandConsultancy": {
+      "title": "品牌营销管理与咨询",
+      "highlight": "从定位到上市",
+      "description": "为美妆、护肤和生活方式品牌提供战略指导，从定位和上市规划到持续的品牌管理。",
+      "details": "审计、信息传达、市场进入路线图和网红项目设计。"
+    },
+    "introLead": "CA Agency 提供一流的网红营销服务，将有影响力的声音与具有前瞻思维的品牌相连。",
+    "introBody": "我们相信，每位网红都能创造有意义的影响，每个品牌都有潜力与受众建立真实而持久的联系。作为全方位网红营销机构，我们是创作者与企业之间的桥梁，在 Instagram、YouTube 和 TikTok 等平台上制作引发共鸣、促进互动并带来可衡量增长的故事内容。",
+    "closingLead": "在 CA Agency，成功不只是数字，而是真正的改变。我们的作品集充满鼓舞人心的成功故事：把热爱变成全职事业的创作者，以及通过战略性网红合作实现愿景的品牌。",
+    "closingBody": "我们携手打造的不只是营销活动，而是一个植根于真实、创意与共同成长的蓬勃数字生态。无论您是品牌还是创作者，CA Agency 都是您实现长期数字成功的合作伙伴。",
+    "ctaTitle": "准备好开始了吗？",
+    "ctaText": "无论您是寻找网红的品牌，还是准备成长的创作者，我们都乐意提供帮助。"
+  },
+  "contact": {
+    "getInTouch": "联系我们",
+    "tabBrands": "品牌",
+    "tabInfluencers": "网红",
+    "contactUsTitle": "联系方式",
+    "contactUsText": "如有合作、营销活动或达人方面的咨询，请直接联系我们的团队或给我们留言。",
+    "title": "联系我们，开启您的营销活动",
+    "description": "告诉我们您的品牌和目标，CA Agency 将为您匹配合适的创作者和以数据驱动的网红营销方案。欢迎咨询合作。",
+    "heading": "一起合作吧！",
+    "brandInquiries": "品牌与商务咨询",
+    "brandDescription": "准备好通过网红营销提升您的品牌了吗？让我们一起创造精彩。",
+    "talentSubmission": "达人申请",
+    "talentDescription": "您是希望加入我们阵容的内容创作者吗？我们期待您的来信。",
+    "hqLabel": "CA Agency 总部 · 迪拜",
+    "hqDivision": "迪拜 — 全球事业部",
+    "findOnMaps": "在 Google 地图上查找我们",
+    "openInMaps": "在地图中打开",
+    "mapTitle": "地图：CA Agency 位于迪拜 Meydan Grandstand 的总部",
+    "usOfficeLabel": "CA Agency 美国分公司",
+    "usDivision": "美国 — 北美事业部",
+    "usMapTitle": "地图：CA Agency 位于特拉华州威尔明顿 Orange Street 的美国办公室",
+    "nlOfficeLabel": "CA Agency 欧洲分公司",
+    "nlDivision": "荷兰 — 欧洲事业部",
+    "nlMapTitle": "地图：CA Agency 位于荷兰阿姆斯特丹 Johan Huizingalaan（B. Amsterdam）的欧洲办公室",
+    "mapHeading": "从迪拜到欧洲和美国",
+    "mapIntro": "CA Agency 起步于迪拜，我们的全球事业部设在这里。欧洲事业部位于荷兰阿姆斯特丹，北美事业部位于特拉华州威尔明顿。选择一个办公室查看详情，或在上方给我们留言。"
+  },
+  "contactForm": {
+    "thankYou": "谢谢！",
+    "successMessage": "您的消息已成功发送，我们会尽快回复您！",
+    "errorTitle": "出现问题",
+    "errorMessage": "您的消息未能发送。请重试，或直接发送电子邮件至",
+    "tryAgain": "重试",
+    "fullName": "姓名",
+    "email": "电子邮件",
+    "phone": "电话",
+    "company": "公司",
+    "socialLink": "社交媒体链接",
+    "subject": "主题",
+    "message": "留言",
+    "budget": "预算",
+    "estimatedBudget": "预估预算",
+    "howCanWeHelp": "我们能为您做些什么？",
+    "namePlaceholder": "您的姓名",
+    "companyPlaceholder": "您的公司名称",
+    "companyPlaceholderShort": "公司名称",
+    "socialPlaceholder": "Instagram、TikTok 或 YouTube 链接",
+    "subjectPlaceholder": "您想讨论什么？",
+    "messagePlaceholderTalent": "介绍一下您自己和您的内容...",
+    "messagePlaceholderProject": "介绍一下您的项目和目标...",
+    "messagePlaceholderShort": "您的留言...",
+    "getInTouch": "发送",
+    "submitApplication": "提交申请",
+    "sending": "发送中...",
+    "selectBudgetRange": "请选择预算范围...",
+    "selectBudget": "选择预算...",
+    "budgetNotSureYet": "尚未确定",
+    "budgetNotSure": "不确定",
+    "budgetStartupFull": "初创预算（低于 1 万美元）",
+    "budgetStartup": "初创"
+  },
+  "blog": {
+    "title": "博客 | CA Agency 洞察",
+    "description": "来自 CA Agency 的网红营销、内容创作和品牌合作洞察、趋势与技巧。",
+    "heading": "博客",
+    "subheading": "洞察与趋势",
+    "noPosts": "暂无博客文章，敬请期待！",
+    "by": "作者",
+    "relatedPosts": "相关文章",
+    "readyToWork": "准备好与我们合作了吗？"
+  },
+  "faq": {
+    "heading": "常见问题",
+    "showAll": "查看全部问题",
+    "showLess": "收起问题",
+    "questions": {
+      "whatDoesCaAgencyDo": {
+        "question": "CA Agency 是做什么的？",
+        "answer": "CA Agency 是一家为美妆和护肤品牌服务的全方位网红营销机构。我们在 Instagram、TikTok 和 YouTube 上策划并执行创作者营销活动，管理创作者阵容，在内部制作品牌内容，通过付费社交广告放大传播，并为品牌提供定位和市场进入方面的建议。我们于 2019 年成立，总部位于迪拜，已完成 3,000 多场创作者营销活动。"
+      },
+      "whoDoYouWorkWith": {
+        "question": "你们与哪些品牌和行业合作？",
+        "answer": "我们专注美妆领域：护肤、韩国美妆、彩妆、护发和美妆零售，同时也涉及生活方式和消费科技。我们曾为 YSL Beauty、Fenty Beauty、NARS、Sephora、Kylie Cosmetics、ELEMIS、Anua、Samsung、HONOR 等品牌打造营销活动。"
+      },
+      "whereDoYouOperate": {
+        "question": "CA Agency 在哪些地区开展营销活动？",
+        "answer": "我们为美国及国际品牌开展营销活动，覆盖英国、加拿大、澳大利亚、阿联酋、沙特阿拉伯、更广泛的海湾地区、韩国和亚洲。我们的团队位于迪拜，使用英语、阿拉伯语、韩语、法语、西班牙语和德语工作。"
+      },
+      "whatIsKBeauty": {
+        "question": "什么是韩国美妆网红营销？",
+        "answer": "韩国美妆网红营销借助创作者，通过护肤步骤、质地展示和成分科普来介绍韩国护肤品，而不是采用传统广告。我们帮助 Anua、Mixsoon、Purito、Haruharu Wonder 等韩国品牌触达西方受众，也帮助国际品牌采用韩国美妆所带火的、以护肤步骤为主的内容风格。"
+      },
+      "howDoYouSelect": {
+        "question": "你们如何挑选合适的创作者？",
+        "answer": "我们从受众匹配度入手：谁在关注这位创作者、他们住在哪里，以及这个社群是否与您的客户重合。随后，在确定候选名单前，我们会检查互动质量、内容风格、品牌安全以及是否存在虚假粉丝。我们会请创作者保持自己的风格，赞助内容也会按照平台和广告规定进行标注。"
+      },
+      "whatPlatforms": {
+        "question": "你们在哪些平台上开展工作？",
+        "answer": "Instagram、TikTok 和 YouTube。TikTok 带动发现和潮流，Instagram Reels 适合精致的护肤步骤和产品展示，YouTube 则适合深度测评和教程。我们会根据您的受众和目标推荐合适的平台组合。"
+      },
+      "howMeasureSuccess": {
+        "question": "你们如何衡量营销活动的效果？",
+        "answer": "我们追踪发布情况、触达、互动、流量、转化和舆情，用通俗易懂的语言进行报告，并总结可用于下一场营销活动的经验。当创作者内容通过付费社交广告放大时，我们还会加入创意测试和转化追踪，让您清楚看到投入产出比。"
+      },
+      "howMuchCost": {
+        "question": "一场网红营销活动需要多少费用？",
+        "answer": "这取决于创作者数量、他们的受众规模、平台和交付内容，以及您希望使用内容的时长。在简短的需求沟通后，我们会发送一份附有清晰费用明细的定制方案。"
+      },
+      "howGetStarted": {
+        "question": "如何开始与 CA Agency 合作？",
+        "answer": "通过联系表单给我们留言，或发送电子邮件至 info@caagency.com。我们会安排一次需求沟通，了解您的目标，然后发送定制的营销活动方案。"
+      }
+    },
+    "eyebrow": "常见问题"
+  },
+  "testimonials": {
+    "heading": "客户评价",
+    "items": [],
+    "eyebrow": "客户故事"
+  },
+  "errors": {
+    "404": {
+      "title": "页面未找到",
+      "heading": "404",
+      "message": "您要查找的页面不存在或已被移动。"
+    },
+    "500": {
+      "title": "错误",
+      "heading": "出现问题",
+      "message": "我们遇到了意外错误，请稍后再试。"
+    }
+  },
+  "cookies": {
+    "title": "我们使用 Cookie",
+    "description": "我们使用 Cookie 来改善您在本网站上的体验。继续浏览即表示您同意我们使用 Cookie。",
+    "learnMore": "隐私政策",
+    "decline": "拒绝",
+    "acceptAll": "全部接受"
+  },
+  "breadcrumbs": {
+    "label": "面包屑导航",
+    "home": "首页",
+    "about": "关于我们",
+    "talents": "我们的达人",
+    "work": "我们的作品",
+    "services": "服务",
+    "contact": "联系我们",
+    "blog": "博客",
+    "case-studies": "案例研究",
+    "privacy-policy": "隐私政策",
+    "terms-of-service": "服务条款",
+    "business-license": "营业执照",
+    "influencer-marketing-dubai": "迪拜网红营销",
+    "influencer-marketing-uae": "阿联酋网红营销",
+    "influencer-marketing-saudi-arabia": "沙特阿拉伯网红营销",
+    "influencer-marketing-gcc": "海湾地区网红营销",
+    "influencer-marketing-korea": "韩国网红营销",
+    "influencer-marketing-usa": "美国网红营销",
+    "influencer-marketing-uk": "英国网红营销",
+    "influencer-marketing-canada": "加拿大网红营销",
+    "influencer-marketing-australia": "澳大利亚网红营销",
+    "korean-skincare-influencer-marketing": "韩国美妆网红营销",
+    "beauty-influencer-marketing-agency": "美妆网红营销",
+    "skincare-influencer-marketing-agency": "护肤网红营销"
+  }
+}

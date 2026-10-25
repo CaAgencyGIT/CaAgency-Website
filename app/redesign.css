@@ -289,11 +289,11 @@
   .rd-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; padding: 0; margin: -1px; }
 
   /* Closing CTA panel, same black rounded card as the footer below it. */
-  .rd-cta-panel { margin: 16px 16px 0; padding: 88px 6vw; border-radius: 24px; background: #0e0e0e; color: #fff; }
-  .rd-cta-panel-inner { display: grid; grid-template-columns: 0.8fr 1fr; align-items: end; gap: 64px; max-width: 1440px; margin-inline: auto; }
+  .rd-cta-panel { margin: 16px 16px 0; padding: 60px 6vw; border-radius: 24px; background: #0e0e0e; color: #fff; }
+  .rd-cta-panel-inner { display: grid; grid-template-columns: auto minmax(0, 460px); align-items: center; justify-content: center; gap: 72px; max-width: 1080px; margin-inline: auto; }
   .rd-cta-panel-inner > div { max-width: 560px; justify-self: end; }
   @media (max-width: 900px) { .rd-cta-panel-inner { grid-template-columns: 1fr; gap: 24px; } .rd-cta-panel-inner > div { justify-self: start; } }
-  @media (max-width: 760px) { .rd-cta-panel { margin: 10px 10px 0; padding: 56px 6vw; border-radius: 18px; } }
+  @media (max-width: 760px) { .rd-cta-panel { margin: 10px 10px 0; padding: 44px 6vw; border-radius: 18px; } }
 
   /* About page (Oct 2026, after scooperz.com/about-us) */
   .about-panel { display: grid; grid-template-columns: 0.8fr 1fr; align-items: center; gap: 7vw; max-width: 1440px; margin-inline: auto; }

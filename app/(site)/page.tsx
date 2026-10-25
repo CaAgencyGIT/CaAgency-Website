@@ -81,7 +81,7 @@ export default async function HomePage() {
           </ScrollReveal>
           {/* Departments by region (July 2026 round 3): the old inline-link
               paragraph restructured into a four-region editorial list, in the
-              client-specified order USA → Asia → Europe → Middle East. */}
+              client-specified order North America → Europe → Middle East → Asia. */}
           <ScrollReveal delay={0.35} yOffset={20}>
             <div className="mx-auto mt-20 max-w-[1040px] tablet:mt-16 mobile:mt-12">
               <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
@@ -90,7 +90,7 @@ export default async function HomePage() {
               <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-1 mobile:gap-y-9">
                 {[
                   {
-                    region: 'USA',
+                    region: 'North America',
                     href: '/influencer-marketing-usa',
                     copy: (
                       <>
@@ -109,22 +109,6 @@ export default async function HomePage() {
                           skincare
                         </Link>{' '}
                         brands in the world’s largest beauty market, coast to coast.
-                      </>
-                    ),
-                  },
-                  {
-                    region: 'Asia',
-                    href: '/influencer-marketing-asia',
-                    copy: (
-                      <>
-                        From Seoul to Shanghai, Tokyo and Singapore, home of our{' '}
-                        <Link
-                          href="/korean-skincare-influencer-marketing"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          K-beauty
-                        </Link>{' '}
-                        specialism.
                       </>
                     ),
                   },
@@ -157,6 +141,22 @@ export default async function HomePage() {
                           UAE
                         </Link>{' '}
                         and GCC.
+                      </>
+                    ),
+                  },
+                  {
+                    region: 'Asia',
+                    href: '/influencer-marketing-asia',
+                    copy: (
+                      <>
+                        From Seoul to Shanghai, Tokyo and Singapore, home of our{' '}
+                        <Link
+                          href="/korean-skincare-influencer-marketing"
+                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
+                        >
+                          K-beauty
+                        </Link>{' '}
+                        specialism.
                       </>
                     ),
                   },

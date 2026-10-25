@@ -22,4 +22,5 @@ export const Jost = JostFont({
   variable: '--font-jost',
   weight: ['400', '500', '600'],
   display: 'swap',
+  preload: false,
 })
