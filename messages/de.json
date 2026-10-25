@@ -47,7 +47,7 @@
   "nav": {
     "home": "Startseite",
     "about": "Über uns",
-    "talents": "Talente",
+    "talents": "Talent",
     "work": "Projekte",
     "caseStudies": "Case Studies",
     "services": "Leistungen",
@@ -233,13 +233,13 @@
     "findOnMaps": "Auf Google Maps finden",
     "mapTitle": "Karte mit dem Hauptsitz von CA Agency im Meydan Grandstand, Dubai",
     "usOfficeLabel": "CA Agency US-Niederlassung",
-    "usDivision": "USA — US-Division",
+    "usDivision": "Vereinigte Staaten — Division Nordamerika",
     "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware",
     "nlOfficeLabel": "CA Agency Niederlassung Europa",
-    "nlDivision": "Niederlande — Europäische Division",
+    "nlDivision": "Niederlande — Division Europa",
     "nlMapTitle": "Karte mit dem europäischen Büro von CA Agency am Poldermolen in Espel, Niederlande",
     "mapHeading": "Von Dubai bis nach Europa und in die USA",
-    "mapIntro": "CA Agency wurde in Dubai gegründet, wo unsere globale Division sitzt. Unsere europäische Division arbeitet von Espel in den Niederlanden aus, unsere US-Division von Wilmington, Delaware. Wähle ein Büro für die Details oder schreib uns oben eine Nachricht."
+    "mapIntro": "CA Agency wurde in Dubai gegründet, wo unsere globale Division sitzt. Unsere Division Europa arbeitet von Espel in den Niederlanden aus, unsere Division Nordamerika von Wilmington, Delaware. Wähle ein Büro für die Details oder schreib uns oben eine Nachricht."
   },
   "contactForm": {
     "thankYou": "Vielen Dank!",

@@ -64,7 +64,7 @@ export const films = {
 export type FilmKey = keyof typeof films
 
 // Films re-cut after their v2 encode get a new version so cached copies refresh.
-const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3 }
+const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'khutjo-frankly': 3 }
 export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${filmVersion[key] ?? 2}.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
@@ -294,8 +294,8 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
 // studio-strobe flash between them. The three reels share one timeline and never show the
 // same creator side by side, even one shot apart.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v7.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v7.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v8.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v8.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
 

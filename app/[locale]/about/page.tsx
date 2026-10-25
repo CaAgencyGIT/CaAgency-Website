@@ -7,7 +7,7 @@ import IntroReelSync from '@/components/blocks/IntroReelSync'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { filmLabel, filmSrc, introShowreels, type FilmKey } from '@/lib/data/redesign-media'
+import { filmLabel, filmSrc, introShowreels, workFilms, type FilmKey } from '@/lib/data/redesign-media'
 import { posterFor } from '@/lib/data/videos'
 
 type Props = {
@@ -34,19 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Campaign stills for the tilted photo strip, one per creator.
-const stripFilms: FilmKey[] = [
-  'albina-torriden',
-  'melly-rare',
-  'anton-azelaic',
-  'dariia-chanel',
-  'khutjo-frankly',
-  'beatrix-gisou',
-  'georgii-anua',
-  'melani-medicube',
-  'rebecca-haruharu',
-  'aiym-purito',
-]
+// Campaign stills for the tilted photo strip: every film on the Work page.
+const stripFilms: FilmKey[] = workFilms
 const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
 
 const OFFICES = [

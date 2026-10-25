@@ -102,7 +102,7 @@ export default function TalentCard({
         loading={priority ? undefined : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
         className="talent-card-photo object-cover object-center"
-        style={{ animationDelay: `${-((motionIndex * 1.7) % 9)}s` }}
+        style={{ animationDelay: `${-((motionIndex * 1.7) % 7)}s` }}
         sizes={sizes}
       />
       {videoSrc && <TalentCardVideo src={videoSrc} />}

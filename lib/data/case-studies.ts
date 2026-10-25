@@ -664,7 +664,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@khutjo.matsoma',
-    videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v3.mp4',
     summary:
       'A poreless glass-skin routine centred on a few drops of Frankly’s Closer Serum.',
     brief:

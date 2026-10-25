@@ -233,13 +233,13 @@
     "findOnMaps": "Google 지도에서 보기",
     "mapTitle": "두바이 메이단 그랜드스탠드에 위치한 CA Agency 본사 지도",
     "usOfficeLabel": "CA Agency 미국 지사",
-    "usDivision": "미국 — 미국 사업부",
+    "usDivision": "미국 — 북미 사업부",
     "usMapTitle": "델라웨어주 윌밍턴 오렌지 스트리트에 위치한 CA Agency 미국 오피스 지도",
     "nlOfficeLabel": "CA Agency 유럽 지사",
     "nlDivision": "네덜란드 — 유럽 사업부",
     "nlMapTitle": "네덜란드 에스펠 폴더몰런에 위치한 CA Agency 유럽 오피스 지도",
     "mapHeading": "두바이에서 유럽과 미국까지",
-    "mapIntro": "CA Agency는 글로벌 사업부가 있는 두바이에서 시작했습니다. 유럽 사업부는 네덜란드 에스펠에, 미국 사업부는 델라웨어주 윌밍턴에 있습니다. 오피스를 선택해 정보를 확인하거나 위에서 메시지를 남겨 주세요."
+    "mapIntro": "CA Agency는 글로벌 사업부가 있는 두바이에서 시작했습니다. 유럽 사업부는 네덜란드 에스펠에, 북미 사업부는 델라웨어주 윌밍턴에 있습니다. 오피스를 선택해 정보를 확인하거나 위에서 메시지를 남겨 주세요."
   },
   "contactForm": {
     "thankYou": "감사합니다!",

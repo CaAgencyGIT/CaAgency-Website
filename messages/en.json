@@ -47,7 +47,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "talents": "Talents",
+    "talents": "Talent",
     "work": "Work",
     "caseStudies": "Case Studies",
     "services": "Services",
@@ -233,13 +233,13 @@
     "findOnMaps": "Find us on Google Maps",
     "mapTitle": "Map showing the CA Agency headquarters at Meydan Grandstand, Dubai",
     "usOfficeLabel": "CA Agency US Branch",
-    "usDivision": "USA — US Division",
+    "usDivision": "United States — North America Division",
     "usMapTitle": "Map showing the CA Agency USA office on Orange Street, Wilmington, Delaware",
     "nlOfficeLabel": "CA Agency European Branch",
-    "nlDivision": "Netherlands — European Division",
+    "nlDivision": "Netherlands — Europe Division",
     "nlMapTitle": "Map showing the CA Agency European office on Poldermolen, Espel, the Netherlands",
     "mapHeading": "From Dubai to Europe and the US",
-    "mapIntro": "CA Agency started in Dubai, where our Global Division is based. Our European Division works from Espel in the Netherlands, and our US Division from Wilmington, Delaware. Select an office to see its details, or drop us a message above."
+    "mapIntro": "CA Agency started in Dubai, where our Global Division is based. Our Europe Division works from Espel in the Netherlands, and our North America Division from Wilmington, Delaware. Select an office to see its details, or drop us a message above."
   },
   "contactForm": {
     "thankYou": "Thank you!",
