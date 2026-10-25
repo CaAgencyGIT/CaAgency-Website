@@ -514,13 +514,13 @@ export const caseStudies: CaseStudy[] = [
     platforms: ['Instagram Reels', 'TikTok'],
     videoSrc: '/videos/redesign/rd-melani-dalba-web-v2.mp4',
     summary:
-      'Glow-focused creator content for d’Alba across two of our talents.',
+      'Glow-focused creator content for d’Alba.',
     brief:
-      'd’Alba wanted to show the radiant, hydrated finish its skincare is known for, across more than one creator to reach different audiences.',
+      'd’Alba wanted to show the radiant, hydrated finish its skincare is known for.',
     approach:
-      'Our talents Melani Seiffert and Saranda Mavriqi each built the products into their own routines, keeping their personal style while giving the glow plenty of time on camera.',
+      'Our talent Melani Seiffert built the products into her routine, keeping her personal style while giving the glow plenty of time on camera.',
     outcome:
-      'd’Alba received a set of creator videos showcasing its glow across distinct audiences, ready for organic and paid use.',
+      'd’Alba received creator content showcasing its glow, ready for organic and paid use.',
     services: ['Talent management', 'Campaign management', 'Content production'],
     metrics: [],
   },
@@ -611,6 +611,24 @@ export const caseStudies: CaseStudy[] = [
       'Our talent Albina Mavriqi built the video around a before-and-after routine, showing the cream’s texture up close and finishing on the glow it leaves.',
     outcome:
       'Torriden received routine-led creator content that demonstrates its firming cream in a native short-form format.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'beauty-of-joseon-campaign',
+    brand: 'Beauty of Joseon',
+    title: 'Beauty of Joseon Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-saranda-boj-web-v2.mp4',
+    summary:
+      'A seven-day under-eye routine for Beauty of Joseon’s Revive Eye Serum and Under Eye Patch.',
+    brief:
+      'Beauty of Joseon wanted its retinal eye duo shown over time, so viewers could see the routine and the change rather than a single application.',
+    approach:
+      'Our talent Saranda Mavriqi documented a day-by-day routine with close-ups under the eye, pairing the serum with the patches and returning to a before shot at the end.',
+    outcome:
+      'Beauty of Joseon received routine-led creator content that shows its eye care in real use over a week, in a native short-form format.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
