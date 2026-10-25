@@ -39,16 +39,17 @@ export const caseStudies: CaseStudy[] = [
     platforms: ['Instagram Reels', 'TikTok'],
     videoSrc: '/videos/work/honor-web-v1.mp4',
     summary:
-      'Creator-led short-form video putting HONOR devices in real, everyday hands instead of a spec sheet.',
+      'A storytelling-led smartphone feature showing the HONOR device in everyday moments, from texting friends to the mirror selfie.',
     brief:
-      'HONOR wanted its devices shown the way people actually use them, in the hand, in daily life, rather than through studio product shots. The content had to feel native to the creator’s feed while keeping the device unmistakably in focus.',
+      'HONOR wanted its new smartphone shown in real, everyday hands rather than through a spec sheet, with the story landing in a relatable, regional voice.',
     approach:
-      'We matched HONOR with a creator whose audience skews toward lifestyle and everyday tech, then built the concept around moments where the phone is naturally on camera. Scripting stayed loose: the creator kept their own voice and pacing, and the device features were woven into the story instead of listed.',
+      'The creator builds a short narrative around her day: getting ready, chatting with friends over message bubbles in local dialect, unboxing the new device and snapping a mirror selfie. The phone appears naturally in each scene, so its design and camera are shown through use rather than explained.',
     outcome:
-      'The collaboration delivered platform-native vertical video that HONOR could run as creator content, giving the brand an authentic presence in feeds where traditional ads get skipped.',
+      'HONOR received story-driven creator content that makes the device feel part of daily life. Its relatable tone suits organic channels and native-feeling paid placements.',
     services: ['Creator matching', 'Concept development', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'ysl-beauty-campaign',
     brand: 'YSL Beauty',
@@ -75,34 +76,37 @@ export const caseStudies: CaseStudy[] = [
     platforms: ['Instagram Reels', 'TikTok'],
     videoSrc: '/videos/work/kylie-cosmetics-web-v1.mp4',
     summary:
-      'Creator content pairing Kylie Cosmetics products with a face and voice audiences already trust.',
+      'A focused lip tutorial showing Kylie Cosmetics’ liner-and-lip combo for a defined, glossy nude.',
     brief:
-      'For a brand with enormous built-in awareness, the job of creator content shifts: it’s less about introduction and more about credibility, real application, real texture, a real person’s opinion.',
+      'Kylie Cosmetics is built on the lip, so the content needed to show that signature look clearly and quickly, in a way viewers could copy.',
     approach:
-      'The content leaned into up-close application and honest first-person delivery, the format that earns trust in beauty. We handled creator selection, brief development, and the review cycle between creator and brand.',
+      'The creator works in tight close-up, lining the lips with a Kylie Cosmetics liner before layering colour and shine, with every step clearly visible. Even lighting, a clean backdrop and a simple black top keep attention on the product and the finish, and the result is held to camera at the end so viewers see the full look.',
     outcome:
-      'Kylie Cosmetics received relatable, application-led creator video that complements its polished brand channels with a street-level point of view.',
-    services: ['Creator matching', 'Campaign management', 'Content production'],
+      'Kylie Cosmetics received a clean, repeatable lip tutorial that showcases the product in use and the final effect. Its simple styling makes it effective on the creator’s channel and adaptable for paid placements.',
+    services: ['Creator matching', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'yesstyle-collaboration',
     brand: 'YesStyle',
     title: 'YesStyle Creator Collaboration',
     vertical: 'K-Beauty Retail',
     platforms: ['TikTok', 'Instagram Reels'],
-    videoSrc: '/videos/work/georgii-yesstyle-web-v1.mp4',
+    creator: '@pomogisebe',
+    videoSrc: '/videos/redesign/rd-georgii-yesstyle-web-v2.mp4',
     summary:
-      'Haul-style creator content built for YesStyle’s discovery-driven K-beauty shoppers.',
+      'A step-by-step pore-care routine built entirely from K-beauty bestsellers available on YesStyle.',
     brief:
-      'As a marketplace, YesStyle benefits most from discovery-format content, hauls and multi-product features that mirror how its customers actually shop. The brief asked for content with that browsing energy.',
+      'YesStyle is a destination for K-beauty, so the content needed to show the breadth of what shoppers can build there. The aim was an educational routine that solves a common concern, visible pores, using several products in one easy-to-follow sequence.',
     approach:
-      'We structured the video as a curated haul, giving each product a moment while keeping the pace fast enough for short-form retention. The creator’s genuine enthusiasm for K-beauty carried the selection.',
+      'Georgii Galaev opens on the question “perfect pores?” and then numbers each step on screen. He massages ma:nyo Herbgreen Cleansing Oil into blackhead areas for a full minute, follows with Anua Rice Enzyme Brightening Cleansing Powder lathered in his hands, then applies Medicube Zero Pore Blackhead Mud Mask and finishes with Medicube PDRN Pink Collagen Capsule Cream. The close-up framing and his own discount code turn a routine into a ready-made shopping list.',
     outcome:
-      'YesStyle received discovery-style creator content that showcases range, the retailer’s core advantage, in the format its K-beauty audience already watches.',
-    services: ['Creator matching', 'Concept development', 'Content production'],
+      'YesStyle received a high-utility tutorial that showcases multiple brands from its catalogue in one video and gives viewers a clear reason to shop. The numbered steps and creator code make it effective for both saves and trackable conversions.',
+    services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'insta360-campaign',
     brand: 'Insta360',
@@ -127,18 +131,20 @@ export const caseStudies: CaseStudy[] = [
     title: 'Mixsoon K-Beauty Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['TikTok', 'Instagram Reels'],
-    videoSrc: '/videos/work/albina-mixsoon-web-v1.mp4',
+    creator: '@jaysadiq_',
+    videoSrc: '/videos/redesign/rd-jay-mixsoon-web-v2.mp4',
     summary:
-      'Minimalist skincare storytelling matching Mixsoon’s single-ingredient K-beauty philosophy.',
+      'A talking-head ingredient explainer for Mixsoon’s Bean Copper Peptide Firming Serum, aimed at men’s skincare.',
     brief:
-      'Mixsoon’s identity is minimalism, short ingredient lists, single-hero formulas. The content had to reflect that restraint rather than bury it under a maximal beauty edit.',
+      'Mixsoon wanted to reach men interested in anti-ageing skincare, explaining what its Bean Copper Peptide Firming Serum does in clear, direct language.',
     approach:
-      'We briefed the creator toward a stripped-back visual style: clean frames, texture macro shots, and a routine narrative focused on one hero product at a time, mirroring the brand’s one-ingredient ethos.',
+      'Jay Sadiq speaks straight to camera, holding the serum as he explains its main ingredients. On-screen quotes break down the benefits: copper peptide (GHK-Cu) supports firmer-looking skin and collagen production, while fermented bean essence provides hydration and nourishment. He finishes by applying it to show how easily it fits into a grooming routine.',
     outcome:
-      'The campaign delivered creator content whose look and pacing embody the brand position itself, minimal, ingredient-first K-beauty, instead of a generic skincare ad.',
-    services: ['Creator matching', 'K-beauty strategy', 'Content production'],
+      'Mixsoon received credible, education-led content that opens up the men’s skincare audience. The clear ingredient breakdown makes it effective organically and as performance creative.',
+    services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'kiko-milano-campaign',
     brand: 'Kiko Milano',
@@ -220,18 +226,20 @@ export const caseStudies: CaseStudy[] = [
     title: 'Fenty Beauty Creator Campaign',
     vertical: 'Color Cosmetics',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/work/melly-fenty-web-v1.mp4',
+    creator: '@thefashionfreakk',
+    videoSrc: '/videos/redesign/rd-melly-fenty-original-web-v2.mp4',
     summary:
-      'Base-makeup creator content that shows Fenty Beauty performing on real skin, in real light.',
+      'A real-time foundation try-on of Fenty Beauty’s Pro Filt’r Fluid Flex Foundation, built around how weightless it feels.',
     brief:
-      'Fenty Beauty built its name on inclusivity and real-skin performance, so the content had to prove the product on camera rather than talk about it. The brief asked for an application-led routine with the finish clearly visible in daylight.',
+      'Fenty Beauty wanted to introduce its new Pro Filt’r Fluid Flex Foundation with an honest first-impressions angle. The aim was to show coverage and finish while capturing the creator’s genuine reaction to the formula.',
     approach:
-      'We cast our talent Melly Sanchez, whose beauty content leans on close-up application and honest delivery. The video walks through a full base routine, product in frame, texture and blend on camera, with the finished look carrying the final beat.',
+      'Melly Sanchez applies the foundation, in shade 396N, on camera with a brush, while the on-screen caption, “wait… why does this feel like NOTHING on my skin?!”, captures her real-time reaction. The full application is shown so viewers can judge coverage and the natural matte finish for themselves, and the creator’s confident styling keeps the video firmly in Fenty’s bold, inclusive brand world.',
     outcome:
-      'Fenty Beauty received platform-native creator video that demonstrates shade match and finish credibly, an asset that works organically and as paid social.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Fenty Beauty received authentic first-impressions content that highlights the formula’s key benefits, coverage, matte finish and weightless feel, in the creator’s own voice. It works as a launch asset organically and as believable paid creative.',
+    services: ['Talent management', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'delere-campaign',
     brand: 'DELERE',
@@ -240,16 +248,17 @@ export const caseStudies: CaseStudy[] = [
     platforms: ['Instagram Reels', 'TikTok'],
     videoSrc: '/videos/work/saranda-delere-web-v1.mp4',
     summary:
-      'Routine-led creator content introducing DELERE to a skincare-literate short-form audience.',
+      'A caviar-skincare introduction that turns DELERE’s luxury ingredient story into something viewers can see on skin.',
     brief:
-      'As a challenger skincare brand, DELERE needed content that builds recognition fast: clear product presence, a believable routine, and a creator whose audience already cares about skincare.',
+      '“Caviar as skincare?!” is a question most audiences will have, and DELERE needed content that answered it. The brief was to explain the formula, 15% caviar omega-3 and collagen peptide, while showing the glow viewers should expect, all inside a short vertical format.',
     approach:
-      'The concept kept the structure simple, a real evening routine with DELERE products carrying each step, letting pack design and textures do the visual work while the creator narrates results in her own words.',
+      'Saranda Mavriqi leads with the curiosity hook, then moves straight into application: the cream is applied with a brush in a slow sweep before being pressed in by hand, so viewers see both texture and finish. On-screen text carries the ingredient story while the camera stays on her skin, and the video ends on the luminous result in a calm bathroom setting that matches the brand’s premium positioning.',
     outcome:
-      'DELERE received a clean, repeatable content format that introduces the brand through routine context rather than a hard pitch, built to extend across future drops.',
-    services: ['Creator matching', 'Concept development', 'Content production'],
+      'DELERE received creator content that introduces an unfamiliar luxury ingredient in plain terms and backs it with visible texture and glow. The ingredient captions make it a strong education asset for new audiences, while the clean, elevated look keeps it on-brand for paid social.',
+    services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'sephora-campaign',
     brand: 'Sephora',
@@ -259,16 +268,17 @@ export const caseStudies: CaseStudy[] = [
     creator: '@albina',
     videoSrc: '/videos/work/albina-sephora-web-v1.mp4',
     summary:
-      'Haul-and-favourites creator content built around the way people actually shop Sephora.',
+      'A barrier-first skincare story that builds Sephora’s own Hydrate line into a routine for dry, irritated skin days.',
     brief:
-      'Sephora wins on range and discovery, so the brief asked for content with browsing energy: multiple products, quick verdicts, and the store experience woven through the story.',
+      'Sephora wanted its in-house Hydrate collection positioned as a considered skincare range rather than a budget alternative. The challenge was to show three textures with three distinct jobs, the Bouncy Water Jelly with hyaluronic and polyglutamic acids, the Balmy Rich Cream with lipids and ceramides, and the Satin Light Cream, in a way a viewer could instantly map to their own skin on any given day.',
     approach:
-      'Our talent Albina Mavriqi structured the video as a curated Sephora edit, each pick getting an on-camera moment and a one-line reason to care, paced for short-form retention.',
+      'Albina Mavriqi opens on a real problem: a close-up of redness and dryness, captioned “on dry or irritated skin days, my barrier needs extra support.” That honesty earns the product reveal. Each jar is held to camera long enough to read the hero ingredients, then a cut to the cream’s texture lets viewers judge richness for themselves. The video closes on the result, dewy and visibly calmer skin, framed around the idea of choosing hydration “based on what my skin needs that day,” which turns a product line-up into a decision guide.',
     outcome:
-      'Sephora received discovery-format creator content that showcases breadth, the retailer’s core advantage, in the format its beauty audience already watches daily.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Sephora received an educational, ingredient-led creator video that sells the logic of the whole range, not just one SKU. The before-and-after framing and on-screen ingredient callouts make it equally usable as organic content on Albina’s channel and as a paid asset aimed at skincare shoppers comparing moisturisers.',
+    services: ['Talent management', 'Concept development', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'revolve-beauty-campaign',
     brand: 'Revolve Beauty',
@@ -276,54 +286,59 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Beauty E-commerce',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@melaniseiffert',
-    videoSrc: '/videos/work/melani-revolve-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-melani-revolve-web-v2.mp4',
     summary:
-      'Polished get-ready-with-me content pairing Revolve Beauty’s curation with an aspirational creator feed.',
+      'A “frost-kissed” winter glam look built entirely from products available at Revolve Beauty.',
     brief:
-      'Revolve’s beauty arm sells curation and lifestyle as much as product. The content needed an elevated, editorial feel that still reads as a genuine creator post rather than a lookbook.',
+      'Revolve Beauty wanted a seasonal look that shows the breadth of its multi-brand assortment and links directly to shoppable products. The content had to feel editorial enough for Revolve’s fashion audience.',
     approach:
-      'We matched the brief with our talent Melani Seiffert, whose feed already carries the polished-but-personal aesthetic Revolve trades on. A get-ready-with-me structure let multiple products appear naturally inside one narrative.',
+      'Melani Seiffert creates a soft winter glam look in a chandelier-lit setting, wrapped in white faux fur. She works through a product line-up from Revolve Beauty, including Tower 28 Swipe Serum Concealer, the Nudestix Tinted Blur Sculpt Stick and Kevyn Aucoin The Sensual Skin blush, holding each to camera before applying it. The cool, high-glam styling makes the video feel like a fashion editorial while staying easy to follow.',
     outcome:
-      'Revolve Beauty received aspirational creator content aligned with its brand codes, multi-product, lifestyle-framed, and native to the platforms it performs on.',
+      'Revolve Beauty received an editorial-quality tutorial that showcases several brands in one shoppable look. Its premium aesthetic suits Revolve’s own channels, and the product-by-product structure supports click-through to the retailer.',
     services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'anua-campaign',
     brand: 'Anua',
     title: 'Anua Skincare Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/work/anton-anua-web-v1.mp4',
+    creator: '@pomogisebe',
+    videoSrc: '/videos/redesign/rd-georgii-anua-web-v2.mp4',
     summary:
-      'Male-skincare creator content bringing Anua’s K-beauty routine to an underserved audience.',
+      'A five-rule face-massage tutorial using Anua’s gua sha cream, from lymphatic drainage to sculpting.',
     brief:
-      'Anua wanted to reach beyond the core K-beauty demographic. Men’s skincare is one of the fastest-growing segments, and the brief asked for content that makes a Korean routine feel approachable for men.',
+      'Anua wanted to show its gua sha cream as the product that makes face massage easy and effective. The content needed to teach technique, not just show the product.',
     approach:
-      'We cast our talent Anton Drozhzhin and kept the routine deliberately simple, cleanse, treat, protect, with Anua’s heartleaf line carrying each step and the voiceover demystifying the category.',
+      'Georgii Galaev turns the video into a mini masterclass, with each step labelled on screen: open the lymphatic nodes, sculpt the jawline, lift the cheekbones, de-puff the nose and drain everything downward. He uses the Anua gua sha cream throughout, showing how the built-in tool and cream give enough slip for each movement.',
     outcome:
-      'Anua received creator content that opens a new audience segment, positioning the brand as the easy entry point into K-beauty for men.',
+      'Anua received a highly saveable, technique-led tutorial that positions its product as essential to the routine. It works as educational organic content and as paid creative for viewers interested in face sculpting.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'purito-campaign',
     brand: 'Purito',
     title: 'Purito Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/work/aiym-purito-web-v1.mp4',
+    creator: '@imkablan',
+    videoSrc: '/videos/redesign/rd-aiym-purito-web-v2.mp4',
     summary:
-      'Ingredient-first creator content matched to Purito’s clean, sensitive-skin positioning.',
+      'A time-stamped “morning routine” vlog that weaves Purito Seoul into an authentic, step-by-step routine.',
     brief:
-      'Purito’s audience reads INCI lists. The brief asked for content that respects that literacy, ingredient callouts, honest texture close-ups, and a calm tone consistent with the brand’s sensitive-skin promise.',
+      'Purito Seoul’s clean, sensitive-skin positioning works best when it feels part of real life. The goal was content that sits naturally in the hugely popular routine-vlog format, rather than an ad break inside it.',
     approach:
-      'Our talent Aiym Kablan built the video around a morning barrier-care routine, holding each product long enough for the formula story to land, with on-screen text reinforcing the hero ingredients.',
+      'Aiym Kablan documents her morning minute by minute, with time stamps on screen as she showers, wraps her hair, preps her skin and settles into her routine. Purito Seoul appears in the flow of those steps, picked up and applied as she goes, so the product is seen in context rather than presented. The cosy, unfiltered setting and relatable details keep it authentic and highly watchable.',
     outcome:
-      'Purito received credibility-first creator content that speaks to skincare enthusiasts in their own language, strengthening the brand’s standing in the clean K-beauty conversation.',
+      'Purito Seoul received native, lifestyle-first content in one of the most engaging short-form formats. Because the product lives inside a routine viewers already want to watch, the video works as discovery content for new audiences and as a believable, low-pressure paid asset.',
     services: ['Talent management', 'Campaign management', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'gisou-campaign',
     brand: 'Gisou',
@@ -331,18 +346,19 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Haircare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@beatrixramosaj',
-    videoSrc: '/videos/work/beatrix-gisou-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-gisou-web-v2.mp4',
     summary:
-      'Texture-rich haircare content that lets Gisou’s honey-infused line show its finish on camera.',
+      'Hair-first content that lets Gisou’s signature glossy finish speak for itself on long, voluminous waves.',
     brief:
-      'Gisou content lives and dies on hair looking incredible. The brief asked for a routine video where shine, softness, and movement, not claims, do the selling.',
+      'Gisou’s brand is built on healthy shine, so the content had to make that shine visible on camera. The aim was a short, aspirational hair moment that feels like a natural part of Beatrix’s feed, not a product demonstration.',
     approach:
-      'Our talent @beatrixramosaj shot a styling routine in warm natural light, with slow-motion movement shots between steps so the finish gets its own screen time. The honey-gold brand world stays present through set and styling.',
+      'Beatrix Ramosaj films in soft, even daylight that catches the shine on her bouncy blow-out. Rather than a tutorial, the video is built around movement: she runs her fingers through the lengths, works the product between her palms and finishes the ends, so viewers watch the hair respond in real time. Close framing keeps attention on texture and gloss, and the calm pacing mirrors Gisou’s understated, premium tone.',
     outcome:
-      'Gisou received visually-led creator content where the result is the argument, native short-form that doubles as evergreen brand footage.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Gisou received a polished, lifestyle-led hair video that communicates the brand’s core promise, healthy-looking shine, in a few seconds and without heavy copy. Its clean visual style suits both Beatrix’s audience and paid placements alongside Gisou’s own brand content.',
+    services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'samsung-campaign',
     brand: 'Samsung',
@@ -368,288 +384,319 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@rebeccaghaderi',
-    videoSrc: '/videos/work/rebecca-haruharu-web-v1.mp4',
+    videoSrc: '/videos/redesign/rd-rebecca-haruharu-web-v2.mp4',
     summary:
-      'Calm, texture-forward creator content for Haruharu Wonder’s fermented skincare line.',
+      'An active, outdoor-glow story for Haruharu Wonder’s black rice glow mist, used throughout the day.',
     brief:
-      'Haruharu Wonder’s black-rice ferment line needed content that communicates gentle efficacy, the visual language of hydration and glow, aimed at skincare-curious short-form viewers.',
+      'Haruharu Wonder wanted to show its mist as a non-sticky way to keep skin hydrated and glowing on the go.',
     approach:
-      'Our talent @rebeccaghaderi kept the edit unhurried: mist and serum textures up close, application in natural light, and a first-person read on how the routine feels rather than a claims list.',
+      'Rebecca Ghaderi films herself outdoors and throughout her day, from an early walk in the sun to relaxed moments later on, misting her face with the Haruharu Wonder glow mist each time. The bright natural light makes the fresh, dewy finish easy to see, and the varied settings show how the mist fits into a busy routine.',
     outcome:
-      'Haruharu Wonder received sensorial creator content that translates its minimalist Korean skincare positioning into the short-form formats its next customers actually watch.',
-    services: ['Talent management', 'Campaign management', 'Content production'],
+      'Haruharu Wonder received lifestyle content that shows real, repeated use and a natural glow. It suits both organic posting and paid placements for its Amazon listing.',
+    services: ['Talent management', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'armani-beauty-campaign',
     brand: 'Armani Beauty',
     title: 'Armani Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@_idareen_',
     videoSrc: '/videos/redesign/rd-dariia-armani-web-v2.mp4',
     summary:
-      'Luxury makeup content that keeps Armani Beauty’s understated polish inside a creator’s feed.',
+      'A buildable cheek-colour tutorial using Armani Beauty’s Luminous Silk liquid cheek tint.',
     brief:
-      'Armani Beauty needed short-form video that protects its refined, minimal brand codes while still reading as genuine creator content rather than an advert.',
+      'Armani Beauty wanted to show how its liquid cheek tint blends into a natural, luminous flush, keeping the look effortless and premium.',
     approach:
-      'Our talent Dariia Bordun built the video around close-up application, letting texture and finish carry the story, with styling and lighting kept consistent with the brand’s quiet-luxury look.',
+      'The creator dots the Armani Luminous Silk cheek tint onto the cheek, then blends it out with a brush, building the colour gradually so viewers see how buildable it is. Close-up framing and soft light show the luminous finish, and the video closes on the product, held to camera, beside the finished glow.',
     outcome:
-      'Armani Beauty received premium-feeling vertical content suited to both the creator’s channel and paid social.',
+      'Armani Beauty received a clean, elegant demonstration of a single product that highlights blendability and finish. It suits both organic use and paid placements.',
     services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'valentino-beauty-campaign',
     brand: 'Valentino Beauty',
     title: 'Valentino Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@dariiabordun',
     videoSrc: '/videos/redesign/rd-dariia-valentino-web-v2.mp4',
     summary:
-      'Bold, editorial creator content built around Valentino Beauty’s statement makeup.',
+      'A colour-matching makeup tutorial pairing Valentino’s Spike lipstick and Eye2Cheek blush into one coordinated look.',
     brief:
-      'Valentino Beauty wanted its products shown with the confidence the brand is known for, in a format that feels native to short-form feeds.',
+      'Valentino Beauty wanted to show that its lip and cheek products work as a set. The idea had to feel like styling advice, the kind a viewer saves, rather than a product swatch.',
     approach:
-      'Our talent Dariia Bordun created an application-led look with the product kept in frame throughout, pairing an editorial finish with a creator’s natural delivery.',
+      'Dariia Bordun frames the video around a fashion analogy: just as you coordinate shoes with a bag, your lips and cheeks should match. She applies the Spike Valentino Buttery Matte Lip in 134 Couture in the Streets, then the Valentino Eye2Cheek in 01 Born in Roma, building a soft “halo” of colour that ties the face together. The studded gold lipstick and red couture compact are held to camera with their shade names on screen, so the look is easy to shop.',
     outcome:
-      'Valentino Beauty received statement creator content that reflects the brand’s couture positioning in a social-first format.',
+      'Valentino Beauty received a tutorial that sells two products as one look and gives viewers a reusable technique. Named shades, close-up application and the coordinated finish make it effective organically and as a conversion-focused paid asset.',
     services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'chanel-beauty-campaign',
     brand: 'Chanel Beauty',
     title: 'Chanel Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@dariiabordun',
     videoSrc: '/videos/redesign/rd-dariia-chanel-web-v2.mp4',
     summary:
-      'Luxury base-makeup content showing Chanel Beauty’s pearlescent, dewy skin finish.',
+      'A one-product base tutorial showing how Chanel’s Les Beiges Pearly Glow creates a pearlescent skin finish.',
     brief:
-      'Chanel Beauty wanted its complexion products shown the way they look on real skin, with the luminous finish clear on camera and the brand’s polish intact.',
+      'Chanel Beauty wanted to showcase a single luminous complexion product in a way that feels effortless and luxurious. The challenge was to show a subtle effect, pearlescent glow, clearly on camera.',
     approach:
-      'Our talent Dariia Bordun built a short tutorial around a single product, applying it on camera and finishing on close-ups so the pearlescent glow came through.',
+      'Dariia Bordun begins on bare skin, then introduces the Chanel Les Beiges Pearly Glow, applying it with her fingertips and blending it across the high points of the face. Soft, flattering light lets the pearlescent sheen build visibly, and the caption, “ACTUALLY the only product you need for that pearlescent skin effect,” frames it as a hero product. She ends by holding the bottle beside the finished glow.',
     outcome:
-      'Chanel Beauty received premium creator content that demonstrates its finish in a native short-form format, suited to organic and paid use.',
+      'Chanel Beauty received an elegant, single-product tutorial that makes a subtle finish easy to see and easy to want. Its minimal styling and clear before-and-after keep it on-brand for organic and paid use.',
     services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'rare-beauty-campaign',
     brand: 'Rare Beauty',
     title: 'Rare Beauty Creator Campaign',
     vertical: 'Makeup',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@thefashionfreakk',
     videoSrc: '/videos/redesign/rd-melly-rare-web-v2.mp4',
     summary:
-      'Easy, wearable makeup content matched to Rare Beauty’s approachable tone.',
+      'A flushed, glowy makeup look pairing Rare Beauty’s blush with its lip oil.',
     brief:
-      'Rare Beauty’s audience responds to makeup that feels effortless. The brief asked for content showing how the products fit into a real, everyday look.',
+      'Rare Beauty wanted a joyful, wearable look that shows two of its cult categories, blush and lip, working together.',
     approach:
-      'Our talent Melly Sanchez created a natural application video, keeping the pace relaxed and the product clearly in frame at each step.',
+      'Melly Sanchez builds a rosy, all-pink look in a playful setting, complete with pink hair clips and soft neon. She taps the Rare Beauty blush onto her cheeks with a brush, shows the product to camera, lines her lips and finishes with the lip oil for a glossy flush. The caption, “Rare beauty blush + lip oil,” makes the combination easy to shop.',
     outcome:
-      'Rare Beauty received relatable creator content that demonstrates its products in the way its community actually wears them.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Rare Beauty received an upbeat, on-brand tutorial that sells two products as one look. Its bright styling and clear steps suit both organic posting and paid social.',
+    services: ['Talent management', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'saie-campaign',
     brand: 'Saie',
     title: 'Saie Creator Campaign',
     vertical: 'Clean Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@rebeccaghaderi',
     videoSrc: '/videos/redesign/rd-rebecca-saie-web-v2.mp4',
     summary:
-      'Fresh, skin-first makeup content in line with Saie’s clean-beauty positioning.',
+      'A sunny, on-the-go glow look created entirely with Saie, applied straight from the makeup bag.',
     brief:
-      'Saie wanted content that shows a light, skin-first finish and fits the calm, natural aesthetic of the brand.',
+      'Saie’s clean, skin-first products are built for an easy, glowy finish. The aim was to show them in a relaxed, real-life setting that matches the brand’s effortless tone.',
     approach:
-      'Our talent Rebecca Ghaderi built a simple everyday look, focusing on close-ups of texture and finish so the products’ feel came through on camera.',
+      'Rebecca Ghaderi does her makeup outdoors in bright summer light, pulling Saie products straight from her bag. She dots and blends cheek and base products with Saie brushes and holds each one to camera, so viewers see the shades, the tools and the sun-kissed finish in natural light.',
     outcome:
-      'Saie received creator content that showcases its clean, glowing look in a native short-form format.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Saie received authentic, lifestyle-first makeup content that shows its products in real conditions. It works well organically and as approachable, high-trust paid creative.',
+    services: ['Talent management', 'Content production', 'Usage rights'],
     metrics: [],
   },
+
   {
     slug: 'patrick-ta-campaign',
     brand: 'Patrick Ta',
     title: 'Patrick Ta Creator Campaign',
     vertical: 'Makeup',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@beatrixramosaj',
     videoSrc: '/videos/redesign/rd-beatrix-patrickta-web-v2.mp4',
     summary:
-      'Glow-focused makeup content built around Patrick Ta’s signature finish.',
+      'A soft-glam tutorial built around Patrick Ta’s shimmer eyeshadow and blush duos.',
     brief:
-      'Patrick Ta is known for a luminous, sculpted look. The brief asked for creator content that captures that glow in a way that feels achievable.',
+      'Patrick Ta’s products are known for their luminous, sculpted finish. The brief was to show that signature glow on the eyes and cheeks in a look viewers could recreate.',
     approach:
-      'Our talent Beatrix Ramosaj created an application-led video, layering products on camera so viewers could follow the technique.',
+      'Beatrix Ramosaj opens with close-ups of the shimmer eyeshadow pan and blush duo, then builds the look step by step: shimmer pressed onto the lid, defined lashes and liner, then the blush buffed onto the cheeks. Tight framing on the compacts and textures shows the product’s quality, while the finished look demonstrates its luminous effect.',
     outcome:
-      'Patrick Ta received creator content that brings its signature finish to life in a format made for short-form feeds.',
-    services: ['Talent management', 'Concept development', 'Content production'],
+      'Patrick Ta received a premium, product-forward tutorial that shows multiple products and a cohesive finished look. It works for the creator’s audience and as aspirational paid content.',
+    services: ['Talent management', 'Brand-safety review', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'medicube-campaign',
     brand: 'Medicube',
     title: 'Medicube Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@melaniseiffert',
     videoSrc: '/videos/redesign/rd-melani-medicube-web-v2.mp4',
     summary:
-      'Creator content putting Medicube’s skincare routine front and centre.',
+      'A glass-skin night routine built around Medicube’s Collagen Night Wrapping Mask, from application to the peel-off reveal.',
     brief:
-      'Medicube wanted its skincare shown in use, with the routine and results clear enough for viewers to follow along.',
+      'Medicube’s Collagen Night Wrapping Mask has a distinctive peel-off format, so the content needed to show the whole experience, application, overnight wear and the result, while explaining what it does.',
     approach:
-      'Our talent Melani Seiffert built the collagen wrapping mask into her evening routine, keeping each step in frame with close-ups on skin.',
+      'Melani Seiffert opens on her “mirror-like glowy skin,” then shows the mask being brushed on as the final step of her routine. On-screen captions explain that it is applied after skincare to seal everything in overnight, and that it contains collagen extract and hyaluronic acid to help improve elasticity and provide deep hydration. The video ends on the satisfying peel-off and close-ups of dewy, glass-like skin.',
     outcome:
-      'Medicube received routine-led creator content that demonstrates its products in a real, everyday setting.',
+      'Medicube received a complete demonstration of a hero product, with clear education and a highly shareable reveal. It works as organic discovery content and as performance creative aimed at skincare shoppers.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'celimax-campaign',
     brand: 'Celimax',
     title: 'Celimax Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@loresakonushevci',
     videoSrc: '/videos/redesign/rd-loresa-celimax-web-v2.mp4',
     summary:
-      'Routine-led K-beauty content for Celimax.',
+      'A precise application tutorial for Celimax’s retinal shot, mapped to dark circles, fine lines and uneven tone.',
     brief:
-      'Celimax wanted its skincare introduced to new audiences through a creator routine that feels honest and easy to follow.',
+      'Retinal can feel intimidating, so Celimax needed content that shows exactly where and how to use it. The goal was a clear, benefit-led demonstration for viewers concerned about dark spots, fine lines and uneven skin tone.',
     approach:
-      'Our talent Loresa Konushevci built the video around her routine, holding each product on camera and showing texture up close.',
+      'Loresa Konushevci dots the Celimax retinal shot along the areas it targets, under the eyes, along the smile lines and across the forehead, with on-screen captions naming each benefit: brightens dark circles, reduces fine lines, for smoother and firmer skin. She then massages it in, showing that a small amount covers the face. The bright yellow dots make the technique easy to copy.',
     outcome:
-      'Celimax received approachable creator content that introduces its products through a real routine.',
+      'Celimax received an instructional video that removes the guesswork from using retinal and ties each placement to a benefit. It works as education for new users and as a clear, conversion-friendly paid asset.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'arencia-campaign',
     brand: 'Arencia',
     title: 'Arencia Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@glowbyaure',
     videoSrc: '/videos/redesign/rd-aurela-arencia-web-v2.mp4',
     summary:
-      'Texture-led K-beauty content for Arencia.',
+      'A concern-by-concern guide matching each Arencia Booster Shot to the skin issue it targets.',
     brief:
-      'Arencia wanted content that shows its products’ textures and feel, giving viewers a clear sense of the experience before they buy.',
+      'Arencia offers several booster shots with different actives, so shoppers need help choosing. The brief was to explain the range clearly and make each product feel like the answer to a specific concern.',
     approach:
-      'Our talent Aurela Elshani built the video around close-up application, letting texture and finish lead the story.',
+      'Aurela Elshani builds the video as a visual chart. For each concern she shows a close-up of the area, then applies the matching booster, with on-screen labels pairing them: neck wrinkles with NAD+, closed comedones with glycolic acid, under-eye sagging with retinal, and smile lines with PDRN. Inset close-ups of the concern, together with dot-by-dot application, make each step instantly understandable.',
     outcome:
-      'Arencia received sensory, close-up creator content suited to short-form discovery.',
+      'Arencia received a highly saveable, education-led video that sells the full range by helping viewers self-select the right product. It works both as discovery content and as a performance asset aimed at specific skin concerns.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'lilyeve-campaign',
     brand: 'Lilyeve',
     title: 'Lilyeve Creator Campaign',
     vertical: 'Haircare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@albina',
     videoSrc: '/videos/redesign/rd-haircare-web-v2.mp4',
     summary:
-      'Haircare routine content for Lilyeve.',
+      'Scalp-care content showing how Lilyeve’s GROW:TURN Pink Collagen Capsule Ampoule fits into a hair routine.',
     brief:
-      'Lilyeve wanted its haircare shown in a real routine, with the results visible on camera.',
+      'Collagen is a familiar skincare ingredient but a new idea for hair. Lilyeve needed content that made scalp care feel easy and desirable, and showed the payoff: healthier-looking, shinier hair.',
     approach:
-      'Our talent Albina Mavriqi walked through her haircare routine, keeping each product in frame and finishing on the result.',
+      'Albina Mavriqi starts with a close-up of the applicator brush dispensing the ampoule straight onto her scalp, showing how simply it works. The video then cuts to the reveal, long, silky “glass-like” hair, before closing on the GROW:TURN Pink Collagen Capsule Ampoule with its name on screen. The before-the-routine and after-the-routine structure links the product to the result in seconds.',
     outcome:
-      'Lilyeve received routine-led creator content that shows its haircare in everyday use.',
+      'Lilyeve received content that introduces a new category, collagen for hair, through a clear demonstration and an aspirational result. It works as education for new audiences and as a strong visual asset for paid social.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'dr-althea-campaign',
     brand: 'Dr. Althea',
     title: 'Dr. Althea Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@khutjomatsoma',
     videoSrc: '/videos/redesign/rd-skincare-web-v2.mp4',
     summary:
-      'Skincare routine content for Dr. Althea.',
+      'A hydration-focused glass-skin moment with Dr. Althea’s Aqua Marine Jelly Mist.',
     brief:
-      'Dr. Althea wanted its skincare introduced through a creator routine that feels genuine and easy to follow.',
+      'Dr. Althea wanted to show its face mist as a quick hydration boost that leaves a fresh, dewy finish.',
     approach:
-      'Our talent Khutjo Matsoma built the products into her routine, with close-ups on texture and skin so the finish came through on camera.',
+      'Khutjo Matsoma uses the mist in a series of slow, close-up shots that capture the fine spray and the luminous skin it leaves behind. The caption, “facemistmaxxing,” adds a playful, trend-aware tone, while the lighting emphasises her dewy, glass-skin glow.',
     outcome:
-      'Dr. Althea received authentic creator content that introduces its products through a real routine.',
+      'Dr. Althea received a visually striking, trend-led video that communicates hydration and glow in seconds. It works for organic reach and as eye-catching paid creative.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'torriden-campaign',
     brand: 'Torriden',
     title: 'Torriden Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@albina',
     videoSrc: '/videos/redesign/rd-albina-torriden-web-v3.mp4',
     summary:
-      'Bouncy-skin creator content for Torriden’s Cellmazing collagen firming cream.',
+      'A firming-skincare story for Torriden’s Cellmazing Low Molecular Collagen Firming Cream, from texture to bouncy result.',
     brief:
-      'Torriden wanted its Cellmazing Firming Cream shown in a real routine, with the texture and the bouncy, plumped finish clear on camera.',
+      'Collagen creams are often seen as heavy. Torriden wanted to show that its Cellmazing Firming Cream feels light while delivering a firmer, bouncier look.',
     approach:
-      'Our talent Albina Mavriqi built the video around a before-and-after routine, showing the cream’s texture up close and finishing on the glow it leaves.',
+      'Albina Mavriqi opens on “when your skin loses its bounce…,” pressing on her cheek to make the concern tangible. She dispenses the cream, captioned “collagen creams are usually heavy, but this melts in like a moisturiser,” and lists its key ingredients on screen: 5D low-molecular collagen, peptides for elasticity and hyaluronic acid for hydration. She massages it in and finishes on a radiant, plumped result described as smoother-looking lines and hydration and firmness in one step.',
     outcome:
-      'Torriden received routine-led creator content that demonstrates its firming cream in a native short-form format.',
+      'Torriden received ingredient-led creator content that overturns a common objection and shows a clear result. Combined with her discount code, it works as both education and a conversion-focused asset.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'beauty-of-joseon-campaign',
     brand: 'Beauty of Joseon',
     title: 'Beauty of Joseon Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@saranda',
     videoSrc: '/videos/redesign/rd-saranda-boj-web-v2.mp4',
     summary:
-      'A seven-day under-eye routine for Beauty of Joseon’s Revive Eye Serum and Under Eye Patch.',
+      'A seven-day under-eye diary using Beauty of Joseon’s Revive Eye Serum and Revive Under Eye Patch with ginseng and retinal.',
     brief:
-      'Beauty of Joseon wanted its retinal eye duo shown over time, so viewers could see the routine and the change rather than a single application.',
+      'Beauty of Joseon wanted to show its retinal eye duo working over time, not after a single use. The content needed to build trust through consistency and a visible before-and-after.',
     approach:
-      'Our talent Saranda Mavriqi documented a day-by-day routine with close-ups under the eye, pairing the serum with the patches and returning to a before shot at the end.',
+      'Saranda Mavriqi opens with a split-screen before and after, then documents her routine day by day. She introduces the Revive Under Eye Patch (Ginseng + Retinal) and Revive Eye Serum, applying the patches and serum under the eye with Day 1, Day 3, Day 5 and Day 7 labels on screen. Tight, well-lit close-ups make the area easy to compare, and the video closes on the before shot so viewers can judge the change for themselves.',
     outcome:
-      'Beauty of Joseon received routine-led creator content that shows its eye care in real use over a week, in a native short-form format.',
+      'Beauty of Joseon received diary-style content that pairs two products in a believable routine and shows them in sustained use. It works as trust-building organic content and as a persuasive paid asset for eye-care shoppers.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'frankly-campaign',
     brand: 'Frankly',
     title: 'Frankly Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@khutjo.matsoma',
     videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v2.mp4',
     summary:
-      'Glass-skin creator content for Frankly’s Closer Serum.',
+      'A poreless glass-skin routine centred on a few drops of Frankly’s Closer Serum.',
     brief:
-      'Frankly wanted its Closer Serum shown on real skin, with the smoothing, poreless finish clear on camera.',
+      'Frankly wanted to show how its Closer Serum targets visible pores and texture, with a result viewers could clearly see on camera.',
     approach:
-      'Our talent Khutjo Matsoma opened on close-ups of texture and pores, applied the serum on camera and finished on the glass-skin result.',
+      'Khutjo Matsoma opens on the goal, “poreless glass skin,” then shows extreme close-ups of texture and pores to set the scene. She applies a few drops of Frankly Closer Serum from the dropper, presses it into her skin and finishes with radiant, even-looking close-ups. Warm light and slow, deliberate movements emphasise the smooth, glassy finish.',
     outcome:
-      'Frankly received routine-led creator content that demonstrates its serum in a native short-form format.',
+      'Frankly received a clear, results-focused serum demonstration with a strong visual payoff. It works as organic content for Khutjo’s skincare audience and as paid creative for viewers concerned about pores and texture.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
   {
     slug: 'biodance-campaign',
     brand: 'Biodance',
     title: 'Biodance Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@therealbeatrixramosaj',
     videoSrc: '/videos/redesign/rd-beatrix-biodance-web-v2.mp4',
     summary:
-      'Day-in-the-life creator content for Biodance’s overnight mask and Caviar PDRN Jelly Serum Mist.',
+      'A day-in-the-life story showing how Biodance’s overnight mask glow lasts, topped up with the Caviar PDRN Jelly Serum Mist.',
     brief:
-      'Biodance wanted its overnight mask and serum mist shown as part of a real day, so the long-lasting glow came across rather than a single application.',
+      'Biodance wanted to sell the idea of a long-lasting “24-hour mask glow.” The content had to show both products in context: the overnight mask at home, and the serum mist as a quick refresh throughout the following day.',
     approach:
-      'Our talent Beatrix Ramosaj followed the glow from an evening mask through the next day, with time stamps and quick touch-ups using the serum mist.',
+      'Beatrix Ramosaj builds the story around a clock. Time stamps run from 8PM, when she applies the mask in bed, through her evening at home, to the next afternoon at her laptop, outdoors and out for the day. At each point she reaches for the Caviar PDRN Jelly Serum Mist, so viewers see how the glow is maintained in real life. Warm interiors and sunny exteriors keep the video aspirational yet relatable.',
     outcome:
-      'Biodance received lifestyle-led creator content that shows its products in everyday use, in a native short-form format.',
+      'Biodance received lifestyle-led content that demonstrates two products and a clear usage pattern, three hours at night and three seconds to keep the glow. The narrative format holds attention and gives the brand a versatile asset for organic and paid use.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+
 ]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
