@@ -284,7 +284,7 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Frankly': { src: '/images/logos/watermark/frankly-v2.png', width: 640, height: 173, widthPct: 46 },
   'Biodance': { src: '/images/logos/watermark/biodance-v2.png', width: 640, height: 121, widthPct: 48 },
   'Sephora': { src: '/images/logos/watermark/sephora-v2.png', width: 640, height: 83, widthPct: 56 },
-  'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v2.png', width: 640, height: 120, widthPct: 50 },
+  'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v3.png', width: 640, height: 134, widthPct: 54 },
   'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
   'SKIN1004': { src: '/images/logos/watermark/skin1004-v2.png', width: 640, height: 51, widthPct: 58 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v3.png', width: 640, height: 175, widthPct: 46 },
