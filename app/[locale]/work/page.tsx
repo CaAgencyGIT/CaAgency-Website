@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
@@ -13,7 +14,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
 import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
-import { filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
+import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
 // VideoObject schema for SEO
@@ -64,7 +65,7 @@ const gridVideos = workGridOrder.map((entry) => {
     brand: films[entry.key].brand,
     // Older work videos have the brand wordmark burned in; the redesign films
     // don't, so they get the same treatment as an overlay.
-    watermark: films[entry.key].brand,
+    watermark: brandWatermarks[films[entry.key].brand],
     study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
   }
 })
@@ -150,12 +151,16 @@ export default async function WorkPage({ params }: Props) {
                     className="rounded-card mobile:rounded-[15px]"
                   />
                   {'watermark' in video && video.watermark && (
-                    <span
+                    <Image
+                      src={video.watermark.src}
+                      alt=""
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-x-3 top-[46%] z-[1] -translate-y-1/2 text-center font-work-sans text-[21px] mobile:text-[15px] font-light uppercase tracking-[0.32em] text-white/90 [text-shadow:0_1px_10px_rgba(0,0,0,0.35)]"
-                    >
-                      {video.watermark}
-                    </span>
+                      width={video.watermark.width}
+                      height={video.watermark.height}
+                      sizes="200px"
+                      style={{ width: `${video.watermark.widthPct}%` }}
+                      className="pointer-events-none absolute left-1/2 top-[46%] z-[1] h-auto -translate-x-1/2 -translate-y-1/2 opacity-90 [filter:drop-shadow(0_1px_8px_rgba(0,0,0,0.35))]"
+                    />
                   )}
                   {study && (
                     // Case-study routes are English-only (site) pages, so use

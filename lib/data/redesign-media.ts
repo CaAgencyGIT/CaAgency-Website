@@ -236,3 +236,25 @@ export const heroFilmRowItems: HeroFilmRowItem[] = [
   { src: '/images/hero/collage/huda.webp', alt: 'Melly at the Huda Beauty event, CA Agency campaign', position: '62% 50%' },
   { src: '/images/hero/collage/rhode.webp', alt: 'Rhode campaign content grid, CA Agency' },
 ]
+
+// White brand logos overlaid on the redesign films (the older work videos
+// have theirs burned in). widthPct balances wide wordmarks against tall ones.
+export const brandWatermarks: Record<string, { src: string; width: number; height: number; widthPct: number }> = {
+  'Medicube': { src: '/images/logos/watermark/medicube.png', width: 483, height: 81, widthPct: 49 },
+  'Anua': { src: '/images/logos/watermark/anua.png', width: 640, height: 89, widthPct: 54 },
+  'Dr. Althea': { src: '/images/logos/watermark/dr-althea.png', width: 640, height: 185, widthPct: 37 },
+  'Valentino Beauty': { src: '/images/logos/watermark/valentino-beauty.png', width: 640, height: 183, widthPct: 37 },
+  'Mixsoon': { src: '/images/logos/watermark/mixsoon.png', width: 640, height: 138, widthPct: 43 },
+  'Rare Beauty': { src: '/images/logos/watermark/rare-beauty.png', width: 312, height: 56, widthPct: 47 },
+  'Celimax': { src: '/images/logos/watermark/celimax.png', width: 404, height: 81, widthPct: 45 },
+  'd’Alba': { src: '/images/logos/watermark/dalba.png', width: 640, height: 243, widthPct: 32 },
+  'Armani Beauty': { src: '/images/logos/watermark/armani-beauty.png', width: 576, height: 141, widthPct: 40 },
+  'Lilyeve': { src: '/images/logos/watermark/lilyeve.png', width: 640, height: 204, widthPct: 35 },
+  'Tropic': { src: '/images/logos/watermark/tropic.png', width: 640, height: 106, widthPct: 49 },
+  'Purito': { src: '/images/logos/watermark/purito.png', width: 640, height: 186, widthPct: 37 },
+  'Saie': { src: '/images/logos/watermark/saie.png', width: 284, height: 100, widthPct: 34 },
+  'Fenty Beauty': { src: '/images/logos/watermark/fenty-beauty.png', width: 640, height: 36, widthPct: 72 },
+  'Arencia': { src: '/images/logos/watermark/arencia.png', width: 640, height: 143, widthPct: 42 },
+  'Kérastase': { src: '/images/logos/watermark/kerastase.png', width: 640, height: 181, widthPct: 38 },
+  'Patrick Ta': { src: '/images/logos/watermark/patrick-ta.png', width: 640, height: 48, widthPct: 72 },
+}
