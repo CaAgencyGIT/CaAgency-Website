@@ -210,9 +210,11 @@
     "talentSubmission": "Talent-Bewerbung",
     "talentDescription": "Sie sind Content Creator und möchten Teil unseres Rosters werden? Wir freuen uns auf Sie.",
     "hqLabel": "CA Agency Hauptsitz · Dubai",
+    "hqDivision": "Dubai — Globale Division",
     "findOnMaps": "Auf Google Maps finden",
     "mapTitle": "Karte mit dem Hauptsitz von CA Agency im Meydan Grandstand, Dubai",
     "usOfficeLabel": "CA Agency US-Niederlassung",
+    "usDivision": "USA — US-Division",
     "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware"
   },
   "contactForm": {

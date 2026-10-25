@@ -15,23 +15,26 @@ type Props = {
 
 // Single source per office so each embed and its button can never point at
 // different places.
+// City-level zoom so both maps read the same way.
 const mapsUrls = (address: string) => {
   const query = encodeURIComponent(address)
   return {
     search: `https://www.google.com/maps/search/?api=1&query=${query}`,
-    embed: `https://www.google.com/maps?q=${query}&output=embed`,
+    embed: `https://www.google.com/maps?q=${query}&z=12&output=embed`,
   }
 }
 
 const OFFICES = [
   {
     labelKey: 'hqLabel',
+    divisionKey: 'hqDivision',
     mapTitleKey: 'mapTitle',
     lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, U.A.E.'],
     ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
   },
   {
     labelKey: 'usOfficeLabel',
+    divisionKey: 'usDivision',
     mapTitleKey: 'usMapTitle',
     lines: ['Corporation Trust Center,', 'Orange Street,', 'Wilmington, DE 19801,', 'United States'],
     // Street number only in the map query, so the pin lands on the building.
@@ -122,8 +125,11 @@ export default async function ContactPage({ params }: Props) {
               >
                 <div className="grid md:grid-cols-2">
                   <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[30px]">
-                    <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-5">
+                    <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-3">
                       {t(office.labelKey)}
+                    </p>
+                    <p className="font-anegra text-[24px] mobile:text-[21px] leading-[1.3] text-foreground-primary mb-5">
+                      {t(office.divisionKey)}
                     </p>
                     <p
                       dir="ltr"

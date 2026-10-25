@@ -210,9 +210,11 @@
     "talentSubmission": "Candidatura de talento",
     "talentDescription": "¿Eres creador de contenido y quieres unirte a nuestro roster? Nos encantará conocerte.",
     "hqLabel": "Sede de CA Agency · Dubái",
+    "hqDivision": "Dubái — División global",
     "findOnMaps": "Encuéntranos en Google Maps",
     "mapTitle": "Mapa de la sede de CA Agency en Meydan Grandstand, Dubái",
     "usOfficeLabel": "Sucursal de CA Agency en EE. UU.",
+    "usDivision": "EE. UU. — División de EE. UU.",
     "usMapTitle": "Mapa de la oficina de CA Agency en EE. UU., en Orange Street, Wilmington, Delaware"
   },
   "contactForm": {

@@ -210,9 +210,11 @@
     "talentSubmission": "Talent Submission",
     "talentDescription": "Are you a content creator looking to join our roster? We'd love to hear from you.",
     "hqLabel": "CA Agency HQ · Dubai",
+    "hqDivision": "Dubai — Global Division",
     "findOnMaps": "Find us on Google Maps",
     "mapTitle": "Map showing the CA Agency headquarters at Meydan Grandstand, Dubai",
     "usOfficeLabel": "CA Agency US Branch",
+    "usDivision": "USA — US Division",
     "usMapTitle": "Map showing the CA Agency USA office on Orange Street, Wilmington, Delaware"
   },
   "contactForm": {
