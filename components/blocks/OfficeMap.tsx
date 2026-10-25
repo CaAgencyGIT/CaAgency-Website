@@ -125,11 +125,11 @@ export default function OfficeMap({
               </circle>
             )}
             <defs>
-              <path id={`city-ring-${current.id}`} d={`M ${current.x - 62} ${current.y} a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0`} />
+              <path id={`city-ring-${current.id}`} d={`M ${current.x - 70} ${current.y - 18} A 70 70 0 0 1 ${current.x + 70} ${current.y - 18}`} />
             </defs>
             <text key={current.id} className="office-map-city">
-              <textPath href={`#city-ring-${current.id}`} startOffset="2%">
-                {`${current.city.toUpperCase()} · ${current.city.toUpperCase()} ·`}
+              <textPath href={`#city-ring-${current.id}`} startOffset="50%" textAnchor="middle">
+                {current.city.toUpperCase()}
               </textPath>
             </text>
           </svg>
