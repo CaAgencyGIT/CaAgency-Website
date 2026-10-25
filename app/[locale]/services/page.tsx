@@ -9,7 +9,6 @@ import styles from './services.module.css'
 
 type Props = {
   params: Promise<{ locale: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -103,9 +102,7 @@ const servicesSchema = {
 
 // Oct 2026 approved design (CA-Services-Final-Designs): five photo cards and
 // a white logo-free "Ready to Get Started?" tile. Card image, title and
-// "Explore service" open the service page in a new tab. Slot 3 has two
-// approved photos; Dariia is the default and ?slot3=khutjo shows Khutjo for
-// review, with no picker on the page itself.
+// "Explore service" open the service page in a new tab.
 const services = [
   {
     number: 1,
@@ -149,12 +146,6 @@ const services = [
   },
 ]
 
-const khutjoSlot3 = {
-  photo: 'khutjo',
-  image: { src: '/images/services/final/03c-khutjo.jpg', width: 972, height: 1296 },
-  alt: 'Khutjo with a glossy finished beauty look in side profile.',
-}
-
 const ArrowRight = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -163,12 +154,10 @@ const ArrowRight = () => (
 
 const newTab = { target: '_blank', rel: 'noopener noreferrer' } as const
 
-export default async function ServicesPage({ params, searchParams }: Props) {
+export default async function ServicesPage({ params }: Props) {
   const { locale } = await params
-  const { slot3 } = await searchParams
   const t = await getTranslations({ locale, namespace: 'services' })
   const tCommon = await getTranslations({ locale, namespace: 'common' })
-  const cards = services.map((service) => (service.number === 3 && slot3 === 'khutjo' ? { ...service, ...khutjoSlot3 } : service))
 
   return (
     <div className={styles.page}>
@@ -196,7 +185,7 @@ export default async function ServicesPage({ params, searchParams }: Props) {
         </div>
 
         <div className={styles.grid}>
-          {cards.map((service) => {
+          {services.map((service) => {
             const href = `/services/${service.slug}`
             const title = t(`${service.key}.title`)
             return (
