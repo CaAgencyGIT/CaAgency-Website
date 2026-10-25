@@ -423,7 +423,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Valentino Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    creator: '@dariiabordun',
+    creator: '@_idareen_',
     videoSrc: '/videos/redesign/rd-dariia-valentino-web-v2.mp4',
     summary:
       'A colour-matching makeup tutorial pairing Valentino’s Spike lipstick and Eye2Cheek blush into one coordinated look.',
@@ -443,7 +443,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Chanel Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
-    creator: '@dariiabordun',
+    creator: '@_idareen_',
     videoSrc: '/videos/redesign/rd-dariia-chanel-web-v2.mp4',
     summary:
       'A one-product base tutorial showing how Chanel’s Les Beiges Pearly Glow creates a pearlescent skin finish.',
@@ -704,7 +704,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@closmain',
-    videoSrc: '/videos/redesign/rd-anton-azelaic-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-anton-azelaic-web-v3.mp4',
     summary:
       'A daily-routine video for SKIN1004’s Azelaic Acid 10%, framed around Anton’s own experience with acne-prone skin.',
     brief:
