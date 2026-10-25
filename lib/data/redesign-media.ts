@@ -240,7 +240,7 @@ export const heroFilmRowItems: HeroFilmRowItem[] = [
 // have theirs burned in). widthPct balances wide wordmarks against tall ones.
 export const brandWatermarks: Record<string, { src: string; width: number; height: number; widthPct: number }> = {
   'Medicube': { src: '/images/logos/watermark/medicube-v2.png', width: 648, height: 239, widthPct: 48 },
-  'Anua': { src: '/images/logos/watermark/anua-v2.png', width: 647, height: 162, widthPct: 48 },
+  'Anua': { src: '/images/logos/watermark/anua-v2.png', width: 647, height: 162, widthPct: 40 },
   'Dr. Althea': { src: '/images/logos/watermark/dr-althea-v2.png', width: 646, height: 191, widthPct: 44 },
   'Valentino Beauty': { src: '/images/logos/watermark/valentino-beauty-v3.png', width: 640, height: 470, widthPct: 36 },
   'Mixsoon': { src: '/images/logos/watermark/mixsoon-v2.png', width: 646, height: 144, widthPct: 51 },
