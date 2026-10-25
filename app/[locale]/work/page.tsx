@@ -58,7 +58,9 @@ const workVideosBySrc = new Map(workVideos.map((video) => [video.src, video]))
 const gridVideos = workGridOrder.map((entry) => {
   if (entry.type === 'video') {
     const video = workVideosBySrc.get(entry.src)!
-    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src) }
+    // Burned-in marks on these are faint or an older logo; overlay the current one.
+    const watermark = ['Anua', 'Purito', 'Mixsoon', 'Haruharu Wonder', 'Revolve Beauty', 'YesStyle'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
+    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark }
   }
   return {
     src: filmSrc(entry.key),
@@ -159,7 +161,7 @@ export default async function WorkPage({ params }: Props) {
                       height={video.watermark.height}
                       sizes="200px"
                       style={{ width: `${video.watermark.widthPct}%` }}
-                      className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 opacity-90 [filter:drop-shadow(0_1px_8px_rgba(0,0,0,0.35))]"
+                      className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
                     />
                   )}
                   {study && (
