@@ -10,6 +10,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import HeadingAccent from '@/components/ui/HeadingAccent'
 import { caseStudies, getCaseStudy } from '@/lib/data/case-studies'
 import { posterFor, publishedDateFor } from '@/lib/data/videos'
+import { brandWatermarks } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 
@@ -105,6 +106,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <section className="relative overflow-hidden bg-background-base py-[80px] tablet:py-[60px] mobile:py-[50px] px-section-x">
         <div className="relative z-[1] max-w-container mx-auto">
           <div className="hero-rise-media max-w-[800px]">
+            {brandWatermarks[study.brand] && (
+              <Image
+                src={brandWatermarks[study.brand].src}
+                alt={`${study.brand} logo`}
+                width={brandWatermarks[study.brand].width}
+                height={brandWatermarks[study.brand].height}
+                sizes="220px"
+                priority
+                className="mb-8 h-auto max-h-[64px] w-auto max-w-[220px] object-contain object-left [filter:brightness(0)] mobile:max-h-[52px] mobile:max-w-[180px]"
+              />
+            )}
             <span className="mb-3 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red">
               {study.vertical} · Case Study
             </span>

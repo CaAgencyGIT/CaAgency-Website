@@ -21,8 +21,7 @@ import { posterFor } from '@/lib/data/videos'
 import { heroFilmRowItems } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
-import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
-import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
+import IntroFeature from '@/components/blocks/IntroFeature'
 import FAQ from '@/components/blocks/FAQ'
 
 export const revalidate = 3600
@@ -105,12 +104,9 @@ const talents = [
 // by visitors. Keep in sync with the `home` defaults in
 // lib/site-content/definitions.ts.
 const mediaCarouselItems = [
-  { type: 'video' as const, src: '/videos/work/reel-DX2BnbDMhd9-clean.mp4', alt: 'TIRTIR matcha skincare campaign reel', poster: posterFor('/videos/work/reel-DX2BnbDMhd9-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DT3Pv52jCqc-clean.mp4', alt: 'Rhode blush campaign reel', poster: posterFor('/videos/work/reel-DT3Pv52jCqc-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DYKuGHLNs6F-clean.mp4', alt: 'Frozen gua sha skincare campaign reel', poster: posterFor('/videos/work/reel-DYKuGHLNs6F-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DX2Bva6sJk6-clean.mp4', alt: 'Fenty Beauty campaign reel', poster: posterFor('/videos/work/reel-DX2Bva6sJk6-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DK7rKHjOr6a-clean.mp4', alt: 'Bali Body campaign reel', poster: posterFor('/videos/work/reel-DK7rKHjOr6a-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DT3Qg4sjHPm-clean.mp4', alt: 'Haruharu Wonder serum mist campaign reel', poster: posterFor('/videos/work/reel-DT3Qg4sjHPm-clean.mp4') },
+  { src: '/videos/work/reel-albina-ilia-blush-combo-clean-sharp-v2.mp4', alt: 'Albina for ILIA blush campaign reel', poster: '/images/video-thumbs/reel-albina-ilia-blush-combo-clean-sharp-v2.jpg' },
+  { src: '/videos/work/reel-DT3Pv52jCqc-clean-sharp-v2.mp4', alt: 'Rhode blush campaign reel', poster: '/images/video-thumbs/reel-DT3Pv52jCqc-clean-sharp-v2.jpg' },
+  { src: '/videos/work/reel-DX2Bva6sJk6-clean-sharp-v2.mp4', alt: 'Fenty Beauty campaign reel', poster: '/images/video-thumbs/reel-DX2Bva6sJk6-clean-sharp-v2.jpg' },
 ]
 
 export default async function HomePage({ params }: Props) {
@@ -154,53 +150,15 @@ export default async function HomePage({ params }: Props) {
       </section>
 
 
-      {/* About CA Agency Section */}
-      <section className="bg-background-base py-sec-lg mobile:py-[72px] px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-[80px] mobile:gap-[50px]">
-            {/* Left Column - Media Carousel */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-              <ScrollReveal delay={0} yOffset={20}>
-                <DeferredMediaCarousel
-                  items={mediaCarouselItems}
-                  // Client decision: autoplay regardless of
-                  // prefers-reduced-motion (Oct 2026).
-                  ignoreReducedMotion
-                  labels={{
-                    previous: tCommon('previous'),
-                    next: tCommon('next'),
-                    play: tCommon('play'),
-                    playVideo: tCommon('playVideo'),
-                    playCarousel: tCommon('playCarousel'),
-                    pauseCarousel: tCommon('pauseCarousel'),
-                    goToSlide: tCommon.raw('goToSlide'),
-                  }}
-                  fallback={<MediaCarouselFallback items={mediaCarouselItems} />}
-                />
-              </ScrollReveal>
-            </div>
-            {/* Right Column - Text Content */}
-            <div className="w-full lg:w-1/2">
-              <ScrollReveal delay={0.1} yOffset={20}>
-                <SectionHeading align="start" eyebrow={t('eyebrowIntro')} title={t('thisIsCA')} className="mb-7" />
-              </ScrollReveal>
-              <ScrollReveal delay={0.15} yOffset={20}>
-                <Text color="dark" size="sm" className="mb-6 opacity-80">
-                  {t('aboutDescription')}
-                </Text>
-              </ScrollReveal>
-              <ScrollReveal delay={0.2} yOffset={20}>
-                <Text color="dark" size="sm" className="mb-8 opacity-80">
-                  {t('crossPlatform')}
-                </Text>
-              </ScrollReveal>
-              <ScrollReveal delay={0.25} yOffset={20}>
-                <Button href="/about" locale={locale as Locale}>{tCommon('moreAboutUs')}</Button>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <IntroFeature
+        eyebrow={t('thisIsCA')}
+        kicker={t('eyebrowIntro')}
+        title={t('thisIsCA')}
+        paragraphs={[t('aboutDescription'), t('crossPlatform')]}
+        button={{ label: tCommon('moreAboutUs'), href: '/about' }}
+        items={mediaCarouselItems}
+        locale={locale as Locale}
+      />
 
       {/* Talents Section */}
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">

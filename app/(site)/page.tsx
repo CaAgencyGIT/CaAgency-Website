@@ -19,10 +19,9 @@ import { heroFilmRowItems } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
-import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
-import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
 import FAQ from '@/components/blocks/FAQ'
 import ServicesOverview from '@/components/blocks/ServicesOverview'
+import IntroFeature from '@/components/blocks/IntroFeature'
 
 // ISR: prerender at build, refresh the DB-backed footer/content hourly.
 export const revalidate = 3600
@@ -184,38 +183,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-background-base py-sec-lg mobile:py-[72px] px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-[80px] mobile:gap-[50px]">
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-              <ScrollReveal delay={0} yOffset={20}>
-                <DeferredMediaCarousel
-                  items={introMediaItems}
-                  // Client decision: autoplay regardless of
-                  // prefers-reduced-motion (Oct 2026).
-                  ignoreReducedMotion
-                  fallback={<MediaCarouselFallback items={introMediaItems} />}
-                />
-              </ScrollReveal>
-            </div>
-            <div className="w-full lg:w-1/2">
-              <ScrollReveal delay={0.1} yOffset={20}>
-                <SectionHeading align="start" eyebrow="Who We Are" title={content.intro.title} className="mb-7" />
-              </ScrollReveal>
-              {content.intro.paragraphs.map((paragraph, index) => (
-                <ScrollReveal key={index} delay={0.15 + index * 0.05} yOffset={20}>
-                  <Text color="dark" size="sm" className="mb-6 opacity-80">
-                    {paragraph.text}
-                  </Text>
-                </ScrollReveal>
-              ))}
-              <ScrollReveal delay={0.25} yOffset={20}>
-                <Button href={content.intro.buttonHref}>{content.intro.buttonLabel}</Button>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <IntroFeature
+        eyebrow={content.intro.title}
+        kicker="Who We Are"
+        title="Creators who shape culture, campaigns that move product."
+        paragraphs={content.intro.paragraphs.map((paragraph) => paragraph.text)}
+        button={{ label: content.intro.buttonLabel, href: content.intro.buttonHref }}
+        items={introMediaItems.map((item) => ({ src: item.src, alt: item.alt ?? 'CA Agency campaign reel', poster: item.poster }))}
+      />
 
       <ServicesOverview content={content.servicesOverview} eyebrow="Services" />
 

@@ -280,5 +280,8 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Beauty of Joseon': { src: '/images/logos/watermark/beauty-of-joseon-v3.png', width: 480, height: 542, widthPct: 30 },
   'Frankly': { src: '/images/logos/watermark/frankly-v2.png', width: 640, height: 173, widthPct: 46 },
   'Biodance': { src: '/images/logos/watermark/biodance-v2.png', width: 640, height: 121, widthPct: 48 },
+  'Sephora': { src: '/images/logos/watermark/sephora-v2.png', width: 640, height: 83, widthPct: 56 },
+  'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v2.png', width: 640, height: 120, widthPct: 50 },
+  'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
