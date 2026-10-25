@@ -13,11 +13,30 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-// Single source for the HQ address so the embed and the button can never
-// point at different places.
-const HQ_MAPS_QUERY = encodeURIComponent('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai')
-const HQ_MAPS_SEARCH_URL = `https://www.google.com/maps/search/?api=1&query=${HQ_MAPS_QUERY}`
-const HQ_MAPS_EMBED_URL = `https://www.google.com/maps?q=${HQ_MAPS_QUERY}&output=embed`
+// Single source per office so each embed and its button can never point at
+// different places.
+const mapsUrls = (address: string) => {
+  const query = encodeURIComponent(address)
+  return {
+    search: `https://www.google.com/maps/search/?api=1&query=${query}`,
+    embed: `https://www.google.com/maps?q=${query}&output=embed`,
+  }
+}
+
+const OFFICES = [
+  {
+    labelKey: 'hqLabel',
+    mapTitleKey: 'mapTitle',
+    lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, U.A.E.'],
+    ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
+  },
+  {
+    labelKey: 'usOfficeLabel',
+    mapTitleKey: 'usMapTitle',
+    lines: ['Orange Street,', 'Wilmington, DE 19801,', 'United States'],
+    ...mapsUrls('Orange Street, Wilmington, DE 19801, United States'),
+  },
+] as const
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
@@ -91,49 +110,50 @@ export default async function ContactPage({ params }: Props) {
         </div>
       </section>
 
-      {/* CA Agency HQ office block with embedded map (July 2026 R15) */}
+      {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15) and USA (Oct 2026) */}
       <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">
         <div className="max-w-container mx-auto">
-          <div className="max-w-[850px] mx-auto">
-            <div className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden">
-              <div className="grid md:grid-cols-2">
-                <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[30px]">
-                  <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-5">
-                    {t('hqLabel')}
-                  </p>
-                  <p
-                    dir="ltr"
-                    className="font-work-sans text-[15px] leading-[1.9] text-foreground-body uppercase tracking-[0.05em] mb-8"
-                  >
-                    Meydan Grandstand, 6th Floor,
-                    <br />
-                    Meydan Road, Nad Al Sheba,
-                    <br />
-                    Dubai, U.A.E.
-                  </p>
-                  <div>
-                    <Button
-                      href={HQ_MAPS_SEARCH_URL}
-                      size="sm"
-                      unlocalized
-                      target="_blank"
+          <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-6">
+            {OFFICES.map((office) => (
+              <div
+                key={office.labelKey}
+                className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden"
+              >
+                <div className="grid md:grid-cols-2">
+                  <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[30px]">
+                    <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-5">
+                      {t(office.labelKey)}
+                    </p>
+                    <p
+                      dir="ltr"
+                      className="font-work-sans text-[15px] leading-[1.9] text-foreground-body uppercase tracking-[0.05em] mb-8"
                     >
-                      {t('findOnMaps')}
-                    </Button>
+                      {office.lines.map((line, i) => (
+                        <span key={line}>
+                          {i > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                    <div>
+                      <Button href={office.search} size="sm" unlocalized target="_blank">
+                        {t('findOnMaps')}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="h-[320px] mobile:h-[260px] md:h-auto md:min-h-[340px]">
+                    <iframe
+                      src={office.embed}
+                      title={t(office.mapTitleKey)}
+                      className="h-full w-full border-0"
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
                   </div>
                 </div>
-                <div className="h-[320px] mobile:h-[260px] md:h-auto md:min-h-[340px]">
-                  <iframe
-                    src={HQ_MAPS_EMBED_URL}
-                    title={t('mapTitle')}
-                    className="h-full w-full border-0"
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

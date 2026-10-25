@@ -211,7 +211,9 @@
     "talentDescription": "로스터에 합류하고 싶은 콘텐츠 크리에이터이신가요? 연락을 기다리겠습니다.",
     "hqLabel": "CA Agency 본사",
     "findOnMaps": "Google 지도에서 보기",
-    "mapTitle": "두바이 메이단 그랜드스탠드에 위치한 CA Agency 본사 지도"
+    "mapTitle": "두바이 메이단 그랜드스탠드에 위치한 CA Agency 본사 지도",
+    "usOfficeLabel": "CA Agency 미국 오피스",
+    "usMapTitle": "델라웨어주 윌밍턴 오렌지 스트리트에 위치한 CA Agency 미국 오피스 지도"
   },
   "contactForm": {
     "thankYou": "감사합니다!",

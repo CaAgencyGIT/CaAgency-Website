@@ -211,7 +211,9 @@
     "talentDescription": "Sie sind Content Creator und möchten Teil unseres Rosters werden? Wir freuen uns auf Sie.",
     "hqLabel": "CA Agency Hauptsitz",
     "findOnMaps": "Auf Google Maps finden",
-    "mapTitle": "Karte mit dem Hauptsitz von CA Agency im Meydan Grandstand, Dubai"
+    "mapTitle": "Karte mit dem Hauptsitz von CA Agency im Meydan Grandstand, Dubai",
+    "usOfficeLabel": "CA Agency Büro USA",
+    "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware"
   },
   "contactForm": {
     "thankYou": "Vielen Dank!",
