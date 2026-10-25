@@ -50,11 +50,11 @@ const OFFICES = [
     labelKey: 'nlOfficeLabel',
     divisionKey: 'nlDivision',
     mapTitleKey: 'nlMapTitle',
-    city: 'Espel',
-    lon: 5.69,
-    lat: 52.72,
-    lines: ['Poldermolen 32,', '8311 BG Espel,', 'The Netherlands'],
-    ...mapsUrls('Poldermolen 32, 8311 BG Espel, Netherlands'),
+    city: 'Amsterdam',
+    lon: 4.83,
+    lat: 52.35,
+    lines: ['B. Amsterdam,', 'Johan Huizingalaan 763A,', '1066 VH Amsterdam,', 'The Netherlands'],
+    ...mapsUrls('B. Amsterdam, Johan Huizingalaan 763A, 1066 VH Amsterdam, Netherlands', 'Johan Huizingalaan 763A, 1066 VH Amsterdam, Netherlands'),
   },
 ] as const
 

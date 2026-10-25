@@ -41,7 +41,7 @@ const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
 const OFFICES = [
   { divisionKey: 'hqDivision', city: 'Dubai' },
   { divisionKey: 'usDivision', city: 'Wilmington' },
-  { divisionKey: 'nlDivision', city: 'Espel' },
+  { divisionKey: 'nlDivision', city: 'Amsterdam' },
 ] as const
 
 // About page (Oct 2026, after scooperz.com/about-us, shorter and in the CA
