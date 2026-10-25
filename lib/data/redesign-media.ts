@@ -1,3 +1,4 @@
+import type { HeroFilmRowItem } from '@/components/blocks/HeroFilmRow'
 import { posterFor } from '@/lib/data/videos'
 
 // October 2026 redesign: creator films from the approved handoff package
@@ -220,15 +221,15 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
 
 // Homepage hero film row (Oct 2026 client feedback): exact order and
 // photos the client specified, graded/sharpened as a set for consistency.
-export const heroFilmRowItems = [
+export const heroFilmRowItems: HeroFilmRowItem[] = [
   {
     stack: [
-      { src: '/images/hero/graded/khutjo-closeup.webp', alt: 'Khutjo closeup, CA Agency campaign', width: 540, height: 595 },
-      { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo for Medicube, CA Agency campaign', width: 640, height: 1136 },
-    ] as [{ src: string; alt: string; width: number; height: number }, { src: string; alt: string; width: number; height: number }],
+      { src: '/images/hero/graded/khutjo-closeup.webp', alt: 'Khutjo closeup, CA Agency campaign', position: '50% 45%' },
+      { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo at the Medicube event, CA Agency campaign', position: '50% 68%' },
+    ],
   },
-  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
-  { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },
-  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', width: 810, height: 1440 },
-  { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency', width: 720, height: 1347 },
+  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', position: '50% 30%', featured: true },
+  { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event' },
+  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', position: '50% 30%' },
+  { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency' },
 ]
