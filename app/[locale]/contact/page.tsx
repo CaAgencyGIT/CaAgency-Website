@@ -165,7 +165,7 @@ export default async function ContactPage({ params }: Props) {
       />
 
       {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15), USA and the Netherlands (Oct 2026) */}
-      <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">
+      <section className="bg-background-soft pt-[80px] pb-[100px] mobile:pt-[48px] mobile:pb-[60px] px-section-x">
         <div className="max-w-container mx-auto">
           <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-6">
             {OFFICES.map((office) => (
