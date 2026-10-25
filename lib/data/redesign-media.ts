@@ -228,7 +228,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'melly-rare' },
-  { type: 'film', key: 'haircare' },
+  { type: 'film', key: 'georgii-anua' },
   { type: 'film', key: 'rebecca-saie' },
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
   { type: 'film', key: 'beatrix-patrickta' },
@@ -236,7 +236,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'albina-torriden' },
   { type: 'film', key: 'skincare' },
   { type: 'film', key: 'jay-mixsoon' },
-  { type: 'film', key: 'georgii-anua' },
+  { type: 'film', key: 'haircare' },
   { type: 'film', key: 'rebecca-haruharu' },
   { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
 ]
