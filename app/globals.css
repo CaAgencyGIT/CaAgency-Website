@@ -253,6 +253,9 @@ section {
   object-fit: cover;
 }
 .hero-collage-tile video { pointer-events: none; }
+/* Hidden (not removed: iOS won't play an undisplayed video) until frames play. */
+.collage-video { opacity: 0.001; transition: opacity 0.35s ease; }
+.collage-video[data-playing] { opacity: 1; }
 .collage-video::-webkit-media-controls,
 .collage-video::-webkit-media-controls-panel,
 .collage-video::-webkit-media-controls-overlay-play-button,
@@ -265,7 +268,7 @@ section {
 }
 @media (max-width: 760px) {
   .hero-collage {
-    --collage-gap: 10px;
+    --collage-gap: 8px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: none;
     grid-auto-flow: row dense;
@@ -273,9 +276,9 @@ section {
     margin-left: 0;
     aspect-ratio: auto;
   }
-  .hero-collage-col { aspect-ratio: 9 / 16; }
-  .hero-collage-featured { grid-column: 1 / -1; aspect-ratio: 4 / 5; }
-  .hero-collage-tile { border-radius: 14px; }
+  .hero-collage-col { aspect-ratio: 2 / 3; }
+  .hero-collage-featured { grid-column: 1 / -1; aspect-ratio: 1 / 1; }
+  .hero-collage-tile { border-radius: 12px; }
 }
 
 @keyframes status-enter {

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 // Decorative autoplay tile: muted, looping, inline, no controls. Plays
@@ -25,6 +26,13 @@ export default function CollageVideo({
     video.muted = true
     video.defaultMuted = true
     video.setAttribute('muted', '')
+
+    // Reveal the video only once frames are actually playing; until then the
+    // poster still underneath shows, so a blocked autoplay never surfaces the
+    // browser's own play button (iOS Low Power Mode).
+    const onPlaying = () => video.setAttribute('data-playing', '')
+    video.addEventListener('playing', onPlaying)
+    if (!video.paused && video.readyState > 2) onPlaying()
 
     let visible = false
     const tryPlay = () => {
@@ -53,15 +61,19 @@ export default function CollageVideo({
       document.removeEventListener('visibilitychange', tryPlay)
       video.removeEventListener('canplay', tryPlay)
       video.removeEventListener('pause', tryPlay)
+      video.removeEventListener('playing', onPlaying)
       window.clearInterval(retry)
     }
   }, [])
 
   return (
+    <>
+    {poster && (
+      <Image src={poster} alt="" aria-hidden fill sizes="(max-width: 760px) 100vw, 20vw" priority style={position ? { objectPosition: position } : undefined} />
+    )}
     <video
       ref={ref}
       src={src}
-      poster={poster}
       aria-label={label}
       muted
       loop
@@ -74,5 +86,6 @@ export default function CollageVideo({
       className="collage-video"
       style={position ? { objectPosition: position } : undefined}
     />
+    </>
   )
 }
