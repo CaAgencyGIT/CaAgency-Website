@@ -7,6 +7,6 @@
 export const featuredVideos = [
   { src: '/videos/work/anton-tiktok-perf-v2.mp4', alt: 'Anton skincare campaign reel', poster: '/images/video-thumbs/anton-tiktok.jpg' },
   { src: '/videos/work/reel-DaYtlPgN9aa-clean-perf-v2.mp4', alt: 'Glass skin essentials campaign reel', poster: '/images/video-thumbs/reel-DaYtlPgN9aa-clean.jpg' },
-  { src: '/videos/work/dariia-ysl-perf-v2.mp4', alt: 'Dariia for YSL Beauty campaign reel', poster: '/images/video-thumbs/dariia-ysl.jpg' },
+  { src: '/videos/work/dariia-maybelline-perf-v2.mp4', alt: 'Dariia for Maybelline summer makeup campaign reel', poster: '/images/video-thumbs/dariia-maybelline.jpg' },
   { src: '/videos/work/saranda-tiktok-perf-v2.mp4', alt: 'Saranda skincare campaign reel', poster: '/images/video-thumbs/saranda-tiktok.jpg' },
 ]
