@@ -60,6 +60,7 @@
     "letsTalk": "Let's talk"
   },
   "footer": {
+    "departments": "Departments",
     "tagline": "Representing top-tier talent shaping today’s media",
     "info": "Info",
     "moreInfo": "More info",
@@ -77,6 +78,7 @@
     "registrationNo": "Registration no.: 2417532.01"
   },
   "locations": {
+    "northAmerica": "North America",
     "officeDubai": "Dubai, UAE",
     "officeDelaware": "Delaware, USA",
     "officeAmsterdam": "Amsterdam, Netherlands",

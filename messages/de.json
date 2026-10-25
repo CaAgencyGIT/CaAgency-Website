@@ -60,6 +60,7 @@
     "letsTalk": "Lass uns reden"
   },
   "footer": {
+    "departments": "Abteilungen",
     "tagline": "Wir vertreten Top-Talente, die die Medien von heute prägen",
     "info": "Info",
     "moreInfo": "Weitere Infos",
@@ -77,6 +78,7 @@
     "registrationNo": "Registrierungsnr.: 2417532.01"
   },
   "locations": {
+    "northAmerica": "Nordamerika",
     "officeDubai": "Dubai, VAE",
     "officeDelaware": "Delaware, USA",
     "officeAmsterdam": "Amsterdam, Niederlande",

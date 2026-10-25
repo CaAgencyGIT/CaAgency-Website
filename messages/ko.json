@@ -60,6 +60,7 @@
     "letsTalk": "문의하기"
   },
   "footer": {
+    "departments": "부서",
     "tagline": "오늘의 미디어를 이끄는 최정상 탤런트를 대표합니다",
     "info": "정보",
     "moreInfo": "추가 정보",
@@ -77,6 +78,7 @@
     "registrationNo": "등록번호: 2417532.01"
   },
   "locations": {
+    "northAmerica": "북미",
     "officeDubai": "두바이, UAE",
     "officeDelaware": "델라웨어, 미국",
     "officeAmsterdam": "암스테르담, 네덜란드",

@@ -60,6 +60,7 @@
     "letsTalk": "Parlons-en"
   },
   "footer": {
+    "departments": "Départements",
     "tagline": "Nous représentons des talents de premier plan qui façonnent les médias d’aujourd’hui",
     "info": "Infos",
     "moreInfo": "Informations",
@@ -77,6 +78,7 @@
     "registrationNo": "N° d'enregistrement : 2417532.01"
   },
   "locations": {
+    "northAmerica": "Amérique du Nord",
     "officeDubai": "Dubaï, EAU",
     "officeDelaware": "Delaware, États-Unis",
     "officeAmsterdam": "Amsterdam, Pays-Bas",

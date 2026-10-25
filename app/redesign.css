@@ -341,7 +341,7 @@
   .rd-footer-social-icon svg { width: 16px; height: 16px; fill: currentColor; }
   .rd-footer-social-icon:hover { background: #fff; border-color: #fff; color: #0e0e0e; }
   .rd-footer-social-contact { margin-inline-start: 12px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
-  .rd-footer-links { display: grid; grid-template-columns: 0.8fr 0.9fr 0.9fr 1.4fr; gap: 40px; }
+  .rd-footer-links { display: grid; grid-template-columns: 0.8fr 0.9fr 0.9fr 0.9fr 1.4fr; gap: 36px; }
   .rd-footer-locations { columns: 1; }
   .rd-footer-locations a { break-inside: avoid; }
   .rd-footer-contact { display: flex; flex-direction: column; gap: 18px; margin: 0; }
@@ -356,6 +356,8 @@
   .rd-footer-partners { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 34px; margin: 64px auto 0; padding: 0; list-style: none; }
   .rd-footer-partners li { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
   .rd-footer-partners svg { width: 16px; height: 16px; fill: #fff; flex: none; opacity: 0.85; }
+  .rd-footer-partner-badge img { width: auto; height: 34px; opacity: 0.6; }
+  @media (max-width: 760px) { .rd-footer-partner-badge img { height: 26px; } }
   .rd-footer-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.16); }
   .rd-footer-bottom :where(p, a) { margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.7); }
   .rd-footer .rd-text-link { color: #fff; }

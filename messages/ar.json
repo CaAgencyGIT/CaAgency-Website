@@ -60,6 +60,7 @@
     "letsTalk": "لنتحدث"
   },
   "footer": {
+    "departments": "الأقسام",
     "tagline": "نمثّل نخبة المواهب التي تصنع إعلام اليوم",
     "info": "معلومات",
     "moreInfo": "معلومات إضافية",
@@ -77,6 +78,7 @@
     "registrationNo": "رقم التسجيل: 2417532.01"
   },
   "locations": {
+    "northAmerica": "أمريكا الشمالية",
     "officeDubai": "دبي، الإمارات",
     "officeDelaware": "ديلاوير، الولايات المتحدة",
     "officeAmsterdam": "أمستردام، هولندا",

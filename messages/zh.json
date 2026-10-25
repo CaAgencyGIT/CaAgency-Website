@@ -60,6 +60,7 @@
     "letsTalk": "聊一聊"
   },
   "footer": {
+    "departments": "业务部门",
     "tagline": "代表塑造当今媒体的顶尖达人",
     "info": "信息",
     "moreInfo": "更多信息",
@@ -77,6 +78,7 @@
     "registrationNo": "注册号：2417532.01"
   },
   "locations": {
+    "northAmerica": "北美",
     "officeDubai": "迪拜，阿联酋",
     "officeDelaware": "特拉华州，美国",
     "officeAmsterdam": "阿姆斯特丹，荷兰",
