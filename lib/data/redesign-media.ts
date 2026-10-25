@@ -213,13 +213,13 @@ export const heroCollageImages = [
 // first, no creator twice within any 4 tiles.
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
   { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
-  { type: 'film', key: 'beatrix-gisou' },
+  { type: 'film', key: 'beatrix-biodance' },
   { type: 'film', key: 'anton-mimmua' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'aiym-purito' },
   { type: 'film', key: 'georgii-yesstyle' },
   { type: 'film', key: 'haircare' },
-  { type: 'film', key: 'beatrix-biodance' },
+  { type: 'film', key: 'beatrix-gisou' },
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
   { type: 'film', key: 'melly-fenty-original' },
   { type: 'film', key: 'melani-revolve' },
@@ -293,7 +293,15 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
 // Homepage intro showreels: every film on the site cut to 0.5s flashes,
 // three different orders so the tiles never show the same shot.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v1.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v1.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v2.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v2.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
+
+// Talent cards play one of the talent's own films: the first one on the
+// Work page, otherwise any film credited to them.
+export function talentFilmSrc(slug: string): string | undefined {
+  const keys = Object.keys(films) as FilmKey[]
+  const key = [...workFilms, ...keys].find((k) => films[k].talentSlug === slug)
+  return key ? filmSrc(key) : undefined
+}

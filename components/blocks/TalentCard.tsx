@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import TalentCardVideo from './TalentCardVideo'
 
 export interface SocialLink {
   platform: 'instagram' | 'tiktok' | 'youtube' | 'twitch' | 'kick'
@@ -11,6 +12,8 @@ interface TalentCardProps {
   slug: string
   name: string
   imageUrl: string
+  videoSrc?: string
+  motionIndex?: number
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -58,6 +61,8 @@ export default function TalentCard({
   slug,
   name,
   imageUrl,
+  videoSrc,
+  motionIndex = 0,
   sizes,
   priority = false,
   instagramUrl,
@@ -96,9 +101,11 @@ export default function TalentCard({
         preload={priority}
         loading={priority ? undefined : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
-        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+        className="talent-card-photo object-cover object-center"
+        style={{ animationDelay: `${-((motionIndex * 2.3) % 14)}s` }}
         sizes={sizes}
       />
+      {videoSrc && <TalentCardVideo src={videoSrc} />}
 
       {/* Gradient Overlay for text readability */}
       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />

@@ -206,20 +206,22 @@ export default async function HomePage({ params }: Props) {
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd(locale))}</script>
       <FAQ />
 
-      {/* Closing conversion CTA */}
-      <section className="bg-accent-red py-sec mobile:py-sec-sm px-section-x">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="white" className="mb-6 text-[40px] mobile:text-[28px]">
+      {/* Closing conversion CTA, a black rounded panel matching the footer */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="rd-cta-panel-inner">
+          <Heading as="h2" color="white" className="text-[48px] tablet:text-[40px] mobile:text-[30px] leading-[1.08] text-balance">
             {t('closingCtaTitle')}
           </Heading>
-          <Text color="white" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-90">
-            {t('closingCtaText')}
-          </Text>
-          <Magnetic>
-            <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
-              {t('closingCtaButton')}
-            </Button>
-          </Magnetic>
+          <div>
+            <Text color="white" size="lg" className="mb-8 opacity-75">
+              {t('closingCtaText')}
+            </Text>
+            <Magnetic>
+              <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
+                {t('closingCtaButton')}
+              </Button>
+            </Magnetic>
+          </div>
         </ScrollReveal>
       </section>
 

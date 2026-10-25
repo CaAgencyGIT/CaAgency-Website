@@ -237,20 +237,22 @@ export default async function HomePage() {
       <FAQ />
       <BrandCarousel images={brandLogos} />
 
-      {/* Closing conversion CTA */}
-      <section className="bg-accent-red py-sec mobile:py-sec-sm px-section-x">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="white" className="mb-6 text-[40px] mobile:text-[28px]">
+      {/* Closing conversion CTA, a black rounded panel matching the footer */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="rd-cta-panel-inner">
+          <Heading as="h2" color="white" className="text-[48px] tablet:text-[40px] mobile:text-[30px] leading-[1.08] text-balance">
             Let&apos;s Build Your Next Campaign
           </Heading>
-          <Text color="white" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-90">
-            Tell us about your goals and we&apos;ll match you with the right creators, strategy, production, and reporting included.
-          </Text>
-          <Magnetic>
-            <Button href="/contact" variant="light" prefetch={false}>
-              Enquire For Partnerships
-            </Button>
-          </Magnetic>
+          <div>
+            <Text color="white" size="lg" className="mb-8 opacity-75">
+              Tell us about your goals and we&apos;ll match you with the right creators, strategy, production, and reporting included.
+            </Text>
+            <Magnetic>
+              <Button href="/contact" variant="light" prefetch={false}>
+                Enquire For Partnerships
+              </Button>
+            </Magnetic>
+          </div>
         </ScrollReveal>
       </section>
     </>

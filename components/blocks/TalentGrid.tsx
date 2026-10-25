@@ -1,4 +1,5 @@
 import TalentCard from './TalentCard'
+import { talentFilmSrc } from '@/lib/data/redesign-media'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
 
@@ -45,6 +46,8 @@ export default function TalentGrid({
       slug={talent.slug}
       name={talent.name}
       imageUrl={talent.imageUrl}
+      videoSrc={talentFilmSrc(talent.slug)}
+      motionIndex={index}
       sizes={imageSizes[columns]}
       priority={prioritizeFirst && index === 0}
       instagramUrl={talent.instagramUrl}
