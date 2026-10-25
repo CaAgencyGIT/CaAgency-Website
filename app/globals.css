@@ -222,7 +222,7 @@ section {
   gap: var(--collage-gap);
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
-  aspect-ratio: 3 / 1;
+  aspect-ratio: 2000 / 595;
 }
 .hero-collage-col {
   position: relative;
@@ -234,6 +234,9 @@ section {
   flex-direction: column;
   gap: var(--collage-gap);
 }
+/* Reference split: the close-up is shorter than the event shot below it. */
+.hero-collage-stack > :first-child { flex: 250; }
+.hero-collage-stack > :last-child { flex: 316; }
 .hero-collage-tile {
   position: relative;
   flex: 1;
