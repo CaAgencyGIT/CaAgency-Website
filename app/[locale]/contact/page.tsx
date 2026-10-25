@@ -86,10 +86,10 @@ export default async function ContactPage({ params }: Props) {
   return (
     <>
 
-      {/* Get in touch (Oct 2026, after scooperz.com/contact, in CA colours): office
-          photo and direct contact details left, heading and the brand /
-          influencer form tabs right, on a black rounded panel. */}
-      <section className="rd-cta-panel contact-panel">
+      {/* Get in touch (Oct 2026, after scooperz.com/contact): office photo and
+          direct contact details left, heading and the brand / influencer form
+          tabs right. White, so the page stays light; only the map is black. */}
+      <section className="contact-panel bg-background-base px-section-x pt-[80px] pb-[100px] mobile:pt-[44px] mobile:pb-[64px]">
         <div className="mx-auto grid max-w-[1240px] grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-[6vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-12">
           <div className="flex flex-col gap-10 tablet:order-2 mobile:order-2">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[18px] tablet:aspect-[16/10] mobile:aspect-[4/5]">
@@ -103,16 +103,16 @@ export default async function ContactPage({ params }: Props) {
               />
             </div>
             <div>
-              <h2 className="mb-4 font-anegra text-[34px] leading-tight text-white mobile:text-[28px]">{t('contactUsTitle')}</h2>
-              <p className="mb-7 max-w-[440px] font-work-sans text-[15px] leading-[1.8] text-white/70">{t('contactUsText')}</p>
-              <ul className="mb-8 flex flex-col gap-3 font-work-sans text-[17px] text-white">
+              <h2 className="mb-4 font-anegra text-[34px] leading-tight text-foreground-primary mobile:text-[28px]">{t('contactUsTitle')}</h2>
+              <p className="mb-7 max-w-[440px] font-work-sans text-[15px] leading-[1.8] text-foreground-body">{t('contactUsText')}</p>
+              <ul className="mb-8 flex flex-col gap-3 font-work-sans text-[17px] text-foreground-primary">
                 <li>
-                  <a href="mailto:info@caagency.com" className="underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-white">
+                  <a href="mailto:info@caagency.com" className="underline decoration-black/25 underline-offset-[6px] transition-colors hover:decoration-black">
                     info@caagency.com
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+97148869229" dir="ltr" className="underline decoration-white/30 underline-offset-[6px] transition-colors hover:decoration-white">
+                  <a href="tel:+97148869229" dir="ltr" className="underline decoration-black/25 underline-offset-[6px] transition-colors hover:decoration-black">
                     +971 04 8869229
                   </a>
                 </li>
@@ -125,7 +125,7 @@ export default async function ContactPage({ params }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-[#0e0e0e]"
+                    className="grid h-11 w-11 place-items-center rounded-full border border-black/20 text-foreground-primary transition-colors hover:bg-[#0e0e0e] hover:text-white"
                   >
                     <svg viewBox="0 0 24 24" className="h-[17px] w-[17px] fill-current" aria-hidden="true">
                       <path d={SOCIAL_ICONS[social.name] ?? ''} />
@@ -137,7 +137,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
 
           <div className="tablet:order-1 mobile:order-1">
-            <h1 className="mb-6 font-anegra text-[clamp(52px,6.4vw,96px)] leading-[0.95] text-white">{t('getInTouch')}</h1>
+            <h1 className="mb-6 font-anegra text-[clamp(52px,6.4vw,96px)] leading-[0.95] text-foreground-primary">{t('getInTouch')}</h1>
             <ContactTabs
               tabs={[
                 { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <ContactForm formId={2} variant="pill" labels={formLabels} /> },

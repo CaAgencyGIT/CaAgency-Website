@@ -13,7 +13,7 @@ export default function ContactTabs({
 
   return (
     <div>
-      <div role="tablist" aria-label="Contact form" className="mb-6 inline-flex rounded-full border border-white/25 p-1">
+      <div role="tablist" aria-label="Contact form" className="mb-6 inline-flex rounded-full border border-black/15 p-1">
         {tabs.map((tab) => {
           const on = tab.id === active
           return (
@@ -26,7 +26,7 @@ export default function ContactTabs({
               aria-controls={`contact-panel-${tab.id}`}
               onClick={() => setActive(tab.id)}
               className={`rounded-full px-5 py-2.5 font-jost text-[12px] font-medium uppercase tracking-[0.16em] transition-colors mobile:px-4 mobile:text-[11px] ${
-                on ? 'bg-white text-[#0e0e0e]' : 'text-white/75 hover:text-white'
+                on ? 'bg-[#0e0e0e] text-white' : 'text-black/60 hover:text-black'
               }`}
             >
               {tab.label}
@@ -42,7 +42,7 @@ export default function ContactTabs({
           aria-labelledby={`contact-tab-${tab.id}`}
           hidden={tab.id !== active}
         >
-          <p className="mb-8 max-w-[560px] font-work-sans text-[16px] leading-[1.75] text-white/75">{tab.intro}</p>
+          <p className="mb-8 max-w-[560px] font-work-sans text-[16px] leading-[1.75] text-foreground-body">{tab.intro}</p>
           {tab.panel}
         </div>
       ))}

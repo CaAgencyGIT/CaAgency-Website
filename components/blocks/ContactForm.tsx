@@ -11,7 +11,7 @@ import type { ContactFormLabelKey, ContactFormLabels } from '@/lib/contact/form-
 interface ContactFormProps {
   formId?: number // 1 = homepage dark form, 2 = contact page light form, 3 = talent submission form
   className?: string
-  /** 'pill': solid white rounded fields on a dark panel (contact page, Oct 2026). */
+  /** 'pill': soft grey rounded fields on a white page (contact page, Oct 2026). */
   variant?: 'light' | 'dark' | 'pill'
   labels: ContactFormLabels
 }
@@ -134,11 +134,11 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
   }
 
   const isPill = variant === 'pill'
-  const isDarkBackground = variant === 'dark' || isPill
+  const isDarkBackground = variant === 'dark'
   const isTalentForm = formId === 3
 
   const inputBaseStyles = isPill
-    ? 'w-full font-work-sans text-[15px] font-normal bg-white text-foreground-dark rounded-[18px] px-6 py-4 border-0 placeholder:text-foreground-dark/45 resize-none focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 transition-shadow duration-300 focus:shadow-[0_0_0_3px_rgba(255,255,255,0.25)]'
+    ? 'w-full font-work-sans text-[15px] font-normal bg-[#f4f2ee] text-foreground-dark rounded-[18px] px-6 py-4 border border-transparent placeholder:text-foreground-dark/45 resize-none focus:outline-hidden focus:border-black/25 focus:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 transition-colors duration-300'
     : cn(
         'w-full font-jost text-[16px] font-normal bg-transparent px-0 py-3 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-4 resize-none border-b-2 transition-all duration-300',
         isDarkBackground
@@ -157,7 +157,7 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
 
   const labelStyles = cn(
     'block font-jost font-medium mb-2 uppercase',
-    isPill ? 'text-[11px] tracking-[0.16em] text-white/60 ps-2' : 'text-[13px] tracking-[1px]',
+    isPill ? 'text-[11px] tracking-[0.16em] text-foreground-gray ps-2' : 'text-[13px] tracking-[1px]',
     !isPill && (isDarkBackground ? 'text-white/70' : 'text-foreground-gray')
   )
 
