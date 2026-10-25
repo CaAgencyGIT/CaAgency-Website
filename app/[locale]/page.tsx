@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { localizeHref } from '@/lib/i18n/client-paths'
 import HeroSection from '@/components/blocks/HeroSection'
 import type { Locale } from '@/i18n/config'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
@@ -182,23 +184,24 @@ export default async function HomePage({ params }: Props) {
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x border-t border-black/5">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div className="mb-14 grid grid-cols-[1fr_minmax(0,420px)] items-end gap-10 tablet:grid-cols-1 mobile:mb-10 mobile:grid-cols-1 mobile:gap-6">
               <SectionHeading align="start" eyebrow={t('eyebrowWork')} title={t('featuredWork')} />
-              <div className="mt-6 md:mt-0">
-                <Button href="/work" locale={locale as Locale}>{tCommon('viewAllWork')}</Button>
+              <div>
+                <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
+                  {t('workDescription')}
+                </Text>
+                <Link href={localizeHref('/work', locale)} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                  {tCommon('viewAllWork')} <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </ScrollReveal>
           <DeferredVideoShowcase
             videos={featuredVideos}
             columns={4}
-            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} />}
+            staggered
+            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} staggered />}
           />
-          <ScrollReveal delay={0.2} yOffset={20}>
-            <Text color="dark" size="base" className="mt-10 max-w-[700px] text-[16px] leading-[28px]">
-              {t('workDescription')}
-            </Text>
-          </ScrollReveal>
         </div>
       </section>
 

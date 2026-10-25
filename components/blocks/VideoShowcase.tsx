@@ -5,15 +5,19 @@ import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
 import { posterFor } from '@/lib/data/videos'
 import { showcaseGridClasses, showcasePosterSizes } from '@/components/blocks/video-showcase-layout'
+import ShowcaseCaption, { type ShowcaseCaptionData } from '@/components/blocks/ShowcaseCaption'
 
 export interface VideoShowcaseProps {
-  videos: Array<{ src: string; alt?: string; poster?: string }>
+  videos: Array<{ src: string; alt?: string; poster?: string; caption?: ShowcaseCaptionData }>
   columns?: 2 | 3 | 4
+  /** Drop every second card a little for an editorial rhythm (desktop). */
+  staggered?: boolean
 }
 
 export default function VideoShowcase({
   videos,
   columns = 4,
+  staggered = false,
 }: VideoShowcaseProps) {
   return (
     <div>
@@ -26,7 +30,7 @@ export default function VideoShowcase({
         return (
         <StaggerItem
           key={index}
-          className={`w-full hover-lift${
+          className={`w-full hover-lift${staggered && index % 2 === 1 ? ' md:mt-14' : ''}${
             isLoneLastOnMobile
               ? ' mobile:col-span-2 mobile:w-[calc(50%-8px)] mobile:justify-self-center'
               : ''
@@ -44,6 +48,7 @@ export default function VideoShowcase({
             // Client decision: always autoplay, even with reduced motion on.
             ignoreReducedMotion
           />
+          {video.caption && <ShowcaseCaption caption={video.caption} />}
         </StaggerItem>
         )
       })}

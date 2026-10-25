@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server'
-import { Anegra, WorkSans, Jost, DMSans, InstrumentSerif } from '@/lib/fonts'
+import { Anegra, WorkSans, Jost } from '@/lib/fonts'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/root-metadata'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import RevealObserver from '@/components/providers/RevealObserver'
@@ -26,7 +26,7 @@ export default async function RootDocument({
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${Anegra.variable} ${WorkSans.variable} ${Jost.variable} ${DMSans.variable} ${InstrumentSerif.variable}`}
+      className={`${Anegra.variable} ${WorkSans.variable} ${Jost.variable}`}
     >
       <head>
         {includePublicSchema && (

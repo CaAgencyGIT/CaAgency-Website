@@ -180,15 +180,30 @@ export default async function ContactPage({ params }: Props) {
                       </Button>
                     </div>
                   </div>
-                  <div className="h-[320px] mobile:h-[260px] md:h-auto md:min-h-[340px]">
+                  {/* Google draws either a large address card or a small button in
+                      the top-left depending on the query; the top strip is cropped
+                      off and our own "Open in Maps" button sits there instead, so
+                      every office map looks the same. */}
+                  <div className="relative h-[320px] overflow-hidden mobile:h-[260px] md:h-auto md:min-h-[340px]">
                     <iframe
                       src={office.embed}
                       title={t(office.mapTitleKey)}
-                      className="h-full w-full border-0"
+                      className="absolute inset-x-0 bottom-0 h-[calc(100%+140px)] w-full border-0"
                       loading="lazy"
                       allowFullScreen
                       referrerPolicy="no-referrer-when-downgrade"
                     />
+                    <a
+                      href={office.search}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute left-3 top-3 z-[1] inline-flex items-center gap-2 rounded-[2px] bg-white px-3 py-2 font-[Roboto,Arial,sans-serif] text-[14px] font-medium text-[#1a73e8] shadow-[0_1px_4px_rgba(0,0,0,0.3)] hover:bg-[#f8f9fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a73e8]"
+                    >
+                      {t('openInMaps')}
+                      <svg viewBox="0 0 24 24" className="h-[16px] w-[16px]" fill="currentColor" aria-hidden="true">
+                        <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import localFont from 'next/font/local'
-import { Work_Sans, Jost as JostFont, DM_Sans, Instrument_Serif } from 'next/font/google'
+import { Work_Sans, Jost as JostFont } from 'next/font/google'
 
 // Custom fonts - placeholder files created, replace with actual fonts
 export const Anegra = localFont({
@@ -21,22 +21,5 @@ export const Jost = JostFont({
   subsets: ['latin'],
   variable: '--font-jost',
   weight: ['400', '500', '600'],
-  display: 'swap',
-  preload: false,
-})
-
-// October 2026 redesign typography.
-export const DMSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-dm-sans',
-  weight: ['400', '500', '600'],
-  display: 'swap',
-})
-
-export const InstrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  variable: '--font-instrument-serif',
-  weight: '400',
-  style: ['normal', 'italic'],
   display: 'swap',
 })

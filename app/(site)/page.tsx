@@ -214,23 +214,24 @@ export default async function HomePage() {
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x border-t border-black/5">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div className="mb-14 grid grid-cols-[1fr_minmax(0,420px)] items-end gap-10 tablet:grid-cols-1 mobile:mb-10 mobile:grid-cols-1 mobile:gap-6">
               <SectionHeading align="start" eyebrow="Case Studies" title={content.featuredWork.title} />
-              <div className="mt-6 md:mt-0">
-                <Button href={content.featuredWork.buttonHref}>{content.featuredWork.buttonLabel}</Button>
+              <div>
+                <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
+                  {content.featuredWork.description}
+                </Text>
+                <Link href={content.featuredWork.buttonHref} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                  {content.featuredWork.buttonLabel} <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </ScrollReveal>
           <DeferredVideoShowcase
             videos={featuredVideos}
             columns={4}
-            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} />}
+            staggered
+            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} staggered />}
           />
-          <ScrollReveal delay={0.2} yOffset={20}>
-            <Text color="dark" size="base" className="mt-10 max-w-[700px] text-[16px] leading-[28px]">
-              {content.featuredWork.description}
-            </Text>
-          </ScrollReveal>
         </div>
       </section>
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd('en'))}</script>

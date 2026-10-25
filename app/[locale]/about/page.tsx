@@ -33,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Tilted photo strip: 40 caption-free campaign and talent photos, cropped to
-// 4:5 and lightly sharpened (public/images/about-strip).
-const STRIP_COUNT = 40
+// Tilted photo strip: 24 caption-free photos and video stills of current CA
+// talent, cropped to 4:5 and lightly sharpened (public/images/about-strip).
+const STRIP_COUNT = 24
 const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
 
 const OFFICES = [
@@ -53,7 +53,7 @@ export default async function AboutPage({ params }: Props) {
   const tContact = await getTranslations({ locale, namespace: 'contact' })
   const strip = Array.from({ length: STRIP_COUNT }, (_, i) => {
     const n = String(i + 1).padStart(2, '0')
-    return { key: n, src: `/images/about-strip/strip-${n}-v1.webp`, alt: t('stripLabel') }
+    return { key: n, src: `/images/about-strip/strip-${n}-v2.webp`, alt: t('stripLabel') }
   })
 
   return (
@@ -88,8 +88,8 @@ export default async function AboutPage({ params }: Props) {
           ))}
           <IntroReelSync />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/25" />
-        <p className="pointer-events-none absolute inset-x-0 top-[8%] px-section-x text-center font-anegra text-[clamp(44px,7vw,108px)] leading-none text-white">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/15" />
+        <p className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 px-section-x text-center font-anegra [text-shadow:0_2px_24px_rgba(0,0,0,0.35)] text-[clamp(44px,7vw,108px)] leading-none text-white">
           {t('bandOverlay')}
         </p>
       </section>
