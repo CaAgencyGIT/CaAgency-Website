@@ -224,7 +224,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
 export const heroFilmRowItems: HeroFilmRowItem[] = [
   {
     stack: [
-      { src: '/images/hero/graded/khutjo-closeup.webp', alt: 'Khutjo closeup, CA Agency campaign', position: '50% 45%' },
+      { src: '/images/hero/graded/melani-closeup.webp', alt: 'Melani for SKIN1004, CA Agency campaign', position: '55% 40%' },
       { src: '/images/hero/graded/khutjo-medicube-event.webp', alt: 'Khutjo at the Medicube event, CA Agency campaign', position: '50% 68%' },
     ],
   },
