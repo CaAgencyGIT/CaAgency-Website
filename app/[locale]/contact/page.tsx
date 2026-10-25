@@ -5,6 +5,7 @@ import HeadingAccent from '@/components/ui/HeadingAccent'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
 import ContactForm from '@/components/blocks/ContactForm'
+import OfficeMap from '@/components/blocks/OfficeMap'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
 import GradientDivider from '@/components/ui/GradientDivider'
 import { buildPageMetadata } from '@/lib/seo/metadata'
@@ -28,6 +29,9 @@ const OFFICES = [
     labelKey: 'hqLabel',
     divisionKey: 'hqDivision',
     mapTitleKey: 'mapTitle',
+    city: 'Dubai',
+    lon: 55.27,
+    lat: 25.2,
     lines: ['Meydan Grandstand, 6th Floor,', 'Meydan Road, Nad Al Sheba,', 'Dubai, U.A.E.'],
     ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
   },
@@ -35,6 +39,9 @@ const OFFICES = [
     labelKey: 'usOfficeLabel',
     divisionKey: 'usDivision',
     mapTitleKey: 'usMapTitle',
+    city: 'Wilmington',
+    lon: -75.55,
+    lat: 39.74,
     lines: ['Corporation Trust Center,', 'Orange Street,', 'Wilmington, DE 19801,', 'United States'],
     // Street number only in the map query, so the pin lands on the building.
     ...mapsUrls('Corporation Trust Center, 1209 N Orange St, Wilmington, DE 19801, United States', 'Corporation Trust Wilmington DE'),
@@ -112,6 +119,22 @@ export default async function ContactPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      <OfficeMap
+        heading={t('mapHeading')}
+        intro={t('mapIntro')}
+        openInMapsLabel={t('findOnMaps')}
+        offices={OFFICES.map((office) => ({
+          id: office.labelKey,
+          city: office.city,
+          label: t(office.labelKey),
+          division: t(office.divisionKey),
+          lines: office.lines.map((line) => line.replace(/,$/, '')),
+          mapsUrl: office.search,
+          lon: office.lon,
+          lat: office.lat,
+        }))}
+      />
 
       {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15) and USA (Oct 2026) */}
       <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">

@@ -216,7 +216,9 @@
     "mapTitle": "Karte mit dem Hauptsitz von CA Agency im Meydan Grandstand, Dubai",
     "usOfficeLabel": "CA Agency US-Niederlassung",
     "usDivision": "USA — US-Division",
-    "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware"
+    "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware",
+    "mapHeading": "Von Dubai bis in die USA",
+    "mapIntro": "CA Agency wurde in Dubai gegründet, wo unsere globale Division sitzt. Unsere US-Division arbeitet von Wilmington, Delaware aus. Wähle ein Büro für die Details oder schreib uns oben eine Nachricht."
   },
   "contactForm": {
     "thankYou": "Vielen Dank!",
