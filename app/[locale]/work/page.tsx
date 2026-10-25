@@ -60,7 +60,7 @@ const gridVideos = workGridOrder.map((entry) => {
     const video = workVideosBySrc.get(entry.src)!
     // Burned-in marks on these are faint or an older logo; overlay the current one.
     const watermark = ['Anua', 'Purito', 'Mixsoon', 'Haruharu Wonder', 'Revolve Beauty', 'YesStyle'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
-    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark }
+    return { src: video.src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
   }
   return {
     src: filmSrc(entry.key),
@@ -152,6 +152,14 @@ export default async function WorkPage({ params }: Props) {
                     ignoreReducedMotion
                     className="rounded-card mobile:rounded-[15px]"
                   />
+                  {'coversBurnedIn' in video && video.coversBurnedIn && (
+                    // These older cuts have the brand name burned in at ~47%
+                    // height; a feathered blur hides it under the new logo.
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 top-[47%] z-[1] h-[13%] -translate-y-1/2 backdrop-blur-[14px] [mask-image:radial-gradient(ellipse_52%_50%_at_center,#000_55%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_52%_50%_at_center,#000_55%,transparent_100%)]"
+                    />
+                  )}
                   {'watermark' in video && video.watermark && (
                     <Image
                       src={video.watermark.src}
@@ -160,8 +168,8 @@ export default async function WorkPage({ params }: Props) {
                       width={video.watermark.width}
                       height={video.watermark.height}
                       sizes="200px"
-                      style={{ width: `${video.watermark.widthPct}%` }}
-                      className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
+                      style={{ width: `${video.watermark.widthPct}%`, top: 'coversBurnedIn' in video && video.coversBurnedIn ? '47%' : '50%' }}
+                      className="pointer-events-none absolute left-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
                     />
                   )}
                   {study && (
