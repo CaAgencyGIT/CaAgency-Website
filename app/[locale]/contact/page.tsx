@@ -4,10 +4,14 @@ import Heading from '@/components/ui/Heading'
 import HeadingAccent from '@/components/ui/HeadingAccent'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
-import ContactForm from '@/components/blocks/ContactForm'
+import { BrandEnquiryForm, TalentApplicationForm } from '@/components/blocks/contact/ContactForms'
+import { prisma } from '@/lib/prisma'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
 import GradientDivider from '@/components/ui/GradientDivider'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+
+// Hourly refresh so the brand form's talent picker follows roster changes.
+export const revalidate = 3600
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -40,10 +44,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
+// Talent names for the brand form's "Talent of interest" picker, read from the
+// live roster so the list never goes stale. Same order as /talents.
+async function getRosterNames(): Promise<string[]> {
+  try {
+    const talents = await prisma.talent.findMany({
+      orderBy: [{ category: 'asc' }, { order: 'asc' }],
+      select: { name: true },
+    })
+    return talents.map((t) => t.name)
+  } catch (error) {
+    console.error('Failed to load talent roster for the contact form:', error)
+    return []
+  }
+}
+
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'contact' })
   const formLabels = buildContactFormLabels(await getMessages({ locale }))
+  const roster = await getRosterNames()
 
   return (
     <>
@@ -56,12 +76,9 @@ export default async function ContactPage({ params }: Props) {
             <div className="hero-rise-media bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] py-[70px] mobile:py-[50px] px-[70px] tablet:px-[50px] mobile:px-[30px]">
               {/* Header */}
               <div className="text-center mb-10">
-                <Heading as="h1" color="dark" className="mb-4 tracking-[0.1px]">
+                <Heading as="h1" color="dark" className="tracking-[0.1px]">
                   {t('heading')}
                 </Heading>
-                <Text color="muted" size="sm" className="max-w-[550px] mx-auto">
-                  {t('brandDescription')}
-                </Text>
               </div>
 
               {/* Contact Form */}
@@ -69,8 +86,11 @@ export default async function ContactPage({ params }: Props) {
                 <Heading as="h2" color="dark" className="mb-4 text-[24px] mobile:text-[20px]">
                   {t('brandInquiries')}
                 </Heading>
-                <HeadingAccent align="start" className="mb-6" />
-                <ContactForm formId={2} labels={formLabels} />
+                <HeadingAccent align="start" className="mb-4" />
+                <Text color="muted" size="sm" className="mb-6">
+                  {t('brandDescription')}
+                </Text>
+                <BrandEnquiryForm labels={formLabels} roster={roster} />
               </div>
 
               <GradientDivider variant="dark" className="my-14" />
@@ -84,7 +104,7 @@ export default async function ContactPage({ params }: Props) {
                 <Text color="muted" size="sm" className="mb-6">
                   {t('talentDescription')}
                 </Text>
-                <ContactForm formId={3} labels={formLabels} />
+                <TalentApplicationForm labels={formLabels} />
               </div>
             </div>
           </div>

@@ -33,9 +33,11 @@ describe('buildContactFormLabels', () => {
     expect(() => buildContactFormLabels(messages)).toThrow(/email/)
   })
 
-  it('covers every key the form component reads', () => {
-    const source = readFileSync('components/blocks/ContactForm.tsx', 'utf8')
-    const used = new Set([...source.matchAll(/\bt\('([a-zA-Z]+)'\)/g)].map((m) => m[1]))
+  it('covers every key the form components read', () => {
+    const source = ['components/blocks/contact/ContactForms.tsx', 'components/blocks/contact/fields.tsx']
+      .map((file) => readFileSync(file, 'utf8'))
+      .join('\n')
+    const used = new Set([...source.matchAll(/\blabels\.([a-zA-Z]+)/g)].map((m) => m[1]))
 
     expect([...used].sort()).toEqual([...CONTACT_FORM_LABEL_KEYS].sort())
   })

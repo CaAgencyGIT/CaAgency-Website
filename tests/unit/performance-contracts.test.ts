@@ -56,7 +56,8 @@ describe('critical resource loading', () => {
     const contactPage = readSource('app/[locale]/contact/page.tsx')
     expect(contactPage).not.toContain('NextIntlClientProvider')
     expect(contactPage).toContain('buildContactFormLabels(')
-    expect(readSource('components/blocks/ContactForm.tsx')).not.toContain("from 'next-intl'")
+    expect(readSource('components/blocks/contact/ContactForms.tsx')).not.toContain("from 'next-intl'")
+    expect(readSource('components/blocks/contact/fields.tsx')).not.toContain("from 'next-intl'")
   })
 
   it('keeps routing configuration free of unused client navigation wrappers', () => {
