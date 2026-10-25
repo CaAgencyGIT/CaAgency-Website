@@ -704,7 +704,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@a.closmain',
-    videoSrc: '/videos/redesign/rd-anton-mimmua-web-v3.mp4',
+    videoSrc: '/videos/redesign/rd-anton-mimmua-web-v4.mp4',
     summary:
       'A “puffy to glass skin” transformation routine for mimmua, built around de-puffing, jawline definition and a glowing finish.',
     brief:

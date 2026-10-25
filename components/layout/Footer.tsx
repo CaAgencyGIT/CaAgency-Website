@@ -11,8 +11,6 @@ import { localizeHref } from '@/lib/i18n/client-paths'
 import { locationPages } from '@/lib/data/locations'
 import type { Locale } from '@/i18n/config'
 
-const US_BRANCH_ADDRESS = 'Corporation Trust Center, Orange Street, Wilmington, DE 19801, United States'
-
 const defaultFooterContent: FooterContent = {
   description:
     'CA Agency is a leading, full-service talent management & marketing agency, connecting brands with creators through strategy, production and performance-led campaigns.',
@@ -114,7 +112,7 @@ export default function Footer({
           </div>
           <div>
             <h3>{t('locations')}</h3>
-            <nav aria-label="Location pages">
+            <nav aria-label="Location pages" className="rd-footer-locations">
               {locationMenuItems.map((item) => (
                 <Link key={item.href} href={localizeHref(item.href, locale)} prefetch={false}>
                   {item.label}
@@ -124,17 +122,20 @@ export default function Footer({
           </div>
           <div>
             <h3>{t('contact')}</h3>
-            <ul>
-              <li>{address}</li>
-              <li>
-                <span className="block">{t('usBranchLabel')}:</span>
-                <span dir="ltr">{US_BRANCH_ADDRESS}</span>
-              </li>
-              <li>
-                <a href={`mailto:${content.email}`}>{content.email}</a>
-              </li>
-              <li>{registrationNo}</li>
-            </ul>
+            <dl className="rd-footer-contact">
+              <div>
+                <dt>HQ · Dubai</dt>
+                <dd>{address}</dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd><a href={`mailto:${content.email}`}>{content.email}</a></dd>
+              </div>
+              <div>
+                <dt>Reg. no.</dt>
+                <dd>{registrationNo.replace(/^[^0-9]*/, '')}</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>

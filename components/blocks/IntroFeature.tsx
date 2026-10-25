@@ -17,11 +17,11 @@ interface IntroFeatureProps {
 // lower-left edge.
 export default function IntroFeature({ eyebrow, kicker, title, paragraphs, button, items, locale }: IntroFeatureProps) {
   return (
-    <section className="bg-[#0e0e0e] text-white py-[96px] mobile:py-[56px] px-section-x">
+    <section className="intro-feature bg-background-base text-foreground-primary py-[96px] mobile:py-[56px] px-section-x">
       <div className="max-w-container mx-auto">
         <div className="mb-6 flex items-baseline gap-4 mobile:mb-4 mobile:flex-col mobile:gap-1">
           <h2 className="font-anegra text-[28px] mobile:text-[24px] leading-none">{eyebrow}</h2>
-          <p className="font-jost text-[13px] uppercase tracking-[0.2em] text-white/55">{kicker}</p>
+          <p className="font-jost text-[13px] uppercase tracking-[0.2em] text-foreground-gray">{kicker}</p>
         </div>
 
         <div className="relative">
@@ -38,11 +38,11 @@ export default function IntroFeature({ eyebrow, kicker, title, paragraphs, butto
           <div className="relative z-[2] -mt-[180px] ml-[22%] w-[min(560px,60%)] tablet:-mt-[120px] tablet:ml-[8%] tablet:w-[70%] mobile:-mt-[48px] mobile:mx-3 mobile:w-auto">
             <span
               aria-hidden="true"
-              className="absolute -top-[74px] left-8 font-anegra text-[150px] leading-none text-white mobile:-top-[46px] mobile:left-5 mobile:text-[96px]"
+              className="absolute -top-[74px] left-8 font-anegra text-[150px] leading-none text-[#161616] mobile:-top-[46px] mobile:left-5 mobile:text-[96px]"
             >
               &ldquo;
             </span>
-            <div className="bg-[#161616] px-10 pt-12 pb-10 mobile:px-6 mobile:pt-9 mobile:pb-7">
+            <div className="bg-[#161616] text-white px-10 pt-12 pb-10 mobile:px-6 mobile:pt-9 mobile:pb-7">
               <h3 className="font-anegra text-[44px] tablet:text-[38px] mobile:text-[30px] leading-[1.1] text-balance">{title}</h3>
               <div className="my-7 h-px w-full bg-white/25 mobile:my-5" />
               <div className="flex flex-col gap-4 font-work-sans text-[15px] mobile:text-[14px] leading-[1.75] text-white/80">

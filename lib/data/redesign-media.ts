@@ -64,7 +64,7 @@ export const films = {
 export type FilmKey = keyof typeof films
 
 // Films re-cut after their v2 encode get a new version so cached copies refresh.
-const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'anton-mimmua': 3 }
+const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'anton-mimmua': 4 }
 export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${filmVersion[key] ?? 2}.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
