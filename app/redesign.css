@@ -247,10 +247,6 @@
     .rd-header nav::-webkit-scrollbar { display: none; }
     .rd-header nav ul { width: max-content; font-size: 14px; }
     .rd-header nav a { padding: 0 13px; }
-  }
-  @media (max-width: 900px) {
-    .rd-header nav ul { font-size: 13px; }
-    .rd-header nav a { padding: 0 9px; }
     .rd-hero-brand { font-size: 72px; }
     .rd-hero-spotlight-copy { padding: 90px 4vw 60px; }
     .rd-hero-spotlight-copy .rd-actions { flex-direction: column; align-items: start; gap: 15px; }
@@ -271,6 +267,11 @@
     .rd-hero-collage-img { height: 210px; max-height: none; }
     .rd-hero-trio-row { grid-template-columns: 1fr 1.1fr; gap: 30px; }
     .rd-hero-trio-headline { font-size: 50px; }
+  }
+
+  @media (max-width: 900px) {
+    .rd-header nav ul { font-size: 13px; }
+    .rd-header nav a { padding: 0 9px; }
   }
 
   @media (max-width: 760px) {
