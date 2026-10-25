@@ -1,3 +1,4 @@
+import { getTalentsBySlugs } from '@/lib/site-content/public'
 import Link from 'next/link'
 import { localizeHref } from '@/lib/i18n/client-paths'
 import HeroSection from '@/components/blocks/HeroSection'
@@ -20,7 +21,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
-import { heroFilmRowItems, introShowreels } from '@/lib/data/redesign-media'
+import { heroFilmRowItems, introShowreels, homeTalentSlugs } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
 import IntroFeature from '@/components/blocks/IntroFeature'
@@ -52,52 +53,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Talent cards - 6 talents for homepage (using Blob storage URLs)
-const talents = [
-  {
-    slug: 'albina-mavriqi',
-    name: 'Albina Mavriqi',
-    imageUrl: '/media/imported/talents/instagram/albina-mavriqi.jpeg',
-    instagramUrl: 'https://www.instagram.com/albina/',
-    tiktokUrl: 'https://www.tiktok.com/@albinasglam/',
-  },
-  {
-    slug: 'rebecca-ghaderi',
-    name: 'Rebecca Ghaderi',
-    imageUrl: '/media/imported/talents/instagram/rebecca-ghaderi.jpeg',
-    instagramUrl: 'https://www.instagram.com/rebeccaghaderi',
-    tiktokUrl: 'https://www.tiktok.com/@rebeccaghaderii',
-  },
-  {
-    slug: 'albulena-mavriqi',
-    name: 'Albulena Mavriqi',
-    imageUrl: '/media/imported/talents/instagram/lena-mavriqi.jpeg',
-    instagramUrl: 'https://www.instagram.com/albulena.mavriqi/',
-    tiktokUrl: 'https://www.tiktok.com/@lenamavriqii',
-  },
-  {
-    slug: 'jay-sadiq',
-    name: 'Jay Sadiq',
-    imageUrl: '/media/imported/talents/instagram/jay-sadiq.jpeg',
-    instagramUrl: 'https://www.instagram.com/jaysadiq_/',
-    youtubeUrl: 'https://www.youtube.com/@Jaystyle_',
-    tiktokUrl: 'https://www.tiktok.com/@jaysstyle_/',
-  },
-  {
-    slug: 'anisa-hukmova',
-    name: 'Anisa Hukmova',
-    imageUrl: '/media/imported/talents/instagram/anisa-hukmova.jpeg',
-    instagramUrl: 'https://www.instagram.com/anisavisage/',
-    tiktokUrl: 'https://www.tiktok.com/@anisavisage',
-  },
-  {
-    slug: 'dariia-bordun',
-    name: 'Dariia Bordun',
-    imageUrl: '/media/imported/talents/instagram/dariia-bordun.jpeg',
-    instagramUrl: 'https://www.instagram.com/_idareen_/',
-    tiktokUrl: 'https://www.tiktok.com/@idareen_',
-  },
-]
 
 // Media carousel items for "This is CA Agency" section — July 2026 round 3:
 // client sequence Sydney → Dariia → Albina → Melly → Huda → Douglas, clean
@@ -168,7 +123,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={talents} columns={6} cardArt />
+          <TalentGrid talents={await getTalentsBySlugs(homeTalentSlugs)} columns={6} cardArt />
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">

@@ -15,7 +15,7 @@ import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
-import { heroFilmRowItems, introShowreels } from '@/lib/data/redesign-media'
+import { heroFilmRowItems, homeTalentSlugs, introShowreels } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
@@ -45,10 +45,8 @@ export const metadata = buildPageMetadata({
 
 export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
-  // Pinned colour-gradient row (Oct 2026); /talents has its own colour order.
-  const talents = await getTalentsBySlugs([
-    'melani-seiffert', 'albina-mavriqi', 'dariia-bordun', 'rebecca-ghaderi', 'anton-drozhzhin', 'khutjo-matsoma',
-  ])
+  // Pinned row shared with the localized homepages; /talents has its own order.
+  const talents = await getTalentsBySlugs(homeTalentSlugs)
   const introMediaItems = content.intro.mediaItems.map((item) => ({
     type: item.type === 'image' ? 'image' as const : 'video' as const,
     src: item.src,

@@ -71,13 +71,14 @@ export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${film
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
 
 // Homepage "Meet the Talents", in the client's order.
+// Homepage "Meet the Talents" row, in display order (all locales).
 export const homeTalentSlugs = [
   'albina-mavriqi',
+  'melani-seiffert',
+  'dariia-bordun',
+  'aiym-kablan',
   'anton-drozhzhin',
   'khutjo-matsoma',
-  'dariia-bordun',
-  'melani-seiffert',
-  'rebecca-ghaderi',
 ]
 
 export const priorityTalentSlugs = [
