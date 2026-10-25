@@ -68,12 +68,13 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* Showreel band with overlay line */}
-      {/* 9:16 tiles centred on a white band, so the reels show whole; the
-          tint sits on the videos only (Oct 2026). */}
+      {/* Three 9:16 reels joined into one rounded frame on a white band; the
+          tint sits on the videos only, and IntroReelSync keeps their flashes
+          firing together (Oct 2026). */}
       <section className="relative overflow-hidden bg-background-base px-section-x py-[40px] mobile:py-[24px]">
-        <div className="relative mx-auto grid max-w-[1120px] grid-cols-3 gap-5 mobile:gap-2">
+        <div className="relative mx-auto grid max-w-[1120px] grid-cols-3 overflow-hidden rounded-[18px] mobile:rounded-[10px]">
           {introShowreels.map((reel) => (
-            <div key={reel.src} className="relative aspect-[9/16] overflow-hidden rounded-[18px] mobile:rounded-[10px]">
+            <div key={reel.src} className="relative aspect-[9/16] overflow-hidden">
               <div className="intro-feature-tile absolute inset-0 overflow-hidden">
                 <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} />
               </div>
