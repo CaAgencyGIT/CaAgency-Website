@@ -18,6 +18,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
+import { heroFilmRowImages } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
 import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
@@ -137,6 +138,7 @@ export default async function HomePage({ params }: Props) {
         primaryCta={{ label: tCommon('enquirePartnerships'), href: '/contact' }}
         secondaryCta={{ label: tCommon('viewOurWork'), href: '/work' }}
         carouselImages={carouselImages.length > 0 ? carouselImages : undefined}
+        filmRowImages={heroFilmRowImages}
       />
 
       {/* Stats Section */}

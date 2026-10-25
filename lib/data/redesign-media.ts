@@ -217,3 +217,13 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'ardita-purito' },
   { type: 'film', key: 'aurela-arencia' },
 ]
+
+// Homepage hero film row (Oct 2026 client feedback): exact order and
+// photos the client specified, graded/sharpened as a set for consistency.
+export const heroFilmRowImages = [
+  { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo for Medicube, CA Agency campaign', width: 640, height: 1136 },
+  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
+  { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },
+  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', width: 810, height: 1440 },
+  { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency', width: 720, height: 1347 },
+]

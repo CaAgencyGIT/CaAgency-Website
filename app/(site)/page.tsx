@@ -15,6 +15,7 @@ import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
+import { heroFilmRowImages } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
@@ -66,6 +67,7 @@ export default async function HomePage() {
           url: image.src,
           alt: image.alt,
         }))}
+        filmRowImages={heroFilmRowImages}
       />
 
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
