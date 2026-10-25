@@ -494,13 +494,13 @@ export const caseStudies: CaseStudy[] = [
     title: 'Medicube Creator Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-beatrix-medicube-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-melani-medicube-web-v2.mp4',
     summary:
       'Creator content putting Medicube’s skincare routine front and centre.',
     brief:
       'Medicube wanted its skincare shown in use, with the routine and results clear enough for viewers to follow along.',
     approach:
-      'Our talents Beatrix Ramosaj and Melani Seiffert each built the products into their own routines, keeping each step in frame with close-ups on skin.',
+      'Our talent Melani Seiffert built the collagen wrapping mask into her evening routine, keeping each step in frame with close-ups on skin.',
     outcome:
       'Medicube received routine-led creator content that demonstrates its products in a real, everyday setting.',
     services: ['Talent management', 'Concept development', 'Content production'],
@@ -629,6 +629,24 @@ export const caseStudies: CaseStudy[] = [
       'Our talent Khutjo Matsoma opened on close-ups of texture and pores, applied the serum on camera and finished on the glass-skin result.',
     outcome:
       'Frankly received routine-led creator content that demonstrates its serum in a native short-form format.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+  {
+    slug: 'biodance-campaign',
+    brand: 'Biodance',
+    title: 'Biodance Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-beatrix-biodance-web-v2.mp4',
+    summary:
+      'Day-in-the-life creator content for Biodance’s overnight mask and Caviar PDRN Jelly Serum Mist.',
+    brief:
+      'Biodance wanted its overnight mask and serum mist shown as part of a real day, so the long-lasting glow came across rather than a single application.',
+    approach:
+      'Our talent Beatrix Ramosaj followed the glow from an evening mask through the next day, with time stamps and quick touch-ups using the serum mist.',
+    outcome:
+      'Biodance received lifestyle-led creator content that shows its products in everyday use, in a native short-form format.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
