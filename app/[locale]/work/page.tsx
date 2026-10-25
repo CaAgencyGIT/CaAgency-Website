@@ -127,11 +127,10 @@ export default async function WorkPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Video Grid Section — capped slightly below the site container so the
-          tiles read a touch smaller (client request, July 2026 round 3). */}
+      {/* Video Grid Section — 3 per row, larger tiles (client request, Oct 2026). */}
       <section className="bg-background-base px-section-x">
-        <div className="max-w-[1180px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px] mobile:gap-[14px]">
+        <div className="max-w-[1240px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-[24px] mobile:gap-[14px]">
             {gridVideos.map((video, index) => {
               const study = video.study
               return (
@@ -139,7 +138,7 @@ export default async function WorkPage({ params }: Props) {
                   <VideoPlayer
                     src={video.src}
                     poster={posterFor(video.src)}
-                    posterSizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, (max-width: 1179px) 25vw, 280px"
+                    posterSizes="(max-width: 767px) 50vw, (max-width: 1239px) 33vw, 400px"
                     // First mobile row (2 columns); on mobile the second
                     // poster was the LCP element and loaded lazily.
                     posterPriority={index < 2}
