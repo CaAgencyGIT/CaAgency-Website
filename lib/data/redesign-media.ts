@@ -256,5 +256,5 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Fenty Beauty': { src: '/images/logos/watermark/fenty-beauty.png', width: 640, height: 36, widthPct: 80 },
   'Arencia': { src: '/images/logos/watermark/arencia.png', width: 640, height: 143, widthPct: 50 },
   'Chanel Beauty': { src: '/images/logos/watermark/chanel.png', width: 640, height: 100, widthPct: 61 },
-  'Patrick Ta': { src: '/images/logos/watermark/patrick-ta.png', width: 640, height: 48, widthPct: 80 },
+  'Patrick Ta': { src: '/images/logos/watermark/patrick-ta.png', width: 621, height: 409, widthPct: 36 },
 }
