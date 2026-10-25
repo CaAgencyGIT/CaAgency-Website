@@ -1,9 +1,19 @@
+import { brandWatermarks } from '@/lib/data/redesign-media'
+
 // Brand logos for the marquee. Rendered with mix-blend-mode: multiply so
 // baked-in white backgrounds disappear on the light strip.
 // July 2026 round 3: the final 26-brand client set, deliberately shuffled so
 // no category clusters (K-beauty, tech, prestige) sit next to each other.
 // Legacy brand-NN files remain in /public/images/logos for reuse.
-export const brandLogos = [
+// Oct 2026: brands from CA Agency's own Work-page campaigns, using the white
+// watermark logos (darkened in the strip), interleaved with the client set.
+const workBrandMarks = [
+  'Sephora', 'Chanel Beauty', 'Valentino Beauty', 'Rare Beauty', 'Fenty Beauty', 'Kylie Cosmetics', 'Patrick Ta',
+  'Gisou', 'Torriden', 'Biodance', 'Purito', 'Haruharu Wonder', 'Mixsoon', 'SKIN1004', 'Frankly', 'Dr. Althea',
+  'Arencia', 'Revolve Beauty', 'HONOR', 'Lilyeve', 'DELERE',
+]
+
+const clientBrandLogos: Array<{ url: string; alt: string; mark?: boolean }> = [
   { url: '/images/logos/brand-16.webp', alt: 'Maybelline' },
   { url: '/images/logos/samsung.webp', alt: 'Samsung' },
   { url: '/images/logos/beauty-of-joseon.webp', alt: 'Beauty of Joseon' },
@@ -34,3 +44,8 @@ export const brandLogos = [
   { url: '/images/logos/saie.webp', alt: 'Saie' },
   { url: '/images/logos/fenty-skin.webp', alt: 'Fenty Skin' },
 ]
+
+export const brandLogos: Array<{ url: string; alt: string; mark?: boolean }> = clientBrandLogos.flatMap((logo, i) => {
+  const work = workBrandMarks[i]
+  return work ? [logo, { url: brandWatermarks[work].src, alt: work, mark: true }] : [logo]
+})

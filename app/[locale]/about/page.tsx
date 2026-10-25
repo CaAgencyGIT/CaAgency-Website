@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import type { Locale } from '@/i18n/config'
 import Button from '@/components/ui/Button'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CollageVideo from '@/components/blocks/CollageVideo'
 import IntroReelSync from '@/components/blocks/IntroReelSync'
+import AboutStripSlideshow from '@/components/blocks/AboutStripSlideshow'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
@@ -33,10 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Tilted photo strip: 24 caption-free photos and video stills of current CA
+// Tilted photo slideshow: 30 caption-free photos and video stills of current CA
 // talent, cropped to 4:5 and lightly sharpened (public/images/about-strip).
-const STRIP_COUNT = 24
-const TILTS = [-2.2, 1.6, -1, 2, -1.6, 1.1]
+const STRIP_COUNT = 30
 
 const OFFICES = [
   { divisionKey: 'hqDivision', city: 'Dubai' },
@@ -53,7 +52,7 @@ export default async function AboutPage({ params }: Props) {
   const tContact = await getTranslations({ locale, namespace: 'contact' })
   const strip = Array.from({ length: STRIP_COUNT }, (_, i) => {
     const n = String(i + 1).padStart(2, '0')
-    return { key: n, src: `/images/about-strip/strip-${n}-v2.webp`, alt: t('stripLabel') }
+    return { key: n, src: `/images/about-strip/strip-${n}-v3.webp`, alt: t('stripLabel') }
   })
 
   return (
@@ -114,21 +113,8 @@ export default async function AboutPage({ params }: Props) {
         </ScrollReveal>
       </section>
 
-      {/* Tilted campaign strip */}
-      <section className="about-strip" aria-label={t('stripLabel')}>
-        <div className="about-strip-track" style={{ animationDuration: `${STRIP_COUNT * 3}s` }}>
-          {[...strip, ...strip].map((item, i) => (
-            <figure
-              key={`${item.key}-${i}`}
-              className="about-strip-card"
-              style={{ transform: `rotate(${TILTS[i % TILTS.length]}deg)` }}
-              aria-hidden={i >= strip.length || undefined}
-            >
-              <Image src={item.src} alt={i < strip.length ? item.alt : ''} fill sizes="(max-width: 760px) 180px, 250px" quality={90} className="object-cover" />
-            </figure>
-          ))}
-        </div>
-      </section>
+      {/* Tilted photo slideshow */}
+      <AboutStripSlideshow items={strip} label={t('stripLabel')} />
 
       {/* Offices and facts */}
       <section className="px-section-x pt-[40px] pb-[100px] mobile:pb-[60px]">

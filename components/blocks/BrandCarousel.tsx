@@ -2,16 +2,18 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 interface BrandCarouselProps {
-  images: Array<{ url: string; alt?: string }>
+  images: Array<{ url: string; alt?: string; mark?: boolean }>
 }
 
 function BrandLogo({
   url,
   alt,
+  mark = false,
   decorative = false,
 }: {
   url: string
   alt?: string
+  mark?: boolean
   decorative?: boolean
 }) {
   return (
@@ -20,7 +22,10 @@ function BrandLogo({
       alt={decorative ? '' : alt || ''}
       width={104}
       height={78}
-      className="brand-logo mx-[36px] h-[78px] w-[104px] shrink-0 object-contain grayscale opacity-75 transition-opacity duration-500 hover:opacity-100 [mix-blend-mode:multiply] mobile:mx-[18px] mobile:h-[52px] mobile:w-[73px]"
+      // White watermark logos (mark) are darkened; the rest blend away their white boxes.
+      className={`brand-logo mx-[36px] h-[78px] w-[104px] shrink-0 object-contain opacity-75 transition-opacity duration-500 hover:opacity-100 mobile:mx-[18px] mobile:h-[52px] mobile:w-[73px] ${
+        mark ? '[filter:brightness(0)] opacity-60' : 'grayscale [mix-blend-mode:multiply]'
+      }`}
       sizes="(max-width: 767px) 73px, 104px"
       loading="lazy"
     />
@@ -43,17 +48,17 @@ export default function BrandCarousel({ images }: BrandCarouselProps) {
             so the base marquee keyframes run in reverse; duration scales with
             the 26-logo track so the speed stays gentle. Pinned to LTR: in an RTL
             flex row both tracks start off-screen and the strip runs blank. */}
-        <div data-brand-strip dir="ltr" className="flex overflow-hidden group">
+        <div data-brand-strip dir="ltr" className="flex overflow-hidden group" style={{ ['--brand-strip-duration' as string]: `${images.length * 2.7}s` }}>
           {/* First track */}
-          <div className="flex shrink-0 animate-marquee [animation-direction:reverse] [animation-duration:70s] group-hover:[animation-play-state:paused] group-has-[input:checked]/brands:[animation-play-state:paused]">
+          <div className="flex shrink-0 animate-marquee [animation-direction:reverse] [animation-duration:var(--brand-strip-duration)] group-hover:[animation-play-state:paused] group-has-[input:checked]/brands:[animation-play-state:paused]">
             {images.map((image, index) => (
-              <BrandLogo key={`first-${index}`} url={image.url} alt={image.alt} />
+              <BrandLogo key={`first-${index}`} url={image.url} alt={image.alt} mark={image.mark} />
             ))}
           </div>
           {/* Duplicate track for seamless loop — hidden from AT to avoid double announcement */}
-          <div className="flex shrink-0 animate-marquee [animation-direction:reverse] [animation-duration:70s] group-hover:[animation-play-state:paused] group-has-[input:checked]/brands:[animation-play-state:paused]" aria-hidden="true">
+          <div className="flex shrink-0 animate-marquee [animation-direction:reverse] [animation-duration:var(--brand-strip-duration)] group-hover:[animation-play-state:paused] group-has-[input:checked]/brands:[animation-play-state:paused]" aria-hidden="true">
             {images.map((image, index) => (
-              <BrandLogo key={`second-${index}`} url={image.url} alt={image.alt} decorative />
+              <BrandLogo key={`second-${index}`} url={image.url} alt={image.alt} mark={image.mark} decorative />
             ))}
           </div>
         </div>

@@ -4,14 +4,19 @@
    unaffected. Kept in the components layer so Tailwind utilities still win. */
 
 @layer components {
+  /* Site-wide type tokens (Oct 2026): Anegra headings, Work Sans body, Jost
+     for spaced uppercase labels. On :root so blocks outside .rd use them too. */
+  :root {
+    --rd-serif: var(--font-anegra), Georgia, serif;
+    --rd-sans: var(--font-work-sans), Arial, sans-serif;
+    --rd-label: var(--font-jost), Arial, sans-serif;
+  }
+  .rd-faq h2, .rd-section-heading h2 { font-family: var(--rd-serif); font-weight: 400; }
   .rd {
     --rd-ink: #171715;
     --rd-muted: #67645f;
     --rd-line: #dedbd5;
     --rd-soft: #f4f2ee;
-    --rd-serif: var(--font-anegra), Georgia, serif;
-    --rd-sans: var(--font-work-sans), Arial, sans-serif;
-    --rd-label: var(--font-jost), Arial, sans-serif;
     background: #fff;
     color: var(--rd-ink);
     font-family: var(--rd-sans); font-size: 15px; line-height: 1.6;
@@ -293,11 +298,9 @@
   /* About page (Oct 2026, after scooperz.com/about-us) */
   .about-panel { display: grid; grid-template-columns: 0.8fr 1fr; align-items: center; gap: 7vw; max-width: 1440px; margin-inline: auto; }
   .about-strip { overflow: hidden; padding: 90px 0 70px; }
-  .about-strip-track { display: flex; gap: 22px; width: max-content; animation: about-strip 90s linear infinite; }
-  .about-strip:hover .about-strip-track { animation-play-state: paused; }
+  .about-strip-track { display: flex; gap: 22px; width: max-content; will-change: transform; }
   .about-strip-card { position: relative; flex: none; width: 250px; aspect-ratio: 4 / 5; margin: 0; overflow: hidden; border-radius: 18px; background: #eee; box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.35); }
   .about-strip-card:nth-child(odd) { margin-top: 34px; }
-  @keyframes about-strip { to { transform: translateX(-50%); } }
   .about-offices { margin: 0; padding: 0; list-style: none; border-top: 1px solid #dedbd5; }
   .about-offices li { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #dedbd5; font-size: 14px; color: #67645f; }
   .about-offices span { font-family: var(--rd-serif); font-size: 24px; color: #171715; }
