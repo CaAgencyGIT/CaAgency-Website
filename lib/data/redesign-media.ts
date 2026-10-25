@@ -46,6 +46,7 @@ export const films = {
   'dariia-valentino': { creator: 'Dariia Bordun', brand: 'Valentino Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/reels/DF8PX-UC0ci/' },
   'dariia-laneige': { creator: 'Dariia Bordun', brand: 'Laneige', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/caagency/reel/DP9ZUQ7Ejby/' },
   'dariia-kerastase': { creator: 'Dariia Bordun', brand: 'Kérastase', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/caagency/reel/DG82uP4TUaS/' },
+  'albina-torriden': { creator: 'Albina Mavriqi', brand: 'Torriden', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/p/Dcodk7PtSn6/' },
   'dariia-chanel': { creator: 'Dariia Bordun', brand: 'Chanel Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/p/DGqp2U9iBhI/' },
   haircare: { creator: 'Albina Mavriqi', brand: 'Lilyeve', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/albina/reel/DeuTEqwNBLQ/' },
   'beatrix-medicube': { creator: 'Beatrix Ramosaj', brand: 'Medicube', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.instagram.com/beatrixramosaj/reel/Dd_OTh-xXg2/' },
@@ -96,6 +97,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'dariia-armani': 'armani-beauty-campaign',
   'dariia-valentino': 'valentino-beauty-campaign',
   'dariia-chanel': 'chanel-beauty-campaign',
+  'albina-torriden': 'torriden-campaign',
   'melly-rare': 'rare-beauty-campaign',
   'rebecca-saie': 'saie-campaign',
   'beatrix-patrickta': 'patrick-ta-campaign',
@@ -109,6 +111,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'albina-torriden',
   'beatrix-gisou',
   'georgii-anua', 'dariia-armani',
   'jay-mixsoon',
@@ -206,7 +209,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'rebecca-saie' },
   { type: 'film', key: 'dariia-chanel' },
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
-  { type: 'video', src: '/videos/work/albina-mixsoon-web-v1.mp4' },
+  { type: 'film', key: 'albina-torriden' },
   { type: 'film', key: 'jay-mixsoon' },
   { type: 'video', src: '/videos/work/khutjo-samsung-web-v1.mp4' },
   { type: 'film', key: 'beatrix-gisou' },
@@ -244,11 +247,11 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Rare Beauty': { src: '/images/logos/watermark/rare-beauty-v2.png', width: 320, height: 63, widthPct: 54 },
   'Celimax': { src: '/images/logos/watermark/celimax-v2.png', width: 411, height: 89, widthPct: 52 },
   'd’Alba': { src: '/images/logos/watermark/dalba-v2.png', width: 648, height: 251, widthPct: 39 },
-  'Armani Beauty': { src: '/images/logos/watermark/armani-beauty-v2.png', width: 584, height: 149, widthPct: 48 },
+  'Armani Beauty': { src: '/images/logos/watermark/armani-beauty-v2.png', width: 640, height: 640, widthPct: 30 },
   'Lilyeve': { src: '/images/logos/watermark/lilyeve-v2.png', width: 648, height: 212, widthPct: 42 },
   'Purito': { src: '/images/logos/watermark/purito-v2.png', width: 647, height: 304, widthPct: 42 },
   'Saie': { src: '/images/logos/watermark/saie-v2.png', width: 292, height: 108, widthPct: 39 },
-  'Fenty Beauty': { src: '/images/logos/watermark/fenty-beauty-v2.png', width: 648, height: 44, widthPct: 80 },
+  'Fenty Beauty': { src: '/images/logos/watermark/fenty-beauty-v3.png', width: 640, height: 36, widthPct: 74 },
   'Arencia': { src: '/images/logos/watermark/arencia-v2.png', width: 648, height: 151, widthPct: 50 },
   'Chanel Beauty': { src: '/images/logos/watermark/chanel-v2.png', width: 648, height: 648, widthPct: 34 },
   'Patrick Ta': { src: '/images/logos/watermark/patrick-ta-v2.png', width: 627, height: 415, widthPct: 50 },
@@ -256,5 +259,6 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Gisou': { src: '/images/logos/watermark/gisou-v2.png', width: 640, height: 290, widthPct: 42 },
   'Revolve Beauty': { src: '/images/logos/watermark/revolve-beauty-v2.png', width: 640, height: 126, widthPct: 54 },
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
+  'Torriden': { src: '/images/logos/watermark/torriden-v2.png', width: 640, height: 128, widthPct: 50 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }

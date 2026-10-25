@@ -6,7 +6,7 @@
 // every slot a clean cut with no logo overlays.
 export const featuredVideos = [
   { src: '/videos/work/anton-tocobo-web-v1.mp4', alt: 'Anton for TOCOBO Cotton Soft Sun Stick', poster: '/images/video-thumbs/anton-tocobo-web-v1.jpg' },
-  { src: '/videos/work/reel-DaYtlPgN9aa-clean-perf-v2.mp4', alt: 'Glass skin essentials campaign reel', poster: '/images/video-thumbs/reel-DaYtlPgN9aa-clean.jpg' },
+  { src: '/videos/work/glass-skin-sharp-v3.mp4', alt: 'Glass skin essentials campaign reel', poster: '/images/video-thumbs/glass-skin-sharp-v3.jpg' },
   { src: '/videos/work/dariia-armani-beauty-web.mp4', alt: 'Dariia Bordun for Armani Beauty Cheek Tint Shine', poster: '/images/video-thumbs/dariia-armani-beauty-poster.jpg' },
-  { src: '/videos/work/saranda-tiktok-perf-v2.mp4', alt: 'Saranda skincare campaign reel', poster: '/images/video-thumbs/saranda-tiktok.jpg' },
+  { src: '/videos/work/saranda-glow-sharp-v3.mp4', alt: 'Saranda skincare campaign reel', poster: '/images/video-thumbs/saranda-glow-sharp-v3.jpg' },
 ]

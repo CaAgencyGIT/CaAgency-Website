@@ -596,6 +596,24 @@ export const caseStudies: CaseStudy[] = [
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+  {
+    slug: 'torriden-campaign',
+    brand: 'Torriden',
+    title: 'Torriden Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-albina-torriden-web-v1.mp4',
+    summary:
+      'Bouncy-skin creator content for Torriden’s Cellmazing collagen firming cream.',
+    brief:
+      'Torriden wanted its Cellmazing Firming Cream shown in a real routine, with the texture and the bouncy, plumped finish clear on camera.',
+    approach:
+      'Our talent Albina Mavriqi built the video around a before-and-after routine, showing the cream’s texture up close and finishing on the glow it leaves.',
+    outcome:
+      'Torriden received routine-led creator content that demonstrates its firming cream in a native short-form format.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
 ]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
