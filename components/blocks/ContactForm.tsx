@@ -146,6 +146,15 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
           : 'text-foreground-dark border-foreground-dark/20 focus:border-accent-red focus-visible:outline-accent-red/70 placeholder:text-foreground-dark/60 hover:border-foreground-dark/40'
       )
 
+  // Pill fields hide the native arrow; this chevron sits inside the rounded field.
+  const pillSelectStyle = {
+    backgroundImage:
+      "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23161616' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right 1.25rem center',
+    backgroundSize: '16px',
+  }
+
   const labelStyles = cn(
     'block font-jost font-medium mb-2 uppercase',
     isPill ? 'text-[11px] tracking-[0.16em] text-white/60 ps-2' : 'text-[13px] tracking-[1px]',
@@ -491,7 +500,8 @@ export default function ContactForm({ formId = 1, className, variant, labels }: 
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            className={cn(inputBaseStyles, 'pe-5')}
+            className={cn(inputBaseStyles, isPill ? 'appearance-none pe-12' : 'pe-5')}
+            style={isPill ? pillSelectStyle : undefined}
             required
           >
             <option value="">{t('selectBudgetRange')}</option>
