@@ -231,7 +231,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'melani-revolve' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'melly-rare' },
-  { type: 'film', key: 'georgii-anua' },
+  { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
   { type: 'film', key: 'rebecca-saie' },
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
   { type: 'film', key: 'albina-torriden' },
@@ -241,7 +241,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'jay-mixsoon' },
   { type: 'film', key: 'haircare' },
   { type: 'film', key: 'rebecca-haruharu' },
-  { type: 'video', src: '/videos/work/honor-web-v1.mp4' },
+  { type: 'film', key: 'georgii-anua' },
 ]
 
 // Homepage hero film row (Oct 2026 client feedback): exact order and
