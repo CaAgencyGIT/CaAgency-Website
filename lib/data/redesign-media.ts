@@ -225,11 +225,11 @@ export const heroFilmRowItems: HeroFilmRowItem[] = [
   {
     stack: [
       { src: '/images/hero/graded/khutjo-closeup.webp', alt: 'Khutjo closeup, CA Agency campaign', position: '50% 45%' },
-      { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo at the Medicube event, CA Agency campaign', position: '50% 68%' },
+      { src: '/images/hero/graded/khutjo-medicube-event.webp', alt: 'Khutjo at the Medicube event, CA Agency campaign', position: '50% 68%' },
     ],
   },
   { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', position: '50% 30%', featured: true },
   { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event' },
-  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', position: '50% 30%' },
+  { src: '/images/hero/graded/melly-huda-beauty-event.webp', alt: 'Melly at the Huda Beauty event, CA Agency campaign', position: '62% 50%' },
   { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency' },
 ]
