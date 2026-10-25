@@ -209,9 +209,19 @@
     position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 28px;
     height: 100px; padding: 0 5vw; border-bottom: 1px solid var(--rd-line); background: #ffffffed; backdrop-filter: blur(15px);
   }
-  .rd-header nav ul { display: flex; align-items: center; gap: 28px; font-size: 13px; }
-  .rd-header nav a { position: relative; display: inline-block; padding: 8px 0; }
-  .rd-header nav a[aria-current]::after { content: ''; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--rd-ink); }
+  /* Main nav as a slim floating dock (Oct 2026): black capsule, active page
+     as a white pill. Fits inside the 100px bar, so header height is unchanged. */
+  .rd-header nav { min-width: 0; }
+  .rd-header nav ul {
+    display: flex; align-items: center; gap: 0; height: 52px; padding: 6px; font-size: 17px;
+    border-radius: 999px; background: #1b1a18; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  }
+  .rd-header nav a {
+    display: flex; align-items: center; height: 40px; padding: 0 22px; border-radius: 999px;
+    color: #fff; white-space: nowrap; transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .rd-header nav a:hover { color: rgba(255, 255, 255, 0.72); }
+  .rd-header nav a[aria-current] { background: #fff; color: #111; }
   .rd-header-actions { display: flex; align-items: center; gap: 20px; }
   .rd-header-actions .rd-pill { padding: 9px 27px; }
   .rd-skip { position: absolute; left: 10px; top: 10px; z-index: 99; padding: 10px; background: #fff; }
@@ -233,7 +243,10 @@
 
   @media (max-width: 1100px) {
     .rd-header { gap: 20px; padding: 0 4vw; }
-    .rd-header nav ul { gap: 18px; }
+    .rd-header nav { overflow-x: auto; scrollbar-width: none; }
+    .rd-header nav::-webkit-scrollbar { display: none; }
+    .rd-header nav ul { width: max-content; font-size: 14px; }
+    .rd-header nav a { padding: 0 13px; }
     .rd-hero-brand { font-size: 72px; }
     .rd-hero-spotlight-copy { padding: 90px 4vw 60px; }
     .rd-hero-spotlight-copy .rd-actions { flex-direction: column; align-items: start; gap: 15px; }
@@ -260,9 +273,10 @@
     .rd { font-size: 14px; }
     .rd-section { padding: 50px 5vw; }
     .rd-header { flex-wrap: wrap; height: auto; min-height: 84px; gap: 15px; padding: 17px 5vw 0; }
-    .rd-header nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+    .rd-header nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
     .rd-header nav::-webkit-scrollbar { display: none; }
-    .rd-header nav ul { justify-content: space-between; gap: 12px; font-size: 10px; white-space: nowrap; }
+    .rd-header nav ul { width: max-content; min-width: 100%; justify-content: space-between; height: 34px; padding: 3px; font-size: 11px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); }
+    .rd-header nav a { height: 28px; padding: 0 11px; }
     .rd-header-actions { gap: 15px; margin-left: auto; }
     .rd-header-actions .rd-pill { padding: 8px 24px; font-size: 11px; }
     .rd-hero-brand { margin-bottom: 17px; font-size: 54px; white-space: normal; }
