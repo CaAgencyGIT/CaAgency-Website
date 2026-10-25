@@ -558,6 +558,26 @@ export const caseStudies: CaseStudy[] = [
   },
 
   {
+    slug: 'abib-campaign',
+    brand: 'Abib',
+    title: 'Abib Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@beatrixramosaj',
+    videoSrc: '/videos/redesign/rd-beatrix-abib-web-v2.mp4',
+    summary:
+      'A day of sun-care reapplication with Abib’s Airy Sunstick, from the park to the car.',
+    brief:
+      'Most people apply sunscreen once and forget to reapply. Abib wanted to show that its Airy Sunstick makes reapplying quick and easy wherever you are, and to introduce the UV-indicator charm that changes colour as UV levels rise. The content had to feel like a real day out, show the stick gliding over the face without a white cast, and make the charm’s colour change easy to understand at a glance.',
+    approach:
+      'Beatrix Ramosaj follows the UV index through her day. Outdoors at peak sun, the charm turns deep red and she reapplies in seconds, using the C-shaped stick for quick coverage on larger areas and around the contours of her face. Later, in the car, she reapplies again as the UV level drops, with on-screen labels tracking the index and the finish staying clear and natural.',
+    outcome:
+      'Abib received a practical, story-led creator video that turns reapplication into a simple habit and makes the UV-indicator charm the hook. It works as discovery content for sun-care shoppers and as a clear product demonstration for paid social.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
+
+  {
     slug: 'axis-y-campaign',
     brand: 'AXIS-Y',
     title: 'AXIS-Y Creator Campaign',
