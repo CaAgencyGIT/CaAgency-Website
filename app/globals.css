@@ -362,27 +362,6 @@ section {
   animation-play-state: paused;
 }
 
-/* Site-wide film-grain atmosphere on the light UI. Fixed, non-interactive,
-   blended at very low opacity so it adds texture without obscuring content. */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-/* At 3% opacity the grain is imperceptible on small screens, but as a fixed
-   full-viewport layer above everything it taxes low-end mobile GPUs on every
-   scrolled frame — desktop keeps the texture, phones skip it. */
-@media (max-width: 767px) {
-  .grain-overlay {
-    display: none;
-  }
-}
-
 /* Skip rendering work for the (always below-the-fold) footer until the
    visitor approaches it. The intrinsic size keeps the scrollbar stable. */
 .footer-defer {
