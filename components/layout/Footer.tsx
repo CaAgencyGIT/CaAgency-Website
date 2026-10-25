@@ -60,7 +60,8 @@ export default function Footer({
   // The CMS footer row is English-only; other locales use the translated
   // catalog so /ar, /ko etc. don't render an English blurb and address.
   const isDefaultLocale = locale === 'en'
-  const description = isDefaultLocale ? content.description : t('description')
+  // Oct 2026: the footer carries the agency tagline in every locale.
+  const description = t('tagline')
   const address = isDefaultLocale ? content.address : t('address')
   const registrationNo = isDefaultLocale ? content.registrationNo : t('registrationNo')
 
