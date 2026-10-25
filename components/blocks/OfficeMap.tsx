@@ -65,10 +65,10 @@ export default function OfficeMap({
 
   const pts = offices.map((o) => ({ ...o, ...toXY(o.lon, o.lat) }))
   const current = pts.find((o) => o.id === active) ?? pts[0]
-  const arc =
-    pts.length >= 2
-      ? `M ${pts[1].x} ${pts[1].y} Q ${(pts[0].x + pts[1].x) / 2} ${Math.min(pts[0].y, pts[1].y) - 140} ${pts[0].x} ${pts[0].y}`
-      : ''
+  // A dashed route from every branch back to the HQ (the first office).
+  const arcs = pts.slice(1).map(
+    (o) => `M ${o.x} ${o.y} Q ${(pts[0].x + o.x) / 2} ${Math.min(pts[0].y, o.y) - Math.max(60, Math.abs(pts[0].x - o.x) * 0.3)} ${pts[0].x} ${pts[0].y}`,
+  )
 
   return (
     <section ref={ref} className={`office-map bg-[#0e0e0e] text-white px-section-x py-[100px] mobile:py-[60px]${shown ? ' is-shown' : ''}`}>
@@ -118,12 +118,14 @@ export default function OfficeMap({
             {dots.map((d, i) => (
               <circle key={i} cx={d.cx} cy={d.cy} r={2.7} className="office-map-dot" style={{ animationDelay: `${d.d}ms` }} />
             ))}
-            {arc && <path d={arc} className="office-map-arc" fill="none" />}
-            {arc && (
-              <circle r={4} className="office-map-traveller">
-                <animateMotion dur="3.6s" repeatCount="indefinite" path={arc} />
-              </circle>
-            )}
+            {arcs.map((arc, i) => (
+              <g key={arc}>
+                <path d={arc} className="office-map-arc" fill="none" />
+                <circle r={4} className="office-map-traveller">
+                  <animateMotion dur={`${3.6 + i * 0.8}s`} repeatCount="indefinite" path={arc} />
+                </circle>
+              </g>
+            ))}
             <defs>
               <path id={`city-ring-${current.id}`} d={`M ${current.x - 70} ${current.y - 18} A 70 70 0 0 1 ${current.x + 70} ${current.y - 18}`} />
             </defs>

@@ -468,10 +468,13 @@ section {
 .office-map-detail { animation: office-detail-in 0.45s ease both; }
 @keyframes office-detail-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-/* Talent photos drift slowly so the grid feels alive (Oct 2026). */
-.talent-card-photo { animation: talent-drift 14s ease-in-out infinite alternate; transform-origin: 50% 35%; }
-@keyframes talent-drift {
-  from { transform: scale(1.02) translate3d(0, 0, 0); }
-  to { transform: scale(1.09) translate3d(0, -1.5%, 0); }
+/* Talent photos sway gently, as if the portrait is breathing: small
+   shifts, a slight tilt and zoom, each card out of phase (Oct 2026). */
+.talent-card-photo { animation: talent-sway 9s ease-in-out infinite; transform-origin: 50% 30%; will-change: transform; }
+@keyframes talent-sway {
+  0%, 100% { transform: scale(1.06) translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: scale(1.085) translate3d(-1.4%, -0.8%, 0) rotate(-0.7deg); }
+  50% { transform: scale(1.07) translate3d(0.4%, -1.8%, 0) rotate(0.2deg); }
+  75% { transform: scale(1.09) translate3d(1.4%, -0.6%, 0) rotate(0.7deg); }
 }
 @media (prefers-reduced-motion: reduce) { .talent-card-photo { animation: none; } }

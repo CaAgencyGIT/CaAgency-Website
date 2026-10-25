@@ -36,6 +36,16 @@ const OFFICES = [
     ...mapsUrls('Meydan Grandstand, Meydan Road, Nad Al Sheba, Dubai'),
   },
   {
+    labelKey: 'nlOfficeLabel',
+    divisionKey: 'nlDivision',
+    mapTitleKey: 'nlMapTitle',
+    city: 'Espel',
+    lon: 5.69,
+    lat: 52.72,
+    lines: ['Poldermolen 32,', '8311 BG Espel,', 'The Netherlands'],
+    ...mapsUrls('Poldermolen 32, 8311 BG Espel, Netherlands'),
+  },
+  {
     labelKey: 'usOfficeLabel',
     divisionKey: 'usDivision',
     mapTitleKey: 'usMapTitle',
@@ -136,7 +146,7 @@ export default async function ContactPage({ params }: Props) {
         }))}
       />
 
-      {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15) and USA (Oct 2026) */}
+      {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15), the Netherlands and USA (Oct 2026) */}
       <section className="bg-background-soft pb-[100px] mobile:pb-[60px] px-section-x">
         <div className="max-w-container mx-auto">
           <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-6">

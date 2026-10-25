@@ -39,7 +39,6 @@ export const films = {
   'albulena-purito': { creator: 'Albulena Mavriqi', brand: 'Purito', talentSlug: 'albulena-mavriqi', sourceUrl: 'https://www.instagram.com/albulena.mavriqi/reel/Dej0BdPI8vw/' },
   'loresa-celimax': { creator: 'Loresa Konushevci', brand: 'Celimax', talentSlug: 'loresa-konushevci', sourceUrl: 'https://www.instagram.com/loresakonushevci/reel/Dej1W1Ptph_/' },
   'georgii-purito': { creator: 'Georgii Galaev', brand: 'Purito', talentSlug: 'georgii-galaev', sourceUrl: 'https://www.instagram.com/pomogisebe/reel/Ddn7Uuav8KE/' },
-  'jay-tropic': { creator: 'Jay Sadiq', brand: 'Tropic', talentSlug: 'jay-sadiq', sourceUrl: 'https://www.instagram.com/caagency/reel/DMIcqV8ttkA/' },
   'ardita-purito': { creator: 'Ardita Gashi', brand: 'Purito', talentSlug: 'ardita-gashi', sourceUrl: 'https://www.instagram.com/arditagasshi/reel/DeB3Cj_qVQh/' },
   'aurela-arencia': { creator: 'Aurela Elshani', brand: 'Arencia', talentSlug: 'aurela-elshani', sourceUrl: 'https://www.instagram.com/glowbyaure/reel/Del7abhoQ7N/' },
   'dariia-urbandecay': { creator: 'Dariia Bordun', brand: 'Urban Decay', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/reels/DOeBvQsAlA6/' },
@@ -295,8 +294,8 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
 // studio-strobe flash between them. The three reels share one timeline and never show the
 // same creator side by side, even one shot apart.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v6.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v6.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v7.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v7.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
 

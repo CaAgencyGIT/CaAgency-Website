@@ -218,8 +218,11 @@
     "usOfficeLabel": "Sucursal de CA Agency en EE. UU.",
     "usDivision": "EE. UU. — División de EE. UU.",
     "usMapTitle": "Mapa de la oficina de CA Agency en EE. UU., en Orange Street, Wilmington, Delaware",
-    "mapHeading": "De Dubái a EE. UU.",
-    "mapIntro": "CA Agency nació en Dubái, donde tiene su sede nuestra división global. Nuestra división de EE. UU. trabaja desde Wilmington, Delaware. Selecciona una oficina para ver sus datos o escríbenos arriba."
+    "nlOfficeLabel": "Sucursal europea de CA Agency",
+    "nlDivision": "Países Bajos — División europea",
+    "nlMapTitle": "Mapa de la oficina europea de CA Agency en Poldermolen, Espel, Países Bajos",
+    "mapHeading": "De Dubái a Europa y EE. UU.",
+    "mapIntro": "CA Agency nació en Dubái, donde tiene su sede nuestra división global. Nuestra división europea trabaja desde Espel, en los Países Bajos, y nuestra división de EE. UU. desde Wilmington, Delaware. Selecciona una oficina para ver sus datos o escríbenos arriba."
   },
   "contactForm": {
     "thankYou": "¡Gracias!",

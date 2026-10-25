@@ -218,8 +218,11 @@
     "usOfficeLabel": "CA Agency US-Niederlassung",
     "usDivision": "USA — US-Division",
     "usMapTitle": "Karte mit dem US-Büro von CA Agency in der Orange Street, Wilmington, Delaware",
-    "mapHeading": "Von Dubai bis in die USA",
-    "mapIntro": "CA Agency wurde in Dubai gegründet, wo unsere globale Division sitzt. Unsere US-Division arbeitet von Wilmington, Delaware aus. Wähle ein Büro für die Details oder schreib uns oben eine Nachricht."
+    "nlOfficeLabel": "CA Agency Niederlassung Europa",
+    "nlDivision": "Niederlande — Europäische Division",
+    "nlMapTitle": "Karte mit dem europäischen Büro von CA Agency am Poldermolen in Espel, Niederlande",
+    "mapHeading": "Von Dubai bis nach Europa und in die USA",
+    "mapIntro": "CA Agency wurde in Dubai gegründet, wo unsere globale Division sitzt. Unsere europäische Division arbeitet von Espel in den Niederlanden aus, unsere US-Division von Wilmington, Delaware. Wähle ein Büro für die Details oder schreib uns oben eine Nachricht."
   },
   "contactForm": {
     "thankYou": "Vielen Dank!",
