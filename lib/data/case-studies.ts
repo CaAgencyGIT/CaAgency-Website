@@ -632,6 +632,24 @@ export const caseStudies: CaseStudy[] = [
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },
+  {
+    slug: 'frankly-campaign',
+    brand: 'Frankly',
+    title: 'Frankly Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v2.mp4',
+    summary:
+      'Glass-skin creator content for Frankly’s Closer Serum.',
+    brief:
+      'Frankly wanted its Closer Serum shown on real skin, with the smoothing, poreless finish clear on camera.',
+    approach:
+      'Our talent Khutjo Matsoma opened on close-ups of texture and pores, applied the serum on camera and finished on the glass-skin result.',
+    outcome:
+      'Frankly received routine-led creator content that demonstrates its serum in a native short-form format.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
 ]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

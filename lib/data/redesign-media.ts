@@ -48,6 +48,7 @@ export const films = {
   'dariia-kerastase': { creator: 'Dariia Bordun', brand: 'Kérastase', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/caagency/reel/DG82uP4TUaS/' },
   'albina-torriden': { creator: 'Albina Mavriqi', brand: 'Torriden', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/p/Dcodk7PtSn6/' },
   'saranda-boj': { creator: 'Saranda Mavriqi', brand: 'Beauty of Joseon', talentSlug: 'saranda-mavriqi', sourceUrl: 'https://www.tiktok.com/@saranda/video/7689430094741277960' },
+  'khutjo-frankly': { creator: 'Khutjo Matsoma', brand: 'Frankly', talentSlug: 'khutjo-matsoma', sourceUrl: 'https://www.tiktok.com/@khutjo.matsoma/video/7470818260414450950' },
   'dariia-chanel': { creator: 'Dariia Bordun', brand: 'Chanel Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/p/DGqp2U9iBhI/' },
   haircare: { creator: 'Albina Mavriqi', brand: 'Lilyeve', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/albina/reel/DeuTEqwNBLQ/' },
   'beatrix-medicube': { creator: 'Beatrix Ramosaj', brand: 'Medicube', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.instagram.com/beatrixramosaj/reel/Dd_OTh-xXg2/' },
@@ -105,6 +106,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'beatrix-medicube': 'medicube-campaign',
   'melani-dalba': 'dalba-campaign',
   'saranda-boj': 'beauty-of-joseon-campaign',
+  'khutjo-frankly': 'frankly-campaign',
   'loresa-celimax': 'celimax-campaign',
   'aurela-arencia': 'arencia-campaign',
   haircare: 'lilyeve-campaign',
@@ -112,6 +114,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'khutjo-frankly',
   'aiym-purito',
   'albina-torriden',
   'beatrix-gisou',
@@ -213,7 +216,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'video', src: '/videos/work/kylie-cosmetics-web-v1.mp4' },
   { type: 'film', key: 'albina-torriden' },
   { type: 'film', key: 'jay-mixsoon' },
-  { type: 'video', src: '/videos/work/khutjo-samsung-web-v1.mp4' },
+  { type: 'film', key: 'khutjo-frankly' },
   { type: 'film', key: 'beatrix-gisou' },
   { type: 'video', src: '/videos/work/georgii-yesstyle-web-v1.mp4' },
   { type: 'film', key: 'aurela-arencia' },
@@ -263,5 +266,6 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'DELERE': { src: '/images/logos/watermark/delere-v2.png', width: 640, height: 72, widthPct: 48 },
   'Torriden': { src: '/images/logos/watermark/torriden-v2.png', width: 640, height: 128, widthPct: 50 },
   'Beauty of Joseon': { src: '/images/logos/watermark/beauty-of-joseon-v2.png', width: 640, height: 83, widthPct: 66 },
+  'Frankly': { src: '/images/logos/watermark/frankly-v2.png', width: 640, height: 173, widthPct: 46 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }
