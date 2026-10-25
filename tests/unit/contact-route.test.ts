@@ -18,7 +18,8 @@ const validPayload = {
   email: 'amor@example.com',
   phone: '+1 555 123 4567',
   company: 'CA Agency',
-  budget: '20-40k',
+  talents: ['Albina Mavriqi', 'help-me-choose'],
+  timing: { mode: 'month', month: '2026-12' },
   message: 'We would like to discuss a campaign.',
   website: '',
   _formTime: 1000,
@@ -80,7 +81,42 @@ describe('POST /api/contact', () => {
       headers: { 'content-type': 'text/plain' },
     })
     expect((await POST(wrongType)).status).toBe(400)
-    expect((await POST(jsonRequest(validPayload, { 'content-length': '20000' }))).status).toBe(400)
+    expect((await POST(jsonRequest(validPayload, { 'content-length': '30000' }))).status).toBe(400)
+  })
+
+  it('labels brand enquiries and talent applications in the notification', async () => {
+    await POST(jsonRequest(validPayload))
+    const brand = mocks.deliverContact.mock.calls[0][0]
+    expect(brand.subject).toMatch(/^Brand enquiry: CA Agency/)
+    expect(brand.text).toContain('Talent of interest: Albina Mavriqi, Help me choose')
+    expect(brand.text).toContain('Preferred campaign timing: Around December 2026')
+
+    await POST(jsonRequest({
+      formType: 'talent', fullName: 'Vania', email: 'v@example.com', phone: '', website: '', _formTime: 1000,
+      message: 'Hi', categories: ['beauty'],
+      profiles: [
+        { platform: 'tiktok', handle: '@vaniafernandes', followers: '640.9K' },
+        { platform: 'youtube', handle: 'https://www.youtube.com/@vania', followers: '12,500' },
+        { platform: 'tiktok', handle: '@vania2', followers: '1.2M' },
+      ],
+    }))
+    const talent = mocks.deliverContact.mock.calls[1][0]
+    expect(talent.subject).toBe('Talent application: Vania')
+    expect(talent.text).toContain('TikTok: @vaniafernandes — 640,900 followers (entered as “640.9K”)')
+    expect(talent.text).toContain('YouTube: https://www.youtube.com/@vania — 12,500 subscribers')
+    expect(talent.text).toContain('TikTok: @vania2 — 1,200,000 followers')
+    expect(talent.html).toContain('self-reported')
+  })
+
+  it('skips Turnstile only in a preview without keys', async () => {
+    const env = { ...process.env }
+    process.env.PREVIEW_MODE = 'true'
+    delete process.env.TURNSTILE_SECRET
+    mocks.verifyTurnstile.mockResolvedValue(false)
+    expect((await POST(jsonRequest(validPayload))).status).toBe(200)
+    process.env.TURNSTILE_SECRET = 'set'
+    expect((await POST(jsonRequest(validPayload))).status).toBe(403)
+    process.env = env
   })
 
   it('returns 429 once the per-IP rate limit is exceeded', async () => {
