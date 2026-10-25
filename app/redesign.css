@@ -226,18 +226,23 @@
   .rd-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; padding: 0; margin: -1px; }
 
   /* Footer */
-  .rd-footer { max-width: 1600px; margin: auto; padding: 70px 5vw 20px; border-top: 1px solid var(--rd-line); }
-  .rd-footer-top { display: grid; grid-template-columns: 0.75fr 2fr; gap: 60px; }
-  .rd-footer-intro p { max-width: 300px; font-size: 12px; }
-  .rd-footer-social { display: flex; flex-wrap: wrap; gap: 12px; }
-  .rd-footer-social a { font-size: 11px; }
-  .rd-footer-links { display: grid; grid-template-columns: 0.7fr 0.8fr 1fr 1.15fr; gap: 30px; }
-  .rd-footer-links h3 { margin-bottom: 20px; font-family: var(--rd-sans); font-size: 13px; font-weight: 500; letter-spacing: 0; }
-  .rd-footer-links :where(a, li) { font-size: 11px; line-height: 1.8; color: var(--rd-muted); }
-  .rd-footer-links a:hover { color: var(--rd-ink); }
-  .rd-footer-links nav a { display: block; margin-bottom: 5px; }
-  .rd-footer-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 50px; padding-top: 22px; border-top: 1px solid var(--rd-line); }
-  .rd-footer-bottom :where(p, a) { margin: 0; font-size: 10px; }
+  /* Footer as a black rounded panel (Oct 2026, after musetheagency.com). */
+  .rd-footer { margin: 0 16px 16px; padding: 80px 6vw 30px; border-radius: 24px; background: #0e0e0e; color: #fff; }
+  .rd-footer > * { max-width: 1440px; margin-inline: auto; }
+  .rd-footer-top { display: grid; grid-template-columns: 0.8fr 2fr; gap: 64px; }
+  .rd-footer-logo { filter: invert(1); }
+  .rd-footer-intro p { max-width: 340px; font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); }
+  .rd-footer-social { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+  .rd-footer-social a { font-size: 14px; color: #fff; }
+  .rd-footer-links { display: grid; grid-template-columns: 0.7fr 0.8fr 1fr 1.2fr; gap: 36px; }
+  .rd-footer-links h3 { margin-bottom: 20px; font-family: var(--rd-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; }
+  .rd-footer-links :where(a, li) { font-size: 14.5px; line-height: 1.85; color: rgba(255, 255, 255, 0.72); }
+  .rd-footer-links li + li { margin-top: 8px; }
+  .rd-footer-links a:hover { color: #fff; }
+  .rd-footer-links nav a { display: block; margin-bottom: 4px; }
+  .rd-footer-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.16); }
+  .rd-footer-bottom :where(p, a) { margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.7); }
+  .rd-footer .rd-text-link { color: #fff; }
 
   @media (max-width: 1100px) {
     .rd-header { gap: 20px; padding: 0 4vw; }
@@ -346,7 +351,7 @@
     .rd-footer-top { gap: 40px; }
     .rd-footer-intro p { max-width: 500px; }
     .rd-footer-bottom { gap: 20px; }
-    .rd-footer { padding-top: 50px; }
+    .rd-footer { margin: 0 10px 10px; padding: 56px 6vw 24px; border-radius: 18px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

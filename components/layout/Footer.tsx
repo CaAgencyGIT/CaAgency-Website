@@ -76,7 +76,7 @@ export default function Footer({
             alt="CA Agency"
             width={343}
             height={274}
-            className="mb-[30px] h-auto w-[96px]"
+            className="rd-footer-logo mb-[30px] h-auto w-[104px]"
           />
           <p>{description}</p>
           <div className="rd-footer-social">
