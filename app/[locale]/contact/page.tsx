@@ -2,7 +2,8 @@ import { getMessages, getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
-import ContactForm from '@/components/blocks/ContactForm'
+import { BrandEnquiryForm, TalentApplicationForm } from '@/components/blocks/contact/ContactForms'
+import { prisma } from '@/lib/prisma'
 import ContactTabs from '@/components/blocks/ContactTabs'
 import { defaultFooterContent, SOCIAL_ICONS } from '@/components/layout/Footer'
 import OfficeMap from '@/components/blocks/OfficeMap'
@@ -78,10 +79,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
+// Talent names for the brand form's "Talent of interest" picker, read from the
+// live roster so the list never goes stale. Same order as /talents.
+async function getRosterNames(): Promise<string[]> {
+  try {
+    const talents = await prisma.talent.findMany({
+      orderBy: [{ category: 'asc' }, { order: 'asc' }],
+      select: { name: true },
+    })
+    return talents.map((t) => t.name)
+  } catch (error) {
+    console.error('Failed to load talent roster for the contact form:', error)
+    return []
+  }
+}
+
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'contact' })
   const formLabels = buildContactFormLabels(await getMessages({ locale }))
+  const roster = await getRosterNames()
 
   return (
     <>
@@ -113,7 +130,7 @@ export default async function ContactPage({ params }: Props) {
                 </li>
                 <li>
                   <a href="tel:+97148869229" dir="ltr" className="underline decoration-black/25 underline-offset-[6px] transition-colors hover:decoration-black">
-                    +971 04 8869229
+                    +971 4 886 9229
                   </a>
                 </li>
               </ul>
@@ -140,8 +157,8 @@ export default async function ContactPage({ params }: Props) {
             <h1 className="mb-6 font-anegra text-[clamp(52px,6.4vw,96px)] leading-[0.95] text-foreground-primary">{t('getInTouch')}</h1>
             <ContactTabs
               tabs={[
-                { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <ContactForm formId={2} variant="pill" labels={formLabels} /> },
-                { id: 'talent', label: t('tabInfluencers'), intro: t('talentDescription'), panel: <ContactForm formId={3} variant="pill" labels={formLabels} /> },
+                { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <BrandEnquiryForm labels={formLabels} roster={roster} /> },
+                { id: 'talent', label: t('tabInfluencers'), intro: t('talentDescription'), panel: <TalentApplicationForm labels={formLabels} /> },
               ]}
             />
           </div>

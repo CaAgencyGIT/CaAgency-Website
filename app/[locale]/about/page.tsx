@@ -128,12 +128,16 @@ export default async function AboutPage({ params }: Props) {
           </ScrollReveal>
           <ScrollReveal yOffset={24} className="about-stats">
             <div>
-              <strong>2019</strong>
-              <span>{t('statFounded')}</span>
+              <strong>6,000+</strong>
+              <span>{t('statCollabs')}</span>
             </div>
             <div>
-              <strong>3,000+</strong>
-              <span>{t('statCampaigns')}</span>
+              <strong>8+</strong>
+              <span>{t('statLanguages')}</span>
+            </div>
+            <div>
+              <strong>{t('statDailyValue')}</strong>
+              <span>{t('statDaily')}</span>
             </div>
             <div>
               <strong>3</strong>
