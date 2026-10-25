@@ -54,6 +54,7 @@ export const films = {
   'melani-medicube': { creator: 'Melani Seiffert', brand: 'Medicube', talentSlug: 'melani-seiffert', sourceUrl: 'https://www.tiktok.com/@melaniseiffert/video/7593808338719132950' },
   'beatrix-biodance': { creator: 'Beatrix Ramosaj', brand: 'Biodance', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.tiktok.com/@therealbeatrixramosaj/video/7692475926575074573' },
   'melani-revolve': { creator: 'Melani Seiffert', brand: 'Revolve Beauty', talentSlug: 'melani-seiffert', sourceUrl: 'https://www.instagram.com/reel/DT_g5aok7Cw/' },
+  'anton-mimmua': { creator: 'Anton Drozhzhin', brand: 'mimmua', talentSlug: 'anton-drozhzhin', sourceUrl: 'https://www.tiktok.com/@a.closmain/video/7555835373331549461' },
   'dariia-chanel': { creator: 'Dariia Bordun', brand: 'Chanel Beauty', talentSlug: 'dariia-bordun', sourceUrl: 'https://www.instagram.com/p/DGqp2U9iBhI/' },
   haircare: { creator: 'Albina Mavriqi', brand: 'Lilyeve', talentSlug: 'albina-mavriqi', sourceUrl: 'https://www.instagram.com/albina/reel/DeuTEqwNBLQ/' },
   'beatrix-medicube': { creator: 'Beatrix Ramosaj', brand: 'Medicube', talentSlug: 'beatrix-ramosaj', sourceUrl: 'https://www.instagram.com/beatrixramosaj/reel/Dd_OTh-xXg2/' },
@@ -114,6 +115,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
   'melani-medicube': 'medicube-campaign',
   'saranda-boj': 'beauty-of-joseon-campaign',
   'khutjo-frankly': 'frankly-campaign',
+  'anton-mimmua': 'mimmua-campaign',
   'melani-revolve': 'revolve-beauty-campaign',
   'rebecca-haruharu': 'haruharu-wonder-campaign',
   'georgii-yesstyle': 'yesstyle-collaboration',
@@ -124,6 +126,7 @@ export const filmCaseStudies: Partial<Record<FilmKey, string>> = {
 }
 
 export const workFilms: FilmKey[] = [
+  'anton-mimmua',
   'melani-revolve',
   'rebecca-haruharu', 'georgii-yesstyle',
   'khutjo-frankly',
@@ -211,7 +214,7 @@ export const heroCollageImages = [
 export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film'; key: FilmKey }> = [
   { type: 'video', src: '/videos/work/albina-sephora-web-v1.mp4' },
   { type: 'film', key: 'beatrix-gisou' },
-  { type: 'video', src: '/videos/work/saranda-delere-web-v1.mp4' },
+  { type: 'film', key: 'anton-mimmua' },
   { type: 'film', key: 'dariia-valentino' },
   { type: 'film', key: 'aiym-purito' },
   { type: 'film', key: 'georgii-yesstyle' },
@@ -283,5 +286,6 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Sephora': { src: '/images/logos/watermark/sephora-v2.png', width: 640, height: 83, widthPct: 56 },
   'Kylie Cosmetics': { src: '/images/logos/watermark/kylie-v2.png', width: 640, height: 120, widthPct: 50 },
   'HONOR': { src: '/images/logos/watermark/honor-v2.png', width: 640, height: 123, widthPct: 50 },
+  'mimmua': { src: '/images/logos/watermark/mimmua-v2.png', width: 480, height: 433, widthPct: 26 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v2.png', width: 640, height: 175, widthPct: 46 },
 }

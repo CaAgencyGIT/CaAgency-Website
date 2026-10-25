@@ -697,6 +697,25 @@ export const caseStudies: CaseStudy[] = [
     metrics: [],
   },
 
+  {
+    slug: 'mimmua-campaign',
+    brand: 'mimmua',
+    title: 'mimmua Creator Campaign',
+    vertical: 'K-Beauty Skincare',
+    platforms: ['Instagram Reels', 'TikTok'],
+    creator: '@a.closmain',
+    videoSrc: '/videos/redesign/rd-anton-mimmua-web-v2.mp4',
+    summary:
+      'A “puffy to glass skin” transformation routine for mimmua, built around de-puffing, jawline definition and a glowing finish.',
+    brief:
+      'mimmua wanted to show that its skincare can visibly change how the face looks, not just how the skin feels. The brief called for a clear transformation story with a relatable starting point, products that are easy to identify, and a finish that makes viewers want to try the routine themselves. The audience is young, skincare-curious and responds to honest before-and-afters, so the content had to feel personal rather than polished, while still giving each product a clear role in the routine and a clear moment on camera.',
+    approach:
+      'Anton Drozhzhin opens with throwback clips captioned “PUFFY face,” setting up a before that viewers immediately understand. He then moves into his routine on camera: applying the mimmua cream from its pot, working it into his skin, using a cooling niacinamide ampoule roller around the eyes and a gua sha along the jaw and cheekbones to de-puff and define. Close-ups show the texture of each product and the glow building, and the video closes on his sharper jawline and glass-skin finish.',
+    outcome:
+      'mimmua received a transformation-led creator video with a strong hook, clear product roles and a satisfying result. The relatable before and step-by-step routine make it effective as organic discovery content and as performance creative for viewers concerned about puffiness and dullness.',
+    services: ['Talent management', 'Concept development', 'Content production'],
+    metrics: [],
+  },
 ]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
