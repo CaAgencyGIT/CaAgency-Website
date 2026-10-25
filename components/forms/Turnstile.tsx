@@ -13,16 +13,20 @@ export default function Turnstile({ onToken }: { onToken: (token: string) => voi
   const container = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState(false)
   const ready = useCallback(() => setLoaded(true), [])
+  const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   useEffect(() => {
     const api = window.turnstile
-    if (!loaded || !container.current || !api) return
+    // Without a key (e.g. the dev preview) Turnstile throws and takes the whole
+    // page down; skip it — the form simply can't submit without a token.
+    if (!sitekey || !loaded || !container.current || !api) return
     const id = api.render(container.current, {
-      sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
+      sitekey,
       action: 'contact', callback: onToken,
       'expired-callback': () => onToken(''), 'error-callback': () => onToken(''),
     })
     return () => { api.remove(id) }
-  }, [loaded, onToken])
+  }, [sitekey, loaded, onToken])
+  if (!sitekey) return null
   return <>
     <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" onReady={ready} />
     <div ref={container} />
