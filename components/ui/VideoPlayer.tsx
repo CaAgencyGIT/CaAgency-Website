@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { clsx } from 'clsx'
 import usePrefersReducedMotion from '@/components/hooks/usePrefersReducedMotion'
+import { pickVideoSrc } from '@/lib/media/video-src'
 
 type PlaybackStatus = 'idle' | 'starting' | 'playing' | 'buffering' | 'paused' | 'blocked' | 'error'
 type ManualIntent = 'none' | 'play' | 'pause'
@@ -335,7 +336,7 @@ export default function VideoPlayer({
       {shouldMountVideo && (
         <video
           ref={videoRef}
-          src={src}
+          src={pickVideoSrc(src)}
           aria-label={label}
           className="h-full w-full object-cover"
           muted={muted}

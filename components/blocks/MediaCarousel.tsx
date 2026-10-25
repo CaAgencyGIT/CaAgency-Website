@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from 'react'
 import Image from 'next/image'
+import { pickVideoSrc } from '@/lib/media/video-src'
 
 // React only calls these subscribe/snapshot helpers on the client (SSR uses
 // the getServerSnapshot argument), but non-DOM environments like unit tests
@@ -281,7 +282,7 @@ export default function MediaCarousel({
                           videoRefs.current.delete(index)
                         }
                       }}
-                      src={item.src}
+                      src={pickVideoSrc(item.src)}
                       poster={item.poster}
                       // No autoplay attribute: it would make the browser
                       // start fetching the MP4 at mount (200px early, even

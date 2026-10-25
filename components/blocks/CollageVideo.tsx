@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
+import { MOBILE_VIDEO_MEDIA, mobileVideoSrc } from '@/lib/media/video-src'
 
 // Decorative autoplay tile: muted, looping, inline, no controls. Plays
 // whenever it's on screen and keeps retrying (load, first touch/scroll,
@@ -72,8 +73,8 @@ export default function CollageVideo({
       <Image src={poster} alt="" aria-hidden fill sizes="(max-width: 760px) 100vw, 20vw" priority style={position ? { objectPosition: position } : undefined} />
     )}
     <video
+      key={src}
       ref={ref}
-      src={src}
       aria-label={label}
       muted
       loop
@@ -85,7 +86,11 @@ export default function CollageVideo({
       controls={false}
       className="collage-video"
       style={position ? { objectPosition: position } : undefined}
-    />
+    >
+      {/* Chosen by the browser before any download: phones get the light encode. */}
+      {mobileVideoSrc(src) && <source src={mobileVideoSrc(src)!} type="video/mp4" media={MOBILE_VIDEO_MEDIA} />}
+      <source src={src} type="video/mp4" />
+    </video>
     </>
   )
 }

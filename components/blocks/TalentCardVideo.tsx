@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { pickVideoSrc } from '@/lib/media/video-src'
 
 // Talent card film: fades in over the photo and plays while the card is
 // hovered, or on touch screens while the card sits in the middle of the
@@ -55,7 +56,7 @@ export default function TalentCardVideo({ src }: { src: string }) {
   return (
     <video
       ref={ref}
-      src={loaded ? src : undefined}
+      src={loaded ? pickVideoSrc(src) : undefined}
       muted
       loop
       playsInline
