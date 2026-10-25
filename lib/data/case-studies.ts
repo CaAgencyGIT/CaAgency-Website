@@ -543,24 +543,6 @@ export const caseStudies: CaseStudy[] = [
     metrics: [],
   },
   {
-    slug: 'tropic-campaign',
-    brand: 'Tropic',
-    title: 'Tropic Creator Campaign',
-    vertical: 'Skincare',
-    platforms: ['Instagram Reels', 'TikTok'],
-    videoSrc: '/videos/redesign/rd-jay-tropic-web-v1.mp4',
-    summary:
-      'Creator content bringing Tropic’s skincare into an everyday routine.',
-    brief:
-      'Tropic wanted its products shown in a natural, routine-based format that reflects how its customers use them.',
-    approach:
-      'Our talent Jay Sadiq created a routine-led video, keeping the delivery personal and the products clearly visible at each step.',
-    outcome:
-      'Tropic received authentic creator content that places its skincare in a real daily routine.',
-    services: ['Talent management', 'Concept development', 'Content production'],
-    metrics: [],
-  },
-  {
     slug: 'arencia-campaign',
     brand: 'Arencia',
     title: 'Arencia Creator Campaign',
