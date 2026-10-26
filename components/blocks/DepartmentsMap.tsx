@@ -26,7 +26,7 @@ export default function DepartmentsMap() {
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="departments-map block h-auto w-full" aria-hidden="true">
       {DOTS.map((d) => (
-        <circle key={`${d.cx}-${d.cy}`} cx={d.cx} cy={d.cy} r={2.6} fill="#d8d4cd" />
+        <circle key={`${d.cx}-${d.cy}`} cx={d.cx} cy={d.cy} r={2.6} fill="#6e6a65" />
       ))}
       {PINS.map((p) => (
         <g key={p.id}>
