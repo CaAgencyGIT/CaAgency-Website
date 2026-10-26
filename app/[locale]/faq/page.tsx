@@ -6,6 +6,9 @@ import type { Locale } from '@/i18n/config'
 import { getFaqJsonLd } from '@/lib/data/faq-schema'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
+// Safety net next to the on-save revalidation in lib/revalidate.ts.
+export const revalidate = 3600
+
 type Props = {
   params: Promise<{ locale: string }>
 }

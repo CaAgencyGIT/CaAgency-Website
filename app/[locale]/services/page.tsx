@@ -7,6 +7,9 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import styles from './services.module.css'
 
+// Safety net next to the on-save revalidation in lib/revalidate.ts.
+export const revalidate = 3600
+
 type Props = {
   params: Promise<{ locale: string }>
 }

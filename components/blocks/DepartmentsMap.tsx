@@ -1,6 +1,4 @@
-'use client'
-
-import { useEffect, useRef, useState } from 'react'
+import InViewClass from '@/components/ui/InViewClass'
 import { WORLD_COLS, WORLD_LAT1, WORLD_LON0, WORLD_ROWS, WORLD_ROWS_MASK, WORLD_STEP } from '@/lib/data/world-map-dots'
 
 const CELL = 10
@@ -11,9 +9,14 @@ const toXY = (lon: number, lat: number) => ({
   y: ((WORLD_LAT1 - lat) / WORLD_STEP) * CELL,
 })
 
-const DOTS = WORLD_ROWS_MASK.flatMap((row, r) =>
-  [...row].flatMap((cell, c) => (cell === '1' ? [{ cx: c * CELL + CELL / 2, cy: r * CELL + CELL / 2 }] : [])),
-)
+// All land dots as one path (two arcs per dot), rendered on the server: one
+// DOM node instead of 1,651 circles, and no dot data in the client JS.
+const R = 2.6
+const DOTS_PATH = WORLD_ROWS_MASK.flatMap((row, r) =>
+  [...row].flatMap((cell, c) =>
+    cell === '1' ? [`M${c * CELL + CELL / 2 - R} ${r * CELL + CELL / 2}a${R} ${R} 0 1 0 ${2 * R} 0a${R} ${R} 0 1 0 ${-2 * R} 0`] : [],
+  ),
+).join('')
 
 // One pin per department, at the market it is named after. Middle East
 // (Dubai HQ) is the hub every route flows from.
@@ -33,33 +36,12 @@ const ROUTES = PINS.filter((p) => p !== HUB).map(
   (p) => `M ${HUB.x} ${HUB.y} Q ${(HUB.x + p.x) / 2} ${Math.min(HUB.y, p.y) - Math.max(50, Math.abs(HUB.x - p.x) * 0.22)} ${p.x} ${p.y}`,
 )
 
+// Routes draw in once the map scrolls into view (InViewClass adds is-shown).
 export default function DepartmentsMap() {
-  // Routes draw in once the map scrolls into view.
-  const ref = useRef<SVGSVGElement>(null)
-  const [shown, setShown] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        setShown(true)
-        io.disconnect()
-      }
-    }, { threshold: 0.3 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
   return (
-    <svg
-      ref={ref}
-      viewBox={`0 0 ${W} ${H}`}
-      className={`departments-map block h-auto w-full${shown ? ' is-shown' : ''}`}
-      aria-hidden="true"
-    >
-      {DOTS.map((d) => (
-        <circle key={`${d.cx}-${d.cy}`} cx={d.cx} cy={d.cy} r={2.6} fill="#3f3d3a" />
-      ))}
+    <InViewClass>
+    <svg viewBox={`0 0 ${W} ${H}`} className="departments-map block h-auto w-full" aria-hidden="true">
+      <path d={DOTS_PATH} fill="#3f3d3a" />
       {ROUTES.map((d, i) => (
         <g key={d}>
           <path d={d} className="departments-map-route" fill="none" />
@@ -78,5 +60,6 @@ export default function DepartmentsMap() {
         </g>
       ))}
     </svg>
+    </InViewClass>
   )
 }
