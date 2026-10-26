@@ -30,6 +30,8 @@ model Talent {
 model Post {
   id            String   @id @default(cuid())
   title         String
+  /// Shorter title for search results (<title>); the page heading keeps `title`.
+  seoTitle      String?
   slug          String   @unique
   excerpt       String?
   content       String
