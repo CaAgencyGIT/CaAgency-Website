@@ -62,7 +62,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   const description = post.excerpt || plainTextExcerpt(post.content)
   const metadata = buildPageMetadata({
-    title: post.title,
+    // Search results get the short title when one is set; the page heading keeps the full one.
+    title: post.seoTitle?.trim() || post.title,
     description,
     path: `/blog/${slug}`,
     localized: false,

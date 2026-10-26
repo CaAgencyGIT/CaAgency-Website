@@ -10,7 +10,7 @@ import Button from '@/components/ui/Button'
 import ShareButtons from '@/components/ui/ShareButtons'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
-import { isIndexableTalentProfile } from '@/lib/seo/talents'
+import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
 import { jsonLdSafe } from '@/lib/sanitize'
 
 interface TalentPageProps {
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: TalentPageProps): Promise<Met
 
     const role = talent.category === 'youtube' ? 'YouTube Creator' : 'Instagram & TikTok Influencer'
     const title = `${talent.name} - ${role}`
-    const description = talent.bio ||
+    const description = (talent.bio && talentMetaDescription(talent.bio)) ||
       `${talent.name} is ${talent.category === 'youtube' ? 'a YouTube creator' : 'an Instagram and TikTok creator'} represented by CA Agency. Explore their content, audience, and brand partnership opportunities.`
 
     const metadata = buildPageMetadata({
