@@ -68,3 +68,20 @@ export async function getTalentsBySlugs(slugs: string[]) {
     return []
   }
 }
+
+// Homepage slideshow (Oct 2026): the pinned talents first, in their order,
+// then every other Instagram talent in the roster order.
+export async function getHomeSlideshowTalents(pinned: string[]) {
+  if (!process.env.DATABASE_URL) return []
+  try {
+    const rest = await prisma.talent.findMany({
+      where: { category: 'instagram', slug: { notIn: pinned } },
+      orderBy: { order: 'asc' },
+      select: { slug: true },
+    })
+    return getTalentsBySlugs([...pinned, ...rest.map((row) => row.slug)])
+  } catch (error) {
+    console.error('Error fetching slideshow talents:', error)
+    return getTalentsBySlugs(pinned)
+  }
+}

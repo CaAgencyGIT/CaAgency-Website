@@ -3,6 +3,7 @@ import { talentFilmSrc } from '@/lib/data/redesign-media'
 import { talentCardArt } from '@/lib/data/talent-cards'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
+import TalentSlideshow from './TalentSlideshow'
 
 interface Talent {
   slug: string
@@ -24,6 +25,8 @@ interface TalentGridProps {
   cardArt?: boolean
   /** Phones: a two-column grid ('list') or a swipeable row ('carousel'). */
   mobileLayout?: 'list' | 'carousel'
+  /** Auto-advancing slideshow on every screen (homepage). */
+  slideshow?: boolean
 }
 
 export default function TalentGrid({
@@ -33,6 +36,7 @@ export default function TalentGrid({
   animate = true,
   cardArt = false,
   mobileLayout,
+  slideshow = false,
 }: TalentGridProps) {
   const gridClasses = {
     2: 'grid-cols-2 md:grid-cols-2',
@@ -70,6 +74,10 @@ export default function TalentGrid({
       kickUrl={talent.kickUrl}
     />
   )
+
+  if (slideshow) {
+    return <TalentSlideshow>{talents.map(renderCard)}</TalentSlideshow>
+  }
 
   if (!animate) {
     return (

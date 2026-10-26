@@ -11,7 +11,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { brandLogos } from '@/lib/data/brands'
 import { featuredVideos } from '@/lib/data/home'
 import { getSiteContent } from '@/lib/site-content/service'
-import { getTalentsBySlugs } from '@/lib/site-content/public'
+import { getHomeSlideshowTalents } from '@/lib/site-content/public'
 import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
@@ -47,7 +47,7 @@ export const metadata = buildPageMetadata({
 export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
   // Pinned row shared with the localized homepages; /talents has its own order.
-  const talents = await getTalentsBySlugs(homeTalentSlugs)
+  const talents = await getHomeSlideshowTalents(homeTalentSlugs)
   const introMediaItems = content.intro.mediaItems.map((item) => ({
     type: item.type === 'image' ? 'image' as const : 'video' as const,
     src: item.src,
@@ -154,7 +154,7 @@ export default async function HomePage() {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow="Our Creators" title={content.talents.title} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={talents} columns={6} cardArt mobileLayout="carousel" />
+          <TalentGrid talents={talents} columns={6} cardArt mobileLayout="carousel" slideshow />
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">

@@ -525,3 +525,14 @@ video { -webkit-transform: translateZ(0); transform: translateZ(0); }
   .departments-map-route { stroke-dashoffset: 0; animation: none !important; }
   .departments-map-traveller { display: none; }
 }
+
+/* Homepage talent slideshow: six cards across on desktop, three on tablets,
+   two (and a peek) on phones; slides scroll-snap one card at a time. */
+.talent-slideshow { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.talent-slideshow::-webkit-scrollbar { display: none; }
+.talent-slideshow-slide { flex: 0 0 calc((100% - 5 * 20px) / 6); min-width: 0; scroll-snap-align: start; }
+@media (max-width: 1024px) { .talent-slideshow-slide { flex-basis: calc((100% - 2 * 20px) / 3); } }
+@media (max-width: 767px) {
+  .talent-slideshow { gap: 12px; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .talent-slideshow-slide { flex-basis: 44%; }
+}
