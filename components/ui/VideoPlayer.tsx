@@ -265,6 +265,12 @@ export default function VideoPlayer({
         return false
       }
       if (!ahead()) {
+        // A film that loaded only its metadata sits suspended; switching the
+        // preload hint doesn't restart the download in Chrome, so kick it.
+        if (video.networkState === HTMLMediaElement.NETWORK_IDLE && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+          video.preload = 'auto'
+          video.load()
+        }
         await new Promise<void>((resolve) => {
           const done = () => {
             clearTimeout(timer)
