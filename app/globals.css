@@ -279,7 +279,7 @@ section {
   .home-collage { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; margin-left: 0; }
 }
 @media (max-width: 760px) {
-  .home-collage { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .home-collage { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; width: 100vw; margin-left: calc(50% - 50vw); padding-inline: 20px; scroll-padding-inline: 20px; }
   .home-collage::-webkit-scrollbar { display: none; }
   .home-collage-tile { flex: 0 0 42%; scroll-snap-align: start; border-radius: 10px; }
 }
