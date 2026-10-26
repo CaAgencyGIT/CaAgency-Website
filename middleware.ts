@@ -4,6 +4,7 @@ import { routing } from './i18n/routing'
 import {
   isPublicAsset,
   isSensitiveProbe,
+  isUnknownRootFile,
   getLocalizedSiteRouteRedirect,
 } from './lib/routing-helpers'
 
@@ -29,8 +30,9 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const hostname = request.headers.get('host') || ''
 
-  // Short-circuit common scanner probes before they hit the App Router.
-  if (isSensitiveProbe(pathname)) {
+  // Short-circuit common scanner probes and guessed root files before they
+  // hit the App Router (a guessed /favicon-32x32.png used to end in a 500).
+  if (isSensitiveProbe(pathname) || isUnknownRootFile(pathname)) {
     return new NextResponse('Not Found', {
       status: 404,
       headers: {
@@ -114,7 +116,7 @@ export const config = {
   // skincare and K-beauty category pages, legal, blog,
   // case-studies, talents/* and services/* (detail pages; only the listings
   // exist under [locale]). Static files (/assets, /fonts, /images, /videos,
-  // /media and the root icons) skip the middleware entirely: Caddy already
+  // /media) skip the middleware entirely: Caddy already
   // handles their domain redirects, so running it per file was pure cost.
   // isPublicAsset() above still covers the remaining root files.
   //
@@ -122,6 +124,6 @@ export const config = {
   // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. `influencer-marketing-`,
   // `talents/` and `services/` are intentional prefixes. Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|(?:favicon|apple-touch-icon|icon-)[^/]*$|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }
