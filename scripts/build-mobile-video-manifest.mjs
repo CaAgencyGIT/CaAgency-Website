@@ -1,6 +1,8 @@
 // Lists the "-m.mp4" phone encodes in public/videos so the client only asks
 // for a mobile file that actually exists (otherwise it falls back to the
-// full-quality original).
+// full-quality original). The output is committed: the production deploy
+// regenerates pages from source without running this script, and a unit
+// test checks it stays in sync with public/.
 import { readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
