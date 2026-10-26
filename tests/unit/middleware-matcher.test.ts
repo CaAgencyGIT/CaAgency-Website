@@ -25,6 +25,19 @@ describe('middleware matcher', () => {
   })
 
   it.each([
+    '/images/site/logo.svg', '/videos/redesign/a.mp4', '/media/talents/x.webp', '/fonts/Anegra.woff2', '/assets/x.css',
+    '/favicon.ico', '/favicon-32-v2.png', '/apple-touch-icon-v2.png', '/icon-512-v2.png',
+  ])('lets the static file %s skip the middleware', (pathname) => {
+    expect(runsMiddleware(pathname)).toBe(false)
+  })
+
+  it.each([
+    '/imagesx', '/images', '/videos', '/iconography', '/media-kit',
+  ])('still routes the page-like path %s through the middleware', (pathname) => {
+    expect(runsMiddleware(pathname)).toBe(true)
+  })
+
+  it.each([
     '/blog2', '/blogger', '/en/blog2', '/admin2', '/apix', '/case-studies-extra', '/privacy-policy-old', '/terms-of-service2',
     '/business-licenses', '/korean-skincare-influencer-marketing-x', '/beauty-influencer-marketing-agency2', '/talents', '/services',
     '/', '/en', '/ar', '/about', '/contact', '/does-not-exist',
