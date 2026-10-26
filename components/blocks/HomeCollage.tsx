@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export type HomeCollageArea = 'albina' | 'rebecca' | 'melani' | 'yassi' | 'khutjo' | 'anton' | 'dariia'
+export type HomeCollageArea = 'albina' | 'rebecca' | 'melly' | 'yassi' | 'khutjo' | 'anton' | 'dariia'
 
 export interface HomeCollageTile {
   area: HomeCollageArea
@@ -20,7 +20,7 @@ export interface HomeCollageTile {
 const SIZES: Record<HomeCollageArea, string> = {
   albina: '(max-width: 760px) 50vw, 26vw',
   rebecca: '(max-width: 760px) 50vw, 26vw',
-  melani: '(max-width: 760px) 50vw, 21vw',
+  melly: '(max-width: 760px) 50vw, 21vw',
   yassi: '(max-width: 760px) 50vw, 21vw',
   khutjo: '(max-width: 760px) 50vw, 21vw',
   anton: '(max-width: 760px) 50vw, 22vw',
