@@ -2,10 +2,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { CaseStudy } from '@/lib/data/case-studies'
 import { posterFor } from '@/lib/data/videos'
+import CaseStudyCardVideo from './CaseStudyCardVideo'
 
 // Case study card with the campaign's vertical video still shown whole, as a
 // small portrait thumbnail beside the text, instead of a cropped wide banner.
-export default function CaseStudyCard({ study, showSummary = false }: { study: CaseStudy; showSummary?: boolean }) {
+// `playVideo` loops the campaign film in the thumbnail (related case studies).
+export default function CaseStudyCard({
+  study,
+  showSummary = false,
+  playVideo = false,
+}: {
+  study: CaseStudy
+  showSummary?: boolean
+  playVideo?: boolean
+}) {
   return (
     <Link
       href={`/case-studies/${study.slug}`}
@@ -19,6 +29,7 @@ export default function CaseStudyCard({ study, showSummary = false }: { study: C
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           sizes="150px"
         />
+        {playVideo && <CaseStudyCardVideo src={study.videoSrc} />}
       </div>
       <div className="flex min-w-0 grow flex-col py-3 pe-3">
         <span className="mb-2 block font-jost text-[11px] font-medium uppercase tracking-[0.16em] text-foreground-gray">

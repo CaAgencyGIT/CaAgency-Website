@@ -298,10 +298,14 @@
   .about-offices { margin: 0; padding: 0; list-style: none; border-top: 1px solid #dedbd5; }
   .about-offices li { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #dedbd5; font-size: 14px; color: #67645f; }
   .about-offices span { font-family: var(--rd-serif); font-size: 24px; color: #171715; }
+  .about-story { display: grid; grid-template-columns: 1fr 1.25fr; gap: 7vw; align-items: start; }
+  .about-story-pillars { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid #dedbd5; }
+  .about-story-pillars > li { padding: 26px 0 28px; border-bottom: 1px solid #dedbd5; }
+  @media (max-width: 900px) { .about-story { grid-template-columns: 1fr; gap: 36px; } }
   .about-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: end; gap: 20px; }
   .about-stats > div { padding: 28px 24px; border-radius: 20px; background: #f4f2ee; }
   .about-stats strong { display: block; margin-bottom: 10px; font-family: var(--rd-serif); font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; line-height: 1; color: #171715; }
-  .about-stats span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #67645f; }
+  .about-stats > div > span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #67645f; }
   @media (max-width: 900px) { .about-panel { grid-template-columns: 1fr; gap: 32px; } }
   @media (max-width: 760px) {
           .about-stats { grid-template-columns: 1fr; gap: 12px; }
@@ -313,7 +317,7 @@
      Jost for spaced uppercase labels. */
   .rd-eyebrow, .rd-header-nav a, .rd-header-talk, .rd-header-actions .rd-language label,
   .rd-footer-links h3, .rd-footer-contact dt, .rd-footer-partners li, .rd-footer-social-contact,
-  .about-stats span, .rd-text-link { font-family: var(--rd-label); }
+  .about-stats > div > span, .rd-text-link { font-family: var(--rd-label); }
   .rd-menu-ring text { font-family: var(--rd-label); }
   .rd-header-nav a, .rd-header-talk { font-weight: 500; letter-spacing: 0.18em; }
   .rd-menu nav a { font-weight: 500; letter-spacing: 0.04em; }
