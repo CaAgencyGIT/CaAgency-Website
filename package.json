@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/build-asset-manifest.mjs && prisma generate && next build",
+    "build": "node scripts/build-asset-manifest.mjs && node scripts/build-mobile-video-manifest.mjs && prisma generate && next build",
     "start": "next start",
     "lint": "eslint app components lib i18n middleware.ts",
     "test": "vitest run",

@@ -482,3 +482,16 @@ section {
   }
 }
 #offices { scroll-margin-top: 92px; }
+
+/* Loading indicator: CA logo turning on its vertical axis with a soft pulse.
+   Keeps moving with reduced motion only as a gentle fade. */
+.logo-spinner svg { animation: logo-spin 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; transform-origin: 50% 50%; }
+@keyframes logo-spin {
+  0% { transform: perspective(400px) rotateY(0deg); opacity: 1; }
+  50% { transform: perspective(400px) rotateY(180deg); opacity: 0.55; }
+  100% { transform: perspective(400px) rotateY(360deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-spinner svg { animation: logo-pulse 1.4s ease-in-out infinite !important; animation-duration: 1.4s !important; animation-iteration-count: infinite !important; }
+  @keyframes logo-pulse { 50% { opacity: 0.4; } }
+}

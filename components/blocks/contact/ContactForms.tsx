@@ -7,6 +7,7 @@ import type { ContactFormLabels } from '@/lib/contact/form-labels'
 import { parseFollowerCount } from '@/lib/contact/followers'
 import { contactFieldLimits, isHttpUrl, isValidHandle, MAX_SOCIAL_PROFILES, type ContentCategory } from '@/lib/contact/validation'
 import { cn } from '@/lib/utils'
+import LogoSpinner from '@/components/ui/LogoSpinner'
 import {
   CheckChips,
   describedBy,
@@ -126,12 +127,7 @@ function SubmitRow({ label, sending, status, blocked, labels, resultRef }: {
         aria-busy={status === 'submitting'}
         className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-full bg-[#0e0e0e] px-8 font-jost text-[15px] font-medium text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === 'submitting' && (
-          <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-        )}
+        {status === 'submitting' && <LogoSpinner size={22} label={sending} />}
         {status === 'submitting' ? sending : label}
       </button>
     </div>

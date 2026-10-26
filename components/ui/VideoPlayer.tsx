@@ -6,6 +6,7 @@ import { flushSync } from 'react-dom'
 import { clsx } from 'clsx'
 import usePrefersReducedMotion from '@/components/hooks/usePrefersReducedMotion'
 import { pickVideoSrc } from '@/lib/media/video-src'
+import LogoSpinner from '@/components/ui/LogoSpinner'
 
 type PlaybackStatus = 'idle' | 'starting' | 'playing' | 'buffering' | 'paused' | 'blocked' | 'error'
 type ManualIntent = 'none' | 'play' | 'pause'
@@ -382,6 +383,12 @@ export default function VideoPlayer({
         >
           {canPause && manualIntent !== 'pause' ? labels.pause : labels.play}
         </button>
+      )}
+      {/* Spinning CA logo while a started video waits for data. */}
+      {shouldMountVideo && playbackStatus === 'buffering' && hasPlayedRef.current && (
+        <div className="pointer-events-none absolute inset-0 z-[5] grid place-items-center text-white/90 [filter:drop-shadow(0_2px_8px_rgba(0,0,0,0.45))]">
+          <LogoSpinner size={44} />
+        </div>
       )}
     </div>
   )
