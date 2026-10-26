@@ -175,7 +175,7 @@ export default async function HomePage() {
                 <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
                   {content.featuredWork.description}
                 </Text>
-                <Link href={content.featuredWork.buttonHref} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                <Link href={content.featuredWork.buttonHref} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
                   {content.featuredWork.buttonLabel} <span aria-hidden="true">→</span>
                 </Link>
               </div>
@@ -204,7 +204,7 @@ export default async function HomePage() {
               Tell us about your goals and we&apos;ll match you with the right creators, strategy, production, and reporting included.
             </Text>
             <Magnetic>
-              <Button href="/contact" variant="light" prefetch={false}>
+              <Button href="/contact" variant="light">
                 Enquire For Partnerships
               </Button>
             </Magnetic>

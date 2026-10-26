@@ -33,6 +33,7 @@ export default function IntentPrefetchLink({
       prefetch={intent ? null : false}
       onMouseEnter={() => setIntent(true)}
       onFocus={() => setIntent(true)}
+      onTouchStart={() => setIntent(true)}
       aria-current={markCurrent && active ? 'page' : undefined}
       className={clsx(className, active ? activeClassName : inactiveClassName)}
     >

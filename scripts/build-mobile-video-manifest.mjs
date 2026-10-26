@@ -5,8 +5,9 @@
 // test checks it stays in sync with public/.
 import { readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const root = path.resolve(new URL('..', import.meta.url).pathname)
+const root = fileURLToPath(new URL('..', import.meta.url))
 const found = []
 for (const dir of ['videos/redesign', 'videos/work']) {
   for (const name of await readdir(path.join(root, 'public', dir)).catch(() => [])) {
