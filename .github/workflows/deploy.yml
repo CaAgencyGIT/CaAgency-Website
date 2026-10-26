@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Check deployment preflight without changing the live release
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy website
+    # Manual retry/dry run only. Default-branch push CI deploys in its own job.
+    if: github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+    runs-on: [self-hosted, Linux, X64, caagency-website-ci]
+    timeout-minutes: 55
+    environment: server-production
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - name: Verify VM isolation
+        run: /usr/local/bin/verify-ci-isolation
+      - name: Deploy with GitHub identity
+        # Trusted client is injected into every fresh VM; no source checkout needed.
+        run: |
+          node --version
+          node /usr/local/lib/caagency-ci/deploy-client.mjs
+        env:
+          DEPLOY_APP: website
+          DEPLOY_DRY_RUN: ${{ inputs.dry_run }}
+          # Automatically issued by GitHub for this job, never a stored deploy secret.
+          GH_TOKEN: ${{ github.token }}

@@ -1,3 +1,4 @@
+import { mobileVideoSrc } from '@/lib/media/video-src'
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -44,7 +45,8 @@ describe('published media assets', () => {
     expect(new Set(videos.map(({ src }) => src)).size).toBe(videos.length)
 
     for (const { src } of videos) {
-      expect(src).toMatch(/-web-v1\.mp4$/)
+      // Immutable caching: every file name carries a version (-v1, -v2, …).
+      expect(src).toMatch(/-v\d+\.mp4$/)
       expect(existsSync(publicFile(src))).toBe(true)
       expect(existsSync(publicFile(posterFor(src)))).toBe(true)
     }
@@ -57,9 +59,11 @@ describe('published media assets', () => {
     expect(bytes(workVideos)).toBeLessThanOrEqual(28 * 1024 * 1024)
     expect(bytes(aboutVideos)).toBeLessThanOrEqual(5 * 1024 * 1024)
     // October 2026 redesign films, appended to Work and lazy-loaded tile by
-    // tile, so this worst case is never one download. Kept at near-source
-    // quality on request (sharpness over bytes); the bitrate cap still holds.
-    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(40 * 1024 * 1024)
+    // tile, so this worst case is never one download. Desktop keeps the
+    // client-approved near-source quality; phones load the light -m.mp4
+    // encodes instead (bounded separately below).
+    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(96 * 1024 * 1024)
+    expect(bytes(workFilms.map((key) => ({ src: mobileVideoSrc(filmSrc(key)) ?? filmSrc(key) })))).toBeLessThanOrEqual(48 * 1024 * 1024)
   })
 
   it('maps redesign films only to existing case studies', () => {
@@ -76,7 +80,11 @@ describe('published media assets', () => {
 
       expect(metadata.format.format_name).toContain('mp4')
       expect(Number(metadata.format.duration)).toBeGreaterThan(0)
-      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(1_200_000)
+      // Desktop masters stay sharp (Oct 2026 client decision); the phone
+      // encodes, where present, keep the original 1.2 Mbps cap.
+      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(2_500_000)
+      const mobile = mobileVideoSrc(src)
+      if (mobile) expect(Number(probe(mobile).format.bit_rate)).toBeLessThanOrEqual(1_300_000)
       expect(videoStreams).toHaveLength(1)
       expect(audioStreams).toHaveLength(0)
       expect(video.codec_name).toBe('h264')

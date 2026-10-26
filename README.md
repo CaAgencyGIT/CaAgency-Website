@@ -5,6 +5,79 @@ Next.js 16 + Prisma 7 on PostgreSQL (container `caagency-postgres`, database
 `caagency-website.service` on 127.0.0.1:3001 behind Caddy and a Cloudflare
 Tunnel. Finance is a separate service on port 3000.
 
+## Deploy from GitHub without deployment keys
+
+Open **Actions → Deploy → Run workflow**, select `master`, and run it after CI
+passes. Select `dry_run` to check preflight without replacing the live release.
+Pushing or merging into the default branch runs checks, build, publication and
+production deployment consecutively in one CI job and one disposable VM. There
+is no automatic second Deploy job or runner assignment. Pull requests run checks
+and build in `ci-validation`; publication and deployment are skipped. Default
+branch pushes use `server-production` (environment rules apply to the whole job).
+Manual retries and dry runs remain available through the Deploy workflow. A
+manual retry can also use a completed combined run whose CI stages passed but
+whose deployment failed.
+
+CI and deployment jobs run in disposable, isolated virtual machines on our
+server, labeled `caagency-website-ci`. Each VM handles one job, then its disk
+is discarded. Two fresh single-job runners stay connected for this app.
+A trusted pre-job hook obtains the host's per-app execution permit before
+containers or workflow steps run, so jobs execute one at a time per app. This
+overlaps runner registration/connection with the preceding job; used VMs are
+never recycled. The pool uses the same VM count and server limits as before. These jobs consume no GitHub-hosted runner minutes. Each VM gets
+a read-only Git snapshot for this repository to avoid repeated full downloads;
+CI checkout still fetches the exact workflow commit. The final deployment step
+uses the trusted injected client in the same VM. Manual Deploy jobs need no
+source checkout. Each VM also receives this repository's read-only npm
+download cache and copies it into its disposable disk. Installed `node_modules` are also
+prepared in a separate isolated VM and reused through a fresh copy-on-write disk.
+The dependency step verifies package files and the exact runtime before reuse;
+a mismatch falls back to `npm ci --prefer-offline`. Prisma generation still runs
+for the current schema. Jobs cannot write changes back to any cache. Website CI also restores an
+isolated Next.js compiler baseline before its full build. Compatible compiler
+work is reused; current source and pages are rebuilt. Manual full server builds
+use a dedicated checkout; normal GitHub deployments reuse CI compilation below.
+
+Successful default-branch CI also publishes its compiled `.next` output directly
+to the server using GitHub OIDC. Deployment reuses the build from that exact CI
+run and attempt; it does not compile again. It refreshes pre-rendered pages from
+the production database so CI's empty database cannot replace live content.
+Build ID, compiled-code hashes, package lock and public build settings are
+checked before release. The server keeps at most three compressed builds, with
+no GitHub artifact-storage usage. Pull requests cannot publish deployment builds.
+Public `NEXT_PUBLIC_*` build settings are GitHub repository variables and must
+match production; application secrets remain only on the server.
+
+Build publishing uses four gzip workers within each existing VM CPU limit.
+The GitHub identity request overlaps compression; the archive is hashed while
+it is written and uploaded as a file stream over the host-only connection.
+No full archive buffer is kept in memory. CI reports separate packaging,
+identity and upload timings; SHA-256, upload limits and exact-attempt validation
+remain mandatory. Compression remains gzip-compatible with existing releases.
+
+Both deployment clients call the OIDC gateway directly over the host-only VM
+connection and notice completion within half a second for normal deployments.
+The server independently verifies that every required CI stage succeeded in
+the exact current job/attempt, plus GitHub's current default branch, then fetches matching Git objects from its trusted read-only local cache
+when available. The host refreshes that trusted default-branch cache during CI
+so same-job deployment can fetch locally. Mounted guest snapshots stay immutable.
+Cache misses fall back to authenticated GitHub fetch. Health
+checks still require two successes separated by two seconds, with quicker
+retries while the new server opens its socket. Migration and rollback gates stay
+in place; server status includes policy/source/release timings.
+
+The workflow authenticates to the server with GitHub OIDC and uses GitHub's
+automatic, read-only job token to fetch the exact commit. Default-branch push jobs are not canceled mid-deployment by newer pushes;
+stale commits still fail the server's current-head check. No SSH deploy key,
+personal access token, or deployment secret needs to be configured. The server
+requires the `server-production` environment, the default branch, the approved
+workflow, and successful CI stages for the same push commit. It builds a separate
+checkout, then uses the server's existing health checks and automatic rollback.
+Database migrations still require the reviewed, manual server procedure.
+
+Server setup and recovery: `infra/deploy/github-oidc/README.md` in the parent
+server workspace. Deployment logs: `/var/lib/caagency-deploy/jobs/` (root only).
+
 ## Data and services
 
 - Application: `/srv/caagency-website`, systemd `caagency-website.service`
@@ -77,3 +150,46 @@ writes; the finance database is independently authoritative.
 creates a private `pg_dump` of `caagency_website` with matching environment and
 media under `/var/backups/caagency-website`. The nightly
 `caagency-offsite-backup.timer` runs it and uploads the encrypted archive to R2.
+
+CI also restores isolated TypeScript and ESLint incremental caches. Both checks
+still run on every job; TypeScript rechecks changed source and ESLint uses file
+content hashes. Package, tool configuration or runtime changes invalidate the
+baseline. Job writes stay in the disposable VM.
+
+After Prisma generation, the asset manifest and cache restoration, CI overlaps
+ESLint, unit tests and TypeScript with the database migration and full website
+build. Website page generation uses four workers within the existing VM limit. All checks
+and the full build must pass before any build publication or deployment. Each check gets
+separate logs and timings; Vitest uses at most four workers within the existing
+8-vCPU / 16-GiB VM.
+
+Website runners start a fresh, VM-local Postgres database before GitHub
+registration, removing per-job service-container startup. Its data is temporary
+and discarded with the one-job VM. CI still migrates the current schema before
+building. The build invokes Next directly after the explicit Prisma and asset
+steps so those inputs are generated once.
+
+Checkout uses a trusted, VM-injected helper that verifies the exact GitHub SHA,
+cleans the fresh workspace and uses only the job's short-lived read token.
+Credentials are never written to Git configuration. This avoids an external
+action download during job setup.
+
+CI generates route types before the build and gives the parallel TypeScript
+checker an immutable snapshot. All source and generated-type inputs are compared
+after the full build; any difference requires another ordinary TypeScript check.
+Next's own type checker stays enabled, and standalone TypeScript still checks
+all diagnostics, including test files that Next filters out. Validated CI standalone directories are renamed
+into staging on the same filesystem; compiler caches, health checks and rollback
+snapshots are preserved.
+
+Runner preparation preloads sealed build/dependency files into guest memory and
+primes Node's JavaScript compile cache. All checks still execute, and unit tests
+disable Node bytecode caching to preserve normal instrumentation. A short-lived
+GitHub identity is prefetched during validation and reused only within that exact
+job/attempt/commit; every gateway request is still authenticated. Published builds
+use bounded, checksummed zstd compression, with legacy gzip retries supported.
+
+Snapshot validation has regression coverage for generated-file replacement, route
+contract errors, test-file errors, source additions and imported JSON/JavaScript
+changes; none can silently bypass
+the final full-source checks.
