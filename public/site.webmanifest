@@ -1,28 +1,38 @@
 {
-  "name": "CA Agency - Influencer Marketing Dubai",
+  "name": "CA Agency",
   "short_name": "CA Agency",
-  "description": "Full-service influencer marketing agency in Dubai connecting global brands with top creators across Instagram, TikTok & YouTube",
+  "description": "Talent management and creator campaigns for beauty and skincare brands. Based in Dubai, working across North America, Europe, the Middle East and Asia.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
-  "categories": ["business", "marketing", "social"],
+  "theme_color": "#0e0e0e",
+  "categories": [
+    "business",
+    "marketing",
+    "social"
+  ],
   "lang": "en",
   "dir": "ltr",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icon-192-v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icon-512-v2.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
@@ -31,28 +41,43 @@
       "short_name": "Talents",
       "description": "Browse our roster of influencers",
       "url": "/talents",
-      "icons": [{ "src": "/icon-192.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icon-192-v2.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Our Work",
       "short_name": "Work",
       "description": "See our campaign portfolio",
       "url": "/work",
-      "icons": [{ "src": "/icon-192.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icon-192-v2.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Contact Us",
       "short_name": "Contact",
       "description": "Get in touch with CA Agency",
       "url": "/contact",
-      "icons": [{ "src": "/icon-192.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icon-192-v2.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
   "screenshots": [
     {
-      "src": "/images/site/og-cover.webp",
+      "src": "/images/site/og-cover-v2.jpg",
       "sizes": "1200x630",
-      "type": "image/webp",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "CA Agency Homepage"
     }

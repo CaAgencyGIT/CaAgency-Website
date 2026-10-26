@@ -30,7 +30,7 @@ export const revalidate = 3600
 export const metadata = buildPageMetadata({
   title: 'Global Beauty Influencer Marketing Agency',
   description:
-    'CA Agency connects beauty and skincare brands with creators across the USA and global markets, managing strategy, content, amplification, and reporting.',
+    'Talent management and creator campaigns for beauty and skincare brands. Based in Dubai, working across North America, Europe, the Middle East and Asia.',
   keywords: [
     'global influencer marketing agency',
     'influencer marketing agency USA',
@@ -41,7 +41,7 @@ export const metadata = buildPageMetadata({
     'Instagram influencers',
     'brand partnerships',
   ],
-  imageAlt: 'CA Agency - Global Beauty Influencer Marketing Agency',
+  imageAlt: 'CA Agency: global beauty influencer marketing',
 })
 
 export default async function HomePage() {

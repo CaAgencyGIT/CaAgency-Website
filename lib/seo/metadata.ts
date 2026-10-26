@@ -4,7 +4,7 @@ import { alternatesFor } from '@/lib/seo/alternates'
 const BASE_URL = 'https://caagency.com'
 const BRAND = 'CA Agency'
 const MAX_TITLE_LENGTH = 60
-const DEFAULT_IMAGE = '/images/site/og-cover.webp'
+const DEFAULT_IMAGE = '/images/site/og-cover-v2.jpg'
 
 const openGraphLocales: Record<string, string> = {
   en: 'en_US',

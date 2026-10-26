@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description:
-    'CA Agency connects beauty and skincare brands with creators across the USA and global markets, managing strategy, content, amplification, and reporting.',
+    'Talent management and creator campaigns for beauty and skincare brands. Based in Dubai, working across North America, Europe, the Middle East and Asia.',
   keywords: [
     'global influencer marketing agency',
     'beauty influencer marketing agency',
@@ -43,12 +43,13 @@ export const metadata: Metadata = {
   formatDetection: { email: false, address: false, telephone: false },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
-      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/favicon-32-v2.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon-192-v2.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512-v2.png', type: 'image/png', sizes: '512x512' },
     ],
     shortcut: '/favicon.ico',
-    apple: '/icon-192.png',
+    apple: { url: '/apple-touch-icon-v2.png', sizes: '180x180' },
   },
   manifest: '/site.webmanifest',
   openGraph: {
@@ -58,21 +59,21 @@ export const metadata: Metadata = {
     siteName: 'CA Agency',
     title: 'Global Beauty Influencer Marketing Agency | CA Agency',
     description:
-      'Beauty and skincare creator campaigns across the USA and global markets, from strategy and production to amplification and reporting.',
+      'Talent management and creator campaigns for beauty and skincare brands. Based in Dubai, working across North America, Europe, the Middle East and Asia.',
     images: [
       {
-        url: '/images/site/og-cover.webp',
+        url: '/images/site/og-cover-v2.jpg',
         width: 1200,
         height: 630,
-        alt: 'CA Agency - Influence • Digital • Marketing',
+        alt: 'CA Agency: global beauty influencer marketing',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Global Beauty Influencer Marketing Agency | CA Agency',
-    description: 'Creator campaigns for beauty and skincare brands across the USA and global markets.',
-    images: ['/images/site/og-cover.webp'],
+    description: 'Talent management and creator campaigns for beauty and skincare brands. Based in Dubai, working across North America, Europe, the Middle East and Asia.',
+    images: ['/images/site/og-cover-v2.jpg'],
     creator: '@caagency',
   },
   robots: {
@@ -108,7 +109,7 @@ export const organizationJsonLd = {
     width: 512,
     height: 512,
   },
-  image: `${siteUrl}/images/site/og-cover.webp`,
+  image: `${siteUrl}/images/site/og-cover-v2.jpg`,
   description:
     'Global influencer marketing agency connecting beauty and skincare brands with creators across the USA and international markets.',
   foundingDate: '2019',
