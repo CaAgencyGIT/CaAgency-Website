@@ -278,9 +278,13 @@ section {
     margin-left: 0;
     aspect-ratio: auto;
   }
-  .hero-collage-col { aspect-ratio: 2 / 3; }
-  .hero-collage-featured { grid-column: 1 / -1; aspect-ratio: 1 / 1; }
-  .hero-collage-tile { border-radius: 12px; }
+  /* Phones: every photo the same size in two equal columns. Stacks unpack
+     into the grid, the featured tile no longer spans, and the small
+     close-up is left out so the six tiles fill three even rows. */
+  .hero-collage-stack { display: contents; }
+  .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 4; }
+  .hero-collage-tile { flex: none; border-radius: 12px; }
+  .hero-collage > .hero-collage-col:first-child > .hero-collage-tile:first-child { display: none; }
 }
 
 @keyframes status-enter {

@@ -36,7 +36,7 @@ function Tile({ media, priority, sizes }: { media: HeroCollageMedia; priority: b
 }
 
 // Five-column hero collage (24:18:20:18:20), three times wider than tall on
-// desktop; two columns on phones with the featured tile spanning both.
+// desktop; on phones two columns of equally sized tiles.
 export default function HeroFilmRow({ items }: { items: HeroFilmRowItem[] }) {
   let priorityBudget = 3
   return (
@@ -46,14 +46,14 @@ export default function HeroFilmRow({ items }: { items: HeroFilmRowItem[] }) {
           return (
             <div key={item.stack[0].src} className="hero-collage-col hero-collage-stack">
               {item.stack.map((media) => (
-                <Tile key={media.src} media={media} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 50vw, 24vw" />
+                <Tile key={media.src} media={media} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 50vw, 20vw" />
               ))}
             </div>
           )
         }
         return (
           <div key={item.src} className={`hero-collage-col${item.featured ? ' hero-collage-featured' : ''}`}>
-            <Tile media={item} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 100vw, 20vw" />
+            <Tile media={item} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 50vw, 20vw" />
           </div>
         )
       })}

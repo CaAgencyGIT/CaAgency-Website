@@ -257,7 +257,12 @@ export const heroFilmRowItems: HeroFilmRowItem[] = [
   },
   { src: '/images/hero/albina-medicube.webp', alt: 'Albina Mavriqi for Medicube, CA Agency talent', position: '50% 28%', featured: true },
   { src: '/images/hero/collage/toofaced-v2.webp', alt: 'CA Agency talent at the Too Faced launch event' },
-  { src: '/images/hero/collage/huda-v2.webp', alt: 'Melly at the Huda Beauty event, CA Agency campaign', position: '62% 50%' },
+  {
+    stack: [
+      { src: '/images/hero/collage/huda-v2.webp', alt: 'Melly at the Huda Beauty event, CA Agency campaign', position: '62% 30%' },
+      { src: '/images/hero/collage/ellis-brooklyn-v1.webp', alt: 'Rebecca Ghaderi at the Ellis Brooklyn launch, CA Agency campaign', position: '50% 35%' },
+    ],
+  },
   { src: '/images/hero/collage/rhode-v2.webp', alt: 'Rhode campaign content grid, CA Agency' },
 ]
 
