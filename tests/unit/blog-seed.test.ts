@@ -1,3 +1,4 @@
+import { AI_COVER_VERSION, aiCoverPath } from '@/lib/data/blog-ai-covers'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -101,10 +102,16 @@ describe('blog covers', () => {
     )
   })
 
-  it('falls back to the generated cover for seeded slugs', () => {
+  it('prefers the editorial AI cover for seeded slugs', () => {
     expect(resolveFeaturedImage({ slug: 'tiktok-shop-beauty-brands', featuredImage: null })).toBe(
-      blogCoverPath('tiktok-shop-beauty-brands')
+      aiCoverPath('tiktok-shop-beauty-brands')
     )
+    expect(aiCoverPath('tiktok-shop-beauty-brands')).toBe(
+      `/images/blog/ai/tiktok-shop-beauty-brands-v${AI_COVER_VERSION}.webp`
+    )
+  })
+
+  it('builds versioned paths for the typographic fallback covers', () => {
     expect(blogCoverPath('tiktok-shop-beauty-brands')).toBe(
       `/images/blog/covers/tiktok-shop-beauty-brands-v${COVER_VERSION}.webp`
     )
