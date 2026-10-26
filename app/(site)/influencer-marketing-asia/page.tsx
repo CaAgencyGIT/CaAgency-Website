@@ -102,7 +102,7 @@ export default async function AsiaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} />
+      <LocationLandingPage path="/influencer-marketing-asia" content={content} talents={talents} />
     </>
   )
 }

@@ -85,4 +85,5 @@ export type LocationLabels = {
   talents: string
   industries: string
   faq: string
+  otherMarkets: string
 }

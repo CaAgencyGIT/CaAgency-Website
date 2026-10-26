@@ -17,6 +17,7 @@ import { brandLogos } from '@/lib/data/brands'
 import type { LocationLabels, LocationPageContent } from '@/lib/site-content/location-pages'
 import { posterFor } from '@/lib/data/videos'
 import { locationGuides, type GuideLink } from '@/lib/data/guides'
+import { marketLinks, type MarketLink } from '@/lib/data/locations'
 import type { Locale } from '@/i18n/config'
 
 const englishLabels: LocationLabels = {
@@ -27,6 +28,7 @@ const englishLabels: LocationLabels = {
   talents: 'Our Creators',
   industries: 'Industries',
   faq: 'FAQ',
+  otherMarkets: 'Other markets',
 }
 
 type TalentCard = {
@@ -44,6 +46,8 @@ export default function LocationLandingPage({
   labels = englishLabels,
   showGuides = true,
   locale = 'en',
+  path,
+  markets = marketLinks,
 }: {
   content: LocationPageContent
   talents: TalentCard[]
@@ -52,9 +56,13 @@ export default function LocationLandingPage({
   locale?: Locale
   // The linked guides are English-only, so translated pages omit them.
   showGuides?: boolean
+  // This page's own path, left out of the "Other markets" row.
+  path?: string
+  markets?: MarketLink[]
 }) {
   const featuredHrefs = new Set(featuredGuides.map((guide) => guide.href))
   const guides = [...featuredGuides, ...locationGuides.filter((guide) => !featuredHrefs.has(guide.href))].slice(0, 6)
+  const otherMarkets = markets.filter((market) => !path || !market.href.endsWith(path))
 
   return (
     <>
@@ -271,6 +279,28 @@ export default function LocationLandingPage({
             </div>
           </div>
         </section>
+      )}
+
+      {otherMarkets.length > 0 && (
+        <nav aria-label={labels.otherMarkets} className="bg-background-base px-section-x py-12 mobile:py-10 border-t border-black/5">
+          <div className="max-w-container mx-auto">
+            <span className="mb-4 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red">
+              {labels.otherMarkets}
+            </span>
+            <ul className="flex flex-wrap gap-2.5">
+              {otherMarkets.map((market) => (
+                <li key={market.href}>
+                  <Link
+                    href={market.href}
+                    className="inline-flex rounded-full border border-black/15 px-4 py-2 font-jost text-[13px] uppercase tracking-[0.12em] text-foreground-primary transition-colors hover:border-black/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black mobile:px-3 mobile:py-1.5 mobile:text-[12px]"
+                  >
+                    {market.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
       )}
 
       <section className="bg-accent-red py-sec px-section-x">

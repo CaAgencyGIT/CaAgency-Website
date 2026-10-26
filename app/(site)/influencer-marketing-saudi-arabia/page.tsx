@@ -71,7 +71,7 @@ export default async function SaudiArabiaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} featuredGuides={[saudiGuide, gulfCostGuide]} />
+      <LocationLandingPage path="/influencer-marketing-saudi-arabia" content={content} talents={talents} featuredGuides={[saudiGuide, gulfCostGuide]} />
     </>
   )
 }

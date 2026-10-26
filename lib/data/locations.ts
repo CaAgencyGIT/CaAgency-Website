@@ -1,3 +1,5 @@
+import enMessages from '@/messages/en.json'
+
 // Location landing pages under app/(site)/. `key` is the footer label in the
 // `locations` message namespace; `title` matches the page's own title.
 export const locationPages = [
@@ -15,3 +17,14 @@ export const locationPages = [
   { key: 'canada', title: 'Influencer Marketing Agency Canada', path: '/influencer-marketing-canada' },
   { key: 'australia', title: 'Influencer Marketing Agency Australia', path: '/influencer-marketing-australia' },
 ] as const
+
+export type MarketLink = { href: string; label: string }
+
+// Country and region pages (not the beauty/skincare category pages), linked
+// from every location page's "Other markets" row so each one has internal links.
+const marketKeys = ['dubai', 'uae', 'saudiArabia', 'gcc', 'korea', 'asia', 'usa', 'uk', 'canada', 'australia'] as const
+
+export const marketLinks: MarketLink[] = marketKeys.map((key) => ({
+  href: locationPages.find((page) => page.key === key)!.path,
+  label: enMessages.locations[key],
+}))

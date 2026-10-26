@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { getFeaturedTalents } from '@/lib/site-content/public'
 import { arabicLocationLabels, arabicLocationPages } from '@/lib/site-content/location-pages-ar'
@@ -40,6 +41,11 @@ export default async function ArabicLocationPage({ market, locale }: { market: M
 
   const page = arabicLocationPages[market]
   const talents = await getFeaturedTalents(6)
+  const tLocations = await getTranslations({ locale: 'ar', namespace: 'locations' })
+  const markets = (Object.keys(arabicLocationPages) as Market[]).map((key) => ({
+    href: `/ar${arabicLocationPages[key].path}`,
+    label: tLocations(key),
+  }))
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -61,6 +67,8 @@ export default async function ArabicLocationPage({ market, locale }: { market: M
         labels={arabicLocationLabels}
         showGuides={false}
         locale="ar"
+        path={page.path}
+        markets={markets}
       />
     </>
   )
