@@ -781,6 +781,14 @@ const campaignCaseStudies: CaseStudy[] = [
 // The creator showcases come last, after every existing case study.
 export const caseStudies: CaseStudy[] = [...campaignCaseStudies, ...creatorCases]
 
+/**
+ * Search-result title for a case study. Creator showcases name the creator,
+ * so two studies for the same brand never share a title in Google.
+ */
+export function caseStudySeoTitle(cs: Pick<CaseStudy, 'brand' | 'creatorName'>): string {
+  return cs.creatorName ? `${cs.brand} × ${cs.creatorName} Influencer Case Study` : `${cs.brand} Influencer Marketing Case Study`
+}
+
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return caseStudies.find((cs) => cs.slug === slug)
 }

@@ -4,10 +4,13 @@ import { NextRequest } from 'next/server'
 const mocks = vi.hoisted(() => ({
   verifyTurnstile: vi.fn(),
   deliverContact: vi.fn(),
+  saveEnquiry: vi.fn(),
+  markEnquiry: vi.fn(),
 }))
 
 vi.mock('@/lib/contact/turnstile', () => ({ verifyTurnstile: mocks.verifyTurnstile }))
 vi.mock('@/lib/contact/delivery', () => ({ deliverContact: mocks.deliverContact }))
+vi.mock('@/lib/contact/store', () => ({ saveEnquiry: mocks.saveEnquiry, markEnquiry: mocks.markEnquiry }))
 
 import { POST } from '@/app/api/contact/route'
 import { clearRateLimitsForTests } from '@/lib/rate-limit'
@@ -37,7 +40,31 @@ describe('POST /api/contact', () => {
   beforeEach(() => {
     mocks.verifyTurnstile.mockReset().mockResolvedValue(true)
     mocks.deliverContact.mockReset().mockResolvedValue({ preview: false })
+    mocks.saveEnquiry.mockReset().mockResolvedValue('enq_1')
+    mocks.markEnquiry.mockReset().mockResolvedValue(undefined)
     clearRateLimitsForTests()
+  })
+
+  it('saves the enquiry before emailing it and records the result', async () => {
+    const order: string[] = []
+    mocks.saveEnquiry.mockImplementation(async () => { order.push('save'); return 'enq_1' })
+    mocks.deliverContact.mockImplementation(async () => { order.push('email'); return { preview: false } })
+    expect((await POST(jsonRequest(validPayload))).status).toBe(200)
+    expect(order).toEqual(['save', 'email'])
+    expect(mocks.saveEnquiry.mock.calls[0][1]).toMatch(/^Brand enquiry: CA Agency/)
+    expect(mocks.markEnquiry).toHaveBeenCalledWith('enq_1', 'emailed')
+  })
+
+  it('keeps the saved enquiry and marks it when the email fails', async () => {
+    mocks.deliverContact.mockRejectedValue(new Error('Microsoft did not accept the contact email (403)'))
+    expect((await POST(jsonRequest(validPayload))).status).toBe(502)
+    expect(mocks.markEnquiry).toHaveBeenCalledWith('enq_1', 'email_failed', expect.any(Error))
+  })
+
+  it('still emails when the database is unavailable', async () => {
+    mocks.saveEnquiry.mockResolvedValue(null)
+    expect((await POST(jsonRequest(validPayload))).status).toBe(200)
+    expect(mocks.deliverContact).toHaveBeenCalledOnce()
   })
 
   it('returns success only after delivery', async () => {

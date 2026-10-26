@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import HeadingAccent from '@/components/ui/HeadingAccent'
-import { caseStudies, caseStudyStill, getCaseStudy } from '@/lib/data/case-studies'
+import { caseStudies, caseStudySeoTitle, caseStudyStill, getCaseStudy } from '@/lib/data/case-studies'
 import { posterFor, publishedDateFor } from '@/lib/data/videos'
 import { brandWatermarks, currentCaseStudies } from '@/lib/data/redesign-media'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     return { title: 'Case Study Not Found' }
   }
 
-  const title = `${study.brand} Influencer Marketing Case Study`
+  const title = caseStudySeoTitle(study)
 
   return buildPageMetadata({
     title,
@@ -74,7 +74,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${study.brand} Influencer Marketing Case Study`,
+    headline: caseStudySeoTitle(study),
     description: study.summary,
     image: `https://caagency.com${caseStudyStill(study)}`,
     author: organizationRef,
