@@ -234,7 +234,7 @@ export default async function ContactPage({ params }: Props) {
                       href={office.search}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute left-3 top-3 z-[1] inline-flex items-center gap-2 rounded-[2px] bg-white px-3 py-2 font-[Roboto,Arial,sans-serif] text-[14px] font-medium text-[#1a73e8] shadow-[0_1px_4px_rgba(0,0,0,0.3)] hover:bg-[#f8f9fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a73e8]"
+                      className="absolute left-3 top-3 z-[1] inline-flex items-center gap-2 rounded-[2px] bg-white px-3 py-2 font-jost text-[13px] font-medium tracking-[0.04em] text-[#1a73e8] shadow-[0_1px_4px_rgba(0,0,0,0.3)] hover:bg-[#f8f9fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a73e8]"
                     >
                       {t('openInMaps')}
                       <svg viewBox="0 0 24 24" className="h-[16px] w-[16px]" fill="currentColor" aria-hidden="true">
