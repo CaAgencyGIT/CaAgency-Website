@@ -9,6 +9,7 @@ import {
   validateContactPayload,
 } from '@/lib/contact/validation'
 import { checkRateLimit } from '@/lib/rate-limit'
+import { markEnquiry, saveEnquiry } from '@/lib/contact/store'
 
 export const dynamic = 'force-dynamic'
 
@@ -72,12 +73,15 @@ export async function POST(request: NextRequest) {
 
   const data = validation.data
 
+  const email = buildContactEmail(data)
+  const enquiryId = await saveEnquiry(data, email.subject)
   try {
-    const email = buildContactEmail(data)
     const delivery = await deliverContact({ replyTo: data.email, ...email })
+    await markEnquiry(enquiryId, delivery.preview ? 'preview' : 'emailed')
     return NextResponse.json(delivery.preview ? { success: true, preview: true } : { success: true })
   } catch (error) {
     console.error('Contact delivery failed:', error)
+    await markEnquiry(enquiryId, 'email_failed', error)
     return NextResponse.json(
       { error: 'Failed to send message. Please try again later.', code: 'DELIVERY_FAILED' },
       { status: 502 }
