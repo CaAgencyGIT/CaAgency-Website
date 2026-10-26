@@ -333,8 +333,8 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
 // studio-strobe flash between them. The three reels share one timeline and never show the
 // same creator side by side, even one shot apart.
 export const introShowreels = [1, 2, 3].map((n) => ({
-  src: `/videos/redesign/rd-showreel-${n}-v8.mp4`,
-  poster: `/images/video-thumbs/rd-showreel-${n}-v8.jpg`,
+  src: `/videos/redesign/rd-showreel-${n}-v9.mp4`,
+  poster: `/images/video-thumbs/rd-showreel-${n}-v9.jpg`,
   alt: 'CA Agency showreel of creator campaigns',
 }))
 
