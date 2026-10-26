@@ -283,7 +283,7 @@ section {
      close-up is left out so the six tiles fill three even rows. */
   .hero-collage-stack { display: contents; }
   .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 4; }
-  .hero-collage-tile { flex: none; border-radius: 12px; }
+  .hero-collage-tile { flex: 1 1 auto; width: 100%; border-radius: 12px; }
   .hero-collage > .hero-collage-col:first-child > .hero-collage-tile:first-child { display: none; }
 }
 
