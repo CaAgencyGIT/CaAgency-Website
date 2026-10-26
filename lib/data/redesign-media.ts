@@ -247,7 +247,7 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
 ]
 
 // Homepage collage (Oct 2026 approved layout, CA-Homepage-Collage brief):
-// original films and photos only. Originals are backed up on the server in
+// seven still photos: the original JPGs and film posters, Yassi cropped. Originals are backed up on the server in
 // /srv/caagency-media-sources/homepage-collage-2026-10.
 export const homeCollageTiles: HomeCollageTile[] = [
   {
@@ -256,7 +256,6 @@ export const homeCollageTiles: HomeCollageTile[] = [
     href: '/talents/albina-mavriqi',
     alt: 'Albina Mavriqi applying a Medicube mask with a brush',
     image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
-    video: { src: '/videos/collage-v2/albina-medicube-v1.mp4' },
     position: '50% 40%',
   },
   {
@@ -274,7 +273,6 @@ export const homeCollageTiles: HomeCollageTile[] = [
     href: '/talents/melani-seiffert',
     alt: 'Melani Seiffert holding a SKIN1004 cream tube',
     image: { src: '/images/hero/collage-v2/melani-skin1004-poster-v1.webp', width: 720, height: 1280 },
-    video: { src: '/videos/collage-v2/melani-skin1004-v1.mp4' },
     position: '50% 30%',
   },
   {
@@ -291,7 +289,6 @@ export const homeCollageTiles: HomeCollageTile[] = [
     href: '/talents/khutjo-matsoma',
     alt: 'Khutjo Matsoma using a facial sculpting tool for Anua',
     image: { src: '/images/hero/collage-v2/khutjo-anua-poster-v1.webp', width: 720, height: 1280 },
-    video: { src: '/videos/collage-v2/khutjo-anua-original-v1.mp4' },
     position: '50% 32%',
   },
   {
@@ -300,7 +297,6 @@ export const homeCollageTiles: HomeCollageTile[] = [
     href: '/talents/anton-drozhzhin',
     alt: 'Anton Drozhzhin applying SKIN1004 skincare',
     image: { src: '/images/hero/collage-v2/anton-skin1004-poster-v1.webp', width: 720, height: 1280 },
-    video: { src: '/videos/collage-v2/anton-skin1004-v1.mp4' },
     position: '50% 25%',
   },
   {
@@ -309,7 +305,6 @@ export const homeCollageTiles: HomeCollageTile[] = [
     href: '/talents/dariia-bordun',
     alt: 'Dariia Bordun in an Armani Beauty campaign video',
     image: { src: '/images/hero/collage-v2/dariia-armani-beauty-poster-v1.webp', width: 720, height: 1280 },
-    video: { src: '/videos/collage-v2/dariia-armani-beauty-v1.mp4', hasAudio: true },
     position: '50% 32%',
     mobilePosition: '50% 28%',
   },

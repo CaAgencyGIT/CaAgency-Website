@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import HomeCollageVideo from './HomeCollageVideo'
 
 export type HomeCollageArea = 'albina' | 'rebecca' | 'melani' | 'yassi' | 'khutjo' | 'anton' | 'dariia'
 
@@ -11,10 +10,8 @@ export interface HomeCollageTile {
   alt: string
   /** Existing talent profile route, when the talent has one. */
   href?: string
-  /** Still photo, or the poster of a video tile. */
+  /** Original photo or film poster; the collage has no video playback. */
   image: { src: string; width: number; height: number }
-  /** Muted, looping campaign film; `hasAudio` adds a sound toggle. */
-  video?: { src: string; hasAudio?: boolean }
   /** CSS object-position for the desktop grid and for phones. */
   position?: string
   mobilePosition?: string
@@ -31,9 +28,9 @@ const SIZES: Record<HomeCollageArea, string> = {
 }
 
 // Homepage collage (Oct 2026 approved layout): two large tiles, a stack of
-// three, then a stack of two, laid out with CSS grid areas. Original photos
-// and films only, cropped by object-fit; phones get their own two-column
-// arrangement (see .home-collage in globals.css).
+// three, then a stack of two, laid out with CSS grid areas. Seven still
+// photos (originals and film posters), cropped by object-fit only; phones
+// get their own two-column arrangement (see .home-collage in globals.css).
 export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
   return (
     <div className="home-collage">
@@ -49,16 +46,12 @@ export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
         >
           <Image
             src={tile.image.src}
-            alt={tile.video ? '' : tile.alt}
-            aria-hidden={tile.video ? true : undefined}
+            alt={tile.alt}
             fill
             priority={index < 2}
             sizes={SIZES[tile.area]}
             className="home-collage-media"
           />
-          {tile.video && (
-            <HomeCollageVideo src={tile.video.src} label={tile.alt} name={tile.name} hasAudio={tile.video.hasAudio} />
-          )}
           <div aria-hidden="true" className="home-collage-shade" />
           {tile.href ? (
             <Link href={tile.href} prefetch={false} className="home-collage-link">

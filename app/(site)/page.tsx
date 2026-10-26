@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import HeroSection from '@/components/blocks/HeroSection'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
+import DepartmentsMap from '@/components/blocks/DepartmentsMap'
 import TalentGrid from '@/components/blocks/TalentGrid'
 import { getFaqJsonLd } from '@/lib/data/faq-schema'
 import Heading from '@/components/ui/Heading'
@@ -85,7 +86,10 @@ export default async function HomePage() {
               <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
                 Our Departments
               </p>
-              <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-1 mobile:gap-y-9">
+              <div className="mx-auto mb-14 max-w-[760px] tablet:mb-12 mobile:mb-8">
+                <DepartmentsMap />
+              </div>
+              <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-2 mobile:gap-x-5 mobile:gap-y-8">
                 {[
                   {
                     region: 'North America',
@@ -162,7 +166,7 @@ export default async function HomePage() {
                   <li key={dept.region} className="text-center tablet:text-center mobile:text-center">
                     <Link
                       href={dept.href}
-                      className="group inline-flex items-baseline gap-2 font-anegra text-[20px] mobile:text-[19px] text-foreground-primary transition-colors hover:text-foreground-subtle"
+                      className="group inline-flex items-baseline gap-2 font-anegra text-[20px] mobile:gap-1.5 mobile:text-[16px] text-foreground-primary transition-colors hover:text-foreground-subtle"
                     >
                       {dept.region}
                       <span
@@ -172,7 +176,7 @@ export default async function HomePage() {
                         →
                       </span>
                     </Link>
-                    <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.75] text-black/60 text-pretty">{dept.copy}</p>
+                    <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.75] text-black/60 text-pretty mobile:mt-2 mobile:text-[12.5px] mobile:leading-[1.6]">{dept.copy}</p>
                   </li>
                 ))}
               </ul>

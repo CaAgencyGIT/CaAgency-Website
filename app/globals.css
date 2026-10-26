@@ -245,12 +245,6 @@ section {
   object-fit: cover;
   object-position: var(--pos);
 }
-/* The poster underneath shows until the film has frames, so a refused
-   autoplay never surfaces the browser's own play button. */
-.home-collage-video { opacity: 0.001; transition: opacity 0.35s ease; pointer-events: none; }
-.home-collage-video[data-playing] { opacity: 1; }
-.home-collage-video::-webkit-media-controls,
-.home-collage-video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 .home-collage-shade {
   position: absolute;
   inset: auto 0 0 0;
@@ -277,27 +271,6 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   color: #fff;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
-.home-collage-controls {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  z-index: 2;
-  display: flex;
-  gap: 6px;
-}
-.home-collage-button {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.32);
-  color: #fff;
-  transition: background-color 0.2s ease;
-}
-.home-collage-button:hover { background: rgba(0, 0, 0, 0.55); }
-.home-collage-button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.home-collage-button svg { width: 15px; height: 15px; }
 .intro-feature-tile img,
 .intro-feature-tile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 /* Hidden (not removed: iOS won't play an undisplayed video) until frames play. */
@@ -335,9 +308,6 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   .home-collage-media { object-position: var(--pos-m); }
   .home-collage-link { padding: 10px 12px; }
   .home-collage-label { font-size: 10.5px; letter-spacing: 0.18em; }
-  .home-collage-controls { right: 8px; bottom: 8px; gap: 4px; }
-  .home-collage-button { width: 28px; height: 28px; }
-  .home-collage-button svg { width: 13px; height: 13px; }
 }
 
 @keyframes status-enter {
@@ -563,3 +533,8 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   isolation: isolate;
 }
 video { -webkit-transform: translateZ(0); transform: translateZ(0); }
+
+/* Departments map pins: a slow ring pulse (still for reduced motion). */
+.departments-map-pulse { fill: #111; opacity: 0.12; transform-box: fill-box; transform-origin: center; animation: departments-pulse 2.4s ease-out infinite; }
+@keyframes departments-pulse { 0% { transform: scale(0.6); opacity: 0.25; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .departments-map-pulse { animation: none; } }
