@@ -206,8 +206,9 @@ export default async function WorkPage({ params }: Props) {
               )
             })}
             {/* Creator showcases (Oct 2026): five rows appended after all
-                existing work, in the client's order. Their media keeps the
-                post's own overlays, so no watermark is added. */}
+                existing work. Like the redesign films, each carries its brand
+                logo as an overlay, centred (CA watermark removed from the
+                films that had one). */}
             {creatorCases.map((study) => (
               <div key={study.slug} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
                 {study.image ? (
@@ -231,6 +232,18 @@ export default async function WorkPage({ params }: Props) {
                     ignoreReducedMotion
                     label={`${study.brand} video by ${study.creatorName}`}
                     className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
+                  />
+                )}
+                {brandWatermarks[study.brand] && (
+                  <Image
+                    src={brandWatermarks[study.brand].src}
+                    alt=""
+                    aria-hidden="true"
+                    width={brandWatermarks[study.brand].width}
+                    height={brandWatermarks[study.brand].height}
+                    sizes="200px"
+                    style={{ width: `${brandWatermarks[study.brand].widthPct}%`, top: '50%' }}
+                    className="pointer-events-none absolute left-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
                   />
                 )}
                 <Link

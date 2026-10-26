@@ -108,7 +108,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         { heading: 'Our Approach', body: study.approach },
         { heading: 'The Outcome', body: study.outcome },
       ]
-  if (study.image) narrative[1].heading = 'In the Post'
+  if (study.image || study.photoPost) narrative[1].heading = 'In the Post'
 
   return (
     <>

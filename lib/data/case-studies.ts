@@ -37,6 +37,8 @@ export interface CaseStudy {
   sourceUrl?: string
   /** Photo posts: shown instead of a video (videoSrc is then empty) */
   image?: { src: string; width: number; height: number }
+  /** A photo post (shown as a slideshow film when videoSrc is set) */
+  photoPost?: boolean
   /** Creator showcase: descriptive copy only, no brief, services or results */
   showcase?: boolean
   /** The film keeps its sound, so the page offers a sound toggle */
