@@ -12,9 +12,17 @@ export function mobileVideoSrc(src: string): string | null {
   return hasMobile.has(src) ? src.replace(/\.mp4$/, '-m.mp4') : null
 }
 
+// The light encode is 540px wide; a film shown no wider than this many
+// device pixels looks the same from it (Oct 2026: small desktop grid tiles on
+// standard and 1.25-1.5x screens; Retina tiles keep the full-quality file).
+const LIGHT_ENCODE_MAX_DEVICE_PX = 600
+
 // For videos created in the browser (after hydration): choose once, at mount.
-export function pickVideoSrc(src: string): string {
+// `renderWidth` is the element's CSS width, when known.
+export function pickVideoSrc(src: string, renderWidth?: number): string {
   if (typeof window === 'undefined') return src
   const mobile = mobileVideoSrc(src)
-  return mobile && window.matchMedia(MOBILE_VIDEO_MEDIA).matches ? mobile : src
+  if (!mobile) return src
+  if (window.matchMedia(MOBILE_VIDEO_MEDIA).matches) return mobile
+  return renderWidth && renderWidth * window.devicePixelRatio <= LIGHT_ENCODE_MAX_DEVICE_PX ? mobile : src
 }

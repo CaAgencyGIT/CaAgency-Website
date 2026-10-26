@@ -87,6 +87,8 @@ export default function VideoPlayer({
   const [desktop, setDesktop] = useState(false)
   const desktopRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
+  // CSS width when the film first came near, to pick a source that fits it.
+  const [renderWidth, setRenderWidth] = useState<number | undefined>(undefined)
   const [isInView, setIsInView] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
   const [manualIntent, setManualIntent] = useState<ManualIntent>('none')
@@ -109,6 +111,7 @@ export default function VideoPlayer({
         if (releaseTimer) clearTimeout(releaseTimer)
         releaseTimer = null
         if (entry.isIntersecting) {
+          setRenderWidth((width) => width ?? entry.boundingClientRect.width)
           setIsNearView(true)
         } else {
           releaseTimer = setTimeout(() => {
@@ -122,10 +125,11 @@ export default function VideoPlayer({
       { rootMargin: '600px 0px' }
     )
     let exitTimer: ReturnType<typeof setTimeout> | null = null
-    // Phones only play tiles that are mostly on screen, so a long grid never
-    // has more films decoding at once than the iPhone handles smoothly.
-    const phone = window.matchMedia('(max-width: 767px)').matches
-    const minRatio = phone ? 0.5 : 0
+    // Only tiles that are mostly on screen play, so a long grid never has
+    // more films streaming and decoding at once than the connection and the
+    // device handle smoothly (phones since Oct 2026, desktop too after the
+    // Work grid grew: partly visible rows were starving the visible ones).
+    const minRatio = 0.5
     const playObserver = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
@@ -137,7 +141,7 @@ export default function VideoPlayer({
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = setTimeout(() => setIsInView(false), 200)
       }
-    }, { threshold: phone ? [0, 0.5] : 0 })
+    }, { threshold: [0, 0.5] })
     mountObserver.observe(element)
     playObserver.observe(element)
     return () => {
@@ -424,7 +428,7 @@ export default function VideoPlayer({
       {shouldMountVideo && (
         <video
           ref={videoRef}
-          src={pickVideoSrc(src)}
+          src={pickVideoSrc(src, renderWidth)}
           aria-label={label}
           className="h-full w-full object-cover"
           muted={muted}
@@ -432,10 +436,11 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
-          // Phones: metadata only, since buffering every upcoming film ahead
-          // takes iPhone decoders away from the films already playing (the
-          // showreel froze). Desktop buffers ahead so films start instantly.
-          preload={desktop ? 'auto' : 'metadata'}
+          // Metadata only until the film is on screen: buffering every
+          // upcoming film ahead takes bandwidth (and iPhone decoders) away
+          // from the films already playing, which then freeze. Desktop
+          // buffers a visible film fully before starting it (startPlayback).
+          preload={desktop && isInView ? 'auto' : 'metadata'}
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'
