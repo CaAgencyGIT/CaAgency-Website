@@ -76,7 +76,7 @@ export default function HeroSection({
           <div className="hero-rise hero-rise-2 flex flex-wrap items-center justify-center gap-4 mb-10 mobile:mb-8">
             {primaryCta && (
               <Magnetic>
-                <Button href={primaryCta.href} locale={locale} prefetch={false}>{primaryCta.label}</Button>
+                <Button href={primaryCta.href} locale={locale}>{primaryCta.label}</Button>
               </Magnetic>
             )}
             {secondaryCta && (

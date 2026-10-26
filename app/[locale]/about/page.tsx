@@ -95,7 +95,7 @@ export default async function AboutPage({ params }: Props) {
             <p className="mb-8 font-jost text-[17px] uppercase leading-[1.65] tracking-[0.08em] text-white mobile:text-[15px]">
               {t('panelStatement')}
             </p>
-            <Button href="/work" locale={locale as Locale} variant="light" prefetch={false}>
+            <Button href="/work" locale={locale as Locale} variant="light">
               {t('panelButton')}
             </Button>
           </div>
@@ -191,7 +191,7 @@ export default async function AboutPage({ params }: Props) {
             {t('closingTitle')}
           </h2>
           <div>
-            <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
+            <Button href="/contact" locale={locale as Locale} variant="light">
               {t('closingButton')}
             </Button>
           </div>

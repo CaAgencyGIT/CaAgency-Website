@@ -42,7 +42,8 @@ Specialized expert agents in `.claude/agents/`:
 - All hero carousel images use `priority` and `fetchPriority="high"` for LCP
 - Hero entrance animations (`hero-rise*`) are transform-only — never fade LCP candidates from opacity 0
 - Below-the-fold components (`VideoShowcase`, `MediaCarousel`, `FAQ`, `Testimonials`) are dynamically imported
-- Videos use IntersectionObserver-based lazy loading (`VideoPlayer.tsx`)
+- Videos use IntersectionObserver-based lazy loading (`VideoPlayer.tsx`, `CollageVideo.tsx`: `preload="none"`, buffer near view, play on screen)
+- Only the first two hero collage photos are `priority`; below-the-fold posters never are
 - Brand logos explicitly set `loading="lazy"`
 - No preconnect to blob storage: all images route through same-origin `/_next/image` and videos are local, so the browser never contacts the blob domain directly
 - CSS is inlined into the HTML (`experimental.inlineCss`) — no render-blocking stylesheet request. Turning it off (Oct 2026) cost ~200ms FCP/LCP on the homepage in production Lighthouse; don't flip it without field data

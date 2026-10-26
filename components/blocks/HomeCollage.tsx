@@ -25,7 +25,7 @@ export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
             src={tile.image.src}
             alt={tile.alt}
             fill
-            priority={index < 3}
+            priority={index < 2}
             sizes="(max-width: 760px) 50vw, (max-width: 1100px) 33vw, 16vw"
             className="home-collage-media"
           />

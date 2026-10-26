@@ -145,7 +145,7 @@ export default async function HomePage({ params }: Props) {
                 <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
                   {t('workDescription')}
                 </Text>
-                <Link href={localizeHref('/work', locale)} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                <Link href={localizeHref('/work', locale)} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
                   {tCommon('viewAllWork')} <span aria-hidden="true">→</span>
                 </Link>
               </div>
@@ -175,7 +175,7 @@ export default async function HomePage({ params }: Props) {
               {t('closingCtaText')}
             </Text>
             <Magnetic>
-              <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
+              <Button href="/contact" locale={locale as Locale} variant="light">
                 {t('closingCtaButton')}
               </Button>
             </Magnetic>

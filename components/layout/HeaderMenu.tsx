@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
@@ -23,8 +24,12 @@ export default function HeaderMenu({
   menuLabel: string
 }) {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
   useEffect(() => {
     if (!open) return
+    // Phones have no hover: warm the menu's pages as soon as it opens, so a
+    // tap swaps the page without waiting on the network.
+    for (const item of items) router.prefetch(localizeHref(item.href, locale))
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
     document.documentElement.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
@@ -32,7 +37,7 @@ export default function HeaderMenu({
       document.documentElement.style.overflow = ''
       window.removeEventListener('keydown', onKey)
     }
-  }, [open])
+  }, [open, items, locale, router])
 
   return (
     <>
