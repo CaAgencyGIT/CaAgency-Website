@@ -58,8 +58,6 @@ export default async function AboutPage({ params }: Props) {
           <div className="hero-rise hero-rise-2 max-w-[480px]">
             <p className="mb-6 font-jost text-[13px] font-medium uppercase leading-[1.7] tracking-[0.18em] text-foreground-primary">
               {t('heroKicker')}
-              <br />
-              {t('heroKicker2')}
             </p>
             <p className="mb-5 font-work-sans text-[16px] leading-[1.8] text-foreground-body">{t('heroText')}</p>
             <p className="font-anegra text-[22px] italic text-foreground-primary">{t('heroTagline')}</p>

@@ -34,14 +34,23 @@ export default function HomeCollageVideo({
     video.defaultMuted = true
     video.setAttribute('muted', '')
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) userPausedRef.current = true
+    // Reduced motion: stay on the poster (the autoplay attribute may already
+    // have started it) until the visitor presses play.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      userPausedRef.current = true
+      video.autoplay = false
+      video.pause()
+    }
 
     let visible = false
     const tryPlay = () => {
       if (visible && video.paused && !userPausedRef.current && !document.hidden) video.play().catch(() => {})
     }
     const onPlaying = () => {
+      if (userPausedRef.current && !video.dataset.userStarted) {
+        video.pause()
+        return
+      }
       video.setAttribute('data-playing', '')
       setPaused(false)
     }
@@ -87,6 +96,7 @@ export default function HomeCollageVideo({
     if (!video) return
     if (video.paused) {
       userPausedRef.current = false
+      video.dataset.userStarted = '1'
       video.play().catch(() => {})
     } else {
       userPausedRef.current = true
@@ -104,6 +114,7 @@ export default function HomeCollageVideo({
       window.dispatchEvent(new CustomEvent(SOUND_EVENT, { detail: video }))
       if (video.paused) {
         userPausedRef.current = false
+        video.dataset.userStarted = '1'
         video.play().catch(() => {})
       }
     }
