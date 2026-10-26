@@ -82,11 +82,15 @@ export default function VideoPlayer({
   const manualIntentRef = useRef<ManualIntent>('none')
   const hasPlayedRef = useRef(false)
   const staggeredRef = useRef(false)
+  // Pre-buffering (and its download restart) runs once per mounted film, so
+  // a retried play() can't restart the download again in a loop (iOS).
+  const prebufferedRef = useRef(false)
   // Desktop: a fine pointer on a wide screen. Decided after mount, so the
   // server render and first paint match the phone-safe defaults.
-  const [desktop, setDesktop] = useState(false)
   const desktopRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
+  // CSS width when the film first came near, to pick a source that fits it.
+  const [renderWidth, setRenderWidth] = useState<number | undefined>(undefined)
   const [isInView, setIsInView] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
   const [manualIntent, setManualIntent] = useState<ManualIntent>('none')
@@ -109,6 +113,7 @@ export default function VideoPlayer({
         if (releaseTimer) clearTimeout(releaseTimer)
         releaseTimer = null
         if (entry.isIntersecting) {
+          setRenderWidth((width) => width ?? entry.boundingClientRect.width)
           setIsNearView(true)
         } else {
           releaseTimer = setTimeout(() => {
@@ -122,28 +127,41 @@ export default function VideoPlayer({
       { rootMargin: '600px 0px' }
     )
     let exitTimer: ReturnType<typeof setTimeout> | null = null
-    // Phones only play tiles that are mostly on screen, so a long grid never
-    // has more films decoding at once than the iPhone handles smoothly.
-    const phone = window.matchMedia('(max-width: 767px)').matches
-    const minRatio = phone ? 0.5 : 0
+    // Only tiles that are mostly on screen play, so a long grid never has
+    // more films streaming and decoding at once than the connection and the
+    // device handle smoothly (phones since Oct 2026, desktop too after the
+    // Work grid grew: partly visible rows were starving the visible ones).
+    const minRatio = 0.5
+    // A film scrolled into view starts once it has stayed there briefly, so
+    // tiles flying past during a fast scroll don't each start a download that
+    // steals bandwidth from the ones the visitor stops at. Films already on
+    // screen when the page opens start at once.
+    let enterTimer: ReturnType<typeof setTimeout> | null = null
+    let firstCallback = true
     const playObserver = new IntersectionObserver(([entry]) => {
+      const initial = firstCallback
+      firstCallback = false
       if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
-        setIsInView(true)
+        if (initial) setIsInView(true)
+        else if (!enterTimer) enterTimer = setTimeout(() => { enterTimer = null; setIsInView(true) }, 250)
       } else {
+        if (enterTimer) clearTimeout(enterTimer)
+        enterTimer = null
         // A small hysteresis avoids pause/play churn while scrolling near an
         // edge or while a desktop hover transform shifts the tile slightly.
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = setTimeout(() => setIsInView(false), 200)
       }
-    }, { threshold: phone ? [0, 0.5] : 0 })
+    }, { threshold: [0, 0.5] })
     mountObserver.observe(element)
     playObserver.observe(element)
     return () => {
       mountObserver.disconnect()
       playObserver.disconnect()
       if (exitTimer) clearTimeout(exitTimer)
+      if (enterTimer) clearTimeout(enterTimer)
       if (releaseTimer) clearTimeout(releaseTimer)
     }
   }, [])
@@ -152,7 +170,6 @@ export default function VideoPlayer({
     const query = window.matchMedia('(min-width: 768px) and (pointer: fine)')
     const update = () => {
       desktopRef.current = query.matches
-      setDesktop(query.matches)
     }
     update()
     query.addEventListener('change', update)
@@ -182,6 +199,7 @@ export default function VideoPlayer({
     if (!shouldMountVideo) return
     const video = videoRef.current
     return () => {
+      prebufferedRef.current = false
       if (!video) return
       video.pause()
       video.removeAttribute('src')
@@ -235,20 +253,44 @@ export default function VideoPlayer({
     video.muted = muted
     setPlaybackStatus('starting')
     const attempt = ++playAttemptRef.current
-    // Desktop (Oct 2026): buffer before the first play, so a film never starts
-    // and then immediately stalls. The poster stays up meanwhile; after 2.5s
-    // it plays anyway rather than wait on a slow connection.
-    if (desktopRef.current && !hasPlayedRef.current && video.readyState < HTMLMediaElement.HAVE_ENOUGH_DATA) {
-      await new Promise<void>((resolve) => {
-        const done = () => {
-          clearTimeout(timer)
-          video.removeEventListener('canplaythrough', done)
-          resolve()
+    // Buffer a few seconds before the first play, so a film never starts and
+    // then stalls a second in (measured Oct 2026: with several tiles sharing
+    // a connection, "canplaythrough" fired with only ~1s buffered and the
+    // remaining Work grid freezes all happened 0.5-2s in). The poster stays
+    // up meanwhile; on a slow connection it plays anyway after the cap.
+    if (!hasPlayedRef.current && !prebufferedRef.current) {
+      prebufferedRef.current = true
+      const ahead = () => {
+        const { buffered, currentTime, duration } = video
+        for (let i = 0; i < buffered.length; i++) {
+          if (buffered.start(i) <= currentTime + 0.1 && buffered.end(i) > currentTime) {
+            return buffered.end(i) - currentTime >= Math.min(3, (duration || 3) - currentTime - 0.1)
+          }
         }
-        const timer = setTimeout(done, 2500)
-        video.addEventListener('canplaythrough', done)
-      })
-      if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+        return false
+      }
+      if (!ahead()) {
+        // A film that loaded only its metadata (Chrome also takes the first
+        // second or so, then reports enough data) sits suspended; switching
+        // the preload hint doesn't resume the download, so restart it.
+        if (video.networkState === HTMLMediaElement.NETWORK_IDLE) {
+          video.preload = 'auto'
+          video.load()
+        }
+        await new Promise<void>((resolve) => {
+          const done = () => {
+            clearTimeout(timer)
+            video.removeEventListener('progress', check)
+            video.removeEventListener('canplaythrough', check)
+            resolve()
+          }
+          const check = () => { if (ahead()) done() }
+          const timer = setTimeout(done, desktopRef.current ? 4000 : 1500)
+          video.addEventListener('progress', check)
+          video.addEventListener('canplaythrough', check)
+        })
+        if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+      }
     }
     try {
       await video.play()
@@ -424,7 +466,7 @@ export default function VideoPlayer({
       {shouldMountVideo && (
         <video
           ref={videoRef}
-          src={pickVideoSrc(src)}
+          src={pickVideoSrc(src, renderWidth)}
           aria-label={label}
           className="h-full w-full object-cover"
           muted={muted}
@@ -432,10 +474,11 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
-          // Phones: metadata only, since buffering every upcoming film ahead
-          // takes iPhone decoders away from the films already playing (the
-          // showreel froze). Desktop buffers ahead so films start instantly.
-          preload={desktop ? 'auto' : 'metadata'}
+          // Metadata only until the film is on screen: buffering every
+          // upcoming film ahead takes bandwidth (and iPhone decoders) away
+          // from the films already playing, which then freeze. A visible film
+          // buffers a few seconds before it starts (startPlayback).
+          preload={isInView ? 'auto' : 'metadata'}
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'
