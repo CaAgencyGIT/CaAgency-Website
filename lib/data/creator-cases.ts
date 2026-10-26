@@ -1,7 +1,7 @@
 import type { CaseStudy } from './case-studies'
 
-// Fifteen creator showcases added under the existing Work grid (Oct 2026),
-// in the client's order: five rows of three. The copy only describes what is
+// Fifteen creator showcases added under the existing Work grid (Oct 2026):
+// five rows of three, ordered by `workOrder` below. The copy only describes what is
 // visible in each post and its caption: no client brief, services, paid
 // partnership, usage rights, results or figures. Sources are the public
 // Instagram posts in `sourceUrl`; the downloads are archived on the server in
@@ -286,7 +286,20 @@ const cases: CreatorCase[] = [
   },
 ]
 
-export const creatorCases: CaseStudy[] = cases.map((c) => ({
+// Work order (Oct 2026 client request): a colour gradient measured from each
+// film, continuing from the light neutral the existing grid ends on, through
+// golden tones to rosy and pink. No creator appears twice in a row of three
+// (desktop) or a pair (phones), or directly above themselves.
+const workOrder = [
+  'rejuran-jay', 'revcell-loresa', 'vt-cosmetics-anton',
+  'eclado-loresa', 'iunik-khutjo', 'lashify-dariia',
+  'meditherapy-aurela', 'vichy-dariia', 'k-secret-aiym',
+  'first-aid-beauty-albulena', 'arencia-albina', 'patrick-ta-beatrix',
+  'too-faced-melly', 'nyx-albulena', 'prada-beauty-rebecca',
+]
+const bySlug = new Map(cases.map((c) => [c.slug, c]))
+
+export const creatorCases: CaseStudy[] = workOrder.map((slug) => bySlug.get(slug)!).map((c) => ({
   vertical: 'Beauty',
   ...c,
   platforms: ['Instagram'],
