@@ -116,13 +116,17 @@ test('brand marquee keeps two seamless tracks with a reduced DOM', async ({ page
   expect(await strip.locator('*').count()).toBeLessThanOrEqual(60)
 })
 
-test('mobile menu suppresses the cookie dialog', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 })
+test('privacy settings dialog asks once and reopens from the footer', async ({ page }) => {
   await page.goto('/')
+  const dialog = page.getByRole('dialog', { name: 'Privacy Settings' })
+  await expect(dialog).toBeVisible()
+  await dialog.getByRole('button', { name: 'Deny' }).click()
+  await expect(dialog).toHaveCount(0)
+  await page.reload()
   await page.waitForTimeout(1200)
-  await page.getByRole('button', { name: 'Open menu' }).click()
-  await expect(page.getByRole('dialog', { name: 'Main menu' })).toBeVisible()
-  await expect(page.getByRole('dialog', { name: 'We use cookies' })).toHaveCount(0)
+  await expect(dialog).toHaveCount(0)
+  await page.getByRole('button', { name: 'Privacy settings' }).click()
+  await expect(dialog).toBeVisible()
 })
 
 test('explicit English locale redirects permanently', async ({ request }) => {

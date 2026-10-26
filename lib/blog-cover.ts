@@ -1,4 +1,5 @@
 import { generatedCoverSlugs } from '@/lib/data/blog-covers'
+import { aiCoverPath, aiCoverSlugs } from '@/lib/data/blog-ai-covers'
 
 // Posts without an uploaded featured image fall back to a generated brand
 // cover (scripts/generate-blog-covers.tsx), so cards and social previews are
@@ -44,6 +45,8 @@ export function blogCoverPath(slug: string): string {
 
 export function resolveFeaturedImage(post: { slug: string; featuredImage?: string | null }): string | null {
   if (post.featuredImage) return post.featuredImage
+  // Editorial AI covers (Oct 2026) take precedence over the typographic ones.
+  if (aiCoverSlugs.has(post.slug)) return aiCoverPath(post.slug)
   return generatedCoverSlugs.has(post.slug) ? blogCoverPath(post.slug) : null
 }
 

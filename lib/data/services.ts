@@ -92,8 +92,8 @@ export const services: ServiceDetail[] = [
           'We agree the KPIs before launch and track them throughout: reach, engagement rate, link clicks, code redemptions and conversions where tracking allows. The final report explains what each creator and format delivered, so the next campaign starts from evidence rather than guesswork.',
       },
     ],
-    image: '/images/services/influencer-campaigns.webp',
-    imageAlt: 'Creator presenting skincare products in a campaign reel',
+    image: '/images/services/final/01-albina.png',
+    imageAlt: 'Albina in a close selfie portrait with long highlighted hair and softly balanced lighting.',
   },
   {
     slug: 'talent-management',
@@ -155,8 +155,8 @@ export const services: ServiceDetail[] = [
           'We keep a focused roster so each creator gets real management. If you create beauty, skincare, fashion, lifestyle or gaming content and want representation, introduce yourself through the contact form with links to your channels.',
       },
     ],
-    image: '/images/services/talent-management.webp',
-    imageAlt: 'Creator on set during a beauty campaign shoot',
+    image: '/images/services/final/02-anton.jpg',
+    imageAlt: 'Anton in a white robe with under-eye patches and dewy skin.',
   },
   {
     slug: 'content-production',
@@ -218,8 +218,8 @@ export const services: ServiceDetail[] = [
           'It depends on the number of concepts, how much casting is involved and whether the shoot is with existing creators or a dedicated production. We agree the timeline in the scope and plan backwards from your launch or media date, so concept approval, shoot, edits and delivery each have a fixed slot.',
       },
     ],
-    image: '/images/services/content-production.webp',
-    imageAlt: 'Creator applying makeup in a produced campaign video',
+    image: '/images/services/final/03a-dariia.jpg',
+    imageAlt: 'Dariia with a finished autumn makeup look in a close three-quarter portrait.',
   },
   {
     slug: 'performance-marketing',
@@ -281,8 +281,8 @@ export const services: ServiceDetail[] = [
           'Enough for each creative and audience to collect reliable data before decisions are made. Rather than a fixed minimum, we size the budget to the number of creatives and audiences in the test, then shift spend to the winners once they are clear, so money is not spread too thin to learn anything.',
       },
     ],
-    image: '/images/services/performance-marketing.webp',
-    imageAlt: 'CA Agency creator applying makeup in a bold color cosmetics campaign video',
+    image: '/images/services/final/04-melly.jpg',
+    imageAlt: 'Melly looking into the camera with a finished smoky-eye makeup look.',
   },
   {
     slug: 'brand-consultancy',
@@ -344,8 +344,8 @@ export const services: ServiceDetail[] = [
           'One team that covers strategy, creator partnerships and content, so the plan and its execution stay joined up. You get regular check-ins and reporting against the KPIs agreed in the roadmap.',
       },
     ],
-    image: '/images/services/brand-consultancy.webp',
-    imageAlt: 'CA Agency creator with a glass-skin glow in a premium skincare campaign video',
+    image: '/images/services/final/05-rebecca.jpg',
+    imageAlt: 'Rebecca at the LolaVie and Charlotte Tilbury event.',
   },
 ]
 

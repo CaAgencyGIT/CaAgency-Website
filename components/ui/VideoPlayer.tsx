@@ -5,6 +5,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { clsx } from 'clsx'
 import usePrefersReducedMotion from '@/components/hooks/usePrefersReducedMotion'
+import { pickVideoSrc } from '@/lib/media/video-src'
+import LogoSpinner from '@/components/ui/LogoSpinner'
 
 type PlaybackStatus = 'idle' | 'starting' | 'playing' | 'buffering' | 'paused' | 'blocked' | 'error'
 type ManualIntent = 'none' | 'play' | 'pause'
@@ -12,7 +14,8 @@ type ManualIntent = 'none' | 'play' | 'pause'
 interface VideoPlayerProps {
   src: string
   className?: string
-  aspectRatio?: '9:16' | '16:9' | '1:1'
+  // 'fill' sizes the player to its parent (the parent sets the aspect ratio).
+  aspectRatio?: '9:16' | '16:9' | '1:1' | 'fill'
   autoplay?: boolean
   muted?: boolean
   loop?: boolean
@@ -24,10 +27,15 @@ interface VideoPlayerProps {
   poster?: string
   posterSizes?: string
   posterPriority?: boolean
+  posterQuality?: number
   label?: string
   playbackActive?: boolean
   onRequestActive?: () => void
   onReleaseActive?: () => void
+  // For decorative autoplay grids with no pause affordance: never settle on
+  // the "blocked" dead end, keep retrying instead, and never render the
+  // Play/Pause control at all.
+  neverGiveUp?: boolean
   labels?: {
     pause: string
     play: string
@@ -52,10 +60,12 @@ export default function VideoPlayer({
   poster,
   posterSizes = '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 300px',
   posterPriority = false,
+  posterQuality = 60,
   label = 'Campaign video',
   playbackActive,
   onRequestActive,
   onReleaseActive,
+  neverGiveUp = false,
   labels = {
     pause: 'Pause',
     play: 'Play',
@@ -71,6 +81,7 @@ export default function VideoPlayer({
   const eligibleRef = useRef(false)
   const manualIntentRef = useRef<ManualIntent>('none')
   const hasPlayedRef = useRef(false)
+  const staggeredRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
@@ -85,19 +96,34 @@ export default function VideoPlayer({
     if (!element) return
 
     // Warm metadata shortly before arrival, but only start decoding once the
-    // tile actually intersects. The mount latch never resets on scroll-away.
+    // tile actually intersects. Tiles well off screen drop their <video>
+    // again: iPhones have a small pool of hardware decoders, and a long grid
+    // that keeps every film loaded leaves the newest ones frozen.
+    let releaseTimer: ReturnType<typeof setTimeout> | null = null
     const mountObserver = new IntersectionObserver(
       ([entry]) => {
+        if (releaseTimer) clearTimeout(releaseTimer)
+        releaseTimer = null
         if (entry.isIntersecting) {
           setIsNearView(true)
-          mountObserver.disconnect()
+        } else {
+          releaseTimer = setTimeout(() => {
+            setIsNearView(false)
+            setHasRenderedFrame(false)
+            setPlaybackStatus('idle')
+            staggeredRef.current = false
+          }, 1500)
         }
       },
-      { rootMargin: '250px' }
+      { rootMargin: '600px 0px' }
     )
     let exitTimer: ReturnType<typeof setTimeout> | null = null
+    // Phones only play tiles that are mostly on screen, so a long grid never
+    // has more films decoding at once than the iPhone handles smoothly.
+    const phone = window.matchMedia('(max-width: 767px)').matches
+    const minRatio = phone ? 0.5 : 0
     const playObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
         setIsInView(true)
@@ -107,13 +133,14 @@ export default function VideoPlayer({
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = setTimeout(() => setIsInView(false), 200)
       }
-    })
+    }, { threshold: phone ? [0, 0.5] : 0 })
     mountObserver.observe(element)
     playObserver.observe(element)
     return () => {
       mountObserver.disconnect()
       playObserver.disconnect()
       if (exitTimer) clearTimeout(exitTimer)
+      if (releaseTimer) clearTimeout(releaseTimer)
     }
   }, [])
 
@@ -133,9 +160,62 @@ export default function VideoPlayer({
     }
   }, [])
 
+  const shouldMountVideo = manualIntent !== 'none' || (isNearView && autoplay && !prefersReducedMotion)
+  // Detaching the source is what actually hands the decoder back on iOS;
+  // removing the element alone leaves it to garbage collection.
+  useEffect(() => {
+    if (!shouldMountVideo) return
+    const video = videoRef.current
+    return () => {
+      if (!video) return
+      video.pause()
+      video.removeAttribute('src')
+      video.load()
+    }
+  }, [shouldMountVideo])
+
+  // iOS sometimes refuses or stalls the first programmatic play() (it
+  // reads the muted *attribute*, which React never writes). Set it, and if
+  // a film still ends up waiting, start it from the visitor's next touch or
+  // tap anywhere — a real gesture always unlocks muted playback — instead of
+  // leaving it frozen on its poster until the tile itself is tapped.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!shouldMountVideo || !video) return
+    video.defaultMuted = muted
+    video.muted = muted
+    if (muted) video.setAttribute('muted', '')
+  }, [shouldMountVideo, muted])
+
+  useEffect(() => {
+    if (!eligibleRef.current) return
+    if (playbackStatus !== 'blocked' && playbackStatus !== 'buffering' && playbackStatus !== 'starting') return
+    const kick = () => {
+      const video = videoRef.current
+      if (!video || !eligibleRef.current || !video.paused) return
+      video.muted = muted
+      video.play().catch(() => {})
+    }
+    const gestures = ['touchend', 'pointerup', 'keydown'] as const
+    gestures.forEach((e) => window.addEventListener(e, kick, { passive: true }))
+    return () => gestures.forEach((e) => window.removeEventListener(e, kick))
+  }, [playbackStatus, muted])
+
   const startPlayback = useCallback(async () => {
     const video = videoRef.current
     if (!video || !eligibleRef.current || !video.paused) return
+
+    // A page with several autoplaying tiles can have every one of them call
+    // play() on the same tick, which contends for the browser's decoder
+    // slots and stalls some of them. Spreading the first attempt over a
+    // short random window avoids that thundering herd.
+    if (!staggeredRef.current) {
+      staggeredRef.current = true
+      const attemptBeforeWait = playAttemptRef.current
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * 400))
+      if (attemptBeforeWait !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+    }
+
     video.defaultMuted = muted
     video.muted = muted
     setPlaybackStatus('starting')
@@ -145,19 +225,25 @@ export default function VideoPlayer({
     } catch (error) {
       if (attempt !== playAttemptRef.current || !eligibleRef.current) return
       const name = error instanceof Error ? error.name : ''
-      if (name === 'AbortError' && retryCountRef.current < 1) {
+      const retryBudget = neverGiveUp ? Infinity : 3
+      if (name === 'AbortError' && retryCountRef.current < retryBudget) {
+        const delay = Math.min(350 * (retryCountRef.current + 1), 3000)
         retryCountRef.current++
         setPlaybackStatus('buffering')
-        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 350)
+        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), delay)
         return
       }
       if (retryTimerRef.current) clearTimeout(retryTimerRef.current)
+      if (neverGiveUp && name !== 'NotAllowedError') {
+        setPlaybackStatus('buffering')
+        retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 4000)
+        return
+      }
       setPlaybackStatus(name === 'NotAllowedError' || name === 'AbortError' ? 'blocked' : 'error')
       onReleaseActive?.()
     }
-  }, [muted, onReleaseActive])
+  }, [muted, onReleaseActive, neverGiveUp])
 
-  const shouldMountVideo = manualIntent !== 'none' || (isNearView && autoplay && !prefersReducedMotion)
   const shouldPlay = shouldMountVideo && isInView && isPageVisible &&
     (playbackActive ?? true) && manualIntent !== 'pause' &&
     (manualIntent === 'play' || (autoplay && !prefersReducedMotion))
@@ -183,12 +269,19 @@ export default function VideoPlayer({
   useEffect(() => {
     if (!shouldPlay || (playbackStatus !== 'starting' && playbackStatus !== 'buffering')) return
     // A browser can leave play() pending indefinitely on a stalled source.
-    // Keep the poster/last frame visible, then offer a manual recovery path.
+    // Keep the poster/last frame visible, then offer a manual recovery path
+    // — or, for decorative grids with no such control, just keep trying.
     const timeout = setTimeout(() => {
-      if (eligibleRef.current) setPlaybackStatus('blocked')
-    }, 8000)
+      if (!eligibleRef.current) return
+      if (neverGiveUp) {
+        setPlaybackStatus('buffering')
+        setRetryRequest((request) => request + 1)
+        return
+      }
+      setPlaybackStatus('blocked')
+    }, 10000)
     return () => clearTimeout(timeout)
-  }, [shouldPlay, playbackStatus])
+  }, [shouldPlay, playbackStatus, neverGiveUp])
 
   const togglePlayback = () => {
     let video = videoRef.current
@@ -247,11 +340,13 @@ export default function VideoPlayer({
     }
     const video = videoRef.current
     if (!hasPlayedRef.current || (video?.ended && !loop)) return
-    if (retryCountRef.current < 1) {
+    const retryBudget = neverGiveUp ? Infinity : 3
+    if (retryCountRef.current < retryBudget) {
+      const delay = Math.min(350 * (retryCountRef.current + 1), 3000)
       retryCountRef.current++
       setPlaybackStatus('buffering')
       if (retryTimerRef.current) clearTimeout(retryTimerRef.current)
-      retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), 350)
+      retryTimerRef.current = setTimeout(() => setRetryRequest((request) => request + 1), delay)
     } else {
       setPlaybackStatus('blocked')
     }
@@ -261,14 +356,18 @@ export default function VideoPlayer({
     '9:16': 'aspect-9/16',
     '16:9': 'aspect-video',
     '1:1': 'aspect-square',
+    fill: 'h-full w-full',
   }
-  const showPlayControl = !autoplay || prefersReducedMotion || manualIntent === 'pause' ||
-    playbackStatus === 'blocked' || playbackStatus === 'error'
+  // A blocked autoplay (e.g. iOS Low Power Mode) keeps the poster instead of
+  // surfacing a Play pill; tapping the tile starts it (client request, Oct 2026).
+  const showPlayControl = !autoplay || prefersReducedMotion || manualIntent === 'pause'
   const canPause = playbackStatus === 'playing' || playbackStatus === 'starting' || playbackStatus === 'buffering'
 
   return (
     <div
       ref={containerRef}
+      data-video-frame
+      onClick={playbackStatus === 'blocked' || playbackStatus === 'error' ? togglePlayback : undefined}
       className={clsx(
         aspectClasses[aspectRatio],
         'relative overflow-hidden bg-black/10',
@@ -283,7 +382,7 @@ export default function VideoPlayer({
           src={poster}
           alt=""
           fill
-          quality={60}
+          quality={posterQuality}
           preload={posterPriority}
           loading={posterPriority ? undefined : 'lazy'}
           fetchPriority={posterPriority ? 'high' : 'auto'}
@@ -295,7 +394,7 @@ export default function VideoPlayer({
       {shouldMountVideo && (
         <video
           ref={videoRef}
-          src={src}
+          src={pickVideoSrc(src)}
           aria-label={label}
           className="h-full w-full object-cover"
           muted={muted}
@@ -303,6 +402,8 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
+          // Metadata only: buffering every upcoming film ahead takes iPhone
+          // decoders away from the films already playing (the showreel froze).
           preload="metadata"
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
@@ -326,12 +427,12 @@ export default function VideoPlayer({
           }}
         />
       )}
-      {!controls && (
+      {!controls && !neverGiveUp && (
         <button
           type="button"
           onClick={togglePlayback}
           className={clsx(
-            'absolute bottom-4 end-4 z-10 flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 px-4 text-sm font-medium text-white backdrop-blur-sm transition-[opacity,background-color] hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white',
+            'absolute bottom-4 end-4 z-10 flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 px-4 text-sm font-medium text-white transition-[opacity,background-color] hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white',
             // Keep keyboard/AT pause access without flashing Play during
             // normal startup, buffering, scroll-away, or tab transitions.
             !showPlayControl &&
@@ -341,6 +442,12 @@ export default function VideoPlayer({
         >
           {canPause && manualIntent !== 'pause' ? labels.pause : labels.play}
         </button>
+      )}
+      {/* Spinning CA logo while a started video waits for data. */}
+      {shouldMountVideo && playbackStatus === 'buffering' && hasPlayedRef.current && (
+        <div className="pointer-events-none absolute inset-0 z-[5] grid place-items-center text-white/90 [filter:drop-shadow(0_2px_8px_rgba(0,0,0,0.45))]">
+          <LogoSpinner size={44} />
+        </div>
       )}
     </div>
   )

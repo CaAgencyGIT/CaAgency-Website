@@ -7,6 +7,7 @@ import type { ContactFormLabels } from '@/lib/contact/form-labels'
 import { parseFollowerCount } from '@/lib/contact/followers'
 import { contactFieldLimits, isHttpUrl, isValidHandle, MAX_SOCIAL_PROFILES, type ContentCategory } from '@/lib/contact/validation'
 import { cn } from '@/lib/utils'
+import LogoSpinner from '@/components/ui/LogoSpinner'
 import {
   CheckChips,
   describedBy,
@@ -124,14 +125,9 @@ function SubmitRow({ label, sending, status, blocked, labels, resultRef }: {
         type="submit"
         disabled={status === 'submitting' || blocked}
         aria-busy={status === 'submitting'}
-        className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-full bg-[#0e0e0e] px-8 font-jost text-[15px] font-medium text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-full bg-[#0e0e0e] px-8 font-jost text-[15px] mobile:min-h-[46px] mobile:min-w-[160px] mobile:text-[14px] font-medium text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === 'submitting' && (
-          <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-        )}
+        {status === 'submitting' && <LogoSpinner size={22} label={sending} />}
         {status === 'submitting' ? sending : label}
       </button>
     </div>
@@ -144,7 +140,7 @@ function Success({ message, labels, onReset, resultRef }: { message: string; lab
       <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#0e0e0e] text-white">
         <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
       </div>
-      <p className="font-anegra text-[26px] leading-tight text-foreground-dark">{message}</p>
+      <p className="font-anegra text-[26px] leading-tight text-foreground-dark mobile:text-[21px]">{message}</p>
       <button type="button" onClick={onReset} className="mt-6 text-[14px] underline decoration-black/30 underline-offset-4 hover:decoration-black">
         {labels.sendAnotherMessage}
       </button>

@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import IntentPrefetchLink from '@/components/layout/IntentPrefetchLink'
-import HeaderElevation from '@/components/layout/HeaderElevation'
-import MobileNavigation from '@/components/layout/MobileNavigation'
+import HeaderMenu from '@/components/layout/HeaderMenu'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import type { HeaderLabels } from '@/components/layout/header-types'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
-const menuItems = [
-  { key: 'home', href: '/' },
+const barItems = [
   { key: 'about', href: '/about' },
   { key: 'talents', href: '/talents' },
   { key: 'work', href: '/work' },
@@ -17,62 +15,56 @@ const menuItems = [
   { key: 'contact', href: '/contact' },
 ] as const
 
+const menuItems = [{ key: 'home', href: '/' }, ...barItems] as const
+
+// Black header bar (Oct 2026, after scooperz.com): logo left, uppercase menu
+// right, then language, a "Let's talk" pill and a menu button that opens a
+// full-screen menu. Phones keep only the logo, language and menu button.
 export default function Header({ locale, labels }: { locale: string; labels: HeaderLabels }) {
   return (
     <>
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-100 focus:rounded-sm focus:bg-accent-red focus:px-4 focus:py-2 focus:text-white"
-      >
+      <a href="#main-content" className="rd rd-skip">
         {labels.skipToContent}
       </a>
 
-      <header
-        data-site-header
-        data-elevated="false"
-        className="sticky top-0 z-50 hidden border-b border-transparent bg-background-base px-[20px] py-[10px] text-foreground-primary shadow-none transition-[box-shadow,border-color] duration-300 data-[elevated=true]:border-black/10 data-[elevated=true]:shadow-e2 lg:flex laptop:px-[30px]"
-      >
-        <div className="mx-auto w-full max-w-container">
-          <div className="flex h-[88px] items-center justify-between">
-            <div className="flex w-[80%] items-center laptop:w-[80%]">
-              <Link href={localizeHref('/', locale)} prefetch={false} className="shrink-0 p-[6px]">
-                <Image src="/images/site/logo-full.png" alt="CA Agency" width={800} height={532} className="h-[76px] w-auto object-contain" loading="eager" />
-              </Link>
-              <nav aria-label={labels.mainMenu} className="flex items-center ps-[30px]">
-                <ul className="flex items-center gap-[30px] tablet:gap-[20px]">
-                  {menuItems.map((item) => (
-                    <li key={item.href}>
-                      <IntentPrefetchLink
-                        href={item.href}
-                        locale={locale}
-                        className="relative whitespace-nowrap py-2 font-jost text-[18px] font-normal capitalize leading-[1em] tracking-[-0.2px] transition-colors after:absolute after:-bottom-1 after:start-0 after:h-[2px] after:w-full after:origin-left rtl:after:origin-right after:rounded-full after:bg-accent-red after:transition-transform after:duration-300 tablet:text-[15px]"
-                        activeClassName="text-foreground-primary after:scale-x-100"
-                        inactiveClassName="text-foreground-body hover:text-foreground-primary after:scale-x-0"
-                      >
-                        {labels[item.key]}
-                      </IntentPrefetchLink>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-            <div className="flex items-center justify-end gap-4">
-              <LanguageSwitcher locale={locale} label={labels.languageSelector} />
-              <IntentPrefetchLink
-                href="/contact"
-                locale={locale}
-                markCurrent={false}
-                className="inline-block whitespace-nowrap rounded-button bg-button-bg px-6 py-3 text-center font-jost text-[16px] font-medium text-button-text transition-[background-color,color,translate,box-shadow,scale] duration-300 ease-out hover:-translate-y-0.5 hover:bg-button-hoverDark hover:text-button-text hover:shadow-e2 active:translate-y-0 active:scale-[0.98] motion-reduce:hover:translate-none motion-reduce:active:scale-100 motion-reduce:transition-colors"
-              >
-                {labels.contact}
-              </IntentPrefetchLink>
-            </div>
+      <header data-site-header className="rd rd-header">
+        <Link href={localizeHref('/', locale)} prefetch={false} className="rd-header-logo">
+          <Image
+            src="/images/site/logo_payoff.svg"
+            alt="CA Agency"
+            width={343}
+            height={274}
+            className="h-[52px] w-auto invert max-[760px]:h-[42px]"
+            loading="eager"
+          />
+        </Link>
+        <nav aria-label={labels.mainMenu} className="rd-header-nav">
+          <ul>
+            {barItems.map((item) => (
+              <li key={item.href}>
+                <IntentPrefetchLink href={item.href} locale={locale}>
+                  {labels[item.key]}
+                </IntentPrefetchLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="rd-header-actions">
+          <div className="rd-language">
+            <LanguageSwitcher locale={locale} label={labels.languageSelector} tone="light" />
           </div>
+          <IntentPrefetchLink href="/contact" locale={locale} className="rd-header-talk" markCurrent={false}>
+            {labels.letsTalk}
+          </IntentPrefetchLink>
+          <HeaderMenu
+            locale={locale}
+            items={menuItems.map((item) => ({ href: item.href, label: labels[item.key] }))}
+            openLabel={labels.openMenu}
+            closeLabel={labels.closeMenu}
+            menuLabel={labels.mainMenu}
+          />
         </div>
       </header>
-
-      <MobileNavigation locale={locale} labels={labels} />
-      <HeaderElevation />
     </>
   )
 }

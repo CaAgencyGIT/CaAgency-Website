@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import HeroSection from '@/components/blocks/HeroSection'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
+import DepartmentsMap from '@/components/blocks/DepartmentsMap'
 import TalentGrid from '@/components/blocks/TalentGrid'
 import { getFaqJsonLd } from '@/lib/data/faq-schema'
 import Heading from '@/components/ui/Heading'
@@ -10,18 +11,18 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { brandLogos } from '@/lib/data/brands'
 import { featuredVideos } from '@/lib/data/home'
 import { getSiteContent } from '@/lib/site-content/service'
-import { getFeaturedTalents } from '@/lib/site-content/public'
+import { getTalentsBySlugs } from '@/lib/site-content/public'
 import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
+import { homeCollageTiles, homeTalentSlugs, introShowreels } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
-import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
-import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
 import FAQ from '@/components/blocks/FAQ'
 import ServicesOverview from '@/components/blocks/ServicesOverview'
+import IntroFeature from '@/components/blocks/IntroFeature'
 
 // ISR: prerender at build, refresh the DB-backed footer/content hourly.
 export const revalidate = 3600
@@ -45,7 +46,8 @@ export const metadata = buildPageMetadata({
 
 export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
-  const talents = await getFeaturedTalents(content.talents.limit)
+  // Pinned row shared with the localized homepages; /talents has its own order.
+  const talents = await getTalentsBySlugs(homeTalentSlugs)
   const introMediaItems = content.intro.mediaItems.map((item) => ({
     type: item.type === 'image' ? 'image' as const : 'video' as const,
     src: item.src,
@@ -66,6 +68,7 @@ export default async function HomePage() {
           url: image.src,
           alt: image.alt,
         }))}
+        collageTiles={homeCollageTiles}
       />
 
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
@@ -77,16 +80,19 @@ export default async function HomePage() {
           </ScrollReveal>
           {/* Departments by region (July 2026 round 3): the old inline-link
               paragraph restructured into a four-region editorial list, in the
-              client-specified order USA → Asia → Europe → Middle East. */}
+              client-specified order North America → Europe → Middle East → Asia. */}
           <ScrollReveal delay={0.35} yOffset={20}>
-            <div className="mx-auto mt-12 max-w-[880px]">
-              <p className="mb-6 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray">
+            <div className="mx-auto mt-20 max-w-[1040px] tablet:mt-16 mobile:mt-12">
+              <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
                 Our Departments
               </p>
-              <ul className="grid grid-cols-4 gap-x-8 gap-y-8 tablet:grid-cols-2 mobile:grid-cols-1 mobile:gap-y-6">
+              <div className="mx-auto mb-14 max-w-[760px] tablet:mb-12 mobile:mb-8">
+                <DepartmentsMap />
+              </div>
+              <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-2 mobile:gap-x-5 mobile:gap-y-8">
                 {[
                   {
-                    region: 'USA',
+                    region: 'North America',
                     href: '/influencer-marketing-usa',
                     copy: (
                       <>
@@ -105,22 +111,6 @@ export default async function HomePage() {
                           skincare
                         </Link>{' '}
                         brands in the world’s largest beauty market, coast to coast.
-                      </>
-                    ),
-                  },
-                  {
-                    region: 'Asia',
-                    href: '/influencer-marketing-asia',
-                    copy: (
-                      <>
-                        From Seoul to Shanghai, Tokyo and Singapore, home of our{' '}
-                        <Link
-                          href="/korean-skincare-influencer-marketing"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          K-beauty
-                        </Link>{' '}
-                        specialism.
                       </>
                     ),
                   },
@@ -156,11 +146,27 @@ export default async function HomePage() {
                       </>
                     ),
                   },
+                  {
+                    region: 'Asia',
+                    href: '/influencer-marketing-asia',
+                    copy: (
+                      <>
+                        From Seoul to Shanghai, Tokyo and Singapore, home of our{' '}
+                        <Link
+                          href="/korean-skincare-influencer-marketing"
+                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
+                        >
+                          K-beauty
+                        </Link>{' '}
+                        specialism.
+                      </>
+                    ),
+                  },
                 ].map((dept) => (
                   <li key={dept.region} className="text-center tablet:text-center mobile:text-center">
                     <Link
                       href={dept.href}
-                      className="group inline-flex items-baseline gap-2 font-anegra text-[20px] mobile:text-[19px] text-foreground-primary transition-colors hover:text-foreground-subtle"
+                      className="group inline-flex items-baseline gap-2 font-anegra text-[20px] mobile:gap-1.5 mobile:text-[16px] text-foreground-primary transition-colors hover:text-foreground-subtle"
                     >
                       {dept.region}
                       <span
@@ -170,7 +176,7 @@ export default async function HomePage() {
                         →
                       </span>
                     </Link>
-                    <p className="mt-2 text-[14px] leading-6 text-black/60">{dept.copy}</p>
+                    <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.75] text-black/60 text-pretty mobile:mt-2 mobile:text-[12.5px] mobile:leading-[1.6]">{dept.copy}</p>
                   </li>
                 ))}
               </ul>
@@ -179,38 +185,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-background-base py-sec-lg mobile:py-[72px] px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-[80px] mobile:gap-[50px]">
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-              <ScrollReveal delay={0} yOffset={20}>
-                <DeferredMediaCarousel
-                  items={introMediaItems}
-                  // Client decision: autoplay regardless of
-                  // prefers-reduced-motion (Oct 2026).
-                  ignoreReducedMotion
-                  fallback={<MediaCarouselFallback items={introMediaItems} />}
-                />
-              </ScrollReveal>
-            </div>
-            <div className="w-full lg:w-1/2">
-              <ScrollReveal delay={0.1} yOffset={20}>
-                <SectionHeading align="start" eyebrow="Who We Are" title={content.intro.title} className="mb-7" />
-              </ScrollReveal>
-              {content.intro.paragraphs.map((paragraph, index) => (
-                <ScrollReveal key={index} delay={0.15 + index * 0.05} yOffset={20}>
-                  <Text color="dark" size="sm" className="mb-6 opacity-80">
-                    {paragraph.text}
-                  </Text>
-                </ScrollReveal>
-              ))}
-              <ScrollReveal delay={0.25} yOffset={20}>
-                <Button href={content.intro.buttonHref}>{content.intro.buttonLabel}</Button>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <IntroFeature
+        eyebrow={content.intro.title}
+        kicker="Who We Are"
+        title="Creators who shape culture, campaigns that move product."
+        paragraphs={content.intro.paragraphs.map((paragraph) => paragraph.text)}
+        button={{ label: content.intro.buttonLabel, href: content.intro.buttonHref }}
+        items={introShowreels}
+      />
 
       <ServicesOverview content={content.servicesOverview} eyebrow="Services" />
 
@@ -219,7 +201,7 @@ export default async function HomePage() {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow="Our Creators" title={content.talents.title} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={talents} columns={6} />
+          <TalentGrid talents={talents} columns={6} cardArt mobileLayout="carousel" />
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">
@@ -234,43 +216,46 @@ export default async function HomePage() {
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x border-t border-black/5">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div className="mb-14 grid grid-cols-[1fr_minmax(0,420px)] items-end gap-10 tablet:grid-cols-1 mobile:mb-10 mobile:grid-cols-1 mobile:gap-6">
               <SectionHeading align="start" eyebrow="Case Studies" title={content.featuredWork.title} />
-              <div className="mt-6 md:mt-0">
-                <Button href={content.featuredWork.buttonHref}>{content.featuredWork.buttonLabel}</Button>
+              <div>
+                <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
+                  {content.featuredWork.description}
+                </Text>
+                <Link href={content.featuredWork.buttonHref} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                  {content.featuredWork.buttonLabel} <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </ScrollReveal>
           <DeferredVideoShowcase
             videos={featuredVideos}
             columns={4}
-            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} />}
+            staggered
+            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} staggered />}
           />
-          <ScrollReveal delay={0.2} yOffset={20}>
-            <Text color="dark" size="base" className="mt-10 max-w-[700px] text-[16px] leading-[28px]">
-              {content.featuredWork.description}
-            </Text>
-          </ScrollReveal>
         </div>
       </section>
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd('en'))}</script>
       <FAQ />
       <BrandCarousel images={brandLogos} />
 
-      {/* Closing conversion CTA */}
-      <section className="bg-accent-red py-sec mobile:py-sec-sm px-section-x">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="white" className="mb-6 text-[40px] mobile:text-[28px]">
+      {/* Closing conversion CTA, a black rounded panel matching the footer */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="rd-cta-panel-inner">
+          <Heading as="h2" color="white" className="text-[48px] tablet:text-[40px] mobile:text-[30px] leading-[1.08] text-balance">
             Let&apos;s Build Your Next Campaign
           </Heading>
-          <Text color="white" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-90">
-            Tell us about your goals and we&apos;ll match you with the right creators, strategy, production, and reporting included.
-          </Text>
-          <Magnetic>
-            <Button href="/contact" variant="light" prefetch={false}>
-              Enquire For Partnerships
-            </Button>
-          </Magnetic>
+          <div>
+            <Text color="white" size="lg" className="mb-8 opacity-75">
+              Tell us about your goals and we&apos;ll match you with the right creators, strategy, production, and reporting included.
+            </Text>
+            <Magnetic>
+              <Button href="/contact" variant="light" prefetch={false}>
+                Enquire For Partnerships
+              </Button>
+            </Magnetic>
+          </div>
         </ScrollReveal>
       </section>
     </>

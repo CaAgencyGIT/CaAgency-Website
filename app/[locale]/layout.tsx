@@ -4,7 +4,7 @@ import { isRtlLocale, locales, type Locale } from '@/i18n/config';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import CookieConsent from '@/components/ui/CookieConsent';
+import CookieConsent, { type CookieConsentLabels } from '@/components/ui/CookieConsent';
 import { getSiteContent } from '@/lib/site-content/service';
 import { FooterContent } from '@/lib/site-content/site-types';
 import RootDocument from '@/components/layout/RootDocument';
@@ -46,13 +46,7 @@ export default async function LocaleLayout({
   const footerContent = await getSiteContent<FooterContent>('footer');
   const nav = messages.nav as Record<string, string>;
   const common = messages.common as Record<string, string>;
-  const cookies = messages.cookies as unknown as {
-    title: string;
-    description: string;
-    learnMore: string;
-    decline: string;
-    acceptAll: string;
-  };
+  const cookies = messages.cookies as unknown as CookieConsentLabels;
   const breadcrumbs = messages.breadcrumbs as Record<string, string>;
   const headerLabels: HeaderLabels = {
     home: nav.home,
@@ -62,6 +56,7 @@ export default async function LocaleLayout({
     services: nav.services,
     blog: nav.blog,
     contact: common.contact,
+    letsTalk: nav.letsTalk,
     languageSelector: nav.languageSelector,
     openMenu: nav.openMenu,
     closeMenu: nav.closeMenu,

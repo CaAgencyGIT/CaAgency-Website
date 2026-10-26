@@ -64,6 +64,7 @@ security-scans/
 .dev.vars*
 worker-configuration.d.ts
 lib/generated/public-assets.json
+lib/generated/mobile-videos.json
 .cloudflare-bundle/
 .migration/
 

@@ -37,7 +37,6 @@ export default async function RootDocument({
         )}
       </head>
       <body className="font-work-sans antialiased">
-        <div className="grain-overlay" aria-hidden="true" />
         {children}
         <BackToTop label={t('backToTop')} />
         <RevealObserver />

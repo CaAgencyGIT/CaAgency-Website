@@ -1,45 +1,39 @@
 import { useTranslations } from 'next-intl'
-import SectionHeading from '@/components/ui/SectionHeading'
 import { faqKeys } from '@/lib/data/faq-schema'
+
+// The first two questions are always listed; the rest open from a
+// "View all questions" toggle so the section stays short.
+const VISIBLE = 2
 
 export default function FAQ() {
   const t = useTranslations('faq')
 
-  return (
-    <section className="border-t border-black/5 bg-background-base px-section-x py-[100px] mobile:py-[70px]">
-      <div className="mx-auto max-w-container">
-        <div className="mx-auto max-w-[800px]">
-          <SectionHeading eyebrow={t('eyebrow')} title={t('heading')} className="mb-12" />
+  const renderQuestion = (key: (typeof faqKeys)[number], index: number) => (
+    <details key={key} name="home-faq">
+      <summary id={`faq-question-${index}`}>{t(`questions.${key}.question`)}</summary>
+      <div id={`faq-answer-${index}`}>
+        <p>{t(`questions.${key}.answer`)}</p>
+      </div>
+    </details>
+  )
 
-          <div className="space-y-4">
-            {faqKeys.map((key, index) => (
-              <details
-                key={key}
-                name="home-faq"
-                open={index === 0}
-                className="group overflow-hidden rounded-xl border border-black/10 transition-colors duration-300 open:border-black/15 open:bg-background-soft"
-              >
-                <summary
-                  id={`faq-question-${index}`}
-                  className="flex min-h-[60px] w-full cursor-pointer list-none items-center justify-between px-6 py-5 text-start transition-colors focus-visible:-outline-offset-2 marker:content-none hover:bg-black/5 mobile:py-4 [&::-webkit-details-marker]:hidden"
-                >
-                  <span className="pe-4 font-work-sans text-[16px] font-medium text-foreground-primary mobile:text-[14px]">
-                    {t(`questions.${key}.question`)}
-                  </span>
-                  <span className="relative h-4 w-4 shrink-0" aria-hidden="true">
-                    <span className="absolute left-0 top-1/2 h-[2px] w-full -translate-y-1/2 rounded-full bg-accent-red" />
-                    <span className="absolute left-0 top-1/2 h-[2px] w-full -translate-y-1/2 rotate-90 rounded-full bg-accent-red transition-transform duration-300 ease-out group-open:rotate-0" />
-                  </span>
-                </summary>
-                <div id={`faq-answer-${index}`}>
-                  <p className="px-6 pb-5 text-[14px] leading-relaxed text-foreground-body">
-                    {t(`questions.${key}.answer`)}
-                  </p>
-                </div>
-              </details>
-            ))}
-          </div>
+  return (
+    <section className="rd-section rd-faq">
+      <div className="rd-section-heading">
+        <div>
+          <p className="rd-eyebrow">{t('eyebrow')}</p>
+          <h2>{t('heading')}</h2>
         </div>
+      </div>
+      <div className="rd-faq-list">
+        {faqKeys.slice(0, VISIBLE).map((key, index) => renderQuestion(key, index))}
+        <details className="rd-faq-more">
+          <summary>
+            <span className="rd-faq-more-open">{t('showAll')}</span>
+            <span className="rd-faq-more-close">{t('showLess')}</span>
+          </summary>
+          <div>{faqKeys.slice(VISIBLE).map((key, index) => renderQuestion(key, index + VISIBLE))}</div>
+        </details>
       </div>
     </section>
   )

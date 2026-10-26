@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
@@ -12,14 +13,15 @@ import HeadingAccent from '@/components/ui/HeadingAccent'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
-import { caseStudyForVideo } from '@/lib/data/case-studies'
+import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
+import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
 // VideoObject schema for SEO
 const videoSchemaList = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: workVideos.map((video, index) => ({
+  itemListElement: [...workVideos.filter((video) => workGridOrder.some((e) => e.type === 'video' && e.src === video.src)).map((video, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
@@ -32,7 +34,45 @@ const videoSchemaList = {
       publisher: organizationRef,
     },
   })),
+  // October 2026 redesign films, added after the existing work.
+  ...workFilms.map((key, index) => ({
+    '@type': 'ListItem',
+    position: workGridOrder.filter((e) => e.type === 'video').length + index + 1,
+    item: {
+      '@type': 'VideoObject',
+      name: filmLabel(key),
+      description: filmDescription(key),
+      contentUrl: `https://caagency.com${filmSrc(key)}`,
+      thumbnailUrl: `https://caagency.com${posterFor(filmSrc(key))}`,
+      uploadDate: REDESIGN_MEDIA_PUBLISHED,
+      publisher: organizationRef,
+    },
+  }))],
 }
+
+// Mixed order (Oct 2026 client feedback): existing work and redesign films
+// interleaved so the same creator never shows twice in a row — see
+// workGridOrder. Each tile still links to its brand's case study where one
+// exists.
+const workVideosBySrc = new Map(workVideos.map((video) => [video.src, video]))
+const gridVideos = workGridOrder.map((entry) => {
+  if (entry.type === 'video') {
+    const video = workVideosBySrc.get(entry.src)!
+    // DELERE's burned-in mark is faint; a bolder copy sits exactly on top of it.
+    const watermark = ['DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
+    // Sharpened re-encode of the original upload (Oct 2026); case-study lookup stays on the catalog src.
+    const src = video.src.replace(/-web-v1\.mp4$/, '-sharp-v2.mp4')
+    return { src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
+  }
+  return {
+    src: filmSrc(entry.key),
+    brand: films[entry.key].brand,
+    // Older work videos have the brand wordmark burned in; the redesign films
+    // don't, so they get the same treatment as an overlay.
+    watermark: brandWatermarks[films[entry.key].brand],
+    study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
+  }
+})
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -77,10 +117,10 @@ export default async function WorkPage({ params }: Props) {
               <Heading as="h1" color="dark" className="mb-6 tracking-[0.1px]">
                 {t('heading')}
               </Heading>
-              <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
+              <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[15px] mobile:leading-[1.7]">
                 <strong>{t('heroP1')}</strong>
               </Text>
-              <Text color="dark" size="base" className="text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
+              <Text color="dark" size="base" className="text-[16px] leading-[28px] mobile:text-[15px] mobile:leading-[1.7]">
                 {t('heroP2')}
               </Text>
             </div>
@@ -89,19 +129,18 @@ export default async function WorkPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Video Grid Section — capped slightly below the site container so the
-          tiles read a touch smaller (client request, July 2026 round 3). */}
+      {/* Video Grid Section — 3 per row, larger tiles (client request, Oct 2026). */}
       <section className="bg-background-base px-section-x">
-        <div className="max-w-[1180px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px] mobile:gap-[14px]">
-            {workVideos.map((video, index) => {
-              const study = caseStudyForVideo(video.src)
+        <div className="max-w-[1060px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-[36px] tablet:gap-[24px] mobile:gap-[10px]">
+            {gridVideos.map((video, index) => {
+              const study = video.study
               return (
-                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:rounded-[15px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
+                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
                   <VideoPlayer
                     src={video.src}
                     poster={posterFor(video.src)}
-                    posterSizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, (max-width: 1179px) 25vw, 280px"
+                    posterSizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
                     // First mobile row (2 columns); on mobile the second
                     // poster was the LCP element and loaded lazily.
                     posterPriority={index < 2}
@@ -112,8 +151,21 @@ export default async function WorkPage({ params }: Props) {
                     // Client decision: autoplay this muted grid regardless of
                     // prefers-reduced-motion (Oct 2026).
                     ignoreReducedMotion
-                    className="rounded-card mobile:rounded-[15px]"
+                    // Phones: a calmer 4:5 crop so more of the grid fits on screen.
+                    className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
                   />
+                  {'watermark' in video && video.watermark && (
+                    <Image
+                      src={video.watermark.src}
+                      alt=""
+                      aria-hidden="true"
+                      width={video.watermark.width}
+                      height={video.watermark.height}
+                      sizes="200px"
+                      style={{ width: `${video.watermark.widthPct}%`, top: 'coversBurnedIn' in video && video.coversBurnedIn ? '47%' : '50%' }}
+                      className="pointer-events-none absolute left-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
+                    />
+                  )}
                   {study && (
                     // Case-study routes are English-only (site) pages, so use
                     // next/link directly — no locale prefix.
@@ -122,11 +174,11 @@ export default async function WorkPage({ params }: Props) {
                       aria-label={`${video.brand} case study`}
                       className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
                     >
-                      <span className="w-full p-4 mobile:p-3">
-                        <span className="block font-anegra text-[18px] mobile:text-[15px] font-semibold text-white leading-tight">
+                      <span className="w-full p-4 mobile:px-2.5 mobile:py-2">
+                        <span className="block font-anegra text-[18px] mobile:text-[13px] font-semibold text-white leading-tight">
                           {video.brand}
                         </span>
-                        <span className="block font-work-sans text-[13px] mobile:text-[12px] text-white/80">
+                        <span className="block font-work-sans text-[13px] mobile:hidden text-white/80">
                           {t('viewCaseStudy')} →
                         </span>
                       </span>

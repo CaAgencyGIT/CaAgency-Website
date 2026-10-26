@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './redesign.css';
 
 @config '../tailwind.config.ts';
 
@@ -209,6 +210,116 @@ section {
   animation-delay: 0.15s;
 }
 
+/* Homepage collage (Oct 2026 approved layout): two large tiles, a stack of
+   three (34/28/38%), a stack of two (45/55%) and Rebecca's LolaVie x
+   Charlotte Tilbury shot as a closing tall tile, built from grid areas so
+   every tile shares the top and bottom edge. Wider than the page container
+   (92vw, max 1800px) and offset back to the viewport centre. Media crop via
+   object-fit only, never stretched. */
+.home-collage {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.95fr 1fr 1.2fr;
+  grid-template-rows: 34fr 11fr 17fr 38fr;
+  grid-template-areas:
+    "albina rebecca melly anton lolavie"
+    "albina rebecca yassi anton lolavie"
+    "albina rebecca yassi dariia lolavie"
+    "albina rebecca khutjo dariia lolavie";
+  gap: 8px;
+  width: min(92vw, 1800px);
+  margin-left: calc(50% - min(46vw, 900px));
+  aspect-ratio: 2050 / 722;
+}
+.home-collage-tile[data-area='yasaman'],
+.home-collage-tile[data-area='khutjoEvent'] { display: none; }
+.home-collage-tile {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e9e6e1;
+}
+.home-collage-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos);
+}
+.home-collage-shade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+.home-collage-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 18px;
+  border-radius: inherit;
+}
+a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+.home-collage-label {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+.intro-feature-tile img,
+.intro-feature-tile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+/* Hidden (not removed: iOS won't play an undisplayed video) until frames play. */
+.collage-video { opacity: 0.001; transition: opacity 0.35s ease; }
+.collage-video[data-playing] { opacity: 1; }
+.collage-video::-webkit-media-controls,
+.collage-video::-webkit-media-controls-panel,
+.collage-video::-webkit-media-controls-overlay-play-button,
+.collage-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+@media (max-width: 1100px) {
+  .home-collage { aspect-ratio: 2 / 1; }
+  .home-collage-link { padding: 12px 14px; }
+  .home-collage-label { font-size: 11px; }
+}
+/* Phones: a 2x2 collage of its own rather than the shrunken desktop grid:
+   Albina and Rebecca, Melly and Rebecca's LolaVie x Charlotte Tilbury shot,
+   then Yasaman (Prada Beauty) and Khutjo (Welcome to Korea), all
+   upright. The desktop Khutjo, Yassi, Anton, Dariia and the names are left
+   out here (client, Oct 2026). */
+@media (max-width: 760px) {
+  .home-collage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "albina rebecca"
+      "melly lolavie"
+      "yasaman khutjoEvent";
+    gap: 8px;
+    width: 100%;
+    margin-left: 0;
+    aspect-ratio: auto;
+  }
+  .home-collage-tile { aspect-ratio: 3 / 4; }
+  .home-collage-tile[data-area='yasaman'],
+  .home-collage-tile[data-area='khutjoEvent'] { display: block; }
+  .home-collage-media { object-position: var(--pos-m); }
+  .home-collage-tile[data-area='khutjo'],
+  .home-collage-tile[data-area='yassi'],
+  .home-collage-tile[data-area='anton'],
+  .home-collage-tile[data-area='dariia'] { display: none; }
+  .home-collage-shade, .home-collage-label { display: none; }
+}
+
 @keyframes status-enter {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -288,27 +399,6 @@ section {
 
 .marquee:hover .animate-marquee-x {
   animation-play-state: paused;
-}
-
-/* Site-wide film-grain atmosphere on the light UI. Fixed, non-interactive,
-   blended at very low opacity so it adds texture without obscuring content. */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-/* At 3% opacity the grain is imperceptible on small screens, but as a fixed
-   full-viewport layer above everything it taxes low-end mobile GPUs on every
-   scrolled frame — desktop keeps the texture, phones skip it. */
-@media (max-width: 767px) {
-  .grain-overlay {
-    display: none;
-  }
 }
 
 /* Skip rendering work for the (always below-the-fold) footer until the
@@ -394,3 +484,69 @@ section {
     transition: none !important;
   }
 }
+
+/* Contact office map */
+.office-map-dot { fill: #3d3d3d; opacity: 0; }
+.office-map.is-shown .office-map-dot { animation: office-dot-in 0.6s ease forwards; }
+@keyframes office-dot-in { from { opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center; } to { opacity: 1; transform: scale(1); transform-box: fill-box; transform-origin: center; } }
+.office-map-arc { stroke: rgba(255, 255, 255, 0.45); stroke-width: 1.6; stroke-dasharray: 6 7; stroke-dashoffset: 1200; }
+.office-map.is-shown .office-map-arc { animation: office-arc-draw 2.4s 0.9s ease forwards; }
+@keyframes office-arc-draw { to { stroke-dashoffset: 0; } }
+.office-map-traveller { fill: #fff; opacity: 0; }
+.office-map.is-shown .office-map-traveller { animation: office-fade 0.6s 3s forwards; }
+@keyframes office-fade { to { opacity: 1; } }
+.office-map-city { fill: #fff; font-family: var(--font-jost, sans-serif); font-size: 22px; font-weight: 600; letter-spacing: 0.28em; animation: office-fade-spin 0.7s ease both; transform-box: view-box; }
+@keyframes office-fade-spin { from { opacity: 0; } to { opacity: 1; } }
+.office-map-pin { z-index: 2; cursor: pointer; opacity: 0; }
+.office-map.is-shown .office-map-pin { animation: office-pin-drop 0.6s 1.2s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+@keyframes office-pin-drop { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+.office-map-pulse { position: absolute; left: 50%; bottom: -6px; width: 14px; height: 14px; margin-left: -7px; border-radius: 9999px; border: 2px solid #fff; animation: office-pulse 1.8s ease-out infinite; }
+@keyframes office-pulse { from { opacity: 0.9; transform: scale(0.6); } to { opacity: 0; transform: scale(3.2); } }
+.office-map-detail { animation: office-detail-in 0.45s ease both; }
+@keyframes office-detail-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+
+/* Motion the client explicitly wants even with "Reduce motion" on (Oct 2026):
+   the brand logo strip.
+   Kept after the global reduced-motion rule; higher specificity wins. */
+@media (prefers-reduced-motion: reduce) {
+  [data-brand-strip] .animate-marquee {
+    animation-name: marquee !important;
+    animation-duration: var(--brand-strip-duration, 120s) !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+    animation-direction: reverse !important;
+  }
+}
+#offices { scroll-margin-top: 92px; }
+
+/* Loading indicator: CA logo turning on its vertical axis with a soft pulse.
+   Keeps moving with reduced motion only as a gentle fade. */
+.logo-spinner-base { opacity: 0.16; }
+.logo-spinner-fill { animation: logo-fill 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes logo-fill {
+  0% { clip-path: inset(0 100% 0 0); }
+  55% { clip-path: inset(0 0 0 0); }
+  80% { clip-path: inset(0 0 0 0); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-spinner-fill { animation: logo-pulse 1.6s ease-in-out infinite !important; animation-duration: 1.6s !important; animation-iteration-count: infinite !important; }
+  @keyframes logo-pulse { 50% { opacity: 0.35; } }
+}
+
+/* iOS Safari can stop repainting a video inside a rounded, overflow-clipped
+   box. Giving each video its own compositing layer and clipping with a mask
+   keeps the frames updating (Oct 2026). */
+.home-collage-tile, .intro-feature-tile, .talent-card, [data-video-frame] {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
+}
+video { -webkit-transform: translateZ(0); transform: translateZ(0); }
+
+/* Departments map pins: green with a glow and a slow ring pulse (still for
+   reduced motion). */
+.departments-map-pin { fill: #1fbf5b; filter: drop-shadow(0 0 6px rgba(31, 191, 91, 0.9)); }
+.departments-map-pulse { fill: #1fbf5b; opacity: 0.2; transform-box: fill-box; transform-origin: center; animation: departments-pulse 2.4s ease-out infinite; }
+@keyframes departments-pulse { 0% { transform: scale(0.5); opacity: 0.45; } 100% { transform: scale(1.7); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .departments-map-pulse { animation: none; } }

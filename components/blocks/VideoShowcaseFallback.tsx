@@ -2,10 +2,12 @@ import Image from 'next/image'
 import { posterFor } from '@/lib/data/videos'
 import type { VideoShowcaseProps } from '@/components/blocks/VideoShowcase'
 import { showcaseGridClasses, showcasePosterSizes } from '@/components/blocks/video-showcase-layout'
+import ShowcaseCaption from '@/components/blocks/ShowcaseCaption'
 
 export default function VideoShowcaseFallback({
   videos,
   columns = 4,
+  staggered = false,
 }: VideoShowcaseProps) {
   return (
     <div className={`grid ${showcaseGridClasses[columns]} gap-[24px] mobile:gap-[16px]`}>
@@ -15,7 +17,7 @@ export default function VideoShowcaseFallback({
         return (
           <div
             key={video.src}
-            className={`w-full${
+            className={`w-full${staggered && index % 2 === 1 ? ' md:mt-14' : ''}${
               isLoneLastOnMobile
                 ? ' mobile:col-span-2 mobile:w-[calc(50%-8px)] mobile:justify-self-center'
                 : ''
@@ -32,6 +34,7 @@ export default function VideoShowcaseFallback({
                 className="object-cover"
               />
             </div>
+            {video.caption && <ShowcaseCaption caption={video.caption} />}
           </div>
         )
       })}

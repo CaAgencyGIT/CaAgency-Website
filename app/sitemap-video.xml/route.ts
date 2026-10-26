@@ -1,11 +1,20 @@
 import publicAssets from '@/lib/generated/public-assets.json'
 import { NextResponse } from 'next/server'
 import { workVideos, aboutVideos, posterFor, publishedDateFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
+import { filmDescription, filmLabel, filmSrc, REDESIGN_MEDIA_PUBLISHED, workFilms, type FilmKey } from '@/lib/data/redesign-media'
 import { caseStudies } from '@/lib/data/case-studies'
 
 const baseUrl = 'https://caagency.com'
 
 const assetPaths = new Set(publicAssets)
+const filmEntries = (keys: FilmKey[]) =>
+  keys.map((key) => ({
+    src: filmSrc(key),
+    name: filmLabel(key),
+    published: REDESIGN_MEDIA_PUBLISHED,
+    description: filmDescription(key),
+  }))
+
 async function assetExists(assetPath: string) {
   return assetPaths.has(assetPath)
 }
@@ -45,8 +54,9 @@ function videoTag(video: { src: string; name: string; published?: string }, desc
 }
 
 export async function GET() {
-  const [existingWorkVideos, existingAboutVideos, existingCaseStudyVideos] = await Promise.all([
+  const [existingWorkVideos, existingWorkFilms, existingAboutVideos, existingCaseStudyVideos] = await Promise.all([
     filterExistingVideos(workVideos),
+    filterExistingVideos(filmEntries(workFilms)),
     filterExistingVideos(aboutVideos),
     filterExistingVideos(
       caseStudies.map((study) => ({
@@ -64,9 +74,12 @@ export async function GET() {
   const pageEntries = [
     {
       loc: `${baseUrl}/work`,
-      videos: existingWorkVideos.map((video) =>
-        videoTag(video, `Influencer marketing campaign for ${video.brand} by CA Agency`)
-      ),
+      videos: [
+        ...existingWorkVideos.map((video) =>
+          videoTag(video, `Influencer marketing campaign for ${video.brand} by CA Agency`)
+        ),
+        ...existingWorkFilms.map((video) => videoTag(video, video.description)),
+      ],
     },
     {
       loc: `${baseUrl}/about`,

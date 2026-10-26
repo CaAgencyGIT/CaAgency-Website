@@ -212,11 +212,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Author box — E-E-A-T signal */}
             <aside className="mt-12 flex items-start gap-5 rounded-card border border-black/10 bg-background-soft p-6 mobile:flex-col">
               <Image
-                src="/images/site/logo.svg"
+                src="/images/site/logo_payoff.svg"
                 alt=""
                 width={343}
-                height={181}
-                className="h-[36px] w-auto shrink-0"
+                height={274}
+                className="h-[48px] w-auto shrink-0"
               />
               <div>
                 <p className="font-jost text-[13px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">

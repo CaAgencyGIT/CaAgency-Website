@@ -1,3 +1,4 @@
+import { mobileVideoSrc } from '@/lib/media/video-src'
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -27,8 +28,6 @@ describe('critical resource loading', () => {
   it('keeps layout-wide client components independent of next-intl context', () => {
     for (const file of [
       'components/layout/Header.tsx',
-      'components/layout/MobileMenu.tsx',
-      'components/layout/MobileHeader.tsx',
       'components/ui/Breadcrumbs.tsx',
       'components/ui/CookieConsent.tsx',
       'components/ui/LanguageSwitcher.tsx',
@@ -121,7 +120,8 @@ describe('critical resource loading', () => {
     const sources = featuredVideos.map(({ src }) => src)
     expect(sources).toHaveLength(4)
     expect(new Set(sources).size).toBe(sources.length)
-    expect(sources.every((src) => src.endsWith('-perf-v2.mp4'))).toBe(true)
+    // Immutable caching: every featured film name carries a version.
+    expect(sources.every((src) => /-v\d+\.mp4$/.test(src))).toBe(true)
 
     const totalBytes = featuredVideos.reduce((sum, { src, poster }) => {
       const videoPath = path.join(process.cwd(), 'public', src)
@@ -131,6 +131,13 @@ describe('critical resource loading', () => {
       return sum + statSync(videoPath).size
     }, 0)
 
-    expect(totalBytes).toBeLessThanOrEqual(7 * 1024 * 1024)
+    // Desktop: client-approved sharp masters (Oct 2026), each loaded only
+    // when its tile is in view. Phones load the light -m.mp4 encodes.
+    expect(totalBytes).toBeLessThanOrEqual(24 * 1024 * 1024)
+    const mobileBytes = sources.reduce((sum, src) => {
+      const mobile = mobileVideoSrc(src) ?? src
+      return sum + statSync(path.join(process.cwd(), 'public', mobile)).size
+    }, 0)
+    expect(mobileBytes).toBeLessThanOrEqual(10 * 1024 * 1024)
   })
 })

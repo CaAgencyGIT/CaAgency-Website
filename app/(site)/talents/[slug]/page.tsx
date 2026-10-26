@@ -147,7 +147,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
             {/* Image */}
             <div className="w-full lg:w-1/2 max-w-[500px]">
-              <div className="relative aspect-square rounded-2xl overflow-hidden">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src={talent.imageUrl}
                   alt={talent.name}
@@ -270,7 +270,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
                   href={`/talents/${related.slug}`}
                   className="group"
                 >
-                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3">
+                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-3">
                     <Image
                       src={related.imageUrl}
                       alt={related.name}

@@ -1,3 +1,6 @@
+import { getTalentsBySlugs } from '@/lib/site-content/public'
+import Link from 'next/link'
+import { localizeHref } from '@/lib/i18n/client-paths'
 import HeroSection from '@/components/blocks/HeroSection'
 import type { Locale } from '@/i18n/config'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
@@ -18,10 +21,10 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
 import { posterFor } from '@/lib/data/videos'
+import { homeCollageTiles, introShowreels, homeTalentSlugs } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
-import DeferredMediaCarousel from '@/components/blocks/DeferredMediaCarousel'
-import MediaCarouselFallback from '@/components/blocks/MediaCarouselFallback'
+import IntroFeature from '@/components/blocks/IntroFeature'
 import FAQ from '@/components/blocks/FAQ'
 
 export const revalidate = 3600
@@ -50,52 +53,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-// Talent cards - 6 talents for homepage (using Blob storage URLs)
-const talents = [
-  {
-    slug: 'albina-mavriqi',
-    name: 'Albina Mavriqi',
-    imageUrl: '/media/imported/talents/instagram/albina-mavriqi.jpeg',
-    instagramUrl: 'https://www.instagram.com/albina/',
-    tiktokUrl: 'https://www.tiktok.com/@albinasglam/',
-  },
-  {
-    slug: 'rebecca-ghaderi',
-    name: 'Rebecca Ghaderi',
-    imageUrl: '/media/imported/talents/instagram/rebecca-ghaderi.jpeg',
-    instagramUrl: 'https://www.instagram.com/rebeccaghaderi',
-    tiktokUrl: 'https://www.tiktok.com/@rebeccaghaderii',
-  },
-  {
-    slug: 'albulena-mavriqi',
-    name: 'Albulena Mavriqi',
-    imageUrl: '/media/imported/talents/instagram/lena-mavriqi.jpeg',
-    instagramUrl: 'https://www.instagram.com/albulena.mavriqi/',
-    tiktokUrl: 'https://www.tiktok.com/@lenamavriqii',
-  },
-  {
-    slug: 'jay-sadiq',
-    name: 'Jay Sadiq',
-    imageUrl: '/media/imported/talents/instagram/jay-sadiq.jpeg',
-    instagramUrl: 'https://www.instagram.com/jaysadiq_/',
-    youtubeUrl: 'https://www.youtube.com/@Jaystyle_',
-    tiktokUrl: 'https://www.tiktok.com/@jaysstyle_/',
-  },
-  {
-    slug: 'anisa-hukmova',
-    name: 'Anisa Hukmova',
-    imageUrl: '/media/imported/talents/instagram/anisa-hukmova.jpeg',
-    instagramUrl: 'https://www.instagram.com/anisavisage/',
-    tiktokUrl: 'https://www.tiktok.com/@anisavisage',
-  },
-  {
-    slug: 'dariia-bordun',
-    name: 'Dariia Bordun',
-    imageUrl: '/media/imported/talents/instagram/dariia-bordun.jpeg',
-    instagramUrl: 'https://www.instagram.com/_idareen_/',
-    tiktokUrl: 'https://www.tiktok.com/@idareen_',
-  },
-]
 
 // Media carousel items for "This is CA Agency" section — July 2026 round 3:
 // client sequence Sydney → Dariia → Albina → Melly → Huda → Douglas, clean
@@ -104,12 +61,9 @@ const talents = [
 // by visitors. Keep in sync with the `home` defaults in
 // lib/site-content/definitions.ts.
 const mediaCarouselItems = [
-  { type: 'video' as const, src: '/videos/work/reel-DX2BnbDMhd9-clean.mp4', alt: 'TIRTIR matcha skincare campaign reel', poster: posterFor('/videos/work/reel-DX2BnbDMhd9-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DT3Pv52jCqc-clean.mp4', alt: 'Rhode blush campaign reel', poster: posterFor('/videos/work/reel-DT3Pv52jCqc-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DYKuGHLNs6F-clean.mp4', alt: 'Frozen gua sha skincare campaign reel', poster: posterFor('/videos/work/reel-DYKuGHLNs6F-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DX2Bva6sJk6-clean.mp4', alt: 'Fenty Beauty campaign reel', poster: posterFor('/videos/work/reel-DX2Bva6sJk6-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DK7rKHjOr6a-clean.mp4', alt: 'Bali Body campaign reel', poster: posterFor('/videos/work/reel-DK7rKHjOr6a-clean.mp4') },
-  { type: 'video' as const, src: '/videos/work/reel-DT3Qg4sjHPm-clean.mp4', alt: 'Haruharu Wonder serum mist campaign reel', poster: posterFor('/videos/work/reel-DT3Qg4sjHPm-clean.mp4') },
+  { src: '/videos/work/reel-albina-ilia-blush-combo-clean-sharp-v2.mp4', alt: 'Albina for ILIA blush campaign reel', poster: '/images/video-thumbs/reel-albina-ilia-blush-combo-clean-sharp-v2.jpg' },
+  { src: '/videos/work/reel-DT3Pv52jCqc-clean-sharp-v2.mp4', alt: 'Rhode blush campaign reel', poster: '/images/video-thumbs/reel-DT3Pv52jCqc-clean-sharp-v2.jpg' },
+  { src: '/videos/work/reel-DX2Bva6sJk6-clean-sharp-v2.mp4', alt: 'Fenty Beauty campaign reel', poster: '/images/video-thumbs/reel-DX2Bva6sJk6-clean-sharp-v2.jpg' },
 ]
 
 export default async function HomePage({ params }: Props) {
@@ -137,6 +91,7 @@ export default async function HomePage({ params }: Props) {
         primaryCta={{ label: tCommon('enquirePartnerships'), href: '/contact' }}
         secondaryCta={{ label: tCommon('viewOurWork'), href: '/work' }}
         carouselImages={carouselImages.length > 0 ? carouselImages : undefined}
+        collageTiles={homeCollageTiles}
       />
 
       {/* Stats Section */}
@@ -152,53 +107,15 @@ export default async function HomePage({ params }: Props) {
       </section>
 
 
-      {/* About CA Agency Section */}
-      <section className="bg-background-base py-sec-lg mobile:py-[72px] px-section-x">
-        <div className="max-w-container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-[80px] mobile:gap-[50px]">
-            {/* Left Column - Media Carousel */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-              <ScrollReveal delay={0} yOffset={20}>
-                <DeferredMediaCarousel
-                  items={mediaCarouselItems}
-                  // Client decision: autoplay regardless of
-                  // prefers-reduced-motion (Oct 2026).
-                  ignoreReducedMotion
-                  labels={{
-                    previous: tCommon('previous'),
-                    next: tCommon('next'),
-                    play: tCommon('play'),
-                    playVideo: tCommon('playVideo'),
-                    playCarousel: tCommon('playCarousel'),
-                    pauseCarousel: tCommon('pauseCarousel'),
-                    goToSlide: tCommon.raw('goToSlide'),
-                  }}
-                  fallback={<MediaCarouselFallback items={mediaCarouselItems} />}
-                />
-              </ScrollReveal>
-            </div>
-            {/* Right Column - Text Content */}
-            <div className="w-full lg:w-1/2">
-              <ScrollReveal delay={0.1} yOffset={20}>
-                <SectionHeading align="start" eyebrow={t('eyebrowIntro')} title={t('thisIsCA')} className="mb-7" />
-              </ScrollReveal>
-              <ScrollReveal delay={0.15} yOffset={20}>
-                <Text color="dark" size="sm" className="mb-6 opacity-80">
-                  {t('aboutDescription')}
-                </Text>
-              </ScrollReveal>
-              <ScrollReveal delay={0.2} yOffset={20}>
-                <Text color="dark" size="sm" className="mb-8 opacity-80">
-                  {t('crossPlatform')}
-                </Text>
-              </ScrollReveal>
-              <ScrollReveal delay={0.25} yOffset={20}>
-                <Button href="/about" locale={locale as Locale}>{tCommon('moreAboutUs')}</Button>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <IntroFeature
+        eyebrow={t('thisIsCA')}
+        kicker={t('eyebrowIntro')}
+        title={t('thisIsCA')}
+        paragraphs={[t('aboutDescription'), t('crossPlatform')]}
+        button={{ label: tCommon('moreAboutUs'), href: '/about' }}
+        items={introShowreels}
+        locale={locale as Locale}
+      />
 
       {/* Talents Section */}
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
@@ -206,7 +123,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={talents} columns={6} />
+          <TalentGrid talents={await getTalentsBySlugs(homeTalentSlugs)} columns={6} cardArt mobileLayout="carousel" />
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">
@@ -222,23 +139,24 @@ export default async function HomePage({ params }: Props) {
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x border-t border-black/5">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div className="mb-14 grid grid-cols-[1fr_minmax(0,420px)] items-end gap-10 tablet:grid-cols-1 mobile:mb-10 mobile:grid-cols-1 mobile:gap-6">
               <SectionHeading align="start" eyebrow={t('eyebrowWork')} title={t('featuredWork')} />
-              <div className="mt-6 md:mt-0">
-                <Button href="/work" locale={locale as Locale}>{tCommon('viewAllWork')}</Button>
+              <div>
+                <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
+                  {t('workDescription')}
+                </Text>
+                <Link href={localizeHref('/work', locale)} prefetch={false} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
+                  {tCommon('viewAllWork')} <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </ScrollReveal>
           <DeferredVideoShowcase
             videos={featuredVideos}
             columns={4}
-            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} />}
+            staggered
+            fallback={<VideoShowcaseFallback videos={featuredVideos} columns={4} staggered />}
           />
-          <ScrollReveal delay={0.2} yOffset={20}>
-            <Text color="dark" size="base" className="mt-10 max-w-[700px] text-[16px] leading-[28px]">
-              {t('workDescription')}
-            </Text>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -246,20 +164,22 @@ export default async function HomePage({ params }: Props) {
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd(locale))}</script>
       <FAQ />
 
-      {/* Closing conversion CTA */}
-      <section className="bg-accent-red py-sec mobile:py-sec-sm px-section-x">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="white" className="mb-6 text-[40px] mobile:text-[28px]">
+      {/* Closing conversion CTA, a black rounded panel matching the footer */}
+      <section className="rd-cta-panel">
+        <ScrollReveal yOffset={24} className="rd-cta-panel-inner">
+          <Heading as="h2" color="white" className="text-[48px] tablet:text-[40px] mobile:text-[30px] leading-[1.08] text-balance">
             {t('closingCtaTitle')}
           </Heading>
-          <Text color="white" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-90">
-            {t('closingCtaText')}
-          </Text>
-          <Magnetic>
-            <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
-              {t('closingCtaButton')}
-            </Button>
-          </Magnetic>
+          <div>
+            <Text color="white" size="lg" className="mb-8 opacity-75">
+              {t('closingCtaText')}
+            </Text>
+            <Magnetic>
+              <Button href="/contact" locale={locale as Locale} variant="light" prefetch={false}>
+                {t('closingCtaButton')}
+              </Button>
+            </Magnetic>
+          </div>
         </ScrollReveal>
       </section>
 

@@ -749,7 +749,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         { label: 'Company Name', value: 'CA Agency L.L.C-FZ' },
         { label: 'License Number', value: '2417532.01' },
         { label: 'Company Type', value: 'Limited Liability Company (Free Zone)' },
-        { label: 'Registered Address', value: 'Meydan Grandstand, 6th floor\nMeydan Road, Nad Al Sheba\nDubai, U.A.E.' },
+        { label: 'Registered Address', value: 'Meydan Grandstand, 6th floor\nMeydan Road, Nad Al Sheba\nDubai, United Arab Emirates' },
         { label: 'Manager', value: 'Ilias Chaabit' },
         { label: 'Contact Email', value: 'info@caagency.com', href: 'mailto:info@caagency.com' },
       ],
@@ -795,7 +795,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
     defaultData: {
       description:
         'CA Agency is a leading, full-service talent management & marketing agency, connecting brands with creators through strategy, production and performance-led campaigns.',
-      address: 'Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E.',
+      address: 'Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates',
       email: 'info@caagency.com',
       registrationNo: '2417532.01',
       socialLinks: [

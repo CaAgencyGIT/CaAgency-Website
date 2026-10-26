@@ -9,7 +9,8 @@ import { cn } from '@/lib/utils'
 // Shared look for every control on the contact forms: soft grey rounded
 // fields on white, same height, padding and radius in both forms.
 export const fieldClass =
-  'w-full min-h-[52px] rounded-[16px] border border-transparent bg-[#f4f2ee] px-5 py-[13px] font-work-sans text-[15px] text-foreground-dark placeholder:text-foreground-dark/45 transition-colors focus:border-black/30 focus:bg-white focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 aria-[invalid=true]:border-[#b3261e]/60'
+  // 16px text on phones keeps iOS from zooming into a focused field.
+  'w-full min-h-[52px] rounded-[16px] border border-transparent bg-[#f4f2ee] px-5 py-[13px] font-work-sans text-[15px] mobile:min-h-[46px] mobile:rounded-[12px] mobile:px-4 mobile:py-[10px] mobile:text-[16px] text-foreground-dark placeholder:text-foreground-dark/45 transition-colors focus:border-black/30 focus:bg-white focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 aria-[invalid=true]:border-[#b3261e]/60'
 
 export const selectStyle = {
   appearance: 'none' as const,

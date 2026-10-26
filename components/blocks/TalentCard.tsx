@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import TalentCardVideo from './TalentCardVideo'
 
-interface SocialLink {
+export interface SocialLink {
   platform: 'instagram' | 'tiktok' | 'youtube' | 'twitch' | 'kick'
   url: string
 }
@@ -11,6 +12,9 @@ interface TalentCardProps {
   slug: string
   name: string
   imageUrl: string
+  videoSrc?: string
+  /** Finished card artwork (4:5): shown whole on its edge-colour backing. */
+  artwork?: { src: string; top: string; bottom: string }
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -19,11 +23,13 @@ interface TalentCardProps {
   twitchUrl?: string
   kickUrl?: string
   socialLinks?: SocialLink[]
+  /** Play the film on touch screens when the card is centred (default true). */
+  touchVideo?: boolean
   className?: string
 }
 
 // Social media icons as SVG components
-const SocialIcon = ({ platform }: { platform: SocialLink['platform'] }) => {
+export const SocialIcon = ({ platform }: { platform: SocialLink['platform'] }) => {
   const icons = {
     instagram: (
       <svg viewBox="0 0 448 512" fill="currentColor" className="w-5 h-5">
@@ -58,6 +64,8 @@ export default function TalentCard({
   slug,
   name,
   imageUrl,
+  videoSrc,
+  artwork,
   sizes,
   priority = false,
   instagramUrl,
@@ -66,6 +74,7 @@ export default function TalentCard({
   twitchUrl,
   kickUrl,
   socialLinks,
+  touchVideo = true,
   className,
 }: TalentCardProps) {
   // Build social links array from individual props or use provided array
@@ -79,31 +88,44 @@ export default function TalentCard({
 
   const primaryLink = `/talents/${slug}`
 
+  // Phones (Oct 2026): artwork cards show the whole 4:5 artwork with a small
+  // name and socials underneath, instead of laid over the face.
+  const art = Boolean(artwork)
+
   return (
     <div
       className={cn(
         'talent-card relative w-full aspect-3/4 rounded-card overflow-hidden flex flex-col justify-end',
         'group ring-1 ring-black/5 shadow-e2 hover:ring-black/15 hover:shadow-e3',
+        art && 'mobile:aspect-auto mobile:overflow-visible mobile:rounded-none mobile:bg-transparent mobile:shadow-none mobile:ring-0 mobile:hover:ring-0 mobile:hover:shadow-none',
         className
       )}
     >
-      {/* Background Image */}
-      <Image
-        src={imageUrl}
-        alt={name}
-        fill
-        quality={60}
-        preload={priority}
-        loading={priority ? undefined : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.07]"
-        sizes={sizes}
-      />
+      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[12px] mobile:ring-1 mobile:ring-black/5')}>
+        {/* Card artwork fills the 3:4 frame from the top on larger screens;
+            only ~3% is trimmed from each side, clear of the logo and name. */}
+        <Image
+          src={artwork?.src ?? imageUrl}
+          alt={name}
+          fill
+          quality={artwork ? 75 : 60}
+          preload={priority}
+          loading={priority ? undefined : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
+          sizes={sizes}
+        />
+        {videoSrc && <TalentCardVideo src={videoSrc} touch={touchVideo} />}
 
-      {/* Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-      {/* Subtle deepen-on-hover layer for editorial focus */}
-      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+        {/* Gradient Overlay for text readability */}
+        {artwork ? (
+          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-black/65 to-transparent mobile:hidden" />
+        ) : (
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+        )}
+        {/* Subtle deepen-on-hover layer for editorial focus */}
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+      </div>
 
       <Link
         href={primaryLink}
@@ -114,21 +136,39 @@ export default function TalentCard({
       />
 
       {/* Content Container */}
-      <div className="pointer-events-none relative z-20 flex flex-col items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1">
-        <h3 className="font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center">
+      <div
+        className={cn(
+          'pointer-events-none relative z-20 flex flex-col items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1',
+          art && 'mobile:items-stretch mobile:p-0 mobile:group-hover:translate-y-0'
+        )}
+      >
+        <h3
+          className={cn(
+            'font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center',
+            art && 'mobile:px-0.5 mobile:pt-2 mobile:text-start mobile:text-[13.5px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark mobile:truncate'
+          )}
+        >
           {name}
         </h3>
 
         {/* Social Icons — always visible on touch (incl. tablets), reveal on hover where hover exists */}
         {links.length > 0 && (
-          <div className="pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0">
+          <div
+            className={cn(
+              'pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0',
+              art && 'mobile:mt-0 mobile:-ms-1.5 mobile:justify-start mobile:gap-0'
+            )}
+          >
             {links.map((link, index) => (
               <a
                 key={`${link.platform}-${index}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white"
+                className={cn(
+                  'flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white',
+                  art && 'mobile:min-h-8 mobile:min-w-7 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[13px] mobile:[&_svg]:w-[13px]'
+                )}
                 aria-label={`${name} on ${link.platform}`}
               >
                 <SocialIcon platform={link.platform} />

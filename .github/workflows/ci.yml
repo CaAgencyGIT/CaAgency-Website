@@ -61,6 +61,9 @@ jobs:
       - name: Asset manifest
         run: node scripts/build-asset-manifest.mjs
 
+      - name: Mobile video manifest
+        run: node scripts/build-mobile-video-manifest.mjs
+
       - name: Incremental check caches
         run: node /usr/local/lib/caagency-ci/restore-check-cache.mjs
 
