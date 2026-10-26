@@ -18,6 +18,8 @@ const nextConfig = {
       // Case studies removed in the July 2026 renovation; URLs are indexed.
       { source: '/case-studies/medicube-skincare', destination: '/case-studies', permanent: true },
       { source: '/case-studies/morphe-collaboration', destination: '/case-studies', permanent: true },
+      // Thin intro post unpublished in Oct 2026; its links go to the blog overview.
+      { source: '/blog/welcome-to-ca-agency-blog', destination: '/blog', permanent: true },
       // Redirect the removed talent's old profile to the current roster.
       { source: '/talents/milla-muladze', destination: '/talents', permanent: true },
     ]
