@@ -3,10 +3,12 @@ import Button from '@/components/ui/Button'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CollageVideo from '@/components/blocks/CollageVideo'
 import IntroReelSync from '@/components/blocks/IntroReelSync'
+import CountUp from '@/components/ui/CountUp'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { introShowreels } from '@/lib/data/redesign-media'
+import { homeCollageTiles, introShowreels } from '@/lib/data/redesign-media'
+import HomeCollage from '@/components/blocks/HomeCollage'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -106,6 +108,37 @@ export default async function AboutPage({ params }: Props) {
         </ScrollReveal>
       </section>
 
+      {/* Story (Oct 2026): what CA Agency stands for, what drives it and how
+          it stands apart. */}
+      <section className="px-section-x pt-[110px] pb-[70px] mobile:pt-[64px] mobile:pb-[40px]">
+        <div className="about-story mx-auto max-w-container">
+          <ScrollReveal yOffset={24}>
+            <p className="mb-5 font-jost text-[12px] font-medium uppercase tracking-[0.22em] text-foreground-gray">{t('storyEyebrow')}</p>
+            <h2 className="mb-6 font-anegra text-[48px] leading-[1.05] text-foreground-primary text-balance tablet:text-[40px] mobile:text-[32px]">
+              {t('storyTitle')}
+            </h2>
+            <p className="max-w-[520px] font-work-sans text-[16px] leading-[1.8] text-foreground-body">{t('storyIntro')}</p>
+          </ScrollReveal>
+          <ol className="about-story-pillars">
+            {([1, 2, 3] as const).map((n) => (
+              <li key={n}>
+                <ScrollReveal yOffset={24} delay={n * 0.08}>
+                  <span className="font-jost text-[12px] tracking-[0.2em] text-foreground-gray">{String(n).padStart(2, '0')}</span>
+                  <h3 className="mt-3 mb-3 font-anegra text-[26px] leading-[1.15] text-foreground-primary mobile:text-[22px]">{t(`story${n}Title`)}</h3>
+                  <p className="font-work-sans text-[15px] leading-[1.75] text-foreground-body">{t(`story${n}Text`)}</p>
+                </ScrollReveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* The same six-photo collection as the homepage. */}
+      <section className="px-section-x pb-[90px] mobile:pb-[56px]">
+        <div className="mx-auto max-w-container">
+          <HomeCollage tiles={homeCollageTiles} />
+        </div>
+      </section>
 
       {/* Offices and facts */}
       <section className="px-section-x pt-[40px] pb-[100px] mobile:pb-[60px]">
@@ -126,11 +159,15 @@ export default async function AboutPage({ params }: Props) {
           </ScrollReveal>
           <ScrollReveal yOffset={24} className="about-stats">
             <div>
-              <strong>6,000+</strong>
+              <strong>
+                <CountUp value={6000} suffix="+" />
+              </strong>
               <span>{t('statCollabs')}</span>
             </div>
             <div>
-              <strong>8+</strong>
+              <strong>
+                <CountUp value={8} suffix="+" duration={1200} />
+              </strong>
               <span>{t('statLanguages')}</span>
             </div>
             <div>
@@ -138,7 +175,9 @@ export default async function AboutPage({ params }: Props) {
               <span>{t('statDaily')}</span>
             </div>
             <div>
-              <strong>3</strong>
+              <strong>
+                <CountUp value={3} duration={1000} />
+              </strong>
               <span>{t('statOffices')}</span>
             </div>
           </ScrollReveal>
