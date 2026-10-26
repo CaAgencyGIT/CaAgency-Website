@@ -84,7 +84,6 @@ export default function VideoPlayer({
   const staggeredRef = useRef(false)
   // Desktop: a fine pointer on a wide screen. Decided after mount, so the
   // server render and first paint match the phone-safe defaults.
-  const [desktop, setDesktop] = useState(false)
   const desktopRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
   // CSS width when the film first came near, to pick a source that fits it.
@@ -168,7 +167,6 @@ export default function VideoPlayer({
     const query = window.matchMedia('(min-width: 768px) and (pointer: fine)')
     const update = () => {
       desktopRef.current = query.matches
-      setDesktop(query.matches)
     }
     update()
     query.addEventListener('change', update)
@@ -251,20 +249,36 @@ export default function VideoPlayer({
     video.muted = muted
     setPlaybackStatus('starting')
     const attempt = ++playAttemptRef.current
-    // Desktop (Oct 2026): buffer before the first play, so a film never starts
-    // and then immediately stalls. The poster stays up meanwhile; after 2.5s
-    // it plays anyway rather than wait on a slow connection.
-    if (desktopRef.current && !hasPlayedRef.current && video.readyState < HTMLMediaElement.HAVE_ENOUGH_DATA) {
-      await new Promise<void>((resolve) => {
-        const done = () => {
-          clearTimeout(timer)
-          video.removeEventListener('canplaythrough', done)
-          resolve()
+    // Buffer a few seconds before the first play, so a film never starts and
+    // then stalls a second in (measured Oct 2026: with several tiles sharing
+    // a connection, "canplaythrough" fired with only ~1s buffered and the
+    // remaining Work grid freezes all happened 0.5-2s in). The poster stays
+    // up meanwhile; on a slow connection it plays anyway after the cap.
+    if (!hasPlayedRef.current) {
+      const ahead = () => {
+        const { buffered, currentTime, duration } = video
+        for (let i = 0; i < buffered.length; i++) {
+          if (buffered.start(i) <= currentTime + 0.1 && buffered.end(i) > currentTime) {
+            return buffered.end(i) - currentTime >= Math.min(3, (duration || 3) - currentTime - 0.1)
+          }
         }
-        const timer = setTimeout(done, 2500)
-        video.addEventListener('canplaythrough', done)
-      })
-      if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+        return false
+      }
+      if (!ahead()) {
+        await new Promise<void>((resolve) => {
+          const done = () => {
+            clearTimeout(timer)
+            video.removeEventListener('progress', check)
+            video.removeEventListener('canplaythrough', check)
+            resolve()
+          }
+          const check = () => { if (ahead()) done() }
+          const timer = setTimeout(done, desktopRef.current ? 4000 : 1500)
+          video.addEventListener('progress', check)
+          video.addEventListener('canplaythrough', check)
+        })
+        if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+      }
     }
     try {
       await video.play()
@@ -450,9 +464,9 @@ export default function VideoPlayer({
           disablePictureInPicture
           // Metadata only until the film is on screen: buffering every
           // upcoming film ahead takes bandwidth (and iPhone decoders) away
-          // from the films already playing, which then freeze. Desktop
-          // buffers a visible film fully before starting it (startPlayback).
-          preload={desktop && isInView ? 'auto' : 'metadata'}
+          // from the films already playing, which then freeze. A visible film
+          // buffers a few seconds before it starts (startPlayback).
+          preload={isInView ? 'auto' : 'metadata'}
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'
