@@ -14,6 +14,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
 import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
+import { creatorCases } from '@/lib/data/creator-cases'
 import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
@@ -47,6 +48,20 @@ const videoSchemaList = {
       description: filmDescription(key),
       contentUrl: `https://caagency.com${filmSrc(key)}`,
       thumbnailUrl: `https://caagency.com${posterFor(filmSrc(key))}`,
+      uploadDate: REDESIGN_MEDIA_PUBLISHED,
+      publisher: organizationRef,
+    },
+  })),
+  // Creator showcases (Oct 2026), the five rows under the grid.
+  ...creatorCases.filter((study) => study.videoSrc).map((study, index) => ({
+    '@type': 'ListItem',
+    position: workGridOrder.filter((e) => e.type === 'video').length + workFilms.length + index + 1,
+    item: {
+      '@type': 'VideoObject',
+      name: study.title,
+      description: study.summary,
+      contentUrl: `https://caagency.com${study.videoSrc}`,
+      thumbnailUrl: `https://caagency.com${posterFor(study.videoSrc)}`,
       uploadDate: REDESIGN_MEDIA_PUBLISHED,
       publisher: organizationRef,
     },
@@ -190,6 +205,53 @@ export default async function WorkPage({ params }: Props) {
                 </div>
               )
             })}
+            {/* Creator showcases (Oct 2026): five rows appended after all
+                existing work, in the client's order. Their media keeps the
+                post's own overlays, so no watermark is added. */}
+            {creatorCases.map((study) => (
+              <div key={study.slug} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
+                {study.image ? (
+                  <Image
+                    src={study.image.src}
+                    alt={`${study.creatorName} for ${study.brand}`}
+                    fill
+                    sizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
+                    quality={75}
+                    className="object-cover"
+                  />
+                ) : (
+                  <VideoPlayer
+                    src={study.videoSrc}
+                    poster={posterFor(study.videoSrc)}
+                    posterSizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
+                    aspectRatio="9:16"
+                    autoplay
+                    muted
+                    loop
+                    ignoreReducedMotion
+                    label={`${study.brand} video by ${study.creatorName}`}
+                    className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
+                  />
+                )}
+                <Link
+                  href={`/case-studies/${study.slug}`}
+                  aria-label={`${study.brand} case study with ${study.creatorName}`}
+                  className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
+                >
+                  <span className="w-full p-4 mobile:px-2.5 mobile:py-2">
+                    <span className="block font-anegra text-[18px] mobile:text-[13px] font-semibold text-white leading-tight">
+                      {study.brand}
+                    </span>
+                    <span className="block font-work-sans text-[13px] mobile:text-[11px] text-white/85">
+                      {study.creatorName}
+                    </span>
+                    <span className="block font-work-sans text-[13px] mobile:hidden text-white/80">
+                      {t('viewCaseStudy')} →
+                    </span>
+                  </span>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

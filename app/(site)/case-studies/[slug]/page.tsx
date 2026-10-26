@@ -7,10 +7,11 @@ import Button from '@/components/ui/Button'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import HeadingAccent from '@/components/ui/HeadingAccent'
-import { caseStudies, getCaseStudy } from '@/lib/data/case-studies'
+import { caseStudies, caseStudyStill, getCaseStudy } from '@/lib/data/case-studies'
 import { posterFor, publishedDateFor } from '@/lib/data/videos'
 import { brandWatermarks, currentCaseStudies } from '@/lib/data/redesign-media'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
+import CaseFilmWithSound from '@/components/blocks/CaseFilmWithSound'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 
@@ -75,7 +76,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     '@type': 'Article',
     headline: `${study.brand} Influencer Marketing Case Study`,
     description: study.summary,
-    image: `https://caagency.com${posterFor(study.videoSrc)}`,
+    image: `https://caagency.com${caseStudyStill(study)}`,
     author: organizationRef,
     publisher: organizationRef,
     datePublished: publishedDateFor(study.videoSrc),
@@ -83,21 +84,31 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       '@type': 'WebPage',
       '@id': `https://caagency.com/case-studies/${slug}`,
     },
-    video: {
-      '@type': 'VideoObject',
-      name: study.title,
-      description: study.summary,
-      contentUrl: `https://caagency.com${study.videoSrc}`,
-      thumbnailUrl: `https://caagency.com${posterFor(study.videoSrc)}`,
-      uploadDate: publishedDateFor(study.videoSrc),
-    },
+    ...(study.videoSrc && {
+      video: {
+        '@type': 'VideoObject',
+        name: study.title,
+        description: study.summary,
+        contentUrl: `https://caagency.com${study.videoSrc}`,
+        thumbnailUrl: `https://caagency.com${posterFor(study.videoSrc)}`,
+        uploadDate: publishedDateFor(study.videoSrc),
+      },
+    }),
   }
 
-  const narrative = [
-    { heading: 'The Brief', body: study.brief },
-    { heading: 'Our Approach', body: study.approach },
-    { heading: 'The Outcome', body: study.outcome },
-  ]
+  // Creator showcases describe the post itself, so they use neutral headings.
+  const narrative = study.showcase
+    ? [
+        { heading: 'Overview', body: study.brief },
+        { heading: 'In the Video', body: study.approach },
+        { heading: 'Highlights', body: study.outcome },
+      ]
+    : [
+        { heading: 'The Brief', body: study.brief },
+        { heading: 'Our Approach', body: study.approach },
+        { heading: 'The Outcome', body: study.outcome },
+      ]
+  if (study.image) narrative[1].heading = 'In the Post'
 
   return (
     <>
@@ -139,6 +150,20 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 and uses the CSS entrance instead of the JS-gated scroll reveal. */}
             <div className="hero-rise-media w-full md:w-[38%] md:max-w-[420px] shrink-0 mobile:mx-auto mobile:w-[62%] mobile:max-w-[250px]">
               <div className="rounded-card overflow-hidden ring-1 ring-black/5 shadow-e3">
+                {study.image ? (
+                  <Image
+                    src={study.image.src}
+                    alt={`${study.creatorName ?? study.brand} for ${study.brand}`}
+                    width={study.image.width}
+                    height={study.image.height}
+                    sizes="(max-width: 767px) 62vw, 420px"
+                    priority
+                    quality={90}
+                    className="block h-auto w-full"
+                  />
+                ) : study.hasAudio ? (
+                  <CaseFilmWithSound src={study.videoSrc} poster={posterFor(study.videoSrc)} />
+                ) : (
                 <VideoPlayer
                   src={study.videoSrc}
                   poster={posterFor(study.videoSrc)}
@@ -151,6 +176,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   ignoreReducedMotion
                   className="rounded-card"
                 />
+                )}
               </div>
             </div>
 
@@ -178,9 +204,26 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                       <dt className="font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">
                         Creator
                       </dt>
-                      <dd className="font-work-sans text-[15px] text-foreground-primary font-medium">{study.creator}</dd>
+                      <dd className="font-work-sans text-[15px] text-foreground-primary font-medium">
+                        {study.creatorName ? (
+                          <>
+                            {study.creatorName}{' '}
+                            <a
+                              href={`https://www.instagram.com/${study.creator.replace(/^@/, '')}/`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-foreground-subtle underline decoration-black/20 underline-offset-4 transition-colors hover:text-foreground-primary hover:decoration-black/60"
+                            >
+                              {study.creator}
+                            </a>
+                          </>
+                        ) : (
+                          study.creator
+                        )}
+                      </dd>
                     </div>
                   )}
+                  {study.services.length > 0 && (
                   <div className={study.creator ? undefined : 'col-span-2'}>
                     <dt className="font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">
                       Services
@@ -189,6 +232,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                       {study.services.join(' · ')}
                     </dd>
                   </div>
+                  )}
                 </dl>
               </ScrollReveal>
 

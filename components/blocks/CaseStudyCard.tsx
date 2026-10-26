@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { CaseStudy } from '@/lib/data/case-studies'
-import { posterFor } from '@/lib/data/videos'
+import { caseStudyStill, type CaseStudy } from '@/lib/data/case-studies'
 import CaseStudyCardVideo from './CaseStudyCardVideo'
 
 // Case study card with the campaign's vertical video still shown whole, as a
@@ -23,13 +22,13 @@ export default function CaseStudyCard({
     >
       <div className="relative aspect-[9/16] w-[34%] max-w-[150px] shrink-0 self-start overflow-hidden rounded-[12px] bg-background-soft">
         <Image
-          src={posterFor(study.videoSrc)}
+          src={caseStudyStill(study)}
           alt={`${study.brand} campaign video still`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           sizes="150px"
         />
-        {playVideo && <CaseStudyCardVideo src={study.videoSrc} />}
+        {playVideo && study.videoSrc && <CaseStudyCardVideo src={study.videoSrc} />}
       </div>
       <div className="flex min-w-0 grow flex-col py-3 pe-3">
         <span className="mb-2 block font-jost text-[11px] font-medium uppercase tracking-[0.16em] text-foreground-gray">
