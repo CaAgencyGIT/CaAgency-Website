@@ -428,11 +428,14 @@
     }
   },
   "cookies": {
-    "title": "Usamos cookies",
-    "description": "Utilizamos cookies para mejorar tu experiencia en nuestro sitio web. Si continúas navegando, aceptas nuestro uso de cookies.",
+    "title": "Configuración de privacidad",
+    "description": "Este sitio utiliza tecnologías de seguimiento de terceros para ofrecer y mejorar continuamente tu experiencia en nuestro sitio web y nuestros servicios. Puedes retirar o cambiar tu consentimiento en cualquier momento.",
     "learnMore": "Política de privacidad",
+    "moreInfo": "Más información",
+    "moreInfoText": "El almacenamiento esencial recuerda tu idioma y esta elección. Solo si aceptas cargamos Google Analytics, que nos muestra cómo usan el sitio los visitantes para poder mejorarlo.",
     "decline": "Rechazar",
-    "acceptAll": "Aceptar todas"
+    "acceptAll": "Aceptar todo",
+    "settings": "Configuración de privacidad"
   },
   "breadcrumbs": {
     "label": "Ruta de navegación",

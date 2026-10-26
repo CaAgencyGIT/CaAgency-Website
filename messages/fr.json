@@ -428,11 +428,14 @@
     }
   },
   "cookies": {
-    "title": "Nous utilisons des cookies",
-    "description": "Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.",
+    "title": "Paramètres de confidentialité",
+    "description": "Ce site utilise des technologies de suivi tierces pour fournir et améliorer en continu votre expérience sur notre site et nos services. Vous pouvez retirer ou modifier votre consentement à tout moment.",
     "learnMore": "Politique de confidentialité",
+    "moreInfo": "Plus d’informations",
+    "moreInfoText": "Le stockage essentiel mémorise votre langue et ce choix. Ce n’est que si vous acceptez que nous chargeons Google Analytics, qui nous indique comment les visiteurs utilisent le site afin de l’améliorer.",
     "decline": "Refuser",
-    "acceptAll": "Tout accepter"
+    "acceptAll": "Tout accepter",
+    "settings": "Paramètres de confidentialité"
   },
   "breadcrumbs": {
     "label": "Fil d'Ariane",

@@ -348,7 +348,7 @@
   .rd-footer-links nav a { display: block; margin-bottom: 4px; }
   @media (pointer: coarse) {
     /* Phones and tablets: footer and menu links get a 40px-high tap area. */
-    .rd-footer-links nav a, .rd-footer-legal a { display: flex; align-items: center; min-height: 40px; margin-bottom: 0; }
+    .rd-footer-links nav a, .rd-footer-legal a, .rd-footer-legal button { display: flex; align-items: center; min-height: 40px; margin-bottom: 0; }
     .rd-footer-social-contact { display: inline-flex; align-items: center; min-height: 40px; }
     .rd-header-actions .rd-language label { min-height: 40px; }
   }
@@ -365,7 +365,8 @@
   .rd-footer-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.16); }
   .rd-footer-bottom :where(p, a) { margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.7); }
   .rd-footer-legal { display: flex; flex-wrap: wrap; gap: 8px 28px; }
-  .rd-footer-legal a:hover { color: #fff; }
+  .rd-footer-legal button { padding: 0; border: 0; background: none; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+  .rd-footer-legal a:hover, .rd-footer-legal button:hover { color: #fff; }
   .rd-footer .rd-text-link { color: #fff; }
 
   @media (max-width: 1100px) {

@@ -428,11 +428,14 @@
     }
   },
   "cookies": {
-    "title": "We use cookies",
-    "description": "We use cookies to improve your experience on our website. By continuing to browse, you agree to our use of cookies.",
-    "learnMore": "Privacy policy",
-    "decline": "Decline",
-    "acceptAll": "Accept All"
+    "title": "Privacy Settings",
+    "description": "This site uses third-party website tracking technologies to provide and continually improve your experience on our website and our services. You may revoke or change your consent at any time.",
+    "learnMore": "Privacy Policy",
+    "moreInfo": "More Information",
+    "moreInfoText": "Essential storage remembers your language and this choice. Only if you accept do we load Google Analytics, which tells us how visitors use the site so we can improve it.",
+    "decline": "Deny",
+    "acceptAll": "Accept All",
+    "settings": "Privacy settings"
   },
   "breadcrumbs": {
     "label": "Breadcrumb",

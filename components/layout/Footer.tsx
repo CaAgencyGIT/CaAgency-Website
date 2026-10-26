@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { FooterContent } from '@/lib/site-content/site-types'
 import { localizeHref } from '@/lib/i18n/client-paths'
 import type { Locale } from '@/i18n/config'
+import PrivacySettingsLink from '@/components/ui/PrivacySettingsLink'
 
 export const defaultFooterContent: FooterContent = {
   description:
@@ -59,6 +60,7 @@ export default function Footer({
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
   const tLocations = useTranslations('locations')
+  const tCookies = useTranslations('cookies')
   const currentYear = new Date().getFullYear()
   // The CMS footer row is English-only; other locales use the translated
   // catalog so /ar, /ko etc. don't render an English blurb and address.
@@ -205,6 +207,7 @@ export default function Footer({
               {item.label}
             </Link>
           ))}
+          <PrivacySettingsLink label={tCookies('settings')} />
         </nav>
       </div>
     </footer>

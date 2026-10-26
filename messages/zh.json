@@ -428,11 +428,14 @@
     }
   },
   "cookies": {
-    "title": "我们使用 Cookie",
-    "description": "我们使用 Cookie 来改善您在本网站上的体验。继续浏览即表示您同意我们使用 Cookie。",
+    "title": "隐私设置",
+    "description": "本网站使用第三方网站跟踪技术，以提供并持续改进您在我们网站和服务上的体验。您可以随时撤销或更改您的同意。",
     "learnMore": "隐私政策",
+    "moreInfo": "更多信息",
+    "moreInfoText": "必要存储会记住您的语言和此项选择。只有在您同意后，我们才会加载 Google Analytics，以了解访客如何使用本网站并加以改进。",
     "decline": "拒绝",
-    "acceptAll": "全部接受"
+    "acceptAll": "全部接受",
+    "settings": "隐私设置"
   },
   "breadcrumbs": {
     "label": "面包屑导航",
