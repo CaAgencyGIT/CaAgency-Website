@@ -288,27 +288,25 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   .home-collage-link { padding: 12px 14px; }
   .home-collage-label { font-size: 11px; }
 }
-/* Phones: a collage of its own rather than the shrunken desktop grid. Six
-   portrait tiles in three columns, so every photo keeps its natural
-   upright framing; the middle column sits a little lower for rhythm.
+/* Phones: a 2x2 collage of its own rather than the shrunken desktop grid:
+   Albina and Rebecca, then Melani and Khutjo, all upright. Yassi, Anton,
    Dariia and the names are left out here (client, Oct 2026). */
 @media (max-width: 760px) {
   .home-collage {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto auto;
     grid-template-areas:
-      "albina rebecca melani"
-      "yassi khutjo anton";
+      "albina rebecca"
+      "melani khutjo";
     gap: 8px;
     width: 100%;
     margin-left: 0;
-    padding-bottom: 24px;
     aspect-ratio: auto;
   }
-  .home-collage-tile { aspect-ratio: 3 / 5; }
-  .home-collage-tile[data-area='rebecca'],
-  .home-collage-tile[data-area='khutjo'] { transform: translateY(24px); }
+  .home-collage-tile { aspect-ratio: 3 / 4; }
   .home-collage-media { object-position: var(--pos-m); }
+  .home-collage-tile[data-area='yassi'],
+  .home-collage-tile[data-area='anton'],
   .home-collage-tile[data-area='dariia'] { display: none; }
   .home-collage-shade, .home-collage-label { display: none; }
 }

@@ -18,12 +18,12 @@ export interface HomeCollageTile {
 }
 
 const SIZES: Record<HomeCollageArea, string> = {
-  albina: '(max-width: 760px) 34vw, 26vw',
-  rebecca: '(max-width: 760px) 34vw, 26vw',
-  melani: '(max-width: 760px) 34vw, 21vw',
-  yassi: '(max-width: 760px) 34vw, 21vw',
-  khutjo: '(max-width: 760px) 34vw, 21vw',
-  anton: '(max-width: 760px) 34vw, 22vw',
+  albina: '(max-width: 760px) 50vw, 26vw',
+  rebecca: '(max-width: 760px) 50vw, 26vw',
+  melani: '(max-width: 760px) 50vw, 21vw',
+  yassi: '(max-width: 760px) 50vw, 21vw',
+  khutjo: '(max-width: 760px) 50vw, 21vw',
+  anton: '(max-width: 760px) 50vw, 22vw',
   dariia: '(max-width: 760px) 100vw, 22vw',
 }
 
