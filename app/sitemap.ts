@@ -7,6 +7,8 @@ import { locationPages } from '@/lib/data/locations'
 import { hasLocalizedLocationPage } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
+import { resolveFeaturedImage } from '@/lib/blog-cover'
+import { posterFor } from '@/lib/data/videos'
 
 // Cache the sitemap for 1 hour so crawlers don't hammer the DB on every fetch.
 // Prisma calls are compatible with ISR; force-dynamic is not needed here.
@@ -15,6 +17,12 @@ export const revalidate = 3600
 const baseUrl = 'https://caagency.com'
 const locales = routing.locales
 const defaultLocale = routing.defaultLocale
+
+// Image sitemap entries need absolute URLs; uploads may already be absolute.
+function absoluteImage(src: string | null | undefined): string[] {
+  if (!src) return []
+  return [src.startsWith('http') ? src : `${baseUrl}${src}`]
+}
 
 // Helper to generate URL for a specific locale
 function getLocalizedUrl(path: string, locale: string): string {
@@ -61,11 +69,13 @@ function createDefaultOnlyEntry(
     lastModified?: Date
     changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
     priority: number
+    images?: string[]
   }
 ): MetadataRoute.Sitemap[0] {
   return {
     url: path ? `${baseUrl}/${path}` : baseUrl,
     ...(options.lastModified ? { lastModified: options.lastModified } : {}),
+    ...(options.images?.length ? { images: options.images } : {}),
     changeFrequency: options.changeFrequency,
     priority: options.priority,
   }
@@ -74,7 +84,7 @@ function createDefaultOnlyEntry(
 async function getTalentSlugs() {
   try {
     const talents = await prisma.talent.findMany({
-      select: { slug: true, updatedAt: true, bio: true },
+      select: { slug: true, updatedAt: true, bio: true, imageUrl: true },
     })
     return talents.filter((talent) => isIndexableTalentProfile(talent.bio))
   } catch (error) {
@@ -87,7 +97,7 @@ async function getPublishedPosts() {
   try {
     const posts = await prisma.post.findMany({
       where: livePostsWhere(),
-      select: { slug: true, updatedAt: true },
+      select: { slug: true, updatedAt: true, featuredImage: true },
     })
     return posts
   } catch (error) {
@@ -154,6 +164,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       createDefaultOnlyEntry(`case-studies/${cs.slug}`, {
         changeFrequency: 'monthly',
         priority: 0.7,
+        images: absoluteImage(posterFor(cs.videoSrc)),
       })
     ),
     ...services.map((service) =>
@@ -168,13 +179,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: talent.updatedAt,
         changeFrequency: 'monthly',
         priority: 0.7,
+        images: absoluteImage(talent.imageUrl),
       })
     ),
-    ...posts.map((post: { slug: string; updatedAt: Date }) =>
+    ...posts.map((post) =>
       createDefaultOnlyEntry(`blog/${post.slug}`, {
         lastModified: post.updatedAt,
         changeFrequency: 'weekly',
         priority: 0.6,
+        images: absoluteImage(resolveFeaturedImage(post)),
       })
     ),
   ]
