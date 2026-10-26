@@ -76,6 +76,13 @@ const nextConfig = {
         ],
       },
       {
+        // Cloudflare cache tag for everything except the build's hashed
+        // script/style files. Deploys and admin saves purge this tag only, so
+        // /_next/static stays cached at the edge across releases.
+        source: '/:path((?!_next/static/).*)',
+        headers: [{ key: 'Cache-Tag', value: 'caagency-site' }],
+      },
+      {
         source: '/(assets|images|fonts|videos)/:path*',
         headers: [
           {

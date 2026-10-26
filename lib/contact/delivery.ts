@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { alertContactFailure } from '@/lib/contact/alert'
 import { sendGraphContact } from '@/lib/contact/graph'
 
 type ContactMessage = { subject: string; html: string; text: string; replyTo: string }
@@ -18,6 +19,7 @@ export async function deliverContact(message: ContactMessage): Promise<{ preview
     // Keep a private copy so a failed send never loses the enquiry; the
     // visitor still sees the error and can email info@caagency.com directly.
     await saveCopy(message, 'failed').catch(() => {})
+    await alertContactFailure(error)
     throw error
   }
   return { preview: false }

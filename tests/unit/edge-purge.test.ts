@@ -20,7 +20,7 @@ describe('purgePublicSite', () => {
     const [url, init] = fetchImpl.mock.calls[0]
     expect(url).toBe('https://api.cloudflare.com/client/v4/zones/46d973db1fcb2ce8dd91f539a2adc386/purge_cache')
     expect(init.headers.Authorization).toBe('Bearer purge-token')
-    expect(JSON.parse(init.body)).toEqual({ hosts: ['caagency.com'] })
+    expect(JSON.parse(init.body)).toEqual({ tags: ['caagency-site'] })
   })
 
   it('never throws on API or network errors', async () => {
