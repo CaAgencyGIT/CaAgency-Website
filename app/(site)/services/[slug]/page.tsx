@@ -80,16 +80,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
       {/* Hero — CSS load-in (LCP-safe) */}
-      <section className="relative overflow-hidden bg-background-base py-[80px] tablet:py-[60px] mobile:py-[50px] px-section-x">
+      <section className="relative overflow-hidden bg-background-base py-[80px] tablet:py-[60px] mobile:pt-[34px] mobile:pb-[30px] px-section-x">
         <div className="relative z-[1] max-w-container mx-auto">
           <div className="hero-rise-media max-w-[800px]">
-            <span className="mb-3 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red">
+            <span className="mb-3 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red mobile:text-[11px] mobile:tracking-[0.18em]">
               What We Do
             </span>
-            <Heading as="h1" color="dark" className="mb-6 text-[48px] tablet:text-[40px] mobile:text-[32px]">
+            <Heading as="h1" color="dark" className="mb-6 text-[48px] tablet:text-[40px] mobile:mb-4 mobile:text-[26px] mobile:leading-[1.2]">
               {service.title}
             </Heading>
-            <Text color="dark" size="lg" className="opacity-80">
+            <Text color="dark" size="lg" className="opacity-80 mobile:text-[15px] mobile:leading-[1.65]">
               {service.tagline}
             </Text>
           </div>
@@ -100,22 +100,22 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <section className="bg-background-base px-section-x pb-sec-sm">
         <div className="max-w-container mx-auto">
           <div className="flex flex-col md:flex-row gap-[50px] mobile:gap-[32px]">
-            <div className="hero-rise-media w-full md:w-[38%] md:max-w-[420px] shrink-0">
-              <div className="relative aspect-4/5 rounded-card overflow-hidden ring-1 ring-black/5 shadow-e3">
+            <div className="hero-rise-media w-full md:w-[38%] md:max-w-[420px] shrink-0 mobile:mx-auto mobile:w-[68%] mobile:max-w-[270px]">
+              <div className="relative aspect-4/5 rounded-card overflow-hidden ring-1 ring-black/5 shadow-e3 mobile:rounded-[16px]">
                 <Image
                   src={service.image}
                   alt={service.imageAlt}
                   fill
                   priority
                   className="object-cover"
-                  sizes="(max-width: 767px) 100vw, 420px"
+                  sizes="(max-width: 767px) 68vw, 420px"
                 />
               </div>
             </div>
 
             <div className="w-full">
               <ScrollReveal yOffset={24} className="mb-8">
-                <Heading as="h2" color="dark" className="mb-3 text-[28px] mobile:text-[24px]">
+                <Heading as="h2" color="dark" className="mb-3 text-[28px] mobile:text-[21px]">
                   How we work
                 </Heading>
                 {service.breakdown.map((paragraph) => (
@@ -126,12 +126,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </ScrollReveal>
 
               <ScrollReveal yOffset={24}>
-                <Heading as="h2" color="dark" className="mb-4 text-[28px] mobile:text-[24px]">
+                <Heading as="h2" color="dark" className="mb-4 text-[28px] mobile:text-[21px]">
                   What&apos;s included
                 </Heading>
-                <ul className="grid grid-cols-2 mobile:grid-cols-1 gap-x-8 gap-y-3 rounded-card border border-black/10 bg-background-soft p-6">
+                <ul className="grid grid-cols-2 mobile:grid-cols-1 gap-x-8 gap-y-3 rounded-card border border-black/10 bg-background-soft p-6 mobile:rounded-[16px] mobile:p-5">
                   {service.deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-3 font-work-sans text-[15px] text-foreground-primary">
+                    <li key={item} className="flex items-start gap-3 font-work-sans text-[15px] text-foreground-primary mobile:text-[14px]">
                       <span aria-hidden="true" className="mt-[2px] text-accent-red">
                         ✦
                       </span>
@@ -149,7 +149,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <section className="bg-background-base py-sec-sm px-section-x border-t border-black/5">
         <div className="max-w-container mx-auto grid grid-cols-2 mobile:grid-cols-1 gap-[60px] mobile:gap-[40px]">
           <ScrollReveal yOffset={24}>
-            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:text-[24px]">
+            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:mb-4 mobile:text-[21px]">
               Who it&apos;s for
             </Heading>
             <ul className="space-y-4">
@@ -165,7 +165,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </ScrollReveal>
 
           <ScrollReveal yOffset={24}>
-            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:text-[24px]">
+            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:mb-4 mobile:text-[21px]">
               How an engagement runs
             </Heading>
             <ol role="list" className="space-y-5">
@@ -189,7 +189,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <section className="bg-background-soft py-sec-sm px-section-x">
         <div className="max-w-container mx-auto">
           <ScrollReveal yOffset={24}>
-            <Heading as="h2" color="dark" className="mb-3 text-[28px] mobile:text-[24px]">
+            <Heading as="h2" color="dark" className="mb-3 text-[28px] mobile:text-[21px]">
               Built for beauty &amp; skincare
             </Heading>
             <Text color="dark" size="sm" className="mb-6 max-w-[680px] opacity-80">
