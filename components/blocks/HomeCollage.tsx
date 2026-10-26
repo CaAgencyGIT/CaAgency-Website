@@ -25,7 +25,7 @@ const SIZES: Record<HomeCollageArea, string> = {
   khutjo: '(max-width: 760px) 50vw, 21vw',
   anton: '(max-width: 760px) 50vw, 22vw',
   dariia: '(max-width: 760px) 100vw, 18vw',
-  lolavie: '(max-width: 760px) 100vw, 22vw',
+  lolavie: '(max-width: 760px) 50vw, 22vw',
 }
 
 // Homepage collage (Oct 2026 approved layout): two large tiles, a stack of

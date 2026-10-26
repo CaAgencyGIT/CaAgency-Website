@@ -319,7 +319,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Rebecca Ghaderi in a silver dress on set for LolaVie x Charlotte Tilbury',
     image: { src: '/images/hero/collage-v2/rebecca-lolavie-v1.webp', width: 1080, height: 1440 },
     position: '52% 22%',
-    mobilePosition: '50% 0%',
+    mobilePosition: '52% 20%',
   },
 ]
 

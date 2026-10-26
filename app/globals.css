@@ -289,26 +289,25 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   .home-collage-link { padding: 12px 14px; }
   .home-collage-label { font-size: 11px; }
 }
-/* Phones: a collage of its own rather than the shrunken desktop grid:
-   Albina and Rebecca, then Melly and Khutjo, all upright, closed by the
-   LolaVie x Charlotte Tilbury shot across the full width. Yassi, Anton,
-   Dariia and the names are left out here (client, Oct 2026). */
+/* Phones: a 2x2 collage of its own rather than the shrunken desktop grid:
+   Albina and Rebecca, then Melly and Rebecca's LolaVie x Charlotte Tilbury
+   shot, all upright. Khutjo, Yassi, Anton, Dariia and the names are left
+   out here (client, Oct 2026). */
 @media (max-width: 760px) {
   .home-collage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-areas:
       "albina rebecca"
-      "melly khutjo"
-      "lolavie lolavie";
+      "melly lolavie";
     gap: 8px;
     width: 100%;
     margin-left: 0;
     aspect-ratio: auto;
   }
   .home-collage-tile { aspect-ratio: 3 / 4; }
-  .home-collage-tile[data-area='lolavie'] { aspect-ratio: 4 / 3; }
   .home-collage-media { object-position: var(--pos-m); }
+  .home-collage-tile[data-area='khutjo'],
   .home-collage-tile[data-area='yassi'],
   .home-collage-tile[data-area='anton'],
   .home-collage-tile[data-area='dariia'] { display: none; }
