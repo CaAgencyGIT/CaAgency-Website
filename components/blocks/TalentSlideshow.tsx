@@ -4,8 +4,9 @@ import { Children, useEffect, useRef, type ReactNode } from 'react'
 
 // Homepage "Meet the Talents" slideshow (Oct 2026): six cards in view on
 // desktop (three on tablets, two on phones); every few seconds the row
-// slides on by one card, wrapping back to the start at the end. Pauses while
-// hovered, touched or off screen; visitors can also swipe or scroll it.
+// slides on by one card, wrapping back to the start at the end. Keeps going
+// under the mouse (client, Oct 2026); pauses only while touched or off
+// screen. Visitors can also swipe or scroll it.
 const INTERVAL_MS = 3200
 
 export default function TalentSlideshow({ children }: { children: ReactNode }) {
@@ -30,15 +31,11 @@ export default function TalentSlideshow({ children }: { children: ReactNode }) {
       track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + card.offsetWidth + gap, behavior: 'smooth' })
     }
     const id = window.setInterval(step, INTERVAL_MS)
-    track.addEventListener('pointerenter', pause)
-    track.addEventListener('pointerleave', resume)
     track.addEventListener('touchstart', pause, { passive: true })
     track.addEventListener('touchend', resumeLater, { passive: true })
     return () => {
       window.clearInterval(id)
       observer.disconnect()
-      track.removeEventListener('pointerenter', pause)
-      track.removeEventListener('pointerleave', resume)
       track.removeEventListener('touchstart', pause)
       track.removeEventListener('touchend', resumeLater)
     }
