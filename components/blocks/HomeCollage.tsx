@@ -29,8 +29,11 @@ export default function HomeCollage({ tiles, swipe = false }: { tiles: HomeColla
             src={tile.image.src}
             alt={tile.alt}
             fill
-            priority={index < 2}
-            sizes="(max-width: 760px) 50vw, (max-width: 1100px) 33vw, 16vw"
+            priority={index < 3}
+            quality={90}
+            // Desktop tiles are up to ~26% of the screen wide (the mosaic is
+            // 92vw); asking for that width keeps them sharp on Retina.
+            sizes="(max-width: 760px) 50vw, (max-width: 1100px) 34vw, 26vw"
             className="home-collage-media"
           />
           {tile.href && (

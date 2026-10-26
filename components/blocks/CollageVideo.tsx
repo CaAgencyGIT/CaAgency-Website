@@ -15,11 +15,14 @@ export default function CollageVideo({
   poster,
   label,
   position,
+  eager = false,
 }: {
   src: string
   poster?: string
   label: string
   position?: string
+  /** Start buffering at once (reels near the top of a page, e.g. About). */
+  eager?: boolean
 }) {
   const ref = useRef<HTMLVideoElement>(null)
 
@@ -55,7 +58,10 @@ export default function CollageVideo({
       },
       { rootMargin: '400px 0px' },
     )
-    warm.observe(video)
+    if (eager) {
+      video.preload = 'auto'
+      video.load()
+    } else warm.observe(video)
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -81,12 +87,12 @@ export default function CollageVideo({
       video.removeEventListener('canplay', tryPlay)
       video.removeEventListener('playing', onPlaying)
     }
-  }, [])
+  }, [eager])
 
   return (
     <>
     {poster && (
-      <Image src={poster} alt="" aria-hidden fill sizes="(max-width: 760px) 34vw, 30vw" style={position ? { objectPosition: position } : undefined} />
+      <Image src={poster} alt="" aria-hidden fill priority={eager} sizes="(max-width: 760px) 34vw, 30vw" style={position ? { objectPosition: position } : undefined} />
     )}
     <video
       key={src}

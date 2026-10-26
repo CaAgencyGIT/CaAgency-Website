@@ -227,8 +227,8 @@ section {
 }
 
 /* Homepage collage (Oct 2026): the client-approved desktop mosaic with the
-   six current photos and no names: two large photos, Melly over Yasaman,
-   then two tall photos, all sharing the top and bottom edge. Wider than the
+   six current photos and no names: Rebecca and Albina large, Melly over
+   Khutjo, then Yasaman and Rebecca x LolaVie tall, all sharing the top and bottom edge. Wider than the
    page container (92vw / max 1800px), re-centred. Tablets: three columns;
    phones: two. Cropped by object-fit only. */
 .home-collage {
@@ -236,14 +236,14 @@ section {
   grid-template-columns: 1.2fr 1.2fr 0.95fr 1.05fr 1.2fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "albina rebecca melly khutjo lolavie"
-    "albina rebecca yasaman khutjo lolavie";
+    "rebecca albina melly yasaman lolavie"
+    "rebecca albina khutjo yasaman lolavie";
   gap: 8px;
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
   aspect-ratio: 2050 / 722;
 }
-.home-collage > .home-collage-tile { grid-area: var(--area); aspect-ratio: auto; }
+.home-collage > .home-collage-tile { grid-area: var(--area); aspect-ratio: auto; box-shadow: 0 14px 34px -22px rgba(0, 0, 0, 0.45); }
 .home-collage-tile {
   position: relative;
   min-width: 0;
@@ -260,6 +260,7 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: var(--pos);
+  filter: contrast(1.04) saturate(1.05);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .home-collage-tile:hover .home-collage-media { transform: scale(1.03); }

@@ -79,7 +79,7 @@ export default async function AboutPage({ params }: Props) {
           {introShowreels.map((reel) => (
             <div key={reel.src} className="relative aspect-[9/16] overflow-hidden">
               <div className="intro-feature-tile absolute inset-0 overflow-hidden">
-                <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} />
+                <CollageVideo src={reel.src} poster={reel.poster} label={reel.alt} eager />
               </div>
               <div className="pointer-events-none absolute inset-0 bg-black/20" />
             </div>

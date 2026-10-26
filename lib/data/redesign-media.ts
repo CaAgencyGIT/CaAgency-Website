@@ -226,7 +226,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Khutjo Matsoma on a large welcome screen reading “Khutjo! Welcome to Korea”',
     area: 'khutjo',
     image: { src: '/images/hero/collage-v2/khutjo-welcome-korea-v1.webp', width: 1086, height: 1448 },
-    position: '52% 62%',
+    position: '52% 58%',
   },
 ]
 
