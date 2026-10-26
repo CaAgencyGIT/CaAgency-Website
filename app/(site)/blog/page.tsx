@@ -9,7 +9,7 @@ import StaggerItem from '@/components/ui/motion/StaggerItem'
 import Image from 'next/image'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
-import { blogListingOrder, livePostsWhere } from '@/lib/blog-posts'
+import { livePostsWhere, newestFirst } from '@/lib/blog-posts'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { BLOG_ID, SITE_URL, blogPostUrl, organizationRef } from '@/lib/seo/schema'
 import { blogFeedAlternate } from '@/lib/seo/rss'
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 // first hourly regeneration then fills it in.
 async function getPublishedPosts() {
   try {
-    return blogListingOrder(await queryLivePosts())
+    return newestFirst(await queryLivePosts())
   } catch (error) {
     if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD) throw error
     console.error('[blog] post query failed during build; rendering empty listing', error)
@@ -104,7 +104,7 @@ export default async function BlogPage() {
             Influencer Marketing Blog
           </Heading>
           <Text color="dark" size="lg" className="max-w-[700px] mx-auto opacity-80 mobile:text-[14.5px] mobile:leading-[1.65]">
-            Insights on influencer marketing across the United States, Europe and Asia, from CA Agency's experience with 3000+ influencer campaigns.
+            Expert insights, strategies, and tips from CA Agency's experience with 3000+ influencer campaigns.
           </Text>
         </div>
       </section>
