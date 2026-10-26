@@ -22,7 +22,7 @@ interface TalentGridProps {
   animate?: boolean
   /** Use the finished talent card artwork (matched by slug) where available. */
   cardArt?: boolean
-  /** Phones: one card per row ('list') or a swipeable row ('carousel'). */
+  /** Phones: a two-column grid ('list') or a swipeable row ('carousel'). */
   mobileLayout?: 'list' | 'carousel'
 }
 
@@ -43,13 +43,13 @@ export default function TalentGrid({
   const mobileClasses = !mobileLayout
     ? ''
     : mobileLayout === 'list'
-      ? 'mobile:grid-cols-1 mobile:gap-4'
-      : 'mobile:flex mobile:gap-3 mobile:overflow-x-auto mobile:snap-x mobile:snap-mandatory mobile:-mx-5 mobile:px-5 mobile:scroll-px-5 mobile:[scrollbar-width:none] mobile:[&::-webkit-scrollbar]:hidden mobile:[&>*]:w-[78%] mobile:[&>*]:shrink-0 mobile:[&>*]:snap-start'
+      ? 'mobile:grid-cols-2 mobile:gap-x-3 mobile:gap-y-6'
+      : 'mobile:flex mobile:gap-3 mobile:overflow-x-auto mobile:snap-x mobile:snap-mandatory mobile:-mx-5 mobile:px-5 mobile:scroll-px-5 mobile:[scrollbar-width:none] mobile:[&::-webkit-scrollbar]:hidden mobile:[&>*]:w-[44%] mobile:[&>*]:shrink-0 mobile:[&>*]:snap-start'
   const imageSizes = {
     2: '(max-width: 1299px) 50vw, 640px',
-    4: `(max-width: 767px) ${mobileLayout ? '90vw' : '50vw'}, (max-width: 1299px) 25vw, 310px`,
+    4: '(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 310px',
     5: '(max-width: 767px) 50vw, (max-width: 1299px) 20vw, 250px',
-    6: `(max-width: 767px) ${mobileLayout ? '80vw' : '50vw'}, (max-width: 1024px) 33vw, (max-width: 1299px) 17vw, 200px`,
+    6: `(max-width: 767px) ${mobileLayout ? '45vw' : '50vw'}, (max-width: 1024px) 33vw, (max-width: 1299px) 17vw, 200px`,
   }
 
   const renderCard = (talent: Talent, index: number) => (

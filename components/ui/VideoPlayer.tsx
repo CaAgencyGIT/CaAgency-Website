@@ -170,6 +170,33 @@ export default function VideoPlayer({
     }
   }, [shouldMountVideo])
 
+  // iOS sometimes refuses or stalls the first programmatic play() (it
+  // reads the muted *attribute*, which React never writes). Set it, and if
+  // a film still ends up waiting, start it from the visitor's next touch or
+  // tap anywhere — a real gesture always unlocks muted playback — instead of
+  // leaving it frozen on its poster until the tile itself is tapped.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!shouldMountVideo || !video) return
+    video.defaultMuted = muted
+    video.muted = muted
+    if (muted) video.setAttribute('muted', '')
+  }, [shouldMountVideo, muted])
+
+  useEffect(() => {
+    if (!eligibleRef.current) return
+    if (playbackStatus !== 'blocked' && playbackStatus !== 'buffering' && playbackStatus !== 'starting') return
+    const kick = () => {
+      const video = videoRef.current
+      if (!video || !eligibleRef.current || !video.paused) return
+      video.muted = muted
+      video.play().catch(() => {})
+    }
+    const gestures = ['touchend', 'pointerup', 'keydown'] as const
+    gestures.forEach((e) => window.addEventListener(e, kick, { passive: true }))
+    return () => gestures.forEach((e) => window.removeEventListener(e, kick))
+  }, [playbackStatus, muted])
+
   const startPlayback = useCallback(async () => {
     const video = videoRef.current
     if (!video || !eligibleRef.current || !video.paused) return
