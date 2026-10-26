@@ -294,7 +294,7 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
 @media (max-width: 760px) {
   .home-collage {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 34vw) 44vw;
+    grid-template-rows: repeat(4, 34vw) 66vw;
     grid-template-areas:
       "albina melani"
       "albina anton"

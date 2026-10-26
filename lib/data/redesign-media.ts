@@ -306,7 +306,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Dariia Bordun in an Armani Beauty campaign video',
     image: { src: '/images/hero/collage-v2/dariia-armani-beauty-poster-v1.webp', width: 720, height: 1280 },
     position: '50% 32%',
-    mobilePosition: '50% 28%',
+    mobilePosition: '50% 36%',
   },
 ]
 
