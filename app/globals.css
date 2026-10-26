@@ -271,19 +271,22 @@ section {
 @media (max-width: 760px) {
   .hero-collage {
     --collage-gap: 8px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: none;
-    grid-auto-flow: row dense;
+    grid-auto-flow: row;
     width: 100%;
     margin-left: 0;
+    padding-bottom: 28px;
     aspect-ratio: auto;
   }
-  /* Phones: every photo the same size in two equal columns. Stacks unpack
-     into the grid, the featured tile no longer spans, and the small
-     close-up is left out so the six tiles fill three even rows. */
+  /* Phones (Oct 2026): a compact three-column collage of six slim tiles,
+     the middle column dropped a little for a staggered rhythm. Stacks
+     unpack into the grid and the featured tile no longer spans. */
   .hero-collage-stack { display: contents; }
-  .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 4; }
-  .hero-collage-tile { flex: 1 1 auto; width: 100%; border-radius: 12px; }
+  .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 5; }
+  .hero-collage-tile { flex: 1 1 auto; width: 100%; border-radius: 10px; }
+  .hero-collage > :nth-child(2),
+  .hero-collage-stack > :last-child { transform: translateY(28px); }
 }
 
 @keyframes status-enter {

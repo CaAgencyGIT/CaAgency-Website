@@ -46,14 +46,14 @@ export default function HeroFilmRow({ items }: { items: HeroFilmRowItem[] }) {
           return (
             <div key={item.stack[0].src} className="hero-collage-col hero-collage-stack">
               {item.stack.map((media) => (
-                <Tile key={media.src} media={media} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 50vw, 20vw" />
+                <Tile key={media.src} media={media} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 34vw, 20vw" />
               ))}
             </div>
           )
         }
         return (
           <div key={item.src} className={`hero-collage-col${item.featured ? ' hero-collage-featured' : ''}`}>
-            <Tile media={item} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 50vw, 20vw" />
+            <Tile media={item} priority={priorityBudget-- > 0} sizes="(max-width: 760px) 34vw, 20vw" />
           </div>
         )
       })}
