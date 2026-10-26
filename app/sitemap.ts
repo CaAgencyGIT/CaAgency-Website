@@ -1,14 +1,13 @@
 import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
 import { routing } from '@/i18n/routing'
-import { caseStudies } from '@/lib/data/case-studies'
+import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
 import { hasLocalizedLocationPage } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
-import { posterFor } from '@/lib/data/videos'
 
 // Cache the sitemap for 1 hour so crawlers don't hammer the DB on every fetch.
 // Prisma calls are compatible with ISR; force-dynamic is not needed here.
@@ -164,7 +163,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       createDefaultOnlyEntry(`case-studies/${cs.slug}`, {
         changeFrequency: 'monthly',
         priority: 0.7,
-        images: absoluteImage(posterFor(cs.videoSrc)),
+        images: absoluteImage(caseStudyStill(cs)),
       })
     ),
     ...services.map((service) =>

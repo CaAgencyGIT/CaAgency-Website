@@ -59,7 +59,7 @@ export async function GET() {
     filterExistingVideos(filmEntries(workFilms)),
     filterExistingVideos(aboutVideos),
     filterExistingVideos(
-      caseStudies.map((study) => ({
+      caseStudies.filter((study) => study.videoSrc).map((study) => ({
         src: study.videoSrc,
         name: study.title,
         published: publishedDateFor(study.videoSrc),

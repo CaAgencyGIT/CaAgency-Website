@@ -5,6 +5,9 @@
 // The template hides the results-figures section whenever the array is empty,
 // so leave it empty until verified figures are supplied, never estimate.
 
+import { posterFor } from './videos'
+import { creatorCases } from './creator-cases'
+
 export interface CaseStudyMetric {
   value: string
   label: string
@@ -28,9 +31,24 @@ export interface CaseStudy {
   services: string[]
   /** Real client-approved figures only, section is hidden while empty */
   metrics: CaseStudyMetric[]
+  /** Creator's display name, shown with the handle (creator showcases) */
+  creatorName?: string
+  /** The public post the media comes from */
+  sourceUrl?: string
+  /** Photo posts: shown instead of a video (videoSrc is then empty) */
+  image?: { src: string; width: number; height: number }
+  /** Creator showcase: descriptive copy only, no brief, services or results */
+  showcase?: boolean
+  /** The film keeps its sound, so the page offers a sound toggle */
+  hasAudio?: boolean
 }
 
-export const caseStudies: CaseStudy[] = [
+/** Still for cards, schema and sitemaps: the photo, or the film's poster. */
+export function caseStudyStill(study: CaseStudy): string {
+  return study.image?.src ?? posterFor(study.videoSrc)
+}
+
+const campaignCaseStudies: CaseStudy[] = [
   {
     slug: 'honor-smartphone-launch',
     brand: 'HONOR',
@@ -757,6 +775,9 @@ export const caseStudies: CaseStudy[] = [
     metrics: [],
   },
 ]
+
+// The creator showcases come last, after every existing case study.
+export const caseStudies: CaseStudy[] = [...campaignCaseStudies, ...creatorCases]
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return caseStudies.find((cs) => cs.slug === slug)

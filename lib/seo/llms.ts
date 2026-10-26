@@ -103,14 +103,13 @@ ${siteUrl}/case-studies/${study.slug}
 
 - Brand: ${study.brand}
 - Category: ${study.vertical}
-- Platforms: ${study.platforms.join(', ')}${study.creator ? `\n- Creator: ${study.creator}` : ''}
-- Services: ${study.services.join(', ')}
+- Platforms: ${study.platforms.join(', ')}${study.creator ? `\n- Creator: ${study.creatorName ? `${study.creatorName} (${study.creator})` : study.creator}` : ''}${study.services.length ? `\n- Services: ${study.services.join(', ')}` : ''}
 
-Brief: ${study.brief}
+${study.showcase ? 'Overview' : 'Brief'}: ${study.brief}
 
-Approach: ${study.approach}
+${study.showcase ? 'In the video' : 'Approach'}: ${study.approach}
 
-Outcome: ${study.outcome}`
+${study.showcase ? 'Highlights' : 'Outcome'}: ${study.outcome}`
       )
       .join('\n\n')}`,
     `## Frequently asked questions\n\n${faqKeys
