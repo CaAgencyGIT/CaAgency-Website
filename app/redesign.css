@@ -167,17 +167,10 @@
 
   /* Closing CTA panel, same black rounded card as the footer below it. */
   .rd-cta-panel { margin: 16px 16px 0; padding: 60px 6vw; border-radius: 24px; background: #0e0e0e; color: #fff; }
-  /* Dark silk backdrop (Higgsfield, Oct 2026). Set only once the panel's
-     reveal fires, so the image never loads for visitors who don't scroll
-     down to it; until then (and without JS) the panel stays plain black. */
-  .rd-cta-panel:has(> [data-revealed]) { background: #0e0e0e url('/images/site/textures/silk-dark-v1.webp') right center / cover no-repeat; }
   .rd-cta-panel-inner { display: grid; grid-template-columns: auto minmax(0, 460px); align-items: center; justify-content: center; gap: 72px; max-width: 1080px; margin-inline: auto; }
   .rd-cta-panel-inner > div { max-width: 560px; justify-self: end; }
   @media (max-width: 900px) { .rd-cta-panel-inner { grid-template-columns: 1fr; gap: 24px; } .rd-cta-panel-inner > div { justify-self: start; } }
-  @media (max-width: 760px) {
-    .rd-cta-panel { margin: 10px 10px 0; padding: 44px 6vw; border-radius: 18px; }
-    .rd-cta-panel:has(> [data-revealed]) { background-image: url('/images/site/textures/silk-dark-m-v1.webp'); }
-  }
+  @media (max-width: 760px) { .rd-cta-panel { margin: 10px 10px 0; padding: 44px 6vw; border-radius: 18px; } }
 
   /* About page (Oct 2026, after scooperz.com/about-us) */
   .about-panel { display: grid; grid-template-columns: 0.8fr 1fr; align-items: center; gap: 7vw; max-width: 1440px; margin-inline: auto; }
@@ -190,8 +183,6 @@
   @media (max-width: 900px) { .about-story { grid-template-columns: 1fr; gap: 36px; } }
   .about-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: end; gap: 20px; }
   .about-stats > div { padding: 28px 24px; border-radius: 20px; background: #f4f2ee; }
-  /* Soft travertine under the numbers, loaded on reveal like the CTA silk. */
-  .about-stats[data-revealed] > div { background: linear-gradient(rgba(244, 241, 236, 0.6), rgba(244, 241, 236, 0.6)), #efe9e1 url('/images/site/textures/stone-v1.webp') left bottom / cover no-repeat; }
   .about-stats strong { display: block; margin-bottom: 10px; font-family: var(--rd-serif); font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; line-height: 1; color: #171715; }
   .about-stats > div > span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #67645f; }
   @media (max-width: 900px) { .about-panel { grid-template-columns: 1fr; gap: 32px; } }
