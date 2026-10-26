@@ -20,12 +20,10 @@ const CLIENT_NAMESPACES = [
   'errors',
   'faq',
   'nav',
-  'testimonials',
 ] as const
 
 // Parameter is Record<string, unknown> rather than AbstractIntlMessages: the
-// raw en.json import contains arrays (e.g. testimonials.items, consumed via
-// t.raw), which next-intl supports at runtime but its message type rejects.
+// raw en.json import contains arrays (read via t.raw), which next-intl supports at runtime but its message type rejects.
 export function pickClientMessages(messages: Record<string, unknown>): AbstractIntlMessages {
   // Defensive: a null/non-object catalog (broken locale file, bad override)
   // should degrade to MISSING_MESSAGE errors downstream, not crash the

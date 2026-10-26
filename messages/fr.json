@@ -421,11 +421,6 @@
     "pageTitle": "FAQ : le marketing d’influence avec CA Agency",
     "pageDescription": "Les réponses aux questions que les marques posent le plus souvent sur CA Agency : nos services, nos clients, les plateformes, les tarifs et comment démarrer."
   },
-  "testimonials": {
-    "heading": "Ce que disent nos clients",
-    "items": [],
-    "eyebrow": "Témoignages clients"
-  },
   "errors": {
     "404": {
       "title": "Page introuvable",

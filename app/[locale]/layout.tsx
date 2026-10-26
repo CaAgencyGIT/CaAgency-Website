@@ -34,7 +34,7 @@ export default async function LocaleLayout({
 
   // Bind the request store to this segment's locale. Without it, the root
   // layout's setRequestLocale('en') leaks down and getMessages()/client
-  // components (Header nav, FAQ, Testimonials) render English on /ar and /ko
+  // components (Header nav, FAQ) render English on /ar and /ko
   // even though the translations exist.
   setRequestLocale(locale);
 

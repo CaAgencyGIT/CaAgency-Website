@@ -421,11 +421,6 @@
     "pageTitle": "FAQ: influencer marketing with CA Agency",
     "pageDescription": "Answers to the questions brands ask most about working with CA Agency: what we do, who we work with, platforms, pricing and how to get started."
   },
-  "testimonials": {
-    "heading": "What Our Clients Say",
-    "items": [],
-    "eyebrow": "Client Stories"
-  },
   "errors": {
     "404": {
       "title": "Page Not Found",

@@ -14,7 +14,6 @@ const CLIENT_NAMESPACES = [
   'errors',
   'faq',
   'nav',
-  'testimonials',
 ]
 
 describe('pickClientMessages', () => {
@@ -33,8 +32,8 @@ describe('pickClientMessages', () => {
   it('passes namespace content through untouched, including arrays', () => {
     const picked = pickClientMessages(enMessages) as unknown as typeof enMessages
     expect(picked.contactForm).toBe(enMessages.contactForm)
-    expect(Array.isArray(enMessages.testimonials.items)).toBe(true)
-    expect(picked.testimonials).toBe(enMessages.testimonials)
+    const faq = { items: [{ q: 'Q', a: 'A' }] }
+    expect(pickClientMessages({ faq }).faq).toBe(faq)
   })
 
   it('skips whitelisted namespaces missing from the source', () => {

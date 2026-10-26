@@ -421,11 +421,6 @@
     "pageTitle": "FAQ: CA Agency와 함께하는 인플루언서 마케팅",
     "pageDescription": "CA Agency와의 협업에 대해 브랜드가 가장 자주 묻는 질문에 대한 답변: 서비스, 협업 대상, 플랫폼, 비용, 시작 방법."
   },
-  "testimonials": {
-    "heading": "고객들의 이야기",
-    "items": [],
-    "eyebrow": "고객 후기"
-  },
   "errors": {
     "404": {
       "title": "페이지를 찾을 수 없습니다",
