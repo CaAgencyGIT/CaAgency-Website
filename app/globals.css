@@ -230,6 +230,8 @@ section {
   margin-left: calc(50% - min(46vw, 900px));
   aspect-ratio: 2050 / 722;
 }
+.home-collage-tile[data-area='yasaman'],
+.home-collage-tile[data-area='khutjoEvent'] { display: none; }
 .home-collage-tile {
   position: relative;
   min-width: 0;
@@ -290,22 +292,26 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   .home-collage-label { font-size: 11px; }
 }
 /* Phones: a 2x2 collage of its own rather than the shrunken desktop grid:
-   Albina and Rebecca, then Melly and Rebecca's LolaVie x Charlotte Tilbury
-   shot, all upright. Khutjo, Yassi, Anton, Dariia and the names are left
+   Albina and Rebecca, Melly and Rebecca's LolaVie x Charlotte Tilbury shot,
+   then Yasaman (Prada Beauty) and Khutjo (Aprilskin x Medicube), all
+   upright. The desktop Khutjo, Yassi, Anton, Dariia and the names are left
    out here (client, Oct 2026). */
 @media (max-width: 760px) {
   .home-collage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       "albina rebecca"
-      "melly lolavie";
+      "melly lolavie"
+      "yasaman khutjoEvent";
     gap: 8px;
     width: 100%;
     margin-left: 0;
     aspect-ratio: auto;
   }
   .home-collage-tile { aspect-ratio: 3 / 4; }
+  .home-collage-tile[data-area='yasaman'],
+  .home-collage-tile[data-area='khutjoEvent'] { display: block; }
   .home-collage-media { object-position: var(--pos-m); }
   .home-collage-tile[data-area='khutjo'],
   .home-collage-tile[data-area='yassi'],

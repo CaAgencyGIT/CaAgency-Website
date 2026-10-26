@@ -321,6 +321,22 @@ export const homeCollageTiles: HomeCollageTile[] = [
     position: '52% 22%',
     mobilePosition: '52% 20%',
   },
+  // Phone-only tiles (third row on phones; not part of the desktop grid).
+  {
+    area: 'yasaman',
+    name: 'Yasaman',
+    alt: 'Yasaman taking a mirror selfie at a Prada Beauty makeup station',
+    image: { src: '/images/hero/collage-v2/yasaman-prada-beauty-v1.webp', width: 1080, height: 1345 },
+    position: '40% 30%',
+  },
+  {
+    area: 'khutjoEvent',
+    name: 'Khutjo',
+    href: '/talents/khutjo-matsoma',
+    alt: 'Khutjo Matsoma in front of the Aprilskin and Medicube welcome wall',
+    image: { src: '/images/hero/collage-v2/khutjo-aprilskin-medicube-v1.webp', width: 941, height: 1672 },
+    position: '50% 45%',
+  },
 ]
 
 // White brand logos overlaid on the redesign films (the older work videos
