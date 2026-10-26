@@ -82,6 +82,10 @@ export default function VideoPlayer({
   const manualIntentRef = useRef<ManualIntent>('none')
   const hasPlayedRef = useRef(false)
   const staggeredRef = useRef(false)
+  // Desktop: a fine pointer on a wide screen. Decided after mount, so the
+  // server render and first paint match the phone-safe defaults.
+  const [desktop, setDesktop] = useState(false)
+  const desktopRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
@@ -142,6 +146,17 @@ export default function VideoPlayer({
       if (exitTimer) clearTimeout(exitTimer)
       if (releaseTimer) clearTimeout(releaseTimer)
     }
+  }, [])
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 768px) and (pointer: fine)')
+    const update = () => {
+      desktopRef.current = query.matches
+      setDesktop(query.matches)
+    }
+    update()
+    query.addEventListener('change', update)
+    return () => query.removeEventListener('change', update)
   }, [])
 
   useEffect(() => {
@@ -220,6 +235,21 @@ export default function VideoPlayer({
     video.muted = muted
     setPlaybackStatus('starting')
     const attempt = ++playAttemptRef.current
+    // Desktop (Oct 2026): buffer before the first play, so a film never starts
+    // and then immediately stalls. The poster stays up meanwhile; after 2.5s
+    // it plays anyway rather than wait on a slow connection.
+    if (desktopRef.current && !hasPlayedRef.current && video.readyState < HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      await new Promise<void>((resolve) => {
+        const done = () => {
+          clearTimeout(timer)
+          video.removeEventListener('canplaythrough', done)
+          resolve()
+        }
+        const timer = setTimeout(done, 2500)
+        video.addEventListener('canplaythrough', done)
+      })
+      if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
+    }
     try {
       await video.play()
     } catch (error) {
@@ -402,9 +432,10 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
-          // Metadata only: buffering every upcoming film ahead takes iPhone
-          // decoders away from the films already playing (the showreel froze).
-          preload="metadata"
+          // Phones: metadata only, since buffering every upcoming film ahead
+          // takes iPhone decoders away from the films already playing (the
+          // showreel froze). Desktop buffers ahead so films start instantly.
+          preload={desktop ? 'auto' : 'metadata'}
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'
