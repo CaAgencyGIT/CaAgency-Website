@@ -4,6 +4,7 @@ import { alternatesFor } from '@/lib/seo/alternates'
 const BASE_URL = 'https://caagency.com'
 const BRAND = 'CA Agency'
 const MAX_TITLE_LENGTH = 60
+const MAX_DESCRIPTION_LENGTH = 160
 const DEFAULT_IMAGE = '/images/site/og-cover-v2.jpg'
 
 const openGraphLocales: Record<string, string> = {
@@ -42,6 +43,20 @@ export function normalizeBrandedTitle(title: string): string {
   return branded.length > MAX_TITLE_LENGTH ? withoutBrand : branded
 }
 
+// Google cuts snippets at roughly 160 characters. Long talent bios and blog
+// excerpts end on a whole sentence where one fits, otherwise on a word.
+export function clampDescription(description: string): string {
+  const text = description.replace(/\s+/g, ' ').trim()
+  if (text.length <= MAX_DESCRIPTION_LENGTH) return text
+
+  const window = text.slice(0, MAX_DESCRIPTION_LENGTH)
+  const sentenceEnd = Math.max(window.lastIndexOf('. '), window.lastIndexOf('! '), window.lastIndexOf('? '))
+  if (sentenceEnd >= MAX_DESCRIPTION_LENGTH / 2) return window.slice(0, sentenceEnd + 1)
+
+  const wordEnd = text.lastIndexOf(' ', MAX_DESCRIPTION_LENGTH - 1)
+  return `${text.slice(0, wordEnd > 0 ? wordEnd : MAX_DESCRIPTION_LENGTH - 1).replace(/[\s,;:.\-–—]+$/, '')}…`
+}
+
 function canonicalUrl(locale: string, path: string): string {
   const normalizedPath = path === '/' ? '' : path
   return locale === 'en'
@@ -61,6 +76,7 @@ export function buildPageMetadata({
   type = 'website',
 }: BuildPageMetadataOptions): Metadata {
   const absoluteTitle = normalizeBrandedTitle(title)
+  description = clampDescription(description)
   const canonical = canonicalUrl(locale, path)
   const localizedAlternates = alternatesFor(locale, path)
 

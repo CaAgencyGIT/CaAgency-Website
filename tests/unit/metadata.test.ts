@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildPageMetadata, normalizeBrandedTitle } from '@/lib/seo/metadata'
+import { buildPageMetadata, clampDescription, normalizeBrandedTitle } from '@/lib/seo/metadata'
 
 describe('normalizeBrandedTitle', () => {
   it('adds the brand exactly once', () => {
@@ -19,6 +19,31 @@ describe('normalizeBrandedTitle', () => {
     const longTitle = 'How Much Does Influencer Marketing Cost in Dubai and the UAE?'
     expect(normalizeBrandedTitle(longTitle)).toBe(longTitle)
     expect(normalizeBrandedTitle(`${longTitle} | CA Agency`)).toBe(longTitle)
+  })
+})
+
+describe('clampDescription', () => {
+  it('keeps descriptions that already fit', () => {
+    expect(clampDescription('  Short   description. ')).toBe('Short description.')
+  })
+
+  it('ends on a whole sentence when one fits', () => {
+    const first = 'Albina Mavriqi is a beauty and skincare creator based in Kosovo with a loyal audience across Europe and the Gulf region.'
+    const result = clampDescription(`${first} She has partnered with Sephora, Medicube and Torriden on campaigns that drove sales.`)
+    expect(result).toBe(first)
+  })
+
+  it('falls back to a word boundary with an ellipsis', () => {
+    const result = clampDescription('word '.repeat(60))
+    expect(result.length).toBeLessThanOrEqual(160)
+    expect(result.endsWith('word…')).toBe(true)
+  })
+
+  it('applies to page metadata, Open Graph and Twitter', () => {
+    const metadata = buildPageMetadata({ title: 'Talent', description: 'word '.repeat(60) })
+    expect((metadata.description ?? '').length).toBeLessThanOrEqual(160)
+    expect(metadata.openGraph?.description).toBe(metadata.description)
+    expect(metadata.twitter?.description).toBe(metadata.description)
   })
 })
 
