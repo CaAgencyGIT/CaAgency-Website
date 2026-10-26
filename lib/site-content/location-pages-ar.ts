@@ -12,6 +12,7 @@ export const arabicLocationLabels: LocationLabels = {
   talents: 'صنّاع المحتوى',
   industries: 'القطاعات',
   faq: 'الأسئلة الشائعة',
+  otherMarkets: 'أسواق أخرى',
 }
 
 export interface ArabicLocationPage {

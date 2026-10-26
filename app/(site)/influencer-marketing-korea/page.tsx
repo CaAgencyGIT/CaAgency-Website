@@ -73,7 +73,7 @@ export default async function KoreaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} featuredGuides={[tiktokShopBeautyGuide]} />
+      <LocationLandingPage path="/influencer-marketing-korea" content={content} talents={talents} featuredGuides={[tiktokShopBeautyGuide]} />
     </>
   )
 }

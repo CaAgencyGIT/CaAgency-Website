@@ -73,7 +73,7 @@ export default async function USAPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} featuredGuides={[findSkincareGuide, tiktokShopBeautyGuide]} />
+      <LocationLandingPage path="/influencer-marketing-usa" content={content} talents={talents} featuredGuides={[findSkincareGuide, tiktokShopBeautyGuide]} />
     </>
   )
 }

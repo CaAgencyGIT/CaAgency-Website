@@ -78,7 +78,7 @@ export default async function UAEPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} featuredGuides={[gulfCostGuide, saudiGuide]} />
+      <LocationLandingPage path="/influencer-marketing-uae" content={content} talents={talents} featuredGuides={[gulfCostGuide, saudiGuide]} />
     </>
   )
 }

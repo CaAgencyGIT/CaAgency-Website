@@ -65,7 +65,7 @@ export default async function UKPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} />
+      <LocationLandingPage path="/influencer-marketing-uk" content={content} talents={talents} />
     </>
   )
 }

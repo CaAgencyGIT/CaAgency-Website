@@ -65,7 +65,7 @@ export default async function CanadaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} />
+      <LocationLandingPage path="/influencer-marketing-canada" content={content} talents={talents} />
     </>
   )
 }

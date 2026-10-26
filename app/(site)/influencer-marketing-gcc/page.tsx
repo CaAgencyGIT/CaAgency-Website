@@ -100,7 +100,7 @@ export default async function GCCPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage content={content} talents={talents} featuredGuides={[gulfCostGuide, saudiGuide]} />
+      <LocationLandingPage path="/influencer-marketing-gcc" content={content} talents={talents} featuredGuides={[gulfCostGuide, saudiGuide]} />
     </>
   )
 }
