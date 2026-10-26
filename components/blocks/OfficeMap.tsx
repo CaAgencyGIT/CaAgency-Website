@@ -71,12 +71,12 @@ export default function OfficeMap({
   )
 
   return (
-    <section ref={ref} id="offices" className={`office-map bg-[#0e0e0e] text-white px-section-x py-[100px] mobile:py-[60px]${shown ? ' is-shown' : ''}`}>
+    <section ref={ref} id="offices" className={`office-map bg-[#0e0e0e] text-white px-section-x py-[100px] mobile:py-[44px]${shown ? ' is-shown' : ''}`}>
       <div className="max-w-container mx-auto grid grid-cols-[minmax(0,5fr)_minmax(0,8fr)] gap-12 tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-8">
         <div className="flex flex-col">
-          <h2 className="font-anegra text-[56px] tablet:text-[46px] mobile:text-[36px] leading-[1.05] text-balance">{heading}</h2>
+          <h2 className="font-anegra text-[56px] tablet:text-[46px] mobile:text-[28px] leading-[1.05] text-balance">{heading}</h2>
           <div className="mt-6 h-px w-full bg-white/30" />
-          <p className="mt-5 font-work-sans text-[15px] leading-[1.75] text-white/75">{intro}</p>
+          <p className="mt-5 font-work-sans text-[15px] leading-[1.75] text-white/75 mobile:mt-4 mobile:text-[14px] mobile:leading-[1.7]">{intro}</p>
 
           <div className="mt-8 flex gap-2" role="tablist" aria-label={heading}>
             {offices.map((o) => (
@@ -86,7 +86,7 @@ export default function OfficeMap({
                 role="tab"
                 aria-selected={o.id === current.id}
                 onClick={() => setActive(o.id)}
-                className={`rounded-full border px-4 py-2 font-jost text-[13px] uppercase tracking-[0.12em] transition-colors ${
+                className={`rounded-full border px-4 py-2 font-jost text-[13px] uppercase tracking-[0.12em] mobile:px-3 mobile:py-1.5 mobile:text-[11px] transition-colors ${
                   o.id === current.id ? 'border-white bg-white text-[#0e0e0e]' : 'border-white/30 text-white/80 hover:border-white'
                 }`}
               >
@@ -97,7 +97,7 @@ export default function OfficeMap({
 
           <div key={current.id} className="office-map-detail mt-auto pt-10">
             <p className="font-jost text-[12px] uppercase tracking-[0.22em] text-white/55">{current.label}</p>
-            <p className="mt-2 font-anegra text-[30px] mobile:text-[26px] leading-tight">{current.division}</p>
+            <p className="mt-2 font-anegra text-[30px] mobile:text-[21px] leading-tight">{current.division}</p>
             <p dir="ltr" className="mt-3 font-work-sans text-[14px] leading-[1.8] text-white/75">
               {current.lines.join(', ')}
             </p>

@@ -108,10 +108,10 @@ export default async function ContactPage({ params }: Props) {
       {/* Get in touch (Oct 2026, after scooperz.com/contact): office photo and
           direct contact details left, heading and the brand / influencer form
           tabs right. White, so the page stays light; only the map is black. */}
-      <section className="contact-panel bg-background-base px-section-x pt-[80px] pb-[100px] mobile:pt-[44px] mobile:pb-[64px]">
+      <section className="contact-panel bg-background-base px-section-x pt-[80px] pb-[100px] mobile:pt-[34px] mobile:pb-[52px]">
         <div className="mx-auto grid max-w-[1240px] grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-[6vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-12">
           <div className="flex flex-col gap-10 tablet:order-2 mobile:order-2">
-            <div className="relative aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[18px]">
+            <div className="relative aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[18px] mobile:aspect-[16/10] mobile:rounded-[14px]">
               <Image
                 src="/images/site/ca-office-v1.webp"
                 alt="CA Agency office lounge"
@@ -123,9 +123,9 @@ export default async function ContactPage({ params }: Props) {
               />
             </div>
             <div>
-              <h2 className="mb-4 font-anegra text-[34px] leading-tight text-foreground-primary mobile:text-[28px]">{t('contactUsTitle')}</h2>
-              <p className="mb-7 max-w-[440px] font-work-sans text-[15px] leading-[1.8] text-foreground-body">{t('contactUsText')}</p>
-              <ul className="mb-8 flex flex-col gap-3 font-work-sans text-[17px] text-foreground-primary">
+              <h2 className="mb-4 font-anegra text-[34px] leading-tight text-foreground-primary mobile:mb-3 mobile:text-[24px]">{t('contactUsTitle')}</h2>
+              <p className="mb-7 max-w-[440px] font-work-sans text-[15px] leading-[1.8] text-foreground-body mobile:mb-5 mobile:text-[14.5px] mobile:leading-[1.7]">{t('contactUsText')}</p>
+              <ul className="mb-8 flex flex-col gap-3 font-work-sans text-[17px] text-foreground-primary mobile:mb-6 mobile:text-[15px]">
                 <li>
                   <a href="mailto:info@caagency.com" className="underline decoration-black/25 underline-offset-[6px] transition-colors hover:decoration-black">
                     info@caagency.com
@@ -145,7 +145,7 @@ export default async function ContactPage({ params }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-black/20 text-foreground-primary transition-colors hover:bg-[#0e0e0e] hover:text-white"
+                    className="grid h-11 w-11 place-items-center rounded-full border mobile:h-10 mobile:w-10 border-black/20 text-foreground-primary transition-colors hover:bg-[#0e0e0e] hover:text-white"
                   >
                     <svg viewBox="0 0 24 24" className="h-[17px] w-[17px] fill-current" aria-hidden="true">
                       <path d={SOCIAL_ICONS[social.name] ?? ''} />
@@ -157,7 +157,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
 
           <div className="tablet:order-1 mobile:order-1">
-            <h1 className="mb-6 font-anegra text-[clamp(40px,6.4vw,96px)] leading-[0.95] text-foreground-primary">{t('getInTouch')}</h1>
+            <h1 className="mb-6 font-anegra text-[clamp(40px,6.4vw,96px)] leading-[0.95] text-foreground-primary mobile:mb-5 mobile:text-[34px]">{t('getInTouch')}</h1>
             <ContactTabs
               tabs={[
                 { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <BrandEnquiryForm labels={formLabels} roster={roster} /> },
@@ -185,25 +185,25 @@ export default async function ContactPage({ params }: Props) {
       />
 
       {/* Office blocks with embedded maps: Dubai HQ (July 2026 R15), USA and the Netherlands (Oct 2026) */}
-      <section className="bg-background-soft pt-[80px] pb-[100px] mobile:pt-[48px] mobile:pb-[60px] px-section-x">
+      <section className="bg-background-soft pt-[80px] pb-[100px] mobile:pt-[36px] mobile:pb-[48px] px-section-x">
         <div className="max-w-container mx-auto">
-          <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-6">
+          <div className="max-w-[850px] mx-auto flex flex-col gap-8 mobile:gap-4">
             {OFFICES.map((office) => (
               <div
                 key={office.labelKey}
-                className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden"
+                className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden mobile:rounded-[16px]"
               >
                 <div className="grid md:grid-cols-2">
-                  <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[30px]">
-                    <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-3">
+                  <div className="flex flex-col justify-center p-[50px] tablet:p-[40px] mobile:p-[20px]">
+                    <p className="font-jost text-[13px] font-medium uppercase tracking-[0.25em] text-foreground-gray mb-3 mobile:mb-2 mobile:text-[10.5px] mobile:tracking-[0.2em]">
                       {t(office.labelKey)}
                     </p>
-                    <p className="font-anegra text-[24px] mobile:text-[21px] leading-[1.3] text-foreground-primary mb-5">
+                    <p className="font-anegra text-[24px] mobile:text-[18px] leading-[1.3] text-foreground-primary mb-5 mobile:mb-3">
                       {t(office.divisionKey)}
                     </p>
                     <p
                       dir="ltr"
-                      className="font-work-sans text-[15px] leading-[1.9] text-foreground-body uppercase tracking-[0.05em] mb-8"
+                      className="font-work-sans text-[15px] leading-[1.9] text-foreground-body uppercase tracking-[0.05em] mb-8 mobile:mb-5 mobile:text-[12.5px] mobile:leading-[1.75]"
                     >
                       {office.lines.map((line, i) => (
                         <span key={line}>
@@ -222,7 +222,7 @@ export default async function ContactPage({ params }: Props) {
                       the top-left depending on the query; the top strip is cropped
                       off and our own "Open in Maps" button sits there instead, so
                       every office map looks the same. */}
-                  <div className="relative h-[320px] overflow-hidden mobile:h-[260px] md:h-auto md:min-h-[340px]">
+                  <div className="relative h-[320px] overflow-hidden mobile:h-[180px] md:h-auto md:min-h-[340px]">
                     <iframe
                       src={office.embed}
                       title={t(office.mapTitleKey)}

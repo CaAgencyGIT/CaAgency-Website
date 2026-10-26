@@ -118,8 +118,12 @@ export default function VideoPlayer({
       { rootMargin: '600px 0px' }
     )
     let exitTimer: ReturnType<typeof setTimeout> | null = null
+    // Phones only play tiles that are mostly on screen, so a long grid never
+    // has more films decoding at once than the iPhone handles smoothly.
+    const phone = window.matchMedia('(max-width: 767px)').matches
+    const minRatio = phone ? 0.5 : 0
     const playObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
         setIsInView(true)
@@ -129,7 +133,7 @@ export default function VideoPlayer({
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = setTimeout(() => setIsInView(false), 200)
       }
-    })
+    }, { threshold: phone ? [0, 0.5] : 0 })
     mountObserver.observe(element)
     playObserver.observe(element)
     return () => {
@@ -208,9 +212,7 @@ export default function VideoPlayer({
     if (!staggeredRef.current) {
       staggeredRef.current = true
       const attemptBeforeWait = playAttemptRef.current
-      // Phones get a wider window: their decoders are the scarcer resource.
-      const spread = window.matchMedia('(max-width: 767px)').matches ? 1200 : 400
-      await new Promise((resolve) => setTimeout(resolve, Math.random() * spread))
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * 400))
       if (attemptBeforeWait !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
     }
 
@@ -400,7 +402,8 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
-          preload="metadata"
+          // Buffer ahead while the tile approaches, so it starts without a stutter.
+          preload="auto"
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'

@@ -125,7 +125,7 @@ function SubmitRow({ label, sending, status, blocked, labels, resultRef }: {
         type="submit"
         disabled={status === 'submitting' || blocked}
         aria-busy={status === 'submitting'}
-        className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-full bg-[#0e0e0e] px-8 font-jost text-[15px] font-medium text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex min-h-[52px] min-w-[190px] items-center justify-center gap-2 rounded-full bg-[#0e0e0e] px-8 font-jost text-[15px] mobile:min-h-[46px] mobile:min-w-[160px] mobile:text-[14px] font-medium text-white transition-colors hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === 'submitting' && <LogoSpinner size={22} label={sending} />}
         {status === 'submitting' ? sending : label}
@@ -140,7 +140,7 @@ function Success({ message, labels, onReset, resultRef }: { message: string; lab
       <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#0e0e0e] text-white">
         <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
       </div>
-      <p className="font-anegra text-[26px] leading-tight text-foreground-dark">{message}</p>
+      <p className="font-anegra text-[26px] leading-tight text-foreground-dark mobile:text-[21px]">{message}</p>
       <button type="button" onClick={onReset} className="mt-6 text-[14px] underline decoration-black/30 underline-offset-4 hover:decoration-black">
         {labels.sendAnotherMessage}
       </button>

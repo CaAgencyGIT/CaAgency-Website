@@ -42,7 +42,7 @@ export default function ContactTabs({
           aria-labelledby={`contact-tab-${tab.id}`}
           hidden={tab.id !== active}
         >
-          <p className="mb-8 max-w-[560px] font-work-sans text-[16px] leading-[1.75] text-foreground-body">{tab.intro}</p>
+          <p className="mb-8 max-w-[560px] font-work-sans text-[16px] leading-[1.75] text-foreground-body mobile:mb-6 mobile:text-[14.5px] mobile:leading-[1.7]">{tab.intro}</p>
           {tab.panel}
         </div>
       ))}
