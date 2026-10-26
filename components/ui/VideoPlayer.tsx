@@ -265,9 +265,10 @@ export default function VideoPlayer({
         return false
       }
       if (!ahead()) {
-        // A film that loaded only its metadata sits suspended; switching the
-        // preload hint doesn't restart the download in Chrome, so kick it.
-        if (video.networkState === HTMLMediaElement.NETWORK_IDLE && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+        // A film that loaded only its metadata (Chrome also takes the first
+        // second or so, then reports enough data) sits suspended; switching
+        // the preload hint doesn't resume the download, so restart it.
+        if (video.networkState === HTMLMediaElement.NETWORK_IDLE) {
           video.preload = 'auto'
           video.load()
         }
