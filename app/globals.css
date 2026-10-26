@@ -511,6 +511,8 @@ video { -webkit-transform: translateZ(0); transform: translateZ(0); }
 .departments-map-pin { fill: #1fbf5b; filter: drop-shadow(0 0 6px rgba(31, 191, 91, 0.9)); }
 .departments-map-pulse { fill: #1fbf5b; opacity: 0.2; transform-box: fill-box; transform-origin: center; animation: departments-pulse 2.4s ease-out infinite; }
 @keyframes departments-pulse { 0% { transform: scale(0.5); opacity: 0.45; } 100% { transform: scale(1.7); opacity: 0; } }
+.departments-map-label { fill: #171715; font-family: var(--font-jost), sans-serif; font-size: 22px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; paint-order: stroke; stroke: #fff; stroke-width: 6px; stroke-linejoin: round; }
+@media (max-width: 767px) { .departments-map-label { font-size: 34px; stroke-width: 9px; } }
 .departments-map-route { stroke: #171715; stroke-width: 2.4; stroke-dasharray: 8 9; stroke-dashoffset: 1600; }
 .departments-map.is-shown .departments-map-route { animation: departments-route-draw 2.6s 0.4s ease forwards; }
 @keyframes departments-route-draw { to { stroke-dashoffset: 0; } }
@@ -522,4 +524,15 @@ video { -webkit-transform: translateZ(0); transform: translateZ(0); }
   .departments-map-pulse { animation: none; }
   .departments-map-route { stroke-dashoffset: 0; animation: none !important; }
   .departments-map-traveller { display: none; }
+}
+
+/* Homepage talent slideshow: six cards across on desktop, three on tablets,
+   two (and a peek) on phones; slides scroll-snap one card at a time. */
+.talent-slideshow { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.talent-slideshow::-webkit-scrollbar { display: none; }
+.talent-slideshow-slide { flex: 0 0 calc((100% - 5 * 20px) / 6); min-width: 0; scroll-snap-align: start; }
+@media (max-width: 1024px) { .talent-slideshow-slide { flex-basis: calc((100% - 2 * 20px) / 3); } }
+@media (max-width: 767px) {
+  .talent-slideshow { gap: 12px; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .talent-slideshow-slide { flex-basis: 44%; }
 }

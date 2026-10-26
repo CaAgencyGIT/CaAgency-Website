@@ -18,10 +18,10 @@ const DOTS = WORLD_ROWS_MASK.flatMap((row, r) =>
 // One pin per department, at the market it is named after. Middle East
 // (Dubai HQ) is the hub every route flows from.
 const PINS = [
-  { id: 'north-america', ...toXY(-98, 39) },
-  { id: 'europe', ...toXY(10, 49) },
-  { id: 'middle-east', ...toXY(55.3, 25.2) },
-  { id: 'asia', ...toXY(127, 37.5) },
+  { id: 'north-america', label: 'North America', dy: 44, ...toXY(-98, 39) },
+  { id: 'europe', label: 'Europe', dy: -32, ...toXY(10, 49) },
+  { id: 'middle-east', label: 'Middle East', dy: 44, ...toXY(55.3, 25.2) },
+  { id: 'asia', label: 'Asia', dy: 44, ...toXY(127, 37.5) },
 ]
 
 // Homepage "Our Departments" world map (Oct 2026): a quiet dot-matrix world
@@ -58,7 +58,7 @@ export default function DepartmentsMap() {
       aria-hidden="true"
     >
       {DOTS.map((d) => (
-        <circle key={`${d.cx}-${d.cy}`} cx={d.cx} cy={d.cy} r={2.6} fill="#6e6a65" />
+        <circle key={`${d.cx}-${d.cy}`} cx={d.cx} cy={d.cy} r={2.6} fill="#3f3d3a" />
       ))}
       {ROUTES.map((d, i) => (
         <g key={d}>
@@ -72,6 +72,9 @@ export default function DepartmentsMap() {
         <g key={p.id}>
           <circle cx={p.x} cy={p.y} r={20} className="departments-map-pulse" />
           <circle cx={p.x} cy={p.y} r={8} className="departments-map-pin" />
+          <text x={p.x} y={p.y + p.dy} textAnchor="middle" className="departments-map-label">
+            {p.label}
+          </text>
         </g>
       ))}
     </svg>
