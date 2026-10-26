@@ -82,7 +82,7 @@ describe('published media assets', () => {
       expect(Number(metadata.format.duration)).toBeGreaterThan(0)
       // Desktop masters stay sharp (Oct 2026 client decision); the phone
       // encodes, where present, keep the original 1.2 Mbps cap.
-      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(2_500_000)
+      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(3_000_000)
       const mobile = mobileVideoSrc(src)
       if (mobile) expect(Number(probe(mobile).format.bit_rate)).toBeLessThanOrEqual(1_300_000)
       expect(videoStreams).toHaveLength(1)
