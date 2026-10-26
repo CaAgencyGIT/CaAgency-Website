@@ -145,7 +145,7 @@ export default function VideoPlayer({
       if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
-        if (initial) setIsInView(true)
+        if (initial || !desktopRef.current) setIsInView(true)
         else if (!enterTimer) enterTimer = setTimeout(() => { enterTimer = null; setIsInView(true) }, 250)
       } else {
         if (enterTimer) clearTimeout(enterTimer)
