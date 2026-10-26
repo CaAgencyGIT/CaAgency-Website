@@ -246,91 +246,45 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'georgii-anua' },
 ]
 
-// Homepage collage (Oct 2026 approved layout, CA-Homepage-Collage brief):
-// seven still photos: the original JPGs and film posters, Yassi cropped. Originals are backed up on the server in
-// /srv/caagency-media-sources/homepage-collage-2026-10.
+// Homepage collage (Oct 2026, client-finalised on phone, same set on every
+// screen): six upright still photos, no names. Originals are backed up on the
+// server in /srv/caagency-media-sources/homepage-collage-2026-10.
 export const homeCollageTiles: HomeCollageTile[] = [
   {
-    area: 'albina',
     name: 'Albina',
     href: '/talents/albina-mavriqi',
     alt: 'Albina Mavriqi applying a Medicube mask with a brush',
     image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
-    position: '50% 40%',
-    mobilePosition: '45% 40%',
+    position: '45% 40%',
   },
   {
-    area: 'rebecca',
     name: 'Rebecca',
     href: '/talents/rebecca-ghaderi',
     alt: 'Rebecca Ghaderi seated in a pink blouse beside a golden serving cloche on an Ellis Brooklyn shoot',
     image: { src: '/images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp', width: 1080, height: 1350 },
-    position: '42% 50%',
-    mobilePosition: '28% 50%',
+    position: '28% 50%',
   },
   {
-    area: 'melly',
     name: 'Melly',
     href: '/talents/melly-sanchez',
     alt: 'Melly Sanchez applying blush with a brush, seated in a director’s chair at a beauty event',
     image: { src: '/images/hero/collage-v2/melly-brush-v1.webp', width: 1080, height: 1440 },
-    position: '46% 24%',
-    mobilePosition: '46% 26%',
+    position: '46% 26%',
   },
   {
-    area: 'yassi',
-    name: 'Yassi',
-    alt: 'Yassi Khatibi in a red dress at the TIRTIR x Ulta Beauty event',
-    image: { src: '/images/hero/collage-v2/yassi-tirtir-ulta-crop-v1.webp', width: 628, height: 832 },
-    position: '50% 28%',
-    mobilePosition: '74% 45%',
-  },
-  {
-    area: 'khutjo',
-    name: 'Khutjo',
-    href: '/talents/khutjo-matsoma',
-    alt: 'Khutjo Matsoma using a facial sculpting tool for Anua',
-    image: { src: '/images/hero/collage-v2/khutjo-anua-poster-v1.webp', width: 720, height: 1280 },
-    position: '50% 32%',
-    mobilePosition: '40% 40%',
-  },
-  {
-    area: 'anton',
-    name: 'Anton',
-    href: '/talents/anton-drozhzhin',
-    alt: 'Anton Drozhzhin applying SKIN1004 skincare',
-    image: { src: '/images/hero/collage-v2/anton-skin1004-poster-v1.webp', width: 720, height: 1280 },
-    position: '50% 25%',
-    mobilePosition: '55% 35%',
-  },
-  {
-    area: 'dariia',
-    name: 'Dariia',
-    href: '/talents/dariia-bordun',
-    alt: 'Dariia Bordun in an Armani Beauty campaign video',
-    image: { src: '/images/hero/collage-v2/dariia-armani-beauty-poster-v1.webp', width: 720, height: 1280 },
-    position: '50% 32%',
-    mobilePosition: '50% 36%',
-  },
-  {
-    area: 'lolavie',
     name: 'Rebecca',
     href: '/talents/rebecca-ghaderi',
     alt: 'Rebecca Ghaderi in a silver dress on set for LolaVie x Charlotte Tilbury',
     image: { src: '/images/hero/collage-v2/rebecca-lolavie-v1.webp', width: 1080, height: 1440 },
-    position: '52% 22%',
-    mobilePosition: '52% 20%',
+    position: '52% 20%',
   },
-  // Phone-only tiles (third row on phones; not part of the desktop grid).
   {
-    area: 'yasaman',
     name: 'Yasaman',
     alt: 'Yasaman taking a mirror selfie at a Prada Beauty makeup station',
     image: { src: '/images/hero/collage-v2/yasaman-prada-beauty-v1.webp', width: 1080, height: 1345 },
     position: '22% 30%',
   },
   {
-    area: 'khutjoEvent',
     name: 'Khutjo',
     href: '/talents/khutjo-matsoma',
     alt: 'Khutjo Matsoma on a large welcome screen reading “Khutjo! Welcome to Korea”',

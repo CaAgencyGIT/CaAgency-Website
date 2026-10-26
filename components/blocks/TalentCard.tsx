@@ -23,8 +23,6 @@ interface TalentCardProps {
   twitchUrl?: string
   kickUrl?: string
   socialLinks?: SocialLink[]
-  /** Play the film on touch screens when the card is centred (default true). */
-  touchVideo?: boolean
   className?: string
 }
 
@@ -74,7 +72,6 @@ export default function TalentCard({
   twitchUrl,
   kickUrl,
   socialLinks,
-  touchVideo = true,
   className,
 }: TalentCardProps) {
   // Build social links array from individual props or use provided array
@@ -88,22 +85,28 @@ export default function TalentCard({
 
   const primaryLink = `/talents/${slug}`
 
-  // Phones (Oct 2026): artwork cards show the whole 4:5 artwork with a small
-  // name and socials underneath, instead of laid over the face.
+  // Artwork cards (Oct 2026, finalised on phone, same design on every screen):
+  // the whole 4:5 artwork with a small name and socials underneath, instead
+  // of laid over the face. Photo-only cards keep the overlay design.
   const art = Boolean(artwork)
 
   return (
     <div
       className={cn(
-        'talent-card relative w-full aspect-3/4 rounded-card overflow-hidden flex flex-col justify-end',
-        'group ring-1 ring-black/5 shadow-e2 hover:ring-black/15 hover:shadow-e3',
-        art && 'mobile:aspect-auto mobile:overflow-visible mobile:rounded-none mobile:bg-transparent mobile:shadow-none mobile:ring-0 mobile:hover:ring-0 mobile:hover:shadow-none',
+        'talent-card group relative w-full',
+        art
+          ? 'flex flex-col'
+          : 'aspect-3/4 rounded-card overflow-hidden flex flex-col justify-end ring-1 ring-black/5 shadow-e2 hover:ring-black/15 hover:shadow-e3',
         className
       )}
     >
-      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[12px] mobile:ring-1 mobile:ring-black/5')}>
-        {/* Card artwork fills the 3:4 frame from the top on larger screens;
-            only ~3% is trimmed from each side, clear of the logo and name. */}
+      <div
+        className={cn(
+          art
+            ? 'relative aspect-4/5 overflow-hidden rounded-[14px] ring-1 ring-black/5 transition-shadow duration-500 group-hover:shadow-e3 mobile:rounded-[12px]'
+            : 'absolute inset-0'
+        )}
+      >
         <Image
           src={artwork?.src ?? imageUrl}
           alt={name}
@@ -115,16 +118,12 @@ export default function TalentCard({
           className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
           sizes={sizes}
         />
-        {videoSrc && <TalentCardVideo src={videoSrc} touch={touchVideo} />}
+        {videoSrc && <TalentCardVideo src={videoSrc} />}
 
-        {/* Gradient Overlay for text readability */}
-        {artwork ? (
-          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-black/65 to-transparent mobile:hidden" />
-        ) : (
-          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-        )}
+        {/* Gradient overlay for the name on photo-only cards */}
+        {!art && <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />}
         {/* Subtle deepen-on-hover layer for editorial focus */}
-        <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+        <div className={cn('absolute inset-0 bg-black/0 transition-colors duration-500', art ? 'group-hover:bg-black/5' : 'group-hover:bg-black/20')} />
       </div>
 
       <Link
@@ -132,20 +131,27 @@ export default function TalentCard({
         // 25 cards in view would each prefetch a profile payload on scroll.
         prefetch={false}
         aria-label={`View ${name}'s profile`}
-        className="absolute inset-0 z-10 rounded-card focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+        className={cn(
+          'absolute inset-0 z-10 focus-visible:outline-2 focus-visible:-outline-offset-4',
+          art ? 'rounded-[14px] focus-visible:outline-foreground-dark' : 'rounded-card focus-visible:outline-white'
+        )}
       />
 
       {/* Content Container */}
       <div
         className={cn(
-          'pointer-events-none relative z-20 flex flex-col items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1',
-          art && 'mobile:items-stretch mobile:p-0 mobile:group-hover:translate-y-0'
+          'pointer-events-none relative z-20 flex flex-col',
+          art
+            ? 'items-stretch'
+            : 'items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1'
         )}
       >
         <h3
           className={cn(
-            'font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center',
-            art && 'mobile:px-0.5 mobile:pt-2 mobile:text-start mobile:text-[13.5px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark mobile:truncate'
+            'font-anegra tracking-[0]',
+            art
+              ? 'truncate px-0.5 pt-3 text-start text-[16px] leading-[1.25] font-normal text-foreground-dark mobile:pt-2 mobile:text-[13.5px]'
+              : 'text-[22px] mobile:text-[18px] font-semibold text-white text-center'
           )}
         >
           {name}
@@ -155,8 +161,10 @@ export default function TalentCard({
         {links.length > 0 && (
           <div
             className={cn(
-              'pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0',
-              art && 'mobile:mt-0 mobile:-ms-1.5 mobile:justify-start mobile:gap-0'
+              'pointer-events-auto flex items-center',
+              art
+                ? '-ms-2 mt-0.5 justify-start gap-0 mobile:-ms-1.5 mobile:mt-0'
+                : 'justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0'
             )}
           >
             {links.map((link, index) => (
@@ -166,8 +174,10 @@ export default function TalentCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  'flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white',
-                  art && 'mobile:min-h-8 mobile:min-w-7 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[13px] mobile:[&_svg]:w-[13px]'
+                  'flex items-center justify-center rounded-full transition-colors',
+                  art
+                    ? 'min-h-9 min-w-9 text-foreground-dark/70 hover:text-foreground-dark focus-visible:outline-foreground-dark [&_svg]:h-[15px] [&_svg]:w-[15px] mobile:min-h-8 mobile:min-w-7 mobile:[&_svg]:h-[13px] mobile:[&_svg]:w-[13px]'
+                    : 'min-h-11 min-w-11 text-white hover:text-white/70 focus-visible:outline-white'
                 )}
                 aria-label={`${name} on ${link.platform}`}
               >

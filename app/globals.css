@@ -221,34 +221,23 @@ section {
   animation-delay: 0.15s;
 }
 
-/* Homepage collage (Oct 2026 approved layout): two large tiles, a stack of
-   three (34/28/38%), a stack of two (45/55%) and Rebecca's LolaVie x
-   Charlotte Tilbury shot as a closing tall tile, built from grid areas so
-   every tile shares the top and bottom edge. Wider than the page container
-   (92vw, max 1800px) and offset back to the viewport centre. Media crop via
-   object-fit only, never stretched. */
+/* Homepage collage (Oct 2026, client-finalised on phone): six upright
+   photos, no names, the same set on every screen: one row on desktop
+   (wider than the page container, 92vw / max 1800px, re-centred), three
+   columns on tablets, two on phones. Cropped by object-fit only. */
 .home-collage {
   display: grid;
-  grid-template-columns: 1.2fr 1.2fr 0.95fr 1fr 1.2fr;
-  grid-template-rows: 34fr 11fr 17fr 38fr;
-  grid-template-areas:
-    "albina rebecca melly anton lolavie"
-    "albina rebecca yassi anton lolavie"
-    "albina rebecca yassi dariia lolavie"
-    "albina rebecca khutjo dariia lolavie";
-  gap: 8px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
-  aspect-ratio: 2050 / 722;
 }
-.home-collage-tile[data-area='yasaman'],
-.home-collage-tile[data-area='khutjoEvent'] { display: none; }
 .home-collage-tile {
   position: relative;
   min-width: 0;
-  min-height: 0;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #e9e6e1;
 }
 .home-collage-media {
@@ -258,33 +247,16 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: var(--pos);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.home-collage-shade {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 38%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0));
-  pointer-events: none;
-}
+.home-collage-tile:hover .home-collage-media { transform: scale(1.03); }
 .home-collage-link {
   position: absolute;
   inset: 0;
   z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  padding: 16px 18px;
   border-radius: inherit;
 }
-a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
-.home-collage-label {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-}
+.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
 .intro-feature-tile img,
 .intro-feature-tile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 /* Hidden (not removed: iOS won't play an undisplayed video) until frames play. */
@@ -298,37 +270,11 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   -webkit-appearance: none;
 }
 @media (max-width: 1100px) {
-  .home-collage { aspect-ratio: 2 / 1; }
-  .home-collage-link { padding: 12px 14px; }
-  .home-collage-label { font-size: 11px; }
+  .home-collage { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; margin-left: 0; }
 }
-/* Phones: a 2x2 collage of its own rather than the shrunken desktop grid:
-   Albina and Rebecca, Melly and Rebecca's LolaVie x Charlotte Tilbury shot,
-   then Yasaman (Prada Beauty) and Khutjo (Welcome to Korea), all
-   upright. The desktop Khutjo, Yassi, Anton, Dariia and the names are left
-   out here (client, Oct 2026). */
 @media (max-width: 760px) {
-  .home-collage {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "albina rebecca"
-      "melly lolavie"
-      "yasaman khutjoEvent";
-    gap: 8px;
-    width: 100%;
-    margin-left: 0;
-    aspect-ratio: auto;
-  }
-  .home-collage-tile { aspect-ratio: 3 / 4; }
-  .home-collage-tile[data-area='yasaman'],
-  .home-collage-tile[data-area='khutjoEvent'] { display: block; }
-  .home-collage-media { object-position: var(--pos-m); }
-  .home-collage-tile[data-area='khutjo'],
-  .home-collage-tile[data-area='yassi'],
-  .home-collage-tile[data-area='anton'],
-  .home-collage-tile[data-area='dariia'] { display: none; }
-  .home-collage-shade, .home-collage-label { display: none; }
+  .home-collage { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .home-collage-tile { border-radius: 10px; }
 }
 
 @keyframes status-enter {

@@ -58,7 +58,8 @@ export default function TalentGrid({
       slug={talent.slug}
       name={talent.name}
       imageUrl={talent.imageUrl}
-      videoSrc={talentFilmSrc(talent.slug)}
+      // The talents roster stays on the still artwork on every screen.
+      videoSrc={mobileLayout === 'list' ? undefined : talentFilmSrc(talent.slug)}
       artwork={cardArt ? talentCardArt[talent.slug] : undefined}
       sizes={imageSizes[columns]}
       priority={prioritizeFirst && index === 0}
@@ -67,8 +68,6 @@ export default function TalentGrid({
       youtubeUrl={talent.youtubeUrl}
       twitchUrl={talent.twitchUrl}
       kickUrl={talent.kickUrl}
-      // The phone roster grid stays on the still artwork.
-      touchVideo={mobileLayout !== 'list'}
     />
   )
 

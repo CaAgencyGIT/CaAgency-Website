@@ -6,7 +6,7 @@ import { pickVideoSrc } from '@/lib/media/video-src'
 // Talent card film: fades in over the photo and plays while the card is
 // hovered, or on touch screens while the card sits in the middle of the
 // screen. Nothing loads until the first time it is needed.
-export default function TalentCardVideo({ src, touch = true }: { src: string; touch?: boolean }) {
+export default function TalentCardVideo({ src }: { src: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [on, setOn] = useState(false)
   const [loaded, setLoaded] = useState(false)
@@ -36,15 +36,12 @@ export default function TalentCardVideo({ src, touch = true }: { src: string; to
       }
     }
 
-    // Some grids keep phones on the still artwork (talents page, Oct 2026).
-    if (!touch) return
-
     const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()), {
       rootMargin: '-35% 0px -35% 0px',
     })
     io.observe(card)
     return () => io.disconnect()
-  }, [touch])
+  }, [])
 
   useEffect(() => {
     const video = ref.current
