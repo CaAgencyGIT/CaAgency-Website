@@ -234,7 +234,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
             {related.map((cs) => (
               <ScrollReveal key={cs.slug} yOffset={24}>
-                <CaseStudyCard study={cs} />
+                <CaseStudyCard study={cs} playVideo />
               </ScrollReveal>
             ))}
           </div>
@@ -245,7 +245,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <section className="bg-background-base py-[80px] px-section-x border-t border-black/5">
         <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
           <Heading as="h2" color="dark" className="mb-6 text-[40px] mobile:mb-4 mobile:text-[24px]">
-            Want Results Like This?
+            Achieve Results of This Calibre
           </Heading>
           <Text color="dark" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-80">
             Tell us about your brand and we&apos;ll match you with the right creators for your next campaign.
