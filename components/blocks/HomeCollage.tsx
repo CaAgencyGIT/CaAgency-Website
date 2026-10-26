@@ -14,11 +14,12 @@ export interface HomeCollageTile {
 }
 
 // Homepage collage (Oct 2026): six upright photos, the same set on every
-// screen. One row on desktop, three columns on tablets and a swipe row on
-// phones (see .home-collage in globals.css). Cropped by object-fit only.
-export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
+// screen. One row on desktop, three columns on tablets and two on phones;
+// `swipe` turns the phone layout into a swipe row (About page). See
+// .home-collage in globals.css. Cropped by object-fit only.
+export default function HomeCollage({ tiles, swipe = false }: { tiles: HomeCollageTile[]; swipe?: boolean }) {
   return (
-    <div className="home-collage">
+    <div className={swipe ? 'home-collage home-collage--swipe' : 'home-collage'}>
       {tiles.map((tile, index) => (
         <div key={tile.image.src} className="home-collage-tile" style={{ ['--pos' as string]: tile.position ?? '50% 30%' }}>
           <Image
