@@ -60,10 +60,10 @@ describe('published media assets', () => {
     expect(bytes(aboutVideos)).toBeLessThanOrEqual(5 * 1024 * 1024)
     // October 2026 redesign films, appended to Work and lazy-loaded tile by
     // tile, so this worst case is never one download. Desktop keeps the
-    // client-approved near-source quality; phones load the light -m.mp4
-    // encodes instead (bounded separately below).
-    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(96 * 1024 * 1024)
-    expect(bytes(workFilms.map((key) => ({ src: mobileVideoSrc(filmSrc(key)) ?? filmSrc(key) })))).toBeLessThanOrEqual(48 * 1024 * 1024)
+    // client-approved near-source quality (1080p where the original has it,
+    // Oct 2026); phones load the light -m.mp4 encodes (bounded separately).
+    expect(bytes(workFilms.map((key) => ({ src: filmSrc(key) })))).toBeLessThanOrEqual(160 * 1024 * 1024)
+    expect(bytes(workFilms.map((key) => ({ src: mobileVideoSrc(filmSrc(key)) ?? filmSrc(key) })))).toBeLessThanOrEqual(56 * 1024 * 1024)
   })
 
   it('maps redesign films only to existing case studies', () => {
@@ -80,21 +80,20 @@ describe('published media assets', () => {
 
       expect(metadata.format.format_name).toContain('mp4')
       expect(Number(metadata.format.duration)).toBeGreaterThan(0)
-      // Desktop masters stay sharp (Oct 2026 client decision); the phone
-      // encodes, where present, keep the original 1.2 Mbps cap.
-      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(3_000_000)
+      // Desktop masters stay sharp (Oct 2026 client decision, up to 1080p);
+      // phone encodes, where present, stay light enough for iPhones.
+      expect(Number(metadata.format.bit_rate)).toBeLessThanOrEqual(5_000_000)
       const mobile = mobileVideoSrc(src)
-      if (mobile) expect(Number(probe(mobile).format.bit_rate)).toBeLessThanOrEqual(1_300_000)
+      if (mobile) expect(Number(probe(mobile).format.bit_rate)).toBeLessThanOrEqual(1_800_000)
       expect(videoStreams).toHaveLength(1)
       expect(audioStreams).toHaveLength(0)
       expect(video.codec_name).toBe('h264')
       expect(video.pix_fmt).toBe('yuv420p')
-      // Bumped from 540x960 to the full 720x1280 source resolution (Oct 2026,
-      // client request for sharper video) — bitrate and the total transfer
-      // budgets below are what actually bound payload size, so re-encoding at
-      // full resolution with a higher CRF keeps those unchanged.
-      expect(video.width).toBeLessThanOrEqual(720)
-      expect(video.height).toBeLessThanOrEqual(1280)
+      // Up to 1080x1920 (Oct 2026, client request for sharper video: Work
+      // films re-encoded from their best available originals). Never upscaled
+      // beyond the source; bitrate and transfer budgets bound payload size.
+      expect(video.width).toBeLessThanOrEqual(1080)
+      expect(video.height).toBeLessThanOrEqual(1920)
 
       const contents = readFileSync(publicFile(src))
       const moov = contents.indexOf(Buffer.from('moov'))

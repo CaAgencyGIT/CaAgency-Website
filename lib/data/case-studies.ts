@@ -94,7 +94,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Retail',
     platforms: ['TikTok', 'Instagram Reels'],
     creator: '@pomogisebe',
-    videoSrc: '/videos/redesign/rd-georgii-yesstyle-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-georgii-yesstyle-web-v3.mp4',
     summary:
       'A step-by-step pore-care routine built entirely from K-beauty bestsellers available on YesStyle.',
     brief:
@@ -132,7 +132,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['TikTok', 'Instagram Reels'],
     creator: '@jaysadiq_',
-    videoSrc: '/videos/redesign/rd-jay-mixsoon-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-jay-mixsoon-web-v3.mp4',
     summary:
       'A talking-head ingredient explainer for Mixsoon’s Bean Copper Peptide Firming Serum, aimed at men’s skincare.',
     brief:
@@ -227,7 +227,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Color Cosmetics',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@thefashionfreakk',
-    videoSrc: '/videos/redesign/rd-melly-fenty-original-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-melly-fenty-original-web-v3.mp4',
     summary:
       'A real-time foundation try-on of Fenty Beauty’s Pro Filt’r Fluid Flex Foundation, built around how weightless it feels.',
     brief:
@@ -306,7 +306,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@pomogisebe',
-    videoSrc: '/videos/redesign/rd-georgii-anua-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-georgii-anua-web-v3.mp4',
     summary:
       'A five-rule face-massage tutorial using Anua’s gua sha cream, from lymphatic drainage to sculpting.',
     brief:
@@ -326,7 +326,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@imkablan',
-    videoSrc: '/videos/redesign/rd-aiym-purito-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-aiym-purito-web-v3.mp4',
     summary:
       'A time-stamped “morning routine” vlog that weaves Purito Seoul into an authentic, step-by-step routine.',
     brief:
@@ -346,7 +346,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Haircare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@beatrixramosaj',
-    videoSrc: '/videos/redesign/rd-beatrix-gisou-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-gisou-web-v3.mp4',
     summary:
       'Hair-first content that lets Gisou’s signature glossy finish speak for itself on long, voluminous waves.',
     brief:
@@ -384,7 +384,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@rebeccaghaderi',
-    videoSrc: '/videos/redesign/rd-rebecca-haruharu-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-rebecca-haruharu-web-v3.mp4',
     summary:
       'An active, outdoor-glow story for Haruharu Wonder’s black rice glow mist, used throughout the day.',
     brief:
@@ -404,7 +404,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@_idareen_',
-    videoSrc: '/videos/redesign/rd-dariia-armani-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-armani-web-v3.mp4',
     summary:
       'A buildable cheek-colour tutorial using Armani Beauty’s Luminous Silk liquid cheek tint.',
     brief:
@@ -424,7 +424,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@_idareen_',
-    videoSrc: '/videos/redesign/rd-dariia-valentino-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-valentino-web-v3.mp4',
     summary:
       'A colour-matching makeup tutorial pairing Valentino’s Spike lipstick and Eye2Cheek blush into one coordinated look.',
     brief:
@@ -444,7 +444,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Luxury Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@_idareen_',
-    videoSrc: '/videos/redesign/rd-dariia-chanel-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-dariia-chanel-web-v3.mp4',
     summary:
       'A one-product base tutorial showing how Chanel’s Les Beiges Pearly Glow creates a pearlescent skin finish.',
     brief:
@@ -464,7 +464,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Makeup',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@thefashionfreakk',
-    videoSrc: '/videos/redesign/rd-melly-rare-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-melly-rare-web-v3.mp4',
     summary:
       'A flushed, glowy makeup look pairing Rare Beauty’s blush with its lip oil.',
     brief:
@@ -484,7 +484,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'Clean Beauty',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@rebeccaghaderi',
-    videoSrc: '/videos/redesign/rd-rebecca-saie-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-rebecca-saie-web-v3.mp4',
     summary:
       'A sunny, on-the-go glow look created entirely with Saie, applied straight from the makeup bag.',
     brief:
@@ -524,7 +524,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@melaniseiffert',
-    videoSrc: '/videos/redesign/rd-melani-medicube-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-melani-medicube-web-v3.mp4',
     summary:
       'A glass-skin night routine built around Medicube’s Collagen Night Wrapping Mask, from application to the peel-off reveal.',
     brief:
@@ -544,7 +544,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@loresakonushevci',
-    videoSrc: '/videos/redesign/rd-loresa-celimax-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-loresa-celimax-web-v3.mp4',
     summary:
       'A precise application tutorial for Celimax’s retinal shot, mapped to dark circles, fine lines and uneven tone.',
     brief:
@@ -564,7 +564,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@beatrixramosaj',
-    videoSrc: '/videos/redesign/rd-beatrix-abib-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-abib-web-v3.mp4',
     summary:
       'A day of sun-care reapplication with Abib’s Airy Sunstick, from the park to the car.',
     brief:
@@ -584,7 +584,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@shellbeauty1',
-    videoSrc: '/videos/redesign/rd-sadaf-axisy-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-sadaf-axisy-web-v3.mp4',
     summary:
       'A lip-care routine introducing AXIS-Y’s lip oils, from swatches to a glossy, cared-for finish.',
     brief:
@@ -664,7 +664,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@albina',
-    videoSrc: '/videos/redesign/rd-albina-torriden-web-v3.mp4',
+    videoSrc: '/videos/redesign/rd-albina-torriden-web-v4.mp4',
     summary:
       'A firming-skincare story for Torriden’s Cellmazing Low Molecular Collagen Firming Cream, from texture to bouncy result.',
     brief:
@@ -684,7 +684,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@saranda',
-    videoSrc: '/videos/redesign/rd-saranda-boj-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-saranda-boj-web-v3.mp4',
     summary:
       'A seven-day under-eye diary using Beauty of Joseon’s Revive Eye Serum and Revive Under Eye Patch with ginseng and retinal.',
     brief:
@@ -704,7 +704,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@khutjo.matsoma',
-    videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v3.mp4',
+    videoSrc: '/videos/redesign/rd-khutjo-frankly-web-v4.mp4',
     summary:
       'A poreless glass-skin routine centred on a few drops of Frankly’s Closer Serum.',
     brief:
@@ -724,7 +724,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@therealbeatrixramosaj',
-    videoSrc: '/videos/redesign/rd-beatrix-biodance-web-v2.mp4',
+    videoSrc: '/videos/redesign/rd-beatrix-biodance-web-v3.mp4',
     summary:
       'A day-in-the-life story showing how Biodance’s overnight mask glow lasts, topped up with the Caviar PDRN Jelly Serum Mist.',
     brief:
@@ -744,7 +744,7 @@ export const caseStudies: CaseStudy[] = [
     vertical: 'K-Beauty Skincare',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@closmain',
-    videoSrc: '/videos/redesign/rd-anton-azelaic-web-v3.mp4',
+    videoSrc: '/videos/redesign/rd-anton-azelaic-web-v4.mp4',
     summary:
       'A daily-routine video for SKIN1004’s Azelaic Acid 10%, framed around Anton’s own experience with acne-prone skin.',
     brief:
