@@ -60,6 +60,7 @@ live DNS, production Workers, or the old server without approval.
 - CSS is inlined into the HTML (`experimental.inlineCss`) — no render-blocking stylesheet request. Turning it off (Oct 2026) cost ~200ms FCP/LCP on the homepage in production Lighthouse; don't flip it without field data
 - Hero entrance animations (`hero-rise*`) are transform-only — never fade LCP candidates from opacity 0
 - Static assets get `immutable` Cache-Control headers via public/_headers
+- Real-visitor Core Web Vitals (LCP, INP, CLS, FCP, TTFB) are beaconed to `/api/vitals` and logged as `[vitals]` journal lines; judge performance changes on that field data (`journalctl -u caagency-website -o cat | node scripts/vitals-report.mjs`)
 
 ## Verification Standards
 - TypeScript must pass: `npx tsc --noEmit`

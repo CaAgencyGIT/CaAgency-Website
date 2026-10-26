@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { Anegra, WorkSans, Jost } from '@/lib/fonts'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/root-metadata'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+import WebVitals from '@/components/analytics/WebVitals'
 import RevealObserver from '@/components/providers/RevealObserver'
 import BackToTop from '@/components/ui/BackToTop'
 
@@ -41,6 +42,8 @@ export default async function RootDocument({
         <BackToTop label={t('backToTop')} />
         <RevealObserver />
         {process.env.NEXT_PUBLIC_PREVIEW_MODE !== 'true' && <GoogleAnalytics />}
+        {/* Anonymous real-visitor speed data for public pages (not admin). */}
+        {includePublicSchema && process.env.NEXT_PUBLIC_PREVIEW_MODE !== 'true' && <WebVitals />}
 
       </body>
     </html>
