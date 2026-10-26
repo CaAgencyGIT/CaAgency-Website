@@ -7,7 +7,7 @@ import CountUp from '@/components/ui/CountUp'
 import { getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { homeCollageTiles, introShowreels } from '@/lib/data/redesign-media'
+import { aboutCollageTiles, introShowreels } from '@/lib/data/redesign-media'
 import HomeCollage from '@/components/blocks/HomeCollage'
 
 // Safety net next to the on-save revalidation in lib/revalidate.ts.
@@ -139,7 +139,7 @@ export default async function AboutPage({ params }: Props) {
       {/* The same six-photo collection as the homepage. */}
       <section className="px-section-x pb-[90px] mobile:pb-[56px]">
         <div className="mx-auto max-w-container">
-          <HomeCollage tiles={homeCollageTiles} swipe />
+          <HomeCollage tiles={aboutCollageTiles} swipe />
         </div>
       </section>
 

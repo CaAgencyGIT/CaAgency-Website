@@ -184,10 +184,11 @@ export const homeCollageTiles: HomeCollageTile[] = [
   {
     name: 'Albina',
     href: '/talents/albina-mavriqi',
-    alt: 'Albina Mavriqi applying a Medicube mask with a brush',
+    alt: 'Albina Mavriqi with glass skin, touching her cheek, on a white background',
     area: 'albina',
-    image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
-    position: '45% 40%',
+    // Approved white glass-skin portrait (Oct 2026), the client's file as supplied.
+    image: { src: '/images/hero/collage-v2/albina-white-glass-skin-v1.jpg', width: 941, height: 1672 },
+    position: '50% 42%',
   },
   {
     name: 'Rebecca',
@@ -229,6 +230,19 @@ export const homeCollageTiles: HomeCollageTile[] = [
     position: '52% 58%',
   },
 ]
+
+// About keeps Albina's earlier Medicube still (Oct 2026: the new white
+// glass-skin portrait replaces it on the homepage only).
+export const aboutCollageTiles: HomeCollageTile[] = homeCollageTiles.map((tile) =>
+  tile.area === 'albina'
+    ? {
+        ...tile,
+        alt: 'Albina Mavriqi applying a Medicube mask with a brush',
+        image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
+        position: '45% 40%',
+      }
+    : tile,
+)
 
 // White brand logos overlaid on the redesign films (the older work videos
 // have theirs burned in). widthPct balances wide wordmarks against tall ones.
