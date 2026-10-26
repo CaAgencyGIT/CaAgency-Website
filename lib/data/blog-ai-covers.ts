@@ -1,7 +1,7 @@
 // Editorial AI-generated blog covers (MiniMax image-01, Oct 2026), one per
-// post, no text or logos. Prompts: generated per post topic in one shared
+// post, no text or logos. v2: varied real-world scenes per topic and market. Prompts: generated per post topic in one shared
 // style; regenerate with a new version number rather than overwriting.
-export const AI_COVER_VERSION = 1
+export const AI_COVER_VERSION = 2
 
 export const aiCoverSlugs: ReadonlySet<string> = new Set([
   'find-skincare-influencers-usa',
