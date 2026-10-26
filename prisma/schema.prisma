@@ -56,3 +56,25 @@ model SiteContent {
 
   @@index([key])
 }
+
+/// Every contact form submission (brand enquiry or talent application),
+/// stored before the email is sent so no enquiry is ever lost. The dashboard
+/// reads this table (read-only role) to show enquiries as leads.
+model ContactEnquiry {
+  id         String   @id @default(cuid())
+  formType   String
+  fullName   String
+  email      String
+  company    String?
+  subject    String
+  /// The validated form data (talents, timing, profiles, …) as submitted.
+  data       Json
+  /// received → emailed | email_failed | preview
+  status     String   @default("received")
+  error      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([email])
+}
