@@ -78,11 +78,11 @@ export default async function HomePage() {
               {content.stats.tagline}
             </p>
           </ScrollReveal>
-          {/* Departments by region (July 2026 round 3): the old inline-link
-              paragraph restructured into a four-region editorial list, in the
-              client-specified order North America → Europe → Middle East → Asia. */}
+          {/* Departments by region: four-region editorial list in the client-
+              specified order North America → Europe → Middle East → Asia, with
+              the client's Oct 2026 descriptions. */}
           <ScrollReveal delay={0.35} yOffset={20}>
-            <div className="mx-auto mt-20 max-w-[1040px] tablet:mt-16 mobile:mt-12">
+            <div className="mx-auto mt-20 max-w-[1180px] tablet:mt-16 mobile:mt-12">
               <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
                 Our Departments
               </p>
@@ -94,73 +94,26 @@ export default async function HomePage() {
                   {
                     region: 'North America',
                     href: '/influencer-marketing-usa',
-                    copy: (
-                      <>
-                        Creator campaigns for{' '}
-                        <Link
-                          href="/beauty-influencer-marketing-agency"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          beauty
-                        </Link>{' '}
-                        and{' '}
-                        <Link
-                          href="/skincare-influencer-marketing-agency"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          skincare
-                        </Link>{' '}
-                        brands in the world’s largest beauty market, coast to coast.
-                      </>
-                    ),
+                    copy:
+                      "Connecting brands with influential creators across North America through strategic partnerships and impactful campaigns. We bring together creativity, industry expertise and market insights to build lasting connections.",
                   },
                   {
                     region: 'Europe',
                     href: '/influencer-marketing-uk',
-                    copy: (
-                      <>
-                        Campaigns across{' '}
-                        <Link
-                          href="/influencer-marketing-uk"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          Europe
-                        </Link>{' '}
-                        and the continent’s style capitals.
-                      </>
-                    ),
+                    copy:
+                      "Building meaningful connections between brands, creators and audiences across key European markets. Our international network enables tailored collaborations that resonate across cultures and borders.",
                   },
                   {
                     region: 'Middle East',
                     href: '/influencer-marketing-dubai',
-                    copy: (
-                      <>
-                        Rooted in Dubai, reaching audiences across the{' '}
-                        <Link
-                          href="/influencer-marketing-uae"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          UAE
-                        </Link>{' '}
-                        and GCC.
-                      </>
-                    ),
+                    copy:
+                      "With our HQ based in Dubai, we connect international brands with creators and audiences across the Middle East. Our regional perspective and global network allow us to create partnerships that extend beyond borders.",
                   },
                   {
                     region: 'Asia',
                     href: '/influencer-marketing-asia',
-                    copy: (
-                      <>
-                        From Seoul to Shanghai, Tokyo and Singapore, home of our{' '}
-                        <Link
-                          href="/korean-skincare-influencer-marketing"
-                          className="text-foreground-primary underline underline-offset-4 decoration-black/20 hover:decoration-accent-red transition-colors"
-                        >
-                          K-beauty
-                        </Link>{' '}
-                        specialism.
-                      </>
-                    ),
+                    copy:
+                      "Bridging global brands with Asia's dynamic creator landscape through culturally relevant partnerships. We connect creativity with opportunity, supporting meaningful collaborations across diverse markets.",
                   },
                 ].map((dept) => (
                   <li key={dept.region} className="text-center tablet:text-center mobile:text-center">
@@ -176,7 +129,7 @@ export default async function HomePage() {
                         →
                       </span>
                     </Link>
-                    <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.75] text-black/60 text-pretty mobile:mt-2 mobile:text-[12.5px] mobile:leading-[1.6]">{dept.copy}</p>
+                    <p className="mx-auto mt-4 max-w-[252px] text-[14px] leading-[1.75] text-black/60 text-pretty tablet:max-w-[320px] mobile:mt-2 mobile:text-[12.5px] mobile:leading-[1.6]">{dept.copy}</p>
                   </li>
                 ))}
               </ul>
