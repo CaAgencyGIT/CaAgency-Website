@@ -8,8 +8,8 @@ import { MOBILE_VIDEO_MEDIA, mobileVideoSrc } from '@/lib/media/video-src'
 // page load (preload="none", no autoPlay): buffering starts when the tile
 // nears the viewport and playback while it's on screen. A blocked autoplay
 // (iOS Low Power Mode) is retried on the visitor's first touch or key press
-// instead of showing a play button. Reduced motion or Save-Data keep the
-// poster only.
+// instead of showing a play button. The showreels always play, also with
+// reduced motion or Save-Data on (client decision, Oct 2026).
 export default function CollageVideo({
   src,
   poster,
@@ -26,8 +26,7 @@ export default function CollageVideo({
   useEffect(() => {
     const video = ref.current
     if (!video) return
-    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
-    if (saveData || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const gestures = ['touchstart', 'pointerdown', 'keydown', 'scroll'] as const
 
     // React doesn't reliably emit the `muted` attribute; iOS won't autoplay without it.
     video.muted = true
@@ -36,7 +35,10 @@ export default function CollageVideo({
 
     // Reveal the video only once frames are actually playing; until then the
     // poster underneath shows.
-    const onPlaying = () => video.setAttribute('data-playing', '')
+    const onPlaying = () => {
+      video.setAttribute('data-playing', '')
+      gestures.forEach((e) => window.removeEventListener(e, tryPlay))
+    }
     video.addEventListener('playing', onPlaying)
 
     let visible = false
@@ -65,19 +67,16 @@ export default function CollageVideo({
     )
     observer.observe(video)
 
-    const gestures = ['touchstart', 'pointerdown', 'keydown'] as const
-    const onGesture = () => {
-      tryPlay()
-      gestures.forEach((e) => window.removeEventListener(e, onGesture))
-    }
-    gestures.forEach((e) => window.addEventListener(e, onGesture, { passive: true }))
+    // Retried on every touch, scroll or key press until frames play (iOS Low
+    // Power Mode can refuse the first unprompted play()).
+    gestures.forEach((e) => window.addEventListener(e, tryPlay, { passive: true }))
     document.addEventListener('visibilitychange', tryPlay)
     video.addEventListener('canplay', tryPlay)
 
     return () => {
       warm.disconnect()
       observer.disconnect()
-      gestures.forEach((e) => window.removeEventListener(e, onGesture))
+      gestures.forEach((e) => window.removeEventListener(e, tryPlay))
       document.removeEventListener('visibilitychange', tryPlay)
       video.removeEventListener('canplay', tryPlay)
       video.removeEventListener('playing', onPlaying)
