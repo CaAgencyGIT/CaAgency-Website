@@ -123,7 +123,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={await getTalentsBySlugs(homeTalentSlugs)} columns={6} cardArt />
+          <TalentGrid talents={await getTalentsBySlugs(homeTalentSlugs)} columns={6} cardArt mobileLayout="carousel" />
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">

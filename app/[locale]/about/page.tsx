@@ -52,7 +52,7 @@ export default async function AboutPage({ params }: Props) {
       {/* Statement hero */}
       <section className="about-hero px-section-x pt-[90px] pb-[80px] mobile:pt-[50px] mobile:pb-[44px]">
         <div className="max-w-container mx-auto grid grid-cols-[1.15fr_1fr] items-center gap-[7vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-8">
-          <h1 className="hero-rise-media font-anegra text-[clamp(52px,7.4vw,112px)] leading-[0.95] tracking-[-0.02em] text-foreground-primary text-balance">
+          <h1 className="hero-rise-media font-anegra text-[clamp(40px,7.4vw,112px)] leading-[0.95] tracking-[-0.02em] text-foreground-primary text-balance">
             {t('heroTitle')}
           </h1>
           <div className="hero-rise hero-rise-2 max-w-[480px]">

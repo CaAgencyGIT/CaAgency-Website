@@ -427,7 +427,7 @@
     .rd-brand-band { gap: 16px 24px; padding: 15px 5vw 25px; }
     .rd-brand-band span { font-size: 23px; }
     .rd-section-heading { gap: 15px; margin-bottom: 27px; }
-    .rd-section-heading h2 { font-size: 41px; }
+    .rd-section-heading h2 { font-size: 32px; line-height: 1.15; }
     .rd-section-heading > .rd-text-link { font-size: 10px; }
     .rd-eyebrow { font-size: 11px; }
     .rd-feature-grid { grid-template-columns: repeat(2, 1fr); gap: 25px 14px; }

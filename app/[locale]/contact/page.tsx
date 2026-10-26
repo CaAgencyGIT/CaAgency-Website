@@ -157,7 +157,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
 
           <div className="tablet:order-1 mobile:order-1">
-            <h1 className="mb-6 font-anegra text-[clamp(52px,6.4vw,96px)] leading-[0.95] text-foreground-primary">{t('getInTouch')}</h1>
+            <h1 className="mb-6 font-anegra text-[clamp(40px,6.4vw,96px)] leading-[0.95] text-foreground-primary">{t('getInTouch')}</h1>
             <ContactTabs
               tabs={[
                 { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <BrandEnquiryForm labels={formLabels} roster={roster} /> },

@@ -85,37 +85,44 @@ export default function TalentCard({
 
   const primaryLink = `/talents/${slug}`
 
+  // Phones (Oct 2026): artwork cards show the whole 4:5 artwork with the name
+  // and socials in a strip underneath, instead of laid over the face.
+  const art = Boolean(artwork)
+
   return (
     <div
       className={cn(
         'talent-card relative w-full aspect-3/4 rounded-card overflow-hidden flex flex-col justify-end',
         'group ring-1 ring-black/5 shadow-e2 hover:ring-black/15 hover:shadow-e3',
+        art && 'mobile:aspect-auto mobile:rounded-[18px] mobile:bg-white mobile:shadow-none mobile:ring-black/10',
         className
       )}
     >
-      {/* Background Image. Card artwork fills the 3:4 frame from the top; only
-          ~3% is trimmed from each side, clear of the logo and name. */}
-      <Image
-        src={artwork?.src ?? imageUrl}
-        alt={name}
-        fill
-        quality={artwork ? 85 : 60}
-        preload={priority}
-        loading={priority ? undefined : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
-        sizes={sizes}
-      />
-      {videoSrc && <TalentCardVideo src={videoSrc} />}
+      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden')}>
+        {/* Card artwork fills the 3:4 frame from the top on larger screens;
+            only ~3% is trimmed from each side, clear of the logo and name. */}
+        <Image
+          src={artwork?.src ?? imageUrl}
+          alt={name}
+          fill
+          quality={artwork ? 75 : 60}
+          preload={priority}
+          loading={priority ? undefined : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
+          sizes={sizes}
+        />
+        {videoSrc && <TalentCardVideo src={videoSrc} />}
 
-      {/* Gradient Overlay for text readability */}
-      {artwork ? (
-        <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-black/65 to-transparent" />
-      ) : (
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-      )}
-      {/* Subtle deepen-on-hover layer for editorial focus */}
-      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+        {/* Gradient Overlay for text readability */}
+        {artwork ? (
+          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-black/65 to-transparent mobile:hidden" />
+        ) : (
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+        )}
+        {/* Subtle deepen-on-hover layer for editorial focus */}
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+      </div>
 
       <Link
         href={primaryLink}
@@ -126,21 +133,39 @@ export default function TalentCard({
       />
 
       {/* Content Container */}
-      <div className="pointer-events-none relative z-20 flex flex-col items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1">
-        <h3 className="font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center">
+      <div
+        className={cn(
+          'pointer-events-none relative z-20 flex flex-col items-center justify-center pb-6 px-3 transition-transform duration-500 ease-out group-hover:-translate-y-1',
+          art && 'mobile:items-stretch mobile:p-0 mobile:group-hover:translate-y-0'
+        )}
+      >
+        <h3
+          className={cn(
+            'font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center',
+            art && 'mobile:px-4 mobile:py-3.5 mobile:text-start mobile:text-[17px] mobile:text-foreground-dark mobile:border-t mobile:border-black/10'
+          )}
+        >
           {name}
         </h3>
 
         {/* Social Icons — always visible on touch (incl. tablets), reveal on hover where hover exists */}
         {links.length > 0 && (
-          <div className="pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0">
+          <div
+            className={cn(
+              'pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0',
+              art && 'mobile:mt-0 mobile:grid mobile:grid-flow-col mobile:auto-cols-fr mobile:gap-0 mobile:divide-x mobile:divide-black/10 mobile:border-t mobile:border-black/10'
+            )}
+          >
             {links.map((link, index) => (
               <a
                 key={`${link.platform}-${index}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white"
+                className={cn(
+                  'flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white',
+                  art && 'mobile:min-h-12 mobile:rounded-none mobile:text-foreground-dark mobile:hover:text-foreground-dark/60 mobile:[&_svg]:h-[18px] mobile:[&_svg]:w-[18px]'
+                )}
                 aria-label={`${name} on ${link.platform}`}
               >
                 <SocialIcon platform={link.platform} />
