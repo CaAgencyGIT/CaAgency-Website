@@ -87,7 +87,6 @@ export default function VideoPlayer({
   const prebufferedRef = useRef(false)
   // Desktop: a fine pointer on a wide screen. Decided after mount, so the
   // server render and first paint match the phone-safe defaults.
-  const [desktop, setDesktop] = useState(false)
   const desktopRef = useRef(false)
   const [isNearView, setIsNearView] = useState(false)
   // CSS width when the film first came near, to pick a source that fits it.
@@ -145,7 +144,7 @@ export default function VideoPlayer({
       if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
-        if (initial || !desktopRef.current) setIsInView(true)
+        if (initial) setIsInView(true)
         else if (!enterTimer) enterTimer = setTimeout(() => { enterTimer = null; setIsInView(true) }, 250)
       } else {
         if (enterTimer) clearTimeout(enterTimer)
@@ -171,7 +170,6 @@ export default function VideoPlayer({
     const query = window.matchMedia('(min-width: 768px) and (pointer: fine)')
     const update = () => {
       desktopRef.current = query.matches
-      setDesktop(query.matches)
     }
     update()
     query.addEventListener('change', update)
@@ -260,9 +258,7 @@ export default function VideoPlayer({
     // a connection, "canplaythrough" fired with only ~1s buffered and the
     // remaining Work grid freezes all happened 0.5-2s in). The poster stays
     // up meanwhile; on a slow connection it plays anyway after the cap.
-    // Desktop only: iOS doesn't buffer ahead without play(), and restarting
-    // its download left films paused on iPhones.
-    if (desktopRef.current && !hasPlayedRef.current && !prebufferedRef.current) {
+    if (!hasPlayedRef.current && !prebufferedRef.current) {
       prebufferedRef.current = true
       const ahead = () => {
         const { buffered, currentTime, duration } = video
@@ -289,7 +285,7 @@ export default function VideoPlayer({
             resolve()
           }
           const check = () => { if (ahead()) done() }
-          const timer = setTimeout(done, 4000)
+          const timer = setTimeout(done, desktopRef.current ? 4000 : 1500)
           video.addEventListener('progress', check)
           video.addEventListener('canplaythrough', check)
         })
@@ -482,7 +478,7 @@ export default function VideoPlayer({
           // upcoming film ahead takes bandwidth (and iPhone decoders) away
           // from the films already playing, which then freeze. A visible film
           // buffers a few seconds before it starts (startPlayback).
-          preload={desktop && isInView ? 'auto' : 'metadata'}
+          preload={isInView ? 'auto' : 'metadata'}
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'
