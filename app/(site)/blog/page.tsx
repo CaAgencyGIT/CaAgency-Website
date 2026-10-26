@@ -4,7 +4,6 @@ import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import { prisma } from '@/lib/prisma'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
-import Button from '@/components/ui/Button'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
 import Image from 'next/image'
@@ -110,8 +109,8 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Posts. Phones (Oct 2026): two compact cards per row, like the
-          talents page, with square covers and no excerpt or button. */}
+      {/* Blog Posts (Oct 2026, finalised on phone, same card everywhere): cover,
+          date and title. Two per row on phones, three on desktop. */}
       <section className="bg-background-base py-[80px] mobile:pt-[16px] mobile:pb-[56px] px-section-x">
         <div className="max-w-container mx-auto">
           {posts.length === 0 ? (
@@ -121,15 +120,15 @@ export default async function BlogPage() {
               </Text>
             </div>
           ) : (
-            <Stagger className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mobile:gap-x-3 mobile:gap-y-6" stagger={0.08}>
+            <Stagger className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 mobile:gap-x-3 mobile:gap-y-6" stagger={0.08}>
               {posts.map((post, index) => (
                 <StaggerItem key={post.id} className="h-full">
                 <article
-                  className="hover-lift group relative h-full bg-background-soft rounded-card overflow-hidden ring-1 ring-black/10 hover:bg-white hover:ring-black/15 hover:shadow-e3 mobile:rounded-[12px] mobile:bg-transparent mobile:ring-0 mobile:overflow-visible"
+                  className="group relative h-full"
                 >
                   {resolveFeaturedImage(post) && (
                     <Link href={`/blog/${post.slug}`} prefetch={false} tabIndex={-1} aria-hidden="true">
-                      <div className="relative aspect-video w-full overflow-hidden mobile:aspect-square mobile:rounded-[12px]">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] ring-1 ring-black/5 transition-shadow duration-500 group-hover:shadow-e3 mobile:aspect-square mobile:rounded-[12px]">
                         <Image
                           src={resolveFeaturedImage(post) as string}
                           alt=""
@@ -142,11 +141,11 @@ export default async function BlogPage() {
                       </div>
                     </Link>
                   )}
-                  <div className="p-6 mobile:px-0.5 mobile:pt-2.5 mobile:pb-0">
+                  <div className="px-0.5 pt-4 mobile:pt-2.5">
                     {post.publishedAt && (
                       <time
                         dateTime={post.publishedAt.toISOString()}
-                        className="text-black/60 text-sm mobile:text-[11px]"
+                        className="font-work-sans text-[13px] text-black/55 mobile:text-[11px]"
                       >
                         {new Date(post.publishedAt).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -159,20 +158,10 @@ export default async function BlogPage() {
                       <Heading
                         as="h2"
                         color="dark"
-                        className="mt-2 mb-3 text-[24px] hover:text-foreground-subtle transition-colors mobile:mt-1 mobile:mb-0 mobile:text-[14.5px] mobile:leading-[1.3]"
+                        className="mt-1.5 text-[20px] leading-[1.3] hover:text-foreground-subtle transition-colors mobile:mt-1 mobile:text-[14.5px]"
                       >
                         {post.title}
                       </Heading>
-                    </Link>
-                    {post.excerpt && (
-                      <Text color="dark" size="sm" className="opacity-70 mb-4 line-clamp-3 mobile:hidden">
-                        {post.excerpt}
-                      </Text>
-                    )}
-                    <Link href={`/blog/${post.slug}`} prefetch={false} className="mobile:hidden">
-                      <Button variant="dark" className="w-full">
-                        Read More
-                      </Button>
                     </Link>
                   </div>
                 </article>
