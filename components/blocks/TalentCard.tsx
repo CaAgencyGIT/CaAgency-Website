@@ -23,6 +23,8 @@ interface TalentCardProps {
   twitchUrl?: string
   kickUrl?: string
   socialLinks?: SocialLink[]
+  /** Play the film on touch screens when the card is centred (default true). */
+  touchVideo?: boolean
   className?: string
 }
 
@@ -72,6 +74,7 @@ export default function TalentCard({
   twitchUrl,
   kickUrl,
   socialLinks,
+  touchVideo = true,
   className,
 }: TalentCardProps) {
   // Build social links array from individual props or use provided array
@@ -112,7 +115,7 @@ export default function TalentCard({
           className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
           sizes={sizes}
         />
-        {videoSrc && <TalentCardVideo src={videoSrc} />}
+        {videoSrc && <TalentCardVideo src={videoSrc} touch={touchVideo} />}
 
         {/* Gradient Overlay for text readability */}
         {artwork ? (

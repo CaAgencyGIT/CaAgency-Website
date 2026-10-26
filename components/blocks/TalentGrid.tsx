@@ -67,6 +67,8 @@ export default function TalentGrid({
       youtubeUrl={talent.youtubeUrl}
       twitchUrl={talent.twitchUrl}
       kickUrl={talent.kickUrl}
+      // The phone roster grid stays on the still artwork.
+      touchVideo={mobileLayout !== 'list'}
     />
   )
 

@@ -210,49 +210,94 @@ section {
   animation-delay: 0.15s;
 }
 
-/* Hero collage: five columns (24:18:20:18:20), ~3x wider than tall,
-   centred at 92vw / max 1800px — wider than the page container, so it
-   offsets itself back to the viewport centre. Media crop via object-fit,
-   never stretched. */
-.hero-collage {
-  --collage-gap: clamp(12px, 0.85vw, 16px);
+/* Homepage collage (Oct 2026 approved layout): two large tiles, a stack of
+   three (34/28/38%) and a stack of two (45/55%), built from grid areas so
+   every tile shares the top and bottom edge. Wider than the page container
+   (92vw, max 1800px) and offset back to the viewport centre. Media crop via
+   object-fit only, never stretched. */
+.home-collage {
   display: grid;
-  grid-template-columns: 24fr 18fr 20fr 18fr 20fr;
-  grid-template-rows: 1fr;
-  gap: var(--collage-gap);
+  grid-template-columns: 1.2fr 1.2fr 0.95fr 1fr;
+  grid-template-rows: 34fr 11fr 17fr 38fr;
+  grid-template-areas:
+    "albina rebecca melani anton"
+    "albina rebecca yassi anton"
+    "albina rebecca yassi dariia"
+    "albina rebecca khutjo dariia";
+  gap: 8px;
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
-  aspect-ratio: 2000 / 595;
+  aspect-ratio: 1640 / 722;
 }
-.hero-collage-col {
+.home-collage-tile {
   position: relative;
-  display: flex;
   min-width: 0;
   min-height: 0;
-}
-.hero-collage-stack {
-  flex-direction: column;
-  gap: var(--collage-gap);
-}
-/* Reference split: the close-up is shorter than the event shot below it. */
-.hero-collage-stack > :first-child { flex: 250; }
-.hero-collage-stack > :last-child { flex: 316; }
-.hero-collage-tile {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  border-radius: 16px;
   overflow: hidden;
+  border-radius: 10px;
+  background: #e9e6e1;
 }
-.hero-collage-tile img,
-.hero-collage-tile video {
+.home-collage-media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--pos);
 }
-.hero-collage-tile video { pointer-events: none; }
+/* The poster underneath shows until the film has frames, so a refused
+   autoplay never surfaces the browser's own play button. */
+.home-collage-video { opacity: 0.001; transition: opacity 0.35s ease; pointer-events: none; }
+.home-collage-video[data-playing] { opacity: 1; }
+.home-collage-video::-webkit-media-controls,
+.home-collage-video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+.home-collage-shade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+.home-collage-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 18px;
+  border-radius: inherit;
+}
+a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+.home-collage-label {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+.home-collage-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+}
+.home-collage-button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+.home-collage-button:hover { background: rgba(0, 0, 0, 0.55); }
+.home-collage-button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.home-collage-button svg { width: 15px; height: 15px; }
 .intro-feature-tile img,
 .intro-feature-tile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 /* Hidden (not removed: iOS won't play an undisplayed video) until frames play. */
@@ -266,27 +311,33 @@ section {
   -webkit-appearance: none;
 }
 @media (max-width: 1100px) {
-  .hero-collage { aspect-ratio: 5 / 2; }
+  .home-collage { aspect-ratio: 16 / 9; }
+  .home-collage-link { padding: 12px 14px; }
+  .home-collage-label { font-size: 11px; }
 }
+/* Phones: a two-column collage of its own rather than the shrunken desktop
+   grid. Albina keeps a tall tile, Rebecca gets a tall tile with room for
+   the cloche scene, and Dariia closes the set across the full width. */
 @media (max-width: 760px) {
-  .hero-collage {
-    --collage-gap: 8px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: none;
-    grid-auto-flow: row;
+  .home-collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 34vw) 44vw;
+    grid-template-areas:
+      "albina melani"
+      "albina anton"
+      "yassi rebecca"
+      "khutjo rebecca"
+      "dariia dariia";
     width: 100%;
     margin-left: 0;
-    padding-bottom: 28px;
     aspect-ratio: auto;
   }
-  /* Phones (Oct 2026): a compact three-column collage of six slim tiles,
-     the middle column dropped a little for a staggered rhythm. Stacks
-     unpack into the grid and the featured tile no longer spans. */
-  .hero-collage-stack { display: contents; }
-  .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 5; }
-  .hero-collage-tile { flex: 1 1 auto; width: 100%; border-radius: 10px; }
-  .hero-collage > :nth-child(2),
-  .hero-collage-stack > :last-child { transform: translateY(28px); }
+  .home-collage-media { object-position: var(--pos-m); }
+  .home-collage-link { padding: 10px 12px; }
+  .home-collage-label { font-size: 10.5px; letter-spacing: 0.18em; }
+  .home-collage-controls { right: 8px; bottom: 8px; gap: 4px; }
+  .home-collage-button { width: 28px; height: 28px; }
+  .home-collage-button svg { width: 13px; height: 13px; }
 }
 
 @keyframes status-enter {
@@ -507,7 +558,7 @@ section {
 /* iOS Safari can stop repainting a video inside a rounded, overflow-clipped
    box. Giving each video its own compositing layer and clipping with a mask
    keeps the frames updating (Oct 2026). */
-.hero-collage-tile, .intro-feature-tile, .talent-card, [data-video-frame] {
+.home-collage-tile, .intro-feature-tile, .talent-card, [data-video-frame] {
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   isolation: isolate;
 }

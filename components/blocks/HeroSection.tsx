@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import CoverflowCarousel from './CoverflowCarousel'
-import HeroFilmRow, { type HeroFilmRowItem } from './HeroFilmRow'
+import HomeCollage, { type HomeCollageTile } from './HomeCollage'
 import Button from '@/components/ui/Button'
 import Magnetic from '@/components/ui/Magnetic'
 import type { Locale } from '@/i18n/config'
@@ -20,7 +20,7 @@ interface HeroSectionProps {
   primaryCta?: HeroCta
   secondaryCta?: HeroCta
   carouselImages?: Array<{ url: string; alt?: string; buttonText?: string; buttonLink?: string }>
-  filmRowItems?: HeroFilmRowItem[]
+  collageTiles?: HomeCollageTile[]
   locale?: Locale
 }
 
@@ -32,7 +32,7 @@ export default function HeroSection({
   primaryCta,
   secondaryCta,
   carouselImages,
-  filmRowItems,
+  collageTiles,
   locale = 'en',
 }: HeroSectionProps) {
   const t = useTranslations('common')
@@ -90,9 +90,9 @@ export default function HeroSection({
         {/* Hero film row — transform-only entrance so the LCP image is
             paintable immediately (no opacity fade). Replaces the single-
             slide coverflow carousel: every still visible at once. */}
-        {filmRowItems && filmRowItems.length > 0 ? (
+        {collageTiles && collageTiles.length > 0 ? (
           <div className="hero-rise-media mt-6">
-            <HeroFilmRow items={filmRowItems} />
+            <HomeCollage tiles={collageTiles} />
           </div>
         ) : carouselImages && carouselImages.length > 0 && (
           <div className="hero-rise-media mt-6">

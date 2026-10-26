@@ -1,4 +1,4 @@
-import type { HeroFilmRowItem } from '@/components/blocks/HeroFilmRow'
+import type { HomeCollageTile } from '@/components/blocks/HomeCollage'
 import { posterFor } from '@/lib/data/videos'
 import { caseStudyForVideo, getCaseStudy, type CaseStudy } from '@/lib/data/case-studies'
 
@@ -246,19 +246,73 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'georgii-anua' },
 ]
 
-// Homepage hero film row (Oct 2026 client feedback): exact order and
-// photos the client specified, graded/sharpened as a set for consistency.
-export const heroFilmRowItems: HeroFilmRowItem[] = [
-  { src: '/images/hero/collage/closeup-v2.webp', alt: 'Skincare close-up, CA Agency campaign' },
-  { src: '/images/hero/albina-medicube.webp', alt: 'Albina Mavriqi for Medicube, CA Agency talent', position: '50% 28%', featured: true },
-  { src: '/images/hero/collage/toofaced-v3.webp', alt: 'CA Agency talent at the Too Faced Peach Please launch event', position: '40% 50%' },
+// Homepage collage (Oct 2026 approved layout, CA-Homepage-Collage brief):
+// original films and photos only. Originals are backed up on the server in
+// /srv/caagency-media-sources/homepage-collage-2026-10.
+export const homeCollageTiles: HomeCollageTile[] = [
   {
-    stack: [
-      { src: '/images/hero/collage/huda-v2.webp', alt: 'Melly at the Huda Beauty event, CA Agency campaign', position: '62% 30%' },
-      { src: '/images/hero/collage/ellis-brooklyn-ny-v1.webp', alt: 'Rebecca Ghaderi in New York for Ellis Brooklyn, CA Agency campaign', position: '50% 30%' },
-    ],
+    area: 'albina',
+    name: 'Albina',
+    href: '/talents/albina-mavriqi',
+    alt: 'Albina Mavriqi applying a Medicube mask with a brush',
+    image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
+    video: { src: '/videos/collage-v2/albina-medicube-v1.mp4' },
+    position: '50% 40%',
   },
-  { src: '/images/hero/graded/melani-skin1004.webp', alt: 'Melani Seiffert for SKIN1004, CA Agency talent', position: '50% 30%' },
+  {
+    area: 'rebecca',
+    name: 'Rebecca',
+    href: '/talents/rebecca-ghaderi',
+    alt: 'Rebecca Ghaderi seated in a pink blouse beside a golden serving cloche on an Ellis Brooklyn shoot',
+    image: { src: '/images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp', width: 1080, height: 1350 },
+    position: '42% 50%',
+    mobilePosition: '40% 45%',
+  },
+  {
+    area: 'melani',
+    name: 'Melani',
+    href: '/talents/melani-seiffert',
+    alt: 'Melani Seiffert holding a SKIN1004 cream tube',
+    image: { src: '/images/hero/collage-v2/melani-skin1004-poster-v1.webp', width: 720, height: 1280 },
+    video: { src: '/videos/collage-v2/melani-skin1004-v1.mp4' },
+    position: '50% 30%',
+  },
+  {
+    area: 'yassi',
+    name: 'Yassi',
+    alt: 'Yassi Khatibi in a red dress at the TIRTIR x Ulta Beauty event',
+    image: { src: '/images/hero/collage-v2/yassi-tirtir-ulta-crop-v1.webp', width: 628, height: 832 },
+    position: '50% 28%',
+    mobilePosition: '68% 30%',
+  },
+  {
+    area: 'khutjo',
+    name: 'Khutjo',
+    href: '/talents/khutjo-matsoma',
+    alt: 'Khutjo Matsoma using a facial sculpting tool for Anua',
+    image: { src: '/images/hero/collage-v2/khutjo-anua-poster-v1.webp', width: 720, height: 1280 },
+    video: { src: '/videos/collage-v2/khutjo-anua-original-v1.mp4' },
+    position: '50% 32%',
+  },
+  {
+    area: 'anton',
+    name: 'Anton',
+    href: '/talents/anton-drozhzhin',
+    alt: 'Anton Drozhzhin applying SKIN1004 skincare',
+    image: { src: '/images/hero/collage-v2/anton-skin1004-poster-v1.webp', width: 720, height: 1280 },
+    video: { src: '/videos/collage-v2/anton-skin1004-v1.mp4' },
+    position: '50% 25%',
+  },
+  {
+    area: 'dariia',
+    name: 'Dariia',
+    href: '/talents/dariia-bordun',
+    alt: 'Dariia Bordun in an Armani Beauty campaign video',
+    image: { src: '/images/hero/collage-v2/dariia-armani-beauty-poster-v1.webp', width: 720, height: 1280 },
+    video: { src: '/videos/collage-v2/dariia-armani-beauty-v1.mp4', hasAudio: true },
+    position: '50% 32%',
+    mobilePosition: '50% 28%',
+  },
 ]
 
 // White brand logos overlaid on the redesign films (the older work videos
