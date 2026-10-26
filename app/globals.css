@@ -64,6 +64,11 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Type system (Oct 2026, client): headings and display text in Anegra at its
+   regular weight only, uppercase labels in Jost, reading text in Work Sans.
+   Anegra is a variable font, so a bold class would render a heavier cut. */
+.font-anegra, h1.font-anegra, h2.font-anegra, h3.font-anegra { font-weight: 400 !important; }
+
 /* One knob for every text size on the site (see postcss-text-scale.mjs):
    slightly smaller on desktop, clearly smaller on phones (Oct 2026). Each
    size moves --text-shrink of the way toward --text-pivot. */
