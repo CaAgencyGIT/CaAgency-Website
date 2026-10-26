@@ -17,6 +17,9 @@ import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
 import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
+// Safety net next to the on-save revalidation in lib/revalidate.ts.
+export const revalidate = 3600
+
 // VideoObject schema for SEO
 const videoSchemaList = {
   '@context': 'https://schema.org',

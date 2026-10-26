@@ -7,10 +7,11 @@ export function revalidateTalentsPages() {
   // Individual talent profile pages (ISR) so edits propagate immediately.
   revalidatePath('/talents/[slug]', 'page')
   revalidatePath('/')
+  // Every locale, English included: the unprefixed URLs are rewritten to
+  // /en/... and cached under that path. The contact form lists the roster.
   for (const locale of routing.locales) {
-    if (locale !== routing.defaultLocale) {
-      revalidatePath(`/${locale}/talents`)
-    }
+    revalidatePath(`/${locale}/talents`)
+    revalidatePath(`/${locale}/contact`)
   }
   schedulePurgePublicSite()
 }
@@ -51,13 +52,14 @@ export function revalidateSitePages() {
     revalidatePath(path)
   }
 
+  // Every locale, English included (unprefixed URLs are cached as /en/...).
   for (const locale of routing.locales) {
-    if (locale !== routing.defaultLocale) {
-      revalidatePath(`/${locale}`)
-      revalidatePath(`/${locale}/about`)
-      revalidatePath(`/${locale}/services`)
-      revalidatePath(`/${locale}/contact`)
-    }
+    revalidatePath(`/${locale}`)
+    revalidatePath(`/${locale}/about`)
+    revalidatePath(`/${locale}/services`)
+    revalidatePath(`/${locale}/work`)
+    revalidatePath(`/${locale}/faq`)
+    revalidatePath(`/${locale}/contact`)
   }
   schedulePurgePublicSite()
 }

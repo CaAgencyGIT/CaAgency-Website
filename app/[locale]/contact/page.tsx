@@ -10,6 +10,9 @@ import OfficeMap from '@/components/blocks/OfficeMap'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
+// Safety net next to the on-save revalidation in lib/revalidate.ts.
+export const revalidate = 3600
+
 type Props = {
   params: Promise<{ locale: string }>
 }
