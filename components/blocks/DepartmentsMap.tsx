@@ -1,22 +1,15 @@
+import Image from 'next/image'
 import InViewClass from '@/components/ui/InViewClass'
-import { WORLD_COLS, WORLD_LAT1, WORLD_LON0, WORLD_ROWS, WORLD_ROWS_MASK, WORLD_STEP } from '@/lib/data/world-map-dots'
+import { WORLD_COLS, WORLD_LAT1, WORLD_LON0, WORLD_ROWS, WORLD_STEP } from '@/lib/data/world-map-dots'
+import { WORLD_DOTS_CELL, WORLD_DOTS_SRC } from '@/lib/data/world-dots-svg'
 
-const CELL = 10
+const CELL = WORLD_DOTS_CELL
 const W = WORLD_COLS * CELL
 const H = WORLD_ROWS * CELL
 const toXY = (lon: number, lat: number) => ({
   x: ((lon - WORLD_LON0) / WORLD_STEP) * CELL,
   y: ((WORLD_LAT1 - lat) / WORLD_STEP) * CELL,
 })
-
-// All land dots as one path (two arcs per dot), rendered on the server: one
-// DOM node instead of 1,651 circles, and no dot data in the client JS.
-const R = 2.6
-const DOTS_PATH = WORLD_ROWS_MASK.flatMap((row, r) =>
-  [...row].flatMap((cell, c) =>
-    cell === '1' ? [`M${c * CELL + CELL / 2 - R} ${r * CELL + CELL / 2}a${R} ${R} 0 1 0 ${2 * R} 0a${R} ${R} 0 1 0 ${-2 * R} 0`] : [],
-  ),
-).join('')
 
 // One pin per department, at the market it is named after. Middle East
 // (Dubai HQ) is the hub every route flows from.
@@ -39,9 +32,11 @@ const ROUTES = PINS.filter((p) => p !== HUB).map(
 // Routes draw in once the map scrolls into view (InViewClass adds is-shown).
 export default function DepartmentsMap() {
   return (
-    <InViewClass>
-    <svg viewBox={`0 0 ${W} ${H}`} className="departments-map block h-auto w-full" aria-hidden="true">
-      <path d={DOTS_PATH} fill="#3f3d3a" />
+    <InViewClass className="relative">
+    {/* The land dots are one cached image; routes and pins sit on top in
+        the same coordinate space. */}
+    <Image src={WORLD_DOTS_SRC} alt="" aria-hidden width={W} height={H} unoptimized className="block h-auto w-full" />
+    <svg viewBox={`0 0 ${W} ${H}`} className="departments-map absolute inset-0 h-full w-full" aria-hidden="true">
       {ROUTES.map((d, i) => (
         <g key={d}>
           <path d={d} className="departments-map-route" fill="none" />
