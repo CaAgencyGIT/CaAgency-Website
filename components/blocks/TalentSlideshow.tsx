@@ -14,7 +14,10 @@ export default function TalentSlideshow({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const track = ref.current
-    if (!track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!track) return
+    // With reduced motion the row still advances (client, Oct 2026), but
+    // jumps instead of gliding.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let paused = false
     let visible = false
     const pause = () => { paused = true }
@@ -28,7 +31,7 @@ export default function TalentSlideshow({ children }: { children: ReactNode }) {
       if (!card) return
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0
       const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4
-      track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + card.offsetWidth + gap, behavior: 'smooth' })
+      track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + card.offsetWidth + gap, behavior: reduced ? 'auto' : 'smooth' })
     }
     const id = window.setInterval(step, INTERVAL_MS)
     track.addEventListener('touchstart', pause, { passive: true })
