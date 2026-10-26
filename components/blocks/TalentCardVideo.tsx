@@ -48,9 +48,17 @@ export default function TalentCardVideo({ src }: { src: string }) {
     if (!video || !loaded) return
     if (on) {
       video.play().catch(() => {})
-    } else {
-      video.pause()
+      return
     }
+    video.pause()
+    // Hand the decoder back once the card has been out of play for a while
+    // (iPhones only have a few to share across the whole grid).
+    const release = setTimeout(() => {
+      video.removeAttribute('src')
+      video.load()
+      setLoaded(false)
+    }, 2500)
+    return () => clearTimeout(release)
   }, [on, loaded])
 
   return (

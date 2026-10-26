@@ -25,7 +25,7 @@ function Tile({ media, priority, sizes }: { media: HeroCollageMedia; priority: b
           src={media.src}
           alt={media.alt}
           fill
-          quality={88}
+          quality={75}
           priority={priority}
           sizes={sizes}
           style={media.position ? { objectPosition: media.position } : undefined}

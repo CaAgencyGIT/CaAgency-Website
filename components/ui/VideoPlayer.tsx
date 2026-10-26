@@ -96,15 +96,26 @@ export default function VideoPlayer({
     if (!element) return
 
     // Warm metadata shortly before arrival, but only start decoding once the
-    // tile actually intersects. The mount latch never resets on scroll-away.
+    // tile actually intersects. Tiles well off screen drop their <video>
+    // again: iPhones have a small pool of hardware decoders, and a long grid
+    // that keeps every film loaded leaves the newest ones frozen.
+    let releaseTimer: ReturnType<typeof setTimeout> | null = null
     const mountObserver = new IntersectionObserver(
       ([entry]) => {
+        if (releaseTimer) clearTimeout(releaseTimer)
+        releaseTimer = null
         if (entry.isIntersecting) {
           setIsNearView(true)
-          mountObserver.disconnect()
+        } else {
+          releaseTimer = setTimeout(() => {
+            setIsNearView(false)
+            setHasRenderedFrame(false)
+            setPlaybackStatus('idle')
+            staggeredRef.current = false
+          }, 1500)
         }
       },
-      { rootMargin: '250px' }
+      { rootMargin: '600px 0px' }
     )
     let exitTimer: ReturnType<typeof setTimeout> | null = null
     const playObserver = new IntersectionObserver(([entry]) => {
@@ -125,6 +136,7 @@ export default function VideoPlayer({
       mountObserver.disconnect()
       playObserver.disconnect()
       if (exitTimer) clearTimeout(exitTimer)
+      if (releaseTimer) clearTimeout(releaseTimer)
     }
   }, [])
 
@@ -143,6 +155,20 @@ export default function VideoPlayer({
       if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [])
+
+  const shouldMountVideo = manualIntent !== 'none' || (isNearView && autoplay && !prefersReducedMotion)
+  // Detaching the source is what actually hands the decoder back on iOS;
+  // removing the element alone leaves it to garbage collection.
+  useEffect(() => {
+    if (!shouldMountVideo) return
+    const video = videoRef.current
+    return () => {
+      if (!video) return
+      video.pause()
+      video.removeAttribute('src')
+      video.load()
+    }
+  }, [shouldMountVideo])
 
   const startPlayback = useCallback(async () => {
     const video = videoRef.current
@@ -187,7 +213,6 @@ export default function VideoPlayer({
     }
   }, [muted, onReleaseActive, neverGiveUp])
 
-  const shouldMountVideo = manualIntent !== 'none' || (isNearView && autoplay && !prefersReducedMotion)
   const shouldPlay = shouldMountVideo && isInView && isPageVisible &&
     (playbackActive ?? true) && manualIntent !== 'pause' &&
     (manualIntent === 'play' || (autoplay && !prefersReducedMotion))
@@ -310,6 +335,7 @@ export default function VideoPlayer({
   return (
     <div
       ref={containerRef}
+      data-video-frame
       onClick={playbackStatus === 'blocked' || playbackStatus === 'error' ? togglePlayback : undefined}
       className={clsx(
         aspectClasses[aspectRatio],

@@ -284,7 +284,6 @@ section {
   .hero-collage-stack { display: contents; }
   .hero-collage-col, .hero-collage-stack > .hero-collage-tile { aspect-ratio: 3 / 4; }
   .hero-collage-tile { flex: 1 1 auto; width: 100%; border-radius: 12px; }
-  .hero-collage > .hero-collage-col:first-child > .hero-collage-tile:first-child { display: none; }
 }
 
 @keyframes status-enter {
@@ -489,13 +488,24 @@ section {
 
 /* Loading indicator: CA logo turning on its vertical axis with a soft pulse.
    Keeps moving with reduced motion only as a gentle fade. */
-.logo-spinner svg { animation: logo-spin 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; transform-origin: 50% 50%; }
-@keyframes logo-spin {
-  0% { transform: perspective(400px) rotateY(0deg); opacity: 1; }
-  50% { transform: perspective(400px) rotateY(180deg); opacity: 0.55; }
-  100% { transform: perspective(400px) rotateY(360deg); opacity: 1; }
+.logo-spinner-base { opacity: 0.16; }
+.logo-spinner-fill { animation: logo-fill 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes logo-fill {
+  0% { clip-path: inset(0 100% 0 0); }
+  55% { clip-path: inset(0 0 0 0); }
+  80% { clip-path: inset(0 0 0 0); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .logo-spinner svg { animation: logo-pulse 1.4s ease-in-out infinite !important; animation-duration: 1.4s !important; animation-iteration-count: infinite !important; }
-  @keyframes logo-pulse { 50% { opacity: 0.4; } }
+  .logo-spinner-fill { animation: logo-pulse 1.6s ease-in-out infinite !important; animation-duration: 1.6s !important; animation-iteration-count: infinite !important; }
+  @keyframes logo-pulse { 50% { opacity: 0.35; } }
 }
+
+/* iOS Safari can stop repainting a video inside a rounded, overflow-clipped
+   box. Giving each video its own compositing layer and clipping with a mask
+   keeps the frames updating (Oct 2026). */
+.hero-collage-tile, .intro-feature-tile, .talent-card, [data-video-frame] {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
+}
+video { -webkit-transform: translateZ(0); transform: translateZ(0); }

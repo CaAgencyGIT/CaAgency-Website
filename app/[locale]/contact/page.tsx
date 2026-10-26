@@ -116,7 +116,8 @@ export default async function ContactPage({ params }: Props) {
                 src="/images/site/ca-office-v1.webp"
                 alt="CA Agency office lounge"
                 fill
-                quality={85}
+                priority
+                unoptimized
                 sizes="(max-width: 767px) 100vw, 440px"
                 className="object-cover"
               />

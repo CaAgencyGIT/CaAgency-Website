@@ -4,9 +4,10 @@ import { useEffect, useRef } from 'react'
 
 // Keeps the intro showreels on one timeline. The reels share the same cut
 // points (a studio-strobe flash every second), so they only flash together
-// while they play in step: once all are ready they restart together, and any
-// reel that drifts more than about one frame is snapped to the first.
-const MAX_DRIFT = 0.04
+// while they play in step: once all are ready they restart together. Small
+// drift is left alone: iPhones report currentTime coarsely, and seeking on
+// every tick made the reels freeze there. Only real drift is corrected.
+const MAX_DRIFT = 0.35
 
 export default function IntroReelSync() {
   const ref = useRef<HTMLSpanElement>(null)
@@ -30,22 +31,20 @@ export default function IntroReelSync() {
       if (vs.length < 2) return
       const master = vs[0].currentTime
       for (const v of vs.slice(1)) {
-        if (Math.abs(v.currentTime - master) > MAX_DRIFT) v.currentTime = master
+        if (!v.seeking && Math.abs(v.currentTime - master) > MAX_DRIFT) v.currentTime = master
       }
     }
 
     const vs = videos()
     for (const v of vs) {
       v.addEventListener('canplay', startTogether)
-      v.addEventListener('playing', align)
     }
     startTogether()
-    const id = window.setInterval(align, 400)
+    const id = window.setInterval(align, 2000)
     return () => {
       window.clearInterval(id)
       for (const v of vs) {
         v.removeEventListener('canplay', startTogether)
-        v.removeEventListener('playing', align)
       }
     }
   }, [])

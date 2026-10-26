@@ -93,9 +93,8 @@ export default function TalentCard({
         className
       )}
     >
-      {/* Background Image. Finished artwork keeps the full 4:5 design visible
-          (logo, MEET, name, subtitle) inside the 3:4 frame, on its own edge
-          colours; older photos fill the frame. */}
+      {/* Background Image. Card artwork fills the 3:4 frame from the top; only
+          ~3% is trimmed from each side, clear of the logo and name. */}
       <Image
         src={artwork?.src ?? imageUrl}
         alt={name}
@@ -104,8 +103,7 @@ export default function TalentCard({
         preload={priority}
         loading={priority ? undefined : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
-        className={artwork ? 'object-contain' : 'object-cover object-center'}
-        style={artwork ? { background: `linear-gradient(${artwork.top} 0 50%, ${artwork.bottom} 50% 100%)` } : undefined}
+        className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
         sizes={sizes}
       />
       {videoSrc && <TalentCardVideo src={videoSrc} />}
