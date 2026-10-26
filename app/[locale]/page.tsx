@@ -20,7 +20,6 @@ import { getFaqJsonLd } from '@/lib/data/faq-schema'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
-import { posterFor } from '@/lib/data/videos'
 import { homeCollageTiles, introShowreels, homeTalentSlugs } from '@/lib/data/redesign-media'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
@@ -52,19 +51,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     imageAlt: 'CA Agency - Global Beauty Influencer Marketing Agency',
   })
 }
-
-
-// Media carousel items for "This is CA Agency" section — July 2026 round 3:
-// client sequence Sydney → Dariia → Albina → Melly → Huda → Douglas, clean
-// cuts (no watermarks), TOCOBO reel retired. `-clean` filenames because the
-// original URLs served round-2 brand-marked bytes and are immutable-cached
-// by visitors. Keep in sync with the `home` defaults in
-// lib/site-content/definitions.ts.
-const mediaCarouselItems = [
-  { src: '/videos/work/reel-albina-ilia-blush-combo-clean-sharp-v2.mp4', alt: 'Albina for ILIA blush campaign reel', poster: '/images/video-thumbs/reel-albina-ilia-blush-combo-clean-sharp-v2.jpg' },
-  { src: '/videos/work/reel-DT3Pv52jCqc-clean-sharp-v2.mp4', alt: 'Rhode blush campaign reel', poster: '/images/video-thumbs/reel-DT3Pv52jCqc-clean-sharp-v2.jpg' },
-  { src: '/videos/work/reel-DX2Bva6sJk6-clean-sharp-v2.mp4', alt: 'Fenty Beauty campaign reel', poster: '/images/video-thumbs/reel-DX2Bva6sJk6-clean-sharp-v2.jpg' },
-]
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params

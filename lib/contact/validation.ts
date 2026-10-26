@@ -3,12 +3,6 @@ import { parseFollowerCount } from '@/lib/contact/followers'
 export const MAX_CONTACT_BODY_BYTES = 24 * 1024
 export const MIN_FORM_TIME_MS = 750
 
-export type ContactErrorCode =
-  | 'INVALID_REQUEST'
-  | 'BOT_REJECTED'
-  | 'RATE_LIMITED'
-  | 'DELIVERY_FAILED'
-
 export const SOCIAL_PLATFORMS = ['instagram', 'tiktok', 'youtube', 'other'] as const
 export type SocialPlatform = (typeof SOCIAL_PLATFORMS)[number]
 

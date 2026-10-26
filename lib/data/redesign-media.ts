@@ -1,5 +1,4 @@
 import type { HomeCollageTile } from '@/components/blocks/HomeCollage'
-import { posterFor } from '@/lib/data/videos'
 import { caseStudyForVideo, getCaseStudy, type CaseStudy } from '@/lib/data/case-studies'
 
 // October 2026 redesign: creator films from the approved handoff package
@@ -73,7 +72,6 @@ export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${film
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
 
-// Homepage "Meet the Talents", in the client's order.
 // Homepage "Meet the Talents" row, in display order (all locales).
 export const homeTalentSlugs = [
   'albina-mavriqi',
@@ -81,15 +79,6 @@ export const homeTalentSlugs = [
   'dariia-bordun',
   'aiym-kablan',
   'anton-drozhzhin',
-  'khutjo-matsoma',
-]
-
-export const priorityTalentSlugs = [
-  'albina-mavriqi',
-  'dariia-bordun',
-  'anton-drozhzhin',
-  'melani-seiffert',
-  'beatrix-ramosaj',
   'khutjo-matsoma',
 ]
 
@@ -151,69 +140,9 @@ export const workFilms: FilmKey[] = [
   'beatrix-biodance', 'skincare',
 ]
 
-
-
 export const REDESIGN_MEDIA_PUBLISHED = '2026-10-22'
 
-// VideoObject list for the films a page shows, so structured data matches
-// what visitors can actually watch.
-export function filmVideoSchema(keys: FilmKey[], publisher: object) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: keys.map((key, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'VideoObject',
-        name: filmLabel(key),
-        description: filmDescription(key),
-        contentUrl: `https://caagency.com${filmSrc(key)}`,
-        thumbnailUrl: `https://caagency.com${posterFor(filmSrc(key))}`,
-        uploadDate: REDESIGN_MEDIA_PUBLISHED,
-        publisher,
-      },
-    })),
-  }
-}
-
-
 export const filmDescription = (key: FilmKey) => `${films[key].creator} creator video featuring ${films[key].brand}`
-
-// Hero collage (Oct 2026 redesign feedback): a static full-collage replaces
-// the old slideshow so every image shows at once instead of cycling. Color
-// graded and sharpened as a set — scripts/grade-hero-images.py — to read as
-// one consistent shoot instead of seven mismatched sources. Dimensions are
-// the graded files' real intrinsic size, for correct aspect ratio with no
-// layout shift.
-// Hero spotlight (alternative to the collage, same slot): one full-bleed
-// Albina portrait with two smaller talent chips bottom-right.
-export const heroSpotlight = {
-  mainImage: { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi for Medicube, CA Agency campaign' },
-  chips: [
-    { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun for YSL Beauty, CA Agency campaign', width: 720, height: 1280 },
-    { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo Matsoma for Medicube, CA Agency campaign', width: 640, height: 1136 },
-  ],
-}
-
-// Hero trio (2nd alternative, same slot as heroSpotlight): three named
-// portraits, order per client request — Dariia left, Albina middle
-// (featured/taller), Anton right (his own photo, not a placeholder).
-export const heroTrioCards = [
-  { src: filmSrc('dariia-ysl'), poster: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia Bordun, CA Agency talent', name: 'Dariia' },
-  { src: filmSrc('albina-medicube'), poster: '/images/hero/graded/albina-medicube.webp', alt: 'Albina Mavriqi, CA Agency talent', name: 'Albina', featured: true },
-  { src: filmSrc('anton-skin1004'), poster: '/images/hero/graded/anton-skin1004.webp', alt: 'Anton Drozhzhin, CA Agency talent', name: 'Anton' },
-]
-
-export const heroCollageImages = [
-  { src: '/images/hero/graded/albina-medicube.webp', alt: 'Albina for Medicube, CA Agency campaign', width: 840, height: 1491 },
-  { src: '/images/hero/graded/hero-slide-1-916.webp', alt: 'CA Agency talent at the Too Faced launch event', width: 1440, height: 2700 },
-  { src: '/images/hero/graded/dariia-ysl.webp', alt: 'Dariia for YSL Beauty, CA Agency campaign', width: 720, height: 1280 },
-  { src: '/images/hero/graded/khutjo-medicube.webp', alt: 'Khutjo for Medicube, CA Agency campaign', width: 640, height: 1136 },
-  { src: '/images/hero/graded/melly-huda-beauty-916.webp', alt: 'Melly for Huda Beauty, CA Agency campaign', width: 810, height: 1440 },
-  { src: '/images/hero/graded/rhode-grid-vertical.webp', alt: 'Rhode campaign content grid, CA Agency', width: 720, height: 1347 },
-  { src: '/images/hero/graded/melani-skin1004.webp', alt: 'Melani for SKIN1004, CA Agency campaign', width: 640, height: 1136 },
-]
 
 // Work page grid order (Oct 2026): colour/lighting gradient measured from
 // each video (warm neutrals -> golden -> pink/red -> cool), Albina x Sephora

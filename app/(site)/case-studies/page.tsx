@@ -1,6 +1,4 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
@@ -11,7 +9,6 @@ import { currentCaseStudies } from '@/lib/data/redesign-media'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
 
 const listed = currentCaseStudies()
-import { posterFor } from '@/lib/data/videos'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
