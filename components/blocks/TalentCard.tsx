@@ -101,7 +101,7 @@ export default function TalentCard({
         className
       )}
     >
-      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[10px] mobile:ring-1 mobile:ring-black/5')}>
+      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[12px] mobile:ring-1 mobile:ring-black/5')}>
         {/* Card artwork fills the 3:4 frame from the top on larger screens;
             only ~3% is trimmed from each side, clear of the logo and name. */}
         <Image
@@ -145,7 +145,7 @@ export default function TalentCard({
         <h3
           className={cn(
             'font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center',
-            art && 'mobile:px-0.5 mobile:pt-1.5 mobile:text-start mobile:text-[12px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark mobile:truncate'
+            art && 'mobile:px-0.5 mobile:pt-2 mobile:text-start mobile:text-[13.5px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark mobile:truncate'
           )}
         >
           {name}
@@ -167,7 +167,7 @@ export default function TalentCard({
                 rel="noopener noreferrer"
                 className={cn(
                   'flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white',
-                  art && 'mobile:min-h-8 mobile:min-w-7 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[12px] mobile:[&_svg]:w-[12px]'
+                  art && 'mobile:min-h-8 mobile:min-w-7 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[13px] mobile:[&_svg]:w-[13px]'
                 )}
                 aria-label={`${name} on ${link.platform}`}
               >

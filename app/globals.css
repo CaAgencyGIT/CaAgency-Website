@@ -537,7 +537,9 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
 }
 video { -webkit-transform: translateZ(0); transform: translateZ(0); }
 
-/* Departments map pins: a slow ring pulse (still for reduced motion). */
-.departments-map-pulse { fill: #111; opacity: 0.12; transform-box: fill-box; transform-origin: center; animation: departments-pulse 2.4s ease-out infinite; }
-@keyframes departments-pulse { 0% { transform: scale(0.6); opacity: 0.25; } 100% { transform: scale(1.6); opacity: 0; } }
+/* Departments map pins: green with a glow and a slow ring pulse (still for
+   reduced motion). */
+.departments-map-pin { fill: #1fbf5b; filter: drop-shadow(0 0 6px rgba(31, 191, 91, 0.9)); }
+.departments-map-pulse { fill: #1fbf5b; opacity: 0.2; transform-box: fill-box; transform-origin: center; animation: departments-pulse 2.4s ease-out infinite; }
+@keyframes departments-pulse { 0% { transform: scale(0.5); opacity: 0.45; } 100% { transform: scale(1.7); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .departments-map-pulse { animation: none; } }
