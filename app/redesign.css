@@ -187,19 +187,17 @@
   }
   .rd-faq-list details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
   .rd-faq-list details p { margin: 0; padding: 0 44px 22px 0; font-size: 14px; line-height: 1.75; color: #67645f; }
-  .rd-faq-list .rd-faq-more { border-bottom: 0; }
-  .rd-faq-list .rd-faq-more > summary {
+  .rd-faq-heading-link { display: block; color: inherit; text-decoration: none; }
+  .rd-faq-heading-link h2 { transition: color 0.2s ease; }
+  .rd-faq-heading-link:hover h2 { color: #67645f; }
+  .rd-faq-all {
     display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 22px; border: 1px solid #171715; border-radius: 999px;
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: var(--rd-label); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: inherit; text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
-  .rd-faq-list .rd-faq-more > summary:hover { background: #171715; color: #fff; }
-  .rd-faq-list .rd-faq-more > summary::after { position: static; margin-top: -4px; width: 7px; height: 7px; }
-  .rd-faq-list .rd-faq-more[open] > summary::after { margin-top: 3px; }
-  .rd-faq-more[open] > summary { order: 2; }
-  .rd-faq-more-close, .rd-faq-more[open] .rd-faq-more-open { display: none; }
-  .rd-faq-more[open] .rd-faq-more-close { display: inline; }
-  .rd-faq-more { display: flex; flex-direction: column; align-items: flex-start; }
-  .rd-faq-more > div { width: 100%; }
+  .rd-faq-all:hover { background: #171715; color: #fff; }
+  .rd-faq-page { border-top: 0; padding-top: 48px; }
+  .rd-faq-page h1 { font-family: var(--rd-serif); font-weight: 400; font-size: clamp(40px, 4.6vw, 64px); line-height: 1.05; }
 
   /* CTA */
   .rd-cta { max-width: none; padding: 85px 5vw 90px; text-align: center; background: var(--rd-soft); }
@@ -315,7 +313,6 @@
      Jost for spaced uppercase labels. */
   .rd-eyebrow, .rd-header-nav a, .rd-header-talk, .rd-header-actions .rd-language label,
   .rd-footer-links h3, .rd-footer-contact dt, .rd-footer-partners li, .rd-footer-social-contact,
-  .rd-faq-list .rd-faq-more > summary, .rd-menu nav a, .rd-hero-trio-tagline, .rd-hero-trio-card figcaption,
   .about-stats span, .rd-text-link { font-family: var(--rd-label); }
   .rd-menu-ring text { font-family: var(--rd-label); }
   .rd-header-nav a, .rd-header-talk { font-weight: 500; letter-spacing: 0.18em; }

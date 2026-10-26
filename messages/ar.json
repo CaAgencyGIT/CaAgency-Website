@@ -57,7 +57,8 @@
     "openMenu": "فتح القائمة",
     "closeMenu": "إغلاق القائمة",
     "mainMenu": "القائمة الرئيسية",
-    "letsTalk": "لنتحدث"
+    "letsTalk": "لنتحدث",
+    "faq": "الأسئلة الشائعة"
   },
   "footer": {
     "departments": "الأقسام",
@@ -407,7 +408,9 @@
         "answer": "أرسل لنا رسالة عبر نموذج التواصل أو راسلنا على info@caagency.com. سنحدد مكالمة تعارف لفهم أهدافك، ثم نرسل لك مقترح حملة مخصصاً."
       }
     },
-    "eyebrow": "الأسئلة الشائعة"
+    "eyebrow": "الأسئلة الشائعة",
+    "pageTitle": "الأسئلة الشائعة: التسويق عبر المؤثرين مع CA Agency",
+    "pageDescription": "إجابات عن أكثر الأسئلة التي تطرحها العلامات التجارية حول العمل مع CA Agency: ما نقدمه، ومن نعمل معهم، والمنصات، والأسعار، وكيفية البدء."
   },
   "testimonials": {
     "heading": "ماذا يقول عملاؤنا",
@@ -460,6 +463,7 @@
     "influencer-marketing-australia": "تسويق المؤثرين في أستراليا",
     "korean-skincare-influencer-marketing": "تسويق مؤثري الجمال الكوري",
     "beauty-influencer-marketing-agency": "تسويق مؤثري الجمال",
-    "skincare-influencer-marketing-agency": "تسويق مؤثري العناية بالبشرة"
+    "skincare-influencer-marketing-agency": "تسويق مؤثري العناية بالبشرة",
+    "faq": "الأسئلة الشائعة"
   }
 }

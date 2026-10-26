@@ -10,7 +10,7 @@ interface BreadcrumbItem {
 }
 
 const translatedSegments = new Set([
-  'about', 'talents', 'work', 'services', 'contact', 'blog', 'case-studies',
+  'about', 'talents', 'work', 'services', 'contact', 'faq', 'blog', 'case-studies',
   'privacy-policy', 'terms-of-service', 'business-license',
   'influencer-marketing-dubai', 'influencer-marketing-uae',
   'influencer-marketing-saudi-arabia', 'influencer-marketing-gcc',

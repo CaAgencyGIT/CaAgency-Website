@@ -110,6 +110,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: 'work', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: 'services', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: 'contact', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: 'faq', changeFrequency: 'monthly' as const, priority: 0.6 },
   ]
 
   // English-only pages (app/(site)/, excluded from i18n proxy)

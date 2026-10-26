@@ -57,7 +57,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "mainMenu": "Main menu",
-    "letsTalk": "Let's talk"
+    "letsTalk": "Let's talk",
+    "faq": "FAQ"
   },
   "footer": {
     "departments": "Departments",
@@ -407,7 +408,9 @@
         "answer": "Send us a message through the contact form or email info@caagency.com. We'll book a discovery call to understand your goals, then send a tailored campaign proposal."
       }
     },
-    "eyebrow": "FAQ"
+    "eyebrow": "FAQ",
+    "pageTitle": "FAQ: influencer marketing with CA Agency",
+    "pageDescription": "Answers to the questions brands ask most about working with CA Agency: what we do, who we work with, platforms, pricing and how to get started."
   },
   "testimonials": {
     "heading": "What Our Clients Say",
@@ -460,6 +463,7 @@
     "influencer-marketing-australia": "Influencer Marketing Australia",
     "korean-skincare-influencer-marketing": "K-Beauty Influencer Marketing",
     "beauty-influencer-marketing-agency": "Beauty Influencer Marketing",
-    "skincare-influencer-marketing-agency": "Skincare Influencer Marketing"
+    "skincare-influencer-marketing-agency": "Skincare Influencer Marketing",
+    "faq": "FAQ"
   }
 }
