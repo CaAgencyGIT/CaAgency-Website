@@ -41,6 +41,12 @@ live DNS, production Workers, or the old server without approval.
 - `components/ui/` — Reusable UI atoms (Button, Heading, Text, ScrollReveal, etc.)
 - `components/layout/` — Header, Footer, MobileMenu
 - `lib/` — Utils, fonts, data, auth, prisma client
+- `i18n/`, `messages/` — next-intl config and per-locale message catalogs
+- `prisma/` — Schema, `pg-migrations/`, blog seed content
+- `scripts/` — Build-time generators (asset/video manifests, blog covers, world map) and CI publishing
+- `deploy/` — systemd units and backup script for caagency-server; `redesign-preview/` is the dev stage
+- `docs/google-ads/` — Google Ads search campaign plan and import CSVs
+- `tests/unit/`, `tests/e2e/` — Vitest and Playwright suites
 - `public/videos/` — MP4 videos (some are 5-30MB, use lazy loading)
 - `public/images/` — Static images (hero, logos, work samples)
 

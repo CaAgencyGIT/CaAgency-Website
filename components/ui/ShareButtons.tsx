@@ -32,7 +32,6 @@ export default function ShareButtons({
   const shareUrl = url ?? browserUrl
   const encodedUrl = encodeURIComponent(shareUrl)
   const encodedTitle = encodeURIComponent(title)
-  const encodedDescription = encodeURIComponent(description)
 
   const shareLinks = [
     {

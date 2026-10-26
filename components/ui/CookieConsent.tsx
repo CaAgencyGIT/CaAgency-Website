@@ -25,8 +25,7 @@ export interface CookieConsentLabels {
 // only loads after "Accept All" (see components/analytics/GoogleAnalytics).
 export default function CookieConsent({ labels }: { labels: CookieConsentLabels }) {
   // Rendered inside the locale layouts (not the root layout) so the dialog is
-  // translated on /ar and /ko and inherits their text direction — the
-  // 'cookies' namespace must stay in CLIENT_NAMESPACES (i18n/client-messages).
+  // translated on /ar and /ko and inherits their text direction.
   const [status, setStatus] = useState<ConsentStatus>(getStoredConsent)
   const [isVisible, setIsVisible] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)

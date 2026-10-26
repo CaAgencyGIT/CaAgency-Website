@@ -5,8 +5,6 @@ import {
 } from '@/lib/site-content/definitions'
 import { deepMergeWithDefaults } from '@/lib/site-content/merge'
 
-export type SiteContentKey = keyof typeof siteContentDefinitionsByKey
-
 type SiteContentListItem = {
   key: string
   title: string

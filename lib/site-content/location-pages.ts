@@ -1,21 +1,3 @@
-export const locationContentKeys = [
-  'location-dubai',
-  'location-uae',
-  'location-asia',
-  'location-saudi-arabia',
-  'location-gcc',
-  'location-korea',
-  'location-usa',
-  'location-uk',
-  'location-canada',
-  'location-australia',
-  'location-korean-skincare',
-  'location-beauty',
-  'location-skincare',
-] as const
-
-export type LocationContentKey = (typeof locationContentKeys)[number]
-
 export type LocationPageContent = {
   hero: {
     title: string

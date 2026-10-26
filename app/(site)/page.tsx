@@ -15,7 +15,6 @@ import { getHomeSlideshowTalents } from '@/lib/site-content/public'
 import { HomePageContent } from '@/lib/site-content/site-types'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Magnetic from '@/components/ui/Magnetic'
-import { posterFor } from '@/lib/data/videos'
 import { homeCollageTiles, homeTalentSlugs, introShowreels } from '@/lib/data/redesign-media'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
@@ -48,12 +47,6 @@ export default async function HomePage() {
   const content = await getSiteContent<HomePageContent>('home')
   // Pinned row shared with the localized homepages; /talents has its own order.
   const talents = await getHomeSlideshowTalents(homeTalentSlugs)
-  const introMediaItems = content.intro.mediaItems.map((item) => ({
-    type: item.type === 'image' ? 'image' as const : 'video' as const,
-    src: item.src,
-    alt: item.alt,
-    poster: item.poster ?? (item.type === 'video' ? posterFor(item.src) : undefined),
-  }))
 
   return (
     <>
