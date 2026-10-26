@@ -16,7 +16,12 @@ const textScale = () => ({
   postcssPlugin: 'ca-text-scale',
   Declaration(decl) {
     if (decl.prop === 'font-size') {
-      if (scalable(decl.value)) decl.value = `calc(${decl.value} * var(--text-scale, 1))`
+      // Reading text never drops below --text-floor (or its own original
+      // size, if that was already smaller): only larger type shrinks fully.
+      if (scalable(decl.value)) {
+        const v = decl.value
+        decl.value = `max(calc(${v} * var(--text-scale, 1)), min(${v}, var(--text-floor, 0px)))`
+      }
     } else if (decl.prop === 'line-height') {
       const v = decl.value.trim()
       if (/^-?[\d.]+px$/.test(v)) decl.value = `calc(${v} * var(--text-scale, 1))`
