@@ -113,13 +113,15 @@ export const config = {
   // Excluded: api, _next, admin, influencer-marketing-*, the beauty,
   // skincare and K-beauty category pages, legal, blog,
   // case-studies, talents/* and services/* (detail pages; only the listings
-  // exist under [locale]). Public assets are allowed through above via
-  // isPublicAsset().
+  // exist under [locale]). Static files (/assets, /fonts, /images, /videos,
+  // /media and the root icons) skip the middleware entirely: Caddy already
+  // handles their domain redirects, so running it per file was pure cost.
+  // isPublicAsset() above still covers the remaining root files.
   //
   // Single-page names end in (?:/|$) so they match whole path segments only: "/blog2" must still reach the
   // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. `influencer-marketing-`,
   // `talents/` and `services/` are intentional prefixes. Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|(?:favicon|apple-touch-icon|icon-)[^/]*$|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { getFeaturedTalents } from '@/lib/site-content/public'
 import { arabicLocationLabels, arabicLocationPages } from '@/lib/site-content/location-pages-ar'
@@ -38,6 +38,9 @@ export function arabicLocationMetadata(market: Market): Metadata {
 
 export default async function ArabicLocationPage({ market, locale }: { market: Market; locale: string }) {
   if (locale !== 'ar') notFound()
+  // Without this, next-intl reads the locale from request headers and the
+  // four /ar location pages render on every visit instead of once an hour.
+  setRequestLocale(locale)
 
   const page = arabicLocationPages[market]
   const talents = await getFeaturedTalents(6)
