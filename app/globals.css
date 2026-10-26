@@ -66,7 +66,7 @@ html {
 
 /* One knob for every text size on the site (see postcss-text-scale.mjs):
    slightly smaller on desktop, clearly smaller on phones (Oct 2026). */
-:root { --text-scale: 0.94; --text-floor: 0px; }
+:root { --text-scale: 0.94; --text-floor: 11px; }
 @media (max-width: 767px) {
   :root { --text-scale: 0.86; --text-floor: 13px; }
   /* iOS zooms into any form field under 16px, so fields keep 16px (the
