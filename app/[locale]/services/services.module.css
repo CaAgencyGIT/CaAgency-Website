@@ -144,6 +144,7 @@
 .cardPhoto img[data-photo='dariia'] { filter: brightness(1.1) contrast(0.98) saturate(0.98); }
 .cardPhoto img[data-photo='melly'] { filter: brightness(1.01) contrast(0.99) saturate(0.98); }
 .cardPhoto img[data-photo='rebecca'] { filter: brightness(1.025) contrast(1.01) saturate(0.99); }
+.cardPhoto img[data-photo='studio'] { object-position: 50% 50%; }
 
 .cardCopy {
   display: flex;
