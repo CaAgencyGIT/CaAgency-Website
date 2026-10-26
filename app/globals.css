@@ -229,7 +229,8 @@ section {
 /* Homepage collage (Oct 2026, client-finalised on phone): six upright
    photos, no names, the same set on every screen: one row on desktop
    (wider than the page container, 92vw / max 1800px, re-centred), three
-   columns on tablets, two on phones. Cropped by object-fit only. */
+   columns on tablets. Phones swipe the six in one row (two and a peek in
+   view), so the hero fits the first screen. Cropped by object-fit only. */
 .home-collage {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -278,8 +279,9 @@ section {
   .home-collage { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; margin-left: 0; }
 }
 @media (max-width: 760px) {
-  .home-collage { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .home-collage-tile { border-radius: 10px; }
+  .home-collage { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .home-collage::-webkit-scrollbar { display: none; }
+  .home-collage-tile { flex: 0 0 42%; scroll-snap-align: start; border-radius: 10px; }
 }
 
 @keyframes status-enter {

@@ -260,10 +260,15 @@
     .rd-header-nav { display: none; }
   }
 
+  /* Smallest phones: not enough room next to the logo for the pill. */
+  @media (max-width: 359px) { .rd-header-talk { display: none; } }
+
   @media (max-width: 760px) {
     .rd-header, .rd-menu-top { height: 74px; }
     .rd-header { gap: 8px; padding: 0 5vw; }
-    .rd-header-talk { display: none; }
+    /* Phones keep a compact "Let's talk" pill: the enquiry is one tap away. */
+    .rd-header-talk { height: 36px; padding: 0 14px; border-width: 1px; font-size: 10.5px; letter-spacing: 0.1em; }
+    .rd-header-actions { gap: 12px; }
     .rd-menu nav { padding-inline-start: 2vw; padding-bottom: 74px; }
     .rd-menu nav a { font-size: 44px; }
     .rd-menu-ring { width: 340px; height: 340px; right: -110px; bottom: -120px; }
