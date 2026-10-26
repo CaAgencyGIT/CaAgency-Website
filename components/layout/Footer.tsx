@@ -81,6 +81,7 @@ export default function Footer({
     { label: tNav('services'), href: '/services' },
     { label: tNav('blog'), href: '/blog' },
     { label: tNav('contact'), href: '/contact' },
+    { label: tNav('faq'), href: '/faq' },
   ]
 
   // Legal and information pages

@@ -237,7 +237,7 @@ export default async function HomePage() {
         </div>
       </section>
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd('en'))}</script>
-      <FAQ />
+      <FAQ locale="en" />
       <BrandCarousel images={brandLogos} />
 
       {/* Closing conversion CTA, a black rounded panel matching the footer */}

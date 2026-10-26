@@ -162,7 +162,7 @@ export default async function HomePage({ params }: Props) {
 
       {/* FAQ Section */}
       <script type="application/ld+json">{JSON.stringify(await getFaqJsonLd(locale))}</script>
-      <FAQ />
+      <FAQ locale={locale} />
 
       {/* Closing conversion CTA, a black rounded panel matching the footer */}
       <section className="rd-cta-panel">

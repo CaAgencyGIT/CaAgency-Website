@@ -57,7 +57,8 @@
     "openMenu": "打开菜单",
     "closeMenu": "关闭菜单",
     "mainMenu": "主菜单",
-    "letsTalk": "聊一聊"
+    "letsTalk": "聊一聊",
+    "faq": "常见问题"
   },
   "footer": {
     "departments": "业务部门",
@@ -407,7 +408,9 @@
         "answer": "通过联系表单给我们留言，或发送电子邮件至 info@caagency.com。我们会安排一次需求沟通，了解您的目标，然后发送定制的营销活动方案。"
       }
     },
-    "eyebrow": "常见问题"
+    "eyebrow": "常见问题",
+    "pageTitle": "常见问题：与 CA Agency 合作的网红营销",
+    "pageDescription": "品牌最常询问的关于与 CA Agency 合作的问题解答：我们的服务、合作对象、平台、费用以及如何开始。"
   },
   "testimonials": {
     "heading": "客户评价",
@@ -460,6 +463,7 @@
     "influencer-marketing-australia": "澳大利亚网红营销",
     "korean-skincare-influencer-marketing": "韩国美妆网红营销",
     "beauty-influencer-marketing-agency": "美妆网红营销",
-    "skincare-influencer-marketing-agency": "护肤网红营销"
+    "skincare-influencer-marketing-agency": "护肤网红营销",
+    "faq": "常见问题"
   }
 }

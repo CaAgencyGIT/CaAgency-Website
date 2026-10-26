@@ -57,7 +57,8 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "mainMenu": "Menú principal",
-    "letsTalk": "Hablemos"
+    "letsTalk": "Hablemos",
+    "faq": "FAQ"
   },
   "footer": {
     "departments": "Departamentos",
@@ -407,7 +408,9 @@
         "answer": "Envíanos un mensaje a través del formulario de contacto o escribe a info@caagency.com. Programaremos una llamada inicial para entender tus objetivos y después te enviaremos una propuesta de campaña a medida."
       }
     },
-    "eyebrow": "FAQ"
+    "eyebrow": "FAQ",
+    "pageTitle": "Preguntas frecuentes: marketing de influencers con CA Agency",
+    "pageDescription": "Respuestas a las preguntas que más hacen las marcas sobre trabajar con CA Agency: qué hacemos, con quién trabajamos, plataformas, precios y cómo empezar."
   },
   "testimonials": {
     "heading": "Lo que dicen nuestros clientes",
@@ -460,6 +463,7 @@
     "influencer-marketing-australia": "Marketing de influencers en Australia",
     "korean-skincare-influencer-marketing": "Marketing de influencers K-Beauty",
     "beauty-influencer-marketing-agency": "Marketing de influencers de belleza",
-    "skincare-influencer-marketing-agency": "Marketing de influencers de cuidado de la piel"
+    "skincare-influencer-marketing-agency": "Marketing de influencers de cuidado de la piel",
+    "faq": "Preguntas frecuentes"
   }
 }
