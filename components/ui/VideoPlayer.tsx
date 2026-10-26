@@ -130,12 +130,23 @@ export default function VideoPlayer({
     // device handle smoothly (phones since Oct 2026, desktop too after the
     // Work grid grew: partly visible rows were starving the visible ones).
     const minRatio = 0.5
+    // A film scrolled into view starts once it has stayed there briefly, so
+    // tiles flying past during a fast scroll don't each start a download that
+    // steals bandwidth from the ones the visitor stops at. Films already on
+    // screen when the page opens start at once.
+    let enterTimer: ReturnType<typeof setTimeout> | null = null
+    let firstCallback = true
     const playObserver = new IntersectionObserver(([entry]) => {
+      const initial = firstCallback
+      firstCallback = false
       if (entry.isIntersecting && entry.intersectionRatio >= minRatio) {
         if (exitTimer) clearTimeout(exitTimer)
         exitTimer = null
-        setIsInView(true)
+        if (initial) setIsInView(true)
+        else if (!enterTimer) enterTimer = setTimeout(() => { enterTimer = null; setIsInView(true) }, 250)
       } else {
+        if (enterTimer) clearTimeout(enterTimer)
+        enterTimer = null
         // A small hysteresis avoids pause/play churn while scrolling near an
         // edge or while a desktop hover transform shifts the tile slightly.
         if (exitTimer) clearTimeout(exitTimer)
@@ -148,6 +159,7 @@ export default function VideoPlayer({
       mountObserver.disconnect()
       playObserver.disconnect()
       if (exitTimer) clearTimeout(exitTimer)
+      if (enterTimer) clearTimeout(enterTimer)
       if (releaseTimer) clearTimeout(releaseTimer)
     }
   }, [])
