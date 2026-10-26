@@ -20,9 +20,9 @@ export default function IntroFeature({ eyebrow, kicker, title, paragraphs, butto
   return (
     <section className="intro-feature bg-background-base text-foreground-primary py-[96px] mobile:py-[56px] px-section-x">
       <div className="max-w-container mx-auto">
-        <div className="mb-6 flex items-baseline gap-4 mobile:mb-4 mobile:flex-col mobile:gap-1">
-          <h2 className="font-anegra text-[28px] mobile:text-[24px] leading-none">{eyebrow}</h2>
-          <p className="font-jost text-[13px] uppercase tracking-[0.2em] text-foreground-gray">{kicker}</p>
+        <div className="mb-8 flex items-baseline gap-5 mobile:mb-5 mobile:flex-col mobile:gap-1.5">
+          <h2 className="font-anegra text-[44px] tablet:text-[38px] mobile:text-[32px] leading-none">{eyebrow}</h2>
+          <p className="font-jost text-[15px] uppercase tracking-[0.2em] text-foreground-gray mobile:text-[13px]">{kicker}</p>
         </div>
 
         <div className="relative">
