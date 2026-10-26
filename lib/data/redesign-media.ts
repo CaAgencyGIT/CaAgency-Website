@@ -327,7 +327,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     name: 'Yasaman',
     alt: 'Yasaman taking a mirror selfie at a Prada Beauty makeup station',
     image: { src: '/images/hero/collage-v2/yasaman-prada-beauty-v1.webp', width: 1080, height: 1345 },
-    position: '40% 30%',
+    position: '22% 30%',
   },
   {
     area: 'khutjoEvent',
