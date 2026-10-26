@@ -104,6 +104,7 @@ const servicesSchema = {
 }
 
 // Oct 2026 approved design (CA-Services-Final-Designs): five photo cards and
+// (since 26 Oct 2026) one matching studio still-life set, made in Higgsfield;
 // a white logo-free "Ready to Get Started?" tile. Card image, title and
 // "Explore service" open the service page in a new tab.
 const services = [
@@ -111,41 +112,41 @@ const services = [
     number: 1,
     key: 'influencerCampaigns' as const,
     slug: 'influencer-campaigns',
-    photo: 'albina',
-    image: { src: '/images/services/final/01-albina.png', width: 1086, height: 1448 },
-    alt: 'Albina in a close selfie portrait with long highlighted hair and softly balanced lighting against a brighter off-white room background.',
+    photo: 'studio',
+    image: { src: '/images/services/studio/01-campaigns-v1.webp', width: 1200, height: 1600 },
+    alt: 'A smartphone on a tripod filming skincare bottles on a stone plinth in a warm studio.',
   },
   {
     number: 2,
     key: 'talentManagement' as const,
     slug: 'talent-management',
-    photo: 'anton',
-    image: { src: '/images/services/final/02-anton.jpg', width: 1440, height: 1920 },
-    alt: 'Anton in a white robe with under-eye patches and dewy skin.',
+    photo: 'studio',
+    image: { src: '/images/services/studio/02-talent-management-v1.webp', width: 1200, height: 1600 },
+    alt: 'A backstage makeup station with a lit vanity mirror and a director\'s chair.',
   },
   {
     number: 3,
     key: 'contentProduction' as const,
     slug: 'content-production',
-    photo: 'dariia',
-    image: { src: '/images/services/final/03a-dariia.jpg', width: 1440, height: 1920 },
-    alt: 'Dariia with a finished autumn makeup look in a close three-quarter portrait.',
+    photo: 'studio',
+    image: { src: '/images/services/studio/03-content-production-v1.webp', width: 1200, height: 1600 },
+    alt: 'A cinema camera and softbox set up for a beauty product shoot.',
   },
   {
     number: 4,
     key: 'performanceMarketing' as const,
     slug: 'performance-marketing',
-    photo: 'melly',
-    image: { src: '/images/services/final/04-melly.jpg', width: 1080, height: 1440 },
-    alt: 'Melly looking into the camera with a finished smoky-eye makeup look.',
+    photo: 'studio',
+    image: { src: '/images/services/studio/04-performance-v1.webp', width: 1200, height: 1600 },
+    alt: 'Skincare bottles of rising height arranged like a growth chart.',
   },
   {
     number: 5,
     key: 'brandConsultancy' as const,
     slug: 'brand-consultancy',
-    photo: 'rebecca',
-    image: { src: '/images/services/final/05-rebecca.jpg', width: 1440, height: 1920 },
-    alt: 'Rebecca at the LolaVie and Charlotte Tilbury event.',
+    photo: 'studio',
+    image: { src: '/images/services/studio/05-brand-consultancy-v1.webp', width: 1200, height: 1600 },
+    alt: 'Blank cream and black packaging prototypes on a travertine table.',
   },
 ]
 
