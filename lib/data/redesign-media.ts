@@ -278,6 +278,21 @@ export const brandWatermarks: Record<string, { src: string; width: number; heigh
   'Abib': { src: '/images/logos/watermark/abib-v1.png', width: 640, height: 200, widthPct: 42 },
   'AXIS-Y': { src: '/images/logos/watermark/axis-y-v2.png', width: 640, height: 86, widthPct: 56 },
   'YesStyle': { src: '/images/logos/watermark/yesstyle-v3.png', width: 640, height: 175, widthPct: 46 },
+  // Creator showcases (Oct 2026): each brand's official logo in the version
+  // it uses on its own social profiles, where an official file exists.
+  'ECLADO': { src: '/images/logos/watermark/eclado-v1.png', width: 640, height: 139, widthPct: 46 },
+  'IUNIK': { src: '/images/logos/watermark/iunik-v1.png', width: 640, height: 191, widthPct: 44 },
+  'Meditherapy': { src: '/images/logos/watermark/meditherapy-v1.png', width: 640, height: 62, widthPct: 56 },
+  'Rejuran': { src: '/images/logos/watermark/rejuran-v2.png', width: 640, height: 146, widthPct: 48 },
+  'VT Cosmetics': { src: '/images/logos/watermark/vt-cosmetics-v2.png', width: 640, height: 314, widthPct: 32 },
+  'NYX Professional Makeup': { src: '/images/logos/watermark/nyx-v1.png', width: 640, height: 182, widthPct: 46 },
+  'First Aid Beauty': { src: '/images/logos/watermark/first-aid-beauty-v2.png', width: 640, height: 414, widthPct: 36 },
+  'Lashify': { src: '/images/logos/watermark/lashify-v1.png', width: 640, height: 96, widthPct: 50 },
+  'REVCELL': { src: '/images/logos/watermark/revcell-v1.png', width: 640, height: 122, widthPct: 48 },
+  'Prada Beauty': { src: '/images/logos/watermark/prada-beauty-v2.png', width: 640, height: 182, widthPct: 44 },
+  'Vichy': { src: '/images/logos/watermark/vichy-v1.png', width: 640, height: 183, widthPct: 42 },
+  'K-SECRET': { src: '/images/logos/watermark/k-secret-v1.png', width: 640, height: 139, widthPct: 50 },
+  'Too Faced': { src: '/images/logos/watermark/too-faced-v1.png', width: 640, height: 93, widthPct: 54 },
 }
 
 // Homepage intro showreels: every film on the site cut into 1s shots with a

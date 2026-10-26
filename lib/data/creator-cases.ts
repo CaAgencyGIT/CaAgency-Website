@@ -7,7 +7,9 @@ import type { CaseStudy } from './case-studies'
 // Instagram posts in `sourceUrl`; the downloads are archived on the server in
 // /srv/caagency-media-sources/work-15-2026-10. Jay's Rejuran film is a
 // trimmed copy that starts at the product introduction (first 7.6 s cut).
-const film = (key: string) => `/videos/work/case-${key}-v1.mp4`
+// v2: the CA watermark removed (Oct 2026) from the five films that carried it.
+const cleaned = new Set(['iunik-khutjo', 'meditherapy-aurela', 'arencia-albina', 'rejuran-jay', 'k-secret-aiym'])
+const film = (key: string) => `/videos/work/case-${key}-v${cleaned.has(key) ? 2 : 1}.mp4`
 
 type CreatorCase = Omit<CaseStudy, 'services' | 'metrics' | 'vertical' | 'platforms'> &
   Partial<Pick<CaseStudy, 'vertical'>>
@@ -219,14 +221,16 @@ const cases: CreatorCase[] = [
     creator: '@rebeccaghaderi',
     creatorName: 'Rebecca Ghaderi',
     sourceUrl: 'https://www.instagram.com/rebeccaghaderi/p/DXNvez-lJTV/',
-    videoSrc: '',
-    image: { src: '/images/work/case-prada-beauty-rebecca-v1.jpg', width: 1440, height: 1774 },
+    // Photo carousel shown as a slideshow of all eleven images, cover first
+    // (Oct 2026 client request), ending on the cover again so it loops.
+    videoSrc: film('prada-beauty-rebecca'),
+    photoPost: true,
     summary:
       'Rebecca Ghaderi at the Prada Beauty Touch Blush pop-up, photographed in a polka-dot look against the brand’s pink and red set.',
     brief:
-      'This is a photo post rather than a video. Rebecca visits the Prada Beauty Touch Blush pop-up, a pink-and-red space styled around the launch.',
+      'Rebecca visits the Prada Beauty Touch Blush pop-up, a pink-and-red space styled around the launch. Her photo post is shown here as a slideshow of all eleven images, starting with the cover.',
     approach:
-      'The carousel moves between portraits of Rebecca in a white shirt and polka-dot dress in front of the Prada and Touch Blush signage, and details of the blush compacts and the set. The cover image, shown here, places her in the pop-up with the Touch Blush display behind her.',
+      'The carousel moves between portraits of Rebecca in a white shirt and polka-dot dress in front of the Prada and Touch Blush signage, and details of the blush compacts and the set. The cover image places her in the pop-up with the Touch Blush display behind her.',
     outcome:
       'An editorial, event-led photo post where the setting and styling carry the brand’s look.',
   },
@@ -286,16 +290,18 @@ const cases: CreatorCase[] = [
   },
 ]
 
-// Work order (Oct 2026 client request): a colour gradient measured from each
-// film, continuing from the light neutral the existing grid ends on, through
-// golden tones to rosy and pink. No creator appears twice in a row of three
-// (desktop) or a pair (phones), or directly above themselves.
+// Work order (Oct 2026 client request): colour-matched. Each film's mean
+// CIELAB colour and lightness spread, measured over every frame at 2 fps,
+// then the order with the smallest colour steps between every pair of tiles
+// that sit side by side or stacked (desktop rows of three, phone pairs, and
+// the last existing row above) found by repeated simulated annealing. No
+// creator appears twice in a row or pair, or directly above themselves.
 const workOrder = [
-  'rejuran-jay', 'revcell-loresa', 'vt-cosmetics-anton',
-  'eclado-loresa', 'iunik-khutjo', 'lashify-dariia',
-  'meditherapy-aurela', 'vichy-dariia', 'k-secret-aiym',
-  'first-aid-beauty-albulena', 'arencia-albina', 'patrick-ta-beatrix',
-  'too-faced-melly', 'nyx-albulena', 'prada-beauty-rebecca',
+  'rejuran-jay', 'eclado-loresa', 'too-faced-melly',
+  'vt-cosmetics-anton', 'vichy-dariia', 'iunik-khutjo',
+  'patrick-ta-beatrix', 'k-secret-aiym', 'lashify-dariia',
+  'first-aid-beauty-albulena', 'meditherapy-aurela', 'arencia-albina',
+  'revcell-loresa', 'nyx-albulena', 'prada-beauty-rebecca',
 ]
 const bySlug = new Map(cases.map((c) => [c.slug, c]))
 
@@ -304,7 +310,7 @@ export const creatorCases: CaseStudy[] = workOrder.map((slug) => bySlug.get(slug
   ...c,
   platforms: ['Instagram'],
   showcase: true,
-  hasAudio: !!c.videoSrc,
+  hasAudio: !!c.videoSrc && !c.photoPost,
   services: [],
   metrics: [],
 }))
