@@ -14,6 +14,11 @@ describe('talentMetaDescription', () => {
     expect(d).toBe('Baka (@bakaprase) is one of the best-known Serbian-language entertainment creators. His comedy is built for the Balkan audience.')
   })
 
+  it('does not split sentences on decimal numbers', () => {
+    const bio = 'Baka is followed by more than 1.7 million people on Instagram and close to 900,000 on TikTok. His comedy is built for the Balkan audience. CA Agency represents Baka.'
+    expect(talentMetaDescription(bio)).toBe('Baka is followed by more than 1.7 million people on Instagram and close to 900,000 on TikTok. His comedy is built for the Balkan audience.')
+  })
+
   it('cuts a single long sentence at a word boundary', () => {
     const d = talentMetaDescription('word '.repeat(60))
     expect(d.length).toBeLessThanOrEqual(160)

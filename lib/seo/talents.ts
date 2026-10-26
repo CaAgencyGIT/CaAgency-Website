@@ -14,11 +14,13 @@ export function isIndexableTalentProfile(bio: string | null | undefined): boolea
 export function talentMetaDescription(bio: string, max = 160): string {
   const text = bio.trim().replace(/\s+/g, ' ')
   if (text.length <= max) return text
-  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) ?? []
+  // Split only where punctuation is followed by whitespace, so "1.7 million" stays whole.
+  const sentences = text.split(/(?<=[.!?])\s+/)
   let out = ''
   for (const sentence of sentences) {
-    if ((out + sentence).trim().length > max) break
-    out += sentence
+    const next = out ? `${out} ${sentence}` : sentence
+    if (next.length > max) break
+    out = next
   }
   if (out.trim()) return out.trim()
   return text.slice(0, max - 1).replace(/\s+\S*$/, '') + '…'
