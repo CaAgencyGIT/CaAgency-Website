@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export interface HomeCollageTile {
+  /** Grid area in the desktop mosaic (see .home-collage in globals.css). */
+  area: string
   /** Talent name, read out to screen readers (not shown on the tile). */
   name: string
   alt: string
@@ -13,15 +15,16 @@ export interface HomeCollageTile {
   position?: string
 }
 
-// Homepage collage (Oct 2026): six upright photos, the same set on every
-// screen. One row on desktop, three columns on tablets and two on phones;
+// Homepage collage (Oct 2026): six photos, the same set on every screen. A
+// mosaic on desktop (two large photos, a stacked pair, two tall photos),
+// three columns on tablets and two on phones;
 // `swipe` turns the phone layout into a swipe row (About page). See
 // .home-collage in globals.css. Cropped by object-fit only.
 export default function HomeCollage({ tiles, swipe = false }: { tiles: HomeCollageTile[]; swipe?: boolean }) {
   return (
     <div className={swipe ? 'home-collage home-collage--swipe' : 'home-collage'}>
       {tiles.map((tile, index) => (
-        <div key={tile.image.src} className="home-collage-tile" style={{ ['--pos' as string]: tile.position ?? '50% 30%' }}>
+        <div key={tile.image.src} className="home-collage-tile" style={{ ['--pos' as string]: tile.position ?? '50% 30%', ['--area' as string]: tile.area }}>
           <Image
             src={tile.image.src}
             alt={tile.alt}

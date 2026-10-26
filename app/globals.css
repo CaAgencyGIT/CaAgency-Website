@@ -226,23 +226,31 @@ section {
   animation-delay: 0.15s;
 }
 
-/* Homepage collage (Oct 2026, client-finalised on phone): six upright
-   photos, no names, the same set on every screen: one row on desktop
-   (wider than the page container, 92vw / max 1800px, re-centred), three
-   columns on tablets, two on phones. Cropped by object-fit only. */
+/* Homepage collage (Oct 2026): the client-approved desktop mosaic with the
+   six current photos and no names: two large photos, Melly over Yasaman,
+   then two tall photos, all sharing the top and bottom edge. Wider than the
+   page container (92vw / max 1800px), re-centred. Tablets: three columns;
+   phones: two. Cropped by object-fit only. */
 .home-collage {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: 1.2fr 1.2fr 0.95fr 1.05fr 1.2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "albina rebecca melly khutjo lolavie"
+    "albina rebecca yasaman khutjo lolavie";
+  gap: 8px;
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
+  aspect-ratio: 2050 / 722;
 }
+.home-collage > .home-collage-tile { grid-area: var(--area); aspect-ratio: auto; }
 .home-collage-tile {
   position: relative;
   min-width: 0;
+  min-height: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #e9e6e1;
 }
 .home-collage-media {
@@ -275,7 +283,8 @@ section {
   -webkit-appearance: none;
 }
 @media (max-width: 1100px) {
-  .home-collage { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; margin-left: 0; }
+  .home-collage { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: none; grid-template-areas: none; width: 100%; margin-left: 0; aspect-ratio: auto; }
+  .home-collage > .home-collage-tile { grid-area: auto; aspect-ratio: 3 / 4; }
 }
 /* Phones: two columns on the homepage (client, Oct 2026); the About page
    copy of the collage swipes in one row instead (.home-collage--swipe). */

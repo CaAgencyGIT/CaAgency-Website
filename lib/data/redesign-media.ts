@@ -177,14 +177,15 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'georgii-anua' },
 ]
 
-// Homepage collage (Oct 2026, client-finalised on phone, same set on every
-// screen): six upright still photos, no names. Originals are backed up on the
+// Homepage collage (Oct 2026): the same six still photos, no names, on every
+// screen: a mosaic on desktop (`area`), two columns on phones. Originals are backed up on the
 // server in /srv/caagency-media-sources/homepage-collage-2026-10.
 export const homeCollageTiles: HomeCollageTile[] = [
   {
     name: 'Albina',
     href: '/talents/albina-mavriqi',
     alt: 'Albina Mavriqi applying a Medicube mask with a brush',
+    area: 'albina',
     image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
     position: '45% 40%',
   },
@@ -192,6 +193,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     name: 'Rebecca',
     href: '/talents/rebecca-ghaderi',
     alt: 'Rebecca Ghaderi seated in a pink blouse beside a golden serving cloche on an Ellis Brooklyn shoot',
+    area: 'rebecca',
     image: { src: '/images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp', width: 1080, height: 1350 },
     position: '28% 50%',
   },
@@ -199,6 +201,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     name: 'Melly',
     href: '/talents/melly-sanchez',
     alt: 'Melly Sanchez applying blush with a brush, seated in a director’s chair at a beauty event',
+    area: 'melly',
     image: { src: '/images/hero/collage-v2/melly-brush-v1.webp', width: 1080, height: 1440 },
     position: '46% 26%',
   },
@@ -206,12 +209,14 @@ export const homeCollageTiles: HomeCollageTile[] = [
     name: 'Rebecca',
     href: '/talents/rebecca-ghaderi',
     alt: 'Rebecca Ghaderi in a silver dress on set for LolaVie x Charlotte Tilbury',
+    area: 'lolavie',
     image: { src: '/images/hero/collage-v2/rebecca-lolavie-v1.webp', width: 1080, height: 1440 },
     position: '52% 20%',
   },
   {
     name: 'Yasaman',
     alt: 'Yasaman taking a mirror selfie at a Prada Beauty makeup station',
+    area: 'yasaman',
     image: { src: '/images/hero/collage-v2/yasaman-prada-beauty-v1.webp', width: 1080, height: 1345 },
     position: '22% 30%',
   },
@@ -219,6 +224,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     name: 'Khutjo',
     href: '/talents/khutjo-matsoma',
     alt: 'Khutjo Matsoma on a large welcome screen reading “Khutjo! Welcome to Korea”',
+    area: 'khutjo',
     image: { src: '/images/hero/collage-v2/khutjo-welcome-korea-v1.webp', width: 1086, height: 1448 },
     position: '52% 62%',
   },
