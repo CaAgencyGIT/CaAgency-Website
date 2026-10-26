@@ -86,7 +86,7 @@ export default async function HomePage() {
               <p className="mb-10 text-center font-jost text-[12px] font-medium uppercase tracking-[0.25em] text-foreground-gray mobile:mb-8">
                 Our Departments
               </p>
-              <div className="mx-auto mb-14 max-w-[760px] tablet:mb-12 mobile:mb-8">
+              <div className="mx-auto mb-14 max-w-[860px] rounded-[24px] bg-[#e9e7e3] px-[5%] py-[5%] tablet:mb-12 mobile:mb-8 mobile:rounded-[14px]">
                 <DepartmentsMap />
               </div>
               <ul className="grid grid-cols-4 gap-x-14 gap-y-12 tablet:grid-cols-2 tablet:gap-x-10 mobile:grid-cols-2 mobile:gap-x-5 mobile:gap-y-8">
