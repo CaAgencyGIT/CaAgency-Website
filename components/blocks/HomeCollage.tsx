@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export type HomeCollageArea = 'albina' | 'rebecca' | 'melly' | 'yassi' | 'khutjo' | 'anton' | 'dariia'
+export type HomeCollageArea = 'albina' | 'rebecca' | 'melly' | 'yassi' | 'khutjo' | 'anton' | 'dariia' | 'lolavie'
 
 export interface HomeCollageTile {
   area: HomeCollageArea
@@ -18,13 +18,14 @@ export interface HomeCollageTile {
 }
 
 const SIZES: Record<HomeCollageArea, string> = {
-  albina: '(max-width: 760px) 50vw, 26vw',
-  rebecca: '(max-width: 760px) 50vw, 26vw',
+  albina: '(max-width: 760px) 50vw, 22vw',
+  rebecca: '(max-width: 760px) 50vw, 22vw',
   melly: '(max-width: 760px) 50vw, 21vw',
   yassi: '(max-width: 760px) 50vw, 21vw',
   khutjo: '(max-width: 760px) 50vw, 21vw',
   anton: '(max-width: 760px) 50vw, 22vw',
-  dariia: '(max-width: 760px) 100vw, 22vw',
+  dariia: '(max-width: 760px) 100vw, 18vw',
+  lolavie: '(max-width: 760px) 100vw, 22vw',
 }
 
 // Homepage collage (Oct 2026 approved layout): two large tiles, a stack of

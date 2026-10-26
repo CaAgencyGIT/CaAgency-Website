@@ -312,6 +312,15 @@ export const homeCollageTiles: HomeCollageTile[] = [
     position: '50% 32%',
     mobilePosition: '50% 36%',
   },
+  {
+    area: 'lolavie',
+    name: 'Rebecca',
+    href: '/talents/rebecca-ghaderi',
+    alt: 'Rebecca Ghaderi in a silver dress on set for LolaVie x Charlotte Tilbury',
+    image: { src: '/images/hero/collage-v2/rebecca-lolavie-v1.webp', width: 1080, height: 1440 },
+    position: '52% 22%',
+    mobilePosition: '50% 0%',
+  },
 ]
 
 // White brand logos overlaid on the redesign films (the older work videos
