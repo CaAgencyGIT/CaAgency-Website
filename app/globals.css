@@ -289,25 +289,25 @@ a.home-collage-link:focus-visible { outline: 2px solid #fff; outline-offset: -4p
   .home-collage-label { font-size: 11px; }
 }
 /* Phones: a two-column collage of its own rather than the shrunken desktop
-   grid. Albina keeps a tall tile, Rebecca gets a tall tile with room for
-   the cloche scene, and Dariia closes the set across the full width. */
+   grid. Albina keeps a tall tile and Rebecca gets a tall tile with room
+   for the cloche scene; Dariia is left out here. */
 @media (max-width: 760px) {
   .home-collage {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 34vw) 66vw;
+    grid-template-rows: repeat(4, 34vw);
     grid-template-areas:
       "albina melani"
       "albina anton"
       "yassi rebecca"
-      "khutjo rebecca"
-      "dariia dariia";
+      "khutjo rebecca";
     width: 100%;
     margin-left: 0;
     aspect-ratio: auto;
   }
   .home-collage-media { object-position: var(--pos-m); }
-  .home-collage-link { padding: 10px 12px; }
-  .home-collage-label { font-size: 10.5px; letter-spacing: 0.18em; }
+  /* Phones show six photos without names (client, Oct 2026). */
+  .home-collage-tile[data-area='dariia'] { display: none; }
+  .home-collage-shade, .home-collage-label { display: none; }
 }
 
 @keyframes status-enter {

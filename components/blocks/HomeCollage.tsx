@@ -38,6 +38,7 @@ export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
         <div
           key={tile.area}
           className="home-collage-tile"
+          data-area={tile.area}
           style={{
             gridArea: tile.area,
             ['--pos' as string]: tile.position ?? '50% 30%',
