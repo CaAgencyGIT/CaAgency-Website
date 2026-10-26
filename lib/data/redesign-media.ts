@@ -66,7 +66,9 @@ export const films = {
 export type FilmKey = keyof typeof films
 
 // Films re-cut after their v2 encode get a new version so cached copies refresh.
-const filmVersion: Partial<Record<FilmKey, number>> = { 'albina-torriden': 3, 'khutjo-frankly': 3, 'anton-azelaic': 3 }
+// Work films re-encoded from their best available originals (Oct 2026):
+// 1080x1920 where the source has it, otherwise 720x1280.
+const filmVersion: Partial<Record<FilmKey, number>> = { 'aiym-purito': 3, 'albina-torriden': 4, 'anton-azelaic': 4, 'beatrix-abib': 3, 'beatrix-biodance': 3, 'beatrix-gisou': 3, 'dariia-armani': 3, 'dariia-chanel': 3, 'dariia-valentino': 3, 'georgii-anua': 3, 'georgii-yesstyle': 3, 'jay-mixsoon': 3, 'khutjo-frankly': 4, 'loresa-celimax': 3, 'melani-medicube': 3, 'melly-fenty-original': 3, 'melly-rare': 3, 'rebecca-haruharu': 3, 'rebecca-saie': 3, 'sadaf-axisy': 3, 'saranda-boj': 3 }
 export const filmSrc = (key: FilmKey) => `/videos/redesign/rd-${key}-web-v${filmVersion[key] ?? 2}.mp4`
 
 export const filmLabel = (key: FilmKey) => `${films[key].creator} — ${films[key].brand}`
