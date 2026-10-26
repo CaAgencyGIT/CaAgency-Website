@@ -333,9 +333,9 @@ export const homeCollageTiles: HomeCollageTile[] = [
     area: 'khutjoEvent',
     name: 'Khutjo',
     href: '/talents/khutjo-matsoma',
-    alt: 'Khutjo Matsoma in front of the Aprilskin and Medicube welcome wall',
-    image: { src: '/images/hero/collage-v2/khutjo-aprilskin-medicube-v1.webp', width: 941, height: 1672 },
-    position: '50% 45%',
+    alt: 'Khutjo Matsoma on a large welcome screen reading “Khutjo! Welcome to Korea”',
+    image: { src: '/images/hero/collage-v2/khutjo-welcome-korea-v1.webp', width: 1086, height: 1448 },
+    position: '52% 62%',
   },
 ]
 
