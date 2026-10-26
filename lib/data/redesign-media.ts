@@ -257,6 +257,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Albina Mavriqi applying a Medicube mask with a brush',
     image: { src: '/images/hero/collage-v2/albina-medicube-poster-v1.webp', width: 720, height: 1280 },
     position: '50% 40%',
+    mobilePosition: '45% 40%',
   },
   {
     area: 'rebecca',
@@ -265,7 +266,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Rebecca Ghaderi seated in a pink blouse beside a golden serving cloche on an Ellis Brooklyn shoot',
     image: { src: '/images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp', width: 1080, height: 1350 },
     position: '42% 50%',
-    mobilePosition: '40% 45%',
+    mobilePosition: '28% 50%',
   },
   {
     area: 'melani',
@@ -274,6 +275,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Melani Seiffert holding a SKIN1004 cream tube',
     image: { src: '/images/hero/collage-v2/melani-skin1004-poster-v1.webp', width: 720, height: 1280 },
     position: '50% 30%',
+    mobilePosition: '45% 35%',
   },
   {
     area: 'yassi',
@@ -281,7 +283,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Yassi Khatibi in a red dress at the TIRTIR x Ulta Beauty event',
     image: { src: '/images/hero/collage-v2/yassi-tirtir-ulta-crop-v1.webp', width: 628, height: 832 },
     position: '50% 28%',
-    mobilePosition: '68% 30%',
+    mobilePosition: '74% 45%',
   },
   {
     area: 'khutjo',
@@ -290,6 +292,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Khutjo Matsoma using a facial sculpting tool for Anua',
     image: { src: '/images/hero/collage-v2/khutjo-anua-poster-v1.webp', width: 720, height: 1280 },
     position: '50% 32%',
+    mobilePosition: '40% 40%',
   },
   {
     area: 'anton',
@@ -298,6 +301,7 @@ export const homeCollageTiles: HomeCollageTile[] = [
     alt: 'Anton Drozhzhin applying SKIN1004 skincare',
     image: { src: '/images/hero/collage-v2/anton-skin1004-poster-v1.webp', width: 720, height: 1280 },
     position: '50% 25%',
+    mobilePosition: '55% 35%',
   },
   {
     area: 'dariia',
