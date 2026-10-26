@@ -6,6 +6,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
 import { currentCaseStudies } from '@/lib/data/redesign-media'
+import { caseStudySeoTitle } from '@/lib/data/case-studies'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
 
 const listed = currentCaseStudies()
@@ -31,7 +32,7 @@ const listSchema = {
   itemListElement: listed.map((cs, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    name: `${cs.brand} Influencer Marketing Case Study`,
+    name: caseStudySeoTitle(cs),
     url: `https://caagency.com/case-studies/${cs.slug}`,
   })),
 }
