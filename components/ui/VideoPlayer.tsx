@@ -402,8 +402,9 @@ export default function VideoPlayer({
           playsInline
           controls={controls}
           disablePictureInPicture
-          // Buffer ahead while the tile approaches, so it starts without a stutter.
-          preload="auto"
+          // Metadata only: buffering every upcoming film ahead takes iPhone
+          // decoders away from the films already playing (the showreel froze).
+          preload="metadata"
           onPlay={() => {
             if (!controls || manualIntentRef.current !== 'pause') return
             manualIntentRef.current = 'play'

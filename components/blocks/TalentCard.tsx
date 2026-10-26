@@ -98,7 +98,7 @@ export default function TalentCard({
         className
       )}
     >
-      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[12px] mobile:ring-1 mobile:ring-black/5')}>
+      <div className={cn('absolute inset-0', art && 'mobile:relative mobile:inset-auto mobile:aspect-4/5 mobile:overflow-hidden mobile:rounded-[10px] mobile:ring-1 mobile:ring-black/5')}>
         {/* Card artwork fills the 3:4 frame from the top on larger screens;
             only ~3% is trimmed from each side, clear of the logo and name. */}
         <Image
@@ -142,7 +142,7 @@ export default function TalentCard({
         <h3
           className={cn(
             'font-anegra text-[22px] mobile:text-[18px] font-semibold tracking-[0] text-white text-center',
-            art && 'mobile:px-0.5 mobile:pt-2.5 mobile:text-start mobile:text-[14px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark'
+            art && 'mobile:px-0.5 mobile:pt-1.5 mobile:text-start mobile:text-[12px] mobile:leading-[1.25] mobile:font-normal mobile:text-foreground-dark mobile:truncate'
           )}
         >
           {name}
@@ -153,7 +153,7 @@ export default function TalentCard({
           <div
             className={cn(
               'pointer-events-auto flex items-center justify-center gap-2 mt-2 transition-[opacity,translate] duration-500 ease-out pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:group-hover:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-focus-within:translate-y-0',
-              art && 'mobile:mt-0.5 mobile:-ms-2.5 mobile:justify-start mobile:gap-0'
+              art && 'mobile:mt-0 mobile:-ms-1.5 mobile:justify-start mobile:gap-0'
             )}
           >
             {links.map((link, index) => (
@@ -164,7 +164,7 @@ export default function TalentCard({
                 rel="noopener noreferrer"
                 className={cn(
                   'flex min-h-11 min-w-11 items-center justify-center rounded-full text-white transition-colors hover:text-white/70 focus-visible:outline-white',
-                  art && 'mobile:min-h-9 mobile:min-w-9 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[14px] mobile:[&_svg]:w-[14px]'
+                  art && 'mobile:min-h-8 mobile:min-w-7 mobile:text-foreground-dark/70 mobile:hover:text-foreground-dark mobile:[&_svg]:h-[12px] mobile:[&_svg]:w-[12px]'
                 )}
                 aria-label={`${name} on ${link.platform}`}
               >
