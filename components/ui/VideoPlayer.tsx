@@ -82,6 +82,9 @@ export default function VideoPlayer({
   const manualIntentRef = useRef<ManualIntent>('none')
   const hasPlayedRef = useRef(false)
   const staggeredRef = useRef(false)
+  // Pre-buffering (and its download restart) runs once per mounted film, so
+  // a retried play() can't restart the download again in a loop (iOS).
+  const prebufferedRef = useRef(false)
   // Desktop: a fine pointer on a wide screen. Decided after mount, so the
   // server render and first paint match the phone-safe defaults.
   const desktopRef = useRef(false)
@@ -196,6 +199,7 @@ export default function VideoPlayer({
     if (!shouldMountVideo) return
     const video = videoRef.current
     return () => {
+      prebufferedRef.current = false
       if (!video) return
       video.pause()
       video.removeAttribute('src')
@@ -254,7 +258,8 @@ export default function VideoPlayer({
     // a connection, "canplaythrough" fired with only ~1s buffered and the
     // remaining Work grid freezes all happened 0.5-2s in). The poster stays
     // up meanwhile; on a slow connection it plays anyway after the cap.
-    if (!hasPlayedRef.current) {
+    if (!hasPlayedRef.current && !prebufferedRef.current) {
+      prebufferedRef.current = true
       const ahead = () => {
         const { buffered, currentTime, duration } = video
         for (let i = 0; i < buffered.length; i++) {
