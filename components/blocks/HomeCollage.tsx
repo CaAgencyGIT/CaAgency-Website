@@ -14,8 +14,8 @@ export interface HomeCollageTile {
 }
 
 // Homepage collage (Oct 2026): six upright photos, the same set on every
-// screen. One row on desktop, three columns on tablets and two on phones
-// (see .home-collage in globals.css). Cropped by object-fit only.
+// screen. One row on desktop, three columns on tablets and a swipe row on
+// phones (see .home-collage in globals.css). Cropped by object-fit only.
 export default function HomeCollage({ tiles }: { tiles: HomeCollageTile[] }) {
   return (
     <div className="home-collage">

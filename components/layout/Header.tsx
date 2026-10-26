@@ -19,7 +19,8 @@ const menuItems = [{ key: 'home', href: '/' }, ...barItems] as const
 
 // Black header bar (Oct 2026, after scooperz.com): logo left, uppercase menu
 // right, then language, a "Let's talk" pill and a menu button that opens a
-// full-screen menu. Phones keep only the logo, language and menu button.
+// full-screen menu. Phones keep the logo, language, a compact
+// "Let's talk" pill and the menu button.
 export default function Header({ locale, labels }: { locale: string; labels: HeaderLabels }) {
   return (
     <>
