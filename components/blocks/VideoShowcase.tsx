@@ -47,6 +47,8 @@ export default function VideoShowcase({
             loop
             // Client decision: always autoplay, even with reduced motion on.
             ignoreReducedMotion
+            // Phones: a calmer 4:5 crop so the grid doesn't fill the screen.
+            className="rounded-[30px] mobile:aspect-4/5 mobile:rounded-[12px]"
           />
           {video.caption && <ShowcaseCaption caption={video.caption} />}
         </StaggerItem>

@@ -208,7 +208,9 @@ export default function VideoPlayer({
     if (!staggeredRef.current) {
       staggeredRef.current = true
       const attemptBeforeWait = playAttemptRef.current
-      await new Promise((resolve) => setTimeout(resolve, Math.random() * 400))
+      // Phones get a wider window: their decoders are the scarcer resource.
+      const spread = window.matchMedia('(max-width: 767px)').matches ? 1200 : 400
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * spread))
       if (attemptBeforeWait !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
     }
 

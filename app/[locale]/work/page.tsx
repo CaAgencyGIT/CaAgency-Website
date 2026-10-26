@@ -117,10 +117,10 @@ export default async function WorkPage({ params }: Props) {
               <Heading as="h1" color="dark" className="mb-6 tracking-[0.1px]">
                 {t('heading')}
               </Heading>
-              <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
+              <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[15px] mobile:leading-[1.7]">
                 <strong>{t('heroP1')}</strong>
               </Text>
-              <Text color="dark" size="base" className="text-[16px] leading-[28px] mobile:text-[18px] mobile-extra:text-[15px]">
+              <Text color="dark" size="base" className="text-[16px] leading-[28px] mobile:text-[15px] mobile:leading-[1.7]">
                 {t('heroP2')}
               </Text>
             </div>
@@ -132,11 +132,11 @@ export default async function WorkPage({ params }: Props) {
       {/* Video Grid Section — 3 per row, larger tiles (client request, Oct 2026). */}
       <section className="bg-background-base px-section-x">
         <div className="max-w-[1060px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-[36px] tablet:gap-[24px] mobile:gap-[14px]">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-[36px] tablet:gap-[24px] mobile:gap-[10px]">
             {gridVideos.map((video, index) => {
               const study = video.study
               return (
-                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:rounded-[15px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
+                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
                   <VideoPlayer
                     src={video.src}
                     poster={posterFor(video.src)}
@@ -151,7 +151,8 @@ export default async function WorkPage({ params }: Props) {
                     // Client decision: autoplay this muted grid regardless of
                     // prefers-reduced-motion (Oct 2026).
                     ignoreReducedMotion
-                    className="rounded-card mobile:rounded-[15px]"
+                    // Phones: a calmer 4:5 crop so more of the grid fits on screen.
+                    className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
                   />
                   {'watermark' in video && video.watermark && (
                     <Image
@@ -173,11 +174,11 @@ export default async function WorkPage({ params }: Props) {
                       aria-label={`${video.brand} case study`}
                       className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
                     >
-                      <span className="w-full p-4 mobile:p-3">
-                        <span className="block font-anegra text-[18px] mobile:text-[15px] font-semibold text-white leading-tight">
+                      <span className="w-full p-4 mobile:px-2.5 mobile:py-2">
+                        <span className="block font-anegra text-[18px] mobile:text-[13px] font-semibold text-white leading-tight">
                           {video.brand}
                         </span>
-                        <span className="block font-work-sans text-[13px] mobile:text-[12px] text-white/80">
+                        <span className="block font-work-sans text-[13px] mobile:hidden text-white/80">
                           {t('viewCaseStudy')} →
                         </span>
                       </span>
