@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     path: `/blog/${slug}`,
     localized: false,
     type: 'article',
-    image: resolveFeaturedImage(post) ?? '/images/site/og-cover.webp',
+    image: resolveFeaturedImage(post) ?? '/images/site/og-cover-v2.jpg',
     keywords: post.tags,
   })
 
@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const articleSchema = blogPostingJsonLd({
     ...post,
     description: post.excerpt || plainTextExcerpt(post.content),
-    image: resolveFeaturedImage(post) ?? '/images/site/og-cover.webp',
+    image: resolveFeaturedImage(post) ?? '/images/site/og-cover-v2.jpg',
   })
 
   return (
