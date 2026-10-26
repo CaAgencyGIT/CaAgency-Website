@@ -15,10 +15,7 @@ type SiteContentListItem = {
 }
 
 function hasUsablePrismaConnection() {
-  if (process.env.DATABASE_URL?.startsWith('file:')) return true
-  if (process.env.DATABASE_URL?.startsWith('postgres')) return true
-  const url = process.env.PRISMA_DATABASE_URL
-  return Boolean(url && url !== 'prisma://dummy.prisma-data.net')
+  return Boolean(process.env.DATABASE_URL?.startsWith('postgres'))
 }
 
 export async function listSiteContentEntries(): Promise<SiteContentListItem[]> {
@@ -91,7 +88,7 @@ export async function saveSiteContent<T>(key: string, data: T) {
   }
 
   if (!hasUsablePrismaConnection()) {
-    throw new Error('Missing PRISMA_DATABASE_URL')
+    throw new Error('PostgreSQL DATABASE_URL is required')
   }
 
   const client = prisma as any

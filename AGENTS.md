@@ -46,7 +46,7 @@ live DNS, production Workers, or the old server without approval.
 
 ## Performance Rules
 - All hero carousel images use `priority` and `fetchPriority="high"` for LCP
-- Below-the-fold components (`VideoShowcase`, `MediaCarousel`, `FAQ`, `Testimonials`) are dynamically imported
+- The below-the-fold `VideoShowcase` is lazy-loaded via `DeferredVideoShowcase` once it nears the viewport
 - Videos use IntersectionObserver-based lazy loading (`VideoPlayer.tsx`, `CollageVideo.tsx`: `preload="none"`, buffer near view, play on screen)
 - Only the first two hero collage photos are `priority`; below-the-fold posters never are
 - Brand logos explicitly set `loading="lazy"`
