@@ -16,7 +16,8 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
 
   useEffect(() => {
     const video = ref.current
-    if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Plays also with reduced motion on (client decision, Oct 2026).
+    if (!video) return
     // React doesn't write the `muted` attribute; iOS needs it to autoplay.
     video.muted = true
     video.setAttribute('muted', '')
