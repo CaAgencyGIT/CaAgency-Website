@@ -227,17 +227,17 @@ section {
 }
 
 /* Homepage collage (Oct 2026): the client-approved desktop mosaic with the
-   six current photos and no names: Rebecca and Albina large, Rebecca x
-   LolaVie and Melly tall, then Yasaman over Khutjo, all sharing the top and bottom edge. Wider than the
+   six current photos and no names: Rebecca and Albina large, Melly and
+   Rebecca x LolaVie tall, then Yasaman over Khutjo, all sharing the top and bottom edge. Wider than the
    page container (92vw / max 1800px), re-centred. Tablets: three columns;
    phones: two. Cropped by object-fit only. */
 .home-collage {
   display: grid;
-  grid-template-columns: 1.2fr 1.2fr 1.2fr 1.05fr 0.95fr;
+  grid-template-columns: 1.2fr 1.2fr 1.05fr 1.2fr 0.95fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "rebecca albina lolavie melly yasaman"
-    "rebecca albina lolavie melly khutjo";
+    "rebecca albina melly lolavie yasaman"
+    "rebecca albina melly lolavie khutjo";
   gap: 8px;
   width: min(92vw, 1800px);
   margin-left: calc(50% - min(46vw, 900px));
