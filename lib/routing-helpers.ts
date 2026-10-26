@@ -74,6 +74,15 @@ export function isPublicAsset(pathname: string): boolean {
   )
 }
 
+/**
+ * A file-like path at the site root (`/favicon-32x32.png`, `/xyz.php`) that is
+ * not one of PUBLIC_FILE_PATHS. Browsers and crawlers guess such names; left
+ * alone they reach the [locale] route as a "locale" and can end in a 500.
+ */
+export function isUnknownRootFile(pathname: string): boolean {
+  return /^\/[^/]+\.[a-z0-9]{2,12}$/i.test(pathname) && !PUBLIC_FILE_PATHS.has(pathname)
+}
+
 export function isSensitiveProbe(pathname: string): boolean {
   return SENSITIVE_PROBE_PATTERNS.some((pattern) => pattern.test(pathname))
 }

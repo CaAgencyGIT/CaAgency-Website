@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   isPublicAsset,
   isSensitiveProbe,
+  isUnknownRootFile,
   getLocalizedSiteRouteRedirect,
 } from '@/lib/routing-helpers'
 
@@ -93,5 +94,22 @@ describe('getLocalizedSiteRouteRedirect', () => {
   it('returns null for default-locale (unprefixed) routes', () => {
     expect(getLocalizedSiteRouteRedirect('/blog')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/privacy-policy')).toBeNull()
+  })
+})
+
+describe('isUnknownRootFile', () => {
+  it('flags guessed files at the root', () => {
+    expect(isUnknownRootFile('/favicon-32x32.png')).toBe(true)
+    expect(isUnknownRootFile('/apple-touch-icon-precomposed.png')).toBe(true)
+    expect(isUnknownRootFile('/wp-login.php')).toBe(true)
+  })
+
+  it('leaves real files, pages and nested paths alone', () => {
+    expect(isUnknownRootFile('/favicon.ico')).toBe(false)
+    expect(isUnknownRootFile('/robots.txt')).toBe(false)
+    expect(isUnknownRootFile('/site.webmanifest')).toBe(false)
+    expect(isUnknownRootFile('/about')).toBe(false)
+    expect(isUnknownRootFile('/blog/feed.xml')).toBe(false)
+    expect(isUnknownRootFile('/ar')).toBe(false)
   })
 })

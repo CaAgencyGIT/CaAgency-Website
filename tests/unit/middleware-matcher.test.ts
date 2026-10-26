@@ -26,13 +26,12 @@ describe('middleware matcher', () => {
 
   it.each([
     '/images/site/logo.svg', '/videos/redesign/a.mp4', '/media/talents/x.webp', '/fonts/Anegra.woff2', '/assets/x.css',
-    '/favicon.ico', '/favicon-32-v2.png', '/apple-touch-icon-v2.png', '/icon-512-v2.png',
   ])('lets the static file %s skip the middleware', (pathname) => {
     expect(runsMiddleware(pathname)).toBe(false)
   })
 
   it.each([
-    '/imagesx', '/images', '/videos', '/iconography', '/media-kit',
+    '/imagesx', '/images', '/videos', '/iconography', '/media-kit', '/favicon-32x32.png', '/favicon.ico',
   ])('still routes the page-like path %s through the middleware', (pathname) => {
     expect(runsMiddleware(pathname)).toBe(true)
   })
