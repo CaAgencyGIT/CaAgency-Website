@@ -12,6 +12,7 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [load, setLoad] = useState(false)
   const [playing, setPlaying] = useState(false)
+  const visibleRef = useRef(false)
 
   useEffect(() => {
     const video = ref.current
@@ -19,9 +20,8 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
     // React doesn't write the `muted` attribute; iOS needs it to autoplay.
     video.muted = true
     video.setAttribute('muted', '')
-    let visible = false
     const tryPlay = () => {
-      if (visible && video.paused && !document.hidden) video.play().catch(() => {})
+      if (visibleRef.current && video.paused && !document.hidden && video.getAttribute('src')) video.play().catch(() => {})
     }
     const near = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -30,13 +30,14 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
       }
     }, { rootMargin: '300px 0px' })
     const onScreen = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting
-      if (visible) tryPlay()
+      visibleRef.current = entry.isIntersecting
+      if (visibleRef.current) tryPlay()
       else video.pause()
     }, { threshold: 0.5 })
     near.observe(video)
     onScreen.observe(video)
     const onPlaying = () => setPlaying(true)
+    video.addEventListener('loadedmetadata', tryPlay)
     video.addEventListener('canplay', tryPlay)
     video.addEventListener('playing', onPlaying)
     // iOS can refuse the first unprompted play(); the next touch unlocks it.
@@ -45,12 +46,19 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
     return () => {
       near.disconnect()
       onScreen.disconnect()
+      video.removeEventListener('loadedmetadata', tryPlay)
       video.removeEventListener('canplay', tryPlay)
       video.removeEventListener('playing', onPlaying)
       window.removeEventListener('touchend', tryPlay)
       document.removeEventListener('visibilitychange', tryPlay)
     }
   }, [])
+
+  // Start as soon as the source is attached if the card is already in view.
+  useEffect(() => {
+    const video = ref.current
+    if (load && video && visibleRef.current) video.play().catch(() => {})
+  }, [load])
 
   return (
     <video
@@ -59,7 +67,7 @@ export default function CaseStudyCardVideo({ src }: { src: string }) {
       muted
       loop
       playsInline
-      preload="none"
+      preload={load ? 'auto' : 'none'}
       disablePictureInPicture
       aria-hidden="true"
       className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? 'opacity-100' : 'opacity-0'}`}
