@@ -514,6 +514,7 @@ video { -webkit-transform: translateZ(0); transform: translateZ(0); }
 .departments-map-route { stroke: rgba(23, 23, 21, 0.4); stroke-width: 2; stroke-dasharray: 8 9; stroke-dashoffset: 1600; }
 .departments-map.is-shown .departments-map-route { animation: departments-route-draw 2.6s 0.4s ease forwards; }
 @keyframes departments-route-draw { to { stroke-dashoffset: 0; } }
+@media (max-width: 767px) { .departments-map-route { stroke-width: 4.5; stroke-dasharray: 14 14; } .departments-map-traveller { r: 9px; } }
 .departments-map-traveller { fill: #1fbf5b; opacity: 0; }
 .departments-map.is-shown .departments-map-traveller { animation: departments-fade 0.6s 2.6s forwards; }
 @keyframes departments-fade { to { opacity: 1; } }
