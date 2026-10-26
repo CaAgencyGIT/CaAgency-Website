@@ -1,30 +1,30 @@
 // Site-wide text scale (Oct 2026 client request: smaller text, most of all on
 // phones). Rewrites every absolute font-size, and every px line-height, in the
-// compiled CSS to multiply by var(--text-scale), so one value in globals.css
-// tunes the whole site. Relative sizes (em, %, keywords) are left alone: they
-// already follow their scaled parent.
+// compiled CSS so two values in globals.css tune the whole site. Each size
+// moves toward --text-pivot by --text-shrink: large type shrinks most, small
+// labels hardly at all, so headings stay clearly larger than their body text.
+// Sizes already at or below the pivot are left as they are. Relative sizes
+// (em, %, keywords) follow their scaled parent and are not touched.
 const SKIP = /^(inherit|initial|unset|revert|revert-layer|smaller|larger|xx-small|x-small|small|medium|large|x-large|xx-large|xxx-large|math)$/i
 
 function scalable(value) {
   const v = value.trim()
-  if (!v || SKIP.test(v) || v.includes('--text-scale')) return false
+  if (!v || SKIP.test(v) || v.includes('--text-shrink')) return false
   if (/(^|[\d.])(em|%)\b/.test(v) && !/rem\b/.test(v)) return false
   return /px|rem|var\(|clamp\(|min\(|max\(|calc\(|vw|vh|vmin|vmax|cqw|svh|dvh/.test(v)
 }
+
+const shrink = (v) =>
+  `min(${v}, calc(${v} * (1 - var(--text-shrink, 0)) + var(--text-pivot, 11px) * var(--text-shrink, 0)))`
 
 const textScale = () => ({
   postcssPlugin: 'ca-text-scale',
   Declaration(decl) {
     if (decl.prop === 'font-size') {
-      // Reading text never drops below --text-floor (or its own original
-      // size, if that was already smaller): only larger type shrinks fully.
-      if (scalable(decl.value)) {
-        const v = decl.value
-        decl.value = `max(calc(${v} * var(--text-scale, 1)), min(${v}, var(--text-floor, 0px)))`
-      }
+      if (scalable(decl.value)) decl.value = shrink(decl.value)
     } else if (decl.prop === 'line-height') {
       const v = decl.value.trim()
-      if (/^-?[\d.]+px$/.test(v)) decl.value = `calc(${v} * var(--text-scale, 1))`
+      if (/^-?[\d.]+px$/.test(v)) decl.value = shrink(v)
     }
   },
 })

@@ -65,13 +65,14 @@ html {
 }
 
 /* One knob for every text size on the site (see postcss-text-scale.mjs):
-   slightly smaller on desktop, clearly smaller on phones (Oct 2026). */
-:root { --text-scale: 0.94; --text-floor: 11px; }
+   slightly smaller on desktop, clearly smaller on phones (Oct 2026). Each
+   size moves --text-shrink of the way toward --text-pivot. */
+:root { --text-shrink: 0.1; --text-pivot: 11px; }
 @media (max-width: 767px) {
-  :root { --text-scale: 0.86; --text-floor: 13px; }
+  :root { --text-shrink: 0.25; }
   /* iOS zooms into any form field under 16px, so fields keep 16px (the
-     --text-scale term marks it for the build step to leave alone). */
-  input, textarea, select { font-size: calc(16px + 0 * var(--text-scale)) !important; }
+     --text-shrink term marks it for the build step to leave alone). */
+  input, textarea, select { font-size: calc(16px + 0 * var(--text-shrink)) !important; }
 }
 
 /* Custom selection color */
