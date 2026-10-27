@@ -254,6 +254,15 @@ export default function VideoPlayer({
       if (attemptBeforeWait !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
     }
 
+    // A source that already failed (often during the stagger above) can
+    // neither buffer nor play: report it now, so the control offers a retry
+    // instead of showing Pause until the pre-buffer cap runs out.
+    if (video.error) {
+      setPlaybackStatus('error')
+      onReleaseActive?.()
+      return
+    }
+
     video.defaultMuted = muted
     video.muted = muted
     setPlaybackStatus('starting')
@@ -289,12 +298,16 @@ export default function VideoPlayer({
             clearTimeout(timer)
             video.removeEventListener('progress', check)
             video.removeEventListener('canplaythrough', check)
+            video.removeEventListener('error', done)
             resolve()
           }
           const check = () => { if (ahead()) done() }
           const timer = setTimeout(done, 4000)
           video.addEventListener('progress', check)
           video.addEventListener('canplaythrough', check)
+          // A failed source stops waiting at once; play() below then
+          // rejects and the control switches to retry.
+          video.addEventListener('error', done)
         })
         if (attempt !== playAttemptRef.current || !eligibleRef.current || !video.paused) return
       }

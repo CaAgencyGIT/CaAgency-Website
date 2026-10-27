@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test'
 
+// The consent dialog is modal and would intercept hovers and clicks.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('ca-agency-cookie-consent', 'declined'))
+})
+
 test('homepage renders hero and key sections', async ({ page }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(/CA Agency/)
@@ -29,16 +34,16 @@ test('homepage reserves preload bandwidth for critical assets', async ({ page })
   )
 
   expect(fontPreloads).toHaveLength(2)
-  expect(heroImagePreloads).toHaveLength(1)
+  // The hero collage preloads its first three photos; the rest load lazily.
+  expect(heroImagePreloads).toHaveLength(3)
 
-  const hero = page.getByRole('region', { name: 'Featured creators' })
-  await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1)
-  await expect(hero.locator('img[fetchpriority="low"]')).toHaveCount(2)
-  const heroSources = await hero.locator('img').evaluateAll((images) =>
-    images.map((image) => (image as HTMLImageElement).currentSrc)
+  const collage = page.locator('main section').first().locator('img[src*="%2Fimages%2Fhero%2F"]')
+  const loading = await collage.evaluateAll((images) =>
+    images.map((image) => (image as HTMLImageElement).loading)
   )
-  expect(heroSources.filter((src) => src.includes('q=70'))).toHaveLength(1)
-  expect(heroSources.filter((src) => src.includes('q=45'))).toHaveLength(2)
+  expect(loading.length).toBeGreaterThan(3)
+  expect(loading.slice(0, 3).every((value) => value !== 'lazy')).toBe(true)
+  expect(loading.slice(3).every((value) => value === 'lazy')).toBe(true)
 })
 
 test('below-fold controllers load only when their server fallback approaches', async ({ page }) => {
@@ -63,6 +68,10 @@ test('below-fold controllers load only when their server fallback approaches', a
   await expect.poll(() => new Set(scripts).size).toBeGreaterThan(initialScriptCount)
 })
 
+// The home hero and closing CTAs deliberately prefetch when they render.
+const ctaRoutes = new Set(['/contact', '/work'])
+const headerNavLink = (href: string) => `header[data-site-header] .rd-header-nav a[href="${href}"]`
+
 test('homepage waits for navigation intent before route prefetching', async ({ page }) => {
   const rscPaths: string[] = []
   page.on('request', (request) => {
@@ -72,13 +81,15 @@ test('homepage waits for navigation intent before route prefetching', async ({ p
 
   await page.goto('/', { waitUntil: 'load' })
   await page.waitForTimeout(1500)
-  expect(rscPaths).toEqual([])
+  // Only the hero and closing CTAs prefetch on sight (Oct 2026); the header
+  // nav stays cold until the visitor shows intent.
+  expect(rscPaths.filter((path) => !ctaRoutes.has(path))).toEqual([])
 
-  const aboutLink = page.locator('header.hidden a[href="/about"]')
+  const aboutLink = page.locator(headerNavLink('/about'))
   await expect(aboutLink).toHaveCount(1)
   await aboutLink.hover()
-  await expect.poll(() => rscPaths.length).toBeGreaterThan(0)
-  expect(new Set(rscPaths)).toEqual(new Set(['/about']))
+  await expect.poll(() => rscPaths.filter((path) => !ctaRoutes.has(path)).length).toBeGreaterThan(0)
+  expect(new Set(rscPaths.filter((path) => !ctaRoutes.has(path)))).toEqual(new Set(['/about']))
 })
 
 test('keyboard focus warms only the focused desktop route', async ({ page }) => {
@@ -89,10 +100,9 @@ test('keyboard focus warms only the focused desktop route', async ({ page }) => 
   })
 
   await page.goto('/', { waitUntil: 'load' })
-  await page.locator('header.hidden a[href="/talents"]').focus()
-  await expect.poll(() => rscPaths.length).toBeGreaterThan(0)
-  expect(new Set(rscPaths)).toEqual(new Set(['/talents']))
-
+  await page.locator(headerNavLink('/talents')).focus()
+  await expect.poll(() => rscPaths.filter((path) => !ctaRoutes.has(path)).length).toBeGreaterThan(0)
+  expect(new Set(rscPaths.filter((path) => !ctaRoutes.has(path)))).toEqual(new Set(['/talents']))
 })
 
 test('mobile footer and navigation links stay cold without intent', async ({ page }) => {
@@ -106,7 +116,7 @@ test('mobile footer and navigation links stay cold without intent', async ({ pag
   await page.goto('/', { waitUntil: 'load' })
   await page.locator('footer').scrollIntoViewIfNeeded()
   await page.waitForTimeout(750)
-  expect(rscPaths).toEqual([])
+  expect(rscPaths.filter((path) => !ctaRoutes.has(path))).toEqual([])
 })
 
 test('reveal observer exposes server-rendered content after intersection', async ({ page }) => {
@@ -121,7 +131,7 @@ test('reveal observer exposes server-rendered content after intersection', async
   })).toEqual([0, 0])
 })
 
-test('FAQ and hero carousel retain interactive behavior', async ({ page }) => {
+test('FAQ keeps one answer open at a time', async ({ page }) => {
   await page.goto('/', { waitUntil: 'load' })
 
   const faqQuestion = page.locator('#faq-question-1')
@@ -129,15 +139,6 @@ test('FAQ and hero carousel retain interactive behavior', async ({ page }) => {
   await faqQuestion.click()
   await expect(faqQuestion.locator('xpath=..')).toHaveAttribute('open', '')
   await expect(page.locator('#faq-question-0').locator('xpath=..')).not.toHaveAttribute('open', '')
-
-  const carousel = page.getByRole('region', { name: 'Featured creators' })
-  await carousel.focus()
-  await carousel.press('ArrowRight')
-  await expect(carousel.getByRole('button', { name: 'Go to slide 2' })).toHaveAttribute(
-    'aria-current',
-    'true'
-  )
-  await expect(carousel.locator('a.translate-x-0 img')).toHaveAttribute('fetchpriority', 'high')
 })
 
 test('featured videos defer bytes and play concurrently in view', async ({ page, browserName }) => {

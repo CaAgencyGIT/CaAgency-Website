@@ -16,15 +16,16 @@ test('Korean homepage owns the Korean document root', async ({ page }) => {
 
 test('language switching preserves campaign query parameters', async ({ page }) => {
   await page.goto('/ar/about?utm_source=review&ref=creator#team')
-  await page.locator('header.hidden select').selectOption('ko')
+  await page.locator('header[data-site-header] select').selectOption('ko')
   await expect(page).toHaveURL(/\/ko\/about\?utm_source=review&ref=creator#team$/)
 })
 
 test('Arabic shared public links remain localized without a global provider', async ({ page }) => {
   await page.goto('/ar')
 
-  const carousel = page.getByRole('region', { name: 'صنّاع محتوى مميزون' })
-  await expect(carousel.locator('a').first()).toHaveAttribute('href', '/ar/talents')
+  const hero = page.locator('main section').first()
+  await expect(hero.locator('a[href="/ar/contact"]')).toHaveCount(1)
+  await expect(hero.locator('a[href="/ar/work"]')).toHaveCount(1)
 
   const footer = page.locator('footer')
   await expect(footer.locator('a[href="/ar/about"]')).toHaveCount(1)

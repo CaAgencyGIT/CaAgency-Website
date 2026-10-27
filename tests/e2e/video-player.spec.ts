@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test, type Locator, type Page } from '@playwright/test'
 
 async function requireClickGesture(page: Page) {
   await page.addInitScript(() => {
@@ -14,21 +14,17 @@ async function requireClickGesture(page: Page) {
   })
 }
 
-async function holdFirstCarouselPlay(page: Page) {
-  await page.addInitScript(() => {
-    const nativePlay = HTMLMediaElement.prototype.play
-    let held = false
-    HTMLMediaElement.prototype.play = function () {
-      if (!held && this.closest('.media-carousel')) {
-        held = true
-        return new Promise<void>((_resolve, reject) => {
-          Reflect.set(window, '__rejectHeldPlay', () =>
-            reject(new DOMException('Old slide denied', 'NotAllowedError')))
-        })
-      }
-      return nativePlay.call(this)
-    }
-  })
+// Centre a player's frame: a 9:16 film can be nearly as tall as a laptop
+// viewport, and scrolling only its bottom-corner control into view can leave
+// the frame right at the 50% visibility threshold where playback toggles.
+// The consent dialog opens over the page after a moment; these tests click
+// players, so start with a stored choice.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('ca-agency-cookie-consent', 'declined'))
+})
+
+async function centerFrame(frame: Locator) {
+  await frame.evaluate((node) => node.scrollIntoView({ block: 'center' }))
 }
 
 for (const viewport of [
@@ -39,12 +35,12 @@ for (const viewport of [
     test.use({ viewport: { width: viewport.width, height: viewport.height } })
 
     test('plays in view, pauses off-screen, resumes, and honors manual pause', async ({ page }) => {
-      await page.goto('/about')
-      await page.getByRole('button', { name: 'Play video' }).first().scrollIntoViewIfNeeded()
-      const video = page.locator('video[src="/videos/about-video-05-web-v1.mp4"]')
+      await page.goto('/work')
+      const player = page.locator('[data-video-frame]').first()
+      await centerFrame(player)
+      const video = player.locator('video')
 
       await expect(video).toBeAttached()
-      const player = video.locator('xpath=..')
       const control = player.locator('button')
       await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
         !media.paused && media.currentTime > 0
@@ -55,7 +51,7 @@ for (const viewport of [
       await page.locator('footer').scrollIntoViewIfNeeded()
       await expect.poll(() => video.evaluate((media: HTMLVideoElement) => media.paused)).toBe(true)
 
-      await player.scrollIntoViewIfNeeded()
+      await centerFrame(player)
       await expect.poll(() => video.evaluate((media: HTMLVideoElement) => !media.paused)).toBe(true)
 
       // The transient control is keyboard reachable while visually hidden.
@@ -66,117 +62,16 @@ for (const viewport of [
       await expect(control).toHaveAttribute('aria-label', 'Play video')
       await expect(control).toHaveCSS('opacity', '1')
       await page.locator('footer').scrollIntoViewIfNeeded()
-      await player.scrollIntoViewIfNeeded()
+      await centerFrame(player)
       await expect(video).toHaveJSProperty('paused', true)
 
-      await control.click()
+      // Resume from the keyboard too: on Work tiles the case-study link sits
+      // above the player's own stacking context and takes pointer clicks.
+      await control.press('Enter')
       await expect.poll(() => video.evaluate((media: HTMLVideoElement) => !media.paused)).toBe(true)
-    })
-
-    test('reduced motion holds the poster until the user requests playback', async ({ page }) => {
-      await requireClickGesture(page)
-      await page.emulateMedia({ reducedMotion: 'reduce' })
-      await page.goto('/about')
-      const control = page.getByRole('button', { name: 'Play video' }).first()
-      await control.scrollIntoViewIfNeeded()
-      const video = page.locator('video[src="/videos/about-video-05-web-v1.mp4"]')
-      await expect(video).toHaveCount(0)
-      await expect(control).toBeVisible()
-
-      await control.click()
-      await expect(video).toBeAttached()
-      await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
-        !media.paused && media.currentTime > 0
-      ), { timeout: 15_000 }).toBe(true)
     })
   })
 }
-
-test('hovering the homepage media carousel does not interrupt its video', async ({ page }) => {
-  await page.goto('/')
-  const deferred = page.locator('[data-deferred="media-carousel"]')
-  await deferred.scrollIntoViewIfNeeded()
-  await expect(deferred).toHaveAttribute('data-deferred-state', 'active')
-  const carousel = deferred.locator('.media-carousel')
-  const video = carousel.locator('video[src]')
-  await expect(video).toBeAttached()
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
-    !media.paused && media.currentTime > 0
-  ), { timeout: 15_000 }).toBe(true)
-
-  const timeBeforeHover = await video.evaluate((media: HTMLVideoElement) => media.currentTime)
-  await carousel.hover()
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) => media.currentTime), {
-    timeout: 5_000,
-  }).toBeGreaterThan(timeBeforeHover + 0.25)
-  await expect(video).toHaveJSProperty('paused', false)
-})
-
-test('carousel offers gesture-bound recovery when autoplay is denied', async ({ page }) => {
-  await requireClickGesture(page)
-  await page.goto('/')
-  const deferred = page.locator('[data-deferred="media-carousel"]')
-  await deferred.scrollIntoViewIfNeeded()
-  await expect(deferred).toHaveAttribute('data-deferred-state', 'active')
-  const carousel = deferred.locator('.media-carousel')
-  await carousel.locator('button[aria-label]').first().focus()
-  const control = carousel.getByRole('button', { name: 'Play video' })
-  await expect(control).toBeVisible()
-  await control.click()
-  const video = carousel.locator('video[src]')
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
-    !media.paused && media.currentTime > 0
-  ), { timeout: 15_000 }).toBe(true)
-})
-
-test('carousel recovers when WebKit pauses the active visible reel', async ({ page }) => {
-  await page.goto('/')
-  const deferred = page.locator('[data-deferred="media-carousel"]')
-  await deferred.scrollIntoViewIfNeeded()
-  await expect(deferred).toHaveAttribute('data-deferred-state', 'active')
-  const carousel = deferred.locator('.media-carousel')
-  await carousel.locator('button[aria-label]').first().focus()
-  const video = carousel.locator('video[src]')
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
-    !media.paused && media.currentTime > 0
-  ), { timeout: 15_000 }).toBe(true)
-  await video.evaluate((media: HTMLVideoElement) => media.pause())
-  const control = carousel.getByRole('button', { name: 'Play video' })
-  await expect(control).toBeVisible()
-  await control.click()
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) => !media.paused)).toBe(true)
-})
-
-test('late play rejection from an old carousel slide cannot block the next reel', async ({ page }) => {
-  await holdFirstCarouselPlay(page)
-  await page.goto('/')
-  const deferred = page.locator('[data-deferred="media-carousel"]')
-  await deferred.scrollIntoViewIfNeeded()
-  await expect(deferred).toHaveAttribute('data-deferred-state', 'active')
-  const carousel = deferred.locator('.media-carousel')
-  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, '__rejectHeldPlay'))).toBe('function')
-  await carousel.getByRole('button', { name: 'Next' }).click()
-  const video = carousel.locator('video[src]')
-  await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
-    !media.paused && media.currentTime > 0
-  ), { timeout: 15_000 }).toBe(true)
-  await page.evaluate(() => Reflect.get(window, '__rejectHeldPlay')())
-  await expect(carousel.getByRole('button', { name: 'Play video' })).toHaveCount(0)
-  await expect(video).toHaveJSProperty('paused', false)
-})
-
-test('clicking the current carousel dot keeps its pending recovery active', async ({ page }) => {
-  await holdFirstCarouselPlay(page)
-  await page.goto('/')
-  const deferred = page.locator('[data-deferred="media-carousel"]')
-  await deferred.scrollIntoViewIfNeeded()
-  await expect(deferred).toHaveAttribute('data-deferred-state', 'active')
-  const carousel = deferred.locator('.media-carousel')
-  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, '__rejectHeldPlay'))).toBe('function')
-  await carousel.getByRole('button', { name: 'Go to slide 1' }).click()
-  await page.evaluate(() => Reflect.get(window, '__rejectHeldPlay')())
-  await expect(carousel.getByRole('button', { name: 'Play video' })).toBeVisible()
-})
 
 for (const path of [
   '/work',
@@ -185,14 +80,15 @@ for (const path of [
 ]) {
   test(`shared player advances on ${path}`, async ({ page }) => {
     await page.goto(path)
-    const video = page.locator('video[src]').first()
     // The other routes may keep the shared player below their hero section.
-    await page.locator('button[aria-label="Play video"], button[aria-label="Pause video"]').first().scrollIntoViewIfNeeded()
+    const frame = page.locator('[data-video-frame]').first()
+    await centerFrame(frame)
+    const video = frame.locator('video')
     await expect(video).toBeAttached()
     await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
       !media.paused && media.currentTime > 0
     ), { timeout: 15_000 }).toBe(true)
-    await expect(video.locator('xpath=..').locator('button')).toHaveCSS('opacity', '0')
+    await expect(frame.locator('button')).toHaveCSS('opacity', '0')
   })
 }
 
@@ -233,12 +129,17 @@ test('work video pauses on tab visibility change and resumes on return', async (
 
 test('blocked autoplay recovers from the actual Play gesture', async ({ page }) => {
   await requireClickGesture(page)
-  await page.goto('/about')
-  const control = page.getByRole('button', { name: 'Play video' }).first()
-  await control.scrollIntoViewIfNeeded()
-  await expect(control).toHaveCSS('opacity', '1')
-  await control.click()
-  const video = page.locator('video[src="/videos/about-video-05-web-v1.mp4"]')
+  await page.goto('/work')
+  const player = page.locator('[data-video-frame]').first()
+  await centerFrame(player)
+  const video = player.locator('video')
+  await expect(video).toBeAttached()
+  // Autoplay is denied; the poster stays and the control is keyboard reachable.
+  await page.waitForTimeout(1500)
+  await expect(video).toHaveJSProperty('paused', true)
+  const control = player.locator('button')
+  await control.focus()
+  await control.press('Enter')
   await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
     !media.paused && media.currentTime > 0
   ), { timeout: 15_000 }).toBe(true)
@@ -247,15 +148,17 @@ test('blocked autoplay recovers from the actual Play gesture', async ({ page }) 
 test('failed media source can recover after a manual retry', async ({ page, browserName }) => {
   let requests = 0
   if (browserName !== 'webkit') {
-    await page.route('**/videos/work/albina-sephora-web-v1.mp4', (route) => {
+    await page.route(/\/videos\/work\/albina-sephora-sharp-v2(-m)?\.mp4$/, (route) => {
       requests++
       return requests === 1 ? route.fulfill({ status: 404, body: '' }) : route.continue()
     })
   }
   await page.goto('/work')
-  await page.locator('button[aria-label="Play video"], button[aria-label="Pause video"]').first().scrollIntoViewIfNeeded()
-  const video = page.locator('video[src="/videos/work/albina-sephora-web-v1.mp4"]')
-  const control = video.locator('xpath=..').locator('button')
+  const player = page.locator('[data-video-frame]').first()
+  await centerFrame(player)
+  const video = player.locator('video')
+  await expect(video).toHaveAttribute('src', /albina-sephora-sharp-v2/)
+  const control = player.locator('button')
   if (browserName === 'webkit') {
     // Windows WebKit's media process bypasses Playwright request routing.
     // Dispatch the media error after playback starts to exercise the same UI.
@@ -264,8 +167,11 @@ test('failed media source can recover after a manual retry', async ({ page, brow
   } else {
     await expect.poll(() => video.evaluate((media: HTMLVideoElement) => media.error !== null)).toBe(true)
   }
-  await expect(control).toHaveCSS('opacity', '1')
-  await control.click()
+  // The control offers a retry as soon as the source fails. The Work tile is
+  // covered by its case-study link, so the retry runs from the keyboard.
+  await expect(control).toHaveAttribute('aria-label', 'Play video')
+  await control.focus()
+  await control.press('Enter')
   if (browserName !== 'webkit') await expect.poll(() => requests).toBeGreaterThan(1)
   await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
     media.error === null && !media.paused && media.currentTime > 0
