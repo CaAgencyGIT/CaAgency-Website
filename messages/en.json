@@ -274,6 +274,7 @@
     "successMessage": "Your message has been sent successfully. We'll get back to you soon!",
     "errorTitle": "Something went wrong",
     "errorMessage": "We couldn't send your message. Your details are still here, so please try again or email us at",
+    "errorRateLimited": "Too many attempts in a short time. Please wait a few minutes and try again, or email us at",
     "tryAgain": "Try again",
     "fullName": "Full name",
     "email": "Email",

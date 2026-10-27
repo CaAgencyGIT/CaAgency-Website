@@ -274,6 +274,7 @@
     "successMessage": "Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze!",
     "errorTitle": "Etwas ist schiefgelaufen",
     "errorMessage": "Deine Nachricht konnte nicht gesendet werden. Deine Angaben bleiben erhalten – versuch es erneut oder schreib uns an",
+    "errorRateLimited": "Zu viele Versuche in kurzer Zeit. Bitte warte ein paar Minuten und versuch es erneut, oder schreib uns an",
     "tryAgain": "Erneut versuchen",
     "fullName": "Vollständiger Name",
     "email": "E-Mail",

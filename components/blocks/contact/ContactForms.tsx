@@ -38,10 +38,13 @@ function phoneError(number: string, labels: ContactFormLabels) {
   return n && !/^[\d\s().-]{4,30}$/.test(n) ? labels.errPhone : undefined
 }
 
+const SUBMIT_TIMEOUT_MS = 25_000
+
 // Submission plumbing shared by both forms: spam checks, loading, success,
 // failure (keeps every entered value) and focus management.
 function useSubmission(formName: 'contact_page' | 'talent_submission') {
   const [status, setStatus] = useState<Status>('idle')
+  const [rateLimited, setRateLimited] = useState(false)
   const [token, setToken] = useState('')
   const [challengeKey, setChallengeKey] = useState(0)
   const [honeypot, setHoneypot] = useState('')
@@ -57,13 +60,21 @@ function useSubmission(formName: 'contact_page' | 'talent_submission') {
 
   const send = async (payload: Record<string, unknown>) => {
     setStatus('submitting')
+    setRateLimited(false)
+    // A hung request must not leave the button spinning forever.
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS)
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
+        signal: controller.signal,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...payload, turnstileToken: token, website: honeypot, _formTime: Date.now() - (started.current ?? Date.now()) }),
       })
-      if (!response.ok) throw new Error('Failed')
+      if (!response.ok) {
+        setRateLimited(response.status === 429)
+        throw new Error('Failed')
+      }
       try {
         trackFormSubmission(formName)
         if (formName === 'contact_page') trackContactConversion()
@@ -74,6 +85,7 @@ function useSubmission(formName: 'contact_page' | 'talent_submission') {
     } catch {
       setStatus('error')
     } finally {
+      clearTimeout(timeout)
       setToken('')
       setChallengeKey((k) => k + 1)
     }
@@ -94,7 +106,7 @@ function useSubmission(formName: 'contact_page' | 'talent_submission') {
     </>
   )
 
-  return { status, send, reset, extras, blocked: usesTurnstile && !token, resultRef }
+  return { status, send, reset, extras, blocked: usesTurnstile && !token, resultRef, rateLimited }
 }
 
 function focusFirstError(form: HTMLFormElement | null, errors: Errors) {
@@ -104,11 +116,12 @@ function focusFirstError(form: HTMLFormElement | null, errors: Errors) {
   el?.focus()
 }
 
-function SubmitRow({ label, sending, status, blocked, labels, resultRef }: {
+function SubmitRow({ label, sending, status, blocked, labels, resultRef, rateLimited = false }: {
   label: string
   sending: string
   status: Status
   blocked: boolean
+  rateLimited?: boolean
   labels: ContactFormLabels
   resultRef: React.RefObject<HTMLDivElement | null>
 }) {
@@ -117,7 +130,7 @@ function SubmitRow({ label, sending, status, blocked, labels, resultRef }: {
       {status === 'error' && (
         <div ref={resultRef} tabIndex={-1} role="alert" className="mb-4 rounded-[16px] border border-[#b3261e]/25 bg-[#b3261e]/[0.05] px-5 py-4 text-[14px] leading-[1.6] outline-none">
           <strong className="block font-medium text-foreground-dark">{labels.errorTitle}</strong>
-          {labels.errorMessage}{' '}
+          {rateLimited ? labels.errorRateLimited : labels.errorMessage}{' '}
           <a href="mailto:info@caagency.com" className="underline underline-offset-4">info@caagency.com</a>.
         </div>
       )}
@@ -289,7 +302,7 @@ export function BrandEnquiryForm({ labels, roster }: { labels: ContactFormLabels
       <TimingField id="brand-timing" value={timing} onChange={(v) => { setTiming(v); clear('brand-timing') }} labels={labels} error={errors['brand-timing']} />
       <MessageInput id="brand-message" label={labels.collaborationLabel} value={message} onChange={(v) => { setMessage(v); clear('brand-message') }} placeholder={labels.collaborationPlaceholder} labels={labels} error={errors['brand-message']} />
       {sub.extras}
-      <SubmitRow label={labels.sendEnquiry} sending={labels.sending} status={sub.status} blocked={sub.blocked} labels={labels} resultRef={sub.resultRef} />
+      <SubmitRow label={labels.sendEnquiry} sending={labels.sending} status={sub.status} blocked={sub.blocked} labels={labels} resultRef={sub.resultRef} rateLimited={sub.rateLimited} />
     </FormShell>
   )
 }
@@ -410,7 +423,7 @@ export function TalentApplicationForm({ labels }: { labels: ContactFormLabels })
       <TextInput id="talent-mediakit" label={labels.mediaKit} type="url" value={mediaKit} onChange={(v) => { setMediaKit(v); clear('talent-mediakit') }} placeholder={labels.mediaKitPlaceholder} maxLength={contactFieldLimits.mediaKit} labels={labels} error={errors['talent-mediakit']} className="col-span-full" />
       <MessageInput id="talent-message" label={labels.aboutYouLabel} value={message} onChange={(v) => { setMessage(v); clear('talent-message') }} placeholder={labels.aboutYouPlaceholder} labels={labels} error={errors['talent-message']} />
       {sub.extras}
-      <SubmitRow label={labels.submitApplication} sending={labels.sending} status={sub.status} blocked={sub.blocked} labels={labels} resultRef={sub.resultRef} />
+      <SubmitRow label={labels.submitApplication} sending={labels.sending} status={sub.status} blocked={sub.blocked} labels={labels} resultRef={sub.resultRef} rateLimited={sub.rateLimited} />
     </FormShell>
   )
 }

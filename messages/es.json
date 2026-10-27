@@ -274,6 +274,7 @@
     "successMessage": "Tu mensaje se ha enviado correctamente. ¡Te responderemos muy pronto!",
     "errorTitle": "Algo salió mal",
     "errorMessage": "No pudimos enviar tu mensaje. Tus datos siguen aquí: inténtalo de nuevo o escríbenos a",
+    "errorRateLimited": "Demasiados intentos en poco tiempo. Espera unos minutos e inténtalo de nuevo, o escríbenos a",
     "tryAgain": "Intentar de nuevo",
     "fullName": "Nombre completo",
     "email": "Correo electrónico",

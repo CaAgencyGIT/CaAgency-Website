@@ -274,6 +274,7 @@
     "successMessage": "您的消息已成功发送，我们会尽快回复您！",
     "errorTitle": "出现问题",
     "errorMessage": "您的消息未能发送。您填写的信息已保留，请重试或发送邮件至",
+    "errorRateLimited": "短时间内尝试次数过多。请稍等几分钟后重试，或发送邮件至",
     "tryAgain": "重试",
     "fullName": "姓名",
     "email": "电子邮件",
