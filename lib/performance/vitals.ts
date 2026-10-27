@@ -15,6 +15,15 @@ export type VitalsMetric = { name: string; value: number; rating: string }
 export type VitalsBeacon = { path: string; device: string; connection: string; metrics: VitalsMetric[] }
 export type VitalsLine = { m: string; v: number; r: string; p: string; d: string; c: string }
 
+// Automated browsers (headless test runs, crawlers, speed-test services) are
+// not visitors and would skew the numbers; their beacons are dropped. The user
+// agent is only checked here, never stored.
+const AUTOMATED_UA = /HeadlessChrome|Headless|bot\b|bot\/|crawler|spider|slurp|Lighthouse|PageSpeed|PTST|GTmetrix|Pingdom|Playwright|Puppeteer|Selenium|webdriver|curl\/|python|node-fetch|axios/i
+
+export function isAutomatedUserAgent(userAgent: string | null): boolean {
+  return !userAgent || AUTOMATED_UA.test(userAgent)
+}
+
 // Group profile and post URLs so one popular page doesn't scatter the data.
 export function normalizeVitalsPath(path: string): string {
   const clean = path.split(/[?#]/)[0].slice(0, 120)
