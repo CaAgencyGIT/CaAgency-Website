@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { MAP_COLS, MAP_LAT1, MAP_LON0, MAP_ROWS, MAP_ROWS_MASK, MAP_STEP } from '@/lib/data/office-map-dots'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { MAP_COLS, MAP_LAT1, MAP_LON0, MAP_ROWS, MAP_STEP } from '@/lib/data/office-map-dots'
 
 export interface MapOffice {
   id: string
@@ -30,11 +30,14 @@ export default function OfficeMap({
   intro,
   offices,
   openInMapsLabel,
+  dots,
 }: {
   heading: string
   intro: string
   offices: MapOffice[]
   openInMapsLabel: string
+  /** Server-rendered dot matrix (OfficeMapDots). */
+  dots: ReactNode
 }) {
   const [active, setActive] = useState(offices[0]?.id)
   const [shown, setShown] = useState(false)
@@ -51,16 +54,6 @@ export default function OfficeMap({
     }, { threshold: 0.2 })
     io.observe(el)
     return () => io.disconnect()
-  }, [])
-
-  const dots = useMemo(() => {
-    const out: Array<{ cx: number; cy: number; d: number }> = []
-    MAP_ROWS_MASK.forEach((row, r) => {
-      for (let c = 0; c < row.length; c++) {
-        if (row[c] === '1') out.push({ cx: c * CELL + CELL / 2, cy: r * CELL + CELL / 2, d: c * 9 + r * 4 })
-      }
-    })
-    return out
   }, [])
 
   const pts = offices.map((o) => ({ ...o, ...toXY(o.lon, o.lat) }))
@@ -115,9 +108,7 @@ export default function OfficeMap({
 
         <div className="relative self-center">
           <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible" aria-hidden="true">
-            {dots.map((d, i) => (
-              <circle key={i} cx={d.cx} cy={d.cy} r={2.7} className="office-map-dot" style={{ animationDelay: `${d.d}ms` }} />
-            ))}
+            {dots}
             {arcs.map((arc, i) => (
               <g key={arc}>
                 <path d={arc} className="office-map-arc" fill="none" />

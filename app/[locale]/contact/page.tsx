@@ -7,6 +7,7 @@ import { prisma } from '@/lib/prisma'
 import ContactTabs from '@/components/blocks/ContactTabs'
 import { defaultFooterContent, SOCIAL_ICONS } from '@/components/layout/Footer'
 import OfficeMap from '@/components/blocks/OfficeMap'
+import OfficeMapDots from '@/components/blocks/OfficeMapDots'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
@@ -172,6 +173,7 @@ export default async function ContactPage({ params }: Props) {
       </section>
 
       <OfficeMap
+        dots={<OfficeMapDots />}
         heading={t('mapHeading')}
         intro={t('mapIntro')}
         openInMapsLabel={t('findOnMaps')}
