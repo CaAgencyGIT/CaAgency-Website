@@ -108,6 +108,7 @@ describe('isUnknownRootFile', () => {
     expect(isUnknownRootFile('/favicon.ico')).toBe(false)
     expect(isUnknownRootFile('/robots.txt')).toBe(false)
     expect(isUnknownRootFile('/site.webmanifest')).toBe(false)
+    expect(isUnknownRootFile('/BingSiteAuth.xml')).toBe(false)
     expect(isUnknownRootFile('/about')).toBe(false)
     expect(isUnknownRootFile('/blog/feed.xml')).toBe(false)
     expect(isUnknownRootFile('/ar')).toBe(false)

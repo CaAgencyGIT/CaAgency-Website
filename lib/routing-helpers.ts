@@ -10,7 +10,8 @@ export const PUBLIC_FILE_PATHS = new Set([
   '/favicon-32-v2.png',
   '/apple-touch-icon.png',
   '/apple-touch-icon-v2.png',
-  '/google37e3e1aed99a9c5d.html',
+  '/google37e3e1aed99a9c5d.html', // Google Search Console verification
+  '/BingSiteAuth.xml', // Bing Webmaster Tools verification
   '/icon-192.png',
   '/icon-512.png',
   '/icon-192-v2.png',
