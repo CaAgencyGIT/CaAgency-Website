@@ -57,6 +57,16 @@ input[type="button"] {
   transform: scale(1.02);
 }
 
+/* Artwork cards: the picture zooms inside its clipped frame, the name and
+   socials underneath stay put. */
+.talent-card[data-art]:hover { transform: none; }
+.talent-card[data-art] img { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.talent-card[data-art]:hover img { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  .talent-card[data-art] img { transition: none; }
+  .talent-card[data-art]:hover img { transform: none; }
+}
+
 /* Smooth scrolling; stable scrollbar gutter so locking body scroll (mobile
    menu) or short pages never shift the layout horizontally. */
 html {

@@ -7,6 +7,9 @@
   /* Site-wide type tokens (Oct 2026): Anegra headings, Work Sans body, Jost
      for spaced uppercase labels. On :root so blocks outside .rd use them too. */
   :root {
+    --fs-h1: clamp(36px, 4.6vw, 68px);
+    --fs-h2: clamp(30px, 3.6vw, 52px);
+    --fs-h2-md: clamp(28px, 3vw, 42px);
     --rd-serif: var(--font-anegra), Georgia, serif;
     --rd-sans: var(--font-work-sans), Arial, sans-serif;
     --rd-label: var(--font-jost), Arial, sans-serif;
@@ -34,6 +37,7 @@
   .rd :where(p) { margin: 0 0 22px; color: var(--rd-muted); }
   .rd :where(strong) { font-weight: 500; color: var(--rd-ink); }
   .rd :where(a, button, summary):focus-visible { outline: 2px solid #555; outline-offset: 5px; }
+  .rd :where(.rd-cta-panel, .rd-footer, .rd-header, .rd-menu) :where(a, button, summary):focus-visible { outline-color: #fff; }
 
   .rd-section { max-width: 1600px; margin: auto; padding: 80px 5vw; }
 
@@ -116,6 +120,14 @@
     position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 36px;
     height: 92px; padding: 0 4.5vw; background: #0e0e0e; color: #fff;
   }
+  /* Header compacts and blurs as the page scrolls (scroll-driven, no JS;
+     browsers without animation-timeline keep the static bar). */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .rd-header { animation: rd-header-compact linear both; animation-timeline: scroll(root); animation-range: 0 140px; }
+      @keyframes rd-header-compact { to { height: 70px; background: rgba(14, 14, 14, 0.86); backdrop-filter: blur(14px); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08); } }
+    }
+  }
   .rd-header-logo { flex: none; margin-inline-end: auto; }
   .rd-header-nav ul { display: flex; align-items: center; gap: 34px; }
   .rd-header-nav a {
@@ -166,7 +178,7 @@
   .rd-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; padding: 0; margin: -1px; }
 
   /* Closing CTA panel, same black rounded card as the footer below it. */
-  .rd-cta-panel { margin: 16px 16px 0; padding: 60px 6vw; border-radius: 24px; background: #0e0e0e; color: #fff; }
+  .rd-cta-panel { margin: 16px 16px 0; padding: 60px 6vw; border-radius: 24px; background: radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.09), transparent 60%), #0e0e0e; color: #fff; }
   .rd-cta-panel-inner { display: grid; grid-template-columns: auto minmax(0, 460px); align-items: center; justify-content: center; gap: 72px; max-width: 1080px; margin-inline: auto; }
   .rd-cta-panel-inner > div { max-width: 560px; justify-self: end; }
   @media (max-width: 900px) { .rd-cta-panel-inner { grid-template-columns: 1fr; gap: 24px; } .rd-cta-panel-inner > div { justify-self: start; } }
@@ -206,6 +218,7 @@
   /* Footer as a black rounded panel (Oct 2026, after musetheagency.com). */
   .rd-footer { margin: 16px; padding: 88px 6vw 32px; border-radius: 24px; background: #0e0e0e; color: #fff; }
   .rd-footer > * { max-width: 1440px; margin-inline: auto; }
+  .rd-footer::after { content: "CA Agency" / ""; display: block; margin-top: 40px; font-family: var(--rd-serif, var(--font-anegra, serif)); font-size: clamp(64px, 17vw, 260px); line-height: 0.9; text-align: center; white-space: nowrap; overflow: hidden; color: rgba(255, 255, 255, 0.06); user-select: none; pointer-events: none; }
   .rd-footer-top { display: grid; grid-template-columns: 0.8fr 2fr; gap: 64px; }
   .rd-footer-logo { filter: invert(1); }
   .rd-footer-intro p { max-width: 340px; font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); }
@@ -218,7 +231,7 @@
   .rd-footer-locations { columns: 1; }
   .rd-footer-locations a { break-inside: avoid; }
   .rd-footer-contact { display: flex; flex-direction: column; gap: 18px; margin: 0; }
-  .rd-footer-contact dt { margin-bottom: 4px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); }
+  .rd-footer-contact dt { margin-bottom: 4px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); }
   .rd-footer-contact dd { margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.85); }
   .rd-footer-contact a { color: #fff; }
   .rd-footer-links h3 { margin-bottom: 20px; font-family: var(--rd-label); font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; }

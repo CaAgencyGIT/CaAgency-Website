@@ -110,23 +110,23 @@ export default function ServicesOverview({
                   links to its service subpage. */}
               <Link
                 href={serviceHref(index)}
-                className="group relative flex h-full flex-col rounded-[18px] border border-black/10 bg-white p-5 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-black/20 hover:shadow-e3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-red mobile:p-4"
+                className="group relative flex h-full flex-col rounded-[20px] border border-black/10 bg-white p-6 transition-[background-color,border-color,box-shadow,transform,color] duration-300 hover:-translate-y-1 hover:border-[#0e0e0e] hover:bg-[#0e0e0e] hover:text-white hover:shadow-e3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-red mobile:p-5"
               >
                 <div className="mb-5 flex items-center justify-between mobile:mb-3">
-                  <span className="font-jost text-[12px] tracking-[0.18em] text-foreground-primary/40">
+                  <span className="font-jost text-[12px] tracking-[0.18em] text-foreground-primary/40 transition-colors duration-300 group-hover:text-white/60">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-black/[0.04] text-foreground-primary/70 transition-colors duration-300 group-hover:bg-accent-red group-hover:text-white [&_svg]:h-[19px] [&_svg]:w-[19px]">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-black/[0.04] text-foreground-primary/70 transition-colors duration-300 group-hover:bg-white/15 group-hover:text-white [&_svg]:h-[19px] [&_svg]:w-[19px] [&_svg]:[stroke-width:1.7] group-hover:[&_svg]:[stroke-width:1.7]">
                     {renderIcon(service.icon)}
                   </span>
                 </div>
-                <h3 className="mb-2 font-anegra text-[17px] leading-[1.25] tracking-[0.5px] text-foreground-primary">
+                <h3 className="mb-2 font-anegra text-[20px] leading-[1.2] tracking-[0.3px] text-foreground-primary transition-colors duration-300 group-hover:text-white">
                   {service.title}
                 </h3>
-                <p className="line-clamp-3 font-work-sans text-[13.5px] leading-[21px] text-foreground-primary/65 mobile:line-clamp-2">
+                <p className="line-clamp-3 font-work-sans text-[14px] leading-[22px] text-foreground-primary/70 transition-colors duration-300 group-hover:text-white/75 mobile:line-clamp-2">
                   {service.description}
                 </p>
-                <span className="mt-auto inline-flex items-center gap-1.5 pt-4 font-jost text-[11px] font-medium uppercase tracking-[0.16em] text-accent-red">
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-4 font-jost text-[11px] font-medium uppercase tracking-[0.16em] text-accent-red transition-colors duration-300 group-hover:text-white">
                   Explore service
                   <span aria-hidden="true" className="inline-block transition-transform duration-300 rtl:-scale-x-100 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
                     →

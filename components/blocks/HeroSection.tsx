@@ -39,7 +39,7 @@ export default function HeroSection({
   const TitleTag = heading ? 'p' : 'h1'
   return (
     <section
-      className="relative overflow-hidden bg-background-base py-[80px] mobile:py-[50px] px-section-x"
+      className="relative overflow-hidden bg-gradient-to-b from-background-base to-background-soft py-[56px] mobile:py-[40px] px-section-x"
     >
       <div className="relative z-[1] max-w-container mx-auto">
         {/* Keep above-the-fold content immediately visible for better FCP/LCP.
@@ -51,12 +51,12 @@ export default function HeroSection({
               {heading}
             </h1>
           )}
-          <TitleTag className="hero-rise hero-rise-1 font-anegra text-[68px] tablet:text-[50px] mobile:text-[36px] leading-[1.2] text-foreground-primary text-center text-balance">
+          <TitleTag className="hero-rise hero-rise-1 font-anegra text-[clamp(40px,6.2vw,96px)] leading-[1.02] tracking-[-0.02em] rtl:tracking-normal text-foreground-primary text-center text-balance">
             {title}
             {titleSecondLine && (
               <>
                 <br />
-                <span className="text-[50px] tablet:text-[38px] mobile:text-[24px]">{titleSecondLine}</span>
+                <span className="font-jost uppercase tracking-[0.16em] rtl:tracking-normal text-[clamp(14px,1.6vw,22px)] leading-none inline-block mt-4">{titleSecondLine}</span>
               </>
             )}
           </TitleTag>
@@ -64,7 +64,7 @@ export default function HeroSection({
 
         {/* Subtitle */}
         {subtitle && (
-          <div className="hero-rise hero-rise-2 text-center mb-8 mobile:mb-6 max-w-[640px] mx-auto">
+          <div className="hero-rise hero-rise-2 text-center mb-6 mobile:mb-5 max-w-[640px] mx-auto">
             <p className="font-work-sans text-[17px] mobile:text-[16px] leading-[1.6] text-foreground-body text-center text-pretty">
               {subtitle}
             </p>
@@ -73,7 +73,7 @@ export default function HeroSection({
 
         {/* CTAs */}
         {(primaryCta || secondaryCta) && (
-          <div className="hero-rise hero-rise-2 flex flex-wrap items-center justify-center gap-4 mb-10 mobile:mb-8">
+          <div className="hero-rise hero-rise-2 flex flex-wrap items-center justify-center gap-4 mb-6 mobile:mb-5">
             {primaryCta && (
               <Magnetic>
                 <Button href={primaryCta.href} locale={locale}>{primaryCta.label}</Button>
@@ -91,11 +91,11 @@ export default function HeroSection({
             paintable immediately (no opacity fade). Replaces the single-
             slide coverflow carousel: every still visible at once. */}
         {collageTiles && collageTiles.length > 0 ? (
-          <div className="hero-rise-media mt-6">
+          <div className="hero-rise-media mt-2">
             <HomeCollage tiles={collageTiles} />
           </div>
         ) : carouselImages && carouselImages.length > 0 && (
-          <div className="hero-rise-media mt-6">
+          <div className="hero-rise-media mt-2">
             <CoverflowCarousel
               images={carouselImages}
               autoplay={false}
