@@ -177,6 +177,29 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'georgii-anua' },
 ]
 
+// Work page tile order (Oct 2026, dev experiment): every tile, the grid above
+// and the creator showcases, in one sequence. Measured colour of each whole
+// film (CIELAB), arranged so each desktop row of three and each phone pair
+// share a palette and rows flow into each other; never the same creator twice
+// in a row, a phone pair or stacked. Albina x Sephora stays first. Ids are
+// `video:<src>`, `film:<key>` or `case:<slug>`, one row of three per line.
+export const workPageOrder: string[] = [
+  'video:/videos/work/albina-sephora-web-v1.mp4', 'case:vt-cosmetics-anton', 'film:beatrix-gisou',
+  'film:dariia-valentino', 'film:rebecca-saie', 'film:skincare',
+  'film:aiym-purito', 'film:dariia-chanel', 'case:arencia-albina',
+  'film:sadaf-axisy', 'film:dariia-armani', 'case:patrick-ta-beatrix',
+  'case:vichy-dariia', 'case:k-secret-aiym', 'film:saranda-boj',
+  'case:meditherapy-aurela', 'case:first-aid-beauty-albulena', 'case:lashify-dariia',
+  'film:melly-rare', 'case:prada-beauty-rebecca', 'case:nyx-albulena',
+  'film:loresa-celimax', 'film:melani-medicube', 'film:khutjo-frankly',
+  'film:anton-azelaic', 'film:beatrix-biodance', 'video:/videos/work/kylie-cosmetics-web-v1.mp4',
+  'film:melly-fenty-original', 'case:revcell-loresa', 'film:melani-revolve',
+  'film:albina-torriden', 'film:beatrix-abib', 'case:eclado-loresa',
+  'film:georgii-yesstyle', 'film:haircare', 'case:iunik-khutjo',
+  'film:jay-mixsoon', 'film:georgii-anua', 'case:too-faced-melly',
+  'video:/videos/work/honor-web-v1.mp4', 'film:rebecca-haruharu', 'case:rejuran-jay',
+]
+
 // Homepage collage (Oct 2026): the same six still photos, no names, on every
 // screen: a mosaic on desktop (`area`), two columns on phones. Originals are backed up on the
 // server in /srv/caagency-media-sources/homepage-collage-2026-10.
