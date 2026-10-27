@@ -133,7 +133,7 @@ export default async function WorkPage({ params }: Props) {
           {/* Display heading left, copy right (the right half used to be an
               empty placeholder). Stacks on tablet and phone. */}
           <div className="hero-rise-media grid grid-cols-2 items-end gap-x-[6vw] gap-y-8 tablet:grid-cols-1 mobile:grid-cols-1">
-            <Heading as="h1" color="dark" className="text-[clamp(40px,6.4vw,96px)] leading-[0.98]">
+            <Heading as="h1" color="dark" className="!text-[clamp(40px,6.4vw,96px)] !leading-[0.98]">
               {t('heading')}
             </Heading>
             <div className="max-w-[560px]">
