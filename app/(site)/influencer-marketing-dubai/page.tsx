@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-dubai',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-dubai.webp',
+        url: '/images/site/og/influencer-marketing-dubai-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency Dubai',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency Dubai | Influencer Agency UAE',
     description:
       'CA Agency is an influencer marketing agency in Dubai helping brands run Instagram, TikTok, and YouTube campaigns with vetted creators across Dubai and the UAE.',
-    images: ['/images/site/og/influencer-marketing-dubai.webp'],
+    images: ['/images/site/og/influencer-marketing-dubai-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-dubai',

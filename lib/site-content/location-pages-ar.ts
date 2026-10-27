@@ -30,7 +30,7 @@ export const arabicLocationPages = {
     title: 'وكالة تسويق المؤثرين في دبي | CA Agency',
     description:
       'CA Agency وكالة تسويق مؤثرين في دبي تساعد العلامات التجارية على تنفيذ حملات إنستغرام وتيك توك ويوتيوب مع صنّاع محتوى موثوقين في دبي والإمارات.',
-    ogImage: '/images/site/og/influencer-marketing-dubai.webp',
+    ogImage: '/images/site/og/influencer-marketing-dubai-v2.jpg',
     areaServed: [{ '@type': 'City', name: 'Dubai' }],
     content: {
       hero: {
@@ -108,7 +108,7 @@ export const arabicLocationPages = {
     title: 'وكالة تسويق المؤثرين في الإمارات | CA Agency',
     description:
       'CA Agency وكالة تسويق مؤثرين في الإمارات تساعد العلامات التجارية على تنفيذ حملات صنّاع المحتوى في دبي وأبوظبي والشارقة وغيرها.',
-    ogImage: '/images/site/og/influencer-marketing-uae.webp',
+    ogImage: '/images/site/og/influencer-marketing-uae-v2.jpg',
     areaServed: [{ '@type': 'Country', name: 'United Arab Emirates' }],
     content: {
       hero: {
@@ -184,7 +184,7 @@ export const arabicLocationPages = {
     title: 'وكالة تسويق المؤثرين في السعودية | CA Agency',
     description:
       'تواصل مع الجمهور السعودي عبر شراكات مع صنّاع محتوى مصممة للرياض وجدة وجميع أنحاء المملكة.',
-    ogImage: '/images/site/og/influencer-marketing-saudi-arabia.webp',
+    ogImage: '/images/site/og/influencer-marketing-saudi-arabia-v2.jpg',
     areaServed: [{ '@type': 'Country', name: 'Saudi Arabia' }],
     content: {
       hero: {
@@ -259,7 +259,7 @@ export const arabicLocationPages = {
     title: 'وكالة تسويق المؤثرين في دول الخليج | CA Agency',
     description:
       'وسّع حملات صنّاع المحتوى في دول الخليج باستراتيجية واحدة منسقة لتسويق المؤثرين عبر أسواق الخليج.',
-    ogImage: '/images/site/og/influencer-marketing-gcc.webp',
+    ogImage: '/images/site/og/influencer-marketing-gcc-v2.jpg',
     areaServed: [
       { '@type': 'Country', name: 'United Arab Emirates' },
       { '@type': 'Country', name: 'Saudi Arabia' },

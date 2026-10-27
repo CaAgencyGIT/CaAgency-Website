@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-usa',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-usa.webp',
+        url: '/images/site/og/influencer-marketing-usa-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency USA',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency USA | US Influencer Agency',
     description:
       'CA Agency is an influencer marketing agency for the USA, helping brands run creator campaigns across Instagram, TikTok, and YouTube.',
-    images: ['/images/site/og/influencer-marketing-usa.webp'],
+    images: ['/images/site/og/influencer-marketing-usa-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-usa',

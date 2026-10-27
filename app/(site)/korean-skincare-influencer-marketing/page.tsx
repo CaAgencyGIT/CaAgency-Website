@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/korean-skincare-influencer-marketing',
     images: [
       {
-        url: '/images/site/og/korean-skincare-influencer-marketing.webp',
+        url: '/images/site/og/korean-skincare-influencer-marketing-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, K-Beauty Influencer Marketing',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Korean Skincare & K-Beauty Influencer Marketing Agency',
     description:
       'Creator campaigns for K-beauty and Korean skincare brands across Instagram, TikTok, and YouTube.',
-    images: ['/images/site/og/korean-skincare-influencer-marketing.webp'],
+    images: ['/images/site/og/korean-skincare-influencer-marketing-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/korean-skincare-influencer-marketing',

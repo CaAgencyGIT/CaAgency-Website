@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-uae',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-uae.webp',
+        url: '/images/site/og/influencer-marketing-uae-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency UAE',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency UAE | UAE Influencer Agency',
     description:
       'CA Agency is a UAE influencer marketing agency helping brands run creator campaigns across Dubai, Abu Dhabi, Sharjah, and beyond.',
-    images: ['/images/site/og/influencer-marketing-uae.webp'],
+    images: ['/images/site/og/influencer-marketing-uae-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-uae',
