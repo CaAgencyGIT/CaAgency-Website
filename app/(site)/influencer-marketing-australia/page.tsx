@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-australia',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-australia.webp',
+        url: '/images/site/og/influencer-marketing-australia-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency Australia',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency Australia',
     description:
       'Launch creator-led influencer marketing campaigns in Australia across Sydney, Melbourne, and beyond, with vetted creators and transparent performance reporting.',
-    images: ['/images/site/og/influencer-marketing-australia.webp'],
+    images: ['/images/site/og/influencer-marketing-australia-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-australia',

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-gcc',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-gcc.webp',
+        url: '/images/site/og/influencer-marketing-gcc-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency GCC',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency GCC | GCC Influencer Agency',
     description:
       'Scale creator campaigns across the GCC with one coordinated influencer marketing agency strategy across Gulf markets.',
-    images: ['/images/site/og/influencer-marketing-gcc.webp'],
+    images: ['/images/site/og/influencer-marketing-gcc-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-gcc',

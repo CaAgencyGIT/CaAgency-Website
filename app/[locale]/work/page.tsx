@@ -105,6 +105,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t('description'),
     locale,
     path: '/work',
+    image: '/images/site/og/work-v1.jpg',
     keywords: [
       'influencer campaigns',
       'branded content',

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://caagency.com/influencer-marketing-canada',
     images: [
       {
-        url: '/images/site/og/influencer-marketing-canada.webp',
+        url: '/images/site/og/influencer-marketing-canada-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'CA Agency, Influencer Marketing Agency Canada',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Influencer Marketing Agency Canada',
     description:
       'Reach Canadian audiences through bilingual, creator-led influencer campaigns across Toronto, Vancouver, Montreal, and other major markets, with clear reporting.',
-    images: ['/images/site/og/influencer-marketing-canada.webp'],
+    images: ['/images/site/og/influencer-marketing-canada-v2.jpg'],
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-canada',

@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t('description'),
     locale,
     path: '/about',
+    image: '/images/site/og/about-v1.jpg',
     keywords: [
       'about CA Agency',
       'influencer agency Dubai',
