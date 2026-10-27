@@ -7,6 +7,9 @@
   /* Site-wide type tokens (Oct 2026): Anegra headings, Work Sans body, Jost
      for spaced uppercase labels. On :root so blocks outside .rd use them too. */
   :root {
+    --fs-h1: clamp(36px, 4.6vw, 68px);
+    --fs-h2: clamp(30px, 3.6vw, 52px);
+    --fs-h2-md: clamp(28px, 3vw, 42px);
     --rd-serif: var(--font-anegra), Georgia, serif;
     --rd-sans: var(--font-work-sans), Arial, sans-serif;
     --rd-label: var(--font-jost), Arial, sans-serif;
@@ -117,6 +120,14 @@
     position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 36px;
     height: 92px; padding: 0 4.5vw; background: #0e0e0e; color: #fff;
   }
+  /* Header compacts and blurs as the page scrolls (scroll-driven, no JS;
+     browsers without animation-timeline keep the static bar). */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .rd-header { animation: rd-header-compact linear both; animation-timeline: scroll(root); animation-range: 0 140px; }
+      @keyframes rd-header-compact { to { height: 70px; background: rgba(14, 14, 14, 0.86); backdrop-filter: blur(14px); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08); } }
+    }
+  }
   .rd-header-logo { flex: none; margin-inline-end: auto; }
   .rd-header-nav ul { display: flex; align-items: center; gap: 34px; }
   .rd-header-nav a {
@@ -207,6 +218,7 @@
   /* Footer as a black rounded panel (Oct 2026, after musetheagency.com). */
   .rd-footer { margin: 16px; padding: 88px 6vw 32px; border-radius: 24px; background: #0e0e0e; color: #fff; }
   .rd-footer > * { max-width: 1440px; margin-inline: auto; }
+  .rd-footer::after { content: "CA Agency" / ""; display: block; margin-top: 40px; font-family: var(--rd-serif, var(--font-anegra, serif)); font-size: clamp(64px, 17vw, 260px); line-height: 0.9; text-align: center; white-space: nowrap; overflow: hidden; color: rgba(255, 255, 255, 0.06); user-select: none; pointer-events: none; }
   .rd-footer-top { display: grid; grid-template-columns: 0.8fr 2fr; gap: 64px; }
   .rd-footer-logo { filter: invert(1); }
   .rd-footer-intro p { max-width: 340px; font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); }

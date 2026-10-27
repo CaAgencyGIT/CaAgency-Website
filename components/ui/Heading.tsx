@@ -22,8 +22,8 @@ export default function Heading({
   }
 
   const sizeClasses = {
-    h1: 'text-[68px] tablet:text-[50px] mobile:text-[36px] leading-[1.2]',
-    h2: 'text-[48px] tablet:text-[40px] mobile:text-[30px] leading-[1.3]',
+    h1: 'text-[length:var(--fs-h1)] leading-[1.1]',
+    h2: 'text-[length:var(--fs-h2)] leading-[1.12]',
     h3: 'text-[30px] tablet:text-[26px] mobile:text-[22px] leading-[1.4]',
     h4: 'text-[23px] mobile:text-[20px] leading-[1.4]',
     h5: 'text-[20px] mobile:text-[18px] leading-[1.4]',
@@ -33,7 +33,7 @@ export default function Heading({
   return (
     <Component
       className={cn(
-        'font-anegra font-semibold tracking-[0] text-balance',
+        'font-anegra tracking-[-0.01em] rtl:tracking-normal text-balance',
         sizeClasses[as],
         colorClasses[color],
         className
