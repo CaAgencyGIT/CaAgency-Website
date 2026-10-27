@@ -19,6 +19,7 @@ interface Talent {
 interface TalentGridProps {
   talents: Talent[]
   columns?: 2 | 4 | 5 | 6
+  /** Preload the first row (`columns` cards), which is in the first screen. */
   prioritizeFirst?: boolean
   animate?: boolean
   /** Use the finished talent card artwork (matched by slug) where available. */
@@ -66,7 +67,7 @@ export default function TalentGrid({
       videoSrc={mobileLayout === 'list' ? undefined : talentFilmSrc(talent.slug)}
       artwork={cardArt ? talentCardArt[talent.slug] : undefined}
       sizes={imageSizes[columns]}
-      priority={prioritizeFirst && index === 0}
+      priority={prioritizeFirst && index < columns}
       instagramUrl={talent.instagramUrl}
       tiktokUrl={talent.tiktokUrl}
       youtubeUrl={talent.youtubeUrl}

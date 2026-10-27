@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { blurProps } from '@/lib/media/blur'
 import TalentCardVideo from './TalentCardVideo'
 
 export interface SocialLink {
@@ -116,6 +117,7 @@ export default function TalentCard({
           preload={priority}
           loading={priority ? undefined : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
+          {...blurProps(artwork?.src ?? imageUrl)}
           className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
           sizes={sizes}
         />
