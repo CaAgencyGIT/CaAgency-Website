@@ -104,7 +104,7 @@ export default async function HomePage({ params }: Props) {
       />
 
       {/* Talents Section */}
-      <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
+      <section className="bg-background-soft py-sec mobile:py-sec-sm px-section-x">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />

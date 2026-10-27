@@ -50,7 +50,7 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-button-bg text-button-text hover:bg-button-hoverDark hover:text-button-text hover:shadow-e2',
+      'bg-button-bg text-button-text shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] hover:bg-black hover:text-button-text hover:shadow-e2',
     dark: 'bg-background-dark text-foreground-white hover:bg-button-hoverDark',
     light: 'bg-background-light text-foreground-dark ring-1 ring-black/10 hover:bg-button-hoverLight',
     // Secondary action on light surfaces: outline pill next to a solid primary
