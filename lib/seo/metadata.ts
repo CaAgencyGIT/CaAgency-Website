@@ -100,7 +100,7 @@ export function buildPageMetadata({
             .map(([, value]) => value)
         : undefined,
       images: [
-        image === DEFAULT_IMAGE
+        image === DEFAULT_IMAGE || image.startsWith('/images/site/og/')
           ? { url: image, width: 1200, height: 630, alt: imageAlt }
           : { url: image, alt: imageAlt },
       ],
