@@ -16,6 +16,8 @@ test.describe('routing & middleware', () => {
     '/case-studies',
     '/case-studies/mixsoon-skincare',
     '/influencer-marketing-dubai',
+    // Arabic location pages are real translated pages (Oct 2026).
+    '/ar/influencer-marketing-dubai',
     '/korean-skincare-influencer-marketing',
     '/beauty-influencer-marketing-agency',
     '/skincare-influencer-marketing-agency',
@@ -37,7 +39,6 @@ test.describe('routing & middleware', () => {
     ['/ar/case-studies', '/case-studies'],
     ['/ko/case-studies/mixsoon-skincare', '/case-studies/mixsoon-skincare'],
     ['/ar/privacy-policy', '/privacy-policy'],
-    ['/ar/influencer-marketing-dubai', '/influencer-marketing-dubai'],
     ['/ar/korean-skincare-influencer-marketing', '/korean-skincare-influencer-marketing'],
     ['/ar/beauty-influencer-marketing-agency', '/beauty-influencer-marketing-agency'],
   ]

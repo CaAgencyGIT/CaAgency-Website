@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
 test('representative metadata is canonical and branded once', async ({ page }) => {
   for (const path of ['/', '/about', '/influencer-marketing-usa', '/blog', '/services/influencer-campaigns']) {
@@ -26,23 +26,34 @@ test('talent profile hydrates without errors or mobile overflow', async ({ page 
   expect(errors.filter((message) => /hydration|React error #418/i.test(message))).toHaveLength(0)
 })
 
+async function fillBrandEnquiry(page: Page, message: string) {
+  await page.locator('#brand-name').fill('Test User')
+  await page.locator('#brand-email').fill('test@example.com')
+  await page.locator('#brand-company').fill('Example Inc')
+  await page.locator('#brand-phone').fill('50 123 4567')
+  await page.locator('#brand-message').fill(message)
+}
+
+// Keyboard submit: the sticky header can cover the button after Playwright
+// scrolls it into view.
+async function submitBrandEnquiry(page: Page) {
+  const submit = page.getByRole('button', { name: 'Send enquiry' })
+  await submit.focus()
+  await submit.press('Enter')
+}
+
 test('contact success persists and fields expose autofill purpose', async ({ page }) => {
   await page.route('**/api/contact', (route) =>
     route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' })
   )
   await page.goto('/contact')
-  await expect(page.locator('#contactFullName')).toHaveAttribute('autocomplete', 'name')
-  await expect(page.locator('#contactEmail')).toHaveAttribute('autocomplete', 'email')
-  await expect(page.locator('#contactPhone')).toHaveAttribute('autocomplete', 'tel')
-  await expect(page.locator('#contactCompany')).toHaveAttribute('autocomplete', 'organization')
+  await expect(page.locator('#brand-name')).toHaveAttribute('autocomplete', 'name')
+  await expect(page.locator('#brand-email')).toHaveAttribute('autocomplete', 'email')
+  await expect(page.locator('#brand-company')).toHaveAttribute('autocomplete', 'organization')
+  await expect(page.locator('#brand-phone')).toHaveAttribute('autocomplete', 'tel-national')
 
-  await page.locator('#contactFullName').fill('Test User')
-  await page.locator('#contactEmail').fill('test@example.com')
-  await page.locator('#contactPhone').fill('+1 555 123 4567')
-  await page.locator('#contactCompany').fill('Example Inc')
-  await page.locator('#contactBudget').selectOption('20-40k')
-  await page.locator('#contactMessage').fill('Testing the contact form success state.')
-  await page.getByRole('button', { name: /get in touch/i }).click()
+  await fillBrandEnquiry(page, 'Testing the contact form success state.')
+  await submitBrandEnquiry(page)
   await expect(page.getByRole('status')).toBeVisible()
   await page.waitForTimeout(3500)
   await expect(page.getByRole('status')).toBeVisible()
@@ -57,63 +68,42 @@ test('contact provider failure stays visible and preserves visitor input', async
     })
   )
   await page.goto('/contact')
-  await page.locator('#contactFullName').fill('Test User')
-  await page.locator('#contactEmail').fill('test@example.com')
-  await page.locator('#contactPhone').fill('+1 555 123 4567')
-  await page.locator('#contactCompany').fill('Example Inc')
-  await page.locator('#contactBudget').selectOption('20-40k')
-  await page.locator('#contactMessage').fill('Keep this message available after a delivery failure.')
-  await page.getByRole('button', { name: /get in touch/i }).click()
-  await expect(page.locator('div[role="alert"][tabindex="-1"]')).toBeVisible()
-  await page.getByRole('button', { name: /try again/i }).click()
-  await expect(page.locator('#contactMessage')).toHaveValue(
+  await fillBrandEnquiry(page, 'Keep this message available after a delivery failure.')
+  await submitBrandEnquiry(page)
+  const alert = page.locator('div[role="alert"][tabindex="-1"]')
+  await expect(alert).toBeVisible()
+  await expect(alert).toBeFocused()
+  await expect(page.locator('#brand-message')).toHaveValue(
     'Keep this message available after a delivery failure.'
   )
+  await expect(page.getByRole('button', { name: 'Send enquiry' })).toBeEnabled()
 })
 
-test('reduced motion keeps work videos paused and defers MP4 bytes', async ({ browser }) => {
+test('work grid autoplays its sharp encodes even with reduced motion', async ({ browser }) => {
+  // Client decision (Oct 2026): the muted Work grid ignores prefers-reduced-motion.
   const context = await browser.newContext({ reducedMotion: 'reduce' })
   const page = await context.newPage()
-  const videoResponses: string[] = []
-  page.on('response', (response) => {
-    if (/\.mp4(?:\?|$)/i.test(response.url())) videoResponses.push(response.url())
-  })
   await page.goto('/work')
-  await page.waitForTimeout(1000)
-  expect(videoResponses).toHaveLength(0)
-  const states = await page.locator('video').evaluateAll((videos) =>
-    videos.map((video) => {
-      const media = video as HTMLVideoElement
-      return { paused: media.paused, currentTime: media.currentTime }
-    })
-  )
-  expect(states.every((state) => state.paused && state.currentTime === 0)).toBe(true)
+  const frame = page.locator('[data-video-frame]').first()
+  await frame.evaluate((node) => node.scrollIntoView({ block: 'center' }))
+  const video = frame.locator('video')
+  await expect(video).toHaveAttribute('src', /-sharp-v2(-m)?\.mp4$/)
+  await expect.poll(() => video.evaluate((media: HTMLVideoElement) =>
+    !media.paused && media.currentTime > 0
+  ), { timeout: 15_000 }).toBe(true)
   await context.close()
 })
 
-test('work media uses the optimized immutable source on manual play', async ({ browser }) => {
-  const context = await browser.newContext({ reducedMotion: 'reduce' })
-  const page = await context.newPage()
-  const videoRequests: string[] = []
-  page.on('request', (request) => {
-    const pathname = new URL(request.url()).pathname
-    if (pathname.endsWith('.mp4')) videoRequests.push(pathname)
-  })
-
-  await page.goto('/work')
-  await expect(page.locator('video[src]')).toHaveCount(0)
-  await page.getByRole('button', { name: /play video/i }).first().click()
-  await expect(page.locator('video[src]')).toHaveCount(1)
-  await expect.poll(() => videoRequests.length).toBe(1)
-  expect(videoRequests[0]).toMatch(/-web-v1\.mp4$/)
-  await context.close()
-})
-
-test('brand marquee keeps two seamless tracks with a reduced DOM', async ({ page }) => {
+test('brand marquee keeps two seamless tracks with a flat DOM', async ({ page }) => {
   await page.goto('/')
   const strip = page.locator('[data-brand-strip]')
-  await expect(strip.locator(':scope > div')).toHaveCount(2)
-  expect(await strip.locator('*').count()).toBeLessThanOrEqual(60)
+  const tracks = strip.locator(':scope > div')
+  await expect(tracks).toHaveCount(2)
+  const logos = await tracks.evaluateAll((nodes) => nodes.map((node) => node.querySelectorAll('img').length))
+  expect(logos[0]).toBeGreaterThan(0)
+  expect(logos[1]).toBe(logos[0])
+  // One element per logo plus the two tracks: no per-logo wrappers.
+  expect(await strip.locator('*').count()).toBeLessThanOrEqual(logos[0] * 2 + 2)
 })
 
 test('privacy settings dialog asks once and reopens from the footer', async ({ page }) => {
