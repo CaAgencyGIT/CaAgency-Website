@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MAP_COLS, MAP_LAT1, MAP_LON0, MAP_ROWS, MAP_STEP } from '@/lib/data/office-map-dots'
 
 export interface MapOffice {
@@ -30,14 +30,11 @@ export default function OfficeMap({
   intro,
   offices,
   openInMapsLabel,
-  dots,
 }: {
   heading: string
   intro: string
   offices: MapOffice[]
   openInMapsLabel: string
-  /** Server-rendered dot matrix (OfficeMapDots). */
-  dots: ReactNode
 }) {
   const [active, setActive] = useState(offices[0]?.id)
   const [shown, setShown] = useState(false)
@@ -107,8 +104,12 @@ export default function OfficeMap({
         </div>
 
         <div className="relative self-center">
-          <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible" aria-hidden="true">
-            {dots}
+          {/* The dot matrix is one static image (scripts/build-office-dots-svg.ts):
+              ~2,900 animated <circle> nodes made the page heavy. It sits under
+              the SVG in the same box and is revealed with a mask sweep. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/site/office-dots-v1.svg" alt="" aria-hidden="true" width={W} height={H} decoding="async" className="office-map-dots absolute inset-0 h-full w-full" />
+          <svg viewBox={`0 0 ${W} ${H}`} className="relative block h-auto w-full overflow-visible" aria-hidden="true">
             {arcs.map((arc, i) => (
               <g key={arc}>
                 <path d={arc} className="office-map-arc" fill="none" />
