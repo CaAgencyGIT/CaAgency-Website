@@ -274,6 +274,7 @@
     "successMessage": "Votre message a bien été envoyé. Nous revenons vers vous très vite !",
     "errorTitle": "Une erreur est survenue",
     "errorMessage": "Votre message n’a pas pu être envoyé. Vos informations sont conservées : réessayez ou écrivez-nous à",
+    "errorRateLimited": "Trop de tentatives en peu de temps. Patientez quelques minutes puis réessayez, ou écrivez-nous à",
     "tryAgain": "Réessayer",
     "fullName": "Nom complet",
     "email": "E-mail",

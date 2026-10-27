@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
 const RING_TEXT = 'CREATORS WHO SHAPE CULTURE · CA AGENCY · '
@@ -25,12 +25,33 @@ export default function HeaderMenu({
 }) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
+  const burgerRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+  const wasOpen = useRef(false)
+
+  // Dialog focus: move into the menu on open, back to the menu button on close.
+  useEffect(() => {
+    if (open) closeRef.current?.focus()
+    else if (wasOpen.current) burgerRef.current?.focus()
+    wasOpen.current = open
+  }, [open])
+
   useEffect(() => {
     if (!open) return
     // Phones have no hover: warm the menu's pages as soon as it opens, so a
     // tap swaps the page without waiting on the network.
     for (const item of items) router.prefetch(localizeHref(item.href, locale))
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') return setOpen(false)
+      if (e.key !== 'Tab' || !menuRef.current) return
+      // Keep Tab inside the open menu (aria-modal).
+      const focusable = menuRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus() }
+    }
     document.documentElement.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
     return () => {
@@ -41,17 +62,17 @@ export default function HeaderMenu({
 
   return (
     <>
-      <button type="button" className="rd-header-burger" aria-label={openLabel} aria-expanded={open} onClick={() => setOpen(true)}>
+      <button ref={burgerRef} type="button" className="rd-header-burger" aria-label={openLabel} aria-expanded={open} onClick={() => setOpen(true)}>
         <span />
         <span />
       </button>
 
-      <div className={`rd-menu${open ? ' is-open' : ''}`} role="dialog" aria-modal="true" aria-label={menuLabel} inert={!open}>
+      <div ref={menuRef} className={`rd-menu${open ? ' is-open' : ''}`} role="dialog" aria-modal="true" aria-label={menuLabel} inert={!open}>
         <div className="rd-menu-top">
           <Link href={localizeHref('/', locale)} prefetch={false} onClick={() => setOpen(false)}>
             <Image src="/images/site/logo_payoff.svg" alt="CA Agency" width={343} height={274} className="h-[52px] w-auto invert max-[760px]:h-[42px]" />
           </Link>
-          <button type="button" className="rd-menu-close" aria-label={closeLabel} onClick={() => setOpen(false)}>
+          <button ref={closeRef} type="button" className="rd-menu-close" aria-label={closeLabel} onClick={() => setOpen(false)}>
             <span />
             <span />
           </button>

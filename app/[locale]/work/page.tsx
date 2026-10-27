@@ -130,11 +130,13 @@ export default async function WorkPage({ params }: Props) {
       {/* Hero Section — CSS load-in (LCP-safe) */}
       <section className="relative overflow-hidden bg-background-base py-section-y-desktop mobile:py-[50px] px-section-x">
         <div className="relative z-[1] max-w-container mx-auto">
-          <div className="flex flex-col md:flex-row gap-[50px]">
-            <div className="hero-rise-media w-full md:w-1/2">
-              <Heading as="h1" color="dark" className="mb-6 tracking-[0.1px]">
-                {t('heading')}
-              </Heading>
+          {/* Display heading left, copy right (the right half used to be an
+              empty placeholder). Stacks on tablet and phone. */}
+          <div className="hero-rise-media grid grid-cols-2 items-end gap-x-[6vw] gap-y-8 tablet:grid-cols-1 mobile:grid-cols-1">
+            <Heading as="h1" color="dark" className="!text-[clamp(40px,6.4vw,96px)] !leading-[0.98]">
+              {t('heading')}
+            </Heading>
+            <div className="max-w-[560px]">
               <Text color="dark" size="base" className="mb-6 text-[16px] leading-[28px] mobile:text-[15px] mobile:leading-[1.7]">
                 <strong>{t('heroP1')}</strong>
               </Text>
@@ -142,7 +144,6 @@ export default async function WorkPage({ params }: Props) {
                 {t('heroP2')}
               </Text>
             </div>
-            <div className="w-full md:w-1/2 hidden mobile:hidden"></div>
           </div>
         </div>
       </section>

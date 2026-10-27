@@ -7,6 +7,7 @@ import { prisma } from '@/lib/prisma'
 import ContactTabs from '@/components/blocks/ContactTabs'
 import { defaultFooterContent, SOCIAL_ICONS } from '@/components/layout/Footer'
 import OfficeMap from '@/components/blocks/OfficeMap'
+import OfficeMapDots from '@/components/blocks/OfficeMapDots'
 import { buildContactFormLabels } from '@/lib/contact/form-labels'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
@@ -120,7 +121,6 @@ export default async function ContactPage({ params }: Props) {
                 alt="CA Agency office lounge"
                 fill
                 priority
-                unoptimized
                 sizes="(max-width: 767px) 100vw, 440px"
                 className="object-cover"
               />
@@ -162,6 +162,7 @@ export default async function ContactPage({ params }: Props) {
           <div className="tablet:order-1 mobile:order-1">
             <h1 className="mb-6 font-anegra text-[clamp(40px,6.4vw,96px)] leading-[0.95] text-foreground-primary mobile:mb-5 mobile:text-[34px]">{t('getInTouch')}</h1>
             <ContactTabs
+              label={t('getInTouch')}
               tabs={[
                 { id: 'brand', label: t('tabBrands'), intro: t('brandDescription'), panel: <BrandEnquiryForm labels={formLabels} roster={roster} /> },
                 { id: 'talent', label: t('tabInfluencers'), intro: t('talentDescription'), panel: <TalentApplicationForm labels={formLabels} /> },
@@ -172,6 +173,7 @@ export default async function ContactPage({ params }: Props) {
       </section>
 
       <OfficeMap
+        dots={<OfficeMapDots />}
         heading={t('mapHeading')}
         intro={t('mapIntro')}
         openInMapsLabel={t('findOnMaps')}

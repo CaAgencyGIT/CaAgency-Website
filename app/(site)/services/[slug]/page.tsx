@@ -45,6 +45,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     description: service.seoDescription,
     path: `/services/${slug}`,
     localized: false,
+    image: `/images/site/og/services/${slug}.jpg`,
+    imageAlt: `${service.title} | CA Agency`,
     keywords: [
       service.title.toLowerCase(),
       'influencer marketing agency',

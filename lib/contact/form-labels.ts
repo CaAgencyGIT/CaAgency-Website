@@ -35,6 +35,7 @@ export const CONTACT_FORM_LABEL_KEYS = [
   'errSummary',
   'errUrl',
   'errorMessage',
+  'errorRateLimited',
   'errorTitle',
   'followers',
   'followersPlaceholder',

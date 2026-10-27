@@ -92,7 +92,7 @@ export const services: ServiceDetail[] = [
           'We agree the KPIs before launch and track them throughout: reach, engagement rate, link clicks, code redemptions and conversions where tracking allows. The final report explains what each creator and format delivered, so the next campaign starts from evidence rather than guesswork.',
       },
     ],
-    image: '/images/services/final/01-albina.png',
+    image: '/images/services/final/01-albina.jpg',
     imageAlt: 'Albina in a close selfie portrait with long highlighted hair and softly balanced lighting.',
   },
   {

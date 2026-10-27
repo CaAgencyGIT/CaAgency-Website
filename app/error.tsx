@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { getErrorCopy, localeFromPath } from '@/lib/error-copy'
 
 export default function Error({
   error,
@@ -10,34 +12,32 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const t = getErrorCopy(localeFromPath(usePathname()))
+
   useEffect(() => {
     console.error('Application error:', error)
   }, [error])
 
   return (
-    <div className="min-h-screen bg-background-base flex items-center justify-center px-6">
+    <div dir={t.dir} className="min-h-screen bg-background-base flex items-center justify-center px-section-x">
       <div className="text-center max-w-[600px]">
-        <h1 className="text-[120px] md:text-[80px] text-foreground-primary leading-none mb-4 font-bold">
-          Error
+        <h1 className="font-anegra text-[length:var(--fs-h2,40px)] leading-[1.12] text-foreground-primary mb-6">
+          {t.title}
         </h1>
-        <h2 className="text-foreground-primary mb-6 text-[32px] md:text-[26px] font-semibold">
-          Something went wrong
-        </h2>
-        <p className="text-black/70 text-[16px] leading-[26px] mb-10">
-          We encountered an unexpected error. Please try again or contact us if the problem persists.
-        </p>
+        <p className="text-[#555] text-[16px] leading-[26px] mb-10">{t.body}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
+            type="button"
             onClick={reset}
-            className="px-6 py-3 bg-black/10 text-foreground-primary rounded-lg hover:bg-black/20 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 bg-button-bg text-button-text font-jost font-medium rounded-full hover:bg-black transition-colors"
           >
-            Try again
+            {t.retry}
           </button>
           <Link
-            href="/"
-            className="px-6 py-3 bg-black/10 text-foreground-primary rounded-lg hover:bg-black/20 transition-colors"
+            href={t.homeHref}
+            className="inline-flex items-center justify-center px-8 py-4 ring-1 ring-black/20 text-foreground-primary font-jost font-medium rounded-full hover:ring-black/40 hover:bg-black/[0.03] transition-colors"
           >
-            Back to Home
+            {t.home}
           </Link>
         </div>
       </div>
