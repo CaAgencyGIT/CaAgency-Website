@@ -92,6 +92,7 @@ export default function TalentCard({
 
   return (
     <div
+      data-art={art ? '' : undefined}
       className={cn(
         'talent-card group relative w-full',
         art

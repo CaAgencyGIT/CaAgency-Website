@@ -18,9 +18,9 @@ export default function CaseStudyCard({
   return (
     <Link
       href={`/case-studies/${study.slug}`}
-      className="hover-lift group flex h-full items-stretch gap-5 overflow-hidden rounded-card border border-black/10 bg-background-base p-3 shadow-e1 transition-shadow hover:shadow-e3"
+      className="hover-lift group flex h-full items-stretch gap-5 overflow-hidden rounded-card border border-black/10 bg-background-base p-3 shadow-e1 transition-[box-shadow,border-color] hover:border-black/25 hover:shadow-e3"
     >
-      <div className="relative aspect-[9/16] w-[34%] max-w-[150px] shrink-0 self-start overflow-hidden rounded-[12px] bg-background-soft">
+      <div className="relative aspect-[9/16] w-[34%] max-w-[150px] shrink-0 self-start overflow-hidden rounded-[14px] bg-background-soft">
         <Image
           src={caseStudyStill(study)}
           alt={`${study.brand} campaign video still`}
@@ -34,14 +34,15 @@ export default function CaseStudyCard({
         <span className="mb-2 block font-jost text-[11px] font-medium uppercase tracking-[0.16em] text-foreground-gray">
           {study.vertical}
         </span>
-        <p className="font-anegra text-[22px] font-semibold leading-tight text-foreground-primary transition-colors group-hover:text-foreground-subtle">
+        <p className="font-anegra text-[24px] leading-[1.15] text-foreground-primary transition-colors group-hover:text-foreground-subtle">
           {study.brand}
         </p>
         {showSummary && (
           <p className="mt-3 font-work-sans text-[13.5px] leading-[1.65] text-foreground-body line-clamp-4">{study.summary}</p>
         )}
-        <span className="mt-auto pt-4 font-work-sans text-[13px] font-medium text-foreground-primary">
-          View case study <span aria-hidden="true">→</span>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 font-jost text-[11px] font-medium uppercase tracking-[0.16em] rtl:tracking-normal text-foreground-primary">
+          View case study
+          <span aria-hidden="true" className="inline-block transition-transform duration-300 rtl:-scale-x-100 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">→</span>
         </span>
       </div>
     </Link>
