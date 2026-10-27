@@ -74,7 +74,7 @@ export default async function HomePage() {
               <span>Creator collaborations</span>
             </div>
             <div>
-              <strong><CountUp value={8} suffix="+" duration={1200} /></strong>
+              <strong><CountUp value={10} suffix="+" duration={1200} /></strong>
               <span>Languages in community management</span>
             </div>
             <div>
