@@ -19,7 +19,9 @@ export default function RevealObserver() {
           }
         }
       },
-      { rootMargin: '0px 0px -60px' }
+      // Start just before content enters the screen, so it is already
+      // settling by the time the visitor sees it.
+      { rootMargin: '0px 0px 40px' }
     )
 
     const register = (root: ParentNode) => {
