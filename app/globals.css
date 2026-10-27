@@ -321,12 +321,17 @@ section {
 .status-icon-enter { animation: status-icon-enter 0.4s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @media (scripting: enabled) {
+  /* Reveals stay quick (Oct 2026): longer fades and delays made content
+     appear after the visitor had already scrolled to it. Timing from the
+     markup is kept but capped here. */
   [data-reveal] {
+    --reveal-t: min(var(--reveal-duration, 500ms), 350ms);
+    --reveal-d: min(var(--reveal-delay, 0ms), 100ms);
     opacity: 0;
-    transform: translateY(var(--reveal-y, 16px));
+    transform: translateY(calc(var(--reveal-y, 16px) * 0.6));
     transition:
-      opacity var(--reveal-duration, 500ms) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
-      transform var(--reveal-duration, 500ms) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+      opacity var(--reveal-t) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-d),
+      transform var(--reveal-t) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-d);
   }
 
   [data-reveal][data-revealed='true'] {
@@ -339,7 +344,7 @@ section {
     opacity: 1;
     transform: none;
     clip-path: inset(0 0 12% 0 round 20px);
-    transition: clip-path calc(var(--reveal-duration, 500ms) + 300ms) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+    transition: clip-path 450ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-d, 0ms);
   }
 
   [data-reveal].reveal-media[data-revealed='true'] {
@@ -348,11 +353,11 @@ section {
 
   [data-stagger] > [data-stagger-item] {
     opacity: 0;
-    transform: translateY(var(--stagger-y, 28px));
+    transform: translateY(calc(var(--stagger-y, 28px) * 0.6));
     transition:
-      opacity var(--stagger-duration, 600ms) cubic-bezier(0.16, 1, 0.3, 1),
-      transform var(--stagger-duration, 600ms) cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: var(--stagger-item-delay, 0ms);
+      opacity min(var(--stagger-duration, 600ms), 400ms) cubic-bezier(0.16, 1, 0.3, 1),
+      transform min(var(--stagger-duration, 600ms), 400ms) cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: min(calc(var(--stagger-item-delay, 0ms) * 0.5), 200ms);
   }
 
   [data-stagger][data-revealed='true'] > [data-stagger-item] {
