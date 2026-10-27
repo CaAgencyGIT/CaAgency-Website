@@ -98,6 +98,9 @@ export default function VideoPlayer({
   const [retryRequest, setRetryRequest] = useState(0)
   const [playbackStatus, setPlaybackStatus] = useState<PlaybackStatus>('idle')
   const [hasRenderedFrame, setHasRenderedFrame] = useState(false)
+  // Mirrors hasPlayedRef for render: the buffering spinner only shows once a
+  // film has played (refs can't be read while rendering).
+  const [hasPlayed, setHasPlayed] = useState(false)
   const prefersReducedMotion = usePrefersReducedMotion() && !ignoreReducedMotion
 
   useEffect(() => {
@@ -333,6 +336,9 @@ export default function VideoPlayer({
 
     if (shouldPlay) {
       if (!wasEligible) retryCountRef.current = 0
+      // Syncing with the <video> element (an external system) is what this
+      // effect is for; startPlayback's status update is intended here.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       void startPlayback()
       return
     }
@@ -492,6 +498,7 @@ export default function VideoPlayer({
           onPlaying={() => {
             if (!eligibleRef.current) return
             hasPlayedRef.current = true
+            setHasPlayed(true)
             setHasRenderedFrame(true)
             setPlaybackStatus('playing')
           }}
@@ -522,7 +529,7 @@ export default function VideoPlayer({
         </button>
       )}
       {/* Spinning CA logo while a started video waits for data. */}
-      {shouldMountVideo && playbackStatus === 'buffering' && hasPlayedRef.current && (
+      {shouldMountVideo && playbackStatus === 'buffering' && hasPlayed && (
         <div className="pointer-events-none absolute inset-0 z-[5] grid place-items-center text-white/90 [filter:drop-shadow(0_2px_8px_rgba(0,0,0,0.45))]">
           <LogoSpinner size={44} />
         </div>
