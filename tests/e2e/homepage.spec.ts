@@ -51,7 +51,15 @@ test('below-fold controllers load only when their server fallback approaches', a
   page.on('request', (request) => {
     if (request.resourceType() === 'script') scripts.push(new URL(request.url()).pathname)
   })
+  const ctaPrefetch = page.waitForRequest((request) => {
+    const url = new URL(request.url())
+    return url.pathname === '/contact' && url.searchParams.has('_rsc')
+  })
   await page.goto('/', { waitUntil: 'load' })
+  // The hero CTA prefetch pulls in the /contact route's chunks after load;
+  // let it settle so the baseline only leaves out below-fold controllers.
+  await ctaPrefetch
+  await page.waitForLoadState('networkidle')
   await page.waitForTimeout(500)
   const initialScriptCount = new Set(scripts).size
 
