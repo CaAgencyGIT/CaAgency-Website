@@ -7,8 +7,9 @@ import type { CaseStudy } from './case-studies'
 // Instagram posts in `sourceUrl`; the downloads are archived on the server in
 // /srv/caagency-media-sources/work-15-2026-10. Jay's Rejuran film is a
 // trimmed copy that starts at the product introduction (first 7.6 s cut).
-// v2: the CA watermark removed (Oct 2026) from the five films that carried it.
-const cleaned = new Set(['iunik-khutjo', 'meditherapy-aurela', 'arencia-albina', 'rejuran-jay', 'k-secret-aiym'])
+// v2: the CA watermark removed (Oct 2026) from the five films that carried it,
+// and Prada's photo slideshow re-cut faster (about 2 s per photo, was 3 s).
+const cleaned = new Set(['iunik-khutjo', 'meditherapy-aurela', 'arencia-albina', 'rejuran-jay', 'k-secret-aiym', 'prada-beauty-rebecca'])
 const film = (key: string) => `/videos/work/case-${key}-v${cleaned.has(key) ? 2 : 1}.mp4`
 
 type CreatorCase = Omit<CaseStudy, 'services' | 'metrics' | 'vertical' | 'platforms'> &
