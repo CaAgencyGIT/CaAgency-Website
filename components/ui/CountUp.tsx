@@ -39,9 +39,10 @@ export default function CountUp({ value, suffix = '', duration = 1600 }: { value
   }, [value, duration])
 
   const final = `${format(value)}${suffix}`
-  if (current === null) return <span ref={ref}>{final}</span>
+  // dir="ltr" keeps a suffix such as "+" after the digits in Arabic pages.
+  if (current === null) return <span ref={ref} dir="ltr">{final}</span>
   return (
-    <span ref={ref} className="relative inline-block" aria-label={final}>
+    <span ref={ref} dir="ltr" className="relative inline-block" aria-label={final}>
       <span aria-hidden="true" className="invisible">{final}</span>
       <span aria-hidden="true" className="absolute inset-y-0 left-0 whitespace-nowrap">
         {format(current)}
