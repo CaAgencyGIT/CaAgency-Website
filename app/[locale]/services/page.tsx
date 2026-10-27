@@ -112,7 +112,7 @@ const services = [
     key: 'influencerCampaigns' as const,
     slug: 'influencer-campaigns',
     photo: 'albina',
-    image: { src: '/images/services/final/01-albina.png', width: 1086, height: 1448 },
+    image: { src: '/images/services/final/01-albina.jpg', width: 1086, height: 1448 },
     alt: 'Albina in a close selfie portrait with long highlighted hair and softly balanced lighting against a brighter off-white room background.',
   },
   {

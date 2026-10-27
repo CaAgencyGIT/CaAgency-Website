@@ -120,7 +120,6 @@ export default async function ContactPage({ params }: Props) {
                 alt="CA Agency office lounge"
                 fill
                 priority
-                unoptimized
                 sizes="(max-width: 767px) 100vw, 440px"
                 className="object-cover"
               />
