@@ -26,7 +26,9 @@ function BrandLogo({
       className={`brand-logo mx-[36px] h-[78px] w-[104px] shrink-0 object-contain opacity-75 transition-opacity duration-500 hover:opacity-100 mobile:mx-[18px] mobile:h-[52px] mobile:w-[73px] ${
         mark ? '[filter:brightness(0)] opacity-60' : 'grayscale [mix-blend-mode:multiply]'
       }`}
-      sizes="(max-width: 767px) 73px, 104px"
+      // No `sizes`: with a fixed 104px width Next lists only the 1x and 2x
+      // files. A `sizes` list made it write all 12 widths (up to 1200px) for
+      // each of the ~100 logos, about 97 KB of the homepage HTML (Oct 2026).
       loading="lazy"
     />
   )
