@@ -10,6 +10,9 @@ import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
 import RelatedPosts from '@/components/blocks/RelatedPosts'
+import CaseStudyCard from '@/components/blocks/CaseStudyCard'
+import { currentCaseStudies } from '@/lib/data/redesign-media'
+import { relatedCaseStudiesForPost } from '@/lib/blog-related-cases'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import { jsonLdSafe, sanitizeTrustedHtml } from '@/lib/sanitize'
 import { livePostsWhere } from '@/lib/blog-posts'
@@ -99,6 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   )
   const minutes = readingTimeMinutes(post.content)
   const coverImage = resolveFeaturedImage(post)
+  const relatedCases = relatedCaseStudiesForPost(post, currentCaseStudies())
 
   const articleSchema = blogPostingJsonLd({
     ...post,
@@ -237,6 +241,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Related case studies: real campaigns for the post's topic */}
+      {relatedCases.length > 0 && (
+        <section className="bg-background-soft py-[80px] tablet:py-[60px] px-section-x border-t border-black/5">
+          <div className="max-w-container mx-auto">
+            <Heading as="h2" color="dark" className="mb-10 text-[32px] mobile:mb-6 mobile:text-[24px]">
+              See It in Practice
+            </Heading>
+            <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
+              {relatedCases.map((cs) => (
+                <CaseStudyCard key={cs.slug} study={cs} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Posts */}
       <RelatedPosts currentSlug={slug} categories={post.categories} tags={post.tags} />
