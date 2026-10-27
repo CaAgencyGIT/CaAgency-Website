@@ -35,7 +35,7 @@ export default function DepartmentsMap() {
     <InViewClass className="relative">
     {/* The land dots are one cached image; routes and pins sit on top in
         the same coordinate space. */}
-    <Image src={WORLD_DOTS_SRC} alt="" aria-hidden width={W} height={H} unoptimized className="block h-auto w-full" />
+    <Image src={WORLD_DOTS_SRC} alt="" aria-hidden width={W} height={H} unoptimized className="block h-auto w-full opacity-[0.32]" />
     <svg viewBox={`0 0 ${W} ${H}`} className="departments-map absolute inset-0 h-full w-full" aria-hidden="true">
       {ROUTES.map((d, i) => (
         <g key={d}>
@@ -47,11 +47,17 @@ export default function DepartmentsMap() {
       ))}
       {PINS.map((p) => (
         <g key={p.id}>
-          <circle cx={p.x} cy={p.y} r={20} className="departments-map-pulse" />
-          <circle cx={p.x} cy={p.y} r={8} className="departments-map-pin" />
+          <circle cx={p.x} cy={p.y} r={p === HUB ? 28 : 20} className="departments-map-pulse" />
+          {p === HUB && <circle cx={p.x} cy={p.y} r={17} className="departments-map-ring" />}
+          <circle cx={p.x} cy={p.y} r={p === HUB ? 11 : 8} className="departments-map-pin" />
           <text x={p.x} y={p.y + p.dy} textAnchor="middle" className="departments-map-label">
             {p.label}
           </text>
+          {p === HUB && (
+            <text x={p.x} y={p.y + p.dy + 26} textAnchor="middle" className="departments-map-sub">
+              Dubai HQ
+            </text>
+          )}
         </g>
       ))}
     </svg>
