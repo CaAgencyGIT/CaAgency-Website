@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { blurProps } from '@/lib/media/blur'
 
 export interface HomeCollageTile {
   /** Grid area in the desktop mosaic (see .home-collage in globals.css). */
@@ -29,7 +30,11 @@ export default function HomeCollage({ tiles, swipe = false }: { tiles: HomeColla
             src={tile.image.src}
             alt={tile.alt}
             fill
-            priority={index < 3}
+            // All six are in the first screen on desktop: preload them all,
+            // the first three first, and show a blurred preview meanwhile.
+            preload
+            fetchPriority={index < 3 ? 'high' : 'auto'}
+            {...blurProps(tile.image.src)}
             quality={90}
             // Desktop tiles are up to ~26% of the screen wide (the mosaic is
             // 92vw); asking for that width keeps them sharp on Retina.
