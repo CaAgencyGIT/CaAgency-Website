@@ -170,7 +170,7 @@ export default async function AboutPage({ params }: Props) {
             </div>
             <div>
               <strong>
-                <CountUp value={8} suffix="+" duration={1200} />
+                <CountUp value={10} suffix="+" duration={1200} />
               </strong>
               <span>{t('statLanguages')}</span>
             </div>

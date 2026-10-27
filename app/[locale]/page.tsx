@@ -92,7 +92,7 @@ export default async function HomePage({ params }: Props) {
               <span>{tAbout('statCollabs')}</span>
             </div>
             <div>
-              <strong><CountUp value={8} suffix="+" duration={1200} /></strong>
+              <strong><CountUp value={10} suffix="+" duration={1200} /></strong>
               <span>{tAbout('statLanguages')}</span>
             </div>
             <div>
