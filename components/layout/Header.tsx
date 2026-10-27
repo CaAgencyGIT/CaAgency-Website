@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import IntentPrefetchLink from '@/components/layout/IntentPrefetchLink'
 import HeaderMenu from '@/components/layout/HeaderMenu'
+import IdleNavPrefetch from '@/components/layout/IdleNavPrefetch'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import type { HeaderLabels } from '@/components/layout/header-types'
 import { localizeHref } from '@/lib/i18n/client-paths'
@@ -16,6 +17,7 @@ const barItems = [
 ] as const
 
 const menuItems = [{ key: 'home', href: '/' }, ...barItems] as const
+const barHrefs = barItems.map((item) => item.href)
 
 // Black header bar (Oct 2026, after scooperz.com): logo left, uppercase menu
 // right, then language, a "Let's talk" pill and a menu button that opens a
@@ -50,6 +52,7 @@ export default function Header({ locale, labels }: { locale: string; labels: Hea
             ))}
           </ul>
         </nav>
+        <IdleNavPrefetch hrefs={barHrefs} locale={locale} />
         <div className="rd-header-actions">
           <div className="rd-language">
             <LanguageSwitcher locale={locale} label={labels.languageSelector} tone="light" />
