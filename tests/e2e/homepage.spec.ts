@@ -80,7 +80,9 @@ test('below-fold controllers load only when their server fallback approaches', a
 const ctaRoutes = new Set(['/contact', '/work'])
 const headerNavLink = (href: string) => `header[data-site-header] .rd-header-nav a[href="${href}"]`
 
-test('homepage waits for navigation intent before route prefetching', async ({ page }) => {
+const headerRoutes = ['/about', '/talents', '/work', '/services', '/blog', '/contact']
+
+test('desktop header routes stay cold during load, then warm once the page is idle', async ({ page }) => {
   const rscPaths: string[] = []
   page.on('request', (request) => {
     const url = new URL(request.url())
@@ -89,18 +91,16 @@ test('homepage waits for navigation intent before route prefetching', async ({ p
 
   await page.goto('/', { waitUntil: 'load' })
   await page.waitForTimeout(1500)
-  // Only the hero and closing CTAs prefetch on sight (Oct 2026); the header
-  // nav stays cold until the visitor shows intent.
+  // Only the hero and closing CTAs prefetch on sight; the header nav waits
+  // for IdleNavPrefetch (3 s after load, then an idle callback).
   expect(rscPaths.filter((path) => !ctaRoutes.has(path))).toEqual([])
 
-  const aboutLink = page.locator(headerNavLink('/about'))
-  await expect(aboutLink).toHaveCount(1)
-  await aboutLink.hover()
-  await expect.poll(() => rscPaths.filter((path) => !ctaRoutes.has(path)).length).toBeGreaterThan(0)
-  expect(new Set(rscPaths.filter((path) => !ctaRoutes.has(path)))).toEqual(new Set(['/about']))
+  await expect
+    .poll(() => headerRoutes.every((route) => rscPaths.includes(route)), { timeout: 10_000 })
+    .toBe(true)
 })
 
-test('keyboard focus warms only the focused desktop route', async ({ page }) => {
+test('hovering or focusing a header link warms it before the idle prefetch', async ({ page }) => {
   const rscPaths: string[] = []
   page.on('request', (request) => {
     const url = new URL(request.url())
@@ -108,9 +108,9 @@ test('keyboard focus warms only the focused desktop route', async ({ page }) => 
   })
 
   await page.goto('/', { waitUntil: 'load' })
+  await page.locator(headerNavLink('/about')).hover()
   await page.locator(headerNavLink('/talents')).focus()
-  await expect.poll(() => rscPaths.filter((path) => !ctaRoutes.has(path)).length).toBeGreaterThan(0)
-  expect(new Set(rscPaths.filter((path) => !ctaRoutes.has(path)))).toEqual(new Set(['/talents']))
+  await expect.poll(() => rscPaths.includes('/about') && rscPaths.includes('/talents'), { timeout: 2000 }).toBe(true)
 })
 
 test('mobile footer and navigation links stay cold without intent', async ({ page }) => {
@@ -123,7 +123,8 @@ test('mobile footer and navigation links stay cold without intent', async ({ pag
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/', { waitUntil: 'load' })
   await page.locator('footer').scrollIntoViewIfNeeded()
-  await page.waitForTimeout(750)
+  // Past IdleNavPrefetch's delay: phones never warm the header routes.
+  await page.waitForTimeout(4500)
   expect(rscPaths.filter((path) => !ctaRoutes.has(path))).toEqual([])
 })
 
