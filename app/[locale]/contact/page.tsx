@@ -114,7 +114,7 @@ export default async function ContactPage({ params }: Props) {
       <section className="contact-panel bg-background-base px-section-x pt-[80px] pb-[100px] mobile:pt-[34px] mobile:pb-[52px]">
         <div className="mx-auto grid max-w-[1240px] grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-[6vw] tablet:grid-cols-1 mobile:grid-cols-1 mobile:gap-12">
           <div className="flex flex-col gap-10 tablet:order-2 mobile:order-2">
-            <div className="relative aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[18px] mobile:aspect-[16/10] mobile:rounded-[14px]">
+            <div className="relative aspect-[16/10] w-full max-w-[440px] overflow-hidden rounded-[18px] mobile:aspect-[16/10] mobile:rounded-[14px]">
               <Image
                 src="/images/site/ca-office-v1.webp"
                 alt="CA Agency office lounge"

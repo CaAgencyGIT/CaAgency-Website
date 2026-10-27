@@ -128,7 +128,7 @@ export default async function BlogPage() {
                 >
                   {resolveFeaturedImage(post) && (
                     <Link href={`/blog/${post.slug}`} prefetch={false} tabIndex={-1} aria-hidden="true">
-                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] ring-1 ring-black/5 transition-shadow duration-500 group-hover:shadow-e3 mobile:aspect-square mobile:rounded-[12px]">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[14px] ring-1 ring-black/5 transition-shadow duration-500 group-hover:shadow-e3 mobile:aspect-[16/10] mobile:rounded-[12px]">
                         <Image
                           src={resolveFeaturedImage(post) as string}
                           alt=""
