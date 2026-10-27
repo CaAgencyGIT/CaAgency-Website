@@ -1,13 +1,15 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
+import { prisma } from '@/lib/prisma'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import HeadingAccent from '@/components/ui/HeadingAccent'
-import { caseStudies, caseStudySeoTitle, caseStudyStill, getCaseStudy } from '@/lib/data/case-studies'
+import { caseStudies, caseStudySeoTitle, caseStudyStill, getCaseStudy, socialHandle } from '@/lib/data/case-studies'
 import { posterFor, publishedDateFor } from '@/lib/data/videos'
 import { brandWatermarks, currentCaseStudies } from '@/lib/data/redesign-media'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
@@ -22,6 +24,33 @@ interface CaseStudyPageProps {
 // No `dynamicParams = false`: it rejects unknown slugs before the (site)
 // layout renders, so visitors got Next's bare unbranded 404 (no header, no
 // <html lang>). The page calls notFound() itself, which renders not-found.tsx.
+
+// Hourly ISR so the creator link follows roster changes (talent saves also
+// revalidate these pages, see lib/revalidate.ts).
+export const revalidate = 3600
+
+/**
+ * The roster talent credited on a study, matched on their Instagram or TikTok
+ * handle, with the profile URL that handle belongs to. Null when the creator
+ * is not on the roster or the lookup fails (the page then shows the handle only).
+ */
+async function getCreatorTalent(creator?: string) {
+  const handle = socialHandle(creator)
+  if (!handle) return null
+  try {
+    const talents = await prisma.talent.findMany({
+      select: { slug: true, name: true, instagramUrl: true, tiktokUrl: true },
+    })
+    for (const talent of talents) {
+      if (socialHandle(talent.instagramUrl) === handle) return { ...talent, profileUrl: talent.instagramUrl! }
+      if (socialHandle(talent.tiktokUrl) === handle) return { ...talent, profileUrl: talent.tiktokUrl! }
+    }
+    return null
+  } catch (error) {
+    console.error('[case-studies] talent lookup failed', error)
+    return null
+  }
+}
 
 export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }))
@@ -59,6 +88,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   if (!study) {
     notFound()
   }
+
+  const creatorTalent = await getCreatorTalent(study.creator)
 
   // One study from the same vertical, then the ones that follow this study on
   // the Work page, so every current study is linked from two to four others.
@@ -205,7 +236,24 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                         Creator
                       </dt>
                       <dd className="font-work-sans text-[15px] text-foreground-primary font-medium">
-                        {study.creatorName ? (
+                        {creatorTalent ? (
+                          <>
+                            <Link
+                              href={`/talents/${creatorTalent.slug}`}
+                              className="underline decoration-black/20 underline-offset-4 transition-colors hover:text-foreground-subtle hover:decoration-black/60"
+                            >
+                              {study.creatorName ?? creatorTalent.name}
+                            </Link>{' '}
+                            <a
+                              href={creatorTalent.profileUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-foreground-subtle underline decoration-black/20 underline-offset-4 transition-colors hover:text-foreground-primary hover:decoration-black/60"
+                            >
+                              {study.creator}
+                            </a>
+                          </>
+                        ) : study.creatorName ? (
                           <>
                             {study.creatorName}{' '}
                             <a
