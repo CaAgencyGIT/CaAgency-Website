@@ -25,6 +25,7 @@ import DeferredVideoShowcase from '@/components/blocks/DeferredVideoShowcase'
 import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
 import IntroFeature from '@/components/blocks/IntroFeature'
 import FAQ from '@/components/blocks/FAQ'
+import CountUp from '@/components/ui/CountUp'
 
 export const revalidate = 3600
 
@@ -57,6 +58,7 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale)
   const t = await getTranslations({ locale, namespace: 'home' })
   const tCommon = await getTranslations({ locale, namespace: 'common' })
+  const tAbout = await getTranslations({ locale, namespace: 'about' })
   const content = await getSiteContent<HomePageContent>('home')
 
   const carouselImages =
@@ -83,9 +85,24 @@ export default async function HomePage({ params }: Props) {
       {/* Stats Section */}
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
         <div className="max-w-container mx-auto">
+          {/* Same published figures as the About page */}
+          <ScrollReveal yOffset={20} className="about-stats home-stats mb-14 mobile:mb-10">
+            <div>
+              <strong><CountUp value={6000} suffix="+" /></strong>
+              <span>{tAbout('statCollabs')}</span>
+            </div>
+            <div>
+              <strong><CountUp value={8} suffix="+" duration={1200} /></strong>
+              <span>{tAbout('statLanguages')}</span>
+            </div>
+            <div>
+              <strong><CountUp value={3} duration={1000} /></strong>
+              <span>{tAbout('statOffices')}</span>
+            </div>
+          </ScrollReveal>
           {/* Tagline */}
           <ScrollReveal delay={0.3} yOffset={20}>
-            <p className="font-anegra text-[32px] tablet:text-[26px] mobile:text-[22px] font-light leading-[1.4] text-black/85 text-center max-w-[800px] mx-auto">
+            <p className="font-anegra text-[32px] tablet:text-[26px] mobile:text-[22px] leading-[1.4] text-black/85 text-center max-w-[800px] mx-auto">
               {t('statsTagline')}
             </p>
           </ScrollReveal>
@@ -109,7 +126,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={await getHomeSlideshowTalents(homeTalentSlugs)} columns={6} cardArt mobileLayout="carousel" slideshow />
+          <ScrollReveal yOffset={0} className="reveal-media"><TalentGrid talents={await getHomeSlideshowTalents(homeTalentSlugs)} columns={6} cardArt mobileLayout="carousel" slideshow /></ScrollReveal>
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">

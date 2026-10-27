@@ -194,12 +194,13 @@
   .about-story-pillars > li { padding: 26px 0 28px; border-bottom: 1px solid #dedbd5; }
   @media (max-width: 900px) { .about-story { grid-template-columns: 1fr; gap: 36px; } }
   .about-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: end; gap: 20px; }
+  .about-stats.home-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1000px; margin-inline: auto; }
   .about-stats > div { padding: 28px 24px; border-radius: 20px; background: #f4f2ee; }
   .about-stats strong { display: block; margin-bottom: 10px; font-family: var(--rd-serif); font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; line-height: 1; color: #171715; }
   .about-stats > div > span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #67645f; }
   @media (max-width: 900px) { .about-panel { grid-template-columns: 1fr; gap: 32px; } }
   @media (max-width: 760px) {
-          .about-stats { grid-template-columns: 1fr; gap: 12px; }
+          .about-stats, .about-stats.home-stats { grid-template-columns: 1fr; gap: 12px; }
     .about-stats > div { display: flex; align-items: baseline; gap: 16px; padding: 20px; }
     .about-stats strong { margin: 0; }
   }

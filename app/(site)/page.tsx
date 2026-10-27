@@ -22,6 +22,7 @@ import VideoShowcaseFallback from '@/components/blocks/VideoShowcaseFallback'
 import FAQ from '@/components/blocks/FAQ'
 import ServicesOverview from '@/components/blocks/ServicesOverview'
 import IntroFeature from '@/components/blocks/IntroFeature'
+import CountUp from '@/components/ui/CountUp'
 
 // ISR: prerender at build, refresh the DB-backed footer/content hourly.
 export const revalidate = 3600
@@ -66,8 +67,23 @@ export default async function HomePage() {
 
       <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
         <div className="max-w-container mx-auto">
+          {/* Same published figures as the About page */}
+          <ScrollReveal yOffset={20} className="about-stats home-stats mb-14 mobile:mb-10">
+            <div>
+              <strong><CountUp value={6000} suffix="+" /></strong>
+              <span>Creator collaborations</span>
+            </div>
+            <div>
+              <strong><CountUp value={8} suffix="+" duration={1200} /></strong>
+              <span>Languages in community management</span>
+            </div>
+            <div>
+              <strong><CountUp value={3} duration={1000} /></strong>
+              <span>Locations</span>
+            </div>
+          </ScrollReveal>
           <ScrollReveal delay={0.3} yOffset={20}>
-            <p className="font-anegra text-[32px] tablet:text-[26px] mobile:text-[22px] font-light leading-[1.4] text-black/85 text-center max-w-[800px] mx-auto">
+            <p className="font-anegra text-[32px] tablet:text-[26px] mobile:text-[22px] leading-[1.4] text-black/85 text-center max-w-[800px] mx-auto">
               {content.stats.tagline}
             </p>
           </ScrollReveal>
@@ -142,12 +158,12 @@ export default async function HomePage() {
 
       <ServicesOverview content={content.servicesOverview} eyebrow="Services" />
 
-      <section className="bg-background-base py-sec mobile:py-sec-sm px-section-x">
+      <section className="bg-background-soft py-sec mobile:py-sec-sm px-section-x">
         <div className="max-w-container mx-auto">
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow="Our Creators" title={content.talents.title} className="mb-12" />
           </ScrollReveal>
-          <TalentGrid talents={talents} columns={6} cardArt mobileLayout="carousel" slideshow />
+          <ScrollReveal yOffset={0} className="reveal-media"><TalentGrid talents={talents} columns={6} cardArt mobileLayout="carousel" slideshow /></ScrollReveal>
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">
