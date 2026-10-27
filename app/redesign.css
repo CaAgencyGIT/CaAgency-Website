@@ -98,11 +98,11 @@
   .rd-faq-heading-link h2 { transition: color 0.2s ease; }
   .rd-faq-heading-link:hover h2 { color: #67645f; }
   .rd-faq-all {
-    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 22px; border: 1px solid #171715; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 22px; border: 1px solid #0e0e0e; border-radius: 999px;
     font-family: var(--rd-label); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: inherit; text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
-  .rd-faq-all:hover { background: #171715; color: #fff; }
+  .rd-faq-all:hover { background: #0e0e0e; color: #fff; }
   .rd-faq-page { border-top: 0; padding-top: 48px; }
   .rd-faq-page h1 { font-family: var(--rd-serif); font-weight: 400; font-size: clamp(40px, 4.6vw, 64px); line-height: 1.05; }
 
