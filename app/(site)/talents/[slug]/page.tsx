@@ -12,6 +12,9 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
 import { jsonLdSafe } from '@/lib/sanitize'
+import { caseStudiesForCreator } from '@/lib/data/case-studies'
+import { currentCaseStudies } from '@/lib/data/redesign-media'
+import CaseStudyCard from '@/components/blocks/CaseStudyCard'
 
 interface TalentPageProps {
   params: Promise<{ slug: string }>
@@ -110,6 +113,12 @@ export default async function TalentPage({ params }: TalentPageProps) {
   }
 
   const relatedTalents = await getRelatedTalents(talent.category, slug)
+
+  // This talent's case studies: the ones on the Work page first, then older ones.
+  const listed = new Set(currentCaseStudies())
+  const campaigns = caseStudiesForCreator([talent.instagramUrl, talent.tiktokUrl]).sort(
+    (a, b) => Number(listed.has(b)) - Number(listed.has(a)),
+  )
 
   const profileUrl = `https://caagency.com/talents/${talent.slug}`
   const jsonLd = {
@@ -255,6 +264,22 @@ export default async function TalentPage({ params }: TalentPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Campaigns */}
+      {campaigns.length > 0 && (
+        <section className="bg-background-soft py-[80px] mobile:py-[50px] px-section-x border-t border-black/5">
+          <div className="max-w-container mx-auto">
+            <Heading as="h2" color="dark" className="mb-10 text-[32px] mobile:mb-6 mobile:text-[24px]">
+              Campaigns with CA Agency
+            </Heading>
+            <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
+              {campaigns.map((cs) => (
+                <CaseStudyCard key={cs.slug} study={cs} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Talents */}
       {relatedTalents.length > 0 && (

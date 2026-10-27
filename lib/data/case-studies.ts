@@ -797,3 +797,20 @@ export function getCaseStudy(slug: string): CaseStudy | undefined {
 export function caseStudyForVideo(src: string): CaseStudy | undefined {
   return caseStudies.find((cs) => cs.videoSrc === src)
 }
+
+/** Lower-case handle from an Instagram or TikTok profile URL or an @handle, or null. */
+export function socialHandle(value?: string | null): string | null {
+  const match = value
+    ?.trim()
+    .match(/^(?:https?:\/\/(?:www\.)?(?:instagram|tiktok)\.com\/@?|@)?([a-z0-9._]+)\/?(?:[?#].*)?$/i)
+  return match ? match[1].toLowerCase() : null
+}
+
+/**
+ * Case studies credited to a creator, matched on any of their profile URLs
+ * (a study's `creator` is their Instagram or TikTok handle).
+ */
+export function caseStudiesForCreator(profiles: (string | null | undefined)[], studies: CaseStudy[] = caseStudies): CaseStudy[] {
+  const handles = new Set(profiles.map(socialHandle).filter(Boolean))
+  return handles.size ? studies.filter((cs) => handles.has(socialHandle(cs.creator))) : []
+}
