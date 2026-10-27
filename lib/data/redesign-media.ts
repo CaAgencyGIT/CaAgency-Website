@@ -180,24 +180,25 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
 // Work page tile order (Oct 2026, dev experiment): every tile, the grid above
 // and the creator showcases, in one sequence. Measured colour of each whole
 // film (CIELAB), arranged so each desktop row of three and each phone pair
-// share a palette and rows flow into each other; never the same creator twice
-// in a row, a phone pair or stacked. Albina x Sephora stays first. Ids are
-// `video:<src>`, `film:<key>` or `case:<slug>`, one row of three per line.
+// share a palette and rows flow into each other, brighter and more vivid rows
+// higher up. A creator never appears twice within a row and the row below it
+// (desktop: two rows of three; phones: two pairs). Albina x Sephora stays
+// first. Ids are `video:<src>`, `film:<key>` or `case:<slug>`, one row per line.
 export const workPageOrder: string[] = [
-  'video:/videos/work/albina-sephora-web-v1.mp4', 'case:vt-cosmetics-anton', 'film:beatrix-gisou',
-  'film:dariia-valentino', 'film:rebecca-saie', 'film:skincare',
-  'film:aiym-purito', 'film:dariia-chanel', 'case:arencia-albina',
-  'film:sadaf-axisy', 'film:dariia-armani', 'case:patrick-ta-beatrix',
-  'case:vichy-dariia', 'case:k-secret-aiym', 'film:saranda-boj',
-  'case:meditherapy-aurela', 'case:first-aid-beauty-albulena', 'case:lashify-dariia',
-  'film:melly-rare', 'case:prada-beauty-rebecca', 'case:nyx-albulena',
-  'film:loresa-celimax', 'film:melani-medicube', 'film:khutjo-frankly',
+  'video:/videos/work/albina-sephora-web-v1.mp4', 'case:prada-beauty-rebecca', 'case:nyx-albulena',
+  'film:melly-rare', 'film:loresa-celimax', 'film:melani-medicube',
+  'film:khutjo-frankly', 'case:meditherapy-aurela', 'case:first-aid-beauty-albulena',
+  'case:arencia-albina', 'film:melani-revolve', 'case:revcell-loresa',
+  'video:/videos/work/honor-web-v1.mp4', 'case:too-faced-melly', 'film:rebecca-saie',
+  'film:dariia-valentino', 'case:eclado-loresa', 'film:albina-torriden',
+  'case:patrick-ta-beatrix', 'film:dariia-armani', 'case:iunik-khutjo',
+  'film:sadaf-axisy', 'film:aiym-purito', 'film:dariia-chanel',
+  'film:haircare', 'film:georgii-yesstyle', 'film:beatrix-abib',
+  'film:saranda-boj', 'case:k-secret-aiym', 'case:lashify-dariia',
   'film:anton-azelaic', 'film:beatrix-biodance', 'video:/videos/work/kylie-cosmetics-web-v1.mp4',
-  'film:melly-fenty-original', 'case:revcell-loresa', 'film:melani-revolve',
-  'film:albina-torriden', 'film:beatrix-abib', 'case:eclado-loresa',
-  'film:georgii-yesstyle', 'film:haircare', 'case:iunik-khutjo',
-  'film:jay-mixsoon', 'film:georgii-anua', 'case:too-faced-melly',
-  'video:/videos/work/honor-web-v1.mp4', 'film:rebecca-haruharu', 'case:rejuran-jay',
+  'film:melly-fenty-original', 'film:georgii-anua', 'film:jay-mixsoon',
+  'film:skincare', 'film:beatrix-gisou', 'film:rebecca-haruharu',
+  'case:rejuran-jay', 'case:vichy-dariia', 'case:vt-cosmetics-anton',
 ]
 
 // Homepage collage (Oct 2026): the same six still photos, no names, on every
