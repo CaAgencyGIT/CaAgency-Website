@@ -177,6 +177,32 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
   { type: 'film', key: 'georgii-anua' },
 ]
 
+// Work page tile order (Oct 2026, dev experiment): every tile, the grid above
+// and the creator showcases, in one sequence. Measured colour of each whole
+// film (CIELAB), arranged so each desktop row of three and each phone pair
+// share a palette and rows flow into each other (colour comes first), brighter
+// and more vivid rows higher up, and the bigger, higher-end brands mostly in
+// the top and middle rows. A creator never appears twice within a row and the
+// row below it (desktop: two rows of three; phones: two pairs). Albina x
+// Sephora stays top left. Ids are `video:<src>`, `film:<key>` or `case:<slug>`,
+// one row per line.
+export const workPageOrder: string[] = [
+  'video:/videos/work/albina-sephora-web-v1.mp4', 'film:melani-medicube', 'film:loresa-celimax',
+  'case:nyx-albulena', 'case:prada-beauty-rebecca', 'film:melly-rare',
+  'film:melani-revolve', 'case:revcell-loresa', 'case:arencia-albina',
+  'film:rebecca-saie', 'video:/videos/work/honor-web-v1.mp4', 'case:too-faced-melly',
+  'film:aiym-purito', 'film:dariia-chanel', 'film:beatrix-abib',
+  'film:khutjo-frankly', 'case:meditherapy-aurela', 'case:first-aid-beauty-albulena',
+  'case:lashify-dariia', 'film:saranda-boj', 'case:patrick-ta-beatrix',
+  'film:dariia-armani', 'film:sadaf-axisy', 'case:iunik-khutjo',
+  'film:dariia-valentino', 'film:beatrix-gisou', 'film:albina-torriden',
+  'case:eclado-loresa', 'video:/videos/work/kylie-cosmetics-web-v1.mp4', 'film:melly-fenty-original',
+  'film:beatrix-biodance', 'film:anton-azelaic', 'film:haircare',
+  'film:skincare', 'film:jay-mixsoon', 'film:georgii-anua',
+  'case:k-secret-aiym', 'case:vichy-dariia', 'case:vt-cosmetics-anton',
+  'film:georgii-yesstyle', 'case:rejuran-jay', 'film:rebecca-haruharu',
+]
+
 // Homepage collage (Oct 2026): the same six still photos, no names, on every
 // screen: a mosaic on desktop (`area`), two columns on phones. Originals are backed up on the
 // server in /srv/caagency-media-sources/homepage-collage-2026-10.

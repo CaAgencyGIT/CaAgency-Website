@@ -15,7 +15,7 @@ import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos
 import { brandLogos } from '@/lib/data/brands'
 import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
 import { creatorCases } from '@/lib/data/creator-cases'
-import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder } from '@/lib/data/redesign-media'
+import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder, workPageOrder } from '@/lib/data/redesign-media'
 import { organizationRef } from '@/lib/seo/schema'
 
 // Safety net next to the on-save revalidation in lib/revalidate.ts.
@@ -80,9 +80,10 @@ const gridVideos = workGridOrder.map((entry) => {
     const watermark = ['DELERE'].includes(video.brand) ? brandWatermarks[video.brand] : undefined
     // Sharpened re-encode of the original upload (Oct 2026); case-study lookup stays on the catalog src.
     const src = video.src.replace(/-web-v1\.mp4$/, '-sharp-v2.mp4')
-    return { src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
+    return { id: `video:${entry.src}`, src, brand: video.brand, study: caseStudyForVideo(video.src), watermark, coversBurnedIn: !!watermark }
   }
   return {
+    id: `film:${entry.key}`,
     src: filmSrc(entry.key),
     brand: films[entry.key].brand,
     // Older work videos have the brand wordmark burned in; the redesign films
@@ -91,6 +92,14 @@ const gridVideos = workGridOrder.map((entry) => {
     study: caseStudies.find(({ slug }) => slug === filmCaseStudies[entry.key]),
   }
 })
+
+// Grid tiles and creator showcases in one sequence, colour-matched by row
+// (see workPageOrder); anything missing from that list goes last.
+const tilePosition = new Map(workPageOrder.map((id, index) => [id, index]))
+const workTiles = [
+  ...gridVideos.map((video) => ({ kind: 'grid' as const, id: video.id, video })),
+  ...creatorCases.map((study) => ({ kind: 'case' as const, id: `case:${study.slug}`, study })),
+].sort((a, b) => (tilePosition.get(a.id) ?? Infinity) - (tilePosition.get(b.id) ?? Infinity))
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -153,10 +162,73 @@ export default async function WorkPage({ params }: Props) {
       <section className="bg-background-base px-section-x">
         <div className="max-w-[1060px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-[36px] tablet:gap-[24px] mobile:gap-[10px]">
-            {gridVideos.map((video, index) => {
+            {workTiles.map((tile, index) => {
+              // Creator showcases (Oct 2026): each carries its brand logo as an
+              // overlay, centred (CA watermark removed from the films that had one).
+              if (tile.kind === 'case') {
+                const study = tile.study
+                return (
+                  <div key={study.slug} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
+                    {study.image ? (
+                      <Image
+                        src={study.image.src}
+                        alt={`${study.creatorName} for ${study.brand}`}
+                        fill
+                        sizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
+                        quality={75}
+                        className="object-cover"
+                      />
+                    ) : (
+                      <VideoPlayer
+                        src={study.videoSrc}
+                        poster={posterFor(study.videoSrc)}
+                        posterSizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
+                        posterPriority={index < 2}
+                        aspectRatio="9:16"
+                        autoplay
+                        muted
+                        loop
+                        ignoreReducedMotion
+                        label={`${study.brand} video by ${study.creatorName}`}
+                        className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
+                      />
+                    )}
+                    {brandWatermarks[study.brand] && (
+                      <Image
+                        src={brandWatermarks[study.brand].src}
+                        alt=""
+                        aria-hidden="true"
+                        width={brandWatermarks[study.brand].width}
+                        height={brandWatermarks[study.brand].height}
+                        sizes="200px"
+                        style={{ width: `${brandWatermarks[study.brand].widthPct}%`, top: '50%' }}
+                        className="pointer-events-none absolute left-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
+                      />
+                    )}
+                    <Link
+                      href={`/case-studies/${study.slug}`}
+                      aria-label={`${study.brand} case study with ${study.creatorName}`}
+                      className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
+                    >
+                      <span className="w-full p-4 mobile:px-2.5 mobile:py-2">
+                        <span className="block font-anegra text-[18px] mobile:text-[13px] font-semibold text-white leading-tight">
+                          {study.brand}
+                        </span>
+                        <span className="block font-work-sans text-[13px] mobile:text-[11px] text-white/85">
+                          {study.creatorName}
+                        </span>
+                        <span className="block font-work-sans text-[13px] mobile:hidden text-white/80">
+                          {t('viewCaseStudy')} →
+                        </span>
+                      </span>
+                    </Link>
+                  </div>
+                )
+              }
+              const video = tile.video
               const study = video.study
               return (
-                <div key={video.src} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
+                <div key={tile.id} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
                   <VideoPlayer
                     src={video.src}
                     poster={posterFor(video.src)}
@@ -207,66 +279,6 @@ export default async function WorkPage({ params }: Props) {
                 </div>
               )
             })}
-            {/* Creator showcases (Oct 2026): five rows appended after all
-                existing work. Like the redesign films, each carries its brand
-                logo as an overlay, centred (CA watermark removed from the
-                films that had one). */}
-            {creatorCases.map((study) => (
-              <div key={study.slug} className="group hover-lift relative w-full aspect-9/16 rounded-card mobile:aspect-4/5 mobile:rounded-[12px] overflow-hidden ring-1 ring-black/5 hover:ring-black/15 hover:shadow-e3">
-                {study.image ? (
-                  <Image
-                    src={study.image.src}
-                    alt={`${study.creatorName} for ${study.brand}`}
-                    fill
-                    sizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
-                    quality={75}
-                    className="object-cover"
-                  />
-                ) : (
-                  <VideoPlayer
-                    src={study.videoSrc}
-                    poster={posterFor(study.videoSrc)}
-                    posterSizes="(max-width: 767px) 50vw, (max-width: 1059px) 33vw, 330px"
-                    aspectRatio="9:16"
-                    autoplay
-                    muted
-                    loop
-                    ignoreReducedMotion
-                    label={`${study.brand} video by ${study.creatorName}`}
-                    className="rounded-card mobile:aspect-4/5 mobile:rounded-[12px]"
-                  />
-                )}
-                {brandWatermarks[study.brand] && (
-                  <Image
-                    src={brandWatermarks[study.brand].src}
-                    alt=""
-                    aria-hidden="true"
-                    width={brandWatermarks[study.brand].width}
-                    height={brandWatermarks[study.brand].height}
-                    sizes="200px"
-                    style={{ width: `${brandWatermarks[study.brand].widthPct}%`, top: '50%' }}
-                    className="pointer-events-none absolute left-1/2 z-[1] h-auto -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.45))_drop-shadow(0_2px_14px_rgba(0,0,0,0.35))]"
-                  />
-                )}
-                <Link
-                  href={`/case-studies/${study.slug}`}
-                  aria-label={`${study.brand} case study with ${study.creatorName}`}
-                  className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
-                >
-                  <span className="w-full p-4 mobile:px-2.5 mobile:py-2">
-                    <span className="block font-anegra text-[18px] mobile:text-[13px] font-semibold text-white leading-tight">
-                      {study.brand}
-                    </span>
-                    <span className="block font-work-sans text-[13px] mobile:text-[11px] text-white/85">
-                      {study.creatorName}
-                    </span>
-                    <span className="block font-work-sans text-[13px] mobile:hidden text-white/80">
-                      {t('viewCaseStudy')} →
-                    </span>
-                  </span>
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>
