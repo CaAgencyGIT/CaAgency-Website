@@ -401,10 +401,12 @@ export default function VideoPlayer({
     } else {
       setManualIntent('play')
     }
-    if (video && (playbackStatus === 'error' || !video.paused)) {
+    // Check the element too: a source can fail before the status catches up.
+    const failed = playbackStatus === 'error' || !!video?.error
+    if (video && (failed || !video.paused)) {
       eligibleRef.current = false
       playAttemptRef.current++
-      if (playbackStatus === 'error') {
+      if (failed) {
         // A failed media element will not retry its source just by play().
         video.load()
       } else {
