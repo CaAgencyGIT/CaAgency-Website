@@ -188,12 +188,12 @@ export const workGridOrder: Array<{ type: 'video'; src: string } | { type: 'film
 // Ids are `video:<src>`, `film:<key>` or `case:<slug>`,
 // one row per line.
 export const workPageOrder: string[] = [
-  'video:/videos/work/albina-sephora-web-v1.mp4', 'video:/videos/work/honor-web-v1.mp4', 'film:loresa-celimax',
+  'video:/videos/work/albina-sephora-web-v1.mp4', 'video:/videos/work/honor-web-v1.mp4', 'film:dariia-chanel',
   'case:nyx-albulena', 'case:prada-beauty-rebecca', 'film:melly-rare',
   'film:dariia-armani', 'film:sadaf-axisy', 'case:iunik-khutjo',
-  'case:patrick-ta-beatrix', 'case:first-aid-beauty-albulena', 'case:meditherapy-aurela',
-  'case:arencia-albina', 'film:aiym-purito', 'film:dariia-chanel',
   'case:too-faced-melly', 'film:melani-revolve', 'case:revcell-loresa',
+  'case:arencia-albina', 'film:aiym-purito', 'film:loresa-celimax',
+  'case:patrick-ta-beatrix', 'case:first-aid-beauty-albulena', 'case:meditherapy-aurela',
   'film:saranda-boj', 'case:lashify-dariia', 'film:khutjo-frankly',
   'film:melani-medicube', 'case:eclado-loresa', 'film:beatrix-gisou',
   'video:/videos/work/kylie-cosmetics-web-v1.mp4', 'film:melly-fenty-original', 'film:dariia-valentino',
