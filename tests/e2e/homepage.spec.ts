@@ -13,37 +13,64 @@ test('homepage renders hero and key sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /What Our Clients Say/i })).toHaveCount(0)
 })
 
-test('homepage reserves preload bandwidth for critical assets', async ({ page }) => {
-  await page.goto('/')
+for (const width of [390, 1440]) {
+  test(`homepage reserves preload bandwidth for critical assets at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 })
+    await page.goto('/')
 
-  const preloads = await page.locator('link[rel="preload"]').evaluateAll((links) =>
-    links.map((link) => {
-      const element = link as HTMLLinkElement
-      return {
-        as: element.as,
-        href: element.href,
-        imageSrcSet: element.imageSrcset,
-      }
-    })
-  )
+    const preloads = await page.locator('link[rel="preload"]').evaluateAll((links) =>
+      links.map((link) => {
+        const element = link as HTMLLinkElement
+        return {
+          as: element.as,
+          href: element.href,
+          imageSrcSet: element.imageSrcset,
+          matches: !element.media || window.matchMedia(element.media).matches,
+        }
+      })
+    )
 
-  const fontPreloads = preloads.filter(({ as }) => as === 'font')
-  const heroImagePreloads = preloads.filter(
-    ({ as, imageSrcSet }) =>
-      as === 'image' && imageSrcSet.includes('%2Fimages%2Fhero%2F')
-  )
+    const fontPreloads = preloads.filter(({ as }) => as === 'font')
+    const heroImagePreloads = preloads.filter(
+      ({ as, imageSrcSet }) =>
+        as === 'image' && imageSrcSet.includes('%2Fimages%2Fhero%2F')
+    )
 
-  expect(fontPreloads).toHaveLength(2)
-  // The hero collage preloads its first three photos; the rest load lazily.
-  expect(heroImagePreloads).toHaveLength(3)
+    expect(fontPreloads).toHaveLength(2)
+    // Phones preload only the first row; wider screens retain the full mosaic.
+    expect(heroImagePreloads.filter(({ matches }) => matches)).toHaveLength(width <= 760 ? 2 : 6)
 
-  const collage = page.locator('main section').first().locator('img[src*="%2Fimages%2Fhero%2F"]')
-  const loading = await collage.evaluateAll((images) =>
-    images.map((image) => (image as HTMLImageElement).loading)
-  )
-  expect(loading.length).toBeGreaterThan(3)
-  expect(loading.slice(0, 3).every((value) => value !== 'lazy')).toBe(true)
-  expect(loading.slice(3).every((value) => value === 'lazy')).toBe(true)
+    // A responsive preload must select exactly the same candidates as its image.
+    const imageSrcSets = await page.locator('.home-collage img').evaluateAll((images) =>
+      images.map((image) => (image as HTMLImageElement).srcset)
+    )
+    expect(heroImagePreloads.every(({ imageSrcSet }) => imageSrcSets.includes(imageSrcSet))).toBe(true)
+
+    const collage = page.locator('main section').first().locator('img[src*="%2Fimages%2Fhero%2F"]')
+    const loading = await collage.evaluateAll((images) =>
+      images.map((image) => (image as HTMLImageElement).loading)
+    )
+    expect(loading).toHaveLength(6)
+    expect(loading.slice(0, 2).every((value) => value !== 'lazy')).toBe(true)
+    expect(loading.slice(2).every((value) => value === 'lazy')).toBe(true)
+  })
+}
+
+test('About collage stays out of the preload queue and renders on scroll', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/about', { waitUntil: 'load' })
+  await expect(page.locator('link[rel="preload"][imagesrcset*="%2Fimages%2Fhero%2Fcollage-v2%2F"]')).toHaveCount(0)
+  const collage = page.locator('.home-collage')
+  // Native lazy loading can fetch ahead by a browser-dependent distance;
+  // assert that these images do not demand eager/high-priority loading.
+  expect(await collage.locator('img').evaluateAll((images) => images.every((image) => {
+    const img = image as HTMLImageElement
+    return img.loading === 'lazy' && img.fetchPriority !== 'high'
+  }))).toBe(true)
+  await collage.scrollIntoViewIfNeeded()
+  await expect.poll(() => collage.locator('img').evaluateAll((images) =>
+    images.slice(0, 2).every((image) => (image as HTMLImageElement).naturalWidth > 0)
+  )).toBe(true)
 })
 
 test('below-fold controllers load only when their server fallback approaches', async ({ page }) => {

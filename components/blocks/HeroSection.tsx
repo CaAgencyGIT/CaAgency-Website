@@ -92,7 +92,7 @@ export default function HeroSection({
             slide coverflow carousel: every still visible at once. */}
         {collageTiles && collageTiles.length > 0 ? (
           <div className="hero-rise-media mt-2">
-            <HomeCollage tiles={collageTiles} />
+            <HomeCollage tiles={collageTiles} priority />
           </div>
         ) : carouselImages && carouselImages.length > 0 && (
           <div className="hero-rise-media mt-2">

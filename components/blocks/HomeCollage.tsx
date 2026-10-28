@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
 import { blurProps } from '@/lib/media/blur'
 
@@ -21,24 +21,42 @@ export interface HomeCollageTile {
 // three columns on tablets and two on phones;
 // `swipe` turns the phone layout into a swipe row (About page). See
 // .home-collage in globals.css. Cropped by object-fit only.
-export default function HomeCollage({ tiles, swipe = false }: { tiles: HomeCollageTile[]; swipe?: boolean }) {
+const IMAGE_SIZES = '(max-width: 760px) 50vw, (max-width: 1100px) 34vw, 26vw'
+
+export default function HomeCollage({ tiles, swipe = false, priority = false }: {
+  tiles: HomeCollageTile[]
+  swipe?: boolean
+  /** Enable early loading only when the collage is in the page's hero. */
+  priority?: boolean
+}) {
   return (
     <div className={swipe ? 'home-collage home-collage--swipe' : 'home-collage'}>
+      {/* The remaining desktop photos need early discovery too, but their
+          preload hints must not compete with the first row on phones. Use
+          Next's generated candidates so the hint and image share a request. */}
+      {priority && tiles.slice(2).map((tile) => {
+        const { props } = getImageProps({
+          src: tile.image.src, alt: tile.alt, fill: true, quality: 90, sizes: IMAGE_SIZES,
+        })
+        return (
+          <link key={tile.image.src} rel="preload" as="image"
+            media="(min-width: 761px)" imageSrcSet={props.srcSet} imageSizes={props.sizes} />
+        )
+      })}
       {tiles.map((tile, index) => (
         <div key={tile.image.src} className="home-collage-tile" style={{ ['--pos' as string]: tile.position ?? '50% 30%', ['--area' as string]: tile.area }}>
           <Image
             src={tile.image.src}
             alt={tile.alt}
             fill
-            // All six are in the first screen on desktop: preload them all,
-            // the first three first, and show a blurred preview meanwhile.
-            preload
-            fetchPriority={index < 3 ? 'high' : 'auto'}
+            preload={priority && index < 2}
+            loading={priority && index < 2 ? undefined : 'lazy'}
+            fetchPriority={priority && index < 2 ? 'high' : 'auto'}
             {...blurProps(tile.image.src)}
             quality={90}
             // Desktop tiles are up to ~26% of the screen wide (the mosaic is
             // 92vw); asking for that width keeps them sharp on Retina.
-            sizes="(max-width: 760px) 50vw, (max-width: 1100px) 34vw, 26vw"
+            sizes={IMAGE_SIZES}
             className="home-collage-media"
           />
           {tile.href && (
