@@ -193,15 +193,15 @@ export const workPageOrder: string[] = [
   'film:dariia-armani', 'film:sadaf-axisy', 'case:iunik-khutjo',
   'case:too-faced-melly', 'film:melani-revolve', 'case:revcell-loresa',
   'case:patrick-ta-beatrix', 'case:first-aid-beauty-albulena', 'case:meditherapy-aurela',
-  'case:arencia-albina', 'film:aiym-purito', 'film:loresa-celimax',
-  'film:saranda-boj', 'case:lashify-dariia', 'film:khutjo-frankly',
+  'film:skincare', 'case:k-secret-aiym', 'film:saranda-boj',
+  'film:rebecca-haruharu', 'case:lashify-dariia', 'film:khutjo-frankly',
   'film:melani-medicube', 'case:eclado-loresa', 'film:beatrix-gisou',
   'video:/videos/work/kylie-cosmetics-web-v1.mp4', 'film:melly-fenty-original', 'film:dariia-valentino',
   'film:albina-torriden', 'film:anton-azelaic', 'film:beatrix-biodance',
   'film:georgii-anua', 'film:jay-mixsoon', 'film:rebecca-saie',
   'case:vt-cosmetics-anton', 'case:vichy-dariia', 'case:rejuran-jay',
   'film:haircare', 'film:beatrix-abib', 'film:georgii-yesstyle',
-  'film:skincare', 'case:k-secret-aiym', 'film:rebecca-haruharu',
+  'case:arencia-albina', 'film:aiym-purito', 'film:loresa-celimax',
 ]
 
 // Homepage collage (Oct 2026): the same six still photos, no names, on every
