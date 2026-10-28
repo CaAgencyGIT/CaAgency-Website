@@ -199,9 +199,9 @@ export const workPageOrder: string[] = [
   'video:/videos/work/kylie-cosmetics-web-v1.mp4', 'film:melly-fenty-original', 'film:dariia-valentino',
   'film:albina-torriden', 'film:anton-azelaic', 'film:beatrix-biodance',
   'film:georgii-anua', 'film:jay-mixsoon', 'film:rebecca-saie',
-  'case:vt-cosmetics-anton', 'case:vichy-dariia', 'case:k-secret-aiym',
+  'case:vt-cosmetics-anton', 'case:vichy-dariia', 'case:rejuran-jay',
   'film:haircare', 'film:beatrix-abib', 'film:georgii-yesstyle',
-  'film:skincare', 'case:rejuran-jay', 'film:rebecca-haruharu',
+  'film:skincare', 'case:k-secret-aiym', 'film:rebecca-haruharu',
 ]
 
 // Homepage collage (Oct 2026): the same six still photos, no names, on every
