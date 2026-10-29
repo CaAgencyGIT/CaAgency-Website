@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import FAQ from '@/components/blocks/FAQ'

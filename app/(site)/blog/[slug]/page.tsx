@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { cache } from 'react'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'

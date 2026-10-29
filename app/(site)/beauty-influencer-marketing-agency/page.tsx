@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { getSiteContent } from '@/lib/site-content/service'
 import { getFeaturedTalents } from '@/lib/site-content/public'
 import { LocationPageContent } from '@/lib/site-content/location-pages'

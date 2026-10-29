@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'

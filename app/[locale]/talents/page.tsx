@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import Heading from '@/components/ui/Heading'
 import type { Locale } from '@/i18n/config'
 import Text from '@/components/ui/Text'

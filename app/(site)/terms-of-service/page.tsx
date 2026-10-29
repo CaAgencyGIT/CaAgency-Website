@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import LegalContentPage from '@/components/site/LegalContentPage'
 import { getSiteContent } from '@/lib/site-content/service'

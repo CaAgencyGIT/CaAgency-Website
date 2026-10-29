@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import type { Locale } from '@/i18n/config'
 import Button from '@/components/ui/Button'
 import ScrollReveal from '@/components/ui/ScrollReveal'

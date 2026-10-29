@@ -1,3 +1,4 @@
+import '@/app/home-utilities.css'
 import Link from 'next/link'
 import HeroSection from '@/components/blocks/HeroSection'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
