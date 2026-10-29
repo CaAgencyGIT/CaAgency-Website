@@ -1,0 +1,6 @@
+/* Admin utilities are compiled only into the admin route's stylesheet. */
+@import 'tailwindcss' source(none);
+@config '../tailwind.config.ts';
+@source './admin';
+@source '../components';
+@source '../lib';

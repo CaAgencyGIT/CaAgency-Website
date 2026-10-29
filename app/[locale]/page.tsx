@@ -1,3 +1,4 @@
+import '@/app/home-utilities.css'
 import { getHomeSlideshowTalents } from '@/lib/site-content/public'
 import Link from 'next/link'
 import { localizeHref } from '@/lib/i18n/client-paths'

@@ -1,7 +1,8 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source(none);
 @import './redesign.css';
 
 @config '../tailwind.config.ts';
+/* Page entries load utilities for their template and shared components. */
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,

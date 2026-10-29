@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import { getSiteContent } from '@/lib/site-content/service'
 import { getFeaturedTalents } from '@/lib/site-content/public'

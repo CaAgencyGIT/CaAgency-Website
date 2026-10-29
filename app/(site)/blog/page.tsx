@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { PHASE_PRODUCTION_BUILD } from 'next/constants'

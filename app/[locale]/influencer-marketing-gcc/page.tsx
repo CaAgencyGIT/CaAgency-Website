@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import ArabicLocationPage, { arabicLocationMetadata } from '@/components/site/ArabicLocationPage'
 
 export const revalidate = 3600

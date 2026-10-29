@@ -1,0 +1,22 @@
+/* The homepage does not need utilities used only by other page templates. */
+@import 'tailwindcss' source(none);
+@config '../tailwind.config.ts';
+@source './(site)/page.tsx';
+@source './[locale]/page.tsx';
+@source '../components';
+@source '../lib';
+@source not '../components/admin';
+/* Other page templates load these through public-utilities.css. The style
+   source test prevents a homepage import from silently crossing this list. */
+@source not '../components/blocks/contact';
+@source not '../components/forms';
+@source not '../components/site';
+@source not '../components/blocks/CaseFilmWithSound.tsx';
+@source not '../components/blocks/CaseStudyCard.tsx';
+@source not '../components/blocks/CaseStudyCardVideo.tsx';
+@source not '../components/blocks/ContactTabs.tsx';
+@source not '../components/blocks/FaqSection.tsx';
+@source not '../components/blocks/OfficeMap.tsx';
+@source not '../components/blocks/RelatedPosts.tsx';
+@source not '../components/ui/Marquee.tsx';
+@source not '../components/ui/ShareButtons.tsx';

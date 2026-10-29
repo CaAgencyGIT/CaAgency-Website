@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Metadata } from 'next'
 import Button from '@/components/ui/Button'

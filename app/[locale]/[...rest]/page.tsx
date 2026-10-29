@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { notFound } from 'next/navigation'
 
 // Catch-all for unmatched paths under a locale segment (e.g. /ar/does-not-exist).

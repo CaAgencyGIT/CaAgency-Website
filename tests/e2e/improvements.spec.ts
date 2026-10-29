@@ -27,11 +27,23 @@ test('talent profile hydrates without errors or mobile overflow', async ({ page 
 })
 
 async function fillBrandEnquiry(page: Page, message: string) {
+  await expect(page.getByRole('button', { name: 'Send enquiry' })).toBeEnabled()
   await page.locator('#brand-name').fill('Test User')
   await page.locator('#brand-email').fill('test@example.com')
   await page.locator('#brand-company').fill('Example Inc')
   await page.locator('#brand-phone').fill('50 123 4567')
   await page.locator('#brand-message').fill(message)
+}
+
+async function mockContactVerification(page: Page) {
+  // These tests mock delivery below; make verification deterministic too,
+  // including builds that have a real public Turnstile site key configured.
+  await page.route(/^https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js/, (route) =>
+    route.fulfill({
+      contentType: 'application/javascript',
+      body: `window.turnstile={render(container,options){queueMicrotask(()=>options.callback('test-token'));return 'test-widget'},remove(){}};`,
+    })
+  )
 }
 
 // Keyboard submit: the sticky header can cover the button after Playwright
@@ -43,6 +55,7 @@ async function submitBrandEnquiry(page: Page) {
 }
 
 test('contact success persists and fields expose autofill purpose', async ({ page }) => {
+  await mockContactVerification(page)
   await page.route('**/api/contact', (route) =>
     route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' })
   )
@@ -60,6 +73,7 @@ test('contact success persists and fields expose autofill purpose', async ({ pag
 })
 
 test('contact provider failure stays visible and preserves visitor input', async ({ page }) => {
+  await mockContactVerification(page)
   await page.route('**/api/contact', (route) =>
     route.fulfill({
       status: 502,

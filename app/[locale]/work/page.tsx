@@ -1,3 +1,4 @@
+import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
