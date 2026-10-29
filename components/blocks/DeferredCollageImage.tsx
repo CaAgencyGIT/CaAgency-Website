@@ -5,12 +5,13 @@ import { useEffect, useRef, useState } from 'react'
 
 const EMPTY_PREVIEW = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
 
-export default function DeferredCollageImage({ src, alt, sizes, preview, desktopHero }: {
+export default function DeferredCollageImage({ src, alt, sizes, preview, desktopHero, desktopSource }: {
   src: string
   alt: string
   sizes: string
   preview?: string
   desktopHero: boolean
+  desktopSource: { srcSet?: string; sizes?: string }
 }) {
   const ref = useRef<HTMLPictureElement>(null)
   const [active, setActive] = useState(false)
@@ -44,6 +45,7 @@ export default function DeferredCollageImage({ src, alt, sizes, preview, desktop
             Suppress that one expected media-attribute mismatch; React removes
             the source when its own observer activates the photo. */}
         {!active && <source suppressHydrationWarning media={desktopHero ? '(max-width: 760px)' : undefined} srcSet={preview ?? EMPTY_PREVIEW} />}
+        <source media="(min-width: 1101px)" {...desktopSource} />
         <Image {...image} alt={alt} loading={active ? 'eager' : 'lazy'}
           {...(preview ? { placeholder: 'blur', blurDataURL: preview } as const : {})} />
       </picture>
@@ -51,7 +53,10 @@ export default function DeferredCollageImage({ src, alt, sizes, preview, desktop
         <style>{'.collage-deferred-image{display:none!important}'}</style>
         {/* Blur placeholders need JS to clear, so the no-JS fallback uses the
             real image without one. Tile geometry stays reserved in CSS. */}
-        <Image {...image} alt={alt} loading="lazy" />
+        <picture>
+          <source media="(min-width: 1101px)" {...desktopSource} />
+          <Image {...image} alt={alt} loading="lazy" />
+        </picture>
       </noscript>
     </>
   )

@@ -13,7 +13,7 @@ test('homepage renders hero and key sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /What Our Clients Say/i })).toHaveCount(0)
 })
 
-for (const width of [390, 1440]) {
+for (const width of [390, 1024, 1440]) {
   test(`homepage reserves preload bandwidth for critical assets at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 })
     await page.goto('/')
@@ -25,6 +25,7 @@ for (const width of [390, 1440]) {
           as: element.as,
           href: element.href,
           imageSrcSet: element.imageSrcset,
+          priority: element.fetchPriority,
           matches: !element.media || window.matchMedia(element.media).matches,
         }
       })
@@ -39,10 +40,15 @@ for (const width of [390, 1440]) {
     expect(fontPreloads).toHaveLength(2)
     // Phones preload only the first row; wider screens retain the full mosaic.
     expect(heroImagePreloads.filter(({ matches }) => matches)).toHaveLength(width <= 760 ? 2 : 6)
+    if (width > 1100) {
+      const desktopHints = heroImagePreloads.filter(({ matches }) => matches)
+      expect(desktopHints.filter(({ priority }) => priority === 'high')).toHaveLength(4)
+      expect(desktopHints.filter(({ priority }) => priority === 'low')).toHaveLength(2)
+    }
 
     // A responsive preload must select exactly the same candidates as its image.
-    const imageSrcSets = await page.locator('.home-collage img').evaluateAll((images) =>
-      images.map((image) => (image as HTMLImageElement).srcset)
+    const imageSrcSets = await page.locator('.home-collage img, .home-collage source').evaluateAll((images) =>
+      images.map((image) => (image as HTMLImageElement | HTMLSourceElement).srcset)
     )
     expect(heroImagePreloads.every(({ imageSrcSet }) => imageSrcSets.includes(imageSrcSet))).toBe(true)
 
@@ -55,6 +61,43 @@ for (const width of [390, 1440]) {
     expect(priorities.slice(2).every((value) => value !== 'high')).toBe(true)
   })
 }
+
+test('Retina desktop requests only the cropped candidates at the original quality', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 2 })
+  try {
+    await context.addInitScript(() => localStorage.setItem('ca-agency-cookie-consent', 'declined'))
+    const page = await context.newPage()
+    const requested = new Set<string>()
+    page.on('request', request => {
+      const url = new URL(request.url())
+      if (url.searchParams.get('url')?.startsWith('/images/hero/collage-')) requested.add(url.href)
+    })
+    await page.goto(`${baseURL}/`, { waitUntil: 'networkidle' })
+    expect(requested.size).toBe(6)
+    const candidates = [...requested].map(url => new URL(url).searchParams)
+    expect(candidates.every(p => p.get('q') === '90' && Number(p.get('w')) <= 828)).toBe(true)
+    expect(candidates.filter(p => p.get('url')?.includes('/collage-desktop-v1/'))).toHaveLength(5)
+    expect(candidates.filter(p => p.get('url')?.includes('/collage-v2/'))).toHaveLength(1)
+    await expect.poll(() => page.locator('.home-collage img').evaluateAll(images =>
+      images.every(image => (image as HTMLImageElement).currentSrc.includes('/_next/image') && (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 8)
+    )).toBe(true)
+    // Keep enough actual bitmap pixels for a 2x display, including height;
+    // a smaller width alone can look soft when object-fit covers a tall tile.
+    const sharp = await page.locator('.home-collage img').evaluateAll(async images => {
+      return Promise.all(images.map(async node => {
+        const image = node as HTMLImageElement
+        const bitmap = await createImageBitmap(await (await fetch(image.currentSrc)).blob())
+        const rect = image.getBoundingClientRect()
+        const sufficient = bitmap.width >= Math.ceil(rect.width * 2) && bitmap.height >= Math.ceil(rect.height * 2)
+        bitmap.close()
+        return sufficient
+      }))
+    })
+    expect(sharp.every(Boolean)).toBe(true)
+  } finally {
+    await context.close()
+  }
+})
 
 for (const height of [700, 844]) {
   test(`mobile collage withholds offscreen photos until scroll at ${height}px`, async ({ page }) => {
@@ -104,6 +147,24 @@ test('About collage stays out of the preload queue and renders on scroll', async
   await expect(last.locator('picture')).toHaveAttribute('data-photo-state', 'active')
 })
 
+test('desktop About collage keeps its cropped images deferred until scroll', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  const photos: string[] = []
+  page.on('request', request => {
+    const source = new URL(request.url()).searchParams.get('url')
+    if (source?.startsWith('/images/hero/collage-')) photos.push(source)
+  })
+  await page.goto('/about', { waitUntil: 'networkidle' })
+  expect(photos).toHaveLength(0)
+  const collage = page.locator('.home-collage')
+  await collage.scrollIntoViewIfNeeded()
+  await expect.poll(() => collage.locator('img').evaluateAll(images =>
+    images.every(image => (image as HTMLImageElement).currentSrc.includes('/_next/image') && (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 8)
+  )).toBe(true)
+  expect(new Set(photos).size).toBe(6)
+  expect(photos.filter(source => source.includes('/collage-desktop-v1/'))).toHaveLength(5)
+})
+
 test('visible second-row photos start before hydration on tall phones', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   const requested = new Set<string>()
@@ -133,8 +194,9 @@ test('visible second-row photos start before hydration on tall phones', async ({
   expect(errors).toEqual([])
 })
 
-test('collage photos remain available with JavaScript disabled', async ({ browser, baseURL }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
+for (const width of [390, 1920]) {
+test(`collage photos remain available with JavaScript disabled at ${width}px`, async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width, height: 1080 }, deviceScaleFactor: 2 })
   try {
     const page = await context.newPage()
     await page.goto(`${baseURL}/`)
@@ -148,6 +210,7 @@ test('collage photos remain available with JavaScript disabled', async ({ browse
     await context.close()
   }
 })
+}
 
 test('below-fold controllers load only when their server fallback approaches', async ({ page }) => {
   const scripts: string[] = []

@@ -51,6 +51,7 @@ live DNS, production Workers, or the old server without approval.
 - `public/images/` — Static images (hero, logos, work samples)
 
 ## Performance Rules
+- The desktop collage uses lossless crops of the approved portraits, with responsive picture sources and media-matched preloads. Keep `quality={90}`. After changing source photos or framing, bump the immutable directory version and run `npx tsx scripts/build-desktop-collage.ts`; `collage-desktop.test.ts` checks decoded-pixel parity.
 - Utility CSS is compiled by page entry: homepages import `app/home-utilities.css`, other public pages import `app/public-utilities.css`, and the admin layout imports `app/admin.css`. `app/globals.css` holds the shared base and custom rules. New pages need the matching import; homepage component exclusions are checked by `tests/unit/style-sources.test.ts`.
 - All hero carousel images use `priority` and `fetchPriority="high"` for LCP
 - The below-the-fold `VideoShowcase` is lazy-loaded via `DeferredVideoShowcase` once it nears the viewport

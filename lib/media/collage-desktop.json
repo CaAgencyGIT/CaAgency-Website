@@ -1,0 +1,52 @@
+{
+  "/images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp": {
+    "src": "/images/hero/collage-desktop-v1/rebecca-ellis-brooklyn-v1.webp",
+    "position": "28% 50%",
+    "crop": {
+      "left": 76,
+      "top": 0,
+      "width": 810,
+      "height": 1350
+    }
+  },
+  "/images/hero/collage-v2/melly-brush-v1.webp": {
+    "src": "/images/hero/collage-desktop-v1/melly-brush-v1.webp",
+    "position": "46% 26%",
+    "crop": {
+      "left": 99,
+      "top": 0,
+      "width": 864,
+      "height": 1440
+    }
+  },
+  "/images/hero/collage-v2/rebecca-lolavie-v1.webp": {
+    "src": "/images/hero/collage-desktop-v1/rebecca-lolavie-v1.webp",
+    "position": "52% 20%",
+    "crop": {
+      "left": 112,
+      "top": 0,
+      "width": 864,
+      "height": 1440
+    }
+  },
+  "/images/hero/collage-v2/yasaman-prada-beauty-v1.webp": {
+    "src": "/images/hero/collage-desktop-v1/yasaman-prada-beauty-v1.webp",
+    "position": "22% 30%",
+    "crop": {
+      "left": 0,
+      "top": 62,
+      "width": 1080,
+      "height": 1137
+    }
+  },
+  "/images/hero/collage-v2/khutjo-welcome-korea-v1.webp": {
+    "src": "/images/hero/collage-desktop-v1/khutjo-welcome-korea-v1.webp",
+    "position": "52% 58%",
+    "crop": {
+      "left": 0,
+      "top": 177,
+      "width": 1086,
+      "height": 1143
+    }
+  }
+}
