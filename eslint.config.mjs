@@ -1,3 +1,4 @@
+import './eslint.typescript-api.cjs' // must load before eslint-config-next (TypeScript 7 bridge)
 import next from 'eslint-config-next/core-web-vitals'
 
 // Next 16 removed the `next lint` subcommand; lint runs through ESLint's flat
