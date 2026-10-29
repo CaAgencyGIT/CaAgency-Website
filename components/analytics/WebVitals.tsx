@@ -10,6 +10,8 @@ const REPORTED = new Set(['LCP', 'INP', 'CLS', 'FCP', 'TTFB'])
 // the visitor leaves or hides the tab. Anonymous: no cookies or identifiers.
 export default function WebVitals() {
   const metrics = useRef(new Map<string, VitalsMetric>())
+  // Read once when the page starts: a window that is not in front is throttled and its numbers say nothing about visitors.
+  const focused = useRef<boolean | null>(null)
 
   useReportWebVitals((metric) => {
     if (!REPORTED.has(metric.name)) return
@@ -17,6 +19,7 @@ export default function WebVitals() {
   })
 
   useEffect(() => {
+    focused.current = document.hasFocus()
     const flush = () => {
       if (document.visibilityState !== 'hidden' || metrics.current.size === 0) return
       const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType
@@ -24,6 +27,7 @@ export default function WebVitals() {
         path: location.pathname,
         device: window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop',
         connection: connection ?? 'unknown',
+        focused: focused.current ?? undefined,
         metrics: [...metrics.current.values()],
       })
       metrics.current.clear()

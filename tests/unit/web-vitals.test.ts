@@ -27,6 +27,13 @@ describe('web vitals beacon', () => {
     expect(parseVitalsBeacon(null)).toBeNull()
   })
 
+  it('tags whether the window had focus, and leaves older beacons without the flag', () => {
+    expect(parseVitalsBeacon(beacon({ focused: true }))?.map((l) => l.f)).toEqual([1, 1])
+    expect(parseVitalsBeacon(beacon({ focused: false }))?.[0].f).toBe(0)
+    expect(parseVitalsBeacon(beacon({ focused: 'yes' }))?.[0]).not.toHaveProperty('f')
+    expect(parseVitalsBeacon(beacon())?.[0]).not.toHaveProperty('f')
+  })
+
   it('falls back to an unknown connection instead of storing free text', () => {
     expect(parseVitalsBeacon(beacon({ connection: '<script>' }))?.[0].c).toBe('unknown')
   })
