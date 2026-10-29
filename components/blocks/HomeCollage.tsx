@@ -1,6 +1,8 @@
 import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
+import { preload } from 'react-dom'
 import { blurProps } from '@/lib/media/blur'
+import desktopImages from '@/lib/media/collage-desktop.json'
 import DeferredCollageImage from './DeferredCollageImage'
 
 export interface HomeCollageTile {
@@ -21,8 +23,10 @@ export interface HomeCollageTile {
 // mosaic on desktop (two large photos, a stacked pair, two tall photos),
 // three columns on tablets and two on phones;
 // `swipe` turns the phone layout into a swipe row (About page). See
-// .home-collage in globals.css. Cropped by object-fit only.
+// .home-collage in globals.css. Desktop derivatives remove only pixels that
+// object-fit already hides; phones and tablets keep the original photos.
 const IMAGE_SIZES = '(max-width: 760px) 50vw, (max-width: 1100px) 34vw, 26vw'
+const DESKTOP_MEDIA = '(min-width: 1101px)'
 
 // Run during HTML parsing: on tall phones the second row is partly visible,
 // and waiting for React hydration delayed those photos by ~1.2s in a slow-
@@ -47,40 +51,57 @@ export default function HomeCollage({ tiles, swipe = false, priority = false }: 
   /** Enable early loading only when the collage is in the page's hero. */
   priority?: boolean
 }) {
+  const images = tiles.map((tile, index) => {
+    const cropped = desktopImages[tile.image.src as keyof typeof desktopImages]
+    const stacked = tile.area === 'yasaman' || tile.area === 'khutjo'
+    const { props: desktop } = getImageProps({
+      src: cropped?.src ?? tile.image.src, alt: tile.alt, fill: true, quality: 90,
+      // Account for cover-cropping as well as the rendered tile width. The
+      // mosaic stops growing at 1800px; extra-wide screens need no larger file.
+      sizes: stacked ? '(min-width: 1957px) 310px, 16vw' : '(min-width: 1957px) 381px, 19.5vw',
+    })
+    if (priority) {
+      const { props } = getImageProps({
+        src: tile.image.src, alt: tile.alt, fill: true, quality: 90, sizes: IMAGE_SIZES,
+      })
+      preload(props.src, {
+        as: 'image', imageSrcSet: props.srcSet, imageSizes: props.sizes,
+        media: index < 2 ? '(max-width: 1100px)' : '(min-width: 761px) and (max-width: 1100px)',
+        fetchPriority: index < 2 ? 'high' : 'auto',
+      })
+      preload(desktop.src, {
+        as: 'image', imageSrcSet: desktop.srcSet, imageSizes: desktop.sizes,
+        // Full-height photos can become LCP; the small stacked tiles should
+        // not hold them up on a slow desktop connection.
+        media: DESKTOP_MEDIA, fetchPriority: stacked ? 'low' : 'high',
+      })
+    }
+    return { tile, desktop }
+  })
+
   return (
     <div className={swipe ? 'home-collage home-collage--swipe' : 'home-collage'}>
-      {/* The remaining desktop photos need early discovery too, but their
-          preload hints must not compete with the first row on phones. Use
-          Next's generated candidates so the hint and image share a request. */}
-      {priority && tiles.slice(2).map((tile) => {
-        const { props } = getImageProps({
-          src: tile.image.src, alt: tile.alt, fill: true, quality: 90, sizes: IMAGE_SIZES,
-        })
-        return (
-          <link key={tile.image.src} rel="preload" as="image"
-            media="(min-width: 761px)" imageSrcSet={props.srcSet} imageSizes={props.sizes} />
-        )
-      })}
-      {tiles.map((tile, index) => (
+      {images.map(({ tile, desktop }, index) => (
         <div key={tile.image.src} className="home-collage-tile" style={{ ['--pos' as string]: tile.position ?? '50% 30%', ['--area' as string]: tile.area }}>
-          {priority && index < 2 ? <Image
-            src={tile.image.src}
-            alt={tile.alt}
-            fill
-            preload
-            fetchPriority="high"
-            {...blurProps(tile.image.src)}
-            quality={90}
-            // Desktop tiles are up to ~26% of the screen wide (the mosaic is
-            // 92vw); asking for that width keeps them sharp on Retina.
-            sizes={IMAGE_SIZES}
-            className="home-collage-media"
-          /> : <DeferredCollageImage
+          {priority && index < 2 ? <picture>
+            <source media={DESKTOP_MEDIA} srcSet={desktop.srcSet} sizes={desktop.sizes} />
+            <Image
+              src={tile.image.src}
+              alt={tile.alt}
+              fill
+              fetchPriority="high"
+              {...blurProps(tile.image.src)}
+              quality={90}
+              sizes={IMAGE_SIZES}
+              className="home-collage-media"
+            />
+          </picture> : <DeferredCollageImage
             src={tile.image.src}
             alt={tile.alt}
             sizes={IMAGE_SIZES}
             preview={blurProps(tile.image.src).blurDataURL}
             desktopHero={priority}
+            desktopSource={{ srcSet: desktop.srcSet, sizes: desktop.sizes }}
           />}
           {tile.href && (
             <Link href={tile.href} prefetch={false} className="home-collage-link">
