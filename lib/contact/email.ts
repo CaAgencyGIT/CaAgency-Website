@@ -37,6 +37,7 @@ function describeTalents(talents: string[]): string {
 function profileLink(handle: string, platform: TalentApplication['profiles'][number]['platform']): string | null {
   if (/^https?:\/\//i.test(handle)) return handle
   const name = handle.replace(/^@/, '')
+  if (/\s/.test(name)) return null
   if (platform === 'instagram') return `https://www.instagram.com/${name}/`
   if (platform === 'tiktok') return `https://www.tiktok.com/@${name}`
   if (platform === 'youtube') return `https://www.youtube.com/@${name}`

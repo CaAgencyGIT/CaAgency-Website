@@ -1,8 +1,14 @@
 // Self-reported follower counts from the talent application form. Accepts
-// "125000", "125,000", "125.000", "125 000", "125K", "1.2M", "1,2M" and "2B"
-// and returns a whole number, or null when the input is not a count.
+// "125000", "125,000", "125.000", "125 000", "125K", "1.2M", "1,2M" and "2B",
+// plus the way people often type them: "10K+", "~50k", "50k followers",
+// "1.5 million". Returns a whole number, or null when the input is not a count.
 export function parseFollowerCount(input: string): number | null {
-  const raw = input.trim().toUpperCase().replace(/\s+/g, '')
+  const raw = input.trim().toUpperCase()
+    .replace(/\b(FOLLOWERS?|SUBSCRIBERS?|SUBS|FANS)\b/g, '')
+    .replace(/\b(THOUSAND)\b/g, 'K')
+    .replace(/\b(MILLIONS?|MLN|MIL)\b/g, 'M')
+    .replace(/\s+/g, '')
+    .replace(/^[~≈±]|\+$/g, '')
   if (!raw) return null
   const match = /^(\d+(?:[.,]\d+)*)([KMB])?$/.exec(raw)
   if (!match) return null

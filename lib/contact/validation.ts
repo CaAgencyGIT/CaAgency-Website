@@ -81,10 +81,24 @@ export function isHttpUrl(value: string): boolean {
   }
 }
 
-// "@name", "name" or a full http(s) profile link.
+// Links are often typed without the scheme ("instagram.com/name",
+// "drive.google.com/..."); add https:// so they validate and stay clickable.
+// A bare "name.beauty" is only a link when bareDomain is set: as a profile
+// it is far more likely an Instagram handle with a dot.
+export function normalizeLink(value: string, { bareDomain = false } = {}): string {
+  const v = value.trim()
+  if (/^https?:\/\//i.test(v)) return v
+  const m = /^((?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,})(\/\S*)?$/i.exec(v)
+  if (!m) return v
+  return m[2] || bareDomain || /^www\./i.test(v) ? `https://${v}` : v
+}
+
+// "@name", "name", a channel name with spaces ("Maria Tahan") or a profile
+// link, with or without https://.
 export function isValidHandle(value: string): boolean {
-  if (/^https?:\/\//i.test(value)) return isHttpUrl(value)
-  return /^@?[\w.\-]{1,100}$/u.test(value)
+  const v = normalizeLink(value)
+  if (/^https?:\/\//i.test(v)) return isHttpUrl(v)
+  return /^@?[\p{L}\p{N}_.\-]+( [\p{L}\p{N}_.\-]+)*$/u.test(v) && v.length <= 100
 }
 
 function parseTiming(raw: unknown): CampaignTiming | undefined {
@@ -144,8 +158,9 @@ export function validateContactPayload(input: unknown): ValidationResult {
   }
 
   const basedIn = str(raw.basedIn, contactFieldLimits.basedIn)
-  const mediaKit = str(raw.mediaKit, contactFieldLimits.mediaKit)
-  if (basedIn === null || mediaKit === null) return invalid('One or more fields are invalid')
+  const mediaKitRaw = str(raw.mediaKit, contactFieldLimits.mediaKit)
+  if (basedIn === null || mediaKitRaw === null) return invalid('One or more fields are invalid')
+  const mediaKit = mediaKitRaw && normalizeLink(mediaKitRaw, { bareDomain: true })
   if (mediaKit && !isHttpUrl(mediaKit)) return invalid('Invalid media kit link')
 
   const categoriesRaw = raw.categories ?? []
@@ -163,7 +178,8 @@ export function validateContactPayload(input: unknown): ValidationResult {
     if (!item || typeof item !== 'object') return invalid('Invalid social profile')
     const p = item as Record<string, unknown>
     const platform = p.platform as SocialPlatform
-    const handle = str(p.handle, contactFieldLimits.handle)
+    const handleRaw = str(p.handle, contactFieldLimits.handle)
+    const handle = handleRaw && normalizeLink(handleRaw)
     const followersInput = str(p.followers, contactFieldLimits.followers)
     if (!SOCIAL_PLATFORMS.includes(platform) || !handle || !followersInput) return invalid('Incomplete social profile')
     if (!isValidHandle(handle)) return invalid('Invalid social handle or link')

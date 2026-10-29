@@ -5,7 +5,7 @@ import Turnstile from '@/components/forms/Turnstile'
 import { trackContactConversion, trackFormSubmission } from '@/components/analytics/GoogleAnalytics'
 import type { ContactFormLabels } from '@/lib/contact/form-labels'
 import { parseFollowerCount } from '@/lib/contact/followers'
-import { contactFieldLimits, isHttpUrl, isValidHandle, MAX_SOCIAL_PROFILES, type ContentCategory } from '@/lib/contact/validation'
+import { contactFieldLimits, isHttpUrl, isValidHandle, normalizeLink, MAX_SOCIAL_PROFILES, type ContentCategory } from '@/lib/contact/validation'
 import { cn } from '@/lib/utils'
 import LogoSpinner from '@/components/ui/LogoSpinner'
 import {
@@ -28,14 +28,19 @@ const usesTurnstile = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
+// A number typed with its own country code ("+31 6…" or "0031 6…") wins over
+// the dial-code picker, which defaults to the UAE.
 function phoneValue(dial: string, number: string) {
   const n = number.trim()
-  return n ? `${dial.split('|')[1]} ${n}` : ''
+  if (!n) return ''
+  if (n.startsWith('+')) return n
+  if (n.startsWith('00')) return `+${n.slice(2)}`
+  return `${dial.split('|')[1]} ${n}`
 }
 
 function phoneError(number: string, labels: ContactFormLabels) {
   const n = number.trim()
-  return n && !/^[\d\s().-]{4,30}$/.test(n) ? labels.errPhone : undefined
+  return n && !/^\+?[\d\s().-]{4,30}$/.test(n) ? labels.errPhone : undefined
 }
 
 const SUBMIT_TIMEOUT_MS = 25_000
@@ -368,7 +373,7 @@ export function TalentApplicationForm({ labels }: { labels: ContactFormLabels })
       e['talent-profiles'] = labels.errProfiles
       e[`talent-profiles-${rows[0].key}-handle`] = rows[0].handle.trim() ? undefined : labels.errRequired
     }
-    if (mediaKit.trim() && !isHttpUrl(mediaKit.trim())) e['talent-mediakit'] = labels.errUrl
+    if (mediaKit.trim() && !isHttpUrl(normalizeLink(mediaKit, { bareDomain: true }))) e['talent-mediakit'] = labels.errUrl
     if (!message.trim()) e['talent-message'] = labels.errRequired
     return e
   }
