@@ -56,7 +56,7 @@ live DNS, production Workers, or the old server without approval.
 - All hero carousel images use `priority` and `fetchPriority="high"` for LCP
 - The below-the-fold `VideoShowcase` is lazy-loaded via `DeferredVideoShowcase` once it nears the viewport
 - Videos use IntersectionObserver-based lazy loading (`VideoPlayer.tsx`, `CollageVideo.tsx`: `preload="none"`, buffer near view, play on screen)
-- Only the first two hero collage photos are `priority`; below-the-fold posters never are
+- On phones/tablets only the first two hero collage photos get high-priority hints. Desktop media-matched hints prioritize the four full-height tiles over the stacked pair; below-the-fold posters never get priority hints.
 - Brand logos explicitly set `loading="lazy"`
 - No preconnect to blob storage: all images route through same-origin `/_next/image` and videos are local, so the browser never contacts the blob domain directly
 - CSS is inlined into the HTML (`experimental.inlineCss`) — no render-blocking stylesheet request. Turning it off (Oct 2026) cost ~200ms FCP/LCP on the homepage in production Lighthouse; don't flip it without field data
