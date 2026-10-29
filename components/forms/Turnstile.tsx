@@ -28,7 +28,9 @@ export default function Turnstile({ onToken }: { onToken: (token: string) => voi
   }, [sitekey, loaded, onToken])
   if (!sitekey) return null
   return <>
-    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" onReady={ready} />
+    {/* Both forms mount a widget at once. next/script only calls onReady for
+        the instance that started the download; the other gets onLoad. */}
+    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" onLoad={ready} onReady={ready} />
     <div ref={container} />
   </>
 }

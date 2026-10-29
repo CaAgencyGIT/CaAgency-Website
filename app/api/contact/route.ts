@@ -68,6 +68,7 @@ export async function POST(request: NextRequest) {
   const previewWithoutTurnstile = process.env.PREVIEW_MODE === 'true' && !process.env.TURNSTILE_SECRET
   const token = raw && typeof raw === 'object' && 'turnstileToken' in raw ? raw.turnstileToken : undefined
   if (!previewWithoutTurnstile && !await verifyTurnstile(token, clientIp)) {
+    console.warn(`Contact rejected by Turnstile (${validation.data.formType}, token ${typeof token === 'string' && token ? 'present' : 'missing'})`)
     return NextResponse.json({ error: 'Submission rejected', code: 'BOT_REJECTED' }, { status: 403 })
   }
 
