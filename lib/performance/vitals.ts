@@ -12,8 +12,10 @@ const DEVICES = new Set(['mobile', 'desktop'])
 const CONNECTIONS = new Set(['slow-2g', '2g', '3g', '4g', 'unknown'])
 
 export type VitalsMetric = { name: string; value: number; rating: string }
-export type VitalsBeacon = { path: string; device: string; connection: string; metrics: VitalsMetric[] }
-export type VitalsLine = { m: string; v: number; r: string; p: string; d: string; c: string }
+// focused: whether the window had focus when the page started. A window that is not in front (for example a test
+// session in a browser behind other windows) is throttled by the browser and records far slower numbers than a visitor.
+export type VitalsBeacon = { path: string; device: string; connection: string; focused?: boolean; metrics: VitalsMetric[] }
+export type VitalsLine = { m: string; v: number; r: string; p: string; d: string; c: string; f?: 0 | 1 }
 
 // Automated browsers (headless test runs, crawlers, speed-test services) are
 // not visitors and would skew the numbers; their beacons are dropped. The user
@@ -35,7 +37,7 @@ export function normalizeVitalsPath(path: string): string {
 /** Returns the log lines for a valid beacon, or null when anything is off. */
 export function parseVitalsBeacon(input: unknown): VitalsLine[] | null {
   if (!input || typeof input !== 'object') return null
-  const { path, device, connection, metrics } = input as Partial<VitalsBeacon>
+  const { path, device, connection, focused, metrics } = input as Partial<VitalsBeacon>
   if (typeof path !== 'string' || !path.startsWith('/') || path.length > 300) return null
   if (typeof device !== 'string' || !DEVICES.has(device)) return null
   const conn = typeof connection === 'string' && CONNECTIONS.has(connection) ? connection : 'unknown'
@@ -49,7 +51,9 @@ export function parseVitalsBeacon(input: unknown): VitalsLine[] | null {
     const max = name === 'CLS' ? 10 : 120_000
     if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > max) return null
     const v = name === 'CLS' ? Math.round(value * 1000) / 1000 : Math.round(value)
-    lines.push({ m: name, v, r: rating, p: normalizeVitalsPath(path), d: device, c: conn })
+    const line: VitalsLine = { m: name, v, r: rating, p: normalizeVitalsPath(path), d: device, c: conn }
+    if (typeof focused === 'boolean') line.f = focused ? 1 : 0
+    lines.push(line)
   }
   return lines
 }
