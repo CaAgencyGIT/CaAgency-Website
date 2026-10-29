@@ -42,16 +42,15 @@ export default function HeroSection({
       className="relative overflow-hidden bg-gradient-to-b from-background-base to-background-soft py-[56px] mobile:py-[40px] px-section-x"
     >
       <div className="relative z-[1] max-w-container mx-auto">
-        {/* Keep above-the-fold content immediately visible for better FCP/LCP.
-            Entrance uses CSS (hero-rise) so it animates on first paint without
-            waiting for hydration — LCP-safe. */}
+        {/* Show the hero in its final position immediately. Entrance motion
+            makes the headline and introduction keep moving after they paint. */}
         <div className="text-center mb-4 mobile:mb-3">
           {heading && (
-            <h1 className="hero-rise hero-rise-1 mb-4 mobile:mb-3 font-jost text-[14px] mobile:text-[12px] font-medium uppercase tracking-[0.2em] rtl:tracking-normal text-accent-red text-balance">
+            <h1 className="mb-4 mobile:mb-3 font-jost text-[14px] mobile:text-[12px] font-medium uppercase tracking-[0.2em] rtl:tracking-normal text-accent-red text-balance">
               {heading}
             </h1>
           )}
-          <TitleTag className="hero-rise hero-rise-1 font-anegra text-[clamp(40px,6.2vw,96px)] leading-[1.02] tracking-[-0.02em] rtl:tracking-normal text-foreground-primary text-center text-balance">
+          <TitleTag className="font-anegra text-[clamp(40px,6.2vw,96px)] leading-[1.02] tracking-[-0.02em] rtl:tracking-normal text-foreground-primary text-center text-balance">
             {title}
             {titleSecondLine && (
               <>
@@ -64,7 +63,7 @@ export default function HeroSection({
 
         {/* Subtitle */}
         {subtitle && (
-          <div className="hero-rise hero-rise-2 text-center mb-6 mobile:mb-5 max-w-[640px] mx-auto">
+          <div className="text-center mb-6 mobile:mb-5 max-w-[640px] mx-auto">
             <p className="font-work-sans text-[17px] mobile:text-[16px] leading-[1.6] text-foreground-body text-center text-pretty">
               {subtitle}
             </p>
@@ -73,7 +72,7 @@ export default function HeroSection({
 
         {/* CTAs */}
         {(primaryCta || secondaryCta) && (
-          <div className="hero-rise hero-rise-2 flex flex-wrap items-center justify-center gap-4 mb-6 mobile:mb-5">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-6 mobile:mb-5">
             {primaryCta && (
               <Magnetic>
                 <Button href={primaryCta.href} locale={locale}>{primaryCta.label}</Button>
@@ -87,15 +86,13 @@ export default function HeroSection({
           </div>
         )}
 
-        {/* Hero film row — transform-only entrance so the LCP image is
-            paintable immediately (no opacity fade). Replaces the single-
-            slide coverflow carousel: every still visible at once. */}
+        {/* Keep the hero photos still and paintable from the first frame. */}
         {collageTiles && collageTiles.length > 0 ? (
-          <div className="hero-rise-media mt-2">
+          <div className="mt-2">
             <HomeCollage tiles={collageTiles} priority />
           </div>
         ) : carouselImages && carouselImages.length > 0 && (
-          <div className="hero-rise-media mt-2">
+          <div className="mt-2">
             <CoverflowCarousel
               images={carouselImages}
               autoplay={false}
