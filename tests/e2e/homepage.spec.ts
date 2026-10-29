@@ -47,30 +47,106 @@ for (const width of [390, 1440]) {
     expect(heroImagePreloads.every(({ imageSrcSet }) => imageSrcSets.includes(imageSrcSet))).toBe(true)
 
     const collage = page.locator('main section').first().locator('img[src*="%2Fimages%2Fhero%2F"]')
-    const loading = await collage.evaluateAll((images) =>
-      images.map((image) => (image as HTMLImageElement).loading)
+    const priorities = await collage.evaluateAll((images) =>
+      images.map((image) => (image as HTMLImageElement).fetchPriority)
     )
-    expect(loading).toHaveLength(6)
-    expect(loading.slice(0, 2).every((value) => value !== 'lazy')).toBe(true)
-    expect(loading.slice(2).every((value) => value === 'lazy')).toBe(true)
+    expect(priorities).toHaveLength(6)
+    expect(priorities.slice(0, 2)).toEqual(['high', 'high'])
+    expect(priorities.slice(2).every((value) => value !== 'high')).toBe(true)
+  })
+}
+
+for (const height of [700, 844]) {
+  test(`mobile collage withholds offscreen photos until scroll at ${height}px`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height })
+    const requested = new Set<string>()
+    page.on('request', (request) => {
+      const src = new URL(request.url()).searchParams.get('url')
+      if (src?.startsWith('/images/hero/collage-v2/')) requested.add(src)
+    })
+    await page.goto('/', { waitUntil: 'networkidle' })
+    const collage = page.locator('.home-collage')
+    const last = collage.locator('.home-collage-tile').last()
+    const lastSrc = await last.locator('img').getAttribute('src')
+    const source = new URL(lastSrc!, page.url()).searchParams.get('url')!
+    expect(await last.evaluate((el) => el.getBoundingClientRect().top)).toBeGreaterThan(height)
+    expect(requested.has(source)).toBe(false)
+    expect(requested.size).toBeLessThan(6)
+    await expect(last.locator('picture')).toHaveAttribute('data-photo-state', 'waiting')
+    await last.scrollIntoViewIfNeeded()
+    await expect.poll(() => requested.has(source)).toBe(true)
+    await expect.poll(() => last.locator('img').evaluate((img: HTMLImageElement) =>
+      img.currentSrc.includes('/_next/image') && img.complete && img.naturalWidth > 0
+    )).toBe(true)
   })
 }
 
 test('About collage stays out of the preload queue and renders on scroll', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/about', { waitUntil: 'load' })
+  const requested: string[] = []
+  page.on('request', (request) => {
+    if (request.url().includes('%2Fimages%2Fhero%2Fcollage-v2%2F')) requested.push(request.url())
+  })
+  await page.goto('/about', { waitUntil: 'networkidle' })
+  expect(requested).toHaveLength(0)
   await expect(page.locator('link[rel="preload"][imagesrcset*="%2Fimages%2Fhero%2Fcollage-v2%2F"]')).toHaveCount(0)
   const collage = page.locator('.home-collage')
-  // Native lazy loading can fetch ahead by a browser-dependent distance;
-  // assert that these images do not demand eager/high-priority loading.
-  expect(await collage.locator('img').evaluateAll((images) => images.every((image) => {
-    const img = image as HTMLImageElement
-    return img.loading === 'lazy' && img.fetchPriority !== 'high'
-  }))).toBe(true)
   await collage.scrollIntoViewIfNeeded()
   await expect.poll(() => collage.locator('img').evaluateAll((images) =>
-    images.slice(0, 2).every((image) => (image as HTMLImageElement).naturalWidth > 0)
+    images.slice(0, 2).every((image) => {
+      const img = image as HTMLImageElement
+      return img.currentSrc.includes('/_next/image') && img.complete && img.naturalWidth > 0
+    })
   )).toBe(true)
+  const last = collage.locator('.home-collage-tile').last()
+  await expect(last.locator('picture')).toHaveAttribute('data-photo-state', 'waiting')
+  await last.scrollIntoViewIfNeeded()
+  await expect(last.locator('picture')).toHaveAttribute('data-photo-state', 'active')
+})
+
+test('visible second-row photos start before hydration on tall phones', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  const requested = new Set<string>()
+  const errors: string[] = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text())
+  })
+  page.on('request', (request) => {
+    const src = new URL(request.url()).searchParams.get('url')
+    if (src?.startsWith('/images/hero/collage-v2/')) requested.add(src)
+  })
+  let releaseScripts!: () => void
+  const scriptsReady = new Promise<void>((resolve) => { releaseScripts = resolve })
+  await page.route(/\/_next\/static\/.*\.js(?:\?|$)/, async (route) => {
+    await scriptsReady
+    await route.continue()
+  })
+  try {
+    await page.goto('/', { waitUntil: 'commit' })
+    await expect.poll(() => requested.size).toBe(4)
+    expect([...requested].some((src) => /yasaman|khutjo/.test(src))).toBe(false)
+  } finally {
+    releaseScripts()
+  }
+  await page.waitForLoadState('networkidle')
+  expect(errors).toEqual([])
+})
+
+test('collage photos remain available with JavaScript disabled', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
+  try {
+    const page = await context.newPage()
+    await page.goto(`${baseURL}/`)
+    const images = page.locator('.home-collage img:visible')
+    await expect(images).toHaveCount(6)
+    await expect.poll(() => images.evaluateAll((imgs) => imgs.every((image) => {
+      const img = image as HTMLImageElement
+      return img.complete && img.naturalWidth > 8
+    }))).toBe(true)
+  } finally {
+    await context.close()
+  }
 })
 
 test('below-fold controllers load only when their server fallback approaches', async ({ page }) => {
