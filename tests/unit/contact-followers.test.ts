@@ -22,3 +22,17 @@ describe('parseFollowerCount', () => {
     expect(parseFollowerCount(input)).toBeNull()
   })
 })
+
+describe('parseFollowerCount, as people type it', () => {
+  it.each([
+    ['10K+', 10000],
+    ['1M+', 1000000],
+    ['~50k', 50000],
+    ['50k followers', 50000],
+    ['120K subscribers', 120000],
+    ['1.5 million', 1500000],
+    ['200.000+', 200000],
+  ])('reads %s as %d', (input, expected) => {
+    expect(parseFollowerCount(input)).toBe(expected)
+  })
+})
