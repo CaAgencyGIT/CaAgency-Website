@@ -32,4 +32,5 @@ export const talentCardArt: Record<string, { src: string; top: string; bottom: s
   'yassuo': { src: '/images/talents/cards/yassuo-v3.webp', top: '#f8f4ee', bottom: '#c2bfba' },
   'vania-fernandes': { src: '/images/talents/cards/vania-fernandes-v3.webp', top: '#f8f4ee', bottom: '#968884' },
   'gvantsa-okinashvili': { src: '/images/talents/cards/gvantsa-okinashvili-v3.webp', top: '#f8f4ee', bottom: '#c9d4ed' },
+  'anhelina-andrusik': { src: '/images/talents/cards/anhelina-andrusik-v3.webp', top: '#f8f4ee', bottom: '#3a3b39' },
 }
