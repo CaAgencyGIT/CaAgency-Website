@@ -6,7 +6,7 @@ describe('socialHandle', () => {
     expect(socialHandle('https://www.instagram.com/Albina/')).toBe('albina')
     expect(socialHandle('https://www.tiktok.com/@khutjo.matsoma/')).toBe('khutjo.matsoma')
     expect(socialHandle('https://www.instagram.com/_idareen_?igsh=abc')).toBe('_idareen_')
-    expect(socialHandle('@jaysadiq_')).toBe('jaysadiq_')
+    expect(socialHandle('@jaysstyle1')).toBe('jaysstyle1')
   })
 
   it('returns null for empty values and other sites', () => {
