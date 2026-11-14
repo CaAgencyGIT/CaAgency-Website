@@ -3,6 +3,15 @@
 // are kept out of the index (and sitemap) until a bio is written in the admin.
 export const MIN_INDEXABLE_BIO_LENGTH = 80
 
+// Hand-written meta description and keywords for profiles that need them;
+// every other profile derives both from its bio and name.
+export const talentSeoOverrides: Record<string, { description: string; keywords: string[] }> = {
+  'dora-nguyen': {
+    description: 'Dora Nguyen is a skincare and beauty creator with 40K+ Instagram followers and 27K+ TikTok followers, managed by CA Agency.',
+    keywords: ['Dora Nguyen', 'Dora Nguyen Instagram', 'Dora Nguyen TikTok', 'soleildoraa', 'skincare creator', 'beauty influencer', 'Instagram influencer'],
+  },
+}
+
 export function isIndexableTalentProfile(bio: string | null | undefined): boolean {
   return (bio?.trim().length ?? 0) >= MIN_INDEXABLE_BIO_LENGTH
 }
