@@ -151,7 +151,7 @@ const campaignCaseStudies: CaseStudy[] = [
     title: 'Mixsoon K-Beauty Campaign',
     vertical: 'K-Beauty Skincare',
     platforms: ['TikTok', 'Instagram Reels'],
-    creator: '@jaysadiq_',
+    creator: '@jaysstyle1',
     videoSrc: '/videos/redesign/rd-jay-mixsoon-web-v3.mp4',
     summary:
       'A talking-head ingredient explainer for Mixsoon’s Bean Copper Peptide Firming Serum, aimed at men’s skincare.',
