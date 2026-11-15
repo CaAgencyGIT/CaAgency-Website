@@ -84,7 +84,7 @@ export function parsePublication(raw: unknown): PublicationInput {
   } else if (kind === 'blog') {
     onlyKeys(p, ['title', 'seoTitle', 'excerpt', 'content', 'featuredImage', 'author', 'categories', 'tags'])
     if (!text(p.title, 250).trim() || !text(p.content, 150_000).trim()) throw new PublicationError('Blog title and content are required')
-    payload = { title: p.title, content: sanitizeTrustedHtml(p.content as string), author: p.author === undefined ? 'CA Agency' : text(p.author, 120) }
+    payload = { title: p.title, content: sanitizeTrustedHtml(p.content as string), ...(p.author === undefined ? {} : { author: text(p.author, 120) }) }
     for (const key of ['seoTitle', 'excerpt']) if (p[key] !== undefined) payload[key] = text(p[key], key === 'seoTitle' ? 120 : 2000)
     if (p.featuredImage !== undefined) payload.featuredImage = url(p.featuredImage)
     for (const key of ['categories', 'tags']) if (p[key] !== undefined) {
