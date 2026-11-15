@@ -111,7 +111,7 @@ export default function TalentCard({
       >
         <Image
           src={artwork?.src ?? imageUrl}
-          alt={artwork?.alt ?? name}
+          alt={artwork ? (artwork.alt ?? `${name}, CA Agency talent cover`) : name}
           fill
           quality={artwork ? 75 : 60}
           preload={priority}
