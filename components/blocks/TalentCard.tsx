@@ -115,7 +115,12 @@ export default function TalentCard({
               className="block h-auto w-[19cqw] shrink-0"
             />
             <span aria-hidden="true" className="mx-[4cqw] h-[15cqw] w-px shrink-0 bg-[#c8c8c8]" />
-            <p className="min-w-0 flex-1 text-center font-talent text-[length:min(23px,10.4cqw)] font-extrabold leading-[1.12] tracking-[0.005em] text-[#141112]">
+            <p
+              className="min-w-0 flex-1 text-center font-talent font-extrabold leading-[1.12] tracking-[0.005em] text-[#141112]"
+              // Inline on purpose: the site's text-size utilities shrink fluidly,
+              // but this size is already fitted to the card width.
+              style={{ fontSize: 'min(23px, 10.4cqw)' }}
+            >
               <span className="block whitespace-nowrap">{first}</span>
               {rest && <span className="block whitespace-nowrap">{rest}</span>}
             </p>
