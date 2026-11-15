@@ -1,37 +1,32 @@
 {
  "albina-mavriqi": {
   "name": "Albina Mavriqi",
-  "source": "assets/talent-covers/source/albina-mavriqi.webp",
+  "source": "assets/talent-covers/source/albina-mavriqi.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    85,
+    53,
+    281,
+    212
    ],
    [
-    520,
-    65,
-    522,
-    301
+    353,
+    52,
+    355,
+    211
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    786,
-    139,
-    1315,
-    263
+    424,
+    102,
+    977,
+    178
    ]
-  ]
+  ],
+  "approval": "round3 option03"
  },
  "melani-seiffert": {
   "name": "Melani Seiffert",
-  "source": "assets/talent-covers/source/melani-seiffert.webp",
+  "source": "assets/talent-covers/source/melani-seiffert.png",
   "erase": [
    [
     84,
@@ -51,41 +46,37 @@
     979,
     161
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "anton-drozhzhin": {
   "name": "Anton Drozhzhin",
-  "source": "assets/talent-covers/source/anton-drozhzhin.webp",
+  "source": "assets/talent-covers/source/anton-drozhzhin.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    85,
+    53,
+    280,
+    212
    ],
    [
-    520,
-    65,
-    522,
-    301
+    352,
+    54,
+    354,
+    211
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    814,
-    139,
-    1285,
-    263
+    398,
+    103,
+    1047,
+    162
    ]
-  ]
+  ],
+  "approval": "round3 option01"
  },
  "aiym-kablan": {
   "name": "Aiym Kablan",
-  "source": "assets/talent-covers/source/aiym-kablan.webp",
+  "source": "assets/talent-covers/source/aiym-kablan.png",
   "erase": [
    [
     84,
@@ -105,11 +96,12 @@
     877,
     180
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "khutjo-matsoma": {
   "name": "Khutjo Matsoma",
-  "source": "assets/talent-covers/source/khutjo-matsoma.webp",
+  "source": "assets/talent-covers/source/khutjo-matsoma.png",
   "erase": [
    [
     84,
@@ -129,11 +121,12 @@
     1033,
     178
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "dariia-bordun": {
   "name": "Dariia Bordun",
-  "source": "assets/talent-covers/source/dariia-bordun.webp",
+  "source": "assets/talent-covers/source/dariia-bordun.png",
   "erase": [
    [
     85,
@@ -143,7 +136,7 @@
    ],
    [
     353,
-    54,
+    53,
     355,
     211
    ],
@@ -153,71 +146,62 @@
     1003,
     162
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "saranda-mavriqi": {
   "name": "Saranda Mavriqi",
-  "source": "assets/talent-covers/source/saranda-mavriqi.webp",
+  "source": "assets/talent-covers/source/saranda-mavriqi.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    84,
+    53,
+    279,
+    211
    ],
    [
-    520,
-    65,
-    522,
-    301
+    351,
+    53,
+    353,
+    210
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    729,
-    140,
-    1377,
-    263
+    409,
+    101,
+    1035,
+    179
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "rebecca-ghaderi": {
   "name": "Rebecca Ghaderi",
-  "source": "assets/talent-covers/source/rebecca-ghaderi.webp",
+  "source": "assets/talent-covers/source/rebecca-ghaderi.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    86,
+    53,
+    281,
+    212
    ],
    [
-    520,
-    65,
-    522,
-    301
+    353,
+    53,
+    356,
+    212
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    726,
-    141,
-    1376,
-    263
+    411,
+    102,
+    1041,
+    163
    ]
-  ]
+  ],
+  "approval": "option01 with foreground hairclip removed"
  },
  "qendresa-konushevci": {
   "name": "Qendresa Konushevci",
-  "source": "assets/talent-covers/source/qendresa-konushevci.webp",
+  "source": "assets/talent-covers/source/qendresa-konushevci.png",
   "erase": [
    [
     85,
@@ -226,7 +210,7 @@
     212
    ],
    [
-    336,
+    335,
     52,
     338,
     204
@@ -237,7 +221,8 @@
     1040,
     157
    ]
-  ]
+  ],
+  "approval": "approved hand-free subtle freshening retouch"
  },
  "beatrix-ramosaj": {
   "name": "Beatrix Ramosaj",
@@ -271,11 +256,11 @@
  },
  "melly-sanchez": {
   "name": "Melly Sanchez",
-  "source": "assets/talent-covers/source/melly-sanchez.webp",
+  "source": "assets/talent-covers/source/melly-sanchez.png",
   "erase": [
    [
     85,
-    53,
+    52,
     281,
     211
    ],
@@ -291,11 +276,12 @@
     1017,
     179
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "loresa-konushevci": {
   "name": "Loresa Konushevci",
-  "source": "assets/talent-covers/source/loresa-konushevci.webp",
+  "source": "assets/talent-covers/source/loresa-konushevci.png",
   "erase": [
    [
     84,
@@ -306,20 +292,21 @@
    [
     344,
     53,
-    346,
+    347,
     207
    ],
    [
     383,
     97,
-    1043,
+    1042,
     156
    ]
-  ]
+  ],
+  "approval": "approved hand-free portrait"
  },
  "albulena-mavriqi": {
   "name": "Albulena Mavriqi",
-  "source": "assets/talent-covers/source/albulena-mavriqi.webp",
+  "source": "assets/talent-covers/source/albulena-mavriqi.png",
   "erase": [
    [
     85,
@@ -339,11 +326,12 @@
     1036,
     178
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "georgii-galaev": {
   "name": "Georgii Galaev",
-  "source": "assets/talent-covers/source/georgii-galaev.webp",
+  "source": "assets/talent-covers/source/georgii-galaev.png",
   "erase": [
    [
     85,
@@ -363,11 +351,12 @@
     968,
     179
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "anisa-hukmova": {
   "name": "Anisa Hukmova",
-  "source": "assets/talent-covers/source/anisa-hukmova.webp",
+  "source": "assets/talent-covers/source/anisa-hukmova.png",
   "erase": [
    [
     86,
@@ -384,40 +373,36 @@
    [
     426,
     99,
-    1016,
+    1017,
     159
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "jay-sadiq": {
   "name": "Jay Sadiq",
-  "source": "assets/talent-covers/source/jay-sadiq.webp",
+  "source": "assets/talent-covers/source/jay-sadiq.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    86,
+    54,
+    280,
+    211
    ],
    [
-    520,
-    65,
-    522,
-    301
+    353,
+    53,
+    355,
+    211
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    914,
-    141,
-    1188,
-    303
+    408,
+    92,
+    822,
+    185
    ]
-  ]
+  ],
+  "approval": "NEW round4 option02, polished hair white knit"
  },
  "anhelina-andrusik": {
   "name": "Anhelina Andrusik",
@@ -481,37 +466,32 @@
  },
  "ardita-gashi": {
   "name": "Ardita Gashi",
-  "source": "assets/talent-covers/source/ardita-gashi.webp",
+  "source": "assets/talent-covers/source/ardita-gashi.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    84,
+    53,
+    279,
+    210
    ],
    [
-    520,
-    65,
-    522,
-    301
+    351,
+    53,
+    353,
+    210
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    797,
-    139,
-    1305,
-    263
+    420,
+    102,
+    924,
+    161
    ]
-  ]
+  ],
+  "approval": "round3 option02"
  },
  "aurela-elshani": {
   "name": "Aurela Elshani",
-  "source": "assets/talent-covers/source/aurela-elshani.webp",
+  "source": "assets/talent-covers/source/aurela-elshani.png",
   "erase": [
    [
     85,
@@ -531,41 +511,37 @@
     986,
     162
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "gvantsa-okinashvili": {
   "name": "Gvantsa Okinashvili",
-  "source": "assets/talent-covers/source/gvantsa-okinashvili.webp",
+  "source": "assets/talent-covers/source/gvantsa-okinashvili.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    85,
+    53,
+    278,
+    211
    ],
    [
-    520,
-    65,
-    522,
-    301
+    331,
+    53,
+    333,
+    211
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    742,
-    140,
-    1364,
-    263
+    374,
+    100,
+    1058,
+    158
    ]
-  ]
+  ],
+  "approval": "product-free straight hair, lace top, silver necklace; supersedes old03"
  },
  "dora-nguyen": {
   "name": "Dora Nguyen",
-  "source": "assets/talent-covers/source/dora-nguyen.webp",
+  "source": "assets/talent-covers/source/dora-nguyen.png",
   "erase": [
    [
     86,
@@ -585,7 +561,8 @@
     909,
     180
    ]
-  ]
+  ],
+  "approval": "Previously approved selection retained"
  },
  "yassuo": {
   "name": "Yassuo",

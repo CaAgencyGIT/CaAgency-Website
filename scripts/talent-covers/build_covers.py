@@ -33,7 +33,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / 'public/images/talents/cards'
-VERSION = 'v7'
+VERSION = 'v8'
 SS = 4  # supersampling for the header
 
 TOK = json.loads((HERE / 'header.json').read_text())
@@ -159,7 +159,7 @@ def main(only=None):
         clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
         img = draw_header(Image.fromarray(clean), c['name'], cap_w, cap_per_unit)
         dst = OUT / f'{slug}-{VERSION}.webp'
-        img.save(dst, 'WEBP', quality=92, method=6)
+        img.save(dst, 'WEBP', quality=95, method=6)
         print(dst.relative_to(ROOT), img.size)
 
 
