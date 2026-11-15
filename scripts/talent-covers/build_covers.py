@@ -65,13 +65,47 @@ def name_metrics():
     return avail * cap / widest, cap / 1000  # cap height (of W), cap per font unit
 
 
-def clear_old_header(img: np.ndarray, boxes) -> np.ndarray:
-    if not boxes:
-        return img
-    mask = np.zeros(img.shape[:2], np.uint8)
+def clear_old_header(img: np.ndarray, boxes, seed: int) -> np.ndarray:
+    """Replace each old-ink box with the background around it.
+
+    A smooth (quadratic) colour surface is fitted to a ring of background
+    15-45 px outside the box, skipping anything that is not background (ink,
+    hair, compression halos), so the fill matches the true ivory and not the
+    light halos lossy compression leaves next to dark letters. Fine grain with
+    the ring's own strength is added back, and the edge is feathered.
+    """
+    out = img.astype(np.float32)
+    H, W = img.shape[:2]
+    rng = np.random.default_rng(seed)
     for x0, y0, x1, y1 in boxes:
-        mask[max(0, y0 - 6):y1 + 7, max(0, x0 - 6):x1 + 7] = 255
-    return cv2.inpaint(img, mask, 7, cv2.INPAINT_TELEA)
+        bx0, by0, bx1, by1 = max(0, x0 - 8), max(0, y0 - 8), min(W, x1 + 9), min(H, y1 + 9)
+        rx0, ry0, rx1, ry1 = max(0, bx0 - 45), max(0, by0 - 45), min(W, bx1 + 45), min(H, by1 + 45)
+        yy, xx = np.mgrid[ry0:ry1, rx0:rx1]
+        inner = (xx >= bx0 - 15) & (xx < bx1 + 15) & (yy >= by0 - 15) & (yy < by1 + 15)
+        patch = out[ry0:ry1, rx0:rx1]
+        ring = ~inner
+        med = np.median(patch[ring], axis=0)
+        ok = ring & (np.abs(patch - med).max(axis=2) < 6)
+        X = np.stack([np.ones_like(xx), xx / W, yy / H, (xx / W) ** 2, (yy / H) ** 2, xx * yy / (W * H)], -1).astype(np.float32)
+        A = X[ok]
+        fill = np.empty_like(patch)
+        resid_sd = []
+        for c in range(3):
+            coef, *_ = np.linalg.lstsq(A, patch[..., c][ok], rcond=None)
+            fill[..., c] = X @ coef
+            resid_sd.append(float(np.std(patch[..., c][ok] - A @ coef)))
+        sd = float(np.mean(resid_sd))
+        grain = rng.normal(0, 1, patch.shape[:2]).astype(np.float32)
+        grain = cv2.GaussianBlur(grain, (0, 0), 0.8)
+        grain *= sd / max(1e-6, float(grain.std()))
+        fill += grain[..., None]
+        # feathered mask: 1 inside the box, fading to 0 over 6 px outside it
+        m = np.zeros(patch.shape[:2], np.float32)
+        m[(xx >= bx0) & (xx < bx1) & (yy >= by0) & (yy < by1)] = 1
+        m = cv2.GaussianBlur(cv2.dilate(m, np.ones((7, 7), np.uint8)), (0, 0), 2.5)
+        m = np.clip(m, 0, 1)[..., None]
+        out[ry0:ry1, rx0:rx1] = patch * (1 - m) + fill * m
+    return np.clip(out + 0.5, 0, 255).astype(np.uint8)
 
 
 def draw_header(base: Image.Image, name: str, cap_w: float, cap_per_unit: float) -> Image.Image:
@@ -105,7 +139,10 @@ def draw_header(base: Image.Image, name: str, cap_w: float, cap_per_unit: float)
     txt = Image.new('L', (tb[2] - tb[0] + 2 * pad, band_h), 0)
     ImageDraw.Draw(txt).text((pad - tb[0], round(baseline - asc)), name, font=font, fill=255)
     txt = txt.resize((round(txt.width * HS), band_h), Image.LANCZOS)
-    m.paste(txt, (round(TOK['name']['left'] * w4) - round(pad * HS), 0), txt)
+    # left-align on the first letter's ink, not the font origin
+    cols = np.nonzero(np.asarray(txt).max(axis=0) > 40)[0]
+    txt = txt.crop((int(cols[0]), 0, txt.width, band_h))
+    m.paste(txt, (round(TOK['name']['left'] * w4), 0), txt)
     m = m.resize((W, round(band_h / SS)), Image.LANCZOS)
     out = base.copy()
     out.paste(Image.new('RGB', m.size, INK), (0, 0), m)
@@ -119,8 +156,8 @@ def main(only=None):
         if only and slug not in only:
             continue
         src = np.asarray(Image.open(ROOT / c['source']).convert('RGB'))
-        clean = clear_old_header(src[:, :, ::-1].copy(), c.get('erase', []))[:, :, ::-1]
-        img = draw_header(Image.fromarray(np.ascontiguousarray(clean)), c['name'], cap_w, cap_per_unit)
+        clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
+        img = draw_header(Image.fromarray(clean), c['name'], cap_w, cap_per_unit)
         dst = OUT / f'{slug}-{VERSION}.webp'
         img.save(dst, 'WEBP', quality=92, method=6)
         print(dst.relative_to(ROOT), img.size)
