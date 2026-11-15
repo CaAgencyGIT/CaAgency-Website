@@ -15,7 +15,7 @@ The name size is fitted once to the longest name in covers.json, so no name
 wraps or gets shrunk on its own. To add a talent: drop the portrait artwork in
 the source folder, add a covers.json entry, bump VERSION and run
 
-    <python with pillow, numpy, opencv-python-headless> scripts/talent-covers/build_covers.py
+    <python with pillow, numpy, opencv-python-headless, rembg[cpu]> scripts/talent-covers/build_covers.py
 
 then point lib/data/talent-cards.ts at the new files and run
 node scripts/build-image-blur.mjs.
@@ -29,6 +29,9 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from neutralize import neutralize  # noqa: E402  backdrop -> #F4F4F2, person untouched
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -161,6 +164,7 @@ def main(only=None):
             continue
         src = np.asarray(Image.open(ROOT / c['source']).convert('RGB'))
         clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
+        clean = neutralize(clean, c.get('erase', []))
         img = draw_header(Image.fromarray(clean), c['name'], cap_w, cap_per_unit)
         dst = OUT / f'{slug}-{VERSION}.webp'
         img.save(dst, 'WEBP', quality=95, method=6)
