@@ -20,9 +20,9 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     if (!root) return
     const videos = Array.from(root.querySelectorAll('video'))
     const inView = new WeakMap<HTMLVideoElement, boolean>()
-    // The film is attached only once its card nears the viewport, so the
-    // three files are not downloaded on first paint (autoplay would otherwise
-    // make browsers buffer them straight away).
+    // The film is attached only once its card is on screen, so the three
+    // files are not downloaded on first paint (with autoplay, browsers would
+    // otherwise buffer them straight away). The sharp poster covers the start.
     const attach = (video: HTMLVideoElement) => {
       if (!video.getAttribute('src') && video.dataset.src) {
         video.src = video.dataset.src
@@ -54,21 +54,7 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
       },
       { threshold: 0.05 }
     )
-    const near = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            attach(entry.target as HTMLVideoElement)
-            near.unobserve(entry.target)
-          }
-        }
-      },
-      { rootMargin: '400px 0px' }
-    )
-    videos.forEach((video) => {
-      observer.observe(video)
-      near.observe(video)
-    })
+    videos.forEach((video) => observer.observe(video))
     const onInteract = () => sync()
     document.addEventListener('visibilitychange', sync)
     window.addEventListener('pageshow', sync)
@@ -77,7 +63,6 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     window.addEventListener('orientationchange', sync)
     return () => {
       observer.disconnect()
-      near.disconnect()
       videos.forEach((video) => video.removeEventListener('canplay', sync))
       document.removeEventListener('visibilitychange', sync)
       window.removeEventListener('pageshow', sync)
