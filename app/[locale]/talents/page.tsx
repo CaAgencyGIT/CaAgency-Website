@@ -92,10 +92,9 @@ export default async function TalentsPage({ params }: Props) {
 
   // One roster: the Instagram & TikTok talents, then the YouTube talents,
   // each in their existing order.
-  const roster = [
-    ...allTalents.filter((talent) => talent.category === 'instagram'),
-    ...allTalents.filter((talent) => talent.category === 'youtube'),
-  ].map(toCard)
+  const instagramRoster = allTalents.filter((talent) => talent.category === 'instagram').map(toCard)
+  const youtubeRoster = allTalents.filter((talent) => talent.category === 'youtube').map(toCard)
+  const roster = [...instagramRoster, ...youtubeRoster]
 
   return (
     <>
@@ -133,7 +132,22 @@ export default async function TalentsPage({ params }: Props) {
               noResults: t.raw('noResults') as string,
             }}
           >
-            <TalentGrid talents={roster} columns={4} cardArt mobileLayout="list" animate={false} prioritizeFirst />
+            <TalentGrid talents={instagramRoster} columns={4} cardArt mobileLayout="list" animate={false} prioritizeFirst />
+            {youtubeRoster.length > 0 && (
+              // Hidden by the search when none of its talents match.
+              <div data-talent-group className="mt-[80px] tablet:mt-[64px] mobile:mt-[48px]">
+                <h2 className="mb-8 font-anegra text-[30px] font-semibold tracking-[0] tablet:text-[26px] mobile:mb-6 mobile:text-[22px]">
+                  <span className="inline-flex items-center gap-3 text-foreground-primary">
+                    {t('youtubeVoices')}
+                    <svg className="inline-block h-10 w-10 mobile:h-8 mobile:w-8" viewBox="0 0 576 512" fill="#FF0000" aria-label="YouTube" role="img">
+                      <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                    </svg>
+                  </span>{' '}
+                  <span className="text-foreground-primary">{t('moreTalents')}</span>
+                </h2>
+                <TalentGrid talents={youtubeRoster} columns={4} cardArt mobileLayout="list" animate={false} />
+              </div>
+            )}
           </TalentDirectory>
         </div>
       </section>

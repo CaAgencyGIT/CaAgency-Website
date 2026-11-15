@@ -179,7 +179,9 @@
     "clearSearch": "清除搜索",
     "noResults": "未找到与“{query}”相关的达人。",
     "interestedCollaborating": "有兴趣合作吗？",
-    "viewProfile": "查看主页"
+    "viewProfile": "查看主页",
+    "youtubeVoices": "YouTube 创作者",
+    "moreTalents": "更多达人"
   },
   "talentDetail": {
     "youtubeCreator": "YouTube 创作者",

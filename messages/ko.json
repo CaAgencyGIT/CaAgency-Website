@@ -179,7 +179,9 @@
     "clearSearch": "검색어 지우기",
     "noResults": "“{query}”에 해당하는 크리에이터가 없습니다.",
     "interestedCollaborating": "협업에 관심이 있으신가요?",
-    "viewProfile": "프로필 보기"
+    "viewProfile": "프로필 보기",
+    "youtubeVoices": "YouTube 보이스",
+    "moreTalents": "더 많은 크리에이터"
   },
   "talentDetail": {
     "youtubeCreator": "YouTube 크리에이터",
