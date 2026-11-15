@@ -587,7 +587,9 @@
     1317,
     263
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2"
  },
  "luka": {
   "name": "Luka",
@@ -617,7 +619,9 @@
     1247,
     263
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2"
  },
  "choda": {
   "name": "Choda",
@@ -647,7 +651,10 @@
     1299,
     263
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2",
+  "plateSource": "assets/talent-covers/source/choda-plate-wide.png"
  },
  "voyage": {
   "name": "Voyage",
@@ -677,7 +684,9 @@
     1341,
     303
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2"
  },
  "windoh": {
   "name": "Windoh",
@@ -707,7 +716,10 @@
     1358,
     263
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2",
+  "plateSource": "assets/talent-covers/source/windoh-plate-wide.png"
  },
  "baka": {
   "name": "Baka",
@@ -737,6 +749,8 @@
     1249,
     263
    ]
-  ]
+  ],
+  "centre": true,
+  "plateVersion": "v2"
  }
 }

@@ -162,8 +162,10 @@
 "/images/talents/portraits/ardita-gashi-v1.webp":"data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABQAgCdASoMAA0AA4BaJbACdAYv1uKAOjjldvAA/uvB180XzN7EwA32Y4YkeoEiS1aHeV6zFjZ9XTsSXXc4JPLsOS8EX/oA467Fj3uheOXGdtnJodNO7W03FH3ZLMxoZZbXAAAA",
 "/images/talents/portraits/aurela-elshani-v1.webp":"data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAABQAgCdASoMAA0AA4BaJaACdAYt9nlJSKx4sMAA/th3Z5iGXmZZPt/5Sbg9OTIkYA8Eu6i2bxlQDucYJxY53KK5sWn9rAPUmhaLFK9hQ8DJXsHKV8QnWR00F6ZFvv+wJWUay4eOMAA=",
 "/images/talents/portraits/baka-v1.webp":"data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAQCdASoMAA0AA4BaJZwAAiFx8N+CgAD+9xFSIbXMirKbuF8mQthxcOcG/I6zEzuAJl+SiHEPWUpx9dt+Cx1n1oPYuPLjb9/MnyYJYzUeJ02/A+X2BwAA",
+"/images/talents/portraits/baka-v2.webp":"data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwAgCdASoMAA0AA4BaJZwAD4NsBuOgS+2oAAD+9xDApNTo8UJeHmjG8bf/p7PbHg/5l0aBp1UTqoOZ/q7nJt/VAqXX9PJ+a0++5xD2MprpUuOe5gAAAA==",
 "/images/talents/portraits/beatrix-ramosaj-v1.webp":"data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoMAA0AA4BaJbACdAD7jwOXVEAA/vVHCvPOSX2zYsUmEWQ2v3zd1NgHH9JRQHBmeTI4OQsjcMXIICoGhqzR0PyYrcB5wo2QI9Yyx8AafJMFxlv+AAA=",
 "/images/talents/portraits/choda-v1.webp":"data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAwAgCdASoMAA0AA4BaJZQCdAYsjwhvKKiEAAD+9xES0DokA4785Ww6fq4we5mSsVkXlirfiM7U2Mt1/II06dQcju347/16nMrfHMnxKwWzON/okAA=",
+"/images/talents/portraits/choda-v2.webp":"data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABQAgCdASoMAA0AA4BaJZQCdAYt9baQkIT7oAAA/vcQzDM2/d6+vm74CFGH7GD+36Sklt4rPm+Kb5qyF+IJYuo5LGwVDUJCIU9yrRZIFiH2bEMAAAA=",
 "/images/talents/portraits/dariia-bordun-v1.webp":"data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABQAgCdASoMAA0AA4BaJZACdAYuv248+OGefAAA/uKZdNPv+sduI9W/Vll53PqWso0MajfrNE71fxJPWkr9mgVPIRay6fTh3TTtws56bHQo+CHpbt5D4HxXAxyjft1fqKmkXjPbXXUAAA==",
 "/images/talents/portraits/dora-nguyen-v1.webp":"data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABQAgCdASoMAA0AA4BaJZACdAYuRbHaukxX7NAA/uvEfavzLL19mfWfZ0l+i6Vuf3cTWreZc1c2+0bVT7KAk9MyRj/gJxPzkABq6PJ7JxyOzuUYWopTAjAAAAA=",
 "/images/talents/portraits/georgii-galaev-v1.webp":"data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADwAQCdASoMAA0AA4BaJZACdAD7jxwEHAAA/uvEfavcl3YCmC/1xejguzY5YOFa3KX+PNQ5lf+6o0qOqdJzpMKeNYofiZyBBmHQyyme85mM73KPf6tqCxB+2F2sh4y0iyR5XHAA",
@@ -172,6 +174,7 @@
 "/images/talents/portraits/khutjo-matsoma-v1.webp":"data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABwAgCdASoMAA0AA4BaJbACdAYrnnZHptXRF5gAAP7uar5Xk3JNMGJrg7HfOzOW9fe6yMiysgMzxF7Ziuc0yheIzl8NoCpTrE+NKmqHIWVryghIP+im2S8ffEr+5y9NpRw6Uzigl4goA5AA",
 "/images/talents/portraits/loresa-konushevci-v1.webp":"data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABQAgCdASoMAA0AA4BaJZgCdAYtLgeidVZmihAA/vKEJolLixLNZDRVj34MnulzeslKjIWwvm1xRLutLsUjsTxg4cCLDBh0DCiN1krW+4f4YdPQ5fN20W2VSSsGr91203BoqdvNUAYAAA==",
 "/images/talents/portraits/luka-v1.webp":"data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAwAgCdASoMAA0AA4BaJZwAD45QhQouL3OKwAD+9w7x980Gmf2x3RlsSPZ1mblh32E+yK8bAND8wc+majYYkASkJ+zXDYhfzoEAAA==",
+"/images/talents/portraits/luka-v2.webp":"data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACwAQCdASoMAA0AA4BaJZwAAl3HLgMAAP73ENA5vdnbmhiHua0d4Sd2XT/5t3jsVmWL0Whh9Rd5o8tcAtwUcO05qY6HAj0I4AA=",
 "/images/talents/portraits/melani-seiffert-v1.webp":"data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQAgCdASoMAA0AA4BaJaACdAD7j2rv3lgAAP7ws3svONNYJJW5kn/SsX81mxPDommTxf2KJn4wPkMR57YNTLLF3f5qEoWzF10pQTev3fja2H6rkaj2ObXEGlTx2oxMMNGoT0823pQAAA==",
 "/images/talents/portraits/melly-sanchez-v1.webp":"data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAwAgCdASoMAA0AA4BaJZACdAYulnlKPBptOAD+8oziPdmntVvy7zUohn6BxKherQaq1zbZbQ4CGTgXhWDqqsPDL4KGZQmCVGEcvLs9o2mKi4kXGM0alNEgAAA=",
 "/images/talents/portraits/qendresa-konushevci-v1.webp":"data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoMAA0AA4BaJbACdAYtLbO/PJrbJUAA/vKFOAWhCadjE0rVMBLN6tu8RqzXXfbqm2E/2AQa/+d2o9GvsHXMFgaexd29nVe1vFDNnTu2CuFSmnim83WgAA==",
@@ -179,5 +182,8 @@
 "/images/talents/portraits/saranda-mavriqi-v1.webp":"data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoMAA0AA4BaJbACdADc+woesAD+9Aq5mXOfFoq6p9jv1k3VRaE0pQoUxcy2nZdK6usYb9t5LbgRSAnaOeR5M6hzUsr8nUGglcAAAA==",
 "/images/talents/portraits/vania-fernandes-v1.webp":"data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwAgCdASoMAA0AA4BaJbACdAEYEYgpt+7RAAD+9xFsePBabDw/MJ9Q5+GPLWhLpwt+eWvWD9j+gDmpkpp5oY15wawZOXUxPju7QqoG1Pc7sp9vstnT0kixpV58FtwAAAA=",
 "/images/talents/portraits/voyage-v1.webp":"data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoMAA0AA4BaJYwAAu19Umj4n8gA/vcQf9XnhyHnZVjy+Jq0pOM0S1954CVRvZy0IxqNbRKNaC6AAAAA",
+"/images/talents/portraits/voyage-v2.webp":"data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoMAA0AA4BaJZQCdADdI92I4AAA/vcRYsUainyrRLw4vo2TpZTiFXtOLn2MONbpG2WU60tBFVdhrb4AAAA=",
 "/images/talents/portraits/windoh-v1.webp":"data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQAgCdASoMAA0AA4BaJQApgC3vrZarZrwAAP73EWL0V6USVUf4l0IvrNt8988S5lXJi1e30fuCuy15wdQtwkOZHH6icocNd3HR6kn/UsRXWAAA",
-"/images/talents/portraits/yassuo-v1.webp":"data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoMAA0AA4BaJZwAD4hNYrZlzAD+9xFxXhCRdwGP3i1CxnAvVtiaT4/CSfAif5PMGvuw156AveyPjiT28r+0GvuWtHH0lN4HqROq2aAA"}
+"/images/talents/portraits/windoh-v2.webp":"data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoMAA0AA4BaJQAAWP72u4zTgAD+9kYdhs8bP+jxv+wmOSex6Erq1zMt7LI1Mxl0J8CeMOqJnsmn7iTSi9wlmcNxjQDP5C+gAAA=",
+"/images/talents/portraits/yassuo-v1.webp":"data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoMAA0AA4BaJZwAD4hNYrZlzAD+9xFxXhCRdwGP3i1CxnAvVtiaT4/CSfAif5PMGvuw156AveyPjiT28r+0GvuWtHH0lN4HqROq2aAA",
+"/images/talents/portraits/yassuo-v2.webp":"data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACwAQCdASoMAA0AA4BaJZwAAl2YAEfAAP73ESWDWb33wSrGNKx452wwN4Luhk3mx4WuryCLFkk7wQ6XiV7GjWhT5wNgiy34y56aJ27o4AA="}

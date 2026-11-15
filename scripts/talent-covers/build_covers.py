@@ -161,28 +161,54 @@ PLATES = ROOT / 'public/images/talents/portraits'
 PLATE_VERSION = 'v1'
 
 
+def _person_bbox_x(img: np.ndarray):
+    bg = np.array(_rgb(TOK['background']), np.int16)
+    m = (np.abs(img.astype(np.int16) - bg).max(axis=2) > 25).astype(np.uint8)
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
+    cols = np.nonzero(m.sum(axis=0) > 15)[0]
+    return int(cols[0]), int(cols[-1])
+
+
 def build_plate(slug: str, c: dict) -> None:
     """Header-less portrait for the live-text card header (Nov 2026).
 
     Old baked header erased, backdrop neutralised to #F4F4F2, then the empty
     top band trimmed so every portrait has the same 1122:1241 shape. Fails if
-    any part of the person would be trimmed.
+    any part of the person would be trimmed. "centre": the person is moved to
+    the horizontal middle on the plain backdrop. "plateSource": a prepared
+    wide, header-less plate (used where the approved cut-out was cut off at
+    the frame edge and the original photo supplies the rest).
     """
-    src = np.asarray(Image.open(ROOT / c['source']).convert('RGB'))
-    clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
-    clean = neutralize(clean, c.get('erase', []))
-    H, W = clean.shape[:2]
-    top = round(PLATE_TOP * H)
-    bg = np.array(_rgb(TOK['background']), np.int16)
-    dev = np.abs(clean[: top + 12].astype(np.int16) - bg).max(axis=2)
-    rows = np.nonzero((dev > 14).sum(axis=1) > 2)[0]
-    if len(rows) and rows[0] < top + 8:
-        raise SystemExit(f'{slug}: person starts at row {rows[0]}, crop line {top}')
-    plate = Image.fromarray(clean[top:])
+    bgc = np.array(_rgb(TOK['background']), np.float32)
+    if c.get('plateSource'):
+        plate = np.asarray(Image.open(ROOT / c['plateSource']).convert('RGB'))
+        W = Image.open(ROOT / c['source']).size[0]
+    else:
+        src = np.asarray(Image.open(ROOT / c['source']).convert('RGB'))
+        clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
+        clean = neutralize(clean, c.get('erase', []))
+        H, W = clean.shape[:2]
+        top = round(PLATE_TOP * H)
+        bg = np.array(_rgb(TOK['background']), np.int16)
+        dev = np.abs(clean[: top + 12].astype(np.int16) - bg).max(axis=2)
+        rows = np.nonzero((dev > 14).sum(axis=1) > 2)[0]
+        if len(rows) and rows[0] < top + 8:
+            raise SystemExit(f'{slug}: person starts at row {rows[0]}, crop line {top}')
+        plate = clean[top:]
+    if c.get('centre'):
+        x0, x1 = _person_bbox_x(plate)
+        if not c.get('plateSource'):  # pad with backdrop so the window can move
+            padw = np.empty((plate.shape[0], W, 3), np.uint8); padw[:] = bgc.astype(np.uint8)
+            plate = np.concatenate([padw, plate, padw], axis=1); x0 += W; x1 += W
+        left = round((x0 + x1) / 2 - W / 2)
+        if x0 - left < 8 or left + W - x1 < 8:
+            raise SystemExit(f'{slug}: person ({x0}-{x1}) does not fit centred in width {W}')
+        plate = plate[:, left:left + W]
+    out = Image.fromarray(np.ascontiguousarray(plate))
     PLATES.mkdir(parents=True, exist_ok=True)
-    dst = PLATES / f'{slug}-{PLATE_VERSION}.webp'
-    plate.save(dst, 'WEBP', quality=95, method=6)
-    print(dst.relative_to(ROOT), plate.size)
+    dst = PLATES / f"{slug}-{c.get('plateVersion', PLATE_VERSION)}.webp"
+    out.save(dst, 'WEBP', quality=95, method=6)
+    print(dst.relative_to(ROOT), out.size)
 
 
 def main(only=None):
