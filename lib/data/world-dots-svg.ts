@@ -1,13 +1,13 @@
 import { WORLD_COLS, WORLD_ROWS, WORLD_ROWS_MASK } from '@/lib/data/world-map-dots'
 
-// Dot-matrix world as a standalone SVG (public/images/site/world-dots-v1.svg),
+// Dot-matrix world as a standalone SVG (public/images/site/world-dots-v2.svg),
 // so the 1,651 land dots are one cached image instead of markup repeated in
 // every homepage's HTML and RSC payload. Regenerate with
 // `npx tsx scripts/build-world-dots-svg.ts`; a unit test keeps it in sync.
 export const WORLD_DOTS_CELL = 10
-export const WORLD_DOTS_SRC = '/images/site/world-dots-v1.svg'
+export const WORLD_DOTS_SRC = '/images/site/world-dots-v2.svg'
 
-export function worldDotsSvg(fill = '#3f3d3a'): string {
+export function worldDotsSvg(fill = '#3d3d3d'): string {
   const C = WORLD_DOTS_CELL
   const R = 2.6
   const d = WORLD_ROWS_MASK.flatMap((row, r) =>
