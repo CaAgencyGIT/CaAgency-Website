@@ -20,10 +20,19 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     if (!root) return
     const videos = Array.from(root.querySelectorAll('video'))
     const inView = new WeakMap<HTMLVideoElement, boolean>()
+    // The film is attached only once its card nears the viewport, so the
+    // three files are not downloaded on first paint (autoplay would otherwise
+    // make browsers buffer them straight away).
+    const attach = (video: HTMLVideoElement) => {
+      if (!video.getAttribute('src') && video.dataset.src) {
+        video.src = video.dataset.src
+        video.load()
+      }
+    }
     const sync = () => {
       for (const video of videos) {
         if (!document.hidden && inView.get(video)) {
-          if (video.preload !== 'auto') video.preload = 'auto'
+          attach(video)
           if (video.paused) video.play().catch(() => {})
         } else if (!video.paused) {
           video.pause()
@@ -45,7 +54,21 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
       },
       { threshold: 0.05 }
     )
-    videos.forEach((video) => observer.observe(video))
+    const near = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            attach(entry.target as HTMLVideoElement)
+            near.unobserve(entry.target)
+          }
+        }
+      },
+      { rootMargin: '400px 0px' }
+    )
+    videos.forEach((video) => {
+      observer.observe(video)
+      near.observe(video)
+    })
     const onInteract = () => sync()
     document.addEventListener('visibilitychange', sync)
     window.addEventListener('pageshow', sync)
@@ -54,6 +77,7 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     window.addEventListener('orientationchange', sync)
     return () => {
       observer.disconnect()
+      near.disconnect()
       videos.forEach((video) => video.removeEventListener('canplay', sync))
       document.removeEventListener('visibilitychange', sync)
       window.removeEventListener('pageshow', sync)
@@ -70,13 +94,13 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
           {/* eslint-disable-next-line @next/next/no-img-element -- poster shown while the film loads */}
           <img className="campaign-poster" src={c.poster} alt="" aria-hidden="true" decoding="async" />
           <video
-            src={c.video}
+            data-src={c.video}
             poster={c.poster}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             disablePictureInPicture
             disableRemotePlayback
             aria-label={c.videoLabel}

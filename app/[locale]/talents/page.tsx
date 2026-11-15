@@ -105,7 +105,7 @@ export default async function TalentsPage({ params }: Props) {
       firstName: space > 0 ? name.slice(0, space) : name,
       lastName: space > 0 ? name.slice(space + 1) : '',
       image: art?.src ?? talent.imageUrl,
-      alt: art?.alt ?? name,
+      alt: art?.alt ?? '',
       socials,
     }
   }
@@ -186,7 +186,7 @@ export default async function TalentsPage({ params }: Props) {
 
         <section id="roster" className="roster-column" aria-label={t('rosterAria')}>
           <div className="roster-top">
-            <span>{t('rosterLabel')}</span>
+            <h2 className="roster-label">{t('rosterLabel')}</h2>
             <a href="#talent-in-action">
               {t('inActionLink')}{' '}
               <span aria-hidden="true">
