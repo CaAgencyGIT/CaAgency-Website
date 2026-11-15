@@ -278,7 +278,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
             </Heading>
             <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
               {campaigns.map((cs) => (
-                <CaseStudyCard key={cs.slug} study={cs} />
+                <CaseStudyCard key={cs.slug} study={cs} playVideo />
               ))}
             </div>
           </div>
