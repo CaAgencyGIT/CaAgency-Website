@@ -80,3 +80,22 @@ model ContactEnquiry {
   @@index([createdAt])
   @@index([email])
 }
+
+/// Machine publication revisions. Applying content and recording its prior state are one transaction.
+model WebsitePublication {
+  id String @id
+  kind String
+  target String
+  expectedVersion String
+  sourceIds Json
+  sourceHash String
+  payload Json
+  before Json?
+  appliedVersion String?
+  status String @default("DRAFT")
+  error String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([status, createdAt])
+  @@index([kind, target])
+}
