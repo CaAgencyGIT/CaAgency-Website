@@ -3,6 +3,7 @@ import { cache } from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import { talentCardArt, talentCoverSrc } from '@/lib/data/talent-cards'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import Heading from '@/components/ui/Heading'
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: TalentPageProps): Promise<Met
       path: `/talents/${slug}`,
       localized: false,
       type: 'profile',
-      image: talent.imageUrl,
+      image: talentCoverSrc(slug, talent.imageUrl),
       imageAlt: talent.name,
       keywords: seo?.keywords ?? [
         talent.name,
@@ -132,7 +133,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
       '@type': 'Person',
       name: talent.name,
       url: profileUrl,
-      image: talent.imageUrl,
+      image: talentCoverSrc(talent.slug, talent.imageUrl),
       description: talent.bio || `Content creator and influencer represented by CA Agency`,
       jobTitle: talent.category === 'youtube' ? 'YouTube Creator' : 'Social Media Influencer',
       // Represented by the agency, not employed by it.
@@ -160,9 +161,10 @@ export default async function TalentPage({ params }: TalentPageProps) {
             <div className="w-full lg:w-1/2 max-w-[500px]">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
-                  src={talent.imageUrl}
-                  alt={talent.name}
+                  src={talentCoverSrc(talent.slug, talent.imageUrl)}
+                  alt={talentCardArt[talent.slug]?.alt ?? talent.name}
                   fill
+                  quality={talentCardArt[talent.slug] ? 90 : undefined}
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 500px"
                   priority
@@ -299,7 +301,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
                 >
                   <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-3">
                     <Image
-                      src={related.imageUrl}
+                      src={talentCoverSrc(related.slug, related.imageUrl)}
                       alt={related.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"

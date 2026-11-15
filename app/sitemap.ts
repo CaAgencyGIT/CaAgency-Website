@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { talentCoverSrc } from '@/lib/data/talent-cards'
 import { prisma } from '@/lib/prisma'
 import { routing } from '@/i18n/routing'
 import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
@@ -178,7 +179,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: talent.updatedAt,
         changeFrequency: 'monthly',
         priority: 0.7,
-        images: absoluteImage(talent.imageUrl),
+        images: absoluteImage(talentCoverSrc(talent.slug, talent.imageUrl)),
       })
     ),
     ...posts.map((post) =>
