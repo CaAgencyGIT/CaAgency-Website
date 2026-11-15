@@ -223,3 +223,10 @@ body:has(.agency-index) .rd-header :where(a,button,select,label):focus-visible{o
 body:has(.agency-index) [data-breadcrumbs]{display:none}
 @media(max-width:800px){body:has(.agency-index) .rd-header{height:78px}.agency-index{--ai-header:78px}}
 .agency-index{--ai-header:100px}
+/* The site's PostCSS step rewrites font sizes to shrink fluidly on small
+   screens; the Agency Index uses the approved sizes exactly. */
+.agency-index{--text-shrink:0}
+/* The site forces 16px on inputs (prevents iOS zoom-on-focus). Desktop uses
+   the approved 12/14px; phones keep 16px so focusing search never zooms. */
+@media(min-width:801px){.agency-index .search input{font-size:12px!important}}
+@media(min-width:1700px){.agency-index .search input{font-size:14px!important}}
