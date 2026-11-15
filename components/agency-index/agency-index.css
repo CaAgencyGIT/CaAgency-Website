@@ -248,3 +248,7 @@ body:has(.agency-index) [data-back-to-top]{inset-inline-start:auto;inset-inline-
 @media(max-width:1100px){[dir=rtl] .agency-index .intro-column h1{font-size:52px}[dir=rtl] .agency-index .intro-column{padding-left:20px}}
 @media(max-width:800px){[dir=rtl] .agency-index .intro-column{border:0;padding:0}[dir=rtl] .agency-index .intro-column h1{font-size:56px}}
 .agency-index .intro-column h1{overflow-wrap:anywhere}
+/* In-page jumps (e.g. "Talent in action") stop below the sticky header. */
+.agency-index #talent-in-action,.agency-index #roster{scroll-margin-top:calc(var(--ai-header,100px) + 20px)}
+/* Phones in landscape: slimmer header so content isn't hidden under it. */
+@media(max-height:500px){body:has(.agency-index) .rd-header{height:64px}.agency-index{--ai-header:64px}}
