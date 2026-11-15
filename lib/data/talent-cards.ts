@@ -38,3 +38,10 @@ export const talentCardArt: Record<string, { src: string; top: string; bottom: s
   'anhelina-andrusik': { src: '/images/talents/cards/anhelina-andrusik-v9.webp', top: '#f3f4f1', bottom: '#c9ada0' },
   'dora-nguyen': { src: '/images/talents/cards/dora-nguyen-v9.webp', top: '#f4f4f2', bottom: '#d7b6a5', alt: 'Dora Nguyen, CA Agency talent cover: portrait with a short black bob and sunglasses on her head on an off-white background' },
 }
+
+/** The talent's cover (same file as their card on /talents), or the given
+ * fallback (the database photo) for talents without one. Use this wherever a
+ * talent's portrait is shown so the profile page always matches the grid. */
+export function talentCoverSrc(slug: string, fallback: string): string {
+  return talentCardArt[slug]?.src ?? fallback
+}
