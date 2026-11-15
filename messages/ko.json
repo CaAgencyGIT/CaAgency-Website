@@ -169,15 +169,16 @@
     "story3Text": "처음부터 끝까지 하나의 팀. 탤런트 매니지먼트, 캠페인 전략, 콘텐츠 제작, 리포팅을 두바이, 미국, 네덜란드에 걸쳐 한 곳에서 수행합니다. 브랜드는 크리에이터를 직접 아는 파트너를, 크리에이터는 자신과 함께 성장하는 에이전시를 얻습니다."
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "인스타그램·틱톡·유튜브 인플루언서",
     "description": "Instagram, TikTok, YouTube의 CA Agency 탑 인플루언서와 콘텐츠 크리에이터 로스터를 만나보세요.",
     "heading": "크리에이터",
-    "subheading": "성공을 이끄는 크리에이터들을 만나보세요",
-    "shortStylish": "짧고. 스타일리시하고. 공유할 가치가 있는",
-    "instagramTikTok": "Instagram & TikTok 보이스",
-    "youtubeVoices": "YouTube 보이스",
+    "subheading": "오늘의 미디어를 이끄는 최고의 크리에이터를 만나보세요",
+    "searchLabel": "크리에이터 검색",
+    "searchPlaceholder": "크리에이터 검색",
+    "clearSearch": "검색어 지우기",
+    "noResults": "“{query}”에 해당하는 크리에이터가 없습니다.",
     "interestedCollaborating": "협업에 관심이 있으신가요?",
-    "moreTalents": "더 많은 크리에이터",
     "viewProfile": "프로필 보기"
   },
   "talentDetail": {

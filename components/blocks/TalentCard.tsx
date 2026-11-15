@@ -14,8 +14,8 @@ interface TalentCardProps {
   name: string
   imageUrl: string
   videoSrc?: string
-  /** Finished card artwork (4:5): shown whole on its edge-colour backing. */
-  artwork?: { src: string; top: string; bottom: string; alt?: string }
+  /** Header-less portrait (1122:1241) for the branded card; see talent-cards.ts. */
+  artwork?: { src: string; top: string; bottom: string; alt?: string; name?: string }
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -91,6 +91,90 @@ export default function TalentCard({
   // of laid over the face. Photo-only cards keep the overlay design.
   const art = Boolean(artwork)
 
+  if (artwork) {
+    // Refined grid card (Nov 2026): a header band with the CA logo, a fine
+    // divider and the name as live text (first word, then the rest), above
+    // the portrait; centred socials and a discreet profile link below.
+    // Sizes use container units so every card in a grid matches exactly; the
+    // name size is capped so the longest line ("Konushevci") always fits.
+    const display = artwork.name ?? name
+    const space = display.indexOf(' ')
+    const first = space > 0 ? display.slice(0, space) : display
+    const rest = space > 0 ? display.slice(space + 1) : ''
+    return (
+      <div data-art="" data-talent-slug={slug} className={cn('talent-card group relative flex w-full flex-col', className)}>
+        <div className="relative overflow-hidden rounded-[14px] bg-[#f4f4f2] ring-1 ring-black/5 transition-shadow duration-500 [container-type:inline-size] group-hover:shadow-e3 mobile:rounded-[12px]">
+          <div className="flex items-center px-[4.5cqw] [--name:min(23px,10.4cqw)] [height:calc(2.3*var(--name)+9cqw)]">
+            {/* eslint-disable-next-line @next/next/no-img-element -- tiny vector logo, no optimisation needed */}
+            <img
+              src="/images/site/logo_payoff.svg"
+              alt=""
+              aria-hidden="true"
+              width={343}
+              height={274}
+              className="block h-auto w-[19cqw] shrink-0"
+            />
+            <span aria-hidden="true" className="mx-[4cqw] h-[15cqw] w-px shrink-0 bg-[#c8c8c8]" />
+            <p className="min-w-0 flex-1 text-center font-talent text-[length:var(--name)] font-extrabold leading-[1.12] tracking-[0.005em] text-[#141112]">
+              <span className="block whitespace-nowrap">{first}</span>
+              {rest && <span className="block whitespace-nowrap">{rest}</span>}
+            </p>
+          </div>
+          <div className="relative aspect-[1122/1241]" style={{ backgroundColor: artwork.bottom }}>
+            <Image
+              src={artwork.src}
+              alt={artwork.alt ?? `${display}, CA Agency talent portrait`}
+              fill
+              quality={90}
+              preload={priority}
+              loading={priority ? undefined : 'lazy'}
+              fetchPriority={priority ? 'high' : 'auto'}
+              {...blurProps(artwork.src)}
+              className="object-cover object-bottom"
+              sizes={sizes}
+            />
+            {videoSrc && <TalentCardVideo src={videoSrc} />}
+            <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5" />
+          </div>
+          <Link
+            href={primaryLink}
+            prefetch={false}
+            aria-label={`View ${display}'s profile`}
+            className="absolute inset-0 z-10 rounded-[14px] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-foreground-dark mobile:rounded-[12px]"
+          />
+        </div>
+
+        <div className="relative z-20 mt-2 flex flex-col items-center gap-0.5 mobile:mt-1.5">
+          {links.length > 0 && (
+            <div className="flex items-center justify-center gap-1">
+              {links.map((link, index) => (
+                <a
+                  key={`${link.platform}-${index}`}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-9 min-w-9 items-center justify-center rounded-full text-foreground-dark/70 transition-colors hover:text-foreground-dark focus-visible:outline-2 focus-visible:outline-foreground-dark [&_svg]:h-[16px] [&_svg]:w-[16px] mobile:min-h-9 mobile:min-w-9 mobile:[&_svg]:h-[15px] mobile:[&_svg]:w-[15px]"
+                  aria-label={`${display} on ${link.platform}`}
+                >
+                  <SocialIcon platform={link.platform} />
+                </a>
+              ))}
+            </div>
+          )}
+          <Link
+            href={primaryLink}
+            prefetch={false}
+            tabIndex={-1}
+            aria-hidden="true"
+            className="text-[12px] leading-[1.4] tracking-[0.02em] text-[#666666] underline decoration-[#b8b8b8] underline-offset-[3px] transition-colors hover:text-foreground-dark hover:decoration-foreground-dark mobile:text-[11.5px]"
+          >
+            View profile
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div
       data-art={art ? '' : undefined}
@@ -110,15 +194,15 @@ export default function TalentCard({
         )}
       >
         <Image
-          src={artwork?.src ?? imageUrl}
-          alt={artwork ? (artwork.alt ?? `${name}, CA Agency talent cover`) : name}
+          src={imageUrl}
+          alt={name}
           fill
-          quality={artwork ? 90 : 60}
+          quality={60}
           preload={priority}
           loading={priority ? undefined : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
-          {...blurProps(artwork?.src ?? imageUrl)}
-          className={artwork ? 'object-cover object-top' : 'object-cover object-center'}
+          {...blurProps(imageUrl)}
+          className="object-cover object-center"
           sizes={sizes}
         />
         {videoSrc && <TalentCardVideo src={videoSrc} />}

@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server'
-import { Anegra, WorkSans, Jost } from '@/lib/fonts'
+import { Anegra, WorkSans, Jost, TalentName } from '@/lib/fonts'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/root-metadata'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import WebVitals from '@/components/analytics/WebVitals'
@@ -27,7 +27,7 @@ export default async function RootDocument({
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${Anegra.variable} ${WorkSans.variable} ${Jost.variable}`}
+      className={`${Anegra.variable} ${WorkSans.variable} ${Jost.variable} ${TalentName.variable}`}
     >
       <head>
         {includePublicSchema && (

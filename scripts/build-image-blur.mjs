@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
-export const BLUR_DIRS = ['images/hero/collage-v2', 'images/talents/cards']
+export const BLUR_DIRS = ['images/hero/collage-v2', 'images/talents/cards', 'images/talents/portraits']
 
 const out = {}
 for (const dir of BLUR_DIRS) {

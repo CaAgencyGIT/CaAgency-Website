@@ -156,6 +156,35 @@ def draw_header(base: Image.Image, name: str, cap_w: float, cap_per_unit: float)
     return out
 
 
+PLATE_TOP = 0.115  # fraction of height trimmed off the (empty) top band
+PLATES = ROOT / 'public/images/talents/portraits'
+PLATE_VERSION = 'v1'
+
+
+def build_plate(slug: str, c: dict) -> None:
+    """Header-less portrait for the live-text card header (Nov 2026).
+
+    Old baked header erased, backdrop neutralised to #F4F4F2, then the empty
+    top band trimmed so every portrait has the same 1122:1241 shape. Fails if
+    any part of the person would be trimmed.
+    """
+    src = np.asarray(Image.open(ROOT / c['source']).convert('RGB'))
+    clean = clear_old_header(src, c.get('erase', []), seed=sum(map(ord, slug)))
+    clean = neutralize(clean, c.get('erase', []))
+    H, W = clean.shape[:2]
+    top = round(PLATE_TOP * H)
+    bg = np.array(_rgb(TOK['background']), np.int16)
+    dev = np.abs(clean[: top + 12].astype(np.int16) - bg).max(axis=2)
+    rows = np.nonzero((dev > 14).sum(axis=1) > 2)[0]
+    if len(rows) and rows[0] < top + 8:
+        raise SystemExit(f'{slug}: person starts at row {rows[0]}, crop line {top}')
+    plate = Image.fromarray(clean[top:])
+    PLATES.mkdir(parents=True, exist_ok=True)
+    dst = PLATES / f'{slug}-{PLATE_VERSION}.webp'
+    plate.save(dst, 'WEBP', quality=95, method=6)
+    print(dst.relative_to(ROOT), plate.size)
+
+
 def main(only=None):
     cap_w, cap_per_unit = name_metrics()
     print(f'common cap height = {cap_w:.4f} x width')
@@ -172,4 +201,11 @@ def main(only=None):
 
 
 if __name__ == '__main__':
-    main(set(sys.argv[1:]) or None)
+    args = sys.argv[1:]
+    if args and args[0] == '--plates':
+        only = set(args[1:])
+        for slug, c in COVERS.items():
+            if not only or slug in only:
+                build_plate(slug, c)
+    else:
+        main(set(args) or None)

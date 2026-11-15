@@ -169,15 +169,16 @@
     "story3Text": "One team, end to end. Talent management, campaign strategy, content production and reporting sit under one roof, across Dubai, the United States and the Netherlands. Brands gain a partner who knows the creators personally; creators gain an agency that builds with them, not around them."
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "Top Instagram, TikTok & YouTube Influencers",
     "description": "Browse CA Agency's roster of vetted Instagram, TikTok, and YouTube creators, 18M+ combined followers across beauty, fashion, lifestyle, and tech.",
-    "heading": "Our Talents",
-    "subheading": "Meet the creators behind our success",
-    "shortStylish": "Short. Stylish. Share-Worthy",
-    "instagramTikTok": "Instagram & TikTok Voices",
-    "youtubeVoices": "YouTube Voices",
+    "heading": "Our talents",
+    "subheading": "Meet the top-tier talent shaping today's media",
+    "searchLabel": "Search talent",
+    "searchPlaceholder": "Search talent",
+    "clearSearch": "Clear search",
+    "noResults": "No talent found for “{query}”.",
     "interestedCollaborating": "Interested in collaborating?",
-    "moreTalents": "More Talents",
     "viewProfile": "View Profile"
   },
   "talentDetail": {

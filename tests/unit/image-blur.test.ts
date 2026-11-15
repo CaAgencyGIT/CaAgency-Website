@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 import previews from '@/lib/generated/image-blur.json'
 import { blurProps } from '@/lib/media/blur'
 
-const DIRS = ['images/hero/collage-v2', 'images/talents/cards']
+const DIRS = ['images/hero/collage-v2', 'images/talents/cards', 'images/talents/portraits']
 
 describe('blurred photo previews', () => {
   it('has a preview for every collage and talent-card photo (run scripts/build-image-blur.mjs)', () => {
