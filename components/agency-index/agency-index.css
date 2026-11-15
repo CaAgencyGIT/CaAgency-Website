@@ -191,7 +191,10 @@
 .agency-index .search input{appearance:none}
 .agency-index .search input::-webkit-search-decoration{appearance:none}
 /* The site header stays sticky, so the rail sticks just below it. */
-.agency-index .intro-sticky{top:calc(var(--ai-header,92px) + 35px);min-height:calc(100vh - var(--ai-header,92px) - 70px);min-height:calc(100dvh - var(--ai-header,92px) - 70px)}
+@media(min-width:801px){.agency-index .intro-sticky{top:calc(var(--ai-header,92px) + 35px);min-height:calc(100vh - var(--ai-header,92px) - 70px);min-height:calc(100dvh - var(--ai-header,92px) - 70px)}}
+/* Short landscape screens (phones turned sideways): the rail would not fit
+   under the header, so it scrolls with the page instead of sticking. */
+@media(min-width:801px) and (max-height:640px){.agency-index .intro-sticky{position:static;min-height:0}.agency-index .intro-bottom{padding-top:40px}}
 .agency-index .closing{padding-left:max(5%,env(safe-area-inset-left));padding-right:max(5%,env(safe-area-inset-right))}
 .agency-index .page-shell{padding-left:max(3.3%,env(safe-area-inset-left));padding-right:max(3.3%,env(safe-area-inset-right))}
 @media(max-width:1100px){.agency-index .page-shell{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}}
