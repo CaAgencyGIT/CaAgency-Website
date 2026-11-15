@@ -6,7 +6,11 @@
 // the homepage Talent section so both show the same asset. top/bottom are
 // the artwork's edge colours, used as the backing where the 4:5 image sits
 // inside the existing 3:4 card frame.
-export const talentCardArt: Record<string, { src: string; top: string; bottom: string }> = {
+// v6, Nov 2026 (Anisa, Aurela, Dora): approved finished covers, used exactly
+// as supplied (1122x1402). This is the reference for future covers: ivory
+// background, CA logo | divider | full name in dark brown serif on one line,
+// no "MEET", close portrait on the face. alt describes the cover.
+export const talentCardArt: Record<string, { src: string; top: string; bottom: string; alt?: string }> = {
   'melani-seiffert': { src: '/images/talents/cards/melani-seiffert-v5.webp', top: '#f8f4ee', bottom: '#ddc2c1' },
   'albina-mavriqi': { src: '/images/talents/cards/albina-mavriqi-v5.webp', top: '#f8f4ee', bottom: '#534f4d' },
   'melly-sanchez': { src: '/images/talents/cards/melly-sanchez-v5.webp', top: '#f8f4ee', bottom: '#de6c68' },
@@ -18,9 +22,9 @@ export const talentCardArt: Record<string, { src: string; top: string; bottom: s
   'loresa-konushevci': { src: '/images/talents/cards/loresa-konushevci-v5.webp', top: '#f8f4ee', bottom: '#c9afa5' },
   'ardita-gashi': { src: '/images/talents/cards/ardita-gashi-v5.webp', top: '#f8f4ee', bottom: '#f1e5e2' },
   'jay-sadiq': { src: '/images/talents/cards/jay-sadiq-v5.webp', top: '#f8f4ee', bottom: '#cecbca' },
-  'anisa-hukmova': { src: '/images/talents/cards/anisa-hukmova-v5.webp', top: '#f8f4ee', bottom: '#9f755f' },
+  'anisa-hukmova': { src: '/images/talents/cards/anisa-hukmova-v6.webp', top: '#f8f4ee', bottom: '#7f553f', alt: 'Anisa Hukmova, CA Agency talent cover: close-up portrait with long highlighted brown hair on an ivory background' },
   'khutjo-matsoma': { src: '/images/talents/cards/khutjo-matsoma-v5.webp', top: '#f8f4ee', bottom: '#e0e6f1' },
-  'aurela-elshani': { src: '/images/talents/cards/aurela-elshani-v5.webp', top: '#f8f4ee', bottom: '#edbfb7' },
+  'aurela-elshani': { src: '/images/talents/cards/aurela-elshani-v6.webp', top: '#f7f3ed', bottom: '#8d695a', alt: 'Aurela Elshani, CA Agency talent cover: close-up portrait with long dark hair swept back on an ivory background' },
   'qendresa-konushevci': { src: '/images/talents/cards/qendresa-konushevci-v5.webp', top: '#f8f4ee', bottom: '#9a8d78' },
   'georgii-galaev': { src: '/images/talents/cards/georgii-galaev-v5.webp', top: '#f8f4ee', bottom: '#a99693' },
   'aiym-kablan': { src: '/images/talents/cards/aiym-kablan-v5.webp', top: '#f8f4ee', bottom: '#e4b1ac' },
@@ -34,5 +38,5 @@ export const talentCardArt: Record<string, { src: string; top: string; bottom: s
   'vania-fernandes': { src: '/images/talents/cards/vania-fernandes-v5.webp', top: '#f8f4ee', bottom: '#968884' },
   'gvantsa-okinashvili': { src: '/images/talents/cards/gvantsa-okinashvili-v5.webp', top: '#f8f4ee', bottom: '#a3bbeb' },
   'anhelina-andrusik': { src: '/images/talents/cards/anhelina-andrusik-v5.webp', top: '#f8f4ee', bottom: '#c9ac9e' },
-  'dora-nguyen': { src: '/images/talents/cards/dora-nguyen-v5.webp', top: '#f8f4ee', bottom: '#cccbc9' },
+  'dora-nguyen': { src: '/images/talents/cards/dora-nguyen-v6.webp', top: '#f3f1ed', bottom: '#d7b6a4', alt: 'Dora Nguyen, CA Agency talent cover: portrait with a short black bob and sunglasses on her head on an ivory background' },
 }
