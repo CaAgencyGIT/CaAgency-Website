@@ -224,8 +224,8 @@ body:has(.agency-index) .rd-header-talk:hover{background:#171717;color:#fff}
 body:has(.agency-index) .rd-header-burger{color:#171717}
 body:has(.agency-index) .rd-header :where(a,button,select,label):focus-visible{outline-color:#171717}
 body:has(.agency-index) [data-breadcrumbs]{display:none}
-@media(max-width:800px){body:has(.agency-index) .rd-header{height:78px}.agency-index{--ai-header:78px}}
 .agency-index{--ai-header:100px}
+@media(max-width:800px){body:has(.agency-index) .rd-header{height:78px}.agency-index{--ai-header:78px}}
 /* The site's PostCSS step rewrites font sizes to shrink fluidly on small
    screens; the Agency Index uses the approved sizes exactly. */
 .agency-index{--text-shrink:0}
