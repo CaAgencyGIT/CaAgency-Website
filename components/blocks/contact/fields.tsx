@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils'
 // fields on white, same height, padding and radius in both forms.
 export const fieldClass =
   // 16px text on phones keeps iOS from zooming into a focused field.
-  'w-full min-h-[52px] rounded-[16px] border border-transparent bg-[#f4f2ee] px-5 py-[13px] font-work-sans text-[15px] mobile:min-h-[46px] mobile:rounded-[12px] mobile:px-4 mobile:py-[10px] mobile:text-[16px] text-foreground-dark placeholder:text-foreground-dark/45 transition-colors focus:border-black/30 focus:bg-white focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 aria-[invalid=true]:border-[#b3261e]/60'
+  'w-full min-h-[52px] rounded-[16px] border border-transparent bg-[#f4f4f2] px-5 py-[13px] font-work-sans text-[15px] mobile:min-h-[46px] mobile:rounded-[12px] mobile:px-4 mobile:py-[10px] mobile:text-[16px] text-foreground-dark placeholder:text-foreground-dark/45 transition-colors focus:border-black/30 focus:bg-white focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 aria-[invalid=true]:border-[#b3261e]/60'
 
 export const selectStyle = {
   appearance: 'none' as const,
@@ -260,7 +260,7 @@ export function TalentPicker({
                   onMouseEnter={() => setActive(i)}
                   className={cn(
                     'flex cursor-pointer items-center justify-between rounded-[12px] px-4 py-2.5 text-[14.5px]',
-                    i === active && 'bg-[#f4f2ee]',
+                    i === active && 'bg-[#f4f4f2]',
                     o === HELP_ME_CHOOSE && 'font-medium'
                   )}
                 >
@@ -475,7 +475,7 @@ export function SocialProfilesField({
                     type="button"
                     onClick={() => onChange(rows.filter((r) => r.key !== row.key))}
                     aria-label={`${labels.removeProfile} ${i + 1}`}
-                    className="grid h-[52px] w-[44px] place-items-center rounded-[14px] text-foreground-gray transition-colors hover:bg-[#f4f2ee] hover:text-foreground-dark focus-visible:outline-2 focus-visible:outline-black/40 mobile:h-9 mobile:w-auto mobile:gap-1 mobile:px-3 mobile:text-[12.5px]"
+                    className="grid h-[52px] w-[44px] place-items-center rounded-[14px] text-foreground-gray transition-colors hover:bg-[#f4f4f2] hover:text-foreground-dark focus-visible:outline-2 focus-visible:outline-black/40 mobile:h-9 mobile:w-auto mobile:gap-1 mobile:px-3 mobile:text-[12.5px]"
                   >
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
                     <span className="hidden mobile:inline">{labels.removeProfile}</span>

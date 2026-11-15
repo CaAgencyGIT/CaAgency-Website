@@ -154,7 +154,7 @@ function SubmitRow({ label, sending, status, blocked, labels, resultRef, rateLim
 
 function Success({ message, labels, onReset, resultRef }: { message: string; labels: ContactFormLabels; onReset: () => void; resultRef: React.RefObject<HTMLDivElement | null> }) {
   return (
-    <div ref={resultRef} tabIndex={-1} role="status" className="rounded-[20px] bg-[#f4f2ee] px-8 py-12 text-center outline-none">
+    <div ref={resultRef} tabIndex={-1} role="status" className="rounded-[20px] bg-[#f4f4f2] px-8 py-12 text-center outline-none">
       <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#0e0e0e] text-white">
         <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
       </div>
