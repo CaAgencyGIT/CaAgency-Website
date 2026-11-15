@@ -7,6 +7,7 @@
 
 import { posterFor } from './videos'
 import { creatorCases } from './creator-cases'
+import { profileCases } from './profile-cases'
 
 export interface CaseStudyMetric {
   value: string
@@ -779,7 +780,7 @@ const campaignCaseStudies: CaseStudy[] = [
 ]
 
 // The creator showcases come last, after every existing case study.
-export const caseStudies: CaseStudy[] = [...campaignCaseStudies, ...creatorCases]
+export const caseStudies: CaseStudy[] = [...campaignCaseStudies, ...creatorCases, ...profileCases]
 
 /**
  * Search-result title for a case study. Creator showcases name the creator,
