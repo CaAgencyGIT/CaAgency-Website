@@ -111,7 +111,7 @@ const cases: CreatorCase[] = [
     brand: 'Rejuran',
     title: 'Rejuran × Jay Sadiq',
     vertical: 'K-Beauty Skincare',
-    creator: '@jaysadiq_',
+    creator: '@jaysstyle1',
     creatorName: 'Jay Sadiq',
     sourceUrl: 'https://www.instagram.com/caagency/reel/DeeSexIuINa/',
     videoSrc: film('rejuran-jay'),

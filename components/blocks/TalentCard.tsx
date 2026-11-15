@@ -15,7 +15,7 @@ interface TalentCardProps {
   imageUrl: string
   videoSrc?: string
   /** Finished card artwork (4:5): shown whole on its edge-colour backing. */
-  artwork?: { src: string; top: string; bottom: string }
+  artwork?: { src: string; top: string; bottom: string; alt?: string }
   sizes: string
   priority?: boolean
   instagramUrl?: string
@@ -111,7 +111,7 @@ export default function TalentCard({
       >
         <Image
           src={artwork?.src ?? imageUrl}
-          alt={name}
+          alt={artwork?.alt ?? name}
           fill
           quality={artwork ? 75 : 60}
           preload={priority}

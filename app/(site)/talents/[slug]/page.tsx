@@ -11,7 +11,7 @@ import Button from '@/components/ui/Button'
 import ShareButtons from '@/components/ui/ShareButtons'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { organizationRef } from '@/lib/seo/schema'
-import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
+import { isIndexableTalentProfile, talentMetaDescription, talentSeoOverrides } from '@/lib/seo/talents'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { caseStudiesForCreator } from '@/lib/data/case-studies'
 import { currentCaseStudies } from '@/lib/data/redesign-media'
@@ -49,7 +49,8 @@ export async function generateMetadata({ params }: TalentPageProps): Promise<Met
 
     const role = talent.category === 'youtube' ? 'YouTube Creator' : 'Instagram & TikTok Influencer'
     const title = `${talent.name} - ${role}`
-    const description = (talent.bio && talentMetaDescription(talent.bio)) ||
+    const seo = talentSeoOverrides[slug]
+    const description = seo?.description || (talent.bio && talentMetaDescription(talent.bio)) ||
       `${talent.name} is ${talent.category === 'youtube' ? 'a YouTube creator' : 'an Instagram and TikTok creator'} represented by CA Agency. Explore their content, audience, and brand partnership opportunities.`
 
     const metadata = buildPageMetadata({
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: TalentPageProps): Promise<Met
       type: 'profile',
       image: talent.imageUrl,
       imageAlt: talent.name,
-      keywords: [
+      keywords: seo?.keywords ?? [
         talent.name,
         `${talent.name} Instagram`,
         `${talent.name} TikTok`,
