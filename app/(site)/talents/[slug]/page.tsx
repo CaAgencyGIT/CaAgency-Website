@@ -159,7 +159,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
             {/* Image */}
             <div className="w-full lg:w-1/2 max-w-[500px]">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <div className={`relative ${talentCardArt[talent.slug] ? 'aspect-[1122/1241] bg-[#f4f4f2]' : 'aspect-[4/5]'} rounded-2xl overflow-hidden`}>
                 <Image
                   src={talentCoverSrc(talent.slug, talent.imageUrl)}
                   alt={talentCardArt[talent.slug]?.alt ?? talent.name}
@@ -299,7 +299,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
                   href={`/talents/${related.slug}`}
                   className="group"
                 >
-                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-3">
+                  <div className={`relative ${talentCardArt[related.slug] ? 'aspect-[1122/1241] bg-[#f4f4f2]' : 'aspect-[4/5]'} rounded-xl overflow-hidden mb-3`}>
                     <Image
                       src={talentCoverSrc(related.slug, related.imageUrl)}
                       alt={related.name}

@@ -52,6 +52,7 @@ const config: Config = {
         anegra: ['var(--font-anegra)', 'sans-serif'],
         'work-sans': ['var(--font-work-sans)', 'sans-serif'],
         jost: ['var(--font-jost)', 'sans-serif'],
+        talent: ['var(--font-talent-name)', 'Georgia', 'serif'],
       },
       maxWidth: {
         container: '1300px',

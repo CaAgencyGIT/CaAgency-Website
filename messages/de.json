@@ -169,15 +169,16 @@
     "story3Text": "Ein Team, von Anfang bis Ende. Talentmanagement, Kampagnenstrategie, Content-Produktion und Reporting unter einem Dach, zwischen Dubai, den USA und den Niederlanden. Marken gewinnen einen Partner, der die Creator persönlich kennt; Creator eine Agentur, die mit ihnen aufbaut, nicht um sie herum."
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "Top-Influencer auf Instagram, TikTok & YouTube",
     "description": "Entdecken Sie den CA-Agency-Roster mit geprüften Instagram-, TikTok- und YouTube-Creators – über 18 Mio. Follower in Beauty, Fashion, Lifestyle und Tech.",
     "heading": "Unsere Talente",
-    "subheading": "Die Creators hinter unserem Erfolg",
-    "shortStylish": "Kurz. Stilvoll. Teilenswert",
-    "instagramTikTok": "Instagram- & TikTok-Stimmen",
-    "youtubeVoices": "YouTube-Stimmen",
+    "subheading": "Lernen Sie die Top-Talente kennen, die die Medien von heute prägen",
+    "searchLabel": "Talent suchen",
+    "searchPlaceholder": "Talent suchen",
+    "clearSearch": "Suche löschen",
+    "noResults": "Kein Talent gefunden für „{query}“.",
     "interestedCollaborating": "Interesse an einer Zusammenarbeit?",
-    "moreTalents": "Weitere Talente",
     "viewProfile": "Profil ansehen"
   },
   "talentDetail": {

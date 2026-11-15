@@ -41,7 +41,7 @@ export default function TalentGrid({
 }: TalentGridProps) {
   const gridClasses = {
     2: 'grid-cols-2 md:grid-cols-2',
-    4: 'grid-cols-2 mobile-extra:grid-cols-2 md:grid-cols-4',
+    4: 'grid-cols-2 tablet:grid-cols-3 lg:grid-cols-4',
     5: 'grid-cols-2 mobile-extra:grid-cols-2 md:grid-cols-5',
     6: 'grid-cols-2 mobile-extra:grid-cols-2 tablet:grid-cols-3 lg:grid-cols-6',
   }
@@ -52,7 +52,7 @@ export default function TalentGrid({
       : 'mobile:flex mobile:gap-3 mobile:overflow-x-auto mobile:snap-x mobile:snap-mandatory mobile:-mx-5 mobile:px-5 mobile:scroll-px-5 mobile:[scrollbar-width:none] mobile:[&::-webkit-scrollbar]:hidden mobile:[&>*]:w-[44%] mobile:[&>*]:shrink-0 mobile:[&>*]:snap-start'
   const imageSizes = {
     2: '(max-width: 1299px) 50vw, 640px',
-    4: `(max-width: 767px) 50vw, (max-width: 1299px) 25vw, 310px`,
+    4: `(max-width: 767px) 50vw, (max-width: 1024px) 33vw, (max-width: 1299px) 25vw, 310px`,
     5: '(max-width: 767px) 50vw, (max-width: 1299px) 20vw, 250px',
     6: `(max-width: 767px) ${mobileLayout ? '45vw' : '50vw'}, (max-width: 1024px) 33vw, (max-width: 1299px) 17vw, 200px`,
   }

@@ -169,15 +169,16 @@
     "story3Text": "Un solo equipo, de principio a fin. Gestión de talento, estrategia de campaña, producción de contenido e informes bajo un mismo techo, entre Dubái, Estados Unidos y los Países Bajos. Las marcas ganan un socio que conoce personalmente a los creadores; los creadores, una agencia que construye con ellos, no a su alrededor."
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "Top influencers de Instagram, TikTok y YouTube",
     "description": "Explora el roster de CA Agency: creadores verificados de Instagram, TikTok y YouTube con más de 18 M de seguidores en belleza, moda, lifestyle y tecnología.",
     "heading": "Nuestros talentos",
-    "subheading": "Conoce a los creadores detrás de nuestro éxito",
-    "shortStylish": "Breve. Con estilo. Para compartir",
-    "instagramTikTok": "Voces de Instagram y TikTok",
-    "youtubeVoices": "Voces de YouTube",
+    "subheading": "Conoce al talento de primer nivel que da forma a los medios de hoy",
+    "searchLabel": "Buscar talento",
+    "searchPlaceholder": "Buscar talento",
+    "clearSearch": "Borrar búsqueda",
+    "noResults": "No se encontró ningún talento para «{query}».",
     "interestedCollaborating": "¿Te interesa colaborar?",
-    "moreTalents": "Más talentos",
     "viewProfile": "Ver perfil"
   },
   "talentDetail": {

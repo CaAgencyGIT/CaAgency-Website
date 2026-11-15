@@ -169,15 +169,16 @@
     "story3Text": "一个团队，全程负责。达人管理、营销策略、内容制作与数据报告都在同一屋檐下完成，团队遍布迪拜、美国与荷兰。品牌获得一位真正了解创作者的伙伴；创作者获得一家与他们共同建设、而非围绕他们运作的机构。"
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "顶尖 Instagram、TikTok 和 YouTube 网红",
     "description": "浏览 CA Agency 经过筛选的 Instagram、TikTok 和 YouTube 创作者阵容，覆盖美妆、时尚、生活方式和科技领域，总粉丝超过 1,800 万。",
     "heading": "我们的达人",
-    "subheading": "认识成就我们的创作者",
-    "shortStylish": "简短。时尚。值得分享",
-    "instagramTikTok": "Instagram 和 TikTok 创作者",
-    "youtubeVoices": "YouTube 创作者",
+    "subheading": "认识正在塑造当今媒体的顶尖达人",
+    "searchLabel": "搜索达人",
+    "searchPlaceholder": "搜索达人",
+    "clearSearch": "清除搜索",
+    "noResults": "未找到与“{query}”相关的达人。",
     "interestedCollaborating": "有兴趣合作吗？",
-    "moreTalents": "更多达人",
     "viewProfile": "查看主页"
   },
   "talentDetail": {

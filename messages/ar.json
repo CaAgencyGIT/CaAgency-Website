@@ -169,15 +169,16 @@
     "story3Text": "فريق واحد من البداية إلى النهاية. إدارة المواهب واستراتيجية الحملات وإنتاج المحتوى والتقارير تحت سقف واحد، بين دبي والولايات المتحدة وهولندا. تحصل العلامات التجارية على شريك يعرف المبدعين شخصيًا، ويحصل المبدعون على وكالة تبني معهم لا من حولهم."
   },
   "talents": {
+    "eyebrow": "CA AGENCY",
     "title": "أبرز مؤثري إنستغرام وتيك توك ويوتيوب",
     "description": "اكتشف قائمة CA Agency من أفضل المؤثرين وصناع المحتوى عبر Instagram وTikTok وYouTube.",
     "heading": "مواهبنا",
-    "subheading": "تعرف على صناع المحتوى وراء نجاحنا",
-    "shortStylish": "قصير. أنيق. يستحق المشاركة",
-    "instagramTikTok": "أصوات Instagram و TikTok",
-    "youtubeVoices": "أصوات YouTube",
+    "subheading": "تعرّف على نخبة المواهب التي تصنع إعلام اليوم",
+    "searchLabel": "ابحث عن موهبة",
+    "searchPlaceholder": "ابحث عن موهبة",
+    "clearSearch": "مسح البحث",
+    "noResults": "لم يتم العثور على أي موهبة لـ «{query}».",
     "interestedCollaborating": "مهتم بالتعاون؟",
-    "moreTalents": "المزيد من المواهب",
     "viewProfile": "عرض الملف الشخصي"
   },
   "talentDetail": {
