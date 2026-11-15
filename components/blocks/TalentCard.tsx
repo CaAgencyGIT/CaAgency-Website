@@ -125,7 +125,7 @@ export default function TalentCard({
               {rest && <span className="block whitespace-nowrap">{rest}</span>}
             </p>
           </div>
-          <div className="relative aspect-[1122/1241]" style={{ backgroundColor: artwork.bottom }}>
+          <div className="relative aspect-[1122/1241] bg-[#f4f4f2]">
             <Image
               src={artwork.src}
               alt={artwork.alt ?? `${display}, CA Agency talent portrait`}
@@ -169,9 +169,8 @@ export default function TalentCard({
           <Link
             href={primaryLink}
             prefetch={false}
-            tabIndex={-1}
-            aria-hidden="true"
-            className="text-[12px] leading-[1.4] tracking-[0.02em] text-[#666666] underline decoration-[#b8b8b8] underline-offset-[3px] transition-colors hover:text-foreground-dark hover:decoration-foreground-dark mobile:text-[11.5px]"
+            aria-label={`View ${display}'s profile`}
+            className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground-dark text-[12px] leading-[1.4] tracking-[0.02em] text-[#666666] underline decoration-[#b8b8b8] underline-offset-[3px] transition-colors hover:text-foreground-dark hover:decoration-foreground-dark mobile:text-[11.5px]"
           >
             View profile
           </Link>

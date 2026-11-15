@@ -119,7 +119,7 @@ export default function TalentDirectory({ entries, labels, children }: TalentDir
             autoCapitalize="off"
             spellCheck={false}
             enterKeyHint="search"
-            className="h-12 w-full appearance-none rounded-full border border-[#DCDCDC] bg-white ps-11 pe-11 font-work-sans text-[16px] text-[#141414] placeholder:text-[#666666] transition-colors hover:border-[#bdbdbd] focus:border-[#141414] focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#141414] [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+            className="h-12 w-full appearance-none rounded-full border border-[#DCDCDC] bg-white ps-11 pe-11 font-work-sans text-[16px] text-[#141414] placeholder:text-[#666666] transition-colors hover:border-[#bdbdbd] focus:border-[#141414] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#141414] [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
           />
           {query && (
             <button
