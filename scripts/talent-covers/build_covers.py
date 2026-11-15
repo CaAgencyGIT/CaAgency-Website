@@ -36,7 +36,7 @@ from neutralize import neutralize  # noqa: E402  backdrop -> #F4F4F2, person unt
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / 'public/images/talents/cards'
-VERSION = 'v9'
+VERSION = 'v10'
 SS = 4  # supersampling for the header
 
 TOK = json.loads((HERE / 'header.json').read_text())

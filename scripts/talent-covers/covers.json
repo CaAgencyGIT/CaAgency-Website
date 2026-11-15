@@ -225,34 +225,29 @@
   "approval": "approved hand-free subtle freshening retouch"
  },
  "beatrix-ramosaj": {
-  "name": "Beatrix Ramosaj",
-  "source": "assets/talent-covers/source/beatrix-ramosaj.webp",
+  "name": "Beatrix Kamerolli",
+  "source": "assets/talent-covers/source/beatrix-ramosaj.png",
   "erase": [
    [
-    105,
-    64,
-    405,
-    303
+    117,
+    63,
+    309,
+    214
    ],
    [
-    520,
-    65,
-    522,
-    301
+    363,
+    63,
+    367,
+    196
    ],
    [
-    993,
-    104,
-    1109,
-    128
-   ],
-   [
-    765,
-    140,
-    1335,
-    263
+    411,
+    93,
+    1027,
+    153
    ]
-  ]
+  ],
+  "approval": "Glam portrait option 03 (lilac eye glam)"
  },
  "melly-sanchez": {
   "name": "Melly Sanchez",
