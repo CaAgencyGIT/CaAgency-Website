@@ -180,8 +180,7 @@
     "noResults": "No se encontró ningún talento para «{query}».",
     "interestedCollaborating": "¿Te interesa colaborar?",
     "viewProfile": "Ver perfil",
-    "youtubeVoices": "Voces de YouTube",
-    "moreTalents": "Más talentos"
+    "youtubeVoices": "Voces de YouTube"
   },
   "talentDetail": {
     "youtubeCreator": "Creador de YouTube",
