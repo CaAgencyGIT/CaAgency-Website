@@ -230,3 +230,6 @@ body:has(.agency-index) [data-breadcrumbs]{display:none}
    the approved 12/14px; phones keep 16px so focusing search never zooms. */
 @media(min-width:801px){.agency-index .search input{font-size:12px!important}}
 @media(min-width:1700px){.agency-index .search input{font-size:14px!important}}
+/* The site's back-to-top button moves to the right here so it never covers
+   the rail's contact link or the left roster column. */
+body:has(.agency-index) [data-back-to-top]{inset-inline-start:auto;inset-inline-end:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom))}
