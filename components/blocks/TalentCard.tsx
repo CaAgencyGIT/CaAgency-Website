@@ -104,7 +104,7 @@ export default function TalentCard({
     return (
       <div data-art="" data-talent-slug={slug} className={cn('talent-card group relative flex w-full flex-col', className)}>
         <div className="relative overflow-hidden rounded-[14px] bg-[#f4f4f2] ring-1 ring-black/5 transition-shadow duration-500 [container-type:inline-size] group-hover:shadow-e3 mobile:rounded-[12px]">
-          <div className="flex items-center px-[4.5cqw] [--name:min(23px,10.4cqw)] [height:calc(2.3*var(--name)+9cqw)]">
+          <div className="flex items-center px-[4.5cqw] [height:calc(2.3*min(23px,10.4cqw)+9cqw)]">
             {/* eslint-disable-next-line @next/next/no-img-element -- tiny vector logo, no optimisation needed */}
             <img
               src="/images/site/logo_payoff.svg"
@@ -115,7 +115,7 @@ export default function TalentCard({
               className="block h-auto w-[19cqw] shrink-0"
             />
             <span aria-hidden="true" className="mx-[4cqw] h-[15cqw] w-px shrink-0 bg-[#c8c8c8]" />
-            <p className="min-w-0 flex-1 text-center font-talent text-[length:var(--name)] font-extrabold leading-[1.12] tracking-[0.005em] text-[#141112]">
+            <p className="min-w-0 flex-1 text-center font-talent text-[length:min(23px,10.4cqw)] font-extrabold leading-[1.12] tracking-[0.005em] text-[#141112]">
               <span className="block whitespace-nowrap">{first}</span>
               {rest && <span className="block whitespace-nowrap">{rest}</span>}
             </p>
