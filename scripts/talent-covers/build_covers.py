@@ -33,12 +33,17 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / 'public/images/talents/cards'
-VERSION = 'v8'
+VERSION = 'v9'
 SS = 4  # supersampling for the header
 
 TOK = json.loads((HERE / 'header.json').read_text())
 COVERS = json.loads((HERE / 'covers.json').read_text())
-INK = tuple(int(TOK['ink'][i:i + 2], 16) for i in (1, 3, 5))
+def _rgb(h):
+    return tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))
+
+
+INK = _rgb(TOK['ink'])
+DIVIDER = _rgb(TOK['divider']['color'])
 FONT_PATH = str(ROOT / TOK['name']['font'])
 HS = TOK['name']['horizontalScale']
 
@@ -61,7 +66,7 @@ def name_metrics():
     f = ImageFont.truetype(FONT_PATH, 1000)
     cap = f.getbbox('H')[3] - f.getbbox('H')[1]
     widest = max((f.getbbox(c['name'])[2] - f.getbbox(c['name'])[0]) * HS for c in COVERS.values())
-    avail = TOK['name']['right'] - TOK['name']['left']
+    avail = TOK['name']['fitWidth']
     return avail * cap / widest, cap / 1000  # cap height (of W), cap per font unit
 
 
@@ -111,24 +116,21 @@ def clear_old_header(img: np.ndarray, boxes, seed: int) -> np.ndarray:
 def draw_header(base: Image.Image, name: str, cap_w: float, cap_per_unit: float) -> Image.Image:
     W, H = base.size
     w4 = W * SS
-    blk = TOK['block']
-    top, bottom = blk['top'] * w4, blk['bottom'] * w4
+    lg = TOK['logo']
+    logo = svg_mask(lg['svg'], round(lg['width'] * w4))
+    top = lg['top'] * w4
+    bottom = top + logo.height
     band_h = round(bottom + 0.03 * w4)
-    m = Image.new('L', (w4, band_h), 0)
-    # CA mark (vector) and the "agency" wordmark from the approved covers
-    mk = TOK['mark']
-    mark = svg_mask(mk['svg'], round(mk['width'] * w4))
-    m.paste(mark, (round(mk['left'] * w4), round(top)), mark)
-    wm = TOK['wordmark']
-    word = Image.open(ROOT / wm['png']).convert('L')
-    ww = round(wm['width'] * w4)
-    word = word.resize((ww, round(word.height * ww / word.width)), Image.LANCZOS)
-    m.paste(word, (round(wm['left'] * w4), round(wm['top'] * w4)), word)
-    # divider: the full height of the logo block
+    ink = Image.new('L', (w4, band_h), 0)
+    div = Image.new('L', (w4, band_h), 0)
+    # logo: the master export, unchanged shape and proportions
+    ink.paste(logo, (round(lg['left'] * w4), round(top)), logo)
+    # divider: light grey, the full height of the logo block
     dx = round(TOK['divider']['x'] * w4)
     t = max(SS, round(TOK['divider']['thickness'] * w4))
-    ImageDraw.Draw(m).rectangle([dx - t // 2, round(top), dx - t // 2 + t - 1, round(bottom) - 1], fill=255)
-    # name: one line, left-anchored, cap height centred on the logo block
+    ImageDraw.Draw(div).rectangle([dx - t // 2, round(top), dx - t // 2 + t - 1, round(bottom) - 1], fill=255)
+    # name: one line, cap height centred on the logo block, ink centred
+    # horizontally between the divider and the right edge of the card
     font = ImageFont.truetype(FONT_PATH, round(cap_w * w4 / cap_per_unit))
     hb = font.getbbox('H')
     cap_px = hb[3] - hb[1]
@@ -139,13 +141,15 @@ def draw_header(base: Image.Image, name: str, cap_w: float, cap_per_unit: float)
     txt = Image.new('L', (tb[2] - tb[0] + 2 * pad, band_h), 0)
     ImageDraw.Draw(txt).text((pad - tb[0], round(baseline - asc)), name, font=font, fill=255)
     txt = txt.resize((round(txt.width * HS), band_h), Image.LANCZOS)
-    # left-align on the first letter's ink, not the font origin
     cols = np.nonzero(np.asarray(txt).max(axis=0) > 40)[0]
-    txt = txt.crop((int(cols[0]), 0, txt.width, band_h))
-    m.paste(txt, (round(TOK['name']['left'] * w4), 0), txt)
-    m = m.resize((W, round(band_h / SS)), Image.LANCZOS)
+    txt = txt.crop((int(cols[0]), 0, int(cols[-1]) + 1, band_h))
+    x0, x1 = TOK['name']['centerBetween']
+    ink.paste(txt, (round((x0 + x1) / 2 * w4 - txt.width / 2), 0), txt)
+    ink = ink.resize((W, round(band_h / SS)), Image.LANCZOS)
+    div = div.resize((W, round(band_h / SS)), Image.LANCZOS)
     out = base.copy()
-    out.paste(Image.new('RGB', m.size, INK), (0, 0), m)
+    out.paste(Image.new('RGB', div.size, DIVIDER), (0, 0), div)
+    out.paste(Image.new('RGB', ink.size, INK), (0, 0), ink)
     return out
 
 
