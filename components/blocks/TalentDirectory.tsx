@@ -69,6 +69,10 @@ export default function TalentDirectory({ entries, labels, children }: TalentDir
     gridRef.current?.querySelectorAll<HTMLElement>('[data-talent-slug]').forEach((card) => {
       card.hidden = matches ? !matches.has(card.dataset.talentSlug ?? '') : false
     })
+    // A group (e.g. YouTube Voices) hides with its heading when none of its cards match.
+    gridRef.current?.querySelectorAll<HTMLElement>('[data-talent-group]').forEach((group) => {
+      group.hidden = !group.querySelector('[data-talent-slug]:not([hidden])')
+    })
   }, [matches])
 
   const showNoResults = matches !== null && matches.size === 0

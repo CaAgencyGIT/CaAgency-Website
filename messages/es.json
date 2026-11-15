@@ -179,7 +179,9 @@
     "clearSearch": "Borrar búsqueda",
     "noResults": "No se encontró ningún talento para «{query}».",
     "interestedCollaborating": "¿Te interesa colaborar?",
-    "viewProfile": "Ver perfil"
+    "viewProfile": "Ver perfil",
+    "youtubeVoices": "Voces de YouTube",
+    "moreTalents": "Más talentos"
   },
   "talentDetail": {
     "youtubeCreator": "Creador de YouTube",

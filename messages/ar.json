@@ -179,7 +179,9 @@
     "clearSearch": "مسح البحث",
     "noResults": "لم يتم العثور على أي موهبة لـ «{query}».",
     "interestedCollaborating": "مهتم بالتعاون؟",
-    "viewProfile": "عرض الملف الشخصي"
+    "viewProfile": "عرض الملف الشخصي",
+    "youtubeVoices": "أصوات YouTube",
+    "moreTalents": "المزيد من المواهب"
   },
   "talentDetail": {
     "youtubeCreator": "صانع محتوى YouTube",

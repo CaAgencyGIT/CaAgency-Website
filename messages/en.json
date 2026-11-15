@@ -179,7 +179,9 @@
     "clearSearch": "Clear search",
     "noResults": "No talent found for “{query}”.",
     "interestedCollaborating": "Interested in collaborating?",
-    "viewProfile": "View Profile"
+    "viewProfile": "View Profile",
+    "youtubeVoices": "YouTube Voices",
+    "moreTalents": "More Talents"
   },
   "talentDetail": {
     "youtubeCreator": "YouTube Creator",

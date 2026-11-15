@@ -179,7 +179,9 @@
     "clearSearch": "Suche löschen",
     "noResults": "Kein Talent gefunden für „{query}“.",
     "interestedCollaborating": "Interesse an einer Zusammenarbeit?",
-    "viewProfile": "Profil ansehen"
+    "viewProfile": "Profil ansehen",
+    "youtubeVoices": "YouTube-Stimmen",
+    "moreTalents": "Weitere Talente"
   },
   "talentDetail": {
     "youtubeCreator": "YouTube-Creator",
