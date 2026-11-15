@@ -6,14 +6,14 @@
 // the homepage Talent section so both show the same asset. top/bottom are
 // the artwork's edge colours, used as the backing where the 4:5 image sits
 // inside the existing 3:4 card frame.
-// v6, Nov 2026 (Anisa, Aurela, Dora): approved finished covers, used exactly
+// v6, Nov 2026 (Anisa, Aurela, Dora; then Aiym, Melani, Qendresa, Melly): approved finished covers, used exactly
 // as supplied (1122x1402). This is the reference for future covers: ivory
 // background, CA logo | divider | full name in dark brown serif on one line,
 // no "MEET", close portrait on the face. alt describes the cover.
 export const talentCardArt: Record<string, { src: string; top: string; bottom: string; alt?: string }> = {
-  'melani-seiffert': { src: '/images/talents/cards/melani-seiffert-v5.webp', top: '#f8f4ee', bottom: '#ddc2c1' },
+  'melani-seiffert': { src: '/images/talents/cards/melani-seiffert-v6.webp', top: '#f8f4ee', bottom: '#d8a08b', alt: 'Melani Seiffert, CA Agency talent cover: close-up portrait with long sleek black hair and glossy lips on an ivory background' },
   'albina-mavriqi': { src: '/images/talents/cards/albina-mavriqi-v5.webp', top: '#f8f4ee', bottom: '#534f4d' },
-  'melly-sanchez': { src: '/images/talents/cards/melly-sanchez-v5.webp', top: '#f8f4ee', bottom: '#de6c68' },
+  'melly-sanchez': { src: '/images/talents/cards/melly-sanchez-v6.webp', top: '#f7f3ee', bottom: '#dba482', alt: 'Melly Sanchez, CA Agency talent cover: close-up portrait with slicked-back dark hair, smoky eye make-up and statement earrings on an ivory background' },
   'anton-drozhzhin': { src: '/images/talents/cards/anton-drozhzhin-v5.webp', top: '#f8f4ee', bottom: '#474340' },
   'dariia-bordun': { src: '/images/talents/cards/dariia-bordun-v5.webp', top: '#f8f4ee', bottom: '#cfb7ad' },
   'rebecca-ghaderi': { src: '/images/talents/cards/rebecca-ghaderi-v5.webp', top: '#f8f4ee', bottom: '#534f4c' },
@@ -25,9 +25,9 @@ export const talentCardArt: Record<string, { src: string; top: string; bottom: s
   'anisa-hukmova': { src: '/images/talents/cards/anisa-hukmova-v6.webp', top: '#f8f4ee', bottom: '#7f553f', alt: 'Anisa Hukmova, CA Agency talent cover: close-up portrait with long highlighted brown hair on an ivory background' },
   'khutjo-matsoma': { src: '/images/talents/cards/khutjo-matsoma-v5.webp', top: '#f8f4ee', bottom: '#e0e6f1' },
   'aurela-elshani': { src: '/images/talents/cards/aurela-elshani-v6.webp', top: '#f7f3ed', bottom: '#8d695a', alt: 'Aurela Elshani, CA Agency talent cover: close-up portrait with long dark hair swept back on an ivory background' },
-  'qendresa-konushevci': { src: '/images/talents/cards/qendresa-konushevci-v5.webp', top: '#f8f4ee', bottom: '#9a8d78' },
+  'qendresa-konushevci': { src: '/images/talents/cards/qendresa-konushevci-v6.webp', top: '#f6f2ec', bottom: '#bb8c6e', alt: 'Qendresa Konushevci, CA Agency talent cover: close-up portrait with a white braided headband and long blonde hair on an ivory background' },
   'georgii-galaev': { src: '/images/talents/cards/georgii-galaev-v5.webp', top: '#f8f4ee', bottom: '#a99693' },
-  'aiym-kablan': { src: '/images/talents/cards/aiym-kablan-v5.webp', top: '#f8f4ee', bottom: '#e4b1ac' },
+  'aiym-kablan': { src: '/images/talents/cards/aiym-kablan-v6.webp', top: '#f7f3ed', bottom: '#c99481', alt: 'Aiym Kablan, CA Agency talent cover: close-up portrait with long light-brown hair and winged eyeliner on an ivory background' },
   'saranda-mavriqi': { src: '/images/talents/cards/saranda-mavriqi-v5.webp', top: '#f8f4ee', bottom: '#78645c' },
   'baka': { src: '/images/talents/cards/baka-v5.webp', top: '#f8f4ee', bottom: '#f8f4ee' },
   'voyage': { src: '/images/talents/cards/voyage-v5.webp', top: '#f8f4ee', bottom: '#e7e2db' },
