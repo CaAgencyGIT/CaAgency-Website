@@ -208,7 +208,7 @@
   align-items: center;
   min-height: 100%;
   padding: 35px 25px;
-  border: 1px solid #e6e6e2;
+  border: 1px solid #e6e6e6;
   border-radius: 14px;
   background: #fff;
   color: #171717;
@@ -231,7 +231,7 @@
   margin: 0 0 28px;
   font-size: 12px;
   line-height: 1.85;
-  color: #6c6c65;
+  color: #6b6b6b;
 }
 
 .ctaTile .pill svg {

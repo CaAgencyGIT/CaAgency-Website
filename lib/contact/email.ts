@@ -94,7 +94,7 @@ export function buildContactEmail(d: ContactFormData): { subject: string; html: 
     </tr>`
 
   const html = `<!DOCTYPE html>
-<html><body style="margin:0;background:#f4f2ee;font-family:Arial,Helvetica,sans-serif;color:#111;line-height:1.55">
+<html><body style="margin:0;background:#f4f4f2;font-family:Arial,Helvetica,sans-serif;color:#111;line-height:1.55">
   <div style="max-width:640px;margin:0 auto;padding:24px">
     <div style="background:#0e0e0e;color:#fff;padding:22px 26px;border-radius:12px 12px 0 0">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.7">CA Agency website</div>
