@@ -105,25 +105,25 @@ export default async function HomePage() {
                     region: 'North America',
                     href: '/influencer-marketing-usa',
                     copy:
-                      "Connecting brands with influential creators across North America through strategic partnerships and impactful campaigns. We bring together creativity, industry expertise and market insights to build lasting connections.",
+                      "Connecting brands with influential creators across North America through strategic partnerships and impactful campaigns.",
                   },
                   {
                     region: 'Europe',
                     href: '/influencer-marketing-uk',
                     copy:
-                      "Building meaningful connections between brands, creators and audiences across key European markets. Our international network enables tailored collaborations that resonate across cultures and borders.",
+                      "Building meaningful connections between brands, creators and audiences across key European markets.",
                   },
                   {
                     region: 'Middle East',
                     href: '/influencer-marketing-dubai',
                     copy:
-                      "With our HQ based in Dubai, we connect international brands with creators and audiences across the Middle East. Our regional perspective and global network allow us to create partnerships that extend beyond borders.",
+                      "With our HQ based in Dubai, we connect international brands with creators and audiences across the Middle East.",
                   },
                   {
                     region: 'Asia',
                     href: '/influencer-marketing-asia',
                     copy:
-                      "Bridging global brands with Asia's dynamic creator landscape through culturally relevant partnerships. We connect creativity with opportunity, supporting meaningful collaborations across diverse markets.",
+                      "Bridging global brands with Asia's dynamic creator landscape through culturally relevant partnerships.",
                   },
                 ].map((dept) => (
                   <li key={dept.region} className="text-center tablet:text-center mobile:text-center">
