@@ -135,7 +135,7 @@ export default async function TalentsPage({ params }: Props) {
             <TalentGrid talents={instagramRoster} columns={4} cardArt mobileLayout="list" animate={false} prioritizeFirst />
             {youtubeRoster.length > 0 && (
               // Hidden by the search when none of its talents match.
-              <div data-talent-group className="mt-[80px] tablet:mt-[64px] mobile:mt-[48px]">
+              <div data-talent-group className="mt-[150px] tablet:mt-[120px] mobile:mt-[88px]">
                 <h2 className="mb-8 font-anegra text-[30px] font-semibold tracking-[0] tablet:text-[26px] mobile:mb-6 mobile:text-[22px]">
                   <span className="inline-flex items-center gap-3 text-foreground-primary">
                     {t('youtubeVoices')}
