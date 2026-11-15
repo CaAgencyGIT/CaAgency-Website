@@ -1,0 +1,254 @@
+.agency-index .card-identity .card-name{font-family:var(--font-talent-name),Georgia,serif!important;font-weight:800!important;font-synthesis:none}
+.agency-index{--ink:#171717;--muted:#666;--paper:#fff;--soft:#f4f4f2;--line:#DCDCDC;--serif:var(--font-anegra),Georgia,'Times New Roman',serif;--sans:var(--font-work-sans),Arial,sans-serif}
+.agency-index .page-shell{max-width:1800px;margin:auto;padding:42px 3.3% 80px;display:grid;grid-template-columns:minmax(230px,.82fr) minmax(0,3fr);gap:34px}
+.agency-index .intro-column{border-right:1px solid var(--line);padding-right:29px}
+.agency-index .intro-sticky{position:sticky;top:35px;min-height:calc(100vh - 166px);display:flex;flex-direction:column}
+.agency-index .eyebrow{font:10px/1.5 var(--sans);font-weight:500;letter-spacing:2.2px;margin:0 0 22px}
+.agency-index .intro-column h1{font:clamp(62px,7.4vw,116px)/.88 var(--serif);font-weight:400;letter-spacing:-4px;margin:8px 0 32px}
+.agency-index .title-dot{display:none}
+.agency-index .intro-copy{font-size:17px;line-height:1.55;color:#535353;max-width:230px;margin:0 0 30px}
+.agency-index .search{display:flex;align-items:center;gap:10px;border:1px solid #bbb;border-radius:40px;padding:0 14px;height:44px;width:100%;max-width:295px;background:#fff}
+.agency-index .search:focus-within{border-color:#171717;box-shadow:0 0 0 1px #171717}
+.agency-index .search svg{width:17px;height:17px;stroke:#555;stroke-width:1.4;flex-shrink:0}
+.agency-index .search input{min-width:0;width:100%;height:40px;border:0;background:none;outline:none!important;color:var(--ink);font-size:12px}
+.agency-index .search input::-webkit-search-cancel-button{display:none}
+.agency-index .clear-search{font-size:20px;padding:0;width:20px;line-height:1}
+.agency-index .result-count{font-size:10px;letter-spacing:.5px;color:#666;margin:9px 0 0;min-height:16px}
+.agency-index .intro-bottom{padding-top:90px;margin-top:auto}
+.agency-index .intro-bottom>p{font-size:17px;line-height:1.25;color:#666;margin:0 0 27px}
+.agency-index .text-link{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #bbb;padding-bottom:5px;font-size:12px}
+.agency-index .text-link:hover{border-color:#111}
+.agency-index .roster-top{display:flex;justify-content:space-between;align-items:center;color:#666;font-size:11px;padding-bottom:18px}
+.agency-index .roster-top>span{letter-spacing:1.5px;text-transform:uppercase;font-size:10px}
+.agency-index .roster-top a{display:flex;gap:20px;align-items:center}
+.agency-index .talent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:33px 18px}
+.agency-index .talent-card{min-width:0}
+.agency-index .card-visual{background:var(--soft);border-radius:5px;overflow:hidden;display:block;position:relative}
+.agency-index .card-identity{height:75px;padding:12px 13px;display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:center}
+.agency-index .card-identity img{width:39px;max-height:38px;object-fit:contain}
+.agency-index .card-identity .card-name{border-left:1px solid #ccc;min-height:45px;display:flex;justify-content:center;align-items:center;flex-direction:column;margin:0;padding-left:8px;text-align:center;font:clamp(17px,1.65vw,27px)/1.05 var(--serif);font-weight:400;letter-spacing:-.35px}
+.agency-index .card-name span{display:block}
+.agency-index .portrait-wrap{aspect-ratio:1122/1241;overflow:hidden;background:var(--soft)}
+.agency-index .portrait-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.agency-index .card-visual:hover .portrait-wrap img{transform:scale(1.025)}
+.agency-index .card-visual:hover::after{content:'';position:absolute;inset:0;border:1px solid #bbb;border-radius:5px;pointer-events:none}
+.agency-index .card-utility{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 2px 0}
+.agency-index .socials{display:flex;gap:11px;align-items:center}
+.agency-index .socials a{display:flex;align-items:center;justify-content:center;width:24px;height:24px;opacity:.75}
+.agency-index .socials a:hover{opacity:1}
+.agency-index .socials svg{width:17px;height:17px;fill:currentColor}
+.agency-index .profile-link{font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;min-width:30px;min-height:28px;transition:transform .2s}
+.agency-index .profile-link:hover{transform:translate(3px,-3px)}
+.agency-index .editorial-break{margin:51px 0 45px;background:var(--ink);color:#fff;display:grid;grid-template-columns:.85fr 1.4fr;min-height:350px;border-radius:5px;overflow:hidden;scroll-margin-top:25px}
+.agency-index .work-intro{padding:32px 25px;display:flex;flex-direction:column;align-items:flex-start}
+.agency-index .work-intro .eyebrow{font-size:8px;letter-spacing:1.6px;color:#bdbdbd;margin-bottom:17px}
+.agency-index .work-intro h2{font:clamp(35px,4.2vw,67px)/.99 var(--serif);font-weight:400;letter-spacing:-1.9px;margin:0 0 30px}
+.agency-index .work-intro em{font-style:normal}
+.agency-index .work-intro .text-link{margin-top:auto;border-color:#666;font-size:11px;gap:18px}
+.agency-index .campaign-strip{display:flex;gap:7px;padding:12px 12px 12px 0;min-width:0}
+.agency-index .campaign-card{position:relative;min-width:0;flex:1;overflow:hidden;display:block;padding:0;color:#fff;background:#333;border-radius:2px;isolation:isolate}
+.agency-index .campaign-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.agency-index .campaign-card::after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#0009);pointer-events:none}
+.agency-index .campaign-card:hover img{transform:scale(1.04)}
+.agency-index .campaign-caption{z-index:2;position:absolute;left:10px;right:7px;bottom:11px;display:block;font-size:10px;line-height:1.3;text-align:left}
+.agency-index .campaign-caption small{font-size:8px;display:block;opacity:.8}
+.agency-index .additional-section{margin-top:55px}
+.agency-index .additional-heading{padding:30px 0;border-top:1px solid var(--line)}
+.agency-index .additional-heading .eyebrow{margin-bottom:10px}
+.agency-index .additional-heading h2{font:42px/1.05 var(--serif);letter-spacing:-1px;margin:0}
+.agency-index .empty-state{padding:65px 10px 100px;min-height:500px;text-align:center}
+.agency-index .empty-state>span{font-size:64px}
+.agency-index .empty-state h2{font:48px/1.1 var(--serif);font-weight:400;margin:20px 0}
+.agency-index .empty-state p{color:#666}
+.agency-index .reset-search{margin-top:20px;border-bottom:1px solid #222;padding:5px 0}
+.agency-index .closing{padding:56px 5% 62px;background:var(--soft);border-top:1px solid var(--line)}
+.agency-index .closing .eyebrow{margin-bottom:27px}
+.agency-index .closing>div{display:flex;justify-content:space-between;align-items:flex-end;gap:35px;max-width:1550px;margin:auto}
+.agency-index .closing h2{font:clamp(46px,6.3vw,94px)/.99 var(--serif);letter-spacing:-2.4px;font-weight:400;margin:0}
+.agency-index .closing-link{border:1px solid #333;border-radius:50%;width:145px;height:145px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;flex-shrink:0;font-size:16px;transition:background .3s,color .3s}
+.agency-index .closing-link span:last-child{font-size:29px;line-height:1}
+.agency-index .closing-link:hover{background:#171717;color:#fff}
+@media(min-width:1700px){.agency-index .page-shell{gap:45px;padding-top:52px}
+.agency-index .card-identity{height:86px;grid-template-columns:56px 1fr}
+.agency-index .card-identity img{width:45px}
+.agency-index .intro-column{padding-right:40px}
+.agency-index .intro-copy{font-size:20px}
+.agency-index .search input{font-size:14px}}
+@media(max-width:1100px){.agency-index .page-shell{padding:32px 24px 60px;grid-template-columns:210px minmax(0,1fr);gap:23px}
+.agency-index .intro-column{padding-right:20px}
+.agency-index .intro-column h1{font-size:76px;letter-spacing:-3px}
+.agency-index .intro-copy{font-size:16px}
+.agency-index .talent-grid{gap:27px 12px}
+.agency-index .card-identity{height:68px;padding:10px 8px;grid-template-columns:33px 1fr;gap:6px}
+.agency-index .card-identity img{width:30px}
+.agency-index .card-identity .card-name{font-size:18px;padding-left:5px}
+.agency-index .socials{gap:3px}
+.agency-index .socials a{width:22px}
+.agency-index .socials svg{width:15px;height:15px}
+.agency-index .editorial-break{grid-template-columns:.8fr 1fr;min-height:310px}
+.agency-index .campaign-strip{gap:5px}
+.agency-index .campaign-card:last-child{display:none}
+.agency-index .work-intro{padding:27px 20px}
+.agency-index .campaign-caption{font-size:9px}
+.agency-index .intro-bottom .text-link{font-size:11px;gap:8px}
+.agency-index .closing h2{font-size:68px}}
+@media(max-width:800px){.agency-index .page-shell{display:block;padding:29px 20px 50px}
+.agency-index .intro-column{border:0;padding:0}
+.agency-index .intro-sticky{position:static;min-height:0;display:block}
+.agency-index .intro-column .eyebrow{font-size:9px;letter-spacing:1.8px;margin-bottom:18px}
+.agency-index .intro-column h1{font-size:68px;line-height:1;letter-spacing:-2.6px;margin:0 0 14px}
+.agency-index .intro-column h1 br{display:none}
+.agency-index .title-dot{display:none}
+.agency-index .intro-copy{max-width:380px;font-size:15px;line-height:1.5;margin:0 0 23px}
+.agency-index .search{max-width:none;height:44px}
+.agency-index .search input{font-size:14px}
+.agency-index .result-count{margin-top:8px;margin-bottom:17px}
+.agency-index .intro-bottom{display:none}
+.agency-index .roster-top{padding:8px 0 16px}
+.agency-index .roster-top a{font-size:11px}
+.agency-index .talent-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 14px}
+.agency-index .card-identity{height:68px;padding:10px 12px;grid-template-columns:41px 1fr;gap:8px}
+.agency-index .card-identity img{width:34px}
+.agency-index .card-identity .card-name{font-size:clamp(18px,3.8vw,26px);min-height:44px;padding-left:7px;letter-spacing:-.35px}
+.agency-index .portrait-wrap{aspect-ratio:1122/1241}
+.agency-index .card-utility{padding-top:8px}
+.agency-index .socials{gap:9px}
+.agency-index .socials a{width:25px;height:27px}
+.agency-index .socials svg{width:17px;height:17px}
+.agency-index .profile-link{font-size:22px}
+.agency-index .editorial-break{margin:34px 0 33px;grid-template-columns:.8fr 1.2fr;min-height:310px}
+.agency-index .work-intro{padding:26px 22px}
+.agency-index .work-intro h2{font-size:47px;letter-spacing:-1px}
+.agency-index .campaign-card:last-child{display:block}
+.agency-index .campaign-caption{font-size:9px}
+.agency-index .work-intro .eyebrow{font-size:7px;letter-spacing:1.4px}
+.agency-index .closing{padding:38px 22px 45px}
+.agency-index .closing .eyebrow{font-size:8px;margin-bottom:25px}
+.agency-index .closing h2{font-size:50px;letter-spacing:-1.7px}
+.agency-index .closing-link{width:105px;height:105px;font-size:14px}
+.agency-index .closing-link span:last-child{font-size:25px}}
+@media(max-width:480px){.agency-index .page-shell{padding-inline:16px}
+.agency-index .intro-column h1{font-size:59px}
+.agency-index .intro-copy{max-width:315px;font-size:14px}
+.agency-index .talent-grid{gap:24px 12px}
+.agency-index .card-identity{height:64px;padding:8px 7px;grid-template-columns:32px 1fr;gap:4px}
+.agency-index .card-identity img{width:29px}
+.agency-index .card-identity .card-name{font-size:18px;letter-spacing:-.5px;padding-left:4px}
+.agency-index .card-utility{justify-content:center;position:relative}
+.agency-index .socials{gap:8px}
+.agency-index .socials a{width:25px;height:30px}
+.agency-index .profile-link{position:absolute;right:0;display:none}
+.agency-index .editorial-break{grid-template-columns:1fr;margin-inline:-16px;border-radius:0;padding-bottom:18px}
+.agency-index .work-intro{padding:27px 22px 22px;display:grid;grid-template-columns:1fr auto;gap:10px 20px;align-items:end}
+.agency-index .work-intro .eyebrow{grid-column:1/-1;margin:0 0 4px;font-size:8px}
+.agency-index .work-intro h2{font-size:46px;line-height:1;margin:0;letter-spacing:-1px}
+.agency-index .work-intro h2 br{display:none}
+.agency-index .work-intro em{display:block}
+.agency-index .work-intro .text-link{margin-bottom:4px;font-size:11px;gap:10px}
+.agency-index .campaign-strip{height:220px;padding:0 16px;gap:9px}
+.agency-index .campaign-card{border-radius:3px}
+.agency-index .campaign-caption{font-size:10px;bottom:10px}
+.agency-index .campaign-caption small{font-size:9px}
+.agency-index .closing>div{align-items:center;gap:15px}
+.agency-index .closing h2{font-size:39px;letter-spacing:-1px}
+.agency-index .closing-link{width:84px;height:84px;font-size:12px}
+.agency-index .closing-link span:last-child{font-size:23px}
+.agency-index .closing{padding-inline:17px}
+.agency-index .additional-heading h2{font-size:35px}
+.agency-index .empty-state h2{font-size:39px}
+.agency-index .empty-state p{font-size:13px}}
+@media(max-width:360px){.agency-index .intro-column h1{font-size:52px}
+.agency-index .card-identity{grid-template-columns:26px 1fr;padding-inline:5px}
+.agency-index .card-identity img{width:24px}
+.agency-index .card-identity .card-name{font-size:16px;letter-spacing:-.5px}
+.agency-index .closing h2{font-size:34px}
+.agency-index .campaign-strip{height:195px}}
+.agency-index .text-link span,.agency-index .profile-link,.agency-index .closing-link span:last-child,.agency-index .roster-top a span{font-family:Arial,sans-serif}
+.agency-index .arrow-icon{display:inline-block;width:17px;height:17px;flex-shrink:0;vertical-align:middle}
+.agency-index .profile-link .arrow-icon{width:23px;height:23px}
+.agency-index .closing-link .arrow-icon{width:30px;height:30px}
+.agency-index .roster-top .arrow-icon{width:15px;height:15px}
+.agency-index .additional-description{font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--muted);letter-spacing:.025em;margin:20px 0 0}
+@media(max-width:480px){.agency-index .additional-description{font-size:12px;margin-top:16px;letter-spacing:0}}
+.agency-index .campaign-card video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.agency-index .campaign-card:last-child{display:block}
+.agency-index .campaign-card:focus-visible{outline:2px solid white;outline-offset:-4px}
+.agency-index .campaign-card:hover video{transform:none}
+
+/* ---- Integration with the site (not in the static reference) ---- */
+.agency-index{background:var(--paper);color:var(--ink);font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+.agency-index *,.agency-index *::before,.agency-index *::after{box-sizing:border-box}
+.agency-index a{color:inherit;text-decoration:none}
+.agency-index button,.agency-index input{font:inherit;color:inherit}
+.agency-index button{border:0;background:none;cursor:pointer;padding:0}
+.agency-index :is(a,button,input){touch-action:manipulation}
+.agency-index :is(a,button,input):focus-visible{outline:2px solid #555;outline-offset:5px}
+.agency-index img,.agency-index video{display:block;max-width:100%}
+.agency-index h1,.agency-index h2,.agency-index h3,.agency-index p{margin:0}
+.agency-index .eyebrow{margin:0 0 22px}
+.agency-index .intro-column h1{margin:8px 0 32px}
+.agency-index .intro-copy{margin:0 0 30px}
+.agency-index .search input{appearance:none}
+.agency-index .search input::-webkit-search-decoration{appearance:none}
+/* The site header stays sticky, so the rail sticks just below it. */
+@media(min-width:801px){.agency-index .intro-sticky{top:calc(var(--ai-header,92px) + 35px);min-height:calc(100vh - var(--ai-header,92px) - 70px);min-height:calc(100dvh - var(--ai-header,92px) - 70px)}}
+/* Short landscape screens (phones turned sideways): the rail would not fit
+   under the header, so it scrolls with the page instead of sticking. */
+@media(min-width:801px) and (max-height:640px){.agency-index .intro-sticky{position:static;min-height:0}.agency-index .intro-bottom{padding-top:40px}}
+.agency-index .closing{padding-left:max(5%,env(safe-area-inset-left));padding-right:max(5%,env(safe-area-inset-right))}
+.agency-index .page-shell{padding-left:max(3.3%,env(safe-area-inset-left));padding-right:max(3.3%,env(safe-area-inset-right))}
+@media(max-width:1100px){.agency-index .page-shell{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}}
+@media(max-width:800px){.agency-index .page-shell{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}.agency-index .closing{padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}}
+@media(max-width:480px){.agency-index .page-shell{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}.agency-index .closing{padding-left:max(17px,env(safe-area-inset-left));padding-right:max(17px,env(safe-area-inset-right))}}
+/* Heading keeps a real space when its desktop line break is hidden. */
+.agency-index .intro-column h1 .h1-gap{display:none}
+@media(max-width:800px){.agency-index .intro-column h1 .h1-gap{display:inline}}
+/* All three campaign films stay visible at every width (reference override). */
+.agency-index .campaign-card:last-child{display:block}
+.agency-index .campaign-card video{position:absolute;inset:0}
+.agency-index .campaign-card .campaign-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.agency-index .campaign-card{min-height:100%}
+.agency-index .campaign-strip{align-items:stretch}
+.agency-index .campaign-card{aspect-ratio:auto}
+
+/* White header on this page only (Agency Index reference); same links,
+   language switcher and menu as the rest of the site. */
+body:has(.agency-index) .rd-header{background:#fff;color:#171717;border-bottom:1px solid #DCDCDC;animation:none;height:100px}
+body:has(.agency-index) .rd-header-logo img{filter:none}
+body:has(.agency-index) .rd-header-nav a{color:#171717;text-transform:none;letter-spacing:0;font-weight:400;font-size:14px;font-family:var(--font-work-sans),Arial,sans-serif}
+body:has(.agency-index) .rd-header-nav ul{gap:35px}
+body:has(.agency-index) .rd-header-actions .rd-language label{color:#171717;text-transform:none;letter-spacing:0;font-weight:400;font-size:13px}
+body:has(.agency-index) .rd-header-actions .rd-language label:hover{background:rgba(0,0,0,.05)}
+body:has(.agency-index) .rd-header-talk{color:#171717;border:1px solid #333;height:40px;padding:0 21px;text-transform:none;letter-spacing:0;font-weight:400;font-family:var(--font-work-sans),Arial,sans-serif}
+body:has(.agency-index) .rd-header-talk:hover{background:#171717;color:#fff}
+body:has(.agency-index) .rd-header-burger{color:#171717}
+body:has(.agency-index) .rd-header :where(a,button,select,label):focus-visible{outline-color:#171717}
+body:has(.agency-index) [data-breadcrumbs]{display:none}
+.agency-index{--ai-header:100px}
+@media(max-width:800px){body:has(.agency-index) .rd-header{height:78px}.agency-index{--ai-header:78px}}
+/* The site's PostCSS step rewrites font sizes to shrink fluidly on small
+   screens; the Agency Index uses the approved sizes exactly. */
+.agency-index{--text-shrink:0}
+/* The site forces 16px on inputs (prevents iOS zoom-on-focus). Desktop uses
+   the approved 12/14px; phones keep 16px so focusing search never zooms. */
+@media(min-width:801px){.agency-index .search input{font-size:12px!important}}
+@media(min-width:1700px){.agency-index .search input{font-size:14px!important}}
+/* The site's back-to-top button moves to the right here so it never covers
+   the rail's contact link or the left roster column. */
+body:has(.agency-index) [data-back-to-top]{inset-inline-start:auto;inset-inline-end:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom))}
+
+/* Accessibility fixes from staging QA (Nov 2026). */
+.agency-index .card-visual:focus-visible{outline:2px solid #171717;outline-offset:-2px}
+.agency-index .socials a:focus-visible,.agency-index .profile-link:focus-visible{outline:2px solid #171717;outline-offset:2px;border-radius:3px}
+.agency-index .editorial-break :focus-visible{outline-color:#fff}
+.agency-index .roster-top .roster-label{margin:0;font:inherit;letter-spacing:1.5px;text-transform:uppercase;font-size:10px;font-weight:400}
+/* Arabic: the display face has no tight Latin tracking; keep the heading inside the rail. */
+.agency-index:dir(rtl) .intro-column h1,[dir=rtl] .agency-index .intro-column h1{letter-spacing:0;font-size:clamp(46px,4.6vw,78px);line-height:1.05}
+.agency-index:dir(rtl) .intro-column,[dir=rtl] .agency-index .intro-column{border-right:0;border-left:1px solid var(--line);padding-right:0;padding-left:29px}
+@media(max-width:1100px){[dir=rtl] .agency-index .intro-column h1{font-size:52px}[dir=rtl] .agency-index .intro-column{padding-left:20px}}
+@media(max-width:800px){[dir=rtl] .agency-index .intro-column{border:0;padding:0}[dir=rtl] .agency-index .intro-column h1{font-size:56px}}
+.agency-index .intro-column h1{overflow-wrap:anywhere}
+/* In-page jumps (e.g. "Talent in action") stop below the sticky header. */
+.agency-index #talent-in-action,.agency-index #roster{scroll-margin-top:calc(var(--ai-header,100px) + 20px)}
+/* Phones in landscape: slimmer header so content isn't hidden under it. */
+@media(max-height:500px){body:has(.agency-index) .rd-header{height:64px}.agency-index{--ai-header:64px}}

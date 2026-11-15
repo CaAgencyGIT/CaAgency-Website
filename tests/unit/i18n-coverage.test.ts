@@ -84,7 +84,7 @@ describe('i18n coverage', () => {
     expect(usages.length).toBeGreaterThan(100)
     // Promise.all-destructured translators are covered too.
     expect(usages).toContainEqual(
-      expect.objectContaining({ namespace: 'common', key: 'getInTouch', file: expect.stringContaining('talents') })
+      expect.objectContaining({ namespace: 'talents', key: 'featureLink', file: expect.stringContaining('talents') })
     )
   })
 

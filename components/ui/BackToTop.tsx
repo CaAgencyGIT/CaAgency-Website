@@ -35,6 +35,7 @@ export default function BackToTop({ label }: { label: string }) {
     <button
       type="button"
       onClick={scrollToTop}
+      data-back-to-top
       aria-label={label}
       tabIndex={visible ? 0 : -1}
       className={clsx(
