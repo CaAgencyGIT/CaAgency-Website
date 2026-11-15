@@ -1,0 +1,770 @@
+{
+ "albina-mavriqi": {
+  "name": "Albina Mavriqi",
+  "source": "assets/talent-covers/source/albina-mavriqi.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    786,
+    139,
+    1315,
+    263
+   ]
+  ]
+ },
+ "melani-seiffert": {
+  "name": "Melani Seiffert",
+  "source": "assets/talent-covers/source/melani-seiffert.webp",
+  "erase": [
+   [
+    84,
+    53,
+    279,
+    211
+   ],
+   [
+    351,
+    53,
+    353,
+    210
+   ],
+   [
+    411,
+    102,
+    979,
+    161
+   ]
+  ]
+ },
+ "anton-drozhzhin": {
+  "name": "Anton Drozhzhin",
+  "source": "assets/talent-covers/source/anton-drozhzhin.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    814,
+    139,
+    1285,
+    263
+   ]
+  ]
+ },
+ "aiym-kablan": {
+  "name": "Aiym Kablan",
+  "source": "assets/talent-covers/source/aiym-kablan.webp",
+  "erase": [
+   [
+    84,
+    53,
+    281,
+    212
+   ],
+   [
+    353,
+    53,
+    355,
+    211
+   ],
+   [
+    416,
+    102,
+    877,
+    180
+   ]
+  ]
+ },
+ "khutjo-matsoma": {
+  "name": "Khutjo Matsoma",
+  "source": "assets/talent-covers/source/khutjo-matsoma.webp",
+  "erase": [
+   [
+    84,
+    53,
+    279,
+    210
+   ],
+   [
+    351,
+    53,
+    353,
+    210
+   ],
+   [
+    400,
+    102,
+    1033,
+    178
+   ]
+  ]
+ },
+ "dariia-bordun": {
+  "name": "Dariia Bordun",
+  "source": "assets/talent-covers/source/dariia-bordun.webp",
+  "erase": [
+   [
+    85,
+    53,
+    280,
+    212
+   ],
+   [
+    353,
+    54,
+    355,
+    211
+   ],
+   [
+    428,
+    102,
+    1003,
+    162
+   ]
+  ]
+ },
+ "saranda-mavriqi": {
+  "name": "Saranda Mavriqi",
+  "source": "assets/talent-covers/source/saranda-mavriqi.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    729,
+    140,
+    1377,
+    263
+   ]
+  ]
+ },
+ "rebecca-ghaderi": {
+  "name": "Rebecca Ghaderi",
+  "source": "assets/talent-covers/source/rebecca-ghaderi.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    726,
+    141,
+    1376,
+    263
+   ]
+  ]
+ },
+ "qendresa-konushevci": {
+  "name": "Qendresa Konushevci",
+  "source": "assets/talent-covers/source/qendresa-konushevci.webp",
+  "erase": [
+   [
+    85,
+    52,
+    279,
+    212
+   ],
+   [
+    336,
+    52,
+    338,
+    204
+   ],
+   [
+    381,
+    92,
+    1040,
+    157
+   ]
+  ]
+ },
+ "beatrix-ramosaj": {
+  "name": "Beatrix Ramosaj",
+  "source": "assets/talent-covers/source/beatrix-ramosaj.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    765,
+    140,
+    1335,
+    263
+   ]
+  ]
+ },
+ "melly-sanchez": {
+  "name": "Melly Sanchez",
+  "source": "assets/talent-covers/source/melly-sanchez.webp",
+  "erase": [
+   [
+    85,
+    53,
+    281,
+    211
+   ],
+   [
+    353,
+    52,
+    356,
+    210
+   ],
+   [
+    400,
+    89,
+    1017,
+    179
+   ]
+  ]
+ },
+ "loresa-konushevci": {
+  "name": "Loresa Konushevci",
+  "source": "assets/talent-covers/source/loresa-konushevci.webp",
+  "erase": [
+   [
+    84,
+    53,
+    277,
+    208
+   ],
+   [
+    344,
+    53,
+    346,
+    207
+   ],
+   [
+    383,
+    97,
+    1043,
+    156
+   ]
+  ]
+ },
+ "albulena-mavriqi": {
+  "name": "Albulena Mavriqi",
+  "source": "assets/talent-covers/source/albulena-mavriqi.webp",
+  "erase": [
+   [
+    85,
+    53,
+    280,
+    212
+   ],
+   [
+    353,
+    53,
+    355,
+    212
+   ],
+   [
+    399,
+    102,
+    1036,
+    178
+   ]
+  ]
+ },
+ "georgii-galaev": {
+  "name": "Georgii Galaev",
+  "source": "assets/talent-covers/source/georgii-galaev.webp",
+  "erase": [
+   [
+    85,
+    53,
+    282,
+    211
+   ],
+   [
+    353,
+    53,
+    355,
+    211
+   ],
+   [
+    420,
+    101,
+    968,
+    179
+   ]
+  ]
+ },
+ "anisa-hukmova": {
+  "name": "Anisa Hukmova",
+  "source": "assets/talent-covers/source/anisa-hukmova.webp",
+  "erase": [
+   [
+    86,
+    53,
+    284,
+    213
+   ],
+   [
+    358,
+    53,
+    360,
+    212
+   ],
+   [
+    426,
+    99,
+    1016,
+    159
+   ]
+  ]
+ },
+ "jay-sadiq": {
+  "name": "Jay Sadiq",
+  "source": "assets/talent-covers/source/jay-sadiq.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    914,
+    141,
+    1188,
+    303
+   ]
+  ]
+ },
+ "anhelina-andrusik": {
+  "name": "Anhelina Andrusik",
+  "source": "assets/talent-covers/source/anhelina-andrusik.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    695,
+    140,
+    1406,
+    262
+   ]
+  ]
+ },
+ "vania-fernandes": {
+  "name": "Vania Fernandes",
+  "source": "assets/talent-covers/source/vania-fernandes.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    820,
+    140,
+    1281,
+    263
+   ]
+  ]
+ },
+ "ardita-gashi": {
+  "name": "Ardita Gashi",
+  "source": "assets/talent-covers/source/ardita-gashi.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    797,
+    139,
+    1305,
+    263
+   ]
+  ]
+ },
+ "aurela-elshani": {
+  "name": "Aurela Elshani",
+  "source": "assets/talent-covers/source/aurela-elshani.webp",
+  "erase": [
+   [
+    85,
+    53,
+    281,
+    212
+   ],
+   [
+    353,
+    54,
+    355,
+    211
+   ],
+   [
+    422,
+    102,
+    986,
+    162
+   ]
+  ]
+ },
+ "gvantsa-okinashvili": {
+  "name": "Gvantsa Okinashvili",
+  "source": "assets/talent-covers/source/gvantsa-okinashvili.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    742,
+    140,
+    1364,
+    263
+   ]
+  ]
+ },
+ "dora-nguyen": {
+  "name": "Dora Nguyen",
+  "source": "assets/talent-covers/source/dora-nguyen.webp",
+  "erase": [
+   [
+    86,
+    53,
+    284,
+    212
+   ],
+   [
+    358,
+    54,
+    360,
+    212
+   ],
+   [
+    434,
+    102,
+    909,
+    180
+   ]
+  ]
+ },
+ "yassuo": {
+  "name": "Yassuo",
+  "source": "assets/talent-covers/source/yassuo.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    778,
+    141,
+    1317,
+    263
+   ]
+  ]
+ },
+ "luka": {
+  "name": "Luka",
+  "source": "assets/talent-covers/source/luka.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    854,
+    141,
+    1247,
+    263
+   ]
+  ]
+ },
+ "choda": {
+  "name": "Choda",
+  "source": "assets/talent-covers/source/choda.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    806,
+    140,
+    1299,
+    263
+   ]
+  ]
+ },
+ "voyage": {
+  "name": "Voyage",
+  "source": "assets/talent-covers/source/voyage.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    755,
+    141,
+    1341,
+    303
+   ]
+  ]
+ },
+ "windoh": {
+  "name": "Windoh",
+  "source": "assets/talent-covers/source/windoh.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    740,
+    140,
+    1358,
+    263
+   ]
+  ]
+ },
+ "baka": {
+  "name": "Baka",
+  "source": "assets/talent-covers/source/baka.webp",
+  "erase": [
+   [
+    105,
+    64,
+    405,
+    303
+   ],
+   [
+    520,
+    65,
+    522,
+    301
+   ],
+   [
+    993,
+    104,
+    1109,
+    128
+   ],
+   [
+    852,
+    141,
+    1249,
+    263
+   ]
+  ]
+ }
+}

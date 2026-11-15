@@ -1,0 +1,14 @@
+{
+  "_comment": "Shared talent-cover header, measured from the approved Nov 2026 covers. All values are fractions of the image WIDTH, so the header has identical proportions on every cover and at every screen size. The name size is fitted once to the longest roster name (see build_covers.py).",
+  "ink": "#3e2e1f",
+  "block": { "top": 0.0481, "bottom": 0.1881 },
+  "mark": { "svg": "public/images/site/logo.svg", "left": 0.0758, "width": 0.1747 },
+  "wordmark": { "png": "scripts/talent-covers/agency-wordmark.png", "left": 0.1185, "top": 0.1684, "width": 0.0927 },
+  "divider": { "x": 0.3155, "thickness": 0.0018 },
+  "name": {
+    "font": "scripts/talent-covers/ShipporiMincho-ExtraBold.ttf",
+    "left": 0.3476,
+    "right": 0.9242,
+    "horizontalScale": 0.94
+  }
+}
