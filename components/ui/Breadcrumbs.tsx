@@ -57,7 +57,7 @@ export default function Breadcrumbs({
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      <nav aria-label={labels.label} className="border-b border-black/10 bg-background-base px-section-x py-4">
+      <nav data-breadcrumbs aria-label={labels.label} className="border-b border-black/10 bg-background-base px-section-x py-4">
         <div className="mx-auto max-w-container">
           <ol className="flex items-center gap-2 text-[14px]">
             {breadcrumbs.map((item, index) => (
