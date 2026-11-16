@@ -6,6 +6,7 @@ import {
   isSensitiveProbe,
   isUnknownRootFile,
   getLocalizedSiteRouteRedirect,
+  localizedSiteRedirectLocation,
 } from './lib/routing-helpers'
 
 // next-intl middleware for locale routing
@@ -98,9 +99,13 @@ export async function middleware(request: NextRequest) {
   // The Arabic Gulf location pages (LOCALIZED_LOCATION_PATHS) are the exception.
   const strippedPath = getLocalizedSiteRouteRedirect(pathname)
   if (strippedPath) {
-    const url = request.nextUrl.clone()
-    url.pathname = strippedPath
-    return NextResponse.redirect(url, 308)
+    // Built from the Host header, not request.url: behind Caddy the request
+    // URL's origin is the app's own http://localhost:3001, and a redirect
+    // built from it sent visitors to localhost.
+    return NextResponse.redirect(
+      localizedSiteRedirectLocation(strippedPath, request.nextUrl.search, hostname, request.nextUrl.origin),
+      308
+    )
   }
 
   // 3. i18n routing (handled by next-intl)

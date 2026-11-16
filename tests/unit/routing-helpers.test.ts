@@ -120,3 +120,19 @@ describe('isUnknownRootFile', () => {
     expect(isUnknownRootFile('/ar')).toBe(false)
   })
 })
+
+describe('localizedSiteRedirectLocation', () => {
+  it('redirects on the public host over https, keeping the query', async () => {
+    const { localizedSiteRedirectLocation } = await import('@/lib/routing-helpers')
+    const origin = 'http://localhost:3001'
+    expect(localizedSiteRedirectLocation('/blog/some-post', '', 'caagency.com', origin)).toBe('https://caagency.com/blog/some-post')
+    expect(localizedSiteRedirectLocation('/case-studies', '?utm_source=x', 'caagency.com', origin)).toBe(
+      'https://caagency.com/case-studies?utm_source=x'
+    )
+    expect(localizedSiteRedirectLocation('/blog', '', 'localhost:3111', origin)).toBe('http://localhost:3111/blog')
+    // A hostile or missing Host header never ends up in the Location.
+    expect(localizedSiteRedirectLocation('/blog', '', 'evil.example/x?', origin)).toBe('http://localhost:3001/blog')
+    expect(localizedSiteRedirectLocation('/blog', '', '', origin)).toBe('http://localhost:3001/blog')
+    expect(localizedSiteRedirectLocation('//evil.example/blog', '', 'caagency.com', origin)).toBe('https://caagency.com/evil.example/blog')
+  })
+})
