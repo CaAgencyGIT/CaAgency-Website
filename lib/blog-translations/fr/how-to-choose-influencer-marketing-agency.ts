@@ -9,6 +9,8 @@ export const post: TranslatedPost = {
   excerpt:
     "Comment choisir une agence de marketing d'influence en 2026 : une checklist pratique sur les créateurs, les tarifs, le reporting et les signaux d'alerte.",
   categories: ['Stratégie', 'Guides'],
+  publishedAt: '2026-11-17',
+  updatedAt: '2026-11-17',
   content: `<p>Faire appel à une agence de marketing d'influence est un engagement important. Bien menée, la collaboration élargit votre audience, crée un véritable attachement à la marque et génère un chiffre d'affaires mesurable. Mal menée, elle consomme du budget pour des indicateurs flatteurs qui ne prouvent rien à votre direction.</p>
 
 <p>Ce guide s'adresse aux responsables de marque et de marketing qui comparent concrètement des agences. Il explique ce qu'il faut regarder, les questions à poser et comment repérer les agences qui vous feront perdre du temps.</p>

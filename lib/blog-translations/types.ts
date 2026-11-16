@@ -6,6 +6,9 @@ export interface TranslatedPost {
   seoTitle?: string
   excerpt: string
   categories: string[]
+  /** Day this translation was published and last changed (YYYY-MM-DD). */
+  publishedAt: string
+  updatedAt: string
   /** Article HTML, already in the target language, with locale-prefixed links. */
   content: string
 }

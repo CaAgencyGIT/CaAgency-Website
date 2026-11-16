@@ -9,6 +9,8 @@ export const post: TranslatedPost = {
   excerpt:
     'Was Influencer Marketing 2026 kostet: internationale Richtwerte nach Creator-Größe, Plattform und Kampagnenart, plus Tipps für ein realistisches Budget.',
   categories: ['Strategie', 'Preise'],
+  publishedAt: '2026-11-17',
+  updatedAt: '2026-11-17',
   content: `<p>Influencer Marketing ist in den meisten Markenbudgets inzwischen ein fester Posten, doch die Preise verwirren viele Marketingteams. Die Spanne ist tatsächlich groß: Ein Nano-Creator auf TikTok verlangt vielleicht 150 US-Dollar für einen gesponserten Beitrag, während eine Berühmtheit mit über 10 Millionen Followern 500.000 US-Dollar oder mehr für einen einzigen Inhalt aufrufen kann. Beide Zahlen stimmen. Es sind unterschiedliche Werkzeuge für unterschiedliche Ziele.</p>
 
 <p>Dieser Leitfaden erklärt die wichtigsten Faktoren, die die Kosten von Influencer Marketing 2026 bestimmen, damit Sie ein realistisches Budget planen können, bevor Sie mit Creators oder Agenturen sprechen. Alle Beträge sind internationale Richtwerte in US-Dollar. Die Honorare im deutschsprachigen Raum können je nach Nische und Nachfrage davon abweichen.</p>
