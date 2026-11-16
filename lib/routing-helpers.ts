@@ -125,3 +125,21 @@ export function getLocalizedSiteRouteRedirect(pathname: string): string | null {
   const strippedPath = pathname.replace(LOCALE_PREFIX, '')
   return hasTranslatedPage(strippedPath, locale) ? null : strippedPath
 }
+
+/**
+ * Absolute target for the redirect above, on the host the visitor asked for.
+ * Public hosts are always https (TLS ends at Cloudflare, so the app only ever
+ * sees http); a missing or odd Host header falls back to the request origin.
+ * Leading slashes are collapsed so the path cannot name another host.
+ */
+export function localizedSiteRedirectLocation(
+  strippedPath: string,
+  search: string,
+  host: string,
+  fallbackOrigin: string
+): string {
+  const path = `/${strippedPath.replace(/^\/+/, '')}${search}`
+  if (!/^[a-z0-9.-]+(?::\d+)?$/i.test(host)) return `${fallbackOrigin}${path}`
+  const local = /^(?:localhost|127\.0\.0\.1)(?::\d+)?$/i.test(host)
+  return `${local ? 'http' : 'https'}://${host}${path}`
+}
