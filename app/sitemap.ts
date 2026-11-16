@@ -6,7 +6,7 @@ import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
 import caseStudyDates from '@/lib/data/case-study-dates.json'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
-import { hasLocalizedLocationPage } from '@/lib/routing-helpers'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
@@ -159,14 +159,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: 'monthly',
         priority: 0.8,
       })
-      if (!hasLocalizedLocationPage(path, 'ar')) return [entry]
-      const alternates = {
-        languages: { 'x-default': entry.url, en: entry.url, ar: `${baseUrl}/ar${path}` },
-      }
-      return [
-        { ...entry, alternates },
-        { ...entry, url: `${baseUrl}/ar${path}`, alternates },
-      ]
+      // English plus each translated version (Arabic Gulf pages, German and French market pages).
+      const languages = locationPageLanguages(path, baseUrl)
+      const translated = Object.entries(languages).filter(([locale]) => locale !== 'x-default' && locale !== 'en')
+      if (translated.length === 0) return [entry]
+      const alternates = { languages }
+      return [{ ...entry, alternates }, ...translated.map(([, url]) => ({ ...entry, url, alternates }))]
     }),
     ...caseStudies.map((cs) =>
       createDefaultOnlyEntry(`case-studies/${cs.slug}`, {

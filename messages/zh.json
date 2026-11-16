@@ -97,7 +97,11 @@
     "uk": "英国",
     "canada": "加拿大",
     "australia": "澳大利亚",
-    "asia": "亚洲"
+    "asia": "亚洲",
+    "germany": "德国",
+    "france": "法国",
+    "switzerland": "瑞士",
+    "nordics": "北欧"
   },
   "hero": {
     "title": "CA Agency",
@@ -502,6 +506,11 @@
     "korean-skincare-influencer-marketing": "韩国美妆网红营销",
     "beauty-influencer-marketing-agency": "美妆网红营销",
     "skincare-influencer-marketing-agency": "护肤网红营销",
-    "faq": "常见问题"
+    "faq": "常见问题",
+    "influencer-marketing-europe": "网红营销 欧洲",
+    "influencer-marketing-germany": "网红营销 德国",
+    "influencer-marketing-france": "网红营销 法国",
+    "influencer-marketing-switzerland": "网红营销 瑞士",
+    "influencer-marketing-nordics": "网红营销 北欧"
   }
 }

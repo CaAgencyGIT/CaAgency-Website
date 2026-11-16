@@ -97,7 +97,7 @@ export default function Footer({
   // Departments (Oct 2026): the four regions, same targets as the homepage.
   const departmentItems = [
     { label: tLocations('northAmerica'), href: '/influencer-marketing-usa' },
-    { label: tLocations('europe'), href: '/influencer-marketing-uk' },
+    { label: tLocations('europe'), href: '/influencer-marketing-europe' },
     { label: tLocations('middleEast'), href: '/influencer-marketing-dubai' },
     { label: tLocations('asia'), href: '/influencer-marketing-asia' },
   ]

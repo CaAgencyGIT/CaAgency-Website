@@ -1,4 +1,13 @@
 import { beautyPageDefaults, skincarePageDefaults } from '@/lib/site-content/category-pages'
+import {
+  australiaFaq,
+  australiaIntro,
+  europePageDefaults,
+  francePageDefaults,
+  germanyPageDefaults,
+  nordicsPageDefaults,
+  switzerlandPageDefaults,
+} from '@/lib/site-content/europe-pages'
 
 export type SiteContentField =
   | {
@@ -1061,6 +1070,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           { title: 'Growing Investment', description: 'Australian brands continue increasing spend into influencer marketing.' },
         ],
       },
+      intro: australiaIntro,
       talents: { title: 'Our Australian Market Creators', buttonLabel: 'View All Talents', buttonHref: '/talents' },
       industries: {
         title: 'Top Performing Industries',
@@ -1070,9 +1080,25 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           { icon: '💄', title: 'Beauty', description: 'Beauty creators help drive discovery, trial, and repeat engagement.' },
         ],
       },
+      faq: australiaFaq,
       cta: { title: 'Launch Your Australia Campaign', description: 'Reach Australian audiences with creators who fit your category and market.', buttonLabel: 'Get in Touch', buttonHref: '/contact' },
     },
   },
+  ...(
+    [
+      ['europe', 'Europe', europePageDefaults],
+      ['germany', 'Germany', germanyPageDefaults],
+      ['france', 'France', francePageDefaults],
+      ['switzerland', 'Switzerland', switzerlandPageDefaults],
+      ['nordics', 'Nordics', nordicsPageDefaults],
+    ] as const
+  ).map(([slug, name, defaultData]) => ({
+    key: `location-${slug}`,
+    title: `SEO pagina ${name}`,
+    description: `Content for influencer-marketing-${slug}.`,
+    fields: basicSeoLandingFields,
+    defaultData,
+  })),
 ]
 
 export const siteContentDefinitionsByKey = Object.fromEntries(

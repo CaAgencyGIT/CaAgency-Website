@@ -97,7 +97,11 @@
     "uk": "بريطانيا",
     "canada": "كندا",
     "australia": "أستراليا",
-    "asia": "آسيا"
+    "asia": "آسيا",
+    "germany": "ألمانيا",
+    "france": "فرنسا",
+    "switzerland": "سويسرا",
+    "nordics": "دول الشمال"
   },
   "hero": {
     "title": "CA Agency",
@@ -502,6 +506,11 @@
     "korean-skincare-influencer-marketing": "تسويق مؤثري الجمال الكوري",
     "beauty-influencer-marketing-agency": "تسويق مؤثري الجمال",
     "skincare-influencer-marketing-agency": "تسويق مؤثري العناية بالبشرة",
-    "faq": "الأسئلة الشائعة"
+    "faq": "الأسئلة الشائعة",
+    "influencer-marketing-europe": "تسويق المؤثرين أوروبا",
+    "influencer-marketing-germany": "تسويق المؤثرين ألمانيا",
+    "influencer-marketing-france": "تسويق المؤثرين فرنسا",
+    "influencer-marketing-switzerland": "تسويق المؤثرين سويسرا",
+    "influencer-marketing-nordics": "تسويق المؤثرين دول الشمال"
   }
 }

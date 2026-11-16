@@ -16,15 +16,29 @@ export const locationPages = [
   { key: 'uk', title: 'Influencer Marketing Agency UK', path: '/influencer-marketing-uk' },
   { key: 'canada', title: 'Influencer Marketing Agency Canada', path: '/influencer-marketing-canada' },
   { key: 'australia', title: 'Influencer Marketing Agency Australia', path: '/influencer-marketing-australia' },
+  { key: 'europe', title: 'Influencer Marketing Agency Europe', path: '/influencer-marketing-europe' },
+  { key: 'germany', title: 'Influencer Marketing Agency Germany', path: '/influencer-marketing-germany' },
+  { key: 'france', title: 'Influencer Marketing Agency France', path: '/influencer-marketing-france' },
+  { key: 'switzerland', title: 'Influencer Marketing Agency Switzerland', path: '/influencer-marketing-switzerland' },
+  { key: 'nordics', title: 'Influencer Marketing Agency Nordics', path: '/influencer-marketing-nordics' },
 ] as const
 
 export type MarketLink = { href: string; label: string }
 
 // Country and region pages (not the beauty/skincare category pages), linked
 // from every location page's "Other markets" row so each one has internal links.
-const marketKeys = ['dubai', 'uae', 'saudiArabia', 'gcc', 'korea', 'asia', 'usa', 'uk', 'canada', 'australia'] as const
+const marketKeys = [
+  'dubai', 'uae', 'saudiArabia', 'gcc', 'korea', 'asia', 'usa', 'uk', 'canada', 'australia',
+  'europe', 'germany', 'france', 'switzerland', 'nordics',
+] as const
 
-export const marketLinks: MarketLink[] = marketKeys.map((key) => ({
-  href: locationPages.find((page) => page.key === key)!.path,
+/** The market pages with their `locations` message key, for translated link rows. */
+export const marketPages = marketKeys.map((key) => ({
+  key,
+  path: locationPages.find((page) => page.key === key)!.path,
+}))
+
+export const marketLinks: MarketLink[] = marketPages.map(({ key, path }) => ({
+  href: path,
   label: enMessages.locations[key],
 }))

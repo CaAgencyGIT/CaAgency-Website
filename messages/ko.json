@@ -97,7 +97,11 @@
     "uk": "영국",
     "canada": "캐나다",
     "australia": "호주",
-    "asia": "아시아"
+    "asia": "아시아",
+    "germany": "독일",
+    "france": "프랑스",
+    "switzerland": "스위스",
+    "nordics": "북유럽"
   },
   "hero": {
     "title": "CA Agency",
@@ -502,6 +506,11 @@
     "korean-skincare-influencer-marketing": "K-뷰티 인플루언서 마케팅",
     "beauty-influencer-marketing-agency": "뷰티 인플루언서 마케팅",
     "skincare-influencer-marketing-agency": "스킨케어 인플루언서 마케팅",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "influencer-marketing-europe": "인플루언서 마케팅 유럽",
+    "influencer-marketing-germany": "인플루언서 마케팅 독일",
+    "influencer-marketing-france": "인플루언서 마케팅 프랑스",
+    "influencer-marketing-switzerland": "인플루언서 마케팅 스위스",
+    "influencer-marketing-nordics": "인플루언서 마케팅 북유럽"
   }
 }
