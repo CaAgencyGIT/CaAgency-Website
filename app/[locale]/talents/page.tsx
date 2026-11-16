@@ -105,7 +105,7 @@ export default async function TalentsPage({ params }: Props) {
       firstName: space > 0 ? name.slice(0, space) : name,
       lastName: space > 0 ? name.slice(space + 1) : '',
       image: art?.src ?? talent.imageUrl,
-      alt: art?.alt ?? '',
+      alt: art?.alt ?? `${name}, CA Agency talent portrait`,
       socials,
     }
   }

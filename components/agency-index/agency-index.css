@@ -252,3 +252,6 @@ body:has(.agency-index) [data-back-to-top]{inset-inline-start:auto;inset-inline-
 .agency-index #talent-in-action,.agency-index #roster{scroll-margin-top:calc(var(--ai-header,100px) + 20px)}
 /* Phones in landscape: slimmer header so content isn't hidden under it. */
 @media(max-height:500px){body:has(.agency-index) .rd-header{height:64px}.agency-index{--ai-header:64px}}
+/* Focus ring on the campaign films sits above the video and poster. */
+.agency-index .campaign-card:focus-visible{outline:none}
+.agency-index .campaign-card:focus-visible::before{content:'';position:absolute;inset:0;border:2px solid #fff;border-radius:inherit;z-index:3;pointer-events:none}
