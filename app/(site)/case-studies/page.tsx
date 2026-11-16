@@ -7,10 +7,15 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import Stagger from '@/components/ui/motion/Stagger'
 import StaggerItem from '@/components/ui/motion/StaggerItem'
 import { currentCaseStudies } from '@/lib/data/redesign-media'
-import { caseStudySeoTitle } from '@/lib/data/case-studies'
+import Link from 'next/link'
+import { caseStudies, caseStudySeoTitle } from '@/lib/data/case-studies'
 import CaseStudyCard from '@/components/blocks/CaseStudyCard'
 
 const listed = currentCaseStudies()
+// Every other case study, as plain links under the grid, so each page is
+// reachable from this index and none is left without an internal link.
+const listedSlugs = new Set(listed.map((cs) => cs.slug))
+const archive = caseStudies.filter((cs) => !listedSlugs.has(cs.slug))
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
@@ -74,6 +79,28 @@ export default function CaseStudiesPage() {
           </Stagger>
         </div>
       </section>
+
+      {archive.length > 0 && (
+        <section className="bg-background-base px-section-x pb-sec-sm">
+          <nav aria-label="More case studies" className="max-w-container mx-auto border-t border-black/5 pt-10">
+            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:text-[24px]">
+              More Case Studies
+            </Heading>
+            <ul className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-x-8 gap-y-3">
+              {archive.map((cs) => (
+                <li key={cs.slug}>
+                  <Link
+                    href={`/case-studies/${cs.slug}`}
+                    className="font-work-sans text-[15px] leading-[1.5] text-foreground-body underline-offset-4 hover:text-foreground-primary hover:underline"
+                  >
+                    {cs.creatorName ? `${cs.brand} × ${cs.creatorName}` : cs.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="bg-background-base py-[80px] px-section-x border-t border-black/5">
