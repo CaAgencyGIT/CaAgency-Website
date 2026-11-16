@@ -19,6 +19,7 @@ import { jsonLdSafe, sanitizeTrustedHtml } from '@/lib/sanitize'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { blogPostingJsonLd } from '@/lib/seo/schema'
 import { blogFeedAlternate } from '@/lib/seo/rss'
+import { postLanguages, translatedPosts, translationLocales } from '@/lib/blog-translations'
 import {
   plainTextExcerpt,
   readingTimeMinutes,
@@ -78,7 +79,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   return {
     ...metadata,
-    alternates: { ...metadata.alternates, types: blogFeedAlternate },
+    alternates: {
+      ...metadata.alternates,
+      types: blogFeedAlternate,
+      // Guides that also exist in German or French.
+      ...(translationLocales(slug).length > 0 ? { languages: postLanguages(slug) } : {}),
+    },
     openGraph: {
       ...metadata.openGraph,
       type: 'article' as const,
@@ -143,6 +149,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>By {post.author}</span>
               <span>•</span>
               <span>{minutes} min read</span>
+              {translationLocales(slug).map((locale) => (
+                <Link key={locale} href={`/${locale}/blog/${slug}`} hrefLang={locale} lang={locale} className="underline underline-offset-4 hover:text-black">
+                  {translatedPosts[locale].labels.readInLanguage}
+                </Link>
+              ))}
               {post.categories.length > 0 && (
                 <>
                   <span>•</span>
