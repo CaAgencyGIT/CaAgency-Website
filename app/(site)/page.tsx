@@ -109,7 +109,7 @@ export default async function HomePage() {
                   },
                   {
                     region: 'Europe',
-                    href: '/influencer-marketing-uk',
+                    href: '/influencer-marketing-europe',
                     copy:
                       "Building meaningful connections between brands, creators and audiences across key European markets.",
                   },

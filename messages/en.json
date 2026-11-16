@@ -97,7 +97,11 @@
     "uk": "UK",
     "canada": "Canada",
     "australia": "Australia",
-    "asia": "Asia"
+    "asia": "Asia",
+    "germany": "Germany",
+    "france": "France",
+    "switzerland": "Switzerland",
+    "nordics": "Nordics"
   },
   "hero": {
     "title": "CA Agency",
@@ -502,6 +506,11 @@
     "korean-skincare-influencer-marketing": "K-Beauty Influencer Marketing",
     "beauty-influencer-marketing-agency": "Beauty Influencer Marketing",
     "skincare-influencer-marketing-agency": "Skincare Influencer Marketing",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "influencer-marketing-europe": "Influencer Marketing Europe",
+    "influencer-marketing-germany": "Influencer Marketing Germany",
+    "influencer-marketing-france": "Influencer Marketing France",
+    "influencer-marketing-switzerland": "Influencer Marketing Switzerland",
+    "influencer-marketing-nordics": "Influencer Marketing Nordics"
   }
 }

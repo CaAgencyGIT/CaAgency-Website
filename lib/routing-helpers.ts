@@ -58,6 +58,8 @@ export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>
     '/influencer-marketing-saudi-arabia',
     '/influencer-marketing-gcc',
   ],
+  de: ['/influencer-marketing-germany', '/influencer-marketing-switzerland'],
+  fr: ['/influencer-marketing-france'],
 }
 
 export function isEnglishOnlyPath(pathname: string): boolean {
@@ -66,6 +68,19 @@ export function isEnglishOnlyPath(pathname: string): boolean {
 
 export function hasLocalizedLocationPage(pathname: string, locale: string): boolean {
   return LOCALIZED_LOCATION_PATHS[locale]?.includes(pathname) ?? false
+}
+
+/**
+ * hreflang map for a location page: English (also x-default) plus every
+ * locale that has a translated version of it.
+ */
+export function locationPageLanguages(pathname: string, baseUrl = 'https://caagency.com'): Record<string, string> {
+  const english = `${baseUrl}${pathname}`
+  const languages: Record<string, string> = { 'x-default': english, en: english }
+  for (const locale of Object.keys(LOCALIZED_LOCATION_PATHS)) {
+    if (hasLocalizedLocationPage(pathname, locale)) languages[locale] = `${baseUrl}/${locale}${pathname}`
+  }
+  return languages
 }
 
 export function isPublicAsset(pathname: string): boolean {

@@ -16,7 +16,10 @@ const translatedSegments = new Set([
   'influencer-marketing-saudi-arabia', 'influencer-marketing-gcc',
   'influencer-marketing-korea', 'influencer-marketing-usa',
   'influencer-marketing-uk', 'influencer-marketing-canada',
-  'influencer-marketing-australia', 'korean-skincare-influencer-marketing',
+  'influencer-marketing-australia', 'influencer-marketing-europe',
+  'influencer-marketing-germany', 'influencer-marketing-france',
+  'influencer-marketing-switzerland', 'influencer-marketing-nordics',
+  'korean-skincare-influencer-marketing',
   'beauty-influencer-marketing-agency', 'skincare-influencer-marketing-agency',
 ])
 

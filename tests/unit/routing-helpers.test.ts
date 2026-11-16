@@ -78,6 +78,12 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/de/contact')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ar/influencer-marketing-dubai')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ar/influencer-marketing-gcc')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-germany')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-switzerland')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-france')).toBeNull()
+    // A market page without a translation in that language still goes to English.
+    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-germany')).toBe('/influencer-marketing-germany')
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-nordics')).toBe('/influencer-marketing-nordics')
     // services *listing* is localized; only the /services/<slug> detail is (site)-only
     expect(getLocalizedSiteRouteRedirect('/ar/services')).toBeNull()
     // talents *listing* is localized; only the /talents/<slug> detail is (site)-only
