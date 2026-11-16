@@ -9,6 +9,8 @@ export const post: TranslatedPost = {
   excerpt:
     'So wählen Sie 2026 die richtige Influencer-Marketing-Agentur aus: eine praktische Checkliste zu Creator-Auswahl, Preisen, Reporting und Warnsignalen.',
   categories: ['Strategie', 'Ratgeber'],
+  publishedAt: '2026-11-17',
+  updatedAt: '2026-11-17',
   content: `<p>Eine Influencer-Marketing-Agentur zu beauftragen ist eine weitreichende Entscheidung. Richtig gemacht, vergrößert sie Ihre Reichweite, schafft echte Markenbindung und bringt messbaren Umsatz. Falsch gemacht, verbrennt sie Budget für Kennzahlen, die gut aussehen, aber der Geschäftsführung nichts beweisen.</p>
 
 <p>Dieser Ratgeber richtet sich an Marken- und Marketingverantwortliche, die gerade konkret Agenturen vergleichen. Er zeigt, worauf Sie achten sollten, welche Fragen Sie stellen sollten und woran Sie Agenturen erkennen, die Ihre Zeit verschwenden.</p>

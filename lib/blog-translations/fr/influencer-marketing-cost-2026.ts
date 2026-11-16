@@ -9,6 +9,8 @@ export const post: TranslatedPost = {
   excerpt:
     "Ce que coûte le marketing d'influence en 2026 : des repères par taille de créateur, plateforme et type de campagne, et des conseils de budget.",
   categories: ['Stratégie', 'Tarifs'],
+  publishedAt: '2026-11-17',
+  updatedAt: '2026-11-17',
   content: `<p>Le marketing d'influence est désormais une ligne à part entière dans la plupart des budgets de marque, mais ses tarifs déroutent encore beaucoup d'équipes marketing. L'écart est réellement large : un nano-créateur sur TikTok peut demander 150 dollars pour une publication sponsorisée, alors qu'une célébrité suivie par plus de 10 millions de personnes peut exiger 500 000 dollars ou plus pour un seul contenu. Aucun de ces chiffres n'est faux. Ce sont des outils différents pour des objectifs différents.</p>
 
 <p>Ce guide passe en revue les principaux facteurs qui déterminent le coût du marketing d'influence en 2026, afin que vous puissiez établir un budget réaliste avant de discuter avec des créateurs ou des agences. Tous les montants sont des repères internationaux exprimés en dollars américains. Les tarifs pratiqués en France peuvent s'en écarter selon la niche et la demande.</p>

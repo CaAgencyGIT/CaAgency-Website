@@ -6,8 +6,10 @@ import { post as frCost } from '@/lib/blog-translations/fr/influencer-marketing-
 
 // Blog guides that also exist in German or French, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
-// (like the translated market pages), not in the Post table; dates, author and
-// cover image come from the English post. Keep LOCALIZED_BLOG_PATHS in
+// (like the translated market pages), not in the Post table, and the pages
+// never read the database: the deploy reuses the CI build and rejects it when
+// page generation against production data changes the build output, which a
+// page that exists only when a Post row exists would do. Keep LOCALIZED_BLOG_PATHS in
 // lib/routing-helpers.ts in step (tests/unit/blog-translations.test.ts checks).
 
 export const translatedPosts: Record<string, { labels: TranslatedPostLabels; posts: TranslatedPost[] }> = {

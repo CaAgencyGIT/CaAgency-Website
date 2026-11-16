@@ -1,11 +1,9 @@
 import '@/app/public-utilities.css'
-import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
-import { prisma } from '@/lib/prisma'
 import Heading from '@/components/ui/Heading'
 import Text from '@/components/ui/Text'
 import Button from '@/components/ui/Button'
@@ -19,8 +17,8 @@ import { getTranslatedPost, postLanguages, translatedPosts } from '@/lib/blog-tr
 import type { Locale } from '@/i18n/config'
 
 // German and French versions of selected blog guides (lib/blog-translations).
-// The text is in code; dates, author and cover come from the English post, and
-// the page 404s while that post is not live.
+// Everything comes from code, with no database read, so the page builds the
+// same in CI and in production (see the note in lib/blog-translations/index.ts).
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>
@@ -29,9 +27,7 @@ interface PageProps {
 const baseUrl = 'https://caagency.com'
 const DEFAULT_IMAGE = '/images/site/og-cover-v2.jpg'
 
-// DB errors propagate on purpose: under ISR a failed regeneration keeps the
-// previous page, whereas swallowing to null would cache a 404 for an hour.
-const getEnglishPost = cache((slug: string) => prisma.post.findUnique({ where: { slug } }))
+const AUTHOR = 'CA Agency'
 
 export const revalidate = 3600
 
@@ -41,15 +37,10 @@ export function generateStaticParams() {
   )
 }
 
-function isLive(post: { status: string; publishedAt: Date | null }) {
-  return post.status === 'published' && !(post.publishedAt && post.publishedAt > new Date())
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params
   const translation = getTranslatedPost(locale, slug)
-  const english = translation ? await getEnglishPost(slug) : null
-  if (!translation || !english || !isLive(english)) return {}
+  if (!translation) return {}
 
   const metadata = buildPageMetadata({
     title: translation.seoTitle ?? translation.title,
@@ -58,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     locale,
     localized: false,
     type: 'article',
-    image: resolveFeaturedImage(english) ?? DEFAULT_IMAGE,
+    image: resolveFeaturedImage({ slug }) ?? DEFAULT_IMAGE,
     imageAlt: translation.title,
   })
 
@@ -68,9 +59,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       ...metadata.openGraph,
       type: 'article' as const,
-      publishedTime: (english.publishedAt ?? english.createdAt).toISOString(),
-      modifiedTime: english.updatedAt.toISOString(),
-      authors: [english.author],
+      publishedTime: new Date(translation.publishedAt).toISOString(),
+      modifiedTime: new Date(translation.updatedAt).toISOString(),
+      authors: [AUTHOR],
     },
   }
 }
@@ -81,19 +72,20 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
   if (!translation) notFound()
   setRequestLocale(locale)
 
-  const english = await getEnglishPost(slug)
-  if (!english || !isLive(english)) notFound()
-
   const { labels } = translatedPosts[locale]
   const { processed: articleHtml, toc } = withHeadingAnchors(sanitizeTrustedHtml(translation.content))
   const minutes = readingTimeMinutes(translation.content)
-  const coverImage = resolveFeaturedImage(english)
+  const coverImage = resolveFeaturedImage({ slug })
   const url = `${baseUrl}/${locale}/blog/${slug}`
-  const published = english.publishedAt ?? english.createdAt
+  const published = new Date(translation.publishedAt)
 
   const articleSchema = {
     ...blogPostingJsonLd({
-      ...english,
+      slug,
+      author: AUTHOR,
+      publishedAt: published,
+      createdAt: published,
+      updatedAt: new Date(translation.updatedAt),
       title: translation.title,
       description: translation.excerpt,
       image: coverImage ?? DEFAULT_IMAGE,
@@ -126,7 +118,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
             </Text>
             <div className="flex flex-wrap items-center gap-4 text-black/60 text-sm">
               <span>
-                {labels.by} {english.author}
+                {labels.by} {AUTHOR}
               </span>
               <span>•</span>
               <span>
@@ -152,11 +144,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
         <section className="bg-background-base px-section-x pb-[40px]">
           <div className="max-w-container mx-auto">
             <div className="hero-rise-media max-w-[1000px] mx-auto">
-              <div
-                className={`relative w-full rounded-card overflow-hidden ring-1 ring-black/5 shadow-e3 ${
-                  english.featuredImage ? 'aspect-video' : 'aspect-[1200/630]'
-                }`}
-              >
+              <div className="relative w-full rounded-card overflow-hidden ring-1 ring-black/5 shadow-e3 aspect-[1200/630]">
                 <Image src={coverImage} alt={translation.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1000px" preload />
               </div>
             </div>
@@ -196,7 +184,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
                 <p className="font-jost text-[13px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">
                   {labels.writtenBy}
                 </p>
-                <p className="font-anegra text-[18px] font-semibold text-foreground-primary mb-2">{english.author}</p>
+                <p className="font-anegra text-[18px] font-semibold text-foreground-primary mb-2">{AUTHOR}</p>
                 <p className="font-work-sans text-[14px] leading-[1.7] text-foreground-body">
                   {labels.authorBio}{' '}
                   <Link
