@@ -10,6 +10,7 @@ import { locationPageLanguages } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
+import { postLanguages, translationLocales } from '@/lib/blog-translations'
 
 // Cache the sitemap for 1 hour so crawlers don't hammer the DB on every fetch.
 // Prisma calls are compatible with ISR; force-dynamic is not needed here.
@@ -189,14 +190,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: absoluteImage(talentCoverSrc(talent.slug, talent.imageUrl)),
       })
     ),
-    ...posts.map((post) =>
-      createDefaultOnlyEntry(`blog/${post.slug}`, {
+    ...posts.flatMap((post) => {
+      const entry = createDefaultOnlyEntry(`blog/${post.slug}`, {
         lastModified: post.updatedAt,
         changeFrequency: 'weekly',
         priority: 0.6,
         images: absoluteImage(resolveFeaturedImage(post)),
       })
-    ),
+      // German and French versions of a guide (lib/blog-translations), with hreflang.
+      const translations = translationLocales(post.slug)
+      if (translations.length === 0) return [entry]
+      const alternates = { languages: postLanguages(post.slug, baseUrl) }
+      return [
+        { ...entry, alternates },
+        ...translations.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/blog/${post.slug}`, alternates })),
+      ]
+    }),
   ]
 
   return [...localizedEntries, ...defaultOnlyEntries]

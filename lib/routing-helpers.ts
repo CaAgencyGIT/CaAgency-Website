@@ -62,12 +62,24 @@ export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>
   fr: ['/influencer-marketing-france'],
 }
 
+// English-only blog posts that also have a translated app/[locale]/blog/[slug]
+// version (lib/blog-translations).
+export const LOCALIZED_BLOG_PATHS: Partial<Record<string, readonly string[]>> = {
+  de: ['/blog/how-to-choose-influencer-marketing-agency', '/blog/influencer-marketing-cost-2026'],
+  fr: ['/blog/how-to-choose-influencer-marketing-agency', '/blog/influencer-marketing-cost-2026'],
+}
+
 export function isEnglishOnlyPath(pathname: string): boolean {
   return ENGLISH_ONLY_ROUTE.test(pathname)
 }
 
 export function hasLocalizedLocationPage(pathname: string, locale: string): boolean {
   return LOCALIZED_LOCATION_PATHS[locale]?.includes(pathname) ?? false
+}
+
+/** True when an otherwise English-only page (market page or blog post) exists in this locale. */
+export function hasTranslatedPage(pathname: string, locale: string): boolean {
+  return hasLocalizedLocationPage(pathname, locale) || (LOCALIZED_BLOG_PATHS[locale]?.includes(pathname) ?? false)
 }
 
 /**
@@ -111,5 +123,5 @@ export function getLocalizedSiteRouteRedirect(pathname: string): string | null {
   if (!LOCALIZED_SITE_ROUTE.test(pathname)) return null
   const locale = pathname.match(LOCALE_PREFIX)?.[1] ?? ''
   const strippedPath = pathname.replace(LOCALE_PREFIX, '')
-  return hasLocalizedLocationPage(strippedPath, locale) ? null : strippedPath
+  return hasTranslatedPage(strippedPath, locale) ? null : strippedPath
 }

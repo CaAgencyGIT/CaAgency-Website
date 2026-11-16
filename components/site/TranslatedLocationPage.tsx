@@ -5,6 +5,7 @@ import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { getFeaturedTalents } from '@/lib/site-content/public'
 import { translatedLocationPages, type TranslatedLocationLocale } from '@/lib/site-content/location-pages-translated'
 import { marketPages } from '@/lib/data/locations'
+import { translatedGuides, translatedPosts } from '@/lib/blog-translations'
 import { hasLocalizedLocationPage, locationPageLanguages } from '@/lib/routing-helpers'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { jsonLdSafe } from '@/lib/sanitize'
@@ -79,6 +80,11 @@ export default async function TranslatedLocationPage({ market, locale }: { marke
         locale={locale as TranslatedLocationLocale}
         path={page.path}
         markets={markets}
+        translatedGuides={{
+          eyebrow: translatedPosts[locale]?.labels.guidesEyebrow ?? '',
+          title: translatedPosts[locale]?.labels.guidesTitle ?? '',
+          items: translatedGuides(locale),
+        }}
       />
     </>
   )
