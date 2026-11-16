@@ -3,6 +3,7 @@ import { talentCoverSrc } from '@/lib/data/talent-cards'
 import { prisma } from '@/lib/prisma'
 import { routing } from '@/i18n/routing'
 import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
+import caseStudyDates from '@/lib/data/case-study-dates.json'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
 import { hasLocalizedLocationPage } from '@/lib/routing-helpers'
@@ -109,6 +110,13 @@ async function getPublishedPosts() {
 // The five service subpages shipped with the July 2026 round-3 revisions.
 const SERVICES_LAST_MODIFIED = new Date('2026-07-09')
 
+// Day each case study last changed, from git history (scripts/build-case-study-dates.py).
+// A study without a date gets no <lastmod> rather than a guessed one.
+function caseStudyLastModified(slug: string): Date | undefined {
+  const day = (caseStudyDates as Record<string, string>)[slug]
+  return day ? new Date(day) : undefined
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [talents, posts] = await Promise.all([getTalentSlugs(), getPublishedPosts()])
 
@@ -162,6 +170,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
     ...caseStudies.map((cs) =>
       createDefaultOnlyEntry(`case-studies/${cs.slug}`, {
+        lastModified: caseStudyLastModified(cs.slug),
         changeFrequency: 'monthly',
         priority: 0.7,
         images: absoluteImage(caseStudyStill(cs)),
