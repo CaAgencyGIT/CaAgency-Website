@@ -67,9 +67,9 @@ async function getTalents() {
 // The three films of the approved Agency Index (Nov 2026), in order. The files
 // are the site's existing encodes, byte-identical to the supplied handoff
 // assets (kylie-cosmetics.mp4, melly-fenty.mp4, dariia-valentino.mp4 and
-// their posters). Kylie has no creator credit in the verified data.
+// their posters). The Kylie film is Melani Seiffert's (confirmed Nov 2026).
 const CAMPAIGNS = [
-  { brand: 'Kylie Cosmetics', talent: '', title: 'Kylie Cosmetics Campaign', video: '/videos/work/kylie-cosmetics-web-v1.mp4', poster: '/images/video-thumbs/kylie-cosmetics-web-v1.jpg' },
+  { brand: 'Kylie Cosmetics', talent: 'Melani Seiffert', title: 'Melani Seiffert — Kylie Cosmetics', video: '/videos/work/kylie-cosmetics-web-v1.mp4', poster: '/images/video-thumbs/kylie-cosmetics-web-v1.jpg' },
   { brand: 'Fenty Beauty', talent: 'Melly Sanchez', title: 'Melly Sanchez — Fenty Beauty', video: '/videos/redesign/rd-melly-fenty-original-web-v3.mp4', poster: '/images/video-thumbs/rd-melly-fenty-original-web-v3.jpg' },
   { brand: 'Valentino Beauty', talent: 'Dariia Bordun', title: 'Dariia Bordun — Valentino Beauty', video: '/videos/redesign/rd-dariia-valentino-web-v3.mp4', poster: '/images/video-thumbs/rd-dariia-valentino-web-v3.jpg' },
 ]
