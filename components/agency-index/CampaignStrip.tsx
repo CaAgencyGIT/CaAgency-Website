@@ -20,14 +20,29 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     if (!root) return
     const videos = Array.from(root.querySelectorAll('video'))
     const inView = new WeakMap<HTMLVideoElement, boolean>()
-    // The film is attached only once its card is on screen, so the three
-    // files are not downloaded on first paint (with autoplay, browsers would
-    // otherwise buffer them straight away). The sharp poster covers the start.
+    // Loading (Nov 2026): the films are not downloaded on first paint. Once
+    // the page has finished loading (and the browser is idle), a film within
+    // about one screen of the viewport gets its src with preload="auto", so
+    // it is buffered before the user reaches the strip. A film that is
+    // actually on screen is attached at once, load event or not. Attaching
+    // never starts playback by itself: play() runs only from sync(), while the
+    // film is on screen and the tab is visible. Save-Data skips the
+    // look-ahead. The poster (first frame of the same encode) covers the start.
+    const nearView = new WeakMap<HTMLVideoElement, boolean>()
+    let lookAhead = false
     const attach = (video: HTMLVideoElement) => {
       if (!video.getAttribute('src') && video.dataset.src) {
+        // Playback is driven by sync(); without this, autoplay would start a
+        // film that was attached ahead of time while it is still off screen.
+        if (!inView.get(video)) video.autoplay = false
+        video.preload = 'auto'
         video.src = video.dataset.src
         video.load()
       }
+    }
+    const attachNear = () => {
+      if (!lookAhead) return
+      for (const video of videos) if (nearView.get(video)) attach(video)
     }
     const sync = () => {
       for (const video of videos) {
@@ -55,6 +70,29 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
       { threshold: 0.05 }
     )
     videos.forEach((video) => observer.observe(video))
+    const nearObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) nearView.set(entry.target as HTMLVideoElement, entry.isIntersecting)
+        attachNear()
+      },
+      { rootMargin: '100% 0px' }
+    )
+    videos.forEach((video) => nearObserver.observe(video))
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true
+    let idleId: number | undefined
+    let timeoutId: ReturnType<typeof setTimeout> | undefined
+    const startLookAhead = () => {
+      lookAhead = true
+      attachNear()
+    }
+    const onLoad = () => {
+      if (typeof window.requestIdleCallback === 'function') idleId = window.requestIdleCallback(startLookAhead, { timeout: 2000 })
+      else timeoutId = setTimeout(startLookAhead, 200)
+    }
+    if (!saveData) {
+      if (document.readyState === 'complete') onLoad()
+      else window.addEventListener('load', onLoad, { once: true })
+    }
     const onInteract = () => sync()
     document.addEventListener('visibilitychange', sync)
     window.addEventListener('pageshow', sync)
@@ -63,6 +101,10 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     window.addEventListener('orientationchange', sync)
     return () => {
       observer.disconnect()
+      nearObserver.disconnect()
+      window.removeEventListener('load', onLoad)
+      if (idleId !== undefined) window.cancelIdleCallback(idleId)
+      if (timeoutId !== undefined) clearTimeout(timeoutId)
       videos.forEach((video) => video.removeEventListener('canplay', sync))
       document.removeEventListener('visibilitychange', sync)
       window.removeEventListener('pageshow', sync)
@@ -76,8 +118,11 @@ export default function CampaignStrip({ campaigns }: { campaigns: Campaign[] }) 
     <div className="campaign-strip" id="campaigns" ref={ref}>
       {campaigns.map((c) => (
         <a key={c.video} className="campaign-card" href={c.href} aria-label={c.aria}>
+          {/* Poster: the film's own first frame (540x960, ~45-70KB). Eager so it is
+              decoded long before the strip is reached; low priority so it
+              never competes with the first-screen portraits. */}
           {/* eslint-disable-next-line @next/next/no-img-element -- poster shown while the film loads */}
-          <img className="campaign-poster" src={c.poster} alt="" aria-hidden="true" decoding="async" />
+          <img className="campaign-poster" src={c.poster} alt="" aria-hidden="true" width={540} height={960} loading="eager" fetchPriority="low" />
           <video
             data-src={c.video}
             poster={c.poster}
