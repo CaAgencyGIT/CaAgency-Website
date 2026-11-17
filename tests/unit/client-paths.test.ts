@@ -10,7 +10,7 @@ describe('client locale paths', () => {
   })
 
   it('leaves English-only routes unprefixed to avoid redirect hops', () => {
-    expect(localizeHref('/blog', 'ko')).toBe('/blog')
+    expect(localizeHref('/blog', 'zh')).toBe('/blog')
     expect(localizeHref('/case-studies/sephora', 'de')).toBe('/case-studies/sephora')
     expect(localizeHref('/influencer-marketing-usa', 'es')).toBe('/es/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-usa', 'zh')).toBe('/influencer-marketing-usa')
