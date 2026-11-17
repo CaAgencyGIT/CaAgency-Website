@@ -116,6 +116,7 @@ const TRANSLATED_BLOG_PATHS = [
 export const LOCALIZED_BLOG_PATHS: Partial<Record<string, readonly string[]>> = {
   de: TRANSLATED_BLOG_PATHS,
   fr: TRANSLATED_BLOG_PATHS,
+  es: TRANSLATED_BLOG_PATHS,
 }
 
 export function isEnglishOnlyPath(pathname: string): boolean {

@@ -49,8 +49,33 @@ import { post as frInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-trans
 import { post as frFindSkincareInfluencersUsa } from '@/lib/blog-translations/fr/find-skincare-influencers-usa'
 import { post as frHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/fr/how-to-run-influencer-marketing-campaign'
 import { post as frInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/fr/influencer-marketing-agency-vs-in-house'
+import { post as esHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/es/how-to-choose-influencer-marketing-agency'
+import { post as esInfluencerMarketingCost2026 } from '@/lib/blog-translations/es/influencer-marketing-cost-2026'
+import { post as esTiktokShopBeautyBrands } from '@/lib/blog-translations/es/tiktok-shop-beauty-brands'
+import { post as esInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/es/influencer-marketing-for-health-wellness'
+import { post as esInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/es/influencer-marketing-for-fashion-brands'
+import { post as esInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/es/influencer-marketing-for-beauty-brands'
+import { post as esKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/es/k-beauty-influencer-marketing-guide'
+import { post as esInfluencerMarketingGuide } from '@/lib/blog-translations/es/influencer-marketing-guide'
+import { post as esInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/es/influencer-whitelisting-spark-ads-guide'
+import { post as esTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/es/tiktok-influencer-marketing-guide'
+import { post as esHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/es/how-to-measure-influencer-marketing-roi'
+import { post as esYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/es/youtube-influencer-marketing-beauty-brands'
+import { post as esMicroVsMacroInfluencers } from '@/lib/blog-translations/es/micro-vs-macro-influencers'
+import { post as esInstagramReelsBeautyBrands } from '@/lib/blog-translations/es/instagram-reels-beauty-brands'
+import { post as esTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/es/tiktok-shop-fashion-wellness-brands'
+import { post as esInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/es/instagram-influencer-marketing-2026'
+import { post as esInfluencerMarketingTrends2026 } from '@/lib/blog-translations/es/influencer-marketing-trends-2026'
+import { post as esUgcVsInfluencerMarketing } from '@/lib/blog-translations/es/ugc-vs-influencer-marketing'
+import { post as esHowToSpotFakeInfluencers } from '@/lib/blog-translations/es/how-to-spot-fake-influencers'
+import { post as esFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/es/ftc-disclosure-guidelines-influencer-marketing'
+import { post as esSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/es/saudi-arabia-influencer-marketing-guide'
+import { post as esInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/es/influencer-marketing-dubai-uae-cost-guide'
+import { post as esFindSkincareInfluencersUsa } from '@/lib/blog-translations/es/find-skincare-influencers-usa'
+import { post as esHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/es/how-to-run-influencer-marketing-campaign'
+import { post as esInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/es/influencer-marketing-agency-vs-in-house'
 
-// Blog guides that also exist in German or French, served at
+// Blog guides that also exist in German, French or Spanish, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
 // (like the translated market pages), not in the Post table, and the pages
 // never read the database: the deploy reuses the CI build and rejects it when
@@ -163,6 +188,59 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       frFindSkincareInfluencersUsa,
       frHowToRunInfluencerMarketingCampaign,
       frInfluencerMarketingAgencyVsInHouse,
+    ],
+  },
+  es: {
+    labels: {
+      dateLocale: 'es-ES',
+      by: 'Por',
+      minRead: 'min de lectura',
+      toc: 'En este artículo',
+      writtenBy: 'Escrito por',
+      authorBio:
+        'El equipo editorial de CA Agency se apoya en más de 3.000 campañas de influencers realizadas para marcas globales en Instagram, TikTok y YouTube, con una fuerte especialización en belleza y cuidado de la piel coreano (K-beauty).',
+      workWithUs: 'Trabaja con nosotros',
+      ctaTitle: '¿Listo para trabajar con nosotros?',
+      ctaText: 'Creemos una campaña de influencers que dé resultados reales a tu marca.',
+      ctaButton: 'Empezar',
+      readInLanguage: 'Leer esta guía en español',
+      guidesEyebrow: 'Guías',
+      guidesTitle: 'Guías de marketing de influencers',
+      indexTitle: 'Blog de marketing de influencers: guías | CA Agency',
+      indexDescription:
+        'Guías de marketing de influencers en español: elección de agencia, costes, plataformas, medición y sectores, con la experiencia de más de 3.000 campañas.',
+      indexHeading: 'Blog de marketing de influencers',
+      indexIntro: 'Guías, estrategias y experiencia práctica de CA Agency, a partir de más de 3.000 campañas de influencers.',
+      allGuides: 'Todas las guías',
+      englishBlog: 'Ver el blog en inglés',
+      indexInLanguage: 'Guías en español',
+    },
+    posts: [
+      esHowToChooseInfluencerMarketingAgency,
+      esInfluencerMarketingCost2026,
+      esTiktokShopBeautyBrands,
+      esInfluencerMarketingForHealthWellness,
+      esInfluencerMarketingForFashionBrands,
+      esInfluencerMarketingForBeautyBrands,
+      esKBeautyInfluencerMarketingGuide,
+      esInfluencerMarketingGuide,
+      esInfluencerWhitelistingSparkAdsGuide,
+      esTiktokInfluencerMarketingGuide,
+      esHowToMeasureInfluencerMarketingRoi,
+      esYoutubeInfluencerMarketingBeautyBrands,
+      esMicroVsMacroInfluencers,
+      esInstagramReelsBeautyBrands,
+      esTiktokShopFashionWellnessBrands,
+      esInstagramInfluencerMarketing2026,
+      esInfluencerMarketingTrends2026,
+      esUgcVsInfluencerMarketing,
+      esHowToSpotFakeInfluencers,
+      esFtcDisclosureGuidelinesInfluencerMarketing,
+      esSaudiArabiaInfluencerMarketingGuide,
+      esInfluencerMarketingDubaiUaeCostGuide,
+      esFindSkincareInfluencersUsa,
+      esHowToRunInfluencerMarketingCampaign,
+      esInfluencerMarketingAgencyVsInHouse,
     ],
   },
 }
