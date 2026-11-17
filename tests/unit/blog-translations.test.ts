@@ -21,6 +21,7 @@ describe('translated blog guides', () => {
     expect(localizeHref('/blog/influencer-marketing-cost-2026', 'de')).toBe('/de/blog/influencer-marketing-cost-2026')
     // The blog index exists in German and French; other languages go to the English one.
     expect(localizeHref('/blog', 'de')).toBe('/de/blog')
+    expect(localizeHref('/blog', 'es')).toBe('/es/blog')
     expect(localizeHref('/blog', 'ko')).toBe('/blog')
     expect(getLocalizedSiteRouteRedirect('/fr/blog')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ko/blog')).toBe('/blog')
@@ -29,19 +30,21 @@ describe('translated blog guides', () => {
       en: 'https://caagency.com/blog',
       de: 'https://caagency.com/de/blog',
       fr: 'https://caagency.com/fr/blog',
+      es: 'https://caagency.com/es/blog',
     })
   })
 
   it('builds hreflang for a translated post', () => {
-    expect(translationLocales('influencer-marketing-cost-2026')).toEqual(['de', 'fr'])
+    expect(translationLocales('influencer-marketing-cost-2026')).toEqual(['de', 'fr', 'es'])
     expect(postLanguages('influencer-marketing-cost-2026')).toEqual({
       'x-default': 'https://caagency.com/blog/influencer-marketing-cost-2026',
       en: 'https://caagency.com/blog/influencer-marketing-cost-2026',
       de: 'https://caagency.com/de/blog/influencer-marketing-cost-2026',
       fr: 'https://caagency.com/fr/blog/influencer-marketing-cost-2026',
+      es: 'https://caagency.com/es/blog/influencer-marketing-cost-2026',
     })
     expect(translationLocales('a-post-without-a-translation')).toEqual([])
-    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([25, 25])
+    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([25, 25, 25])
   })
 
   it('gives every translation search-ready metadata and links inside its own language', () => {
