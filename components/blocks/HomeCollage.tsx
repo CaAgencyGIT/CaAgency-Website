@@ -4,6 +4,7 @@ import { preload } from 'react-dom'
 import { blurProps } from '@/lib/media/blur'
 import desktopImages from '@/lib/media/collage-desktop.json'
 import DeferredCollageImage from './DeferredCollageImage'
+import { localizeHref } from '@/lib/i18n/client-paths'
 
 export interface HomeCollageTile {
   /** Grid area in the desktop mosaic (see .home-collage in globals.css). */
@@ -45,7 +46,9 @@ const PHOTO_OBSERVER_SCRIPT = `(()=>{
   })
 })()`
 
-export default function HomeCollage({ tiles, swipe = false, priority = false }: {
+export default function HomeCollage({ tiles, swipe = false, priority = false, locale = 'en' }: {
+  /** Language of the page; tiles link to the talent profile in that language. */
+  locale?: string
   tiles: HomeCollageTile[]
   swipe?: boolean
   /** Enable early loading only when the collage is in the page's hero. */
@@ -104,7 +107,7 @@ export default function HomeCollage({ tiles, swipe = false, priority = false }: 
             desktopSource={{ srcSet: desktop.srcSet, sizes: desktop.sizes }}
           />}
           {tile.href && (
-            <Link href={tile.href} prefetch={false} className="home-collage-link">
+            <Link href={localizeHref(tile.href, locale)} prefetch={false} className="home-collage-link">
               <span className="sr-only">{tile.name}</span>
             </Link>
           )}

@@ -6,6 +6,7 @@ export function revalidateTalentsPages() {
   revalidatePath('/talents')
   // Individual talent profile pages (ISR) so edits propagate immediately.
   revalidatePath('/talents/[slug]', 'page')
+  revalidatePath('/[locale]/talents/[slug]', 'page')
   // Case studies link their creator's talent page.
   revalidatePath('/case-studies/[slug]', 'page')
   revalidatePath('/[locale]/case-studies/[slug]', 'page')

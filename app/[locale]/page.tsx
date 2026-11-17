@@ -80,7 +80,7 @@ export default async function HomePage({ params }: Props) {
         primaryCta={{ label: tCommon('enquirePartnerships'), href: '/contact' }}
         secondaryCta={{ label: tCommon('viewOurWork'), href: '/work' }}
         carouselImages={carouselImages.length > 0 ? carouselImages : undefined}
-        collageTiles={homeCollageTiles}
+        collageTiles={homeCollageTiles.map((tile) => (tile.href ? { ...tile, href: localizeHref(tile.href, locale) } : tile))}
       />
 
       {/* Stats Section */}
@@ -127,7 +127,7 @@ export default async function HomePage({ params }: Props) {
           <ScrollReveal delay={0} yOffset={20}>
             <SectionHeading eyebrow={t('eyebrowTalents')} title={t('meetTheTalents')} className="mb-12" />
           </ScrollReveal>
-          <ScrollReveal yOffset={0} className="reveal-media"><TalentGrid talents={await getHomeSlideshowTalents(homeTalentSlugs)} columns={6} cardArt mobileLayout="carousel" slideshow /></ScrollReveal>
+          <ScrollReveal yOffset={0} className="reveal-media"><TalentGrid talents={await getHomeSlideshowTalents(homeTalentSlugs)} columns={6} locale={locale} cardArt mobileLayout="carousel" slideshow /></ScrollReveal>
           <ScrollReveal delay={0.2} yOffset={20}>
             <div className="text-center mt-12">
               <Text color="dark" size="base" className="max-w-[800px] mx-auto mb-8 text-[16px] leading-[28px]">

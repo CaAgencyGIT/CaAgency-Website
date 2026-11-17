@@ -124,6 +124,7 @@ export default async function TalentsPage({ params }: Props) {
       key={talent.slug}
       talent={talent}
       eager={index < 6}
+      locale={locale}
       sizes={SIZES}
       profileAria={t('profileAria', { name: talent.name })}
       socialAria={(platform) => t('socialAria', { name: talent.name, platform: platformName[platform] ?? platform })}
