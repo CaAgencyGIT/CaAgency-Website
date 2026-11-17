@@ -124,8 +124,33 @@ import { post as koInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-trans
 import { post as koFindSkincareInfluencersUsa } from '@/lib/blog-translations/ko/find-skincare-influencers-usa'
 import { post as koHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/ko/how-to-run-influencer-marketing-campaign'
 import { post as koInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/ko/influencer-marketing-agency-vs-in-house'
+import { post as zhHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/zh/how-to-choose-influencer-marketing-agency'
+import { post as zhInfluencerMarketingCost2026 } from '@/lib/blog-translations/zh/influencer-marketing-cost-2026'
+import { post as zhTiktokShopBeautyBrands } from '@/lib/blog-translations/zh/tiktok-shop-beauty-brands'
+import { post as zhInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/zh/influencer-marketing-for-health-wellness'
+import { post as zhInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/zh/influencer-marketing-for-fashion-brands'
+import { post as zhInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/zh/influencer-marketing-for-beauty-brands'
+import { post as zhKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/zh/k-beauty-influencer-marketing-guide'
+import { post as zhInfluencerMarketingGuide } from '@/lib/blog-translations/zh/influencer-marketing-guide'
+import { post as zhInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/zh/influencer-whitelisting-spark-ads-guide'
+import { post as zhTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/zh/tiktok-influencer-marketing-guide'
+import { post as zhHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/zh/how-to-measure-influencer-marketing-roi'
+import { post as zhYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/zh/youtube-influencer-marketing-beauty-brands'
+import { post as zhMicroVsMacroInfluencers } from '@/lib/blog-translations/zh/micro-vs-macro-influencers'
+import { post as zhInstagramReelsBeautyBrands } from '@/lib/blog-translations/zh/instagram-reels-beauty-brands'
+import { post as zhTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/zh/tiktok-shop-fashion-wellness-brands'
+import { post as zhInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/zh/instagram-influencer-marketing-2026'
+import { post as zhInfluencerMarketingTrends2026 } from '@/lib/blog-translations/zh/influencer-marketing-trends-2026'
+import { post as zhUgcVsInfluencerMarketing } from '@/lib/blog-translations/zh/ugc-vs-influencer-marketing'
+import { post as zhHowToSpotFakeInfluencers } from '@/lib/blog-translations/zh/how-to-spot-fake-influencers'
+import { post as zhFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/zh/ftc-disclosure-guidelines-influencer-marketing'
+import { post as zhSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/zh/saudi-arabia-influencer-marketing-guide'
+import { post as zhInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/zh/influencer-marketing-dubai-uae-cost-guide'
+import { post as zhFindSkincareInfluencersUsa } from '@/lib/blog-translations/zh/find-skincare-influencers-usa'
+import { post as zhHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/zh/how-to-run-influencer-marketing-campaign'
+import { post as zhInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/zh/influencer-marketing-agency-vs-in-house'
 
-// Blog guides that also exist in German, French, Spanish, Arabic or Korean, served at
+// Blog guides that also exist in German, French, Spanish, Arabic, Korean or Chinese, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
 // (like the translated market pages), not in the Post table, and the pages
 // never read the database: the deploy reuses the CI build and rejects it when
@@ -397,6 +422,59 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       koFindSkincareInfluencersUsa,
       koHowToRunInfluencerMarketingCampaign,
       koInfluencerMarketingAgencyVsInHouse,
+    ],
+  },
+  zh: {
+    labels: {
+      dateLocale: 'zh-CN',
+      by: '作者：',
+      minRead: '分钟阅读',
+      toc: '本文目录',
+      writtenBy: '作者',
+      authorBio:
+        'CA Agency 编辑团队的内容基于为全球品牌在 Instagram、TikTok 和 YouTube 上执行的 3,000 多场网红营销活动，尤其专注于美妆和韩国护肤（K-beauty）领域。',
+      workWithUs: '与我们合作',
+      ctaTitle: '准备好合作了吗？',
+      ctaText: '让我们一起打造为您的品牌带来真实成果的网红营销活动。',
+      ctaButton: '立即开始',
+      readInLanguage: '阅读本指南的中文版',
+      guidesEyebrow: '指南',
+      guidesTitle: '网红营销指南',
+      indexTitle: '网红营销博客：实用指南 | CA Agency',
+      indexDescription:
+        '中文网红营销指南：如何选择机构、费用、平台、效果衡量与行业策略，来自 3,000 多场营销活动的实践经验。',
+      indexHeading: '网红营销博客',
+      indexIntro: '来自 CA Agency 的指南、策略与实战经验，基于 3,000 多场网红营销活动。',
+      allGuides: '全部指南',
+      englishBlog: '前往英文博客',
+      indexInLanguage: '中文指南',
+    },
+    posts: [
+      zhHowToChooseInfluencerMarketingAgency,
+      zhInfluencerMarketingCost2026,
+      zhTiktokShopBeautyBrands,
+      zhInfluencerMarketingForHealthWellness,
+      zhInfluencerMarketingForFashionBrands,
+      zhInfluencerMarketingForBeautyBrands,
+      zhKBeautyInfluencerMarketingGuide,
+      zhInfluencerMarketingGuide,
+      zhInfluencerWhitelistingSparkAdsGuide,
+      zhTiktokInfluencerMarketingGuide,
+      zhHowToMeasureInfluencerMarketingRoi,
+      zhYoutubeInfluencerMarketingBeautyBrands,
+      zhMicroVsMacroInfluencers,
+      zhInstagramReelsBeautyBrands,
+      zhTiktokShopFashionWellnessBrands,
+      zhInstagramInfluencerMarketing2026,
+      zhInfluencerMarketingTrends2026,
+      zhUgcVsInfluencerMarketing,
+      zhHowToSpotFakeInfluencers,
+      zhFtcDisclosureGuidelinesInfluencerMarketing,
+      zhSaudiArabiaInfluencerMarketingGuide,
+      zhInfluencerMarketingDubaiUaeCostGuide,
+      zhFindSkincareInfluencersUsa,
+      zhHowToRunInfluencerMarketingCampaign,
+      zhInfluencerMarketingAgencyVsInHouse,
     ],
   },
 }
