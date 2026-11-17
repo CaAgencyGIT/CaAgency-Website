@@ -107,7 +107,7 @@ export const legal: LegalCopy = {
       "title": "关于 CA Agency",
       "paragraphs": [
         {
-          "text": "CA Agency 是一家持牌的全方位网红营销机构，总部位于阿拉伯联合酋长国迪拜。我们成立于 2020 年，专注于在 Instagram、TikTok 和 YouTube 上连接全球品牌与顶尖内容创作者。"
+          "text": "CA Agency 是一家持牌的全方位网红营销机构，总部位于阿拉伯联合酋长国迪拜。我们成立于 2019 年，专注于在 Instagram、TikTok 和 YouTube 上连接全球品牌与顶尖内容创作者。"
         },
         {
           "text": "本机构依照阿联酋商业法规运营，并在 Meydan Free Zone 管理机构注册。"

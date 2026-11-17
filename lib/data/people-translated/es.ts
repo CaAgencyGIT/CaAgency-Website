@@ -107,7 +107,7 @@ export const legal: LegalCopy = {
       "title": "Acerca de CA Agency",
       "paragraphs": [
         {
-          "text": "CA Agency es una agencia de marketing de influencers de servicio integral con licencia, con sede en Dubái, Emiratos Árabes Unidos. Fundada en 2020, nos especializamos en conectar marcas globales con creadores de contenido de primer nivel en Instagram, TikTok y YouTube."
+          "text": "CA Agency es una agencia de marketing de influencers de servicio integral con licencia, con sede en Dubái, Emiratos Árabes Unidos. Fundada en 2019, nos especializamos en conectar marcas globales con creadores de contenido de primer nivel en Instagram, TikTok y YouTube."
         },
         {
           "text": "Nuestra agencia opera de conformidad con la normativa empresarial de los EAU y está registrada ante la autoridad de la Meydan Free Zone."

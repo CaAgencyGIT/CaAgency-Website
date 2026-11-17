@@ -454,7 +454,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         title: 'About CA Agency',
         paragraphs: [
           {
-            text: 'CA Agency is a licensed full-service influencer marketing agency based in Dubai, United Arab Emirates. Founded in 2020, we specialize in connecting global brands with top-tier content creators across Instagram, TikTok, and YouTube.',
+            text: 'CA Agency is a licensed full-service influencer marketing agency based in Dubai, United Arab Emirates. Founded in 2019, we specialize in connecting global brands with top-tier content creators across Instagram, TikTok, and YouTube.',
           },
           {
             text: 'Our agency operates in compliance with UAE business regulations and is registered under the Meydan Free Zone authority.',

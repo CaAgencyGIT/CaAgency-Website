@@ -107,7 +107,7 @@ export const legal: LegalCopy = {
       "title": "CA Agency 소개",
       "paragraphs": [
         {
-          "text": "CA Agency는 아랍에미리트 두바이에 본사를 둔, 허가받은 풀서비스 인플루언서 마케팅 에이전시입니다. 2020년에 설립되었으며, 글로벌 브랜드와 Instagram, TikTok, YouTube의 최정상급 콘텐츠 크리에이터를 연결하는 일을 전문으로 합니다."
+          "text": "CA Agency는 아랍에미리트 두바이에 본사를 둔, 허가받은 풀서비스 인플루언서 마케팅 에이전시입니다. 2019년에 설립되었으며, 글로벌 브랜드와 Instagram, TikTok, YouTube의 최정상급 콘텐츠 크리에이터를 연결하는 일을 전문으로 합니다."
         },
         {
           "text": "당사는 UAE 사업 규정을 준수하여 운영되며 Meydan Free Zone 당국에 등록되어 있습니다."
