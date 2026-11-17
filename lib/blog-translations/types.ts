@@ -30,4 +30,15 @@ export interface TranslatedPostLabels {
   /** Section heading and eyebrow for the guides on translated market pages. */
   guidesEyebrow: string
   guidesTitle: string
+  /** The blog index at /<locale>/blog. */
+  indexTitle: string
+  indexDescription: string
+  indexHeading: string
+  indexIntro: string
+  /** Link from a guide to the index: "All guides". */
+  allGuides: string
+  /** Link from the index to the English blog, which has more articles. */
+  englishBlog: string
+  /** Shown on the English blog index: "Guides in German". */
+  indexInLanguage: string
 }

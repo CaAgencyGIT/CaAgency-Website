@@ -86,7 +86,7 @@ export const post: TranslatedPost = {
 <ul>
   <li><a href="/blog/instagram-reels-beauty-brands">Instagram Reels für Beauty-Marken</a> (Englisch)</li>
   <li><a href="/de/blog/tiktok-shop-beauty-brands">TikTok Shop für Beauty-Marken</a></li>
-  <li><a href="/blog/youtube-influencer-marketing-beauty-brands">Influencer Marketing auf YouTube für Beauty-Marken</a> (Englisch)</li>
+  <li><a href="/de/blog/youtube-influencer-marketing-beauty-brands">Influencer Marketing auf YouTube für Beauty-Marken</a></li>
   <li><a href="/blog/find-skincare-influencers-usa">Hautpflege-Influencer in den USA finden und prüfen</a> (Englisch)</li>
 </ul>`,
 }
