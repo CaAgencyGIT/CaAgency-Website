@@ -89,6 +89,6 @@ export const post: TranslatedPost = {
 
 <h2>Weitere Ratgeber</h2>
 <ul>
-  <li><a href="/blog/tiktok-shop-fashion-wellness-brands">TikTok Shop für Mode- und Wellness-Marken</a> (Englisch)</li>
+  <li><a href="/de/blog/tiktok-shop-fashion-wellness-brands">TikTok Shop für Mode- und Wellness-Marken</a></li>
 </ul>`,
 }

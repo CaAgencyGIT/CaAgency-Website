@@ -111,9 +111,9 @@ export const post: TranslatedPost = {
 <h2>Guides associés</h2>
 
 <ul>
-  <li><a href="/blog/instagram-reels-beauty-brands">Les Reels Instagram pour les marques de beauté</a> (en anglais)</li>
+  <li><a href="/fr/blog/instagram-reels-beauty-brands">Les Reels Instagram pour les marques de beauté</a></li>
   <li><a href="/fr/blog/tiktok-shop-beauty-brands">TikTok Shop pour les marques de beauté</a></li>
   <li><a href="/fr/blog/youtube-influencer-marketing-beauty-brands">Le marketing d'influence sur YouTube pour les marques de beauté</a></li>
-  <li><a href="/blog/find-skincare-influencers-usa">Trouver et vérifier des influenceurs skincare aux États-Unis</a> (en anglais)</li>
+  <li><a href="/fr/blog/find-skincare-influencers-usa">Trouver et vérifier des influenceurs skincare aux États-Unis</a></li>
 </ul>`,
 }

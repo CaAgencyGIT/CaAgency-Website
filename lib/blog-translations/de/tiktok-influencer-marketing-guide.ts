@@ -148,7 +148,7 @@ export const post: TranslatedPost = {
 <h2>Weiterführende Ratgeber</h2>
 <ul>
   <li><a href="/de/blog/tiktok-shop-beauty-brands">TikTok Shop für Beauty-Marken</a></li>
-  <li><a href="/blog/tiktok-shop-fashion-wellness-brands">TikTok Shop für Mode- und Wellness-Marken</a> (Englisch)</li>
+  <li><a href="/de/blog/tiktok-shop-fashion-wellness-brands">TikTok Shop für Mode- und Wellness-Marken</a></li>
   <li><a href="/de/blog/influencer-whitelisting-spark-ads-guide">Whitelisting, Partnership Ads und Spark Ads</a></li>
 </ul>`,
 }

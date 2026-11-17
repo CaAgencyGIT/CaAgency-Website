@@ -35,7 +35,7 @@ export const post: TranslatedPost = {
 
 <p>Wenn die Entscheidung für das Investment gefallen ist, folgt die Strukturfrage: Influencer Marketing intern umsetzen oder mit einer Agentur arbeiten. Intern haben Sie Kontrolle und tiefe Markenkenntnis, müssen aber Personal, Tools und Creator-Beziehungen von Grund auf aufbauen. Eine Agentur bringt ein bestehendes Netzwerk, Verhandlungsstärke und eingespielte Abläufe mit, gegen ein Betreuungshonorar.</p>
 
-<p>Die meisten Marken landen irgendwo dazwischen. Die richtige Antwort hängt von Ihrem Kampagnenvolumen, Ihrem Budget und Ihren internen Kapazitäten ab. Beide Wege vergleichen wir offen in <a href="/blog/influencer-marketing-agency-vs-in-house">Influencer-Marketing-Agentur oder Inhouse</a> (Englisch). Wenn Sie auslagern, sollten Sie wissen, wie man Partner beurteilt. Unser Ratgeber dazu, <a href="/de/blog/how-to-choose-influencer-marketing-agency">wie Sie eine Influencer-Marketing-Agentur auswählen</a>, führt durch die Fragen, die starke Agenturen von teuren unterscheiden.</p>
+<p>Die meisten Marken landen irgendwo dazwischen. Die richtige Antwort hängt von Ihrem Kampagnenvolumen, Ihrem Budget und Ihren internen Kapazitäten ab. Beide Wege vergleichen wir offen in <a href="/de/blog/influencer-marketing-agency-vs-in-house">Influencer-Marketing-Agentur oder Inhouse</a>. Wenn Sie auslagern, sollten Sie wissen, wie man Partner beurteilt. Unser Ratgeber dazu, <a href="/de/blog/how-to-choose-influencer-marketing-agency">wie Sie eine Influencer-Marketing-Agentur auswählen</a>, führt durch die Fragen, die starke Agenturen von teuren unterscheiden.</p>
 
 <h2>Eine Kampagne von Anfang bis Ende umsetzen</h2>
 
@@ -43,7 +43,7 @@ export const post: TranslatedPost = {
 
 <p>Die diszipliniertesten Teams behandeln jede Kampagne als Test, aus dem sie lernen. Sie fahren einen klar umrissenen Piloten mit einer eindeutigen Hypothese, halten fest, was auf Ebene der Creators und der Inhalte funktioniert hat, und nehmen diese Erkenntnisse in die nächste Runde mit, statt jedes Mal bei null zu beginnen. Über einige Durchläufe entsteht daraus ein echter Wettbewerbsvorteil: Sie wissen, welche Creators verkaufen, welche Einstiege ankommen und welche Kombination aus Plattform und Format in Ihrer Kategorie die besten Kosten pro Neukunde liefert.</p>
 
-<p>Eine Schritt-für-Schritt-Anleitung für jede Phase, von der Zielsetzung bis zur Auswertung nach der Kampagne, finden Sie in <a href="/blog/how-to-run-influencer-marketing-campaign">So setzen Sie eine Influencer-Marketing-Kampagne um</a> (Englisch).</p>
+<p>Eine Schritt-für-Schritt-Anleitung für jede Phase, von der Zielsetzung bis zur Auswertung nach der Kampagne, finden Sie in <a href="/de/blog/how-to-run-influencer-marketing-campaign">So setzen Sie eine Influencer-Marketing-Kampagne um</a>.</p>
 
 <h2>Den ROI messen</h2>
 
@@ -61,7 +61,7 @@ export const post: TranslatedPost = {
 
 <p>Beides wird oft verwechselt, es sind aber unterschiedliche Werkzeuge. Influencer Marketing kauft das Publikum und die Verbreitung eines Creators ein. User-Generated Content (UGC) kauft den Inhalt selbst: Material, das Sie lizenzieren und als eigene bezahlte Anzeigen, auf Ihrer Website oder in E-Mails einsetzen, ohne unbedingt für die Reichweite des Creators zu bezahlen. Viele der besten Programme kombinieren 2026 beides.</p>
 
-<p>Zu wissen, wann Sie UGC beauftragen, wann eine echte Influencer-Partnerschaft sinnvoll ist und wie sich beides verbinden lässt, ist ein echter strategischer Hebel. Wir vergleichen beide Ansätze und zeigen ihren Einsatz in <a href="/blog/ugc-vs-influencer-marketing">UGC oder Influencer Marketing</a> (Englisch).</p>
+<p>Zu wissen, wann Sie UGC beauftragen, wann eine echte Influencer-Partnerschaft sinnvoll ist und wie sich beides verbinden lässt, ist ein echter strategischer Hebel. Wir vergleichen beide Ansätze und zeigen ihren Einsatz in <a href="/de/blog/ugc-vs-influencer-marketing">UGC oder Influencer Marketing</a>.</p>
 
 <h2>Die richtigen Plattformen wählen</h2>
 
@@ -73,7 +73,7 @@ export const post: TranslatedPost = {
 
 <h3>Instagram</h3>
 
-<p>Instagram bleibt das Rückgrat für Mode-, Beauty-, Lifestyle- und Direct-to-Consumer-Marken. Reels sorgen inzwischen für den Großteil der Verbreitung, Stories ergänzen Nähe und Dringlichkeit. Unser <a href="/blog/instagram-influencer-marketing-2026">Leitfaden für Influencer Marketing auf Instagram 2026</a> (Englisch) behandelt den Formatmix und die Creator-Strategie, die heute funktionieren.</p>
+<p>Instagram bleibt das Rückgrat für Mode-, Beauty-, Lifestyle- und Direct-to-Consumer-Marken. Reels sorgen inzwischen für den Großteil der Verbreitung, Stories ergänzen Nähe und Dringlichkeit. Unser <a href="/de/blog/instagram-influencer-marketing-2026">Leitfaden für Influencer Marketing auf Instagram 2026</a> behandelt den Formatmix und die Creator-Strategie, die heute funktionieren.</p>
 
 <h2>Strategie nach Branche</h2>
 
@@ -89,19 +89,19 @@ export const post: TranslatedPost = {
 
 <p>Influencer Marketing ist reguliert. In Deutschland müssen bezahlte Beiträge klar als Werbung erkennbar sein, in der Praxis mit einem gut sichtbaren Hinweis „Werbung“ oder „Anzeige“ am Anfang des Beitrags. Ein Hinweis, der in einer Reihe von Hashtags untergeht, genügt nicht. In Österreich und der Schweiz gelten vergleichbare Grundsätze. Verantwortlich sind nicht nur die Creators, sondern auch die Marken.</p>
 
-<p>Eine korrekte Werbekennzeichnung schützt Ihre Marke und stärkt das Vertrauen des Publikums, statt es zu untergraben. Regeln Sie die Kennzeichnung in Verträgen und Briefings. Für Kampagnen in den USA erklärt unser <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln im Influencer Marketing</a> (Englisch), was Sie dort verlangen sollten.</p>
+<p>Eine korrekte Werbekennzeichnung schützt Ihre Marke und stärkt das Vertrauen des Publikums, statt es zu untergraben. Regeln Sie die Kennzeichnung in Verträgen und Briefings. Für Kampagnen in den USA erklärt unser <a href="/de/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln im Influencer Marketing</a>, was Sie dort verlangen sollten.</p>
 
 <h2>Betrug vermeiden</h2>
 
 <p>Follower lassen sich kaufen, Interaktionen fälschen, und hinter einem polierten Profil kann ein Publikum aus Bots stecken. Für falsche Reichweite zu bezahlen ist einer der schnellsten Wege, ein Budget ohne Gegenwert zu verbrennen. Creators zu prüfen, also Qualität der Interaktionen, Echtheit des Publikums, Wachstumsverlauf und Kommentarverhalten, ist vor jedem Vertrag ein Pflichtschritt.</p>
 
-<p>Die Warnsignale und den Prüfablauf beschreiben wir in <a href="/blog/how-to-spot-fake-influencers">So erkennen Sie Fake-Influencer</a> (Englisch), damit Sie echte Reichweite von aufgeblähten Eitelkeitskennzahlen trennen können.</p>
+<p>Die Warnsignale und den Prüfablauf beschreiben wir in <a href="/de/blog/how-to-spot-fake-influencers">So erkennen Sie Fake-Influencer</a>, damit Sie echte Reichweite von aufgeblähten Eitelkeitskennzahlen trennen können.</p>
 
 <h2>Was sich 2026 verändert</h2>
 
 <p>Der Markt bleibt in Bewegung. Zu den größten Verschiebungen 2026 gehören die weiter verschwimmende Grenze zwischen Creator-Inhalten und Paid Media, der Aufstieg langfristiger Botschafter-Beziehungen gegenüber Einzelbeiträgen, KI-gestützte Creator-Suche und Content-Abläufe, die Dominanz von Kurzvideos und die wachsende Nachfrage nach messbaren, erfolgsabhängigen Partnerschaften. Marken, die Creators als dauerhafte Partner behandeln und nicht als Werbeplätze, setzen sich ab.</p>
 
-<p>Den vollständigen Ausblick und Hinweise, wie Sie Ihr Programm für das kommende Jahr aufstellen, lesen Sie in <a href="/blog/influencer-marketing-trends-2026">Influencer-Marketing-Trends 2026</a> (Englisch).</p>
+<p>Den vollständigen Ausblick und Hinweise, wie Sie Ihr Programm für das kommende Jahr aufstellen, lesen Sie in <a href="/de/blog/influencer-marketing-trends-2026">Influencer-Marketing-Trends 2026</a>.</p>
 
 <h2>Alles zusammenführen</h2>
 

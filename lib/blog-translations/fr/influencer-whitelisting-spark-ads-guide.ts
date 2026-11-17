@@ -61,7 +61,7 @@ export const post: TranslatedPost = {
   <li><strong>Faites tourner les créateurs et les créations</strong> pour limiter la lassitude. Même les bonnes publicités déclinent quand la répétition augmente.</li>
 </ul>
 <p>
-  Si vous avez besoin d'un flux régulier de contenus prêts pour la publicité plutôt que de la portée des créateurs, demandez-vous s'il vous faut vraiment des contenus d'influence ou plutôt de l'UGC, des contenus produits uniquement pour la publicité. Notre guide <a href="/blog/ugc-vs-influencer-marketing">UGC ou marketing d'influence</a> (en anglais) explique la différence.
+  Si vous avez besoin d'un flux régulier de contenus prêts pour la publicité plutôt que de la portée des créateurs, demandez-vous s'il vous faut vraiment des contenus d'influence ou plutôt de l'UGC, des contenus produits uniquement pour la publicité. Notre guide <a href="/fr/blog/ugc-vs-influencer-marketing">UGC ou marketing d'influence</a> explique la différence.
 </p>
 
 <h2>Mesurer les contenus de créateurs sponsorisés</h2>
@@ -82,7 +82,7 @@ export const post: TranslatedPost = {
 <h2>Les risques à maîtriser</h2>
 <ul>
   <li><strong>La réputation du créateur.</strong> Vos publicités portent le visage du créateur. Vérifiez sérieusement les profils et prévoyez des clauses de conduite dans les contrats.</li>
-  <li><strong>La transparence.</strong> Un contenu de créateur sponsorisé doit être clairement identifié comme de la publicité. En France, depuis la loi du 9 juin 2023 sur l'influence commerciale, les contenus rémunérés doivent porter clairement la mention « Publicité » ou « Collaboration commerciale », et la promotion de certains produits et services est restreinte. Les mentions de partenariat des plateformes aident, mais le contenu lui-même doit aussi signaler la relation. Les exigences varient selon les marchés et doivent être vérifiées pour chaque pays visé. Pour les campagnes aux États-Unis, lisez notre <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">guide des règles de la FTC</a> (en anglais).</li>
+  <li><strong>La transparence.</strong> Un contenu de créateur sponsorisé doit être clairement identifié comme de la publicité. En France, depuis la loi du 9 juin 2023 sur l'influence commerciale, les contenus rémunérés doivent porter clairement la mention « Publicité » ou « Collaboration commerciale », et la promotion de certains produits et services est restreinte. Les mentions de partenariat des plateformes aident, mais le contenu lui-même doit aussi signaler la relation. Les exigences varient selon les marchés et doivent être vérifiées pour chaque pays visé. Pour les campagnes aux États-Unis, lisez notre <a href="/fr/blog/ftc-disclosure-guidelines-influencer-marketing">guide des règles de la FTC</a>.</li>
   <li><strong>Les allégations.</strong> Une publication organique qui contient une allégation approximative devient une publicité payante qui contient une allégation approximative. Relisez les allégations avant d'amplifier, surtout dans les soins de la peau et le bien-être.</li>
   <li><strong>La relation avec le créateur.</strong> Un budget publicitaire important peut exposer l'audience d'un créateur à la même publicité de façon répétée. Convenez d'un niveau de répétition et tenez le créateur informé.</li>
 </ul>
