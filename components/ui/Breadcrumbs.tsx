@@ -31,9 +31,12 @@ function humanize(segment: string) {
 export default function Breadcrumbs({
   locale,
   labels,
+  pageLabels = {},
 }: {
   locale: string
   labels: Record<string, string>
+  /** Names for detail pages by their slug (the translated service names); other slugs are shown humanized. */
+  pageLabels?: Record<string, string>
 }) {
   const pathname = stripLocalePrefix(usePathname())
   const segments = pathname.split('/').filter((segment) => segment && segment !== 'index')
@@ -43,7 +46,7 @@ export default function Breadcrumbs({
   const breadcrumbs: BreadcrumbItem[] = [
     { label: labels.home, href: '/' },
     ...segments.map((segment, index) => ({
-      label: translatedSegments.has(segment) ? labels[segment] ?? humanize(segment) : humanize(segment),
+      label: pageLabels[segment] ?? (translatedSegments.has(segment) ? labels[segment] ?? humanize(segment) : humanize(segment)),
       href: `/${segments.slice(0, index + 1).join('/')}`,
     })),
   ]

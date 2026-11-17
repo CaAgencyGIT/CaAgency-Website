@@ -4,6 +4,7 @@ import { isRtlLocale, locales, type Locale } from '@/i18n/config';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { translatedServices } from '@/lib/data/services-translated';
 import CookieConsent, { type CookieConsentLabels } from '@/components/ui/CookieConsent';
 import { getSiteContent } from '@/lib/site-content/service';
 import { FooterContent } from '@/lib/site-content/site-types';
@@ -48,6 +49,10 @@ export default async function LocaleLayout({
   const common = messages.common as Record<string, string>;
   const cookies = messages.cookies as unknown as CookieConsentLabels;
   const breadcrumbs = messages.breadcrumbs as Record<string, string>;
+  // Service pages: the breadcrumb shows the service name in this language, not the English slug.
+  const serviceNames = Object.fromEntries(
+    (translatedServices[locale]?.services ?? []).map((service) => [service.slug, service.title])
+  );
   const headerLabels: HeaderLabels = {
     home: nav.home,
     about: nav.about,
@@ -67,7 +72,7 @@ export default async function LocaleLayout({
   return (
     <RootDocument locale={locale} dir={dir}>
       <Header locale={locale} labels={headerLabels} />
-      <Breadcrumbs locale={locale} labels={breadcrumbs} />
+      <Breadcrumbs locale={locale} labels={breadcrumbs} pageLabels={serviceNames} />
       <main id="main-content">{children}</main>
       <Footer content={footerContent} locale={locale as Locale} />
       <CookieConsent labels={cookies} locale={locale} />
