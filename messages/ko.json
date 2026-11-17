@@ -101,7 +101,9 @@
     "germany": "독일",
     "france": "프랑스",
     "switzerland": "스위스",
-    "nordics": "북유럽"
+    "nordics": "북유럽",
+    "sydney": "시드니",
+    "melbourne": "멜버른"
   },
   "hero": {
     "title": "CA Agency",
@@ -511,6 +513,8 @@
     "influencer-marketing-germany": "인플루언서 마케팅 독일",
     "influencer-marketing-france": "인플루언서 마케팅 프랑스",
     "influencer-marketing-switzerland": "인플루언서 마케팅 스위스",
-    "influencer-marketing-nordics": "인플루언서 마케팅 북유럽"
+    "influencer-marketing-nordics": "인플루언서 마케팅 북유럽",
+    "influencer-marketing-sydney": "인플루언서 마케팅 시드니",
+    "influencer-marketing-melbourne": "인플루언서 마케팅 멜버른"
   }
 }

@@ -101,7 +101,9 @@
     "germany": "ألمانيا",
     "france": "فرنسا",
     "switzerland": "سويسرا",
-    "nordics": "دول الشمال"
+    "nordics": "دول الشمال",
+    "sydney": "سيدني",
+    "melbourne": "ملبورن"
   },
   "hero": {
     "title": "CA Agency",
@@ -511,6 +513,8 @@
     "influencer-marketing-germany": "تسويق المؤثرين ألمانيا",
     "influencer-marketing-france": "تسويق المؤثرين فرنسا",
     "influencer-marketing-switzerland": "تسويق المؤثرين سويسرا",
-    "influencer-marketing-nordics": "تسويق المؤثرين دول الشمال"
+    "influencer-marketing-nordics": "تسويق المؤثرين دول الشمال",
+    "influencer-marketing-sydney": "تسويق المؤثرين سيدني",
+    "influencer-marketing-melbourne": "تسويق المؤثرين ملبورن"
   }
 }

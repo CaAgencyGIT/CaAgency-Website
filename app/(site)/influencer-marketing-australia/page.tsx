@@ -5,6 +5,7 @@ import { getFeaturedTalents } from '@/lib/site-content/public'
 import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { organizationRef } from '@/lib/seo/schema'
+import { melbournePage, sydneyPage } from '@/lib/data/market-routes'
 
 export const revalidate = 3600
 
@@ -66,7 +67,12 @@ export default async function AustraliaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage path="/influencer-marketing-australia" content={content} talents={talents} />
+      <LocationLandingPage
+        path="/influencer-marketing-australia"
+        content={content}
+        talents={talents}
+        relatedPages={{ eyebrow: 'Cities', title: 'Sydney and Melbourne Campaigns', items: [sydneyPage, melbournePage] }}
+      />
     </>
   )
 }

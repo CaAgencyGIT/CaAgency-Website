@@ -21,6 +21,8 @@ export const locationPages = [
   { key: 'france', title: 'Influencer Marketing Agency France', path: '/influencer-marketing-france' },
   { key: 'switzerland', title: 'Influencer Marketing Agency Switzerland', path: '/influencer-marketing-switzerland' },
   { key: 'nordics', title: 'Influencer Marketing Agency Nordics', path: '/influencer-marketing-nordics' },
+  { key: 'sydney', title: 'Influencer Marketing Agency Sydney', path: '/influencer-marketing-sydney' },
+  { key: 'melbourne', title: 'Influencer Marketing Agency Melbourne', path: '/influencer-marketing-melbourne' },
 ] as const
 
 export type MarketLink = { href: string; label: string }
@@ -29,7 +31,7 @@ export type MarketLink = { href: string; label: string }
 // from every location page's "Other markets" row so each one has internal links.
 const marketKeys = [
   'dubai', 'uae', 'saudiArabia', 'gcc', 'korea', 'asia', 'usa', 'uk', 'canada', 'australia',
-  'europe', 'germany', 'france', 'switzerland', 'nordics',
+  'sydney', 'melbourne', 'europe', 'germany', 'france', 'switzerland', 'nordics',
 ] as const
 
 /** The market pages with their `locations` message key, for translated link rows. */

@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { locationPages, marketLinks } from '@/lib/data/locations'
 import { LOCALIZED_LOCATION_PATHS, locationPageLanguages } from '@/lib/routing-helpers'
 import { siteContentDefinitionsByKey } from '@/lib/site-content/definitions'
 import { translatedLocationPages } from '@/lib/site-content/location-pages-translated'
-import { europeanMarkets } from '@/lib/data/european-markets'
+import { marketRoutes } from '@/lib/data/market-routes'
 import type { LocationPageContent } from '@/lib/site-content/location-pages'
 
-describe('European market pages', () => {
+describe('market pages', () => {
   it('registers every market with a route, content, a preview image and a link row entry', () => {
-    for (const page of Object.values(europeanMarkets)) {
+    for (const page of Object.values(marketRoutes)) {
       expect(existsSync(`app/(site)${page.path}/page.tsx`), page.path).toBe(true)
       expect(siteContentDefinitionsByKey[page.contentKey], page.contentKey).toBeDefined()
       expect(existsSync(`public${page.ogImage}`), page.ogImage).toBe(true)
@@ -21,7 +21,7 @@ describe('European market pages', () => {
   })
 
   it('gives each market page an intro, FAQs and one H1-sized hero title', () => {
-    for (const page of Object.values(europeanMarkets)) {
+    for (const page of Object.values(marketRoutes)) {
       const content = siteContentDefinitionsByKey[page.contentKey].defaultData as LocationPageContent
       expect(content.intro?.paragraphs.length, page.path).toBeGreaterThanOrEqual(3)
       expect(content.faq?.items.length, page.path).toBeGreaterThanOrEqual(4)
@@ -46,6 +46,25 @@ describe('European market pages', () => {
       de: 'https://caagency.com/de/influencer-marketing-switzerland',
     })
     expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en'])
+  })
+
+  it('links the Australia, Sydney and Melbourne pages to each other and never claims a local office', () => {
+    const hrefs = (key: 'sydney' | 'melbourne') => (marketRoutes[key].related?.items ?? []).map((item) => item.href)
+    expect(hrefs('sydney')).toEqual(['/influencer-marketing-melbourne', '/influencer-marketing-australia'])
+    expect(hrefs('melbourne')).toEqual(['/influencer-marketing-sydney', '/influencer-marketing-australia'])
+    const australiaPage = readFileSync('app/(site)/influencer-marketing-australia/page.tsx', 'utf8')
+    expect(australiaPage).toContain('sydneyPage')
+    expect(australiaPage).toContain('melbournePage')
+    for (const [key, city] of [['sydney', 'Sydney'], ['melbourne', 'Melbourne']] as const) {
+      const content = siteContentDefinitionsByKey[marketRoutes[key].contentKey].defaultData as LocationPageContent
+      const text = JSON.stringify(content)
+      expect(text, key).toContain(`not a ${city}-based agency`)
+      expect(text, key).toContain('not based there')
+      expect(content.process?.steps.length, key).toBe(5)
+      expect(content.faq?.items[0].question, key).toContain(city)
+    }
+    const australia = siteContentDefinitionsByKey['location-australia'].defaultData as LocationPageContent
+    expect(australia.process?.steps.length).toBe(5)
   })
 
   it('adds Sydney and Melbourne copy and FAQs to the Australia page', () => {

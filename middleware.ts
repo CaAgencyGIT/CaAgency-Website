@@ -132,6 +132,6 @@ export const config = {
   // lib/data/locations.ts). `talents/` and `services/` are intentional prefixes.
   // Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|influencer-marketing-(?:dubai|uae|saudi-arabia|gcc|korea|asia|usa|uk|canada|australia|europe|germany|france|switzerland|nordics)(?:/|$)|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|influencer-marketing-(?:dubai|uae|saudi-arabia|gcc|korea|asia|usa|uk|canada|australia|europe|germany|france|switzerland|nordics|sydney|melbourne)(?:/|$)|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }

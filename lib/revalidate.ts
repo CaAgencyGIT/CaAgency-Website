@@ -50,6 +50,8 @@ export function revalidateSitePages() {
     '/influencer-marketing-france',
     '/influencer-marketing-switzerland',
     '/influencer-marketing-nordics',
+    '/influencer-marketing-sydney',
+    '/influencer-marketing-melbourne',
     '/korean-skincare-influencer-marketing',
     '/beauty-influencer-marketing-agency',
     '/skincare-influencer-marketing-agency',
