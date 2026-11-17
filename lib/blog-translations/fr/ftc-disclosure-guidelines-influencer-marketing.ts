@@ -107,7 +107,7 @@ export const post: TranslatedPost = {
 
 <p>Si vos campagnes touchent des publics hors des États-Unis, ou si vous travaillez avec des créateurs britanniques, les obligations ne s'arrêtent pas à la FTC. Au Royaume-Uni, l'Advertising Standards Authority (ASA) et la Competition and Markets Authority (CMA) ont leurs propres règles, proches dans l'esprit mais différentes dans le détail. Le Royaume-Uni exige que le mot « Ad » soit clairement visible comme label ; « Gifted » ne suffit pas toujours. L'Union européenne, le Canada et l'Australie disposent chacun de cadres analogues.</p>
 
-<p>Appliquer une norme qui fonctionne aux États-Unis est une bonne base, mais les campagnes mondiales demandent une vérification pays par pays. <a href="/influencer-marketing-usa">Notre pôle de marketing d'influence aux États-Unis</a> prend en charge la conformité sur le marché américain ; les campagnes internationales nécessitent un suivi supplémentaire.</p>
+<p>Appliquer une norme qui fonctionne aux États-Unis est une bonne base, mais les campagnes mondiales demandent une vérification pays par pays. <a href="/fr/influencer-marketing-usa">Notre pôle de marketing d'influence aux États-Unis</a> prend en charge la conformité sur le marché américain ; les campagnes internationales nécessitent un suivi supplémentaire.</p>
 
 <h2>Comment une bonne agence intègre la conformité</h2>
 

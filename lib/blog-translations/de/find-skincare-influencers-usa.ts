@@ -96,7 +96,7 @@ export const post: TranslatedPost = {
 
 <h2>So unterstützt CA Agency</h2>
 <p>
-  CA Agency setzt <a href="/influencer-marketing-usa">Influencer-Kampagnen für Marken in den USA</a> um, mit Schwerpunkt auf Beauty, Skincare und <a href="/korean-skincare-influencer-marketing">K-Beauty</a>. Wir wählen Creators nach Hauttyp, Hautthema und Standort des Publikums aus, prüfen Qualifikationen und Zielgruppendaten, briefen mit regelkonformen Formulierungen für Wirkversprechen und kümmern uns um Verträge, Nutzungsrechte und Reporting. Außerdem vertreten wir unseren eigenen <a href="/de/talents">Creator-Roster</a>.
+  CA Agency setzt <a href="/de/influencer-marketing-usa">Influencer-Kampagnen für Marken in den USA</a> um, mit Schwerpunkt auf Beauty, Skincare und <a href="/korean-skincare-influencer-marketing">K-Beauty</a>. Wir wählen Creators nach Hauttyp, Hautthema und Standort des Publikums aus, prüfen Qualifikationen und Zielgruppendaten, briefen mit regelkonformen Formulierungen für Wirkversprechen und kümmern uns um Verträge, Nutzungsrechte und Reporting. Außerdem vertreten wir unseren eigenen <a href="/de/talents">Creator-Roster</a>.
 </p>
 <p>
   Suchen Sie die richtigen Skincare-Stimmen für Ihre Marke? <a href="/de/contact">Sprechen Sie mit CA Agency</a>, und wir stellen eine Shortlist zusammen, die zu Ihren Produkten passt.

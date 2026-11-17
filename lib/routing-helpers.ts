@@ -72,10 +72,10 @@ const EVERY_MARKET_PATH = [
 ] as const
 
 export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>> = {
-  // Arabic, Spanish, Korean and Chinese have every market page.
+  // Every translated language has every market page.
   ar: EVERY_MARKET_PATH,
-  de: ['/influencer-marketing-germany', '/influencer-marketing-switzerland'],
-  fr: ['/influencer-marketing-france'],
+  de: EVERY_MARKET_PATH,
+  fr: EVERY_MARKET_PATH,
   es: EVERY_MARKET_PATH,
   ko: EVERY_MARKET_PATH,
   zh: EVERY_MARKET_PATH,

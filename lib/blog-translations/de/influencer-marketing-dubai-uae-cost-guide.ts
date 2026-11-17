@@ -27,7 +27,7 @@ export const post: TranslatedPost = {
   Für die Kosten ist das aus zwei Gründen wichtig. Erstens rechnen lizenzierte Creators die Kosten der Compliance in ihre Honorare ein: die Lizenz selbst und in vielen Fällen eine Gewerbelizenz oder eine Vereinbarung mit einer Agentur, die sie sponsert. Zweitens dünnt die Regel den professionellen Pool aus: Creators, die das Lizenzverfahren durchlaufen haben, betreiben Content fast zwangsläufig als Geschäft, mit der Produktionsqualität und Verlässlichkeit, die dazugehören. Wirkt ein Honorar in Dubai im Vergleich zu einer gleich großen Zielgruppe anderswo hoch, sind Lizenzierung und Professionalisierung meist ein Teil der Erklärung.
 </p>
 <p>
-  Für Marken ist die Schlussfolgerung einfach: Prüfen Sie die Lizenz, bevor Sie einen Vertrag schließen. Eine seriöse Agentur arbeitet nur mit lizenzierten Creators. Das ist einer der ersten Punkte, die wir prüfen, wenn wir <a href="/influencer-marketing-dubai">Kampagnen in Dubai aufbauen</a>.
+  Für Marken ist die Schlussfolgerung einfach: Prüfen Sie die Lizenz, bevor Sie einen Vertrag schließen. Eine seriöse Agentur arbeitet nur mit lizenzierten Creators. Das ist einer der ersten Punkte, die wir prüfen, wenn wir <a href="/de/influencer-marketing-dubai">Kampagnen in Dubai aufbauen</a>.
 </p>
 
 <h2>Was Creators verlangen: die ehrliche Antwort</h2>
@@ -41,7 +41,7 @@ export const post: TranslatedPost = {
   <li><strong>Mega-Creators und Prominente (über 1 Million Follower).</strong> Fünfstellige Beträge und mehr pro Aktivierung, häufig als individuelle Partnerschaft mit Management im Hintergrund. In Dubai dominieren Luxus, Automobil, Gastgewerbe und Immobilien diese Klasse.</li>
 </ul>
 <p>
-  Arabischsprachige und zweisprachige Creators erzielen bei gleicher Publikumsgröße häufig einen Aufschlag gegenüber rein englischsprachigen, weil sie Reichweite in der gesamten Golfregion eröffnen, bis nach Saudi-Arabien und in den weiteren <a href="/influencer-marketing-gcc">GCC-Markt</a>. Für Marken, die in die Region kommen, ist das oft das eigentliche Ziel.
+  Arabischsprachige und zweisprachige Creators erzielen bei gleicher Publikumsgröße häufig einen Aufschlag gegenüber rein englischsprachigen, weil sie Reichweite in der gesamten Golfregion eröffnen, bis nach Saudi-Arabien und in den weiteren <a href="/de/influencer-marketing-gcc">GCC-Markt</a>. Für Marken, die in die Region kommen, ist das oft das eigentliche Ziel.
 </p>
 
 <h2>Die Preisfaktoren, die mehr bewegen als die Followerzahl</h2>
@@ -88,7 +88,7 @@ export const post: TranslatedPost = {
   <p>In den VAE gilt mehr als in den meisten Märkten: Was Sie von einer Agentur wirklich kaufen, ist nicht der Zugang zu Creators. Es sind die Verhandlungsposition und die Sicherheit bei der Compliance, die Marken bei der Direktbuchung nicht haben.</p>
 </blockquote>
 <p>
-  CA Agency setzt Kampagnen in <a href="/influencer-marketing-dubai">Dubai</a>, den gesamten <a href="/influencer-marketing-uae">VAE</a> und den <a href="/influencer-marketing-gcc">GCC-Staaten</a> um, von Aktivierungen mit einem einzelnen Creator bis zu Always-on-Programmen. Wenn Sie einen Launch in den VAE budgetieren, <a href="/de/contact">sprechen Sie mit uns</a>. Sie erhalten eine realistische Zahl für Ihre Kategorie, bevor Sie sich auf etwas festlegen.
+  CA Agency setzt Kampagnen in <a href="/de/influencer-marketing-dubai">Dubai</a>, den gesamten <a href="/de/influencer-marketing-uae">VAE</a> und den <a href="/de/influencer-marketing-gcc">GCC-Staaten</a> um, von Aktivierungen mit einem einzelnen Creator bis zu Always-on-Programmen. Wenn Sie einen Launch in den VAE budgetieren, <a href="/de/contact">sprechen Sie mit uns</a>. Sie erhalten eine realistische Zahl für Ihre Kategorie, bevor Sie sich auf etwas festlegen.
 </p>
 
 <h2>Weitere Ratgeber</h2>
