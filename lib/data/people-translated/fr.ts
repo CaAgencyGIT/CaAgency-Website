@@ -107,7 +107,7 @@ export const legal: LegalCopy = {
       "title": "À propos de CA Agency",
       "paragraphs": [
         {
-          "text": "CA Agency est une agence de marketing d'influence à service complet, titulaire d'une licence et basée à Dubaï, aux Émirats arabes unis. Fondée en 2020, elle a pour spécialité de mettre en relation des marques internationales avec des créateurs de contenu de premier plan sur Instagram, TikTok et YouTube."
+          "text": "CA Agency est une agence de marketing d'influence à service complet, titulaire d'une licence et basée à Dubaï, aux Émirats arabes unis. Fondée en 2019, elle a pour spécialité de mettre en relation des marques internationales avec des créateurs de contenu de premier plan sur Instagram, TikTok et YouTube."
         },
         {
           "text": "Notre agence exerce ses activités dans le respect de la réglementation commerciale des EAU et est enregistrée auprès de l'autorité de la Meydan Free Zone."
