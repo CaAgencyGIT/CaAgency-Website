@@ -8,6 +8,7 @@ export function revalidateTalentsPages() {
   revalidatePath('/talents/[slug]', 'page')
   // Case studies link their creator's talent page.
   revalidatePath('/case-studies/[slug]', 'page')
+  revalidatePath('/[locale]/case-studies/[slug]', 'page')
   revalidatePath('/')
   // Every locale, English included: the unprefixed URLs are rewritten to
   // /en/... and cached under that path. The contact form lists the roster.

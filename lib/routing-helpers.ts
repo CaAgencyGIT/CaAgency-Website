@@ -156,12 +156,24 @@ export function hasLocalizedLocationPage(pathname: string, locale: string): bool
   return LOCALIZED_LOCATION_PATHS[locale]?.includes(pathname) ?? false
 }
 
+// Case studies (index and every study) exist in each of these locales; the
+// copy is in lib/data/case-studies-translated. Matched by shape, not by slug
+// list, to keep this file free of data imports: an unknown slug reaches the
+// translated route and gets its 404 there.
+export const CASE_STUDY_LOCALES: readonly string[] = ['ar', 'de', 'fr', 'es', 'ko', 'zh']
+const CASE_STUDY_PATH = /^\/case-studies(?:\/[a-z0-9-]+)?$/
+
+function hasTranslatedCaseStudy(pathname: string, locale: string): boolean {
+  return CASE_STUDY_LOCALES.includes(locale) && CASE_STUDY_PATH.test(pathname)
+}
+
 /** True when an otherwise English-only page (market, category, service page or blog post) exists in this locale. */
 export function hasTranslatedPage(pathname: string, locale: string): boolean {
   return (
     hasLocalizedLocationPage(pathname, locale) ||
     (LOCALIZED_BLOG_PATHS[locale]?.includes(pathname) ?? false) ||
-    (LOCALIZED_SERVICE_PATHS[locale]?.includes(pathname) ?? false)
+    (LOCALIZED_SERVICE_PATHS[locale]?.includes(pathname) ?? false) ||
+    hasTranslatedCaseStudy(pathname, locale)
   )
 }
 
@@ -187,6 +199,23 @@ export function locationPageLanguages(pathname: string, baseUrl = 'https://caage
     if (hasLocalizedLocationPage(pathname, locale)) languages[locale] = `${baseUrl}/${locale}${pathname}`
   }
   return languages
+}
+
+function translatedLanguages(pathname: string, localeList: readonly string[], baseUrl: string): Record<string, string> {
+  const english = `${baseUrl}${pathname}`
+  const languages: Record<string, string> = { 'x-default': english, en: english }
+  for (const locale of localeList) languages[locale] = `${baseUrl}/${locale}${pathname}`
+  return languages
+}
+
+/** hreflang map for a case study: English (also x-default) plus every translated locale. */
+export function caseStudyLanguages(slug: string, baseUrl = 'https://caagency.com'): Record<string, string> {
+  return translatedLanguages(`/case-studies/${slug}`, CASE_STUDY_LOCALES, baseUrl)
+}
+
+/** hreflang map for the case-studies index. */
+export function caseStudyIndexLanguages(baseUrl = 'https://caagency.com'): Record<string, string> {
+  return translatedLanguages('/case-studies', CASE_STUDY_LOCALES, baseUrl)
 }
 
 export function isPublicAsset(pathname: string): boolean {

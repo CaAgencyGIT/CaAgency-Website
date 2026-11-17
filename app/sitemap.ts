@@ -6,7 +6,13 @@ import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
 import caseStudyDates from '@/lib/data/case-study-dates.json'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
-import { locationPageLanguages, servicePageLanguages } from '@/lib/routing-helpers'
+import {
+  CASE_STUDY_LOCALES,
+  caseStudyIndexLanguages,
+  caseStudyLanguages,
+  locationPageLanguages,
+  servicePageLanguages,
+} from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
@@ -154,6 +160,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: page.changeFrequency,
         priority: page.priority,
       })
+      if (page.path === 'case-studies') {
+        const alternates = { languages: caseStudyIndexLanguages(baseUrl) }
+        return [
+          { ...entry, alternates },
+          ...CASE_STUDY_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/case-studies`, alternates })),
+        ]
+      }
       if (page.path !== 'blog') return [entry]
       // The blog index also exists in German and French (app/[locale]/blog/page.tsx).
       const alternates = { languages: blogIndexLanguages(baseUrl) }
@@ -174,14 +187,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const alternates = { languages }
       return [{ ...entry, alternates }, ...translated.map(([, url]) => ({ ...entry, url, alternates }))]
     }),
-    ...caseStudies.map((cs) =>
-      createDefaultOnlyEntry(`case-studies/${cs.slug}`, {
+    ...caseStudies.flatMap((cs) => {
+      const entry = createDefaultOnlyEntry(`case-studies/${cs.slug}`, {
         lastModified: caseStudyLastModified(cs.slug),
         changeFrequency: 'monthly',
         priority: 0.7,
         images: absoluteImage(caseStudyStill(cs)),
       })
-    ),
+      // English plus each translated version (app/[locale]/case-studies/[slug]).
+      const alternates = { languages: caseStudyLanguages(cs.slug, baseUrl) }
+      return [
+        { ...entry, alternates },
+        ...CASE_STUDY_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/case-studies/${cs.slug}`, alternates })),
+      ]
+    }),
     ...services.flatMap((service) => {
       const entry = createDefaultOnlyEntry(`services/${service.slug}`, {
         lastModified: SERVICES_LAST_MODIFIED,

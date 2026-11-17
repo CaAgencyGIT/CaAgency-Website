@@ -1,15 +1,10 @@
 import '@/app/public-utilities.css'
 import { Metadata } from 'next'
-import Heading from '@/components/ui/Heading'
-import Text from '@/components/ui/Text'
-import Button from '@/components/ui/Button'
-import ScrollReveal from '@/components/ui/ScrollReveal'
-import Stagger from '@/components/ui/motion/Stagger'
-import StaggerItem from '@/components/ui/motion/StaggerItem'
 import { currentCaseStudies } from '@/lib/data/redesign-media'
-import Link from 'next/link'
 import { caseStudies, caseStudySeoTitle } from '@/lib/data/case-studies'
-import CaseStudyCard from '@/components/blocks/CaseStudyCard'
+import { englishCaseStudyUi } from '@/lib/data/case-study-ui'
+import CaseStudiesIndex from '@/components/site/CaseStudiesIndex'
+import { caseStudyIndexLanguages } from '@/lib/routing-helpers'
 
 const listed = currentCaseStudies()
 // Every other case study, as plain links under the grid, so each page is
@@ -18,7 +13,7 @@ const listedSlugs = new Set(listed.map((cs) => cs.slug))
 const archive = caseStudies.filter((cs) => !listedSlugs.has(cs.slug))
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
-export const metadata: Metadata = buildPageMetadata({
+const baseMetadata = buildPageMetadata({
   title: 'Influencer Marketing Case Studies',
   description:
     'How CA Agency runs influencer campaigns for brands like YSL Beauty, NARS, HONOR, and Mixsoon, the brief, the approach, and the work itself.',
@@ -31,6 +26,11 @@ export const metadata: Metadata = buildPageMetadata({
     'creator marketing results',
   ],
 })
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  alternates: { canonical: 'https://caagency.com/case-studies', languages: caseStudyIndexLanguages() },
+}
 
 const listSchema = {
   '@context': 'https://schema.org',
@@ -48,75 +48,7 @@ export default function CaseStudiesPage() {
     <>
       <script type="application/ld+json">{JSON.stringify(listSchema)}</script>
 
-      {/* Hero — CSS load-in (LCP-safe) */}
-      <section className="relative overflow-hidden bg-background-base py-[80px] tablet:py-[60px] mobile:py-[50px] px-section-x">
-        <div className="relative z-[1] max-w-container mx-auto">
-          <div className="hero-rise-media max-w-[800px]">
-            <span className="mb-3 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red">
-              Case Studies
-            </span>
-            <Heading as="h1" color="dark" className="mb-6 text-[48px] tablet:text-[40px] mobile:text-[32px]">
-              The Work, and How It Happened
-            </Heading>
-            <Text color="dark" size="lg" className="opacity-80">
-              Behind every campaign video is a brief, a creator match, and a production process.
-              These case studies show how we run influencer campaigns for beauty, skincare, and
-              tech brands, from first call to final delivery.
-            </Text>
-          </div>
-        </div>
-      </section>
-
-      {/* Case study grid */}
-      <section className="bg-background-base px-section-x pb-sec-sm">
-        <div className="max-w-container mx-auto">
-          <Stagger className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]" stagger={0.06}>
-            {listed.map((cs) => (
-              <StaggerItem key={cs.slug}>
-                <CaseStudyCard study={cs} showSummary />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {archive.length > 0 && (
-        <section className="bg-background-base px-section-x pb-sec-sm">
-          <nav aria-label="More case studies" className="max-w-container mx-auto border-t border-black/5 pt-10">
-            <Heading as="h2" color="dark" className="mb-6 text-[28px] mobile:text-[24px]">
-              More Case Studies
-            </Heading>
-            <ul className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-x-8 gap-y-3">
-              {archive.map((cs) => (
-                <li key={cs.slug}>
-                  <Link
-                    href={`/case-studies/${cs.slug}`}
-                    className="font-work-sans text-[15px] leading-[1.5] text-foreground-body underline-offset-4 hover:text-foreground-primary hover:underline"
-                  >
-                    {cs.creatorName ? `${cs.brand} × ${cs.creatorName}` : cs.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </section>
-      )}
-
-      {/* CTA */}
-      <section className="bg-background-base py-[80px] px-section-x border-t border-black/5">
-        <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">
-          <Heading as="h2" color="dark" className="mb-6 text-[40px] mobile:text-[28px]">
-            Your Brand Could Be Next
-          </Heading>
-          <Text color="dark" size="lg" className="max-w-[600px] mx-auto mb-8 opacity-80">
-            Tell us what you&apos;re launching and we&apos;ll match you with the right creators.
-          </Text>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button href="/contact">Start Your Campaign</Button>
-            <Button href="/work" variant="dark">Watch the Work</Button>
-          </div>
-        </ScrollReveal>
-      </section>
+      <CaseStudiesIndex listed={listed} archive={archive} ui={englishCaseStudyUi} locale="en" />
     </>
   )
 }

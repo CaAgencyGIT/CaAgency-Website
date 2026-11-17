@@ -41,12 +41,10 @@ describe('isSensitiveProbe', () => {
 describe('getLocalizedSiteRouteRedirect', () => {
   it('strips the locale prefix for (site)-only routes', () => {
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
-    expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
     expect(getLocalizedSiteRouteRedirect('/ar/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
     expect(getLocalizedSiteRouteRedirect('/ar/services/not-a-service')).toBe('/services/not-a-service')
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
-    expect(getLocalizedSiteRouteRedirect('/es/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBe('/business-license')
     expect(getLocalizedSiteRouteRedirect('/de/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
   })
@@ -68,6 +66,10 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/fr/beauty-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/skincare-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ar/services/influencer-campaigns')).toBeNull()
+    // Case studies and their index exist in every translated language.
+    expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/es/case-studies/sephora-campaign')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/es/case-studies/a/b')).toBe('/case-studies/a/b')
     expect(getLocalizedSiteRouteRedirect('/ko/services/brand-consultancy')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-dubai')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-nordics')).toBeNull()

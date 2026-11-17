@@ -16,6 +16,7 @@ import StaggerItem from '@/components/ui/motion/StaggerItem'
 import { brandLogos } from '@/lib/data/brands'
 import type { LocationLabels, LocationPageContent } from '@/lib/site-content/location-pages'
 import { posterFor } from '@/lib/data/videos'
+import { localizeHref } from '@/lib/i18n/client-paths'
 import { locationGuides, type GuideLink } from '@/lib/data/guides'
 import { marketLinks, type MarketLink } from '@/lib/data/locations'
 import type { Locale } from '@/i18n/config'
@@ -166,7 +167,7 @@ export default function LocationLandingPage({
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-5">
                     {item.href ? (
                       <Link
-                        href={item.href}
+                        href={localizeHref(item.href, locale)}
                         prefetch={false}
                         className="pointer-events-auto font-anegra text-[20px] tracking-[0.5px] text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
                       >
