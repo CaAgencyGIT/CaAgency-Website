@@ -51,35 +51,32 @@ const LOCALE_PREFIX = new RegExp(`^\\/(${NON_DEFAULT_LOCALES})`)
 
 // English-only location pages that also have a translated app/[locale]/
 // version for these locales.
+const EVERY_MARKET_PATH = [
+  '/influencer-marketing-dubai',
+  '/influencer-marketing-uae',
+  '/influencer-marketing-saudi-arabia',
+  '/influencer-marketing-gcc',
+  '/influencer-marketing-korea',
+  '/influencer-marketing-asia',
+  '/influencer-marketing-usa',
+  '/influencer-marketing-uk',
+  '/influencer-marketing-canada',
+  '/influencer-marketing-australia',
+  '/influencer-marketing-sydney',
+  '/influencer-marketing-melbourne',
+  '/influencer-marketing-europe',
+  '/influencer-marketing-germany',
+  '/influencer-marketing-france',
+  '/influencer-marketing-switzerland',
+  '/influencer-marketing-nordics',
+] as const
+
 export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>> = {
-  ar: [
-    '/influencer-marketing-dubai',
-    '/influencer-marketing-uae',
-    '/influencer-marketing-saudi-arabia',
-    '/influencer-marketing-gcc',
-  ],
+  // Arabic and Spanish have every market page.
+  ar: EVERY_MARKET_PATH,
   de: ['/influencer-marketing-germany', '/influencer-marketing-switzerland'],
   fr: ['/influencer-marketing-france'],
-  // Spanish has every market page.
-  es: [
-    '/influencer-marketing-dubai',
-    '/influencer-marketing-uae',
-    '/influencer-marketing-saudi-arabia',
-    '/influencer-marketing-gcc',
-    '/influencer-marketing-korea',
-    '/influencer-marketing-asia',
-    '/influencer-marketing-usa',
-    '/influencer-marketing-uk',
-    '/influencer-marketing-canada',
-    '/influencer-marketing-australia',
-    '/influencer-marketing-sydney',
-    '/influencer-marketing-melbourne',
-    '/influencer-marketing-europe',
-    '/influencer-marketing-germany',
-    '/influencer-marketing-france',
-    '/influencer-marketing-switzerland',
-    '/influencer-marketing-nordics',
-  ],
+  es: EVERY_MARKET_PATH,
 }
 
 // English-only blog posts that also have a translated app/[locale]/blog/[slug]

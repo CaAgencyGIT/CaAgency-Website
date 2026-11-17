@@ -1,6 +1,8 @@
 import type { LocationLabels, LocationPageContent } from '@/lib/site-content/location-pages'
 
-// Arabic versions of the Gulf location pages, served at /ar/<path>. Translated
+// Arabic versions of the Gulf location pages, served at /ar/<path>. The other
+// Arabic market pages are in location-pages-ar-markets.ts; both are registered
+// in location-pages-translated.ts. Translated
 // from the English defaults in definitions.ts; unlike the English pages they
 // are not editable in the admin.
 
@@ -97,7 +99,7 @@ export const arabicLocationPages = {
       },
       cta: {
         title: 'أطلق حملتك في دبي',
-        description: 'اصل إلى الجمهور المناسب في دبي مع صنّاع محتوى يتوافقون مع علامتك التجارية وأهدافك.',
+        description: 'صِل إلى الجمهور المناسب في دبي مع صنّاع محتوى يتوافقون مع علامتك التجارية وأهدافك.',
         buttonLabel: 'تواصل معنا',
         buttonHref: '/contact',
       },
@@ -173,7 +175,7 @@ export const arabicLocationPages = {
       cta: {
         title: 'أطلق حملة المؤثرين في الإمارات',
         description:
-          'اصل إلى جمهور الإمارات مع وكالة تسويق مؤثرين تختار لعلامتك التجارية صنّاع المحتوى واستراتيجية الحملة المناسبة.',
+          'صِل إلى جمهور الإمارات مع وكالة تسويق مؤثرين تختار لعلامتك التجارية صنّاع المحتوى واستراتيجية الحملة المناسبة.',
         buttonLabel: 'تواصل معنا',
         buttonHref: '/contact',
       },

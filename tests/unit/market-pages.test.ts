@@ -43,12 +43,18 @@ describe('market pages', () => {
     expect(locationPageLanguages('/influencer-marketing-switzerland')).toEqual({
       'x-default': 'https://caagency.com/influencer-marketing-switzerland',
       en: 'https://caagency.com/influencer-marketing-switzerland',
+      ar: 'https://caagency.com/ar/influencer-marketing-switzerland',
       de: 'https://caagency.com/de/influencer-marketing-switzerland',
       es: 'https://caagency.com/es/influencer-marketing-switzerland',
     })
-    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'es'])
-    // Spanish has every market page; the Gulf pages keep their Arabic version too.
-    expect(Object.keys(translatedLocationPages.es.pages).sort()).toEqual(marketPages.map((page) => page.key).sort())
+    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'ar', 'es'])
+    // Arabic and Spanish have every market page.
+    for (const locale of ['ar', 'es'] as const) {
+      expect(Object.keys(translatedLocationPages[locale].pages).sort(), locale).toEqual(marketPages.map((page) => page.key).sort())
+    }
+    for (const [key, phrase] of [['sydney', 'لسنا وكالة مقرها سيدني'], ['melbourne', 'لسنا وكالة مقرها ملبورن']] as const) {
+      expect(JSON.stringify(translatedLocationPages.ar.pages[key].content), key).toContain(phrase)
+    }
     expect(Object.keys(locationPageLanguages('/influencer-marketing-dubai'))).toEqual(['x-default', 'en', 'ar', 'es'])
     for (const [key, city] of [['sydney', 'Sídney'], ['melbourne', 'Melbourne']] as const) {
       // The Spanish city pages keep the statement that the agency is not based there.
