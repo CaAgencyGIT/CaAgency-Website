@@ -7,11 +7,11 @@ import { locationPageLanguages } from '@/lib/routing-helpers'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { organizationRef } from '@/lib/seo/schema'
-import { europeanMarkets, type EuropeanMarket } from '@/lib/data/european-markets'
+import { marketRoutes, type MarketRoute, type MarketRouteConfig } from '@/lib/data/market-routes'
 
 const baseUrl = 'https://caagency.com'
-export function marketMetadata(market: EuropeanMarket): Metadata {
-  const page = europeanMarkets[market]
+export function marketMetadata(market: MarketRoute): Metadata {
+  const page = marketRoutes[market]
   const metadata = buildPageMetadata({
     title: page.title,
     description: page.description,
@@ -31,8 +31,8 @@ export function marketMetadata(market: EuropeanMarket): Metadata {
   }
 }
 
-export default async function MarketLandingRoute({ market }: { market: EuropeanMarket }) {
-  const page = europeanMarkets[market]
+export default async function MarketLandingRoute({ market }: { market: MarketRoute }) {
+  const page: MarketRouteConfig = marketRoutes[market]
   const [content, talents] = await Promise.all([
     getSiteContent<LocationPageContent>(page.contentKey),
     getFeaturedTalents(6),
@@ -51,7 +51,7 @@ export default async function MarketLandingRoute({ market }: { market: EuropeanM
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(serviceSchema) }} />
-      <LocationLandingPage path={page.path} content={content} talents={talents} />
+      <LocationLandingPage path={page.path} content={content} talents={talents} relatedPages={page.related} />
     </>
   )
 }

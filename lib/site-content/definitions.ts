@@ -1,4 +1,5 @@
 import { beautyPageDefaults, skincarePageDefaults } from '@/lib/site-content/category-pages'
+import { australiaProcess, melbournePageDefaults, sydneyPageDefaults } from '@/lib/site-content/australia-pages'
 import {
   australiaFaq,
   australiaIntro,
@@ -1071,6 +1072,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         ],
       },
       intro: australiaIntro,
+      process: australiaProcess,
       talents: { title: 'Our Australian Market Creators', buttonLabel: 'View All Talents', buttonHref: '/talents' },
       industries: {
         title: 'Top Performing Industries',
@@ -1091,6 +1093,8 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
       ['france', 'France', francePageDefaults],
       ['switzerland', 'Switzerland', switzerlandPageDefaults],
       ['nordics', 'Nordics', nordicsPageDefaults],
+      ['sydney', 'Sydney', sydneyPageDefaults],
+      ['melbourne', 'Melbourne', melbournePageDefaults],
     ] as const
   ).map(([slug, name, defaultData]) => ({
     key: `location-${slug}`,

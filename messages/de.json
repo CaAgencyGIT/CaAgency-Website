@@ -101,7 +101,9 @@
     "germany": "Deutschland",
     "france": "Frankreich",
     "switzerland": "Schweiz",
-    "nordics": "Nordische Länder"
+    "nordics": "Nordische Länder",
+    "sydney": "Sydney",
+    "melbourne": "Melbourne"
   },
   "hero": {
     "title": "CA Agency",
@@ -511,6 +513,8 @@
     "influencer-marketing-switzerland": "Influencer Marketing Schweiz",
     "influencer-marketing-europe": "Influencer Marketing Europa",
     "influencer-marketing-france": "Influencer Marketing Frankreich",
-    "influencer-marketing-nordics": "Influencer Marketing Nordische Länder"
+    "influencer-marketing-nordics": "Influencer Marketing Nordische Länder",
+    "influencer-marketing-sydney": "Influencer Marketing Sydney",
+    "influencer-marketing-melbourne": "Influencer Marketing Melbourne"
   }
 }

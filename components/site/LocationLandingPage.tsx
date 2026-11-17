@@ -49,6 +49,7 @@ export default function LocationLandingPage({
   path,
   markets = marketLinks,
   translatedGuides,
+  relatedPages,
 }: {
   content: LocationPageContent
   talents: TalentCard[]
@@ -62,6 +63,8 @@ export default function LocationLandingPage({
   markets?: MarketLink[]
   // Guides in the page's own language (translated pages), shown instead of the English ones.
   translatedGuides?: { eyebrow: string; title: string; items: GuideLink[] }
+  // Closely related pages (a country and its city pages), as the same kind of cards.
+  relatedPages?: { eyebrow: string; title: string; items: GuideLink[] }
 }) {
   const featuredHrefs = new Set(featuredGuides.map((guide) => guide.href))
   const guides = [...featuredGuides, ...locationGuides.filter((guide) => !featuredHrefs.has(guide.href))].slice(0, 6)
@@ -284,26 +287,30 @@ export default function LocationLandingPage({
         </section>
       )}
 
-      {translatedGuides && translatedGuides.items.length > 0 && (
-        <section className="bg-background-base py-sec px-section-x border-t border-black/5">
-          <div className="max-w-container mx-auto">
-            <SectionHeading align="start" size="md" eyebrow={translatedGuides.eyebrow} title={translatedGuides.title} className="mb-8" />
-            <div className="grid grid-cols-3 mobile:grid-cols-1 gap-6">
-              {translatedGuides.items.map((post) => (
-                <Link
-                  key={post.href}
-                  href={post.href}
-                  className="hover-lift block rounded-card border border-black/10 bg-background-soft p-6 hover:border-black/15 hover:bg-white hover:shadow-e3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-red"
-                >
-                  <h3 className="text-foreground-primary font-semibold text-lg mb-2">{post.title}</h3>
-                  <Text color="dark" size="sm" className="opacity-70">
-                    {post.desc}
-                  </Text>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+      {[relatedPages, translatedGuides].map(
+        (cards) =>
+          cards &&
+          cards.items.length > 0 && (
+            <section key={cards.title} className="bg-background-base py-sec px-section-x border-t border-black/5">
+              <div className="max-w-container mx-auto">
+                <SectionHeading align="start" size="md" eyebrow={cards.eyebrow} title={cards.title} className="mb-8" />
+                <div className="grid grid-cols-3 mobile:grid-cols-1 gap-6">
+                  {cards.items.map((card) => (
+                    <Link
+                      key={card.href}
+                      href={card.href}
+                      className="hover-lift block rounded-card border border-black/10 bg-background-soft p-6 hover:border-black/15 hover:bg-white hover:shadow-e3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-red"
+                    >
+                      <h3 className="text-foreground-primary font-semibold text-lg mb-2">{card.title}</h3>
+                      <Text color="dark" size="sm" className="opacity-70">
+                        {card.desc}
+                      </Text>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )
       )}
 
       {otherMarkets.length > 0 && (

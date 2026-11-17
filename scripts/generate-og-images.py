@@ -41,6 +41,8 @@ PAGES = [
     ('influencer-marketing-uk-v2.jpg', 'images/hero/collage-v2/rebecca-lolavie-v1.webp', 'United Kingdom', LOCATION_LABEL),
     ('influencer-marketing-canada-v2.jpg', 'images/hero/collage-v2/yasaman-prada-beauty-v1.webp', 'Canada', LOCATION_LABEL),
     ('influencer-marketing-australia-v2.jpg', 'images/hero/collage-v2/melly-brush-v1.webp', 'Australia', LOCATION_LABEL),
+    ('influencer-marketing-sydney-v1.jpg', 'images/hero/collage-v2/melly-brush-v1.webp', 'Sydney', LOCATION_LABEL),
+    ('influencer-marketing-melbourne-v1.jpg', 'images/hero/collage-v2/rebecca-ellis-brooklyn-v1.webp', 'Melbourne', LOCATION_LABEL),
     ('influencer-marketing-europe-v1.jpg', 'images/hero/collage-v2/rebecca-lolavie-v1.webp', 'Europe', LOCATION_LABEL),
     ('influencer-marketing-germany-v1.jpg', 'images/hero/dariia-ysl.webp', 'Germany', LOCATION_LABEL),
     ('influencer-marketing-france-v1.jpg', 'images/hero/collage-v2/yasaman-prada-beauty-v1.webp', 'France', LOCATION_LABEL),

@@ -101,7 +101,9 @@
     "germany": "德国",
     "france": "法国",
     "switzerland": "瑞士",
-    "nordics": "北欧"
+    "nordics": "北欧",
+    "sydney": "悉尼",
+    "melbourne": "墨尔本"
   },
   "hero": {
     "title": "CA Agency",
@@ -511,6 +513,8 @@
     "influencer-marketing-germany": "网红营销 德国",
     "influencer-marketing-france": "网红营销 法国",
     "influencer-marketing-switzerland": "网红营销 瑞士",
-    "influencer-marketing-nordics": "网红营销 北欧"
+    "influencer-marketing-nordics": "网红营销 北欧",
+    "influencer-marketing-sydney": "网红营销 悉尼",
+    "influencer-marketing-melbourne": "网红营销 墨尔本"
   }
 }
