@@ -74,8 +74,33 @@ import { post as esInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-trans
 import { post as esFindSkincareInfluencersUsa } from '@/lib/blog-translations/es/find-skincare-influencers-usa'
 import { post as esHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/es/how-to-run-influencer-marketing-campaign'
 import { post as esInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/es/influencer-marketing-agency-vs-in-house'
+import { post as arHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/ar/how-to-choose-influencer-marketing-agency'
+import { post as arInfluencerMarketingCost2026 } from '@/lib/blog-translations/ar/influencer-marketing-cost-2026'
+import { post as arTiktokShopBeautyBrands } from '@/lib/blog-translations/ar/tiktok-shop-beauty-brands'
+import { post as arInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/ar/influencer-marketing-for-health-wellness'
+import { post as arInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/ar/influencer-marketing-for-fashion-brands'
+import { post as arInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/ar/influencer-marketing-for-beauty-brands'
+import { post as arKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/ar/k-beauty-influencer-marketing-guide'
+import { post as arInfluencerMarketingGuide } from '@/lib/blog-translations/ar/influencer-marketing-guide'
+import { post as arInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/ar/influencer-whitelisting-spark-ads-guide'
+import { post as arTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/ar/tiktok-influencer-marketing-guide'
+import { post as arHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/ar/how-to-measure-influencer-marketing-roi'
+import { post as arYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/ar/youtube-influencer-marketing-beauty-brands'
+import { post as arMicroVsMacroInfluencers } from '@/lib/blog-translations/ar/micro-vs-macro-influencers'
+import { post as arInstagramReelsBeautyBrands } from '@/lib/blog-translations/ar/instagram-reels-beauty-brands'
+import { post as arTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/ar/tiktok-shop-fashion-wellness-brands'
+import { post as arInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/ar/instagram-influencer-marketing-2026'
+import { post as arInfluencerMarketingTrends2026 } from '@/lib/blog-translations/ar/influencer-marketing-trends-2026'
+import { post as arUgcVsInfluencerMarketing } from '@/lib/blog-translations/ar/ugc-vs-influencer-marketing'
+import { post as arHowToSpotFakeInfluencers } from '@/lib/blog-translations/ar/how-to-spot-fake-influencers'
+import { post as arFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/ar/ftc-disclosure-guidelines-influencer-marketing'
+import { post as arSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/ar/saudi-arabia-influencer-marketing-guide'
+import { post as arInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/ar/influencer-marketing-dubai-uae-cost-guide'
+import { post as arFindSkincareInfluencersUsa } from '@/lib/blog-translations/ar/find-skincare-influencers-usa'
+import { post as arHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/ar/how-to-run-influencer-marketing-campaign'
+import { post as arInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/ar/influencer-marketing-agency-vs-in-house'
 
-// Blog guides that also exist in German, French or Spanish, served at
+// Blog guides that also exist in German, French, Spanish or Arabic, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
 // (like the translated market pages), not in the Post table, and the pages
 // never read the database: the deploy reuses the CI build and rejects it when
@@ -241,6 +266,59 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       esFindSkincareInfluencersUsa,
       esHowToRunInfluencerMarketingCampaign,
       esInfluencerMarketingAgencyVsInHouse,
+    ],
+  },
+  ar: {
+    labels: {
+      dateLocale: 'ar-AE-u-nu-latn',
+      by: 'بقلم',
+      minRead: 'دقائق قراءة',
+      toc: 'في هذا المقال',
+      writtenBy: 'بقلم',
+      authorBio:
+        'يستند فريق التحرير في CA Agency إلى أكثر من 3000 حملة مؤثرين نُفّذت لعلامات تجارية عالمية على إنستغرام وتيك توك ويوتيوب، مع تخصص عميق في الجمال والعناية بالبشرة الكورية (K-beauty).',
+      workWithUs: 'اعمل معنا',
+      ctaTitle: 'هل أنت مستعد للعمل معنا؟',
+      ctaText: 'لنبنِ معاً حملة مؤثرين تحقق نتائج حقيقية لعلامتك التجارية.',
+      ctaButton: 'ابدأ الآن',
+      readInLanguage: 'اقرأ هذا الدليل بالعربية',
+      guidesEyebrow: 'أدلة',
+      guidesTitle: 'أدلة تسويق المؤثرين',
+      indexTitle: 'مدونة تسويق المؤثرين: أدلة عملية | CA Agency',
+      indexDescription:
+        'أدلة تسويق المؤثرين بالعربية: اختيار الوكالة، التكاليف، المنصات، القياس والقطاعات، من خبرة أكثر من 3000 حملة.',
+      indexHeading: 'مدونة تسويق المؤثرين',
+      indexIntro: 'أدلة واستراتيجيات وخبرة عملية من CA Agency، مستمدة من أكثر من 3000 حملة مؤثرين.',
+      allGuides: 'جميع الأدلة',
+      englishBlog: 'المدونة بالإنجليزية',
+      indexInLanguage: 'الأدلة بالعربية',
+    },
+    posts: [
+      arHowToChooseInfluencerMarketingAgency,
+      arInfluencerMarketingCost2026,
+      arTiktokShopBeautyBrands,
+      arInfluencerMarketingForHealthWellness,
+      arInfluencerMarketingForFashionBrands,
+      arInfluencerMarketingForBeautyBrands,
+      arKBeautyInfluencerMarketingGuide,
+      arInfluencerMarketingGuide,
+      arInfluencerWhitelistingSparkAdsGuide,
+      arTiktokInfluencerMarketingGuide,
+      arHowToMeasureInfluencerMarketingRoi,
+      arYoutubeInfluencerMarketingBeautyBrands,
+      arMicroVsMacroInfluencers,
+      arInstagramReelsBeautyBrands,
+      arTiktokShopFashionWellnessBrands,
+      arInstagramInfluencerMarketing2026,
+      arInfluencerMarketingTrends2026,
+      arUgcVsInfluencerMarketing,
+      arHowToSpotFakeInfluencers,
+      arFtcDisclosureGuidelinesInfluencerMarketing,
+      arSaudiArabiaInfluencerMarketingGuide,
+      arInfluencerMarketingDubaiUaeCostGuide,
+      arFindSkincareInfluencersUsa,
+      arHowToRunInfluencerMarketingCampaign,
+      arInfluencerMarketingAgencyVsInHouse,
     ],
   },
 }

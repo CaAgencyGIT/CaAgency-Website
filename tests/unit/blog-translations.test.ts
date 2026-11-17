@@ -31,20 +31,22 @@ describe('translated blog guides', () => {
       de: 'https://caagency.com/de/blog',
       fr: 'https://caagency.com/fr/blog',
       es: 'https://caagency.com/es/blog',
+      ar: 'https://caagency.com/ar/blog',
     })
   })
 
   it('builds hreflang for a translated post', () => {
-    expect(translationLocales('influencer-marketing-cost-2026')).toEqual(['de', 'fr', 'es'])
+    expect(translationLocales('influencer-marketing-cost-2026')).toEqual(['de', 'fr', 'es', 'ar'])
     expect(postLanguages('influencer-marketing-cost-2026')).toEqual({
       'x-default': 'https://caagency.com/blog/influencer-marketing-cost-2026',
       en: 'https://caagency.com/blog/influencer-marketing-cost-2026',
       de: 'https://caagency.com/de/blog/influencer-marketing-cost-2026',
       fr: 'https://caagency.com/fr/blog/influencer-marketing-cost-2026',
       es: 'https://caagency.com/es/blog/influencer-marketing-cost-2026',
+      ar: 'https://caagency.com/ar/blog/influencer-marketing-cost-2026',
     })
     expect(translationLocales('a-post-without-a-translation')).toEqual([])
-    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([25, 25, 25])
+    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([25, 25, 25, 25])
   })
 
   it('gives every translation search-ready metadata and links inside its own language', () => {
