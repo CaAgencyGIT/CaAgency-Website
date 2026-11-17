@@ -1,8 +1,20 @@
 import type { TranslatedPost, TranslatedPostLabels } from '@/lib/blog-translations/types'
-import { post as deChooseAgency } from '@/lib/blog-translations/de/how-to-choose-influencer-marketing-agency'
-import { post as deCost } from '@/lib/blog-translations/de/influencer-marketing-cost-2026'
-import { post as frChooseAgency } from '@/lib/blog-translations/fr/how-to-choose-influencer-marketing-agency'
-import { post as frCost } from '@/lib/blog-translations/fr/influencer-marketing-cost-2026'
+import { post as deHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/de/how-to-choose-influencer-marketing-agency'
+import { post as deInfluencerMarketingCost2026 } from '@/lib/blog-translations/de/influencer-marketing-cost-2026'
+import { post as deTiktokShopBeautyBrands } from '@/lib/blog-translations/de/tiktok-shop-beauty-brands'
+import { post as deInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/de/influencer-marketing-for-health-wellness'
+import { post as deInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/de/influencer-marketing-for-fashion-brands'
+import { post as deInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/de/influencer-marketing-for-beauty-brands'
+import { post as deKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/de/k-beauty-influencer-marketing-guide'
+import { post as deInfluencerMarketingGuide } from '@/lib/blog-translations/de/influencer-marketing-guide'
+import { post as frHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/fr/how-to-choose-influencer-marketing-agency'
+import { post as frInfluencerMarketingCost2026 } from '@/lib/blog-translations/fr/influencer-marketing-cost-2026'
+import { post as frTiktokShopBeautyBrands } from '@/lib/blog-translations/fr/tiktok-shop-beauty-brands'
+import { post as frInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/fr/influencer-marketing-for-health-wellness'
+import { post as frInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/fr/influencer-marketing-for-fashion-brands'
+import { post as frInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/fr/influencer-marketing-for-beauty-brands'
+import { post as frKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/fr/k-beauty-influencer-marketing-guide'
+import { post as frInfluencerMarketingGuide } from '@/lib/blog-translations/fr/influencer-marketing-guide'
 
 // Blog guides that also exist in German or French, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
@@ -30,7 +42,16 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       guidesEyebrow: 'Ratgeber',
       guidesTitle: 'Ratgeber zum Influencer Marketing',
     },
-    posts: [deChooseAgency, deCost],
+    posts: [
+      deHowToChooseInfluencerMarketingAgency,
+      deInfluencerMarketingCost2026,
+      deTiktokShopBeautyBrands,
+      deInfluencerMarketingForHealthWellness,
+      deInfluencerMarketingForFashionBrands,
+      deInfluencerMarketingForBeautyBrands,
+      deKBeautyInfluencerMarketingGuide,
+      deInfluencerMarketingGuide,
+    ],
   },
   fr: {
     labels: {
@@ -49,7 +70,16 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       guidesEyebrow: 'Guides',
       guidesTitle: "Guides sur le marketing d'influence",
     },
-    posts: [frChooseAgency, frCost],
+    posts: [
+      frHowToChooseInfluencerMarketingAgency,
+      frInfluencerMarketingCost2026,
+      frTiktokShopBeautyBrands,
+      frInfluencerMarketingForHealthWellness,
+      frInfluencerMarketingForFashionBrands,
+      frInfluencerMarketingForBeautyBrands,
+      frKBeautyInfluencerMarketingGuide,
+      frInfluencerMarketingGuide,
+    ],
   },
 }
 
@@ -72,9 +102,9 @@ export function postLanguages(slug: string, baseUrl = 'https://caagency.com'): R
   }
 }
 
-/** Guide cards for a translated market page, in that page's language. */
-export function translatedGuides(locale: string) {
-  return (translatedPosts[locale]?.posts ?? []).map((post) => ({
+/** Guide cards in a language: for its market pages (first `limit`) and the "more guides" list on a post. */
+export function translatedGuides(locale: string, limit = Infinity) {
+  return (translatedPosts[locale]?.posts ?? []).slice(0, limit).map((post) => ({
     href: `/${locale}/blog/${post.slug}`,
     title: post.seoTitle ?? post.title,
     desc: post.excerpt,

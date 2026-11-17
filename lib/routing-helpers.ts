@@ -64,9 +64,19 @@ export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>
 
 // English-only blog posts that also have a translated app/[locale]/blog/[slug]
 // version (lib/blog-translations).
+const TRANSLATED_BLOG_PATHS = [
+  '/blog/how-to-choose-influencer-marketing-agency',
+  '/blog/influencer-marketing-cost-2026',
+  '/blog/tiktok-shop-beauty-brands',
+  '/blog/influencer-marketing-for-health-wellness',
+  '/blog/influencer-marketing-for-fashion-brands',
+  '/blog/influencer-marketing-for-beauty-brands',
+  '/blog/k-beauty-influencer-marketing-guide',
+  '/blog/influencer-marketing-guide',
+] as const
 export const LOCALIZED_BLOG_PATHS: Partial<Record<string, readonly string[]>> = {
-  de: ['/blog/how-to-choose-influencer-marketing-agency', '/blog/influencer-marketing-cost-2026'],
-  fr: ['/blog/how-to-choose-influencer-marketing-agency', '/blog/influencer-marketing-cost-2026'],
+  de: TRANSLATED_BLOG_PATHS,
+  fr: TRANSLATED_BLOG_PATHS,
 }
 
 export function isEnglishOnlyPath(pathname: string): boolean {
