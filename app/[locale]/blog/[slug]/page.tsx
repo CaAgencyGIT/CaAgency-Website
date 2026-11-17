@@ -78,7 +78,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
   const coverImage = resolveFeaturedImage({ slug })
   const url = `${baseUrl}/${locale}/blog/${slug}`
   const published = new Date(translation.publishedAt)
-  const moreGuides = translatedGuides(locale).filter((guide) => !guide.href.endsWith(`/blog/${slug}`))
+  const moreGuides = translatedGuides(locale).filter((guide) => !guide.href.endsWith(`/blog/${slug}`)).slice(0, 3)
 
   const articleSchema = {
     ...blogPostingJsonLd({
@@ -201,7 +201,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* The other guides in this language: there is no translated blog index to link them from. */}
+      {/* Three more guides in this language; the full list is on the translated blog index. */}
       {moreGuides.length > 0 && (
         <section className="bg-background-soft py-[80px] tablet:py-[60px] px-section-x border-t border-black/5">
           <nav aria-label={labels.guidesTitle} className="max-w-container mx-auto">
@@ -221,6 +221,11 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
                 </li>
               ))}
             </ul>
+            <p className="mt-8">
+              <Link href={`/${locale}/blog`} className="text-foreground-primary underline underline-offset-4">
+                {labels.allGuides} →
+              </Link>
+            </p>
           </nav>
         </section>
       )}
@@ -236,6 +241,9 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
           <div className="flex flex-wrap gap-4 justify-center">
             <Button locale={locale as Locale} href="/contact">
               {labels.ctaButton}
+            </Button>
+            <Button locale={locale as Locale} href="/blog" variant="dark">
+              {labels.allGuides}
             </Button>
           </div>
         </ScrollReveal>

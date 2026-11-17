@@ -7,6 +7,11 @@ import { post as deInfluencerMarketingForFashionBrands } from '@/lib/blog-transl
 import { post as deInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/de/influencer-marketing-for-beauty-brands'
 import { post as deKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/de/k-beauty-influencer-marketing-guide'
 import { post as deInfluencerMarketingGuide } from '@/lib/blog-translations/de/influencer-marketing-guide'
+import { post as deInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/de/influencer-whitelisting-spark-ads-guide'
+import { post as deTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/de/tiktok-influencer-marketing-guide'
+import { post as deHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/de/how-to-measure-influencer-marketing-roi'
+import { post as deYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/de/youtube-influencer-marketing-beauty-brands'
+import { post as deMicroVsMacroInfluencers } from '@/lib/blog-translations/de/micro-vs-macro-influencers'
 import { post as frHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/fr/how-to-choose-influencer-marketing-agency'
 import { post as frInfluencerMarketingCost2026 } from '@/lib/blog-translations/fr/influencer-marketing-cost-2026'
 import { post as frTiktokShopBeautyBrands } from '@/lib/blog-translations/fr/tiktok-shop-beauty-brands'
@@ -15,6 +20,11 @@ import { post as frInfluencerMarketingForFashionBrands } from '@/lib/blog-transl
 import { post as frInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/fr/influencer-marketing-for-beauty-brands'
 import { post as frKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/fr/k-beauty-influencer-marketing-guide'
 import { post as frInfluencerMarketingGuide } from '@/lib/blog-translations/fr/influencer-marketing-guide'
+import { post as frInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/fr/influencer-whitelisting-spark-ads-guide'
+import { post as frTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/fr/tiktok-influencer-marketing-guide'
+import { post as frHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/fr/how-to-measure-influencer-marketing-roi'
+import { post as frYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/fr/youtube-influencer-marketing-beauty-brands'
+import { post as frMicroVsMacroInfluencers } from '@/lib/blog-translations/fr/micro-vs-macro-influencers'
 
 // Blog guides that also exist in German or French, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
@@ -41,6 +51,14 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       readInLanguage: 'Diesen Ratgeber auf Deutsch lesen',
       guidesEyebrow: 'Ratgeber',
       guidesTitle: 'Ratgeber zum Influencer Marketing',
+      indexTitle: 'Influencer Marketing Blog: Ratgeber | CA Agency',
+      indexDescription:
+        'Ratgeber zum Influencer Marketing auf Deutsch: Agenturwahl, Kosten, Plattformen, Messung und Branchen, aus der Erfahrung von über 3.000 Kampagnen.',
+      indexHeading: 'Influencer Marketing Blog',
+      indexIntro: 'Ratgeber, Strategien und Praxiswissen von CA Agency, aus der Erfahrung von über 3.000 Influencer-Kampagnen.',
+      allGuides: 'Alle Ratgeber',
+      englishBlog: 'Weitere Artikel im englischen Blog',
+      indexInLanguage: 'Ratgeber auf Deutsch',
     },
     posts: [
       deHowToChooseInfluencerMarketingAgency,
@@ -51,6 +69,11 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       deInfluencerMarketingForBeautyBrands,
       deKBeautyInfluencerMarketingGuide,
       deInfluencerMarketingGuide,
+      deInfluencerWhitelistingSparkAdsGuide,
+      deTiktokInfluencerMarketingGuide,
+      deHowToMeasureInfluencerMarketingRoi,
+      deYoutubeInfluencerMarketingBeautyBrands,
+      deMicroVsMacroInfluencers,
     ],
   },
   fr: {
@@ -69,6 +92,14 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       readInLanguage: 'Lire ce guide en français',
       guidesEyebrow: 'Guides',
       guidesTitle: "Guides sur le marketing d'influence",
+      indexTitle: "Blog marketing d'influence : nos guides | CA Agency",
+      indexDescription:
+        "Des guides sur le marketing d'influence en français : choix d'agence, coûts, plateformes, mesure et secteurs, tirés de plus de 3 000 campagnes.",
+      indexHeading: "Blog marketing d'influence",
+      indexIntro: "Guides, stratégies et retours d'expérience de CA Agency, tirés de plus de 3 000 campagnes d'influence.",
+      allGuides: 'Tous les guides',
+      englishBlog: "Plus d'articles sur le blog en anglais",
+      indexInLanguage: 'Guides en français',
     },
     posts: [
       frHowToChooseInfluencerMarketingAgency,
@@ -79,6 +110,11 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       frInfluencerMarketingForBeautyBrands,
       frKBeautyInfluencerMarketingGuide,
       frInfluencerMarketingGuide,
+      frInfluencerWhitelistingSparkAdsGuide,
+      frTiktokInfluencerMarketingGuide,
+      frHowToMeasureInfluencerMarketingRoi,
+      frYoutubeInfluencerMarketingBeautyBrands,
+      frMicroVsMacroInfluencers,
     ],
   },
 }
@@ -99,6 +135,15 @@ export function postLanguages(slug: string, baseUrl = 'https://caagency.com'): R
     'x-default': english,
     en: english,
     ...Object.fromEntries(translationLocales(slug).map((locale) => [locale, `${baseUrl}/${locale}/blog/${slug}`])),
+  }
+}
+
+/** hreflang map for the blog index: English (also x-default) plus each language with translated guides. */
+export function blogIndexLanguages(baseUrl = 'https://caagency.com'): Record<string, string> {
+  return {
+    'x-default': `${baseUrl}/blog`,
+    en: `${baseUrl}/blog`,
+    ...Object.fromEntries(Object.keys(translatedPosts).map((locale) => [locale, `${baseUrl}/${locale}/blog`])),
   }
 }
 

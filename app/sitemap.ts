@@ -10,7 +10,7 @@ import { locationPageLanguages } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
-import { getTranslatedPost, postLanguages, translationLocales } from '@/lib/blog-translations'
+import { blogIndexLanguages, getTranslatedPost, postLanguages, translatedPosts, translationLocales } from '@/lib/blog-translations'
 
 // Cache the sitemap for 1 hour so crawlers don't hammer the DB on every fetch.
 // Prisma calls are compatible with ISR; force-dynamic is not needed here.
@@ -149,12 +149,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   const defaultOnlyEntries = [
-    ...defaultOnlyPages.map((page) =>
-      createDefaultOnlyEntry(page.path, {
+    ...defaultOnlyPages.flatMap((page) => {
+      const entry = createDefaultOnlyEntry(page.path, {
         changeFrequency: page.changeFrequency,
         priority: page.priority,
       })
-    ),
+      if (page.path !== 'blog') return [entry]
+      // The blog index also exists in German and French (app/[locale]/blog/page.tsx).
+      const alternates = { languages: blogIndexLanguages(baseUrl) }
+      return [
+        { ...entry, alternates },
+        ...Object.keys(translatedPosts).map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/blog`, alternates })),
+      ]
+    }),
     ...locationPages.flatMap(({ path }) => {
       const entry = createDefaultOnlyEntry(path.slice(1), {
         changeFrequency: 'monthly',

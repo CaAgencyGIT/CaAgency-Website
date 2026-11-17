@@ -65,7 +65,7 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/ko/services/brand-consultancy')).toBe(
       '/services/brand-consultancy'
     )
-    expect(getLocalizedSiteRouteRedirect('/fr/blog')).toBe('/blog')
+    expect(getLocalizedSiteRouteRedirect('/es/blog')).toBe('/blog')
     expect(getLocalizedSiteRouteRedirect('/es/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBe('/business-license')
     expect(getLocalizedSiteRouteRedirect('/de/talents/jay-sadiq')).toBe('/talents/jay-sadiq')

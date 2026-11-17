@@ -72,7 +72,7 @@ export const post: TranslatedPost = {
 
 <h2>Amplifier les meilleures vidéos avec du média payant</h2>
 
-<p>Quand une vidéo d'affiliation commence à vendre, la soutenir avec un budget publicitaire est souvent le moyen le plus efficace de passer à l'échelle. Les formats publicitaires shopping de TikTok permettent de promouvoir directement les produits de la boutique et les vidéos de créateurs, et les Spark Ads permettent de diffuser la publication d'un créateur comme une publicité depuis son propre compte, avec son autorisation. Tout l'enjeu est de repérer tôt les vidéos gagnantes, de tester les accroches et de couper le budget des vidéos qui ne tiennent pas. Notre guide sur <a href="/blog/influencer-whitelisting-spark-ads-guide">le whitelisting, les publicités en partenariat et les Spark Ads</a> (en anglais) en explique le fonctionnement.</p>
+<p>Quand une vidéo d'affiliation commence à vendre, la soutenir avec un budget publicitaire est souvent le moyen le plus efficace de passer à l'échelle. Les formats publicitaires shopping de TikTok permettent de promouvoir directement les produits de la boutique et les vidéos de créateurs, et les Spark Ads permettent de diffuser la publication d'un créateur comme une publicité depuis son propre compte, avec son autorisation. Tout l'enjeu est de repérer tôt les vidéos gagnantes, de tester les accroches et de couper le budget des vidéos qui ne tiennent pas. Notre guide sur <a href="/fr/blog/influencer-whitelisting-spark-ads-guide">le whitelisting, les publicités en partenariat et les Spark Ads</a> en explique le fonctionnement.</p>
 
 <h2>Les opérations comptent plus qu'on ne le pense</h2>
 
@@ -90,7 +90,7 @@ export const post: TranslatedPost = {
   <li><strong>L'effet de halo</strong> sur vos autres canaux (recherches de marque, votre propre site et vos distributeurs), car beaucoup de spectateurs découvrent un produit sur TikTok et l'achètent ailleurs.</li>
 </ul>
 
-<p>Pour un cadre plus large, consultez notre guide pour <a href="/blog/how-to-measure-influencer-marketing-roi">mesurer le ROI du marketing d'influence</a> (en anglais) et, pour la plateforme dans son ensemble, notre <a href="/blog/tiktok-influencer-marketing-guide">guide du marketing d'influence sur TikTok</a> (en anglais).</p>
+<p>Pour un cadre plus large, consultez notre guide pour <a href="/fr/blog/how-to-measure-influencer-marketing-roi">mesurer le ROI du marketing d'influence</a> et, pour la plateforme dans son ensemble, notre <a href="/fr/blog/tiktok-influencer-marketing-guide">guide du marketing d'influence sur TikTok</a>.</p>
 
 <h2>Comment CA Agency vous accompagne</h2>
 

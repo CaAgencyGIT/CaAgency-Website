@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { getTranslatedPost, postLanguages, translatedGuides, translatedPosts, translationLocales } from '@/lib/blog-translations'
+import { blogIndexLanguages, getTranslatedPost, postLanguages, translatedGuides, translatedPosts, translationLocales } from '@/lib/blog-translations'
 import { LOCALIZED_BLOG_PATHS, getLocalizedSiteRouteRedirect } from '@/lib/routing-helpers'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
 describe('translated blog guides', () => {
   it('keeps the routing allow-list in step with the translations', () => {
     for (const [locale, { posts }] of Object.entries(translatedPosts)) {
-      expect([...(LOCALIZED_BLOG_PATHS[locale] ?? [])].sort()).toEqual(posts.map((post) => `/blog/${post.slug}`).sort())
+      expect([...(LOCALIZED_BLOG_PATHS[locale] ?? [])].sort()).toEqual(['/blog', ...posts.map((post) => `/blog/${post.slug}`)].sort())
     }
     expect(Object.keys(LOCALIZED_BLOG_PATHS).sort()).toEqual(Object.keys(translatedPosts).sort())
   })
@@ -15,9 +15,19 @@ describe('translated blog guides', () => {
     expect(getLocalizedSiteRouteRedirect('/de/blog/influencer-marketing-cost-2026')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/fr/blog/how-to-choose-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ko/blog/influencer-marketing-cost-2026')).toBe('/blog/influencer-marketing-cost-2026')
-    expect(getLocalizedSiteRouteRedirect('/de/blog/tiktok-influencer-marketing-guide')).toBe('/blog/tiktok-influencer-marketing-guide')
+    expect(getLocalizedSiteRouteRedirect('/de/blog/ftc-disclosure-guidelines-influencer-marketing')).toBe('/blog/ftc-disclosure-guidelines-influencer-marketing')
     expect(localizeHref('/blog/influencer-marketing-cost-2026', 'de')).toBe('/de/blog/influencer-marketing-cost-2026')
-    expect(localizeHref('/blog', 'de')).toBe('/blog')
+    // The blog index exists in German and French; other languages go to the English one.
+    expect(localizeHref('/blog', 'de')).toBe('/de/blog')
+    expect(localizeHref('/blog', 'ko')).toBe('/blog')
+    expect(getLocalizedSiteRouteRedirect('/fr/blog')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/ko/blog')).toBe('/blog')
+    expect(blogIndexLanguages()).toEqual({
+      'x-default': 'https://caagency.com/blog',
+      en: 'https://caagency.com/blog',
+      de: 'https://caagency.com/de/blog',
+      fr: 'https://caagency.com/fr/blog',
+    })
   })
 
   it('builds hreflang for a translated post', () => {
@@ -28,8 +38,8 @@ describe('translated blog guides', () => {
       de: 'https://caagency.com/de/blog/influencer-marketing-cost-2026',
       fr: 'https://caagency.com/fr/blog/influencer-marketing-cost-2026',
     })
-    expect(translationLocales('tiktok-influencer-marketing-guide')).toEqual([])
-    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([8, 8])
+    expect(translationLocales('ftc-disclosure-guidelines-influencer-marketing')).toEqual([])
+    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([13, 13])
   })
 
   it('gives every translation search-ready metadata and links inside its own language', () => {

@@ -49,13 +49,13 @@ export const post: TranslatedPost = {
 
 <p>Was Sie nicht messen können, können Sie im Budget nicht verteidigen. Moderne Erfolgsmessung im Influencer Marketing geht weit über Likes hinaus: Sie erfassen Reichweite und Interaktion, aber auch nachverfolgte Klicks, eingelöste Rabattcodes, zugeordnete Conversions und die Lebensdauer der Inhalte. Entscheidend ist, die Kennzahl auf das Ziel abzustimmen. Kampagnen für Bekanntheit und Kampagnen für Conversions sollten nie mit demselben Maßstab bewertet werden.</p>
 
-<p>Sauberes Tracking (UTM-Parameter, individuelle Codes, Affiliate-Links und ein sinnvolles Attributionsfenster) macht aus einem Bauchgefühl eine echte ROI-Zahl. Es lohnt sich auch, die Inhalte zu erfassen, die Ihnen bleiben: Starke Creator-Inhalte, für die Sie Nutzungsrechte erworben haben, lassen sich lange nach Kampagnenende als bezahlte Anzeigen, als Social Proof auf Landingpages und in E-Mails weiterverwenden. Dieser nachgelagerte Wert taucht in einem First-Touch-Bericht selten auf. Unser Ratgeber dazu, <a href="/blog/how-to-measure-influencer-marketing-roi">wie Sie den ROI von Influencer Marketing messen</a> (Englisch), stellt die Methoden und Vergleichswerte vor.</p>
+<p>Sauberes Tracking (UTM-Parameter, individuelle Codes, Affiliate-Links und ein sinnvolles Attributionsfenster) macht aus einem Bauchgefühl eine echte ROI-Zahl. Es lohnt sich auch, die Inhalte zu erfassen, die Ihnen bleiben: Starke Creator-Inhalte, für die Sie Nutzungsrechte erworben haben, lassen sich lange nach Kampagnenende als bezahlte Anzeigen, als Social Proof auf Landingpages und in E-Mails weiterverwenden. Dieser nachgelagerte Wert taucht in einem First-Touch-Bericht selten auf. Unser Ratgeber dazu, <a href="/de/blog/how-to-measure-influencer-marketing-roi">wie Sie den ROI von Influencer Marketing messen</a>, stellt die Methoden und Vergleichswerte vor.</p>
 
 <h2>Micro- oder Macro-Creators</h2>
 
 <p>Eine der folgenreichsten Entscheidungen ist, in welche Größenklasse Sie investieren. Macro- und Mega-Creators liefern Größe und Prestige. Micro- und Nano-Creators liefern in der Regel höhere Interaktionsraten, mehr Relevanz in der Nische und eine deutlich bessere Kosteneffizienz. Die Rechnung spricht oft für viele kleinere Creators statt für einen Beitrag eines großen Namens, aber nicht immer.</p>
 
-<p>Der richtige Mix hängt davon ab, ob Sie Bekanntheit oder Conversions einkaufen und wie speziell Ihr Produkt ist. Die Abwägungen, die Daten zu Interaktionsraten und die Fälle, in denen welche Größenklasse gewinnt, erläutern wir in <a href="/blog/micro-vs-macro-influencers">Micro- oder Macro-Influencer</a> (Englisch).</p>
+<p>Der richtige Mix hängt davon ab, ob Sie Bekanntheit oder Conversions einkaufen und wie speziell Ihr Produkt ist. Die Abwägungen, die Daten zu Interaktionsraten und die Fälle, in denen welche Größenklasse gewinnt, erläutern wir in <a href="/de/blog/micro-vs-macro-influencers">Micro- oder Macro-Influencer</a>.</p>
 
 <h2>UGC oder Influencer Marketing</h2>
 
@@ -69,7 +69,7 @@ export const post: TranslatedPost = {
 
 <h3>TikTok</h3>
 
-<p>TikTok belohnt Inhalte, die zur Plattform passen, schnell sind und zuerst unterhalten, und bietet mit dem richtigen Einstieg eine unerreichte organische Reichweite. Spark Ads und der Creator Marketplace sind zu einer ernst zu nehmenden Infrastruktur für bezahlte Reichweite gereift. Formatkonventionen, Preise und das, was wirklich funktioniert, finden Sie in unserem <a href="/blog/tiktok-influencer-marketing-guide">Leitfaden für Influencer Marketing auf TikTok</a> (Englisch).</p>
+<p>TikTok belohnt Inhalte, die zur Plattform passen, schnell sind und zuerst unterhalten, und bietet mit dem richtigen Einstieg eine unerreichte organische Reichweite. Spark Ads und der Creator Marketplace sind zu einer ernst zu nehmenden Infrastruktur für bezahlte Reichweite gereift. Formatkonventionen, Preise und das, was wirklich funktioniert, finden Sie in unserem <a href="/de/blog/tiktok-influencer-marketing-guide">Leitfaden für Influencer Marketing auf TikTok</a>.</p>
 
 <h3>Instagram</h3>
 

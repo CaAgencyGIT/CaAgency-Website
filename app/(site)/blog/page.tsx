@@ -14,6 +14,7 @@ import { livePostsWhere, newestFirst } from '@/lib/blog-posts'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { BLOG_ID, SITE_URL, blogPostUrl, organizationRef } from '@/lib/seo/schema'
 import { blogFeedAlternate } from '@/lib/seo/rss'
+import { blogIndexLanguages, translatedPosts } from '@/lib/blog-translations'
 
 export const revalidate = 3600
 
@@ -34,7 +35,7 @@ const pageMetadata = buildPageMetadata({
 
 export const metadata: Metadata = {
   ...pageMetadata,
-  alternates: { ...pageMetadata.alternates, types: blogFeedAlternate },
+  alternates: { ...pageMetadata.alternates, types: blogFeedAlternate, languages: blogIndexLanguages() },
 }
 
 // Every live post is listed: this page is the only crawlable hub linking to
@@ -107,6 +108,13 @@ export default async function BlogPage() {
           <Text color="dark" size="lg" className="max-w-[700px] mx-auto opacity-80 mobile:text-[14.5px] mobile:leading-[1.65]">
             Expert insights, strategies, and tips from CA Agency's experience with 3000+ influencer campaigns.
           </Text>
+          <p className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 font-work-sans text-[14px] text-black/60 mobile:mt-3 mobile:text-[13px]">
+            {Object.entries(translatedPosts).map(([locale, { labels }]) => (
+              <Link key={locale} href={`/${locale}/blog`} hrefLang={locale} lang={locale} prefetch={false} className="underline underline-offset-4 hover:text-black">
+                {labels.indexInLanguage}
+              </Link>
+            ))}
+          </p>
         </div>
       </section>
 

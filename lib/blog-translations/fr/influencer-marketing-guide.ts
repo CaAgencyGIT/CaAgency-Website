@@ -49,13 +49,13 @@ export const post: TranslatedPost = {
 
 <p>Ce que vous ne pouvez pas mesurer, vous ne pouvez pas le défendre au moment du budget. La mesure moderne de l'influence va bien au-delà des mentions « J'aime » : il faut suivre la portée et l'engagement, mais aussi les clics tracés, l'utilisation des codes promotionnels, les conversions attribuées et la durée de vie des contenus. Tout l'enjeu est d'associer le bon indicateur au bon objectif : une campagne de notoriété et une campagne de conversion ne doivent jamais être jugées à la même aune.</p>
 
-<p>Un suivi correctement mis en place (paramètres UTM, codes uniques, liens d'affiliation et fenêtre d'attribution raisonnable) transforme une intuition en véritable chiffre de ROI. Il vaut aussi la peine de suivre les contenus que vous conservez : un contenu de créateur performant dont vous détenez les droits d'utilisation peut être réutilisé en publicité, en preuve sociale sur une page de destination ou dans vos e-mails longtemps après la fin de la campagne, et cette valeur en aval apparaît rarement dans un rapport fondé sur le premier contact. Notre guide pour <a href="/blog/how-to-measure-influencer-marketing-roi">mesurer le ROI du marketing d'influence</a> (en anglais) présente les méthodes et les repères.</p>
+<p>Un suivi correctement mis en place (paramètres UTM, codes uniques, liens d'affiliation et fenêtre d'attribution raisonnable) transforme une intuition en véritable chiffre de ROI. Il vaut aussi la peine de suivre les contenus que vous conservez : un contenu de créateur performant dont vous détenez les droits d'utilisation peut être réutilisé en publicité, en preuve sociale sur une page de destination ou dans vos e-mails longtemps après la fin de la campagne, et cette valeur en aval apparaît rarement dans un rapport fondé sur le premier contact. Notre guide pour <a href="/fr/blog/how-to-measure-influencer-marketing-roi">mesurer le ROI du marketing d'influence</a> présente les méthodes et les repères.</p>
 
 <h2>Micro-créateurs ou macro-créateurs</h2>
 
 <p>L'une des décisions les plus lourdes de conséquences porte sur la taille des créateurs dans lesquels investir. Les macro-créateurs et les méga-créateurs apportent l'échelle et le prestige. Les micro-créateurs et les nano-créateurs offrent le plus souvent des taux d'engagement plus élevés, une pertinence de niche plus forte et un bien meilleur rapport coût-efficacité. Le calcul penche souvent en faveur d'un groupe de petits créateurs plutôt que d'une seule publication d'un grand nom, mais pas toujours.</p>
 
-<p>Le bon dosage dépend de ce que vous achetez, notoriété ou conversions, et du degré de spécialisation de votre produit. Nous détaillons les arbitrages, les données de taux d'engagement et les cas où chaque taille l'emporte dans notre article <a href="/blog/micro-vs-macro-influencers">micro-influenceurs ou macro-influenceurs</a> (en anglais).</p>
+<p>Le bon dosage dépend de ce que vous achetez, notoriété ou conversions, et du degré de spécialisation de votre produit. Nous détaillons les arbitrages, les données de taux d'engagement et les cas où chaque taille l'emporte dans notre article <a href="/fr/blog/micro-vs-macro-influencers">micro-influenceurs ou macro-influenceurs</a>.</p>
 
 <h2>UGC ou marketing d'influence</h2>
 
@@ -69,7 +69,7 @@ export const post: TranslatedPost = {
 
 <h3>TikTok</h3>
 
-<p>TikTok récompense les contenus natifs, rapides et d'abord divertissants, et offre une portée organique inégalée à la bonne accroche. Ses Spark Ads et sa place de marché de créateurs sont devenus une infrastructure publicitaire sérieuse. Pour les codes de format, les tarifs et ce qui fonctionne réellement, consultez notre <a href="/blog/tiktok-influencer-marketing-guide">guide du marketing d'influence sur TikTok</a> (en anglais).</p>
+<p>TikTok récompense les contenus natifs, rapides et d'abord divertissants, et offre une portée organique inégalée à la bonne accroche. Ses Spark Ads et sa place de marché de créateurs sont devenus une infrastructure publicitaire sérieuse. Pour les codes de format, les tarifs et ce qui fonctionne réellement, consultez notre <a href="/fr/blog/tiktok-influencer-marketing-guide">guide du marketing d'influence sur TikTok</a>.</p>
 
 <h3>Instagram</h3>
 
