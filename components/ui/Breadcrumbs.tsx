@@ -1,13 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { localizeHref, stripLocalePrefix } from '@/lib/i18n/client-paths'
-
-interface BreadcrumbItem {
-  label: string
-  href: string
-}
+import { stripLocalePrefix } from '@/lib/i18n/client-paths'
+import { defaultLocale } from '@/i18n/config'
+import BreadcrumbTrail, { type BreadcrumbItem } from '@/components/ui/BreadcrumbTrail'
 
 const translatedSegments = new Set([
   'about', 'talents', 'work', 'services', 'contact', 'faq', 'blog', 'case-studies',
@@ -42,6 +38,9 @@ export default function Breadcrumbs({
   const segments = pathname.split('/').filter((segment) => segment && segment !== 'index')
 
   if (segments.length === 0) return null
+  // A translated case study renders its own trail with the study's title
+  // (app/[locale]/case-studies/[slug]); the URL only has the English slug.
+  if (locale !== defaultLocale && segments.length === 2 && segments[0] === 'case-studies') return null
 
   const breadcrumbs: BreadcrumbItem[] = [
     { label: labels.home, href: '/' },
@@ -50,38 +49,5 @@ export default function Breadcrumbs({
       href: `/${segments.slice(0, index + 1).join('/')}`,
     })),
   ]
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: breadcrumbs.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.label,
-      item: `https://caagency.com${localizeHref(item.href, locale) === '/' ? '' : localizeHref(item.href, locale)}`,
-    })),
-  }
-
-  return (
-    <>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      <nav data-breadcrumbs aria-label={labels.label} className="border-b border-black/10 bg-background-base px-section-x py-4">
-        <div className="mx-auto max-w-container">
-          <ol className="flex items-center gap-2 text-[14px]">
-            {breadcrumbs.map((item, index) => (
-              <li key={item.href} className="flex items-center gap-2">
-                {index > 0 && <span className="text-black/40" aria-hidden="true">/</span>}
-                {index === breadcrumbs.length - 1 ? (
-                  <span className="text-foreground-subtle" aria-current="page">{item.label}</span>
-                ) : (
-                  <Link href={localizeHref(item.href, locale)} prefetch={false} className="text-foreground-body transition-colors hover:text-foreground-primary">
-                    {item.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </nav>
-    </>
-  )
+  return <BreadcrumbTrail breadcrumbs={breadcrumbs} locale={locale} ariaLabel={labels.label} />
 }

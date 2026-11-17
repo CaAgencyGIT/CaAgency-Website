@@ -1,7 +1,8 @@
 import '@/app/public-utilities.css'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import BreadcrumbTrail from '@/components/ui/BreadcrumbTrail'
 import CaseStudyDetail from '@/components/site/CaseStudyDetail'
 import { caseStudies, caseStudyStill, getCaseStudy } from '@/lib/data/case-studies'
 import { translateCaseStudy, translatedCaseStudies, translatedCaseStudySeoTitle } from '@/lib/data/case-studies-translated'
@@ -59,6 +60,7 @@ export default async function TranslatedCaseStudyPage({ params }: PageProps) {
   setRequestLocale(locale)
 
   const { ui } = translatedCaseStudies[locale]
+  const tBreadcrumbs = await getTranslations({ locale, namespace: 'breadcrumbs' })
   const creatorTalent = await getCreatorTalent(study.creator)
   const listed = currentCaseStudies().map((cs) => translateCaseStudy(locale, cs) ?? cs)
   const related = relatedCaseStudies(study, listed)
@@ -91,6 +93,16 @@ export default async function TranslatedCaseStudyPage({ params }: PageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
+      {/* The layout leaves the trail to this page, which knows the translated title. */}
+      <BreadcrumbTrail
+        locale={locale}
+        ariaLabel={tBreadcrumbs('label')}
+        breadcrumbs={[
+          { label: tBreadcrumbs('home'), href: '/' },
+          { label: tBreadcrumbs('case-studies'), href: '/case-studies' },
+          { label: study.title, href: `/case-studies/${slug}` },
+        ]}
+      />
       <CaseStudyDetail study={study} related={related} creatorTalent={creatorTalent} ui={ui} locale={locale} />
     </>
   )
