@@ -149,5 +149,5 @@ export const post: TranslatedPost = {
 
 <h2>كيف تساعدك CA Agency</h2>
 
-<p>تعمل CA Agency مع صنّاع محتوى الجمال والعناية بالبشرة على Instagram وTikTok عبر خدمة <a href="/services/influencer-campaigns">حملات المؤثرين</a>، من اختيار صنّاع المحتوى وإعداد الموجز إلى مراجعة المحتوى وحقوق الاستخدام والتقارير. هل تريد بناء برنامج Reels لعلامتك في مجال الجمال؟ <a href="/ar/contact">تواصل مع CA Agency</a>.</p>`,
+<p>تعمل CA Agency مع صنّاع محتوى الجمال والعناية بالبشرة على Instagram وTikTok عبر خدمة <a href="/ar/services/influencer-campaigns">حملات المؤثرين</a>، من اختيار صنّاع المحتوى وإعداد الموجز إلى مراجعة المحتوى وحقوق الاستخدام والتقارير. هل تريد بناء برنامج Reels لعلامتك في مجال الجمال؟ <a href="/ar/contact">تواصل مع CA Agency</a>.</p>`,
 }

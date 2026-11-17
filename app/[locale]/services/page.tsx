@@ -190,7 +190,7 @@ export default async function ServicesPage({ params }: Props) {
 
         <div className={styles.grid}>
           {services.map((service) => {
-            const href = `/services/${service.slug}`
+            const href = localizeHref(`/services/${service.slug}`, locale)
             const title = t(`${service.key}.title`)
             return (
               <article key={service.slug} className={styles.card}>

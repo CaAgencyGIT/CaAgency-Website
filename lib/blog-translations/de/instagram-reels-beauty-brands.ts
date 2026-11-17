@@ -119,5 +119,5 @@ export const post: TranslatedPost = {
 </ul>
 
 <h2>Wie CA Agency unterstützt</h2>
-<p>CA Agency arbeitet über die Leistung <a href="/services/influencer-campaigns">Influencer-Kampagnen</a> mit Beauty- und Skincare-Creators auf Instagram und TikTok, von der Creator-Auswahl und dem Briefing bis zu Inhaltsprüfung, Nutzungsrechten und Reporting. Sie möchten ein Reels-Programm für Ihre Beauty-Marke aufbauen? <a href="/de/contact">Sprechen Sie mit CA Agency</a>.</p>`,
+<p>CA Agency arbeitet über die Leistung <a href="/de/services/influencer-campaigns">Influencer-Kampagnen</a> mit Beauty- und Skincare-Creators auf Instagram und TikTok, von der Creator-Auswahl und dem Briefing bis zu Inhaltsprüfung, Nutzungsrechten und Reporting. Sie möchten ein Reels-Programm für Ihre Beauty-Marke aufbauen? <a href="/de/contact">Sprechen Sie mit CA Agency</a>.</p>`,
 }

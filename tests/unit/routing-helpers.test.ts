@@ -43,22 +43,8 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
-    expect(getLocalizedSiteRouteRedirect('/ko/korean-skincare-influencer-marketing')).toBe(
-      '/korean-skincare-influencer-marketing'
-    )
-    expect(getLocalizedSiteRouteRedirect('/fr/beauty-influencer-marketing-agency')).toBe(
-      '/beauty-influencer-marketing-agency'
-    )
-    expect(getLocalizedSiteRouteRedirect('/de/skincare-influencer-marketing-agency')).toBe(
-      '/skincare-influencer-marketing-agency'
-    )
     expect(getLocalizedSiteRouteRedirect('/ar/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
-    expect(getLocalizedSiteRouteRedirect('/ar/services/influencer-campaigns')).toBe(
-      '/services/influencer-campaigns'
-    )
-    expect(getLocalizedSiteRouteRedirect('/ko/services/brand-consultancy')).toBe(
-      '/services/brand-consultancy'
-    )
+    expect(getLocalizedSiteRouteRedirect('/ar/services/not-a-service')).toBe('/services/not-a-service')
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(getLocalizedSiteRouteRedirect('/es/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBe('/business-license')
@@ -77,6 +63,12 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-france')).toBeNull()
     // A market page without a translation in that language still goes to English.
     expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-germany')).toBeNull()
+    // Category and service pages exist in every translated language; unknown service slugs go to English.
+    expect(getLocalizedSiteRouteRedirect('/ko/korean-skincare-influencer-marketing')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/fr/beauty-influencer-marketing-agency')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/skincare-influencer-marketing-agency')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/ar/services/influencer-campaigns')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/ko/services/brand-consultancy')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-dubai')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-nordics')).toBeNull()
     // services *listing* is localized; only the /services/<slug> detail is (site)-only

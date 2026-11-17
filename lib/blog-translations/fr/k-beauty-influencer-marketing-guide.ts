@@ -70,7 +70,7 @@ export const post: TranslatedPost = {
 
 <h2>Comment CA Agency mène ses campagnes K-beauty</h2>
 
-<p>Les soins coréens sont l'une de nos spécialités les plus approfondies. Nous menons des <a href="/korean-skincare-influencer-marketing">campagnes d'influence K-beauty</a> de bout en bout : sélection des créateurs selon le type de peau et l'historique dans la catégorie, briefs construits autour des formats décrits plus haut, formulations d'allégations conformes pour chaque marché, et suivi de production jusqu'à la livraison et à la cession des droits d'utilisation.</p>
+<p>Les soins coréens sont l'une de nos spécialités les plus approfondies. Nous menons des <a href="/fr/korean-skincare-influencer-marketing">campagnes d'influence K-beauty</a> de bout en bout : sélection des créateurs selon le type de peau et l'historique dans la catégorie, briefs construits autour des formats décrits plus haut, formulations d'allégations conformes pour chaque marché, et suivi de production jusqu'à la livraison et à la cession des droits d'utilisation.</p>
 
 <blockquote>
   <p>La K-beauty est l'une des rares catégories où le public réclame activement davantage de contenus de créateurs sur le produit. Les marques qui gagnent sont simplement celles qui répondent à cette attente avec des voix crédibles, dans la durée.</p>

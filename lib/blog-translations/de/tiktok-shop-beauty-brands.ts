@@ -73,6 +73,6 @@ export const post: TranslatedPost = {
 <p>Einen breiteren Rahmen bietet unser Beitrag dazu, <a href="/de/blog/how-to-measure-influencer-marketing-roi">wie Sie den ROI von Influencer Marketing messen</a>. Das größere Bild der Plattform zeigt unser <a href="/de/blog/tiktok-influencer-marketing-guide">Leitfaden für Influencer Marketing auf TikTok</a>.</p>
 
 <h2>So unterstützt CA Agency</h2>
-<p>CA Agency ist auf Beauty- und Hautpflege-Creators spezialisiert und begleitet unter anderem <a href="/korean-skincare-influencer-marketing">K-Beauty-Marken</a> beim Eintritt in die USA und andere westliche Märkte. Wir helfen Marken, Affiliate-Creators auszuwählen und zu briefen, bezahlte Creator-Partnerschaften neben der Provision zu führen und erfolgreiche Inhalte mit unserem Team für <a href="/services/performance-marketing">Performance Marketing</a> zu verstärken.</p>
+<p>CA Agency ist auf Beauty- und Hautpflege-Creators spezialisiert und begleitet unter anderem <a href="/de/korean-skincare-influencer-marketing">K-Beauty-Marken</a> beim Eintritt in die USA und andere westliche Märkte. Wir helfen Marken, Affiliate-Creators auszuwählen und zu briefen, bezahlte Creator-Partnerschaften neben der Provision zu führen und erfolgreiche Inhalte mit unserem Team für <a href="/de/services/performance-marketing">Performance Marketing</a> zu verstärken.</p>
 <p>Sie möchten ein Creator-Programm auf TikTok Shop aufbauen, das profitabel verkauft? <a href="/de/contact">Sprechen Sie mit CA Agency</a>.</p>`,
 }

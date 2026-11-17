@@ -98,7 +98,7 @@ export const post: TranslatedPost = {
 
 <h2>Cómo gestiona CA Agency las campañas de belleza en YouTube</h2>
 <p>
-  CA Agency está especializada en belleza y skincare. Nos ocupamos de seleccionar creadores de YouTube según el tipo de piel, el historial en la categoría y la ubicación de la audiencia, del briefing y el envío de producto, de los contratos y los derechos de uso, de las aprobaciones y de unos informes que siguen el rendimiento más allá de la semana de lanzamiento. También producimos contenido complementario con medios propios a través de nuestro equipo de <a href="/services/content-production">producción de contenido</a>.
+  CA Agency está especializada en belleza y skincare. Nos ocupamos de seleccionar creadores de YouTube según el tipo de piel, el historial en la categoría y la ubicación de la audiencia, del briefing y el envío de producto, de los contratos y los derechos de uso, de las aprobaciones y de unos informes que siguen el rendimiento más allá de la semana de lanzamiento. También producimos contenido complementario con medios propios a través de nuestro equipo de <a href="/es/services/content-production">producción de contenido</a>.
 </p>
 <p>
   ¿Preparas un lanzamiento que necesita pruebas y no solo alcance? <a href="/es/contact">Habla con CA Agency</a> sobre un programa de creadores de YouTube pensado para tu gama.

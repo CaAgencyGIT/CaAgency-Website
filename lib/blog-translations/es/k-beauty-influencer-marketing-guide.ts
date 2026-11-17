@@ -74,7 +74,7 @@ export const post: TranslatedPost = {
 
 <h2>Cómo gestiona CA Agency las campañas de K-beauty</h2>
 <p>
-  El cuidado de la piel coreano es una de nuestras especialidades más sólidas. Llevamos <a href="/korean-skincare-influencer-marketing">campañas de influencers de K-beauty</a> de principio a fin: selección de creadores según el tipo de piel y el historial en la categoría, briefs construidos alrededor de los formatos anteriores, afirmaciones de producto adecuadas para cada mercado y gestión de la producción hasta la entrega y la licencia de uso.
+  El cuidado de la piel coreano es una de nuestras especialidades más sólidas. Llevamos <a href="/es/korean-skincare-influencer-marketing">campañas de influencers de K-beauty</a> de principio a fin: selección de creadores según el tipo de piel y el historial en la categoría, briefs construidos alrededor de los formatos anteriores, afirmaciones de producto adecuadas para cada mercado y gestión de la producción hasta la entrega y la licencia de uso.
 </p>
 <blockquote>
   <p>La K-beauty es una de las pocas categorías en las que la audiencia quiere de forma activa más contenido de creadores sobre el producto. Las marcas que ganan son, sencillamente, las que alimentan ese apetito con voces creíbles y con constancia.</p>

@@ -5,6 +5,7 @@ import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { beautyGuide, findSkincareGuide, tiktokShopBeautyGuide } from '@/lib/data/guides'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 import { organizationJsonLd } from '@/lib/seo/root-metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import { jsonLdSafe } from '@/lib/sanitize'
@@ -15,7 +16,7 @@ const PATH = '/beauty-influencer-marketing-agency'
 const DESCRIPTION =
   'Beauty influencer marketing agency for makeup, skincare and haircare brands, with creator campaigns for Fenty Beauty, YSL Beauty, NARS and Sephora.'
 
-export const metadata = buildPageMetadata({
+const baseMetadata = buildPageMetadata({
   title: 'Beauty Influencer Marketing Agency',
   description: DESCRIPTION,
   path: PATH,
@@ -30,6 +31,11 @@ export const metadata = buildPageMetadata({
     'beauty influencer marketing agency usa',
   ],
 })
+
+export const metadata = {
+  ...baseMetadata,
+  alternates: { canonical: `https://caagency.com${PATH}`, languages: locationPageLanguages(PATH) },
+}
 
 const serviceSchema = {
   '@context': 'https://schema.org',

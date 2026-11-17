@@ -102,7 +102,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency가 돕는 방법</h2>
 <p>
-  CA Agency는 뷰티·스킨케어 크리에이터를 전문으로 하며, 미국과 그 밖의 서구권 시장에 진출하는 <a href="/korean-skincare-influencer-marketing">K-뷰티 브랜드</a>와도 함께합니다. 우리는 브랜드가 어필리에이트 크리에이터를 선정하고 브리프를 전달하며, 커미션과 함께 유료 크리에이터 파트너십을 운영하고, <a href="/services/performance-marketing">퍼포먼스 마케팅</a> 팀을 통해 성과 좋은 콘텐츠를 확산하도록 돕습니다.
+  CA Agency는 뷰티·스킨케어 크리에이터를 전문으로 하며, 미국과 그 밖의 서구권 시장에 진출하는 <a href="/ko/korean-skincare-influencer-marketing">K-뷰티 브랜드</a>와도 함께합니다. 우리는 브랜드가 어필리에이트 크리에이터를 선정하고 브리프를 전달하며, 커미션과 함께 유료 크리에이터 파트너십을 운영하고, <a href="/ko/services/performance-marketing">퍼포먼스 마케팅</a> 팀을 통해 성과 좋은 콘텐츠를 확산하도록 돕습니다.
 </p>
 <p>
   수익성 있게 판매하는 TikTok Shop 크리에이터 프로그램을 만들고 싶으신가요? <a href="/ko/contact">CA Agency에 문의하세요</a>.

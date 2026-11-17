@@ -89,7 +89,7 @@ export const post: TranslatedPost = {
 
 <h2>Comment CA Agency gère les programmes de contenus de créateurs sponsorisés</h2>
 <p>
-  CA Agency relie deux moitiés généralement gérées séparément : les partenariats avec les créateurs et le média payant. Nous négocions les droits d'utilisation en amont, gérons le whitelisting et les codes d'autorisation, testons et déployons les contenus de créateurs avec notre équipe de <a href="/services/performance-marketing">marketing à la performance</a>, et assurons le reporting sur les chiffres qui comptent : le coût d'acquisition et le retour sur les dépenses.
+  CA Agency relie deux moitiés généralement gérées séparément : les partenariats avec les créateurs et le média payant. Nous négocions les droits d'utilisation en amont, gérons le whitelisting et les codes d'autorisation, testons et déployons les contenus de créateurs avec notre équipe de <a href="/fr/services/performance-marketing">marketing à la performance</a>, et assurons le reporting sur les chiffres qui comptent : le coût d'acquisition et le retour sur les dépenses.
 </p>
 <p>
   Vous souhaitez tirer davantage des contenus de créateurs que vous payez déjà ? <a href="/fr/contact">Parlez à CA Agency</a>.

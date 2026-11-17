@@ -158,6 +158,6 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何提供帮助</h2>
 <p>
-  CA Agency 通过<a href="/services/influencer-campaigns">网红营销活动</a>服务，与 Instagram 和 TikTok 上的美妆和护肤创作者合作，从创作者筛选和简报，到内容审核、使用权和报告，全程负责。想为您的美妆品牌打造一个 Reels 项目吗？<a href="/zh/contact">联系 CA Agency</a>。
+  CA Agency 通过<a href="/zh/services/influencer-campaigns">网红营销活动</a>服务，与 Instagram 和 TikTok 上的美妆和护肤创作者合作，从创作者筛选和简报，到内容审核、使用权和报告，全程负责。想为您的美妆品牌打造一个 Reels 项目吗？<a href="/zh/contact">联系 CA Agency</a>。
 </p>`,
 }

@@ -121,6 +121,6 @@ export const post: TranslatedPost = {
 </ul>
 
 <h2>Wie CA Agency unterstützt</h2>
-<p>CA Agency unterstützt Mode-, Bekleidungs- und Wellness-Marken dabei, Affiliate-Creators auszuwählen und zu briefen, bezahlte Partnerschaften neben der Provision zu führen und erfolgreiche Creator-Inhalte mit unserem Team für <a href="/services/performance-marketing">Performance Marketing</a> in bezahlte Medien zu überführen. Wir erstellen Briefings mit Leitplanken, die zur Kategorie passen, einschließlich Werbekennzeichnung und Formulierungen für Aussagen.</p>
+<p>CA Agency unterstützt Mode-, Bekleidungs- und Wellness-Marken dabei, Affiliate-Creators auszuwählen und zu briefen, bezahlte Partnerschaften neben der Provision zu führen und erfolgreiche Creator-Inhalte mit unserem Team für <a href="/de/services/performance-marketing">Performance Marketing</a> in bezahlte Medien zu überführen. Wir erstellen Briefings mit Leitplanken, die zur Kategorie passen, einschließlich Werbekennzeichnung und Formulierungen für Aussagen.</p>
 <p>Sie möchten ein Creator-Programm für TikTok Shop aufbauen, das in Ihrer Kategorie profitabel verkauft? <a href="/de/contact">Sprechen Sie mit CA Agency</a>.</p>`,
 }

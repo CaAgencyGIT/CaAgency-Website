@@ -96,7 +96,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency가 도와드리는 일</h2>
 <p>
-  CA Agency는 뷰티, 스킨케어, <a href="/korean-skincare-influencer-marketing">K-뷰티</a>를 전문으로 하며 <a href="/ko/influencer-marketing-usa">미국에서 브랜드를 위한 인플루언서 캠페인</a>을 운영합니다. 피부 타입, 피부 고민, 오디언스 지역을 기준으로 크리에이터를 선정하고, 자격과 오디언스 데이터를 확인하며, 규정에 맞는 효능 표현으로 브리핑하고, 계약, 사용 권한, 리포팅을 관리합니다. 또한 저희 <a href="/ko/talents">소속 크리에이터 로스터</a>를 직접 대표합니다.
+  CA Agency는 뷰티, 스킨케어, <a href="/ko/korean-skincare-influencer-marketing">K-뷰티</a>를 전문으로 하며 <a href="/ko/influencer-marketing-usa">미국에서 브랜드를 위한 인플루언서 캠페인</a>을 운영합니다. 피부 타입, 피부 고민, 오디언스 지역을 기준으로 크리에이터를 선정하고, 자격과 오디언스 데이터를 확인하며, 규정에 맞는 효능 표현으로 브리핑하고, 계약, 사용 권한, 리포팅을 관리합니다. 또한 저희 <a href="/ko/talents">소속 크리에이터 로스터</a>를 직접 대표합니다.
 </p>
 <p>
   브랜드에 맞는 스킨케어 크리에이터를 찾고 계신가요? <a href="/ko/contact">CA Agency에 문의</a>해 주시면 여러분의 제품에 맞춘 후보 리스트를 만들어 드리겠습니다.

@@ -6,7 +6,7 @@ import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
 import caseStudyDates from '@/lib/data/case-study-dates.json'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
-import { locationPageLanguages } from '@/lib/routing-helpers'
+import { locationPageLanguages, servicePageLanguages } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
 import { resolveFeaturedImage } from '@/lib/blog-cover'
@@ -182,13 +182,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: absoluteImage(caseStudyStill(cs)),
       })
     ),
-    ...services.map((service) =>
-      createDefaultOnlyEntry(`services/${service.slug}`, {
+    ...services.flatMap((service) => {
+      const entry = createDefaultOnlyEntry(`services/${service.slug}`, {
         lastModified: SERVICES_LAST_MODIFIED,
         changeFrequency: 'monthly',
         priority: 0.7,
       })
-    ),
+      // English plus each translated version (app/[locale]/services/[slug]).
+      const languages = servicePageLanguages(service.slug, baseUrl)
+      const alternates = { languages }
+      const translated = Object.entries(languages).filter(([locale]) => locale !== 'x-default' && locale !== 'en')
+      return [{ ...entry, alternates }, ...translated.map(([, url]) => ({ ...entry, url, alternates }))]
+    }),
     ...talents.map((talent) =>
       createDefaultOnlyEntry(`talents/${talent.slug}`, {
         lastModified: talent.updatedAt,

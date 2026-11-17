@@ -154,7 +154,7 @@ export const post: TranslatedPost = {
 
 <h2>Cómo te ayuda CA Agency</h2>
 <p>
-  CA Agency ayuda a marcas de moda, ropa y bienestar a seleccionar creadores afiliados y prepararles el brief, a gestionar colaboraciones pagadas junto con la comisión y a convertir el contenido ganador de los creadores en medios de pago con nuestro equipo de <a href="/services/performance-marketing">performance marketing</a>. Preparamos briefs con límites adecuados para cada categoría, incluidos la identificación publicitaria y el lenguaje de las alegaciones.
+  CA Agency ayuda a marcas de moda, ropa y bienestar a seleccionar creadores afiliados y prepararles el brief, a gestionar colaboraciones pagadas junto con la comisión y a convertir el contenido ganador de los creadores en medios de pago con nuestro equipo de <a href="/es/services/performance-marketing">performance marketing</a>. Preparamos briefs con límites adecuados para cada categoría, incluidos la identificación publicitaria y el lenguaje de las alegaciones.
 </p>
 <p>
   ¿Quieres crear un programa de creadores en TikTok Shop que venda con rentabilidad en tu categoría? <a href="/es/contact">Habla con CA Agency</a>.

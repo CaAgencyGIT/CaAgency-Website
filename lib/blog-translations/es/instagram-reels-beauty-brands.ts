@@ -158,6 +158,6 @@ export const post: TranslatedPost = {
 
 <h2>Cómo te ayuda CA Agency</h2>
 <p>
-  CA Agency trabaja con creadores de belleza y cuidado de la piel en Instagram y TikTok a través de nuestro servicio de <a href="/services/influencer-campaigns">campañas con influencers</a>, desde la selección de creadores y el brief hasta la revisión del contenido, los derechos de uso y los informes. ¿Quieres crear un programa de Reels para tu marca de belleza? <a href="/es/contact">Habla con CA Agency</a>.
+  CA Agency trabaja con creadores de belleza y cuidado de la piel en Instagram y TikTok a través de nuestro servicio de <a href="/es/services/influencer-campaigns">campañas con influencers</a>, desde la selección de creadores y el brief hasta la revisión del contenido, los derechos de uso y los informes. ¿Quieres crear un programa de Reels para tu marca de belleza? <a href="/es/contact">Habla con CA Agency</a>.
 </p>`,
 }

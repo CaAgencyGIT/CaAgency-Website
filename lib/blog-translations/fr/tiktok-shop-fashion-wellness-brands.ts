@@ -154,7 +154,7 @@ export const post: TranslatedPost = {
 
 <h2>Ce que CA Agency vous apporte</h2>
 <p>
-  CA Agency aide les marques de mode, d'habillement et de bien-être à sélectionner et briefer des créateurs affiliés, à mener des partenariats rémunérés en complément de la commission et à transformer les contenus gagnants en média payant avec son équipe de <a href="/services/performance-marketing">performance marketing</a>. Nous rédigeons des briefs dotés de garde-fous adaptés à la catégorie, y compris pour la mention de la collaboration et le langage des allégations.
+  CA Agency aide les marques de mode, d'habillement et de bien-être à sélectionner et briefer des créateurs affiliés, à mener des partenariats rémunérés en complément de la commission et à transformer les contenus gagnants en média payant avec son équipe de <a href="/fr/services/performance-marketing">performance marketing</a>. Nous rédigeons des briefs dotés de garde-fous adaptés à la catégorie, y compris pour la mention de la collaboration et le langage des allégations.
 </p>
 <p>
   Vous souhaitez construire un programme de créateurs TikTok Shop qui vend de façon rentable dans votre catégorie ? <a href="/fr/contact">Contactez CA Agency</a>.

@@ -73,7 +73,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何执行 K-beauty 营销活动</h2>
 <p>
-  韩国护肤是我们最深耕的专长之一。我们全程执行 <a href="/korean-skincare-influencer-marketing">K-beauty 网红营销活动</a>：按肤质和品类经历标准筛选创作者，围绕上述形式撰写简报，按市场使用合规的宣称措辞，并负责从制作管理到交付和使用授权的全过程。
+  韩国护肤是我们最深耕的专长之一。我们全程执行 <a href="/zh/korean-skincare-influencer-marketing">K-beauty 网红营销活动</a>：按肤质和品类经历标准筛选创作者，围绕上述形式撰写简报，按市场使用合规的宣称措辞，并负责从制作管理到交付和使用授权的全过程。
 </p>
 <blockquote>
   <p>K-beauty 是少有的受众主动想看更多产品相关创作者内容的品类。胜出的品牌，只是那些用可信的声音持续满足这种需求的品牌。</p>
