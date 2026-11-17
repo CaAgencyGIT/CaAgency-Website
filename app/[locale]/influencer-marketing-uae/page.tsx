@@ -1,11 +1,20 @@
 import '@/app/public-utilities.css'
+import type { Metadata } from 'next'
 import ArabicLocationPage, { arabicLocationMetadata } from '@/components/site/ArabicLocationPage'
+import TranslatedLocationPage, { translatedLocationMetadata } from '@/components/site/TranslatedLocationPage'
 
 export const revalidate = 3600
 
-export const metadata = arabicLocationMetadata('uae')
+// Arabic has its own component (it predates the shared one); every other
+// translated language goes through TranslatedLocationPage, which 404s when the
+// language has no version of this page.
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  return locale === 'ar' ? arabicLocationMetadata('uae') : translatedLocationMetadata(locale, 'uae')
+}
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  return <ArabicLocationPage market="uae" locale={locale} />
+  if (locale === 'ar') return <ArabicLocationPage market="uae" locale={locale} />
+  return <TranslatedLocationPage market="uae" locale={locale} />
 }

@@ -60,6 +60,26 @@ export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>
   ],
   de: ['/influencer-marketing-germany', '/influencer-marketing-switzerland'],
   fr: ['/influencer-marketing-france'],
+  // Spanish has every market page.
+  es: [
+    '/influencer-marketing-dubai',
+    '/influencer-marketing-uae',
+    '/influencer-marketing-saudi-arabia',
+    '/influencer-marketing-gcc',
+    '/influencer-marketing-korea',
+    '/influencer-marketing-asia',
+    '/influencer-marketing-usa',
+    '/influencer-marketing-uk',
+    '/influencer-marketing-canada',
+    '/influencer-marketing-australia',
+    '/influencer-marketing-sydney',
+    '/influencer-marketing-melbourne',
+    '/influencer-marketing-europe',
+    '/influencer-marketing-germany',
+    '/influencer-marketing-france',
+    '/influencer-marketing-switzerland',
+    '/influencer-marketing-nordics',
+  ],
 }
 
 // English-only blog posts that also have a translated app/[locale]/blog/[slug]

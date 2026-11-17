@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { existsSync, readFileSync } from 'node:fs'
-import { locationPages, marketLinks } from '@/lib/data/locations'
+import { locationPages, marketLinks, marketPages } from '@/lib/data/locations'
 import { LOCALIZED_LOCATION_PATHS, locationPageLanguages } from '@/lib/routing-helpers'
 import { siteContentDefinitionsByKey } from '@/lib/site-content/definitions'
 import { translatedLocationPages } from '@/lib/site-content/location-pages-translated'
@@ -44,8 +44,16 @@ describe('market pages', () => {
       'x-default': 'https://caagency.com/influencer-marketing-switzerland',
       en: 'https://caagency.com/influencer-marketing-switzerland',
       de: 'https://caagency.com/de/influencer-marketing-switzerland',
+      es: 'https://caagency.com/es/influencer-marketing-switzerland',
     })
-    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en'])
+    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'es'])
+    // Spanish has every market page; the Gulf pages keep their Arabic version too.
+    expect(Object.keys(translatedLocationPages.es.pages).sort()).toEqual(marketPages.map((page) => page.key).sort())
+    expect(Object.keys(locationPageLanguages('/influencer-marketing-dubai'))).toEqual(['x-default', 'en', 'ar', 'es'])
+    for (const [key, city] of [['sydney', 'Sídney'], ['melbourne', 'Melbourne']] as const) {
+      // The Spanish city pages keep the statement that the agency is not based there.
+      expect(JSON.stringify(translatedLocationPages.es.pages[key].content), key).toContain(`no somos una agencia con sede en ${city}`)
+    }
   })
 
   it('links the Australia, Sydney and Melbourne pages to each other and never claims a local office', () => {
