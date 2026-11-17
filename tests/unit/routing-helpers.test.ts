@@ -41,12 +41,9 @@ describe('isSensitiveProbe', () => {
 describe('getLocalizedSiteRouteRedirect', () => {
   it('strips the locale prefix for (site)-only routes', () => {
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
-    expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
-    expect(getLocalizedSiteRouteRedirect('/ar/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
+    expect(getLocalizedSiteRouteRedirect('/ar/talents/jay-sadiq/extra')).toBe('/talents/jay-sadiq/extra')
     expect(getLocalizedSiteRouteRedirect('/ar/services/not-a-service')).toBe('/services/not-a-service')
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
-    expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBe('/business-license')
-    expect(getLocalizedSiteRouteRedirect('/de/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
   })
 
   it('returns null for localized pages that have a [locale] variant', () => {
@@ -66,6 +63,11 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/fr/beauty-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/de/skincare-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ar/services/influencer-campaigns')).toBeNull()
+    // Talent profiles and the legal pages exist in every translated language.
+    expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/ko/terms-of-service')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/talents/jay-sadiq')).toBeNull()
     // Case studies and their index exist in every translated language.
     expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/es/case-studies/sephora-campaign')).toBeNull()

@@ -28,6 +28,8 @@ interface TalentGridProps {
   mobileLayout?: 'list' | 'carousel'
   /** Auto-advancing slideshow on every screen (homepage). */
   slideshow?: boolean
+  /** Language of the page; cards link to the profile in that language. */
+  locale?: string
 }
 
 export default function TalentGrid({
@@ -38,6 +40,7 @@ export default function TalentGrid({
   cardArt = false,
   mobileLayout,
   slideshow = false,
+  locale = 'en',
 }: TalentGridProps) {
   const gridClasses = {
     2: 'grid-cols-2 md:grid-cols-2',
@@ -61,6 +64,7 @@ export default function TalentGrid({
     <TalentCard
       key={talent.name}
       slug={talent.slug}
+      locale={locale}
       name={talent.name}
       imageUrl={talent.imageUrl}
       // The talents roster stays on the still artwork on every screen.

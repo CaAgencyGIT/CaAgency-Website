@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { blurProps } from '@/lib/media/blur'
 import TalentCardVideo from './TalentCardVideo'
+import { localizeHref } from '@/lib/i18n/client-paths'
 
 export interface SocialLink {
   platform: 'instagram' | 'tiktok' | 'youtube' | 'twitch' | 'kick'
@@ -25,6 +26,8 @@ interface TalentCardProps {
   kickUrl?: string
   socialLinks?: SocialLink[]
   className?: string
+  /** Language of the page, so the card opens the profile in that language. */
+  locale?: string
 }
 
 // Social media icons as SVG components
@@ -74,6 +77,7 @@ export default function TalentCard({
   kickUrl,
   socialLinks,
   className,
+  locale = 'en',
 }: TalentCardProps) {
   // Build social links array from individual props or use provided array
   const links: SocialLink[] = socialLinks || [
@@ -84,7 +88,7 @@ export default function TalentCard({
     ...(kickUrl ? [{ platform: 'kick' as const, url: kickUrl }] : []),
   ]
 
-  const primaryLink = `/talents/${slug}`
+  const primaryLink = localizeHref(`/talents/${slug}`, locale)
 
   // Artwork cards (Oct 2026, finalised on phone, same design on every screen):
   // the whole 4:5 artwork with a small name and socials underneath, instead

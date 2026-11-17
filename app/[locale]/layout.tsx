@@ -70,7 +70,7 @@ export default async function LocaleLayout({
       <Breadcrumbs locale={locale} labels={breadcrumbs} />
       <main id="main-content">{children}</main>
       <Footer content={footerContent} locale={locale as Locale} />
-      <CookieConsent labels={cookies} />
+      <CookieConsent labels={cookies} locale={locale} />
     </RootDocument>
   );
 }

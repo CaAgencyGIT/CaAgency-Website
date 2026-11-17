@@ -234,7 +234,7 @@ export default function LocationLandingPage({
         <section className="bg-background-base py-sec px-section-x border-t border-black/5">
           <div className="max-w-container mx-auto">
             <SectionHeading align="start" size="md" eyebrow={labels.talents} title={content.talents.title} className="mb-8" />
-            <TalentGrid talents={talents} columns={6} />
+            <TalentGrid talents={talents} columns={6} locale={locale} />
             <div className="text-center mt-10">
               <Button locale={locale} href={content.talents.buttonHref}>{content.talents.buttonLabel}</Button>
             </div>

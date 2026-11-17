@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SocialIcon, type SocialLink } from '@/components/blocks/TalentCard'
 import { ArrowUpRight } from './icons'
+import { localizeHref } from '@/lib/i18n/client-paths'
 
 export type AgencyTalent = {
   slug: string
@@ -26,14 +27,17 @@ export default function AgencyTalentCard({
   sizes,
   profileAria,
   socialAria,
+  locale = 'en',
 }: {
+  /** Language of the page, so the card opens the profile in that language. */
+  locale?: string
   talent: AgencyTalent
   eager: boolean
   sizes: string
   profileAria: string
   socialAria: (platform: string) => string
 }) {
-  const href = `/talents/${talent.slug}`
+  const href = localizeHref(`/talents/${talent.slug}`, locale)
   return (
     <article className="talent-card" data-talent-slug={talent.slug}>
       <Link className="card-visual" href={href} prefetch={false} aria-label={profileAria}>

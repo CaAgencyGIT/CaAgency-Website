@@ -141,7 +141,7 @@ export default async function AboutPage({ params }: Props) {
       {/* The same six-photo collection as the homepage. */}
       <section className="px-section-x pb-[90px] mobile:pb-[56px]">
         <div className="mx-auto max-w-container">
-          <HomeCollage tiles={aboutCollageTiles} swipe />
+          <HomeCollage tiles={aboutCollageTiles} swipe locale={locale} />
         </div>
       </section>
 

@@ -12,6 +12,7 @@ import {
   caseStudyLanguages,
   locationPageLanguages,
   servicePageLanguages,
+  translatedPageLanguages,
 } from '@/lib/routing-helpers'
 import { livePostsWhere } from '@/lib/blog-posts'
 import { isIndexableTalentProfile } from '@/lib/seo/talents'
@@ -160,6 +161,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: page.changeFrequency,
         priority: page.priority,
       })
+      if (['privacy-policy', 'terms-of-service', 'business-license'].includes(page.path)) {
+        const alternates = { languages: translatedPageLanguages(`/${page.path}`, baseUrl) }
+        return [
+          { ...entry, alternates },
+          ...CASE_STUDY_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/${page.path}`, alternates })),
+        ]
+      }
       if (page.path === 'case-studies') {
         const alternates = { languages: caseStudyIndexLanguages(baseUrl) }
         return [
@@ -213,14 +221,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const translated = Object.entries(languages).filter(([locale]) => locale !== 'x-default' && locale !== 'en')
       return [{ ...entry, alternates }, ...translated.map(([, url]) => ({ ...entry, url, alternates }))]
     }),
-    ...talents.map((talent) =>
-      createDefaultOnlyEntry(`talents/${talent.slug}`, {
+    ...talents.flatMap((talent) => {
+      const entry = createDefaultOnlyEntry(`talents/${talent.slug}`, {
         lastModified: talent.updatedAt,
         changeFrequency: 'monthly',
         priority: 0.7,
         images: absoluteImage(talentCoverSrc(talent.slug, talent.imageUrl)),
       })
-    ),
+      // English plus each translated version (app/[locale]/talents/[slug]).
+      const alternates = { languages: translatedPageLanguages(`/talents/${talent.slug}`, baseUrl) }
+      return [
+        { ...entry, alternates },
+        ...CASE_STUDY_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/talents/${talent.slug}`, alternates })),
+      ]
+    }),
     ...posts.flatMap((post) => {
       const entry = createDefaultOnlyEntry(`blog/${post.slug}`, {
         lastModified: post.updatedAt,

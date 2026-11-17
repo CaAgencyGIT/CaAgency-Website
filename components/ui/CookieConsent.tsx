@@ -1,5 +1,6 @@
 'use client'
 
+import { localizeHref } from '@/lib/i18n/client-paths'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { clsx } from 'clsx'
@@ -23,7 +24,7 @@ export interface CookieConsentLabels {
 // Privacy Settings dialog (Oct 2026): centred card over a dimmed page, asked
 // once on the first visit and reopenable from the footer. Google Analytics
 // only loads after "Accept All" (see components/analytics/GoogleAnalytics).
-export default function CookieConsent({ labels }: { labels: CookieConsentLabels }) {
+export default function CookieConsent({ labels, locale = 'en' }: { labels: CookieConsentLabels; locale?: string }) {
   // Rendered inside the locale layouts (not the root layout) so the dialog is
   // translated on /ar and /ko and inherits their text direction.
   const [status, setStatus] = useState<ConsentStatus>(getStoredConsent)
@@ -108,9 +109,8 @@ export default function CookieConsent({ labels }: { labels: CookieConsentLabels 
         </p>
 
         <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-jost text-[13px] font-medium">
-          {/* Legal pages are English-only (site) routes — plain next/link. */}
           <Link
-            href="/privacy-policy"
+            href={localizeHref('/privacy-policy', locale)}
             prefetch={false}
             className="underline decoration-black/30 underline-offset-[4px] transition-colors hover:decoration-black"
           >

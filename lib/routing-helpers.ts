@@ -161,7 +161,10 @@ export function hasLocalizedLocationPage(pathname: string, locale: string): bool
 // list, to keep this file free of data imports: an unknown slug reaches the
 // translated route and gets its 404 there.
 export const CASE_STUDY_LOCALES: readonly string[] = ['ar', 'de', 'fr', 'es', 'ko', 'zh']
-const CASE_STUDY_PATH = /^\/case-studies(?:\/[a-z0-9-]+)?$/
+// Also translated in each of those locales: talent profiles (the bios are in
+// lib/data/people-translated; a profile without one shows the English bio)
+// and the three legal pages.
+const CASE_STUDY_PATH = /^\/(?:case-studies(?:\/[a-z0-9-]+)?|talents\/[a-z0-9-]+|privacy-policy|terms-of-service|business-license)$/
 
 function hasTranslatedCaseStudy(pathname: string, locale: string): boolean {
   return CASE_STUDY_LOCALES.includes(locale) && CASE_STUDY_PATH.test(pathname)
@@ -206,6 +209,11 @@ function translatedLanguages(pathname: string, localeList: readonly string[], ba
   const languages: Record<string, string> = { 'x-default': english, en: english }
   for (const locale of localeList) languages[locale] = `${baseUrl}/${locale}${pathname}`
   return languages
+}
+
+/** hreflang map for a page that exists in English and in every translated locale (talent profiles, legal pages). */
+export function translatedPageLanguages(pathname: string, baseUrl = 'https://caagency.com'): Record<string, string> {
+  return translatedLanguages(pathname, CASE_STUDY_LOCALES, baseUrl)
 }
 
 /** hreflang map for a case study: English (also x-default) plus every translated locale. */
