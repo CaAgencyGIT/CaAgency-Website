@@ -10,12 +10,12 @@ describe('client locale paths', () => {
   })
 
   it('leaves English-only routes unprefixed to avoid redirect hops', () => {
-    expect(localizeHref('/blog', 'zh')).toBe('/blog')
+    expect(localizeHref('/blog/a-post-without-a-translation', 'zh')).toBe('/blog/a-post-without-a-translation')
     expect(localizeHref('/case-studies/sephora', 'de')).toBe('/case-studies/sephora')
     expect(localizeHref('/influencer-marketing-usa', 'es')).toBe('/es/influencer-marketing-usa')
-    expect(localizeHref('/influencer-marketing-usa', 'zh')).toBe('/influencer-marketing-usa')
+    expect(localizeHref('/influencer-marketing-usa', 'zh')).toBe('/zh/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-dubai', 'ar')).toBe('/ar/influencer-marketing-dubai')
-    expect(localizeHref('/influencer-marketing-dubai', 'zh')).toBe('/influencer-marketing-dubai')
+    expect(localizeHref('/influencer-marketing-dubai', 'de')).toBe('/influencer-marketing-dubai')
     expect(localizeHref('/influencer-marketing-usa', 'ar')).toBe('/ar/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-germany', 'de')).toBe('/de/influencer-marketing-germany')
     expect(localizeHref('/influencer-marketing-france', 'fr')).toBe('/fr/influencer-marketing-france')

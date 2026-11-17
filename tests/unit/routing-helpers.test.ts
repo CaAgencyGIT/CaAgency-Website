@@ -40,13 +40,13 @@ describe('isSensitiveProbe', () => {
 
 describe('getLocalizedSiteRouteRedirect', () => {
   it('strips the locale prefix for (site)-only routes', () => {
-    expect(getLocalizedSiteRouteRedirect('/zh/blog')).toBe('/blog')
+    expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
-    expect(getLocalizedSiteRouteRedirect('/zh/influencer-marketing-dubai')).toBe(
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-dubai')).toBe(
       '/influencer-marketing-dubai'
     )
-    expect(getLocalizedSiteRouteRedirect('/zh/influencer-marketing-usa')).toBe(
+    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-usa')).toBe(
       '/influencer-marketing-usa'
     )
     expect(getLocalizedSiteRouteRedirect('/ko/korean-skincare-influencer-marketing')).toBe(
@@ -65,7 +65,7 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/ko/services/brand-consultancy')).toBe(
       '/services/brand-consultancy'
     )
-    expect(getLocalizedSiteRouteRedirect('/zh/blog')).toBe('/blog')
+    expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(getLocalizedSiteRouteRedirect('/es/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/de/business-license')).toBe('/business-license')
     expect(getLocalizedSiteRouteRedirect('/de/talents/jay-sadiq')).toBe('/talents/jay-sadiq')
