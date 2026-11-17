@@ -158,6 +158,6 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency가 돕는 방법</h2>
 <p>
-  CA Agency는 <a href="/services/influencer-campaigns">인플루언서 캠페인</a> 서비스를 통해 Instagram과 TikTok 전반에서 뷰티·스킨케어 크리에이터와 함께 일하며, 크리에이터 선정과 브리핑부터 콘텐츠 검토, 사용권, 리포팅까지 맡습니다. 뷰티 브랜드를 위한 Reels 프로그램을 만들고 싶으신가요? <a href="/ko/contact">CA Agency에 문의하세요</a>.
+  CA Agency는 <a href="/ko/services/influencer-campaigns">인플루언서 캠페인</a> 서비스를 통해 Instagram과 TikTok 전반에서 뷰티·스킨케어 크리에이터와 함께 일하며, 크리에이터 선정과 브리핑부터 콘텐츠 검토, 사용권, 리포팅까지 맡습니다. 뷰티 브랜드를 위한 Reels 프로그램을 만들고 싶으신가요? <a href="/ko/contact">CA Agency에 문의하세요</a>.
 </p>`,
 }

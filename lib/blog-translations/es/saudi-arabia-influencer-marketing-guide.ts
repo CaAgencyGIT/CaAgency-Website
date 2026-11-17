@@ -99,7 +99,7 @@ export const post: TranslatedPost = {
 
 <h2>Cómo te ayuda CA Agency</h2>
 <p>
-  CA Agency gestiona <a href="/es/influencer-marketing-saudi-arabia">campañas con influencers en Arabia Saudí</a> desde nuestra sede en Dubái, con un equipo que trabaja en árabe y en inglés. Nos ocupamos de la selección de creadores y la comprobación de licencias, del briefing adaptado al dialecto, de la contratación y los derechos de uso, de la aprobación de contenidos y de los informes: el flujo completo de una <a href="/services/influencer-campaigns">campaña con influencers</a>.
+  CA Agency gestiona <a href="/es/influencer-marketing-saudi-arabia">campañas con influencers en Arabia Saudí</a> desde nuestra sede en Dubái, con un equipo que trabaja en árabe y en inglés. Nos ocupamos de la selección de creadores y la comprobación de licencias, del briefing adaptado al dialecto, de la contratación y los derechos de uso, de la aprobación de contenidos y de los informes: el flujo completo de una <a href="/es/services/influencer-campaigns">campaña con influencers</a>.
 </p>
 <p>
   ¿Preparas un lanzamiento o un programa always-on en el Reino? <a href="/es/contact">Habla con CA Agency</a> y definiremos la combinación adecuada de creadores y plataformas para tu categoría antes de que comprometas presupuesto.

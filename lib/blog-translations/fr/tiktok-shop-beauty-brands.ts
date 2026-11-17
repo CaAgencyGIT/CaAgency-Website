@@ -94,7 +94,7 @@ export const post: TranslatedPost = {
 
 <h2>Comment CA Agency vous accompagne</h2>
 
-<p>CA Agency est spécialisée dans les créateurs beauté et soins de la peau, et accompagne notamment des <a href="/korean-skincare-influencer-marketing">marques de K-beauty</a> qui s'implantent aux États-Unis et sur d'autres marchés occidentaux. Nous aidons les marques à sélectionner et à briefer leurs créateurs affiliés, à mener des partenariats rémunérés en complément de la commission et à amplifier les contenus gagnants avec notre équipe de <a href="/services/performance-marketing">marketing à la performance</a>.</p>
+<p>CA Agency est spécialisée dans les créateurs beauté et soins de la peau, et accompagne notamment des <a href="/fr/korean-skincare-influencer-marketing">marques de K-beauty</a> qui s'implantent aux États-Unis et sur d'autres marchés occidentaux. Nous aidons les marques à sélectionner et à briefer leurs créateurs affiliés, à mener des partenariats rémunérés en complément de la commission et à amplifier les contenus gagnants avec notre équipe de <a href="/fr/services/performance-marketing">marketing à la performance</a>.</p>
 
 <p>Vous souhaitez construire un programme de créateurs TikTok Shop qui vend de façon rentable ? <a href="/fr/contact">Parlez à CA Agency</a>.</p>`,
 }

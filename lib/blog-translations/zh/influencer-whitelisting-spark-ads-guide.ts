@@ -89,7 +89,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何执行付费创作者项目</h2>
 <p>
-  CA Agency 把通常分开管理的两部分连接起来：创作者合作与付费媒体。我们事先谈定使用权，管理白名单投放和授权码，通过我们的<a href="/services/performance-marketing">效果营销</a>团队测试并扩大创作者内容的投放，并围绕真正重要的数字出具报告：单次获客成本和广告支出回报率。
+  CA Agency 把通常分开管理的两部分连接起来：创作者合作与付费媒体。我们事先谈定使用权，管理白名单投放和授权码，通过我们的<a href="/zh/services/performance-marketing">效果营销</a>团队测试并扩大创作者内容的投放，并围绕真正重要的数字出具报告：单次获客成本和广告支出回报率。
 </p>
 <p>
   想让您已经付费的创作者内容发挥更大价值？欢迎<a href="/zh/contact">联系 CA Agency</a>。

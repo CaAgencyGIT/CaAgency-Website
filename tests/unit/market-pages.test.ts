@@ -51,9 +51,9 @@ describe('market pages', () => {
       zh: 'https://caagency.com/zh/influencer-marketing-switzerland',
     })
     expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'ar', 'de', 'fr', 'es', 'ko', 'zh'])
-    // Every translated language has every market page.
+    // Every translated language has every market page and the three category pages.
     for (const locale of ['ar', 'de', 'fr', 'es', 'ko', 'zh'] as const) {
-      expect(Object.keys(translatedLocationPages[locale].pages).sort(), locale).toEqual(marketPages.map((page) => page.key).sort())
+      expect(Object.keys(translatedLocationPages[locale].pages).sort(), locale).toEqual([...marketPages.map((page) => page.key), 'beautyAgency', 'skincareAgency', 'kBeautySkincare'].sort())
     }
     for (const [key, phrase] of [['sydney', 'لسنا وكالة مقرها سيدني'], ['melbourne', 'لسنا وكالة مقرها ملبورن']] as const) {
       expect(JSON.stringify(translatedLocationPages.ar.pages[key].content), key).toContain(phrase)

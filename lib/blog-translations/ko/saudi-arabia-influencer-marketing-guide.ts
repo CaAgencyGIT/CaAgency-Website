@@ -99,7 +99,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency가 도와드리는 일</h2>
 <p>
-  CA Agency는 두바이 본사에서 아랍어와 영어로 일하는 팀과 함께 <a href="/ko/influencer-marketing-saudi-arabia">사우디아라비아 인플루언서 캠페인</a>을 운영합니다. 크리에이터 선정과 라이선스 확인, 방언에 맞는 브리핑, 계약과 사용 권한, 콘텐츠 승인, 리포팅까지 <a href="/services/influencer-campaigns">인플루언서 캠페인</a>의 전체 과정을 담당합니다.
+  CA Agency는 두바이 본사에서 아랍어와 영어로 일하는 팀과 함께 <a href="/ko/influencer-marketing-saudi-arabia">사우디아라비아 인플루언서 캠페인</a>을 운영합니다. 크리에이터 선정과 라이선스 확인, 방언에 맞는 브리핑, 계약과 사용 권한, 콘텐츠 승인, 리포팅까지 <a href="/ko/services/influencer-campaigns">인플루언서 캠페인</a>의 전체 과정을 담당합니다.
 </p>
 <p>
   사우디아라비아에서 출시나 상시 프로그램을 계획하고 계신가요? <a href="/ko/contact">CA Agency에 문의</a>해 주시면 예산을 확정하기 전에 여러분의 카테고리에 맞는 크리에이터와 플랫폼 믹스를 설계해 드리겠습니다.

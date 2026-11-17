@@ -98,7 +98,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何执行 YouTube 美妆营销活动</h2>
 <p>
-  CA Agency 专注于美妆和护肤。我们负责根据肤质、品类合作经历和受众所在地筛选 YouTube 创作者，负责简报和产品寄送、合同和使用权、内容审批，以及在上线当周之后持续跟踪效果的报告。我们还通过自有的<a href="/services/content-production">内容制作</a>团队在内部制作配套内容。
+  CA Agency 专注于美妆和护肤。我们负责根据肤质、品类合作经历和受众所在地筛选 YouTube 创作者，负责简报和产品寄送、合同和使用权、内容审批，以及在上线当周之后持续跟踪效果的报告。我们还通过自有的<a href="/zh/services/content-production">内容制作</a>团队在内部制作配套内容。
 </p>
 <p>
   正在筹备一场需要实证而不只是触达的新品上市？欢迎<a href="/zh/contact">联系 CA Agency</a>，为您的产品线量身打造 YouTube 创作者项目。

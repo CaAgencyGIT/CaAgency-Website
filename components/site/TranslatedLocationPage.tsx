@@ -65,7 +65,7 @@ export default async function TranslatedLocationPage({ market, locale }: { marke
     description: page.description,
     inLanguage: locale,
     provider: organizationRef,
-    areaServed: page.areaServed,
+    areaServed: page.areaServed ?? 'Worldwide',
     url: `${baseUrl}/${locale}${page.path}`,
   }
 

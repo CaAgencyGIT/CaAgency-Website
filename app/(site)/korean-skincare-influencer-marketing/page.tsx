@@ -6,6 +6,7 @@ import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { findSkincareGuide, tiktokShopBeautyGuide } from '@/lib/data/guides'
 import { organizationRef } from '@/lib/seo/schema'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 
 export const revalidate = 3600
 
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://caagency.com/korean-skincare-influencer-marketing',
+    languages: locationPageLanguages('/korean-skincare-influencer-marketing'),
   },
 }
 

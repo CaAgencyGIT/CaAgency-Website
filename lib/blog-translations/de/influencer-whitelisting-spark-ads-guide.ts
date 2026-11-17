@@ -89,7 +89,7 @@ export const post: TranslatedPost = {
 
 <h2>So setzt CA Agency bezahlte Creator-Programme um</h2>
 <p>
-  CA Agency verbindet die beiden Hälften, die meist getrennt gesteuert werden: Creator-Partnerschaften und Paid Media. Wir verhandeln Nutzungsrechte vorab, verwalten Whitelisting und Autorisierungscodes, testen und skalieren Creator-Inhalte mit unserem Team für <a href="/services/performance-marketing">Performance Marketing</a> und berichten über die Zahlen, auf die es ankommt: Kosten pro Neukunde und Return on Ad Spend.
+  CA Agency verbindet die beiden Hälften, die meist getrennt gesteuert werden: Creator-Partnerschaften und Paid Media. Wir verhandeln Nutzungsrechte vorab, verwalten Whitelisting und Autorisierungscodes, testen und skalieren Creator-Inhalte mit unserem Team für <a href="/de/services/performance-marketing">Performance Marketing</a> und berichten über die Zahlen, auf die es ankommt: Kosten pro Neukunde und Return on Ad Spend.
 </p>
 <p>
   Möchten Sie mehr aus den Creator-Inhalten herausholen, für die Sie ohnehin bezahlen? <a href="/de/contact">Sprechen Sie mit CA Agency</a>.

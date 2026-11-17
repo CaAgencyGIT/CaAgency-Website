@@ -96,7 +96,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何提供帮助</h2>
 <p>
-  CA Agency 为<a href="/zh/influencer-marketing-usa">品牌在美国开展网红营销活动</a>，专长于美妆、护肤和 <a href="/korean-skincare-influencer-marketing">K-beauty</a>。我们根据肤质、肌肤问题和受众所在地挑选创作者，核实资质和受众数据，用合规的宣称措辞撰写简报，并管理合同、使用权和报告。我们也代理自己的<a href="/zh/talents">创作者阵容</a>。
+  CA Agency 为<a href="/zh/influencer-marketing-usa">品牌在美国开展网红营销活动</a>，专长于美妆、护肤和 <a href="/zh/korean-skincare-influencer-marketing">K-beauty</a>。我们根据肤质、肌肤问题和受众所在地挑选创作者，核实资质和受众数据，用合规的宣称措辞撰写简报，并管理合同、使用权和报告。我们也代理自己的<a href="/zh/talents">创作者阵容</a>。
 </p>
 <p>
   正在为您的品牌寻找合适的护肤代言声音？欢迎<a href="/zh/contact">联系 CA Agency</a>，我们会为您的产品匹配一份候选名单。

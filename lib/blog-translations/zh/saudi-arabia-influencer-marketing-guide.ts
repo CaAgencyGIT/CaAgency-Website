@@ -99,7 +99,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何提供帮助</h2>
 <p>
-  CA Agency 在迪拜总部运营<a href="/zh/influencer-marketing-saudi-arabia">沙特阿拉伯的网红营销活动</a>，团队以阿拉伯语和英语工作。我们负责创作者筛选和许可核查、符合方言习惯的简报、签约和使用权、内容审批以及报告，也就是完整的<a href="/services/influencer-campaigns">网红营销活动</a>流程。
+  CA Agency 在迪拜总部运营<a href="/zh/influencer-marketing-saudi-arabia">沙特阿拉伯的网红营销活动</a>，团队以阿拉伯语和英语工作。我们负责创作者筛选和许可核查、符合方言习惯的简报、签约和使用权、内容审批以及报告，也就是完整的<a href="/zh/services/influencer-campaigns">网红营销活动</a>流程。
 </p>
 <p>
   正在筹划在沙特王国的上市活动或长期常态化项目？欢迎<a href="/zh/contact">联系 CA Agency</a>，我们会在您投入预算之前，为您的品类规划合适的创作者和平台组合。

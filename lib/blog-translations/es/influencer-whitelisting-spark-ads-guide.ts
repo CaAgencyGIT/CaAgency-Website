@@ -89,7 +89,7 @@ export const post: TranslatedPost = {
 
 <h2>Cómo gestiona CA Agency los programas de creadores de pago</h2>
 <p>
-  CA Agency une las dos mitades que normalmente se gestionan por separado: las colaboraciones con creadores y los medios de pago. Negociamos los derechos de uso desde el principio, gestionamos el whitelisting y los códigos de autorización, probamos y escalamos el contenido de creadores con nuestro equipo de <a href="/services/performance-marketing">performance marketing</a> e informamos sobre las cifras que importan: el coste por adquisición y el retorno de la inversión.
+  CA Agency une las dos mitades que normalmente se gestionan por separado: las colaboraciones con creadores y los medios de pago. Negociamos los derechos de uso desde el principio, gestionamos el whitelisting y los códigos de autorización, probamos y escalamos el contenido de creadores con nuestro equipo de <a href="/es/services/performance-marketing">performance marketing</a> e informamos sobre las cifras que importan: el coste por adquisición y el retorno de la inversión.
 </p>
 <p>
   ¿Quieres sacar más partido al contenido de creadores por el que ya pagas? <a href="/es/contact">Habla con CA Agency</a>.

@@ -155,7 +155,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency 如何提供帮助</h2>
 <p>
-  CA Agency 帮助时尚、服饰和健康品牌挑选联盟创作者并为其撰写简报，在佣金之外开展付费合作，并由我们的<a href="/services/performance-marketing">效果营销</a>团队把表现出色的创作者内容转化为付费媒体素材。我们撰写的简报带有适合该品类的规范，包括广告标注和宣称表述。
+  CA Agency 帮助时尚、服饰和健康品牌挑选联盟创作者并为其撰写简报，在佣金之外开展付费合作，并由我们的<a href="/zh/services/performance-marketing">效果营销</a>团队把表现出色的创作者内容转化为付费媒体素材。我们撰写的简报带有适合该品类的规范，包括广告标注和宣称表述。
 </p>
 <p>
   想打造一个在您的品类里实现盈利销售的 TikTok Shop 创作者项目吗？<a href="/zh/contact">联系 CA Agency</a>。

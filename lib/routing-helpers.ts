@@ -71,14 +71,41 @@ const EVERY_MARKET_PATH = [
   '/influencer-marketing-nordics',
 ] as const
 
+// The category landing pages use the same page type as the market pages.
+const CATEGORY_PATHS = [
+  '/beauty-influencer-marketing-agency',
+  '/skincare-influencer-marketing-agency',
+  '/korean-skincare-influencer-marketing',
+] as const
+
+const EVERY_LANDING_PATH = [...EVERY_MARKET_PATH, ...CATEGORY_PATHS] as const
+
 export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>> = {
-  // Every translated language has every market page.
-  ar: EVERY_MARKET_PATH,
-  de: EVERY_MARKET_PATH,
-  fr: EVERY_MARKET_PATH,
-  es: EVERY_MARKET_PATH,
-  ko: EVERY_MARKET_PATH,
-  zh: EVERY_MARKET_PATH,
+  // Every translated language has every market and category page.
+  ar: EVERY_LANDING_PATH,
+  de: EVERY_LANDING_PATH,
+  fr: EVERY_LANDING_PATH,
+  es: EVERY_LANDING_PATH,
+  ko: EVERY_LANDING_PATH,
+  zh: EVERY_LANDING_PATH,
+}
+
+// Service detail pages, translated in lib/data/services-translated (app/[locale]/services/[slug]).
+export const TRANSLATED_SERVICE_PATHS = [
+  '/services/influencer-campaigns',
+  '/services/talent-management',
+  '/services/content-production',
+  '/services/performance-marketing',
+  '/services/brand-consultancy',
+] as const
+
+export const LOCALIZED_SERVICE_PATHS: Partial<Record<string, readonly string[]>> = {
+  ar: TRANSLATED_SERVICE_PATHS,
+  de: TRANSLATED_SERVICE_PATHS,
+  fr: TRANSLATED_SERVICE_PATHS,
+  es: TRANSLATED_SERVICE_PATHS,
+  ko: TRANSLATED_SERVICE_PATHS,
+  zh: TRANSLATED_SERVICE_PATHS,
 }
 
 // English-only blog posts that also have a translated app/[locale]/blog/[slug]
@@ -129,9 +156,24 @@ export function hasLocalizedLocationPage(pathname: string, locale: string): bool
   return LOCALIZED_LOCATION_PATHS[locale]?.includes(pathname) ?? false
 }
 
-/** True when an otherwise English-only page (market page or blog post) exists in this locale. */
+/** True when an otherwise English-only page (market, category, service page or blog post) exists in this locale. */
 export function hasTranslatedPage(pathname: string, locale: string): boolean {
-  return hasLocalizedLocationPage(pathname, locale) || (LOCALIZED_BLOG_PATHS[locale]?.includes(pathname) ?? false)
+  return (
+    hasLocalizedLocationPage(pathname, locale) ||
+    (LOCALIZED_BLOG_PATHS[locale]?.includes(pathname) ?? false) ||
+    (LOCALIZED_SERVICE_PATHS[locale]?.includes(pathname) ?? false)
+  )
+}
+
+/** hreflang map for a service page: English (also x-default) plus every locale that has it. */
+export function servicePageLanguages(slug: string, baseUrl = 'https://caagency.com'): Record<string, string> {
+  const pathname = `/services/${slug}`
+  const english = `${baseUrl}${pathname}`
+  const languages: Record<string, string> = { 'x-default': english, en: english }
+  for (const locale of Object.keys(LOCALIZED_SERVICE_PATHS)) {
+    if (LOCALIZED_SERVICE_PATHS[locale]?.includes(pathname)) languages[locale] = `${baseUrl}/${locale}${pathname}`
+  }
+  return languages
 }
 
 /**

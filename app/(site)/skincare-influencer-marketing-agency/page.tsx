@@ -5,6 +5,7 @@ import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { findSkincareGuide, ftcGuide, kBeautyGuide } from '@/lib/data/guides'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 import { organizationJsonLd } from '@/lib/seo/root-metadata'
 import { organizationRef } from '@/lib/seo/schema'
 import { jsonLdSafe } from '@/lib/sanitize'
@@ -15,7 +16,7 @@ const PATH = '/skincare-influencer-marketing-agency'
 const DESCRIPTION =
   'Skincare influencer marketing agency: ingredient-led creator campaigns with compliant claims for brands like Purito, Anua and DELERE, in the USA and beyond.'
 
-export const metadata = buildPageMetadata({
+const baseMetadata = buildPageMetadata({
   title: 'Skincare Influencer Marketing Agency',
   description: DESCRIPTION,
   path: PATH,
@@ -30,6 +31,11 @@ export const metadata = buildPageMetadata({
     'dermocosmetic influencer marketing',
   ],
 })
+
+export const metadata = {
+  ...baseMetadata,
+  alternates: { canonical: `https://caagency.com${PATH}`, languages: locationPageLanguages(PATH) },
+}
 
 const serviceSchema = {
   '@context': 'https://schema.org',

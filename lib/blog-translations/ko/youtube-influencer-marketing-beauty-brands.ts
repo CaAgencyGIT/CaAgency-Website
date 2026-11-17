@@ -98,7 +98,7 @@ export const post: TranslatedPost = {
 
 <h2>CA Agency가 YouTube 뷰티 캠페인을 운영하는 방식</h2>
 <p>
-  CA Agency는 뷰티와 스킨케어를 전문으로 합니다. 피부 타입, 카테고리 이력, 오디언스 지역을 기준으로 한 YouTube 크리에이터 선정, 브리핑과 제품 시딩, 계약과 사용 권한, 콘텐츠 승인, 그리고 공개 첫 주 이후의 성과까지 추적하는 리포팅을 담당합니다. 또한 <a href="/services/content-production">콘텐츠 제작</a> 팀을 통해 이를 보완하는 콘텐츠를 인하우스로 제작합니다.
+  CA Agency는 뷰티와 스킨케어를 전문으로 합니다. 피부 타입, 카테고리 이력, 오디언스 지역을 기준으로 한 YouTube 크리에이터 선정, 브리핑과 제품 시딩, 계약과 사용 권한, 콘텐츠 승인, 그리고 공개 첫 주 이후의 성과까지 추적하는 리포팅을 담당합니다. 또한 <a href="/ko/services/content-production">콘텐츠 제작</a> 팀을 통해 이를 보완하는 콘텐츠를 인하우스로 제작합니다.
 </p>
 <p>
   도달만이 아니라 확실한 근거가 필요한 출시를 준비하고 계신가요? 여러분의 제품 라인에 맞춘 YouTube 크리에이터 프로그램에 대해 <a href="/ko/contact">CA Agency에 문의</a>해 주세요.
