@@ -94,12 +94,12 @@ export const post: TranslatedPost = {
 
 <h2>Saudi-Arabien als Teil einer Golf-Strategie</h2>
 <p>
-  Viele Marken bespielen Saudi-Arabien zusammen mit den VAE und der weiteren Golfregion. Das kann gut funktionieren, mit gemeinsamen Kreativplattformen, zweisprachigen Creators mit Reichweite in der ganzen Golfregion und abgestimmten Launches, solange jeder Markt Creators, Dialekt und Timing bekommt, die zu ihm passen. Unser Ansatz für <a href="/influencer-marketing-gcc">Influencer Marketing in den GCC-Staaten</a> ist genau auf dieses Gleichgewicht ausgelegt.
+  Viele Marken bespielen Saudi-Arabien zusammen mit den VAE und der weiteren Golfregion. Das kann gut funktionieren, mit gemeinsamen Kreativplattformen, zweisprachigen Creators mit Reichweite in der ganzen Golfregion und abgestimmten Launches, solange jeder Markt Creators, Dialekt und Timing bekommt, die zu ihm passen. Unser Ansatz für <a href="/de/influencer-marketing-gcc">Influencer Marketing in den GCC-Staaten</a> ist genau auf dieses Gleichgewicht ausgelegt.
 </p>
 
 <h2>So unterstützt CA Agency</h2>
 <p>
-  CA Agency setzt <a href="/influencer-marketing-saudi-arabia">Influencer-Kampagnen in Saudi-Arabien</a> von unserem Hauptsitz in Dubai aus um, mit einem Team, das auf Arabisch und Englisch arbeitet. Wir übernehmen Creator-Auswahl und Lizenzprüfung, Briefings im passenden Dialekt, Verträge und Nutzungsrechte, Freigaben und Reporting, also den gesamten Ablauf einer <a href="/services/influencer-campaigns">Influencer-Kampagne</a>.
+  CA Agency setzt <a href="/de/influencer-marketing-saudi-arabia">Influencer-Kampagnen in Saudi-Arabien</a> von unserem Hauptsitz in Dubai aus um, mit einem Team, das auf Arabisch und Englisch arbeitet. Wir übernehmen Creator-Auswahl und Lizenzprüfung, Briefings im passenden Dialekt, Verträge und Nutzungsrechte, Freigaben und Reporting, also den gesamten Ablauf einer <a href="/services/influencer-campaigns">Influencer-Kampagne</a>.
 </p>
 <p>
   Planen Sie einen Launch oder ein Always-on-Programm im Königreich? <a href="/de/contact">Sprechen Sie mit CA Agency</a>, und wir erarbeiten den passenden Mix aus Creators und Plattformen für Ihre Kategorie, bevor Sie Budget festlegen.

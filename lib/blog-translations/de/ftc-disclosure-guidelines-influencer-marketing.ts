@@ -107,7 +107,7 @@ export const post: TranslatedPost = {
 
 <p>Erreichen Ihre Kampagnen ein Publikum außerhalb der USA oder arbeiten Sie mit Creators aus Großbritannien, gehen die Kennzeichnungspflichten über die FTC hinaus. Die britische Advertising Standards Authority (ASA) und die Competition and Markets Authority (CMA) haben eigene Regeln, die in der Absicht weitgehend ähnlich sind, sich im Detail aber unterscheiden. In Großbritannien muss das Wort „Ad“ als Label klar sichtbar sein, „Gifted“ reicht möglicherweise nicht immer aus. Die EU, Kanada und Australien haben jeweils vergleichbare Regelwerke.</p>
 
-<p>Ein Kennzeichnungsstandard, der in den USA funktioniert, ist eine gute Grundlage, globale Kampagnen brauchen aber eine Prüfung für die jeweilige Rechtsordnung. <a href="/influencer-marketing-usa">Unser Team für Influencer Marketing in den USA</a> kümmert sich um die Compliance im US-Markt, internationale Kampagnen erfordern zusätzliche Kontrolle.</p>
+<p>Ein Kennzeichnungsstandard, der in den USA funktioniert, ist eine gute Grundlage, globale Kampagnen brauchen aber eine Prüfung für die jeweilige Rechtsordnung. <a href="/de/influencer-marketing-usa">Unser Team für Influencer Marketing in den USA</a> kümmert sich um die Compliance im US-Markt, internationale Kampagnen erfordern zusätzliche Kontrolle.</p>
 
 <h2>Wie eine gute Agentur Compliance einbaut</h2>
 

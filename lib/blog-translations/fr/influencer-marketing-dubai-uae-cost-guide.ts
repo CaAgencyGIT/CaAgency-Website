@@ -27,7 +27,7 @@ export const post: TranslatedPost = {
   Cela pèse sur le coût de deux façons. D'abord, les créateurs titulaires d'une licence répercutent le coût de la conformité dans leurs tarifs : la licence elle-même, et dans bien des cas une licence commerciale ou un accord avec une agence qui les parraine. Ensuite, cela resserre le vivier professionnel : les créateurs qui ont obtenu une licence traitent, presque par définition, le contenu comme une activité économique, avec la qualité de production et la fiabilité que cela suppose. Quand un tarif à Dubaï paraît élevé par rapport à une audience équivalente ailleurs, la licence et la professionnalisation font généralement partie de l'explication.
 </p>
 <p>
-  Pour les marques, la conclusion est simple : vérifiez la licence avant de signer. Une agence partenaire sérieuse ne travaille qu'avec des talents titulaires d'une licence. C'est l'un des premiers points que nous vérifions lorsque nous <a href="/influencer-marketing-dubai">montons des campagnes à Dubaï</a>.
+  Pour les marques, la conclusion est simple : vérifiez la licence avant de signer. Une agence partenaire sérieuse ne travaille qu'avec des talents titulaires d'une licence. C'est l'un des premiers points que nous vérifions lorsque nous <a href="/fr/influencer-marketing-dubai">montons des campagnes à Dubaï</a>.
 </p>
 
 <h2>Ce que demandent les créateurs : la réponse honnête</h2>
@@ -41,7 +41,7 @@ export const post: TranslatedPost = {
   <li><strong>Méga-créateurs et célébrités (plus d'un million d'abonnés).</strong> Cinq chiffres et plus par activation, souvent sous la forme de partenariats sur mesure avec l'intervention de managers. Le luxe, l'automobile, l'hôtellerie et l'immobilier dominent cette catégorie à Dubaï.</li>
 </ul>
 <p>
-  Les créateurs arabophones et bilingues obtiennent souvent une prime par rapport à leurs équivalents uniquement anglophones, à audience égale, parce qu'ils ouvrent une portée à l'échelle du Golfe, vers l'Arabie saoudite et l'ensemble du <a href="/influencer-marketing-gcc">marché du CCG</a>, souvent le véritable enjeu pour les marques qui entrent dans la région.
+  Les créateurs arabophones et bilingues obtiennent souvent une prime par rapport à leurs équivalents uniquement anglophones, à audience égale, parce qu'ils ouvrent une portée à l'échelle du Golfe, vers l'Arabie saoudite et l'ensemble du <a href="/fr/influencer-marketing-gcc">marché du CCG</a>, souvent le véritable enjeu pour les marques qui entrent dans la région.
 </p>
 
 <h2>Les facteurs de prix qui pèsent plus que le nombre d'abonnés</h2>
@@ -88,7 +88,7 @@ export const post: TranslatedPost = {
   <p>Aux Émirats plus que sur la plupart des marchés, ce que vous achetez réellement à une agence n'est pas l'accès aux créateurs : c'est la position de négociation et la certitude de conformité que n'ont pas les marques qui réservent en direct.</p>
 </blockquote>
 <p>
-  CA Agency mène des campagnes à <a href="/influencer-marketing-dubai">Dubaï</a>, dans le reste des <a href="/influencer-marketing-uae">Émirats arabes unis</a> et dans le <a href="/influencer-marketing-gcc">CCG</a>, de l'activation avec un seul créateur aux programmes en continu. Si vous établissez le budget d'un lancement aux Émirats, <a href="/fr/contact">contactez-nous</a> : nous vous donnerons un chiffre réaliste pour votre catégorie avant que vous ne vous engagiez.
+  CA Agency mène des campagnes à <a href="/fr/influencer-marketing-dubai">Dubaï</a>, dans le reste des <a href="/fr/influencer-marketing-uae">Émirats arabes unis</a> et dans le <a href="/fr/influencer-marketing-gcc">CCG</a>, de l'activation avec un seul créateur aux programmes en continu. Si vous établissez le budget d'un lancement aux Émirats, <a href="/fr/contact">contactez-nous</a> : nous vous donnerons un chiffre réaliste pour votre catégorie avant que vous ne vous engagiez.
 </p>
 
 <h2>Guides associés</h2>

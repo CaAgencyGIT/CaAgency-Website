@@ -66,7 +66,7 @@ export const post: TranslatedPost = {
 
 <h2>Le lien avec la Corée fonctionne dans les deux sens</h2>
 
-<p>Il existe une seconde voie que les marques occidentales exploitent trop peu : les créateurs installés <em>en</em> Corée. Séoul est une capitale mondiale du contenu, et les campagnes tournées avec des créateurs basés en Corée bénéficient d'une aura d'authenticité auprès des publics beauté du monde entier : l'effet « vérifié à la source ». Pour les marques occidentales qui recherchent une crédibilité proche de la K-beauty, ou pour les marques coréennes qui veulent des contenus de leur marché d'origine capables de voyager, les <a href="/influencer-marketing-korea">campagnes avec des créateurs basés en Corée</a> sont une compétence à part entière, à intégrer dans vos plans.</p>
+<p>Il existe une seconde voie que les marques occidentales exploitent trop peu : les créateurs installés <em>en</em> Corée. Séoul est une capitale mondiale du contenu, et les campagnes tournées avec des créateurs basés en Corée bénéficient d'une aura d'authenticité auprès des publics beauté du monde entier : l'effet « vérifié à la source ». Pour les marques occidentales qui recherchent une crédibilité proche de la K-beauty, ou pour les marques coréennes qui veulent des contenus de leur marché d'origine capables de voyager, les <a href="/fr/influencer-marketing-korea">campagnes avec des créateurs basés en Corée</a> sont une compétence à part entière, à intégrer dans vos plans.</p>
 
 <h2>Comment CA Agency mène ses campagnes K-beauty</h2>
 

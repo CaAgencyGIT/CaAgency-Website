@@ -43,12 +43,6 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/zh/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(getLocalizedSiteRouteRedirect('/zh/case-studies')).toBe('/case-studies')
     expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
-    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-dubai')).toBe(
-      '/influencer-marketing-dubai'
-    )
-    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-usa')).toBe(
-      '/influencer-marketing-usa'
-    )
     expect(getLocalizedSiteRouteRedirect('/ko/korean-skincare-influencer-marketing')).toBe(
       '/korean-skincare-influencer-marketing'
     )
@@ -82,8 +76,9 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-switzerland')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-france')).toBeNull()
     // A market page without a translation in that language still goes to English.
-    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-germany')).toBe('/influencer-marketing-germany')
-    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-nordics')).toBe('/influencer-marketing-nordics')
+    expect(getLocalizedSiteRouteRedirect('/fr/influencer-marketing-germany')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-dubai')).toBeNull()
+    expect(getLocalizedSiteRouteRedirect('/de/influencer-marketing-nordics')).toBeNull()
     // services *listing* is localized; only the /services/<slug> detail is (site)-only
     expect(getLocalizedSiteRouteRedirect('/ar/services')).toBeNull()
     // talents *listing* is localized; only the /talents/<slug> detail is (site)-only
