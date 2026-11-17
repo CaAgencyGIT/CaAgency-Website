@@ -7,7 +7,7 @@ import type { TranslatedLocationPage } from '@/lib/site-content/location-pages-t
 
 export const koreanLocationLabels: LocationLabels = {
   intro: '회사 소개',
-  caseStudies: '사례 연구',
+  caseStudies: '케이스 스터디',
   process: '진행 방식',
   highlights: 'CA Agency를 선택하는 이유',
   talents: '크리에이터',
