@@ -49,7 +49,7 @@ export const post: TranslatedPost = {
 <ul>
   <li><strong>Heimische Kreation unverändert exportieren.</strong> Die Werbekonventionen des koreanischen Marktes, also prominente Markenbotschafter, Idols mit makelloser Haut und förmliche Produktaussagen, wirken auf westliches Publikum oft unerreichbar oder unpersönlich. Es reagiert auf realistische Haut und persönliche Erfahrungsberichte.</li>
   <li><strong>TikTok unterschätzen.</strong> Der aktuelle K-Beauty-Boom in den USA ist zu einem wesentlichen Teil ein TikTok-Phänomen, verstärkt durch den Kaufabschluss direkt in TikTok Shop. Marken, die ihr Budget vor allem auf Instagram legen, weil es hochwertiger wirkt, verpassen den Ort, an dem die Kategorie tatsächlich entdeckt wird.</li>
-  <li><strong>Regeln nicht mitübersetzen.</strong> Aussagen zu Inhaltsstoffen, die in Korea üblich sind, können in den USA und in der EU als Heilversprechen gelten. Creator-Briefings brauchen für jeden Markt rechtlich saubere Formulierungen. Für den deutschsprachigen Raum gehört dazu auch die klare Kennzeichnung bezahlter Beiträge als „Werbung“ oder „Anzeige“ am Anfang des Beitrags. Die US-Seite behandelt unser <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln</a> (Englisch).</li>
+  <li><strong>Regeln nicht mitübersetzen.</strong> Aussagen zu Inhaltsstoffen, die in Korea üblich sind, können in den USA und in der EU als Heilversprechen gelten. Creator-Briefings brauchen für jeden Markt rechtlich saubere Formulierungen. Für den deutschsprachigen Raum gehört dazu auch die klare Kennzeichnung bezahlter Beiträge als „Werbung“ oder „Anzeige“ am Anfang des Beitrags. Die US-Seite behandelt unser <a href="/de/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln</a>.</li>
   <li><strong>Einmalige Aktivierungen.</strong> Kaufentscheidungen bei K-Beauty entstehen durch wiederholte Kontakte über mehrere vertraute Stimmen. Ein einzelner gesponserter Beitrag pro Creator bewegt selten Marktanteile. Das leisten dauerhafte Programme mit einem festen Kreis von Creators.</li>
 </ul>
 
@@ -66,6 +66,6 @@ export const post: TranslatedPost = {
 <h2>Weitere Ratgeber</h2>
 <ul>
   <li><a href="/de/blog/tiktok-shop-beauty-brands">TikTok Shop für Beauty-Marken</a></li>
-  <li><a href="/blog/find-skincare-influencers-usa">Hautpflege-Influencer in den USA finden und prüfen</a> (Englisch)</li>
+  <li><a href="/de/blog/find-skincare-influencers-usa">Hautpflege-Influencer in den USA finden und prüfen</a></li>
 </ul>`,
 }

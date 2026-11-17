@@ -12,6 +12,18 @@ import { post as deTiktokInfluencerMarketingGuide } from '@/lib/blog-translation
 import { post as deHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/de/how-to-measure-influencer-marketing-roi'
 import { post as deYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/de/youtube-influencer-marketing-beauty-brands'
 import { post as deMicroVsMacroInfluencers } from '@/lib/blog-translations/de/micro-vs-macro-influencers'
+import { post as deInstagramReelsBeautyBrands } from '@/lib/blog-translations/de/instagram-reels-beauty-brands'
+import { post as deTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/de/tiktok-shop-fashion-wellness-brands'
+import { post as deInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/de/instagram-influencer-marketing-2026'
+import { post as deInfluencerMarketingTrends2026 } from '@/lib/blog-translations/de/influencer-marketing-trends-2026'
+import { post as deUgcVsInfluencerMarketing } from '@/lib/blog-translations/de/ugc-vs-influencer-marketing'
+import { post as deHowToSpotFakeInfluencers } from '@/lib/blog-translations/de/how-to-spot-fake-influencers'
+import { post as deFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/de/ftc-disclosure-guidelines-influencer-marketing'
+import { post as deSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/de/saudi-arabia-influencer-marketing-guide'
+import { post as deInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/de/influencer-marketing-dubai-uae-cost-guide'
+import { post as deFindSkincareInfluencersUsa } from '@/lib/blog-translations/de/find-skincare-influencers-usa'
+import { post as deHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/de/how-to-run-influencer-marketing-campaign'
+import { post as deInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/de/influencer-marketing-agency-vs-in-house'
 import { post as frHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/fr/how-to-choose-influencer-marketing-agency'
 import { post as frInfluencerMarketingCost2026 } from '@/lib/blog-translations/fr/influencer-marketing-cost-2026'
 import { post as frTiktokShopBeautyBrands } from '@/lib/blog-translations/fr/tiktok-shop-beauty-brands'
@@ -25,6 +37,18 @@ import { post as frTiktokInfluencerMarketingGuide } from '@/lib/blog-translation
 import { post as frHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/fr/how-to-measure-influencer-marketing-roi'
 import { post as frYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/fr/youtube-influencer-marketing-beauty-brands'
 import { post as frMicroVsMacroInfluencers } from '@/lib/blog-translations/fr/micro-vs-macro-influencers'
+import { post as frInstagramReelsBeautyBrands } from '@/lib/blog-translations/fr/instagram-reels-beauty-brands'
+import { post as frTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/fr/tiktok-shop-fashion-wellness-brands'
+import { post as frInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/fr/instagram-influencer-marketing-2026'
+import { post as frInfluencerMarketingTrends2026 } from '@/lib/blog-translations/fr/influencer-marketing-trends-2026'
+import { post as frUgcVsInfluencerMarketing } from '@/lib/blog-translations/fr/ugc-vs-influencer-marketing'
+import { post as frHowToSpotFakeInfluencers } from '@/lib/blog-translations/fr/how-to-spot-fake-influencers'
+import { post as frFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/fr/ftc-disclosure-guidelines-influencer-marketing'
+import { post as frSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/fr/saudi-arabia-influencer-marketing-guide'
+import { post as frInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/fr/influencer-marketing-dubai-uae-cost-guide'
+import { post as frFindSkincareInfluencersUsa } from '@/lib/blog-translations/fr/find-skincare-influencers-usa'
+import { post as frHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/fr/how-to-run-influencer-marketing-campaign'
+import { post as frInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/fr/influencer-marketing-agency-vs-in-house'
 
 // Blog guides that also exist in German or French, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
@@ -57,7 +81,7 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       indexHeading: 'Influencer Marketing Blog',
       indexIntro: 'Ratgeber, Strategien und Praxiswissen von CA Agency, aus der Erfahrung von über 3.000 Influencer-Kampagnen.',
       allGuides: 'Alle Ratgeber',
-      englishBlog: 'Weitere Artikel im englischen Blog',
+      englishBlog: 'Zum englischen Blog',
       indexInLanguage: 'Ratgeber auf Deutsch',
     },
     posts: [
@@ -74,6 +98,18 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       deHowToMeasureInfluencerMarketingRoi,
       deYoutubeInfluencerMarketingBeautyBrands,
       deMicroVsMacroInfluencers,
+      deInstagramReelsBeautyBrands,
+      deTiktokShopFashionWellnessBrands,
+      deInstagramInfluencerMarketing2026,
+      deInfluencerMarketingTrends2026,
+      deUgcVsInfluencerMarketing,
+      deHowToSpotFakeInfluencers,
+      deFtcDisclosureGuidelinesInfluencerMarketing,
+      deSaudiArabiaInfluencerMarketingGuide,
+      deInfluencerMarketingDubaiUaeCostGuide,
+      deFindSkincareInfluencersUsa,
+      deHowToRunInfluencerMarketingCampaign,
+      deInfluencerMarketingAgencyVsInHouse,
     ],
   },
   fr: {
@@ -98,7 +134,7 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       indexHeading: "Blog marketing d'influence",
       indexIntro: "Guides, stratégies et retours d'expérience de CA Agency, tirés de plus de 3 000 campagnes d'influence.",
       allGuides: 'Tous les guides',
-      englishBlog: "Plus d'articles sur le blog en anglais",
+      englishBlog: 'Voir le blog en anglais',
       indexInLanguage: 'Guides en français',
     },
     posts: [
@@ -115,6 +151,18 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       frHowToMeasureInfluencerMarketingRoi,
       frYoutubeInfluencerMarketingBeautyBrands,
       frMicroVsMacroInfluencers,
+      frInstagramReelsBeautyBrands,
+      frTiktokShopFashionWellnessBrands,
+      frInstagramInfluencerMarketing2026,
+      frInfluencerMarketingTrends2026,
+      frUgcVsInfluencerMarketing,
+      frHowToSpotFakeInfluencers,
+      frFtcDisclosureGuidelinesInfluencerMarketing,
+      frSaudiArabiaInfluencerMarketingGuide,
+      frInfluencerMarketingDubaiUaeCostGuide,
+      frFindSkincareInfluencersUsa,
+      frHowToRunInfluencerMarketingCampaign,
+      frInfluencerMarketingAgencyVsInHouse,
     ],
   },
 }

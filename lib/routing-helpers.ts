@@ -80,6 +80,18 @@ const TRANSLATED_BLOG_PATHS = [
   '/blog/how-to-measure-influencer-marketing-roi',
   '/blog/youtube-influencer-marketing-beauty-brands',
   '/blog/micro-vs-macro-influencers',
+  '/blog/instagram-reels-beauty-brands',
+  '/blog/tiktok-shop-fashion-wellness-brands',
+  '/blog/instagram-influencer-marketing-2026',
+  '/blog/influencer-marketing-trends-2026',
+  '/blog/ugc-vs-influencer-marketing',
+  '/blog/how-to-spot-fake-influencers',
+  '/blog/ftc-disclosure-guidelines-influencer-marketing',
+  '/blog/saudi-arabia-influencer-marketing-guide',
+  '/blog/influencer-marketing-dubai-uae-cost-guide',
+  '/blog/find-skincare-influencers-usa',
+  '/blog/how-to-run-influencer-marketing-campaign',
+  '/blog/influencer-marketing-agency-vs-in-house',
 ] as const
 export const LOCALIZED_BLOG_PATHS: Partial<Record<string, readonly string[]>> = {
   de: TRANSLATED_BLOG_PATHS,

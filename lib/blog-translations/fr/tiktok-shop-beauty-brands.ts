@@ -64,7 +64,7 @@ export const post: TranslatedPost = {
   <li><strong>Les offres et les lots</strong> liés à des promotions, qui donnent une raison d'acheter maintenant.</li>
 </ul>
 
-<p>Les allégations demandent une attention particulière. Un contenu sur les soins de la peau peut vite glisser d'une allégation cosmétique (« la peau paraît plus lisse », « la peau est hydratée ») à une allégation thérapeutique (« traite l'acné », « guérit l'eczéma »), ce qui a des conséquences réglementaires. Fournissez aux créateurs des formulations validées et évitez les visuels avant-après retouchés. En France, la loi du 9 juin 2023 sur l'influence commerciale impose par ailleurs d'indiquer clairement « Publicité » ou « Collaboration commerciale » sur les contenus rémunérés. Pour les campagnes destinées aux États-Unis, notre <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">guide sur les règles de la FTC</a> (en anglais) détaille les obligations de transparence.</p>
+<p>Les allégations demandent une attention particulière. Un contenu sur les soins de la peau peut vite glisser d'une allégation cosmétique (« la peau paraît plus lisse », « la peau est hydratée ») à une allégation thérapeutique (« traite l'acné », « guérit l'eczéma »), ce qui a des conséquences réglementaires. Fournissez aux créateurs des formulations validées et évitez les visuels avant-après retouchés. En France, la loi du 9 juin 2023 sur l'influence commerciale impose par ailleurs d'indiquer clairement « Publicité » ou « Collaboration commerciale » sur les contenus rémunérés. Pour les campagnes destinées aux États-Unis, notre <a href="/fr/blog/ftc-disclosure-guidelines-influencer-marketing">guide sur les règles de la FTC</a> détaille les obligations de transparence.</p>
 
 <h2>Le LIVE shopping</h2>
 

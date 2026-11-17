@@ -3,6 +3,8 @@ import { blogIndexLanguages, getTranslatedPost, postLanguages, translatedGuides,
 import { LOCALIZED_BLOG_PATHS, getLocalizedSiteRouteRedirect } from '@/lib/routing-helpers'
 import { localizeHref } from '@/lib/i18n/client-paths'
 
+const US_GUIDES = new Set(['ftc-disclosure-guidelines-influencer-marketing', 'find-skincare-influencers-usa'])
+
 describe('translated blog guides', () => {
   it('keeps the routing allow-list in step with the translations', () => {
     for (const [locale, { posts }] of Object.entries(translatedPosts)) {
@@ -15,7 +17,7 @@ describe('translated blog guides', () => {
     expect(getLocalizedSiteRouteRedirect('/de/blog/influencer-marketing-cost-2026')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/fr/blog/how-to-choose-influencer-marketing-agency')).toBeNull()
     expect(getLocalizedSiteRouteRedirect('/ko/blog/influencer-marketing-cost-2026')).toBe('/blog/influencer-marketing-cost-2026')
-    expect(getLocalizedSiteRouteRedirect('/de/blog/ftc-disclosure-guidelines-influencer-marketing')).toBe('/blog/ftc-disclosure-guidelines-influencer-marketing')
+    expect(getLocalizedSiteRouteRedirect('/de/blog/a-post-without-a-translation')).toBe('/blog/a-post-without-a-translation')
     expect(localizeHref('/blog/influencer-marketing-cost-2026', 'de')).toBe('/de/blog/influencer-marketing-cost-2026')
     // The blog index exists in German and French; other languages go to the English one.
     expect(localizeHref('/blog', 'de')).toBe('/de/blog')
@@ -38,8 +40,8 @@ describe('translated blog guides', () => {
       de: 'https://caagency.com/de/blog/influencer-marketing-cost-2026',
       fr: 'https://caagency.com/fr/blog/influencer-marketing-cost-2026',
     })
-    expect(translationLocales('ftc-disclosure-guidelines-influencer-marketing')).toEqual([])
-    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([13, 13])
+    expect(translationLocales('a-post-without-a-translation')).toEqual([])
+    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([25, 25])
   })
 
   it('gives every translation search-ready metadata and links inside its own language', () => {
@@ -55,7 +57,8 @@ describe('translated blog guides', () => {
           // In the page's language wherever that page exists; plain English paths only for English-only pages.
           const expected = href.startsWith(`/${locale}/`) ? href : localizeHref(href, locale)
           expect(href, `${locale} ${post.slug}: ${href}`).toBe(expected)
-          expect(href, `${locale} ${post.slug}: ${href}`).not.toBe('/influencer-marketing-usa')
+          // Only the two guides about the US market link to the English US page.
+          if (!US_GUIDES.has(post.slug)) expect(href, `${locale} ${post.slug}: ${href}`).not.toBe('/influencer-marketing-usa')
         }
         // No em dashes, matching the rest of the site copy.
         expect(post.content).not.toContain('—')

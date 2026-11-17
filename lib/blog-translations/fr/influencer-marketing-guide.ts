@@ -35,7 +35,7 @@ export const post: TranslatedPost = {
 
 <p>Une fois la décision d'investir prise, le choix suivant est structurel : gérer le marketing d'influence en interne ou travailler avec une agence. L'interne vous donne le contrôle et une connaissance fine de la marque, mais suppose des recrutements, des outils et des relations avec les créateurs à construire de zéro. Une agence apporte un réseau existant, un pouvoir de négociation et une organisation rodée, en contrepartie d'honoraires de gestion.</p>
 
-<p>La plupart des marques se situent entre les deux, et la bonne réponse dépend de votre volume, de votre budget et de vos ressources internes. Nous comparons les deux options sans détour dans notre article <a href="/blog/influencer-marketing-agency-vs-in-house">agence de marketing d'influence ou équipe interne</a> (en anglais). Si vous décidez d'externaliser, il faut savoir évaluer les partenaires : notre guide pour <a href="/fr/blog/how-to-choose-influencer-marketing-agency">choisir une agence de marketing d'influence</a> détaille les questions qui distinguent les bonnes agences des agences simplement coûteuses.</p>
+<p>La plupart des marques se situent entre les deux, et la bonne réponse dépend de votre volume, de votre budget et de vos ressources internes. Nous comparons les deux options sans détour dans notre article <a href="/fr/blog/influencer-marketing-agency-vs-in-house">agence de marketing d'influence ou équipe interne</a>. Si vous décidez d'externaliser, il faut savoir évaluer les partenaires : notre guide pour <a href="/fr/blog/how-to-choose-influencer-marketing-agency">choisir une agence de marketing d'influence</a> détaille les questions qui distinguent les bonnes agences des agences simplement coûteuses.</p>
 
 <h2>Mener une campagne de bout en bout</h2>
 
@@ -43,7 +43,7 @@ export const post: TranslatedPost = {
 
 <p>Les équipes les plus rigoureuses traitent chaque campagne comme un exercice de test et d'apprentissage. Elles mènent un pilote cadré avec une hypothèse claire, relèvent ce qui a fonctionné au niveau des créateurs et des contenus, et réinjectent ces enseignements dans la vague suivante au lieu de repartir de zéro à chaque fois. En quelques cycles, cela devient un véritable avantage concurrentiel : vous savez quels créateurs convertissent, quelles accroches portent et quelles combinaisons de plateforme et de format donnent le meilleur coût d'acquisition dans votre catégorie.</p>
 
-<p>Pour un mode d'emploi étape par étape, de la définition des objectifs à l'analyse de fin de campagne, consultez notre guide pour <a href="/blog/how-to-run-influencer-marketing-campaign">mener une campagne de marketing d'influence</a> (en anglais).</p>
+<p>Pour un mode d'emploi étape par étape, de la définition des objectifs à l'analyse de fin de campagne, consultez notre guide pour <a href="/fr/blog/how-to-run-influencer-marketing-campaign">mener une campagne de marketing d'influence</a>.</p>
 
 <h2>Mesurer le ROI</h2>
 
@@ -61,7 +61,7 @@ export const post: TranslatedPost = {
 
 <p>Les deux sont souvent confondus, mais ce sont des outils différents. Le marketing d'influence achète l'audience et la diffusion d'un créateur. Le contenu généré par les utilisateurs (UGC) achète le contenu lui-même : des créations dont vous acquérez les droits pour les diffuser comme vos propres publicités, sur votre site ou par e-mail, sans forcément payer pour la portée du créateur. En 2026, beaucoup des meilleurs programmes combinent les deux.</p>
 
-<p>Savoir quand commander de l'UGC, quand mener un vrai partenariat d'influence et comment associer les deux est un véritable levier stratégique. Nous comparons les deux approches et montrons comment utiliser chacune dans notre article <a href="/blog/ugc-vs-influencer-marketing">UGC ou marketing d'influence</a> (en anglais).</p>
+<p>Savoir quand commander de l'UGC, quand mener un vrai partenariat d'influence et comment associer les deux est un véritable levier stratégique. Nous comparons les deux approches et montrons comment utiliser chacune dans notre article <a href="/fr/blog/ugc-vs-influencer-marketing">UGC ou marketing d'influence</a>.</p>
 
 <h2>Choisir les bonnes plateformes</h2>
 
@@ -73,7 +73,7 @@ export const post: TranslatedPost = {
 
 <h3>Instagram</h3>
 
-<p>Instagram reste le socle des marques de mode, de beauté, de lifestyle et de vente directe au consommateur. Les Reels assurent désormais l'essentiel de la diffusion, et les Stories y ajoutent proximité et sentiment d'urgence. Notre <a href="/blog/instagram-influencer-marketing-2026">guide du marketing d'influence sur Instagram en 2026</a> (en anglais) présente la combinaison de formats et la stratégie de créateurs qui fonctionnent aujourd'hui.</p>
+<p>Instagram reste le socle des marques de mode, de beauté, de lifestyle et de vente directe au consommateur. Les Reels assurent désormais l'essentiel de la diffusion, et les Stories y ajoutent proximité et sentiment d'urgence. Notre <a href="/fr/blog/instagram-influencer-marketing-2026">guide du marketing d'influence sur Instagram en 2026</a> présente la combinaison de formats et la stratégie de créateurs qui fonctionnent aujourd'hui.</p>
 
 <h2>Une stratégie par secteur</h2>
 
@@ -89,19 +89,19 @@ export const post: TranslatedPost = {
 
 <p>Le marketing d'influence est réglementé. En France, depuis la loi du 9 juin 2023 sur l'influence commerciale, les contenus rémunérés doivent porter clairement la mention « Publicité » ou « Collaboration commerciale », et la promotion de certains produits et services est restreinte. Une mention noyée dans une série de hashtags ne suffit pas. Le risque ne pèse pas seulement sur les créateurs : votre marque est aussi exposée.</p>
 
-<p>Une conformité bien gérée protège votre marque et renforce la confiance de l'audience au lieu de l'entamer. Pour les campagnes destinées au marché américain, notre guide sur <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">les règles de transparence de la FTC</a> (en anglais) précise ce qu'il faut exiger dans vos contrats et vos briefs.</p>
+<p>Une conformité bien gérée protège votre marque et renforce la confiance de l'audience au lieu de l'entamer. Pour les campagnes destinées au marché américain, notre guide sur <a href="/fr/blog/ftc-disclosure-guidelines-influencer-marketing">les règles de transparence de la FTC</a> précise ce qu'il faut exiger dans vos contrats et vos briefs.</p>
 
 <h2>Éviter la fraude</h2>
 
 <p>Les abonnés s'achètent, l'engagement se simule et un profil soigné peut cacher une audience de robots. Payer pour une fausse portée est l'un des moyens les plus rapides de consumer un budget sans rien obtenir en retour. Vérifier les créateurs (qualité de l'engagement, authenticité de l'audience, courbe de croissance et nature des commentaires) est une étape incontournable avant tout contrat.</p>
 
-<p>Nous détaillons les signaux d'alerte et la méthode d'audit dans notre article pour <a href="/blog/how-to-spot-fake-influencers">repérer les faux influenceurs</a> (en anglais), afin de distinguer une portée réelle d'indicateurs flatteurs gonflés.</p>
+<p>Nous détaillons les signaux d'alerte et la méthode d'audit dans notre article pour <a href="/fr/blog/how-to-spot-fake-influencers">repérer les faux influenceurs</a>, afin de distinguer une portée réelle d'indicateurs flatteurs gonflés.</p>
 
 <h2>Ce qui change en 2026</h2>
 
 <p>Le secteur ne cesse d'évoluer. En 2026, les principaux changements sont la frontière toujours plus floue entre contenu de créateurs et média payant, la montée des relations d'ambassadeur dans la durée au détriment des publications ponctuelles, la recherche de créateurs et la production de contenus assistées par l'IA, la domination de la vidéo courte et une demande croissante de partenariats mesurables et liés à la performance. Les marques qui traitent les créateurs comme des partenaires dans la durée plutôt que comme des espaces publicitaires prennent de l'avance.</p>
 
-<p>Pour les prévisions complètes et la manière de préparer votre programme à l'année qui vient, lisez <a href="/blog/influencer-marketing-trends-2026">les tendances du marketing d'influence en 2026</a> (en anglais).</p>
+<p>Pour les prévisions complètes et la manière de préparer votre programme à l'année qui vient, lisez <a href="/fr/blog/influencer-marketing-trends-2026">les tendances du marketing d'influence en 2026</a>.</p>
 
 <h2>Assembler le tout</h2>
 

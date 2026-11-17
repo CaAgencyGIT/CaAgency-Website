@@ -37,7 +37,7 @@ export interface TranslatedPostLabels {
   indexIntro: string
   /** Link from a guide to the index: "All guides". */
   allGuides: string
-  /** Link from the index to the English blog, which has more articles. */
+  /** Link from the index to the English blog. */
   englishBlog: string
   /** Shown on the English blog index: "Guides in German". */
   indexInLanguage: string

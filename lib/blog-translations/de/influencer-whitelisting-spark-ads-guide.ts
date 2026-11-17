@@ -61,7 +61,7 @@ export const post: TranslatedPost = {
   <li><strong>Wechseln Sie Creators und Werbemittel,</strong> um Ermüdung zu steuern. Auch starke Anzeigen lassen nach, wenn die Kontakthäufigkeit steigt.</li>
 </ul>
 <p>
-  Wenn Sie eher einen stetigen Nachschub an anzeigentauglichen Inhalten brauchen als die Reichweite von Creators, sollten Sie prüfen, ob Sie überhaupt Influencer-Inhalte benötigen oder nutzergenerierte Inhalte (UGC), die ausschließlich für Anzeigen produziert werden. Den Unterschied erklärt unser <a href="/blog/ugc-vs-influencer-marketing">Vergleich von UGC und Influencer Marketing</a> (Englisch).
+  Wenn Sie eher einen stetigen Nachschub an anzeigentauglichen Inhalten brauchen als die Reichweite von Creators, sollten Sie prüfen, ob Sie überhaupt Influencer-Inhalte benötigen oder nutzergenerierte Inhalte (UGC), die ausschließlich für Anzeigen produziert werden. Den Unterschied erklärt unser <a href="/de/blog/ugc-vs-influencer-marketing">Vergleich von UGC und Influencer Marketing</a>.
 </p>
 
 <h2>Bezahlte Creator-Inhalte messen</h2>
@@ -82,7 +82,7 @@ export const post: TranslatedPost = {
 <h2>Risiken, die Sie steuern müssen</h2>
 <ul>
   <li><strong>Ruf des Creators.</strong> Ihre Anzeigen tragen das Gesicht des Creators. Prüfen Sie Creators gründlich und nehmen Sie Verhaltensklauseln in die Verträge auf.</li>
-  <li><strong>Werbekennzeichnung.</strong> Bezahlte Creator-Inhalte müssen klar als Werbung erkennbar sein. Die Partnerschaftshinweise der Plattformen helfen, doch auch der Inhalt selbst sollte die Zusammenarbeit offenlegen. In Deutschland geschieht das mit einem gut sichtbaren Hinweis „Werbung“ oder „Anzeige“ am Anfang des Beitrags. In Österreich und der Schweiz gelten vergleichbare Grundsätze. Die Anforderungen unterscheiden sich je nach Markt und sollten für jede Kampagne geprüft werden. Die US-Regeln behandelt unser <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln</a> (Englisch).</li>
+  <li><strong>Werbekennzeichnung.</strong> Bezahlte Creator-Inhalte müssen klar als Werbung erkennbar sein. Die Partnerschaftshinweise der Plattformen helfen, doch auch der Inhalt selbst sollte die Zusammenarbeit offenlegen. In Deutschland geschieht das mit einem gut sichtbaren Hinweis „Werbung“ oder „Anzeige“ am Anfang des Beitrags. In Österreich und der Schweiz gelten vergleichbare Grundsätze. Die Anforderungen unterscheiden sich je nach Markt und sollten für jede Kampagne geprüft werden. Die US-Regeln behandelt unser <a href="/de/blog/ftc-disclosure-guidelines-influencer-marketing">Leitfaden zu den FTC-Kennzeichnungsregeln</a>.</li>
   <li><strong>Produktaussagen.</strong> Aus einem organischen Beitrag mit einer ungenauen Aussage wird eine bezahlte Anzeige mit einer ungenauen Aussage. Prüfen Sie Aussagen vor der Verstärkung, vor allem bei Hautpflege und Wellness.</li>
   <li><strong>Belastung der Beziehung.</strong> Hohe Werbeausgaben können dazu führen, dass das Publikum eines Creators dieselbe Anzeige immer wieder sieht. Vereinbaren Sie Erwartungen zur Kontakthäufigkeit und halten Sie den Creator auf dem Laufenden.</li>
 </ul>

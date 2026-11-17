@@ -60,7 +60,7 @@ export const post: TranslatedPost = {
 <ul>
   <li><strong>Exporter telle quelle la création du marché d'origine.</strong> Les codes publicitaires du marché coréen (célébrités ambassadrices, idoles à la peau parfaite, allégations produit formelles) paraissent souvent inaccessibles ou impersonnels au public occidental, qui réagit à une peau réaliste et à un témoignage à la première personne.</li>
   <li><strong>Sous-estimer TikTok.</strong> L'essor actuel de la K-beauty aux États-Unis est en grande partie un phénomène TikTok, amplifié par le parcours d'achat intégré de TikTok Shop. Les marques qui investissent surtout sur Instagram parce que la plateforme paraît plus haut de gamme passent à côté de l'endroit où la catégorie se découvre réellement.</li>
-  <li><strong>Négliger l'adaptation réglementaire.</strong> Des allégations sur les ingrédients courantes en Corée peuvent relever de l'allégation thérapeutique au regard des règles américaines et européennes. Les briefs des créateurs doivent prévoir des formulations conformes pour chaque marché. En France, la loi du 9 juin 2023 sur l'influence commerciale impose aussi d'indiquer clairement « Publicité » ou « Collaboration commerciale » sur les contenus rémunérés. Pour le volet américain, consultez notre <a href="/blog/ftc-disclosure-guidelines-influencer-marketing">guide sur les règles de la FTC</a> (en anglais).</li>
+  <li><strong>Négliger l'adaptation réglementaire.</strong> Des allégations sur les ingrédients courantes en Corée peuvent relever de l'allégation thérapeutique au regard des règles américaines et européennes. Les briefs des créateurs doivent prévoir des formulations conformes pour chaque marché. En France, la loi du 9 juin 2023 sur l'influence commerciale impose aussi d'indiquer clairement « Publicité » ou « Collaboration commerciale » sur les contenus rémunérés. Pour le volet américain, consultez notre <a href="/fr/blog/ftc-disclosure-guidelines-influencer-marketing">guide sur les règles de la FTC</a>.</li>
   <li><strong>Les activations ponctuelles.</strong> En K-beauty, la décision d'achat suit une exposition répétée auprès de voix de confiance. Une seule publication sponsorisée par créateur fait rarement bouger les parts de marché. Des programmes durables avec un groupe stable de créateurs y parviennent.</li>
 </ul>
 
@@ -82,6 +82,6 @@ export const post: TranslatedPost = {
 
 <ul>
   <li><a href="/fr/blog/tiktok-shop-beauty-brands">TikTok Shop pour les marques de beauté</a></li>
-  <li><a href="/blog/find-skincare-influencers-usa">Trouver et vérifier des influenceurs skincare aux États-Unis</a> (en anglais)</li>
+  <li><a href="/fr/blog/find-skincare-influencers-usa">Trouver et vérifier des influenceurs skincare aux États-Unis</a></li>
 </ul>`,
 }
