@@ -46,16 +46,20 @@ describe('market pages', () => {
       ar: 'https://caagency.com/ar/influencer-marketing-switzerland',
       de: 'https://caagency.com/de/influencer-marketing-switzerland',
       es: 'https://caagency.com/es/influencer-marketing-switzerland',
+      ko: 'https://caagency.com/ko/influencer-marketing-switzerland',
     })
-    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'ar', 'es'])
-    // Arabic and Spanish have every market page.
-    for (const locale of ['ar', 'es'] as const) {
+    expect(Object.keys(locationPageLanguages('/influencer-marketing-nordics'))).toEqual(['x-default', 'en', 'ar', 'es', 'ko'])
+    // Arabic, Spanish and Korean have every market page.
+    for (const locale of ['ar', 'es', 'ko'] as const) {
       expect(Object.keys(translatedLocationPages[locale].pages).sort(), locale).toEqual(marketPages.map((page) => page.key).sort())
     }
     for (const [key, phrase] of [['sydney', 'لسنا وكالة مقرها سيدني'], ['melbourne', 'لسنا وكالة مقرها ملبورن']] as const) {
       expect(JSON.stringify(translatedLocationPages.ar.pages[key].content), key).toContain(phrase)
     }
-    expect(Object.keys(locationPageLanguages('/influencer-marketing-dubai'))).toEqual(['x-default', 'en', 'ar', 'es'])
+    for (const [key, phrase] of [['sydney', '시드니에 본사를 둔 에이전시가 아닙니다'], ['melbourne', '멜버른에 본사를 둔 에이전시가 아닙니다']] as const) {
+      expect(JSON.stringify(translatedLocationPages.ko.pages[key].content), key).toContain(phrase)
+    }
+    expect(Object.keys(locationPageLanguages('/influencer-marketing-dubai'))).toEqual(['x-default', 'en', 'ar', 'es', 'ko'])
     for (const [key, city] of [['sydney', 'Sídney'], ['melbourne', 'Melbourne']] as const) {
       // The Spanish city pages keep the statement that the agency is not based there.
       expect(JSON.stringify(translatedLocationPages.es.pages[key].content), key).toContain(`no somos una agencia con sede en ${city}`)

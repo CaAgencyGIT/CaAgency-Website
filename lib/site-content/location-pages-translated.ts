@@ -4,8 +4,9 @@ import { arabicMarketPages } from '@/lib/site-content/location-pages-ar-markets'
 import { germanLocationLabels, germanLocationPages } from '@/lib/site-content/location-pages-de'
 import { frenchLocationLabels, frenchLocationPages } from '@/lib/site-content/location-pages-fr'
 import { spanishLocationLabels, spanishLocationPages } from '@/lib/site-content/location-pages-es'
+import { koreanLocationLabels, koreanLocationPages } from '@/lib/site-content/location-pages-ko'
 
-// Market pages in Arabic, German, French and Spanish, served at /<locale>/<path>.
+// Market pages in Arabic, German, French, Spanish and Korean, served at /<locale>/<path>.
 
 export interface TranslatedLocationPage {
   path: string
@@ -21,6 +22,7 @@ export const translatedLocationPages = {
   de: { labels: germanLocationLabels, pages: germanLocationPages as Record<string, TranslatedLocationPage> },
   fr: { labels: frenchLocationLabels, pages: frenchLocationPages as Record<string, TranslatedLocationPage> },
   es: { labels: spanishLocationLabels, pages: spanishLocationPages },
+  ko: { labels: koreanLocationLabels, pages: koreanLocationPages },
 } satisfies Record<string, { labels: LocationLabels; pages: Record<string, TranslatedLocationPage> }>
 
 export type TranslatedLocationLocale = keyof typeof translatedLocationPages

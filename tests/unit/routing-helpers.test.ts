@@ -40,10 +40,10 @@ describe('isSensitiveProbe', () => {
 
 describe('getLocalizedSiteRouteRedirect', () => {
   it('strips the locale prefix for (site)-only routes', () => {
-    expect(getLocalizedSiteRouteRedirect('/ar/blog')).toBe('/blog')
+    expect(getLocalizedSiteRouteRedirect('/zh/blog')).toBe('/blog')
     expect(getLocalizedSiteRouteRedirect('/ko/blog')).toBe('/blog')
     expect(getLocalizedSiteRouteRedirect('/ar/privacy-policy')).toBe('/privacy-policy')
-    expect(getLocalizedSiteRouteRedirect('/ko/influencer-marketing-dubai')).toBe(
+    expect(getLocalizedSiteRouteRedirect('/zh/influencer-marketing-dubai')).toBe(
       '/influencer-marketing-dubai'
     )
     expect(getLocalizedSiteRouteRedirect('/zh/influencer-marketing-usa')).toBe(

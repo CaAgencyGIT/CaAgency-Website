@@ -72,11 +72,12 @@ const EVERY_MARKET_PATH = [
 ] as const
 
 export const LOCALIZED_LOCATION_PATHS: Partial<Record<string, readonly string[]>> = {
-  // Arabic and Spanish have every market page.
+  // Arabic, Spanish and Korean have every market page.
   ar: EVERY_MARKET_PATH,
   de: ['/influencer-marketing-germany', '/influencer-marketing-switzerland'],
   fr: ['/influencer-marketing-france'],
   es: EVERY_MARKET_PATH,
+  ko: EVERY_MARKET_PATH,
 }
 
 // English-only blog posts that also have a translated app/[locale]/blog/[slug]
@@ -114,6 +115,7 @@ export const LOCALIZED_BLOG_PATHS: Partial<Record<string, readonly string[]>> = 
   de: TRANSLATED_BLOG_PATHS,
   fr: TRANSLATED_BLOG_PATHS,
   es: TRANSLATED_BLOG_PATHS,
+  ar: TRANSLATED_BLOG_PATHS,
 }
 
 export function isEnglishOnlyPath(pathname: string): boolean {
