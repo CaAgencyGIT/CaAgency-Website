@@ -14,6 +14,7 @@ import HeadingAccent from '@/components/ui/HeadingAccent'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { workVideos, posterFor, VIDEO_PUBLICATION_DATE } from '@/lib/data/videos'
 import { brandLogos } from '@/lib/data/brands'
+import { localizeHref } from '@/lib/i18n/client-paths'
 import { caseStudies, caseStudyForVideo } from '@/lib/data/case-studies'
 import { creatorCases } from '@/lib/data/creator-cases'
 import { brandWatermarks, filmCaseStudies, filmDescription, filmLabel, filmSrc, films, REDESIGN_MEDIA_PUBLISHED, workFilms, workGridOrder, workPageOrder } from '@/lib/data/redesign-media'
@@ -207,7 +208,7 @@ export default async function WorkPage({ params }: Props) {
                       />
                     )}
                     <Link
-                      href={`/case-studies/${study.slug}`}
+                      href={localizeHref(`/case-studies/${study.slug}`, locale)}
                       aria-label={`${study.brand} case study with ${study.creatorName}`}
                       className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
                     >
@@ -260,10 +261,9 @@ export default async function WorkPage({ params }: Props) {
                     />
                   )}
                   {study && (
-                    // Case-study routes are English-only (site) pages, so use
-                    // next/link directly — no locale prefix.
+                    // The case study in this page's language (English has no prefix).
                     <Link
-                      href={`/case-studies/${study.slug}`}
+                      href={localizeHref(`/case-studies/${study.slug}`, locale)}
                       aria-label={`${video.brand} case study`}
                       className="absolute inset-0 z-[1] flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 focus-visible:opacity-100 group-hover:opacity-100 mobile:opacity-100"
                     >

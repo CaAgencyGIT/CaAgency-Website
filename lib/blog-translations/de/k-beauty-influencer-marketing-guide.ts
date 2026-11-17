@@ -23,7 +23,7 @@ export const post: TranslatedPost = {
   <li><strong>Routinekultur.</strong> K-Beauty wird als System verkauft, nicht als einzelnes Produkt. Routine-Inhalte („meine K-Beauty-Morgenroutine“) zeigen ganz natürlich mehrere Produkte pro Video und laden zu weiteren Inhalten ein, wenn sich die Routine verändert. Das passt ideal zu Creator-Partnerschaften auf Retainer-Basis statt zu einzelnen Beiträgen.</li>
   <li><strong>Wissen über Inhaltsstoffe.</strong> Das K-Beauty-Publikum liest INCI-Listen. Creators, die erklären, <em>warum</em> ein Inhaltsstoff wirkt, bauen das Vertrauen auf, das zum Kauf führt, und die Marke übernimmt diese Glaubwürdigkeit. Das begünstigt wirklich kundige Hautpflege-Creators gegenüber allgemeiner Lifestyle-Reichweite.</li>
 </ul>
-<p>Dieses Muster sehen wir direkt in unseren eigenen Kampagnen für koreanische Hautpflegemarken: Creator-Videos, die Routine und Textur in den Mittelpunkt stellen, schneiden durchweg besser ab als polierte Inhalte im Markenstil. Wie das in der Praxis aussieht, zeigt unsere Fallstudie zu <a href="/case-studies/mixsoon-skincare">Mixsoon</a>.</p>
+<p>Dieses Muster sehen wir direkt in unseren eigenen Kampagnen für koreanische Hautpflegemarken: Creator-Videos, die Routine und Textur in den Mittelpunkt stellen, schneiden durchweg besser ab als polierte Inhalte im Markenstil. Wie das in der Praxis aussieht, zeigt unsere Fallstudie zu <a href="/de/case-studies/mixsoon-skincare">Mixsoon</a>.</p>
 
 <h2>Die Formate, die die Kategorie tragen</h2>
 <p>Nicht jeder Hautpflege-Inhalt funktioniert für K-Beauty gleich gut. Diese Formate liefern verlässlich:</p>
@@ -32,7 +32,7 @@ export const post: TranslatedPost = {
   <li><strong>Erklärungen zur Reihenfolge der Routine.</strong> „An welcher Stelle meiner Routine kommt das?“ ist die Frage mit der höchsten Kaufabsicht in K-Beauty. Inhalte, die sie beantworten, also Reiniger, Toner, Essenz, Serum, Creme, klären auf und verkaufen zugleich das System.</li>
   <li><strong>30-Tage-Hauttagebücher.</strong> Ergebnisse bei Hautpflege brauchen Wochen, und das Publikum weiß das. Tagebuchformate über mehrere Wochen tauschen schnelle Reichweite gegen außergewöhnliches Vertrauen und liefern mehrere Videos aus einer einzigen Partnerschaft.</li>
   <li><strong>Dupes und Vergleiche.</strong> Der Preisvorteil von K-Beauty gegenüber westlicher Prestige-Hautpflege ist ein zentraler Kaufgrund. Creators, die ein koreanisches Produkt mit einem westlichen Luxusprodukt vergleichen, führen das Preis-Leistungs-Argument, das Marken selbst nicht führen können.</li>
-  <li><strong>Hauls und Entdeckungsformate.</strong> Für Händler und Plattformen mit mehreren Marken bilden kuratierte Hauls ab, wie K-Beauty-Kundschaft tatsächlich einkauft: stöbernd, nicht suchend. Genau auf diesem Verhalten beruhte unsere <a href="/case-studies/yesstyle-collaboration">Zusammenarbeit mit YesStyle</a>.</li>
+  <li><strong>Hauls und Entdeckungsformate.</strong> Für Händler und Plattformen mit mehreren Marken bilden kuratierte Hauls ab, wie K-Beauty-Kundschaft tatsächlich einkauft: stöbernd, nicht suchend. Genau auf diesem Verhalten beruhte unsere <a href="/de/case-studies/yesstyle-collaboration">Zusammenarbeit mit YesStyle</a>.</li>
 </ul>
 
 <h2>Creators für eine K-Beauty-Kampagne auswählen</h2>

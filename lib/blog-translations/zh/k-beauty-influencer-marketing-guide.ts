@@ -29,7 +29,7 @@ export const post: TranslatedPost = {
   <li><strong>成分素养。</strong>K-beauty 受众会看 INCI 成分表。能讲清一种成分<em>为什么</em>有效的创作者，建立的是能带来转化的信任，品牌也随之获得这份可信度。这让真正懂行的护肤创作者比泛生活方式的触达更有价值。</li>
 </ul>
 <p>
-  我们在自己为韩国护肤品牌执行的营销活动中直接看到了这一规律：以护肤流程为主线、突出质地的创作者视频，表现持续优于精致的品牌风格素材。我们的 <a href="/case-studies/mixsoon-skincare">Mixsoon</a> 案例展示了实际的做法。
+  我们在自己为韩国护肤品牌执行的营销活动中直接看到了这一规律：以护肤流程为主线、突出质地的创作者视频，表现持续优于精致的品牌风格素材。我们的 <a href="/zh/case-studies/mixsoon-skincare">Mixsoon</a> 案例展示了实际的做法。
 </p>
 
 <h2>撑起这个品类的内容形式</h2>
@@ -41,7 +41,7 @@ export const post: TranslatedPost = {
   <li><strong>护肤顺序讲解。</strong>“这一步放在我护肤流程的哪里？”是 K-beauty 中意向最高的问题。回答这个问题的内容，即洁面、爽肤水、精华水、精华液、面霜，既是科普，也是在推销整套体系。</li>
   <li><strong>30 天肌肤日记。</strong>护肤见效需要几周，受众也明白这一点。持续数周的日记形式牺牲了即时触达，换来的是极高的信任，而且一次合作就能产出多条视频。</li>
   <li><strong>平替与对比内容。</strong>K-beauty 相对西方高端护肤品的价格优势，是核心的购买动因。创作者把一款韩国产品与同类的西方奢侈品牌产品作对比，替品牌讲出了品牌自己无法讲的性价比。</li>
-  <li><strong>购物分享与种草发现类形式。</strong>对零售商和多品牌平台来说，精选的购物分享正好对应 K-beauty 顾客真实的购物方式：是逛，而不是搜。我们的 <a href="/case-studies/yesstyle-collaboration">YesStyle 合作</a>正是围绕这一行为打造的。</li>
+  <li><strong>购物分享与种草发现类形式。</strong>对零售商和多品牌平台来说，精选的购物分享正好对应 K-beauty 顾客真实的购物方式：是逛，而不是搜。我们的 <a href="/zh/case-studies/yesstyle-collaboration">YesStyle 合作</a>正是围绕这一行为打造的。</li>
 </ul>
 
 <h2>为 K-beauty 营销活动挑选创作者</h2>

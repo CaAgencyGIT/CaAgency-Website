@@ -28,7 +28,7 @@ export const post: TranslatedPost = {
   <li><strong>La connaissance des ingrédients.</strong> Le public K-beauty lit les listes INCI. Les créateurs qui expliquent <em>pourquoi</em> un ingrédient fonctionne construisent la confiance qui convertit, et la marque hérite de cette crédibilité. Cela favorise les créateurs skincare réellement compétents plutôt que la portée lifestyle généraliste.</li>
 </ul>
 
-<p>Nous observons ce schéma directement dans nos propres campagnes pour des marques coréennes de soins : les vidéos de créateurs centrées sur la routine et la texture font régulièrement mieux que des visuels léchés au style de marque. Notre étude de cas <a href="/case-studies/mixsoon-skincare">Mixsoon</a> montre ce que cela donne concrètement.</p>
+<p>Nous observons ce schéma directement dans nos propres campagnes pour des marques coréennes de soins : les vidéos de créateurs centrées sur la routine et la texture font régulièrement mieux que des visuels léchés au style de marque. Notre étude de cas <a href="/fr/case-studies/mixsoon-skincare">Mixsoon</a> montre ce que cela donne concrètement.</p>
 
 <h2>Les formats qui portent la catégorie</h2>
 
@@ -39,7 +39,7 @@ export const post: TranslatedPost = {
   <li><strong>Les explications sur l'ordre de la routine.</strong> « À quelle étape de ma routine l'utiliser ? » est la question qui traduit la plus forte intention d'achat en K-beauty. Un contenu qui y répond (nettoyant, lotion, essence, sérum, crème) informe et vend le système en même temps.</li>
   <li><strong>Les journaux de peau sur 30 jours.</strong> Les résultats d'un soin demandent des semaines, et le public le sait. Les formats de journal sur plusieurs semaines échangent une portée immédiate contre une confiance exceptionnelle, et un seul partenariat produit plusieurs vidéos.</li>
   <li><strong>Les « dupes » et les comparatifs.</strong> L'avantage de prix de la K-beauty face aux soins occidentaux de prestige est un motif d'achat central. Les créateurs qui comparent un produit coréen à un équivalent occidental de luxe défendent un rapport qualité-prix que la marque ne peut pas défendre elle-même.</li>
-  <li><strong>Les hauls et les formats de découverte.</strong> Pour les distributeurs et les plateformes multimarques, des hauls sélectionnés avec soin reproduisent la façon dont les clients K-beauty achètent vraiment : en flânant, pas en cherchant. Notre <a href="/case-studies/yesstyle-collaboration">collaboration avec YesStyle</a> a été construite précisément autour de ce comportement.</li>
+  <li><strong>Les hauls et les formats de découverte.</strong> Pour les distributeurs et les plateformes multimarques, des hauls sélectionnés avec soin reproduisent la façon dont les clients K-beauty achètent vraiment : en flânant, pas en cherchant. Notre <a href="/fr/case-studies/yesstyle-collaboration">collaboration avec YesStyle</a> a été construite précisément autour de ce comportement.</li>
 </ul>
 
 <h2>Choisir les créateurs d'une campagne K-beauty</h2>
