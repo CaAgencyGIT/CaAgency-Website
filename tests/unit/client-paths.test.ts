@@ -12,7 +12,8 @@ describe('client locale paths', () => {
   it('leaves English-only routes unprefixed to avoid redirect hops', () => {
     expect(localizeHref('/blog', 'es')).toBe('/blog')
     expect(localizeHref('/case-studies/sephora', 'de')).toBe('/case-studies/sephora')
-    expect(localizeHref('/influencer-marketing-usa', 'es')).toBe('/influencer-marketing-usa')
+    expect(localizeHref('/influencer-marketing-usa', 'es')).toBe('/es/influencer-marketing-usa')
+    expect(localizeHref('/influencer-marketing-usa', 'ko')).toBe('/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-dubai', 'ar')).toBe('/ar/influencer-marketing-dubai')
     expect(localizeHref('/influencer-marketing-dubai', 'ko')).toBe('/influencer-marketing-dubai')
     expect(localizeHref('/influencer-marketing-usa', 'ar')).toBe('/influencer-marketing-usa')

@@ -7,6 +7,7 @@ import { arabicLocationLabels, arabicLocationPages } from '@/lib/site-content/lo
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { jsonLdSafe } from '@/lib/sanitize'
 import { organizationRef } from '@/lib/seo/schema'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 
 const baseUrl = 'https://caagency.com'
 
@@ -27,11 +28,8 @@ export function arabicLocationMetadata(market: Market): Metadata {
     ...metadata,
     alternates: {
       canonical: `${baseUrl}/ar${page.path}`,
-      languages: {
-        'x-default': `${baseUrl}${page.path}`,
-        en: `${baseUrl}${page.path}`,
-        ar: `${baseUrl}/ar${page.path}`,
-      },
+      // English, Arabic and every other translated version (Spanish).
+      languages: locationPageLanguages(page.path),
     },
   }
 }

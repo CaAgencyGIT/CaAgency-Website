@@ -6,6 +6,7 @@ import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { gulfCostGuide, saudiGuide } from '@/lib/data/guides'
 import { organizationRef } from '@/lib/seo/schema'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 
 export const revalidate = 3600
 
@@ -46,11 +47,8 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-dubai',
-    languages: {
-      'x-default': 'https://caagency.com/influencer-marketing-dubai',
-      en: 'https://caagency.com/influencer-marketing-dubai',
-      ar: 'https://caagency.com/ar/influencer-marketing-dubai',
-    },
+    // English plus every translated version of this page (Arabic, Spanish).
+    languages: locationPageLanguages('/influencer-marketing-dubai'),
   },
 }
 

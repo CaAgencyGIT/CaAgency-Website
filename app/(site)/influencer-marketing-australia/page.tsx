@@ -5,6 +5,7 @@ import { getFeaturedTalents } from '@/lib/site-content/public'
 import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
 import { organizationRef } from '@/lib/seo/schema'
+import { locationPageLanguages } from '@/lib/routing-helpers'
 import { melbournePage, sydneyPage } from '@/lib/data/market-routes'
 
 export const revalidate = 3600
@@ -39,6 +40,8 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://caagency.com/influencer-marketing-australia',
+    // English plus every translated version of this page (Arabic, Spanish).
+    languages: locationPageLanguages('/influencer-marketing-australia'),
   },
 }
 
