@@ -99,8 +99,33 @@ import { post as arInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-trans
 import { post as arFindSkincareInfluencersUsa } from '@/lib/blog-translations/ar/find-skincare-influencers-usa'
 import { post as arHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/ar/how-to-run-influencer-marketing-campaign'
 import { post as arInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/ar/influencer-marketing-agency-vs-in-house'
+import { post as koHowToChooseInfluencerMarketingAgency } from '@/lib/blog-translations/ko/how-to-choose-influencer-marketing-agency'
+import { post as koInfluencerMarketingCost2026 } from '@/lib/blog-translations/ko/influencer-marketing-cost-2026'
+import { post as koTiktokShopBeautyBrands } from '@/lib/blog-translations/ko/tiktok-shop-beauty-brands'
+import { post as koInfluencerMarketingForHealthWellness } from '@/lib/blog-translations/ko/influencer-marketing-for-health-wellness'
+import { post as koInfluencerMarketingForFashionBrands } from '@/lib/blog-translations/ko/influencer-marketing-for-fashion-brands'
+import { post as koInfluencerMarketingForBeautyBrands } from '@/lib/blog-translations/ko/influencer-marketing-for-beauty-brands'
+import { post as koKBeautyInfluencerMarketingGuide } from '@/lib/blog-translations/ko/k-beauty-influencer-marketing-guide'
+import { post as koInfluencerMarketingGuide } from '@/lib/blog-translations/ko/influencer-marketing-guide'
+import { post as koInfluencerWhitelistingSparkAdsGuide } from '@/lib/blog-translations/ko/influencer-whitelisting-spark-ads-guide'
+import { post as koTiktokInfluencerMarketingGuide } from '@/lib/blog-translations/ko/tiktok-influencer-marketing-guide'
+import { post as koHowToMeasureInfluencerMarketingRoi } from '@/lib/blog-translations/ko/how-to-measure-influencer-marketing-roi'
+import { post as koYoutubeInfluencerMarketingBeautyBrands } from '@/lib/blog-translations/ko/youtube-influencer-marketing-beauty-brands'
+import { post as koMicroVsMacroInfluencers } from '@/lib/blog-translations/ko/micro-vs-macro-influencers'
+import { post as koInstagramReelsBeautyBrands } from '@/lib/blog-translations/ko/instagram-reels-beauty-brands'
+import { post as koTiktokShopFashionWellnessBrands } from '@/lib/blog-translations/ko/tiktok-shop-fashion-wellness-brands'
+import { post as koInstagramInfluencerMarketing2026 } from '@/lib/blog-translations/ko/instagram-influencer-marketing-2026'
+import { post as koInfluencerMarketingTrends2026 } from '@/lib/blog-translations/ko/influencer-marketing-trends-2026'
+import { post as koUgcVsInfluencerMarketing } from '@/lib/blog-translations/ko/ugc-vs-influencer-marketing'
+import { post as koHowToSpotFakeInfluencers } from '@/lib/blog-translations/ko/how-to-spot-fake-influencers'
+import { post as koFtcDisclosureGuidelinesInfluencerMarketing } from '@/lib/blog-translations/ko/ftc-disclosure-guidelines-influencer-marketing'
+import { post as koSaudiArabiaInfluencerMarketingGuide } from '@/lib/blog-translations/ko/saudi-arabia-influencer-marketing-guide'
+import { post as koInfluencerMarketingDubaiUaeCostGuide } from '@/lib/blog-translations/ko/influencer-marketing-dubai-uae-cost-guide'
+import { post as koFindSkincareInfluencersUsa } from '@/lib/blog-translations/ko/find-skincare-influencers-usa'
+import { post as koHowToRunInfluencerMarketingCampaign } from '@/lib/blog-translations/ko/how-to-run-influencer-marketing-campaign'
+import { post as koInfluencerMarketingAgencyVsInHouse } from '@/lib/blog-translations/ko/influencer-marketing-agency-vs-in-house'
 
-// Blog guides that also exist in German, French, Spanish or Arabic, served at
+// Blog guides that also exist in German, French, Spanish, Arabic or Korean, served at
 // /<locale>/blog/<slug> with the English post's slug. The copy lives in code
 // (like the translated market pages), not in the Post table, and the pages
 // never read the database: the deploy reuses the CI build and rejects it when
@@ -319,6 +344,59 @@ export const translatedPosts: Record<string, { labels: TranslatedPostLabels; pos
       arFindSkincareInfluencersUsa,
       arHowToRunInfluencerMarketingCampaign,
       arInfluencerMarketingAgencyVsInHouse,
+    ],
+  },
+  ko: {
+    labels: {
+      dateLocale: 'ko-KR',
+      by: '작성:',
+      minRead: '분 분량',
+      toc: '목차',
+      writtenBy: '작성자',
+      authorBio:
+        'CA Agency 에디토리얼 팀은 Instagram, TikTok, YouTube에서 글로벌 브랜드와 진행한 3,000건 이상의 인플루언서 캠페인 경험을 바탕으로 글을 씁니다. 특히 뷰티와 K-뷰티 스킨케어 분야에 전문성을 갖추고 있습니다.',
+      workWithUs: '함께 일하기',
+      ctaTitle: '함께 시작할 준비가 되셨나요?',
+      ctaText: '브랜드에 실질적인 성과를 가져오는 인플루언서 캠페인을 함께 만들어 보세요.',
+      ctaButton: '시작하기',
+      readInLanguage: '이 가이드를 한국어로 읽기',
+      guidesEyebrow: '가이드',
+      guidesTitle: '인플루언서 마케팅 가이드',
+      indexTitle: '인플루언서 마케팅 블로그: 가이드 | CA Agency',
+      indexDescription:
+        '에이전시 선택, 비용, 플랫폼, 성과 측정, 산업별 전략까지 3,000건 이상의 캠페인 경험을 담은 한국어 인플루언서 마케팅 가이드입니다.',
+      indexHeading: '인플루언서 마케팅 블로그',
+      indexIntro: '3,000건 이상의 인플루언서 캠페인 경험에서 나온 CA Agency의 가이드와 전략, 실무 노하우를 전합니다.',
+      allGuides: '모든 가이드 보기',
+      englishBlog: '영문 블로그 보기',
+      indexInLanguage: '한국어 가이드',
+    },
+    posts: [
+      koHowToChooseInfluencerMarketingAgency,
+      koInfluencerMarketingCost2026,
+      koTiktokShopBeautyBrands,
+      koInfluencerMarketingForHealthWellness,
+      koInfluencerMarketingForFashionBrands,
+      koInfluencerMarketingForBeautyBrands,
+      koKBeautyInfluencerMarketingGuide,
+      koInfluencerMarketingGuide,
+      koInfluencerWhitelistingSparkAdsGuide,
+      koTiktokInfluencerMarketingGuide,
+      koHowToMeasureInfluencerMarketingRoi,
+      koYoutubeInfluencerMarketingBeautyBrands,
+      koMicroVsMacroInfluencers,
+      koInstagramReelsBeautyBrands,
+      koTiktokShopFashionWellnessBrands,
+      koInstagramInfluencerMarketing2026,
+      koInfluencerMarketingTrends2026,
+      koUgcVsInfluencerMarketing,
+      koHowToSpotFakeInfluencers,
+      koFtcDisclosureGuidelinesInfluencerMarketing,
+      koSaudiArabiaInfluencerMarketingGuide,
+      koInfluencerMarketingDubaiUaeCostGuide,
+      koFindSkincareInfluencersUsa,
+      koHowToRunInfluencerMarketingCampaign,
+      koInfluencerMarketingAgencyVsInHouse,
     ],
   },
 }
