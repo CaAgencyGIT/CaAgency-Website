@@ -83,7 +83,7 @@ export default async function TranslatedLocationPage({ market, locale }: { marke
         translatedGuides={{
           eyebrow: translatedPosts[locale]?.labels.guidesEyebrow ?? '',
           title: translatedPosts[locale]?.labels.guidesTitle ?? '',
-          items: translatedGuides(locale),
+          items: translatedGuides(locale, 3),
         }}
       />
     </>

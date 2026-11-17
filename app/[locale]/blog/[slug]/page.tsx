@@ -13,7 +13,7 @@ import { resolveFeaturedImage } from '@/lib/blog-cover'
 import { jsonLdSafe, sanitizeTrustedHtml } from '@/lib/sanitize'
 import { blogPostingJsonLd } from '@/lib/seo/schema'
 import { readingTimeMinutes, withHeadingAnchors } from '@/lib/blog-html'
-import { getTranslatedPost, postLanguages, translatedPosts } from '@/lib/blog-translations'
+import { getTranslatedPost, postLanguages, translatedGuides, translatedPosts } from '@/lib/blog-translations'
 import type { Locale } from '@/i18n/config'
 
 // German and French versions of selected blog guides (lib/blog-translations).
@@ -78,6 +78,7 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
   const coverImage = resolveFeaturedImage({ slug })
   const url = `${baseUrl}/${locale}/blog/${slug}`
   const published = new Date(translation.publishedAt)
+  const moreGuides = translatedGuides(locale).filter((guide) => !guide.href.endsWith(`/blog/${slug}`))
 
   const articleSchema = {
     ...blogPostingJsonLd({
@@ -199,6 +200,30 @@ export default async function TranslatedBlogPostPage({ params }: PageProps) {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* The other guides in this language: there is no translated blog index to link them from. */}
+      {moreGuides.length > 0 && (
+        <section className="bg-background-soft py-[80px] tablet:py-[60px] px-section-x border-t border-black/5">
+          <nav aria-label={labels.guidesTitle} className="max-w-container mx-auto">
+            <Heading as="h2" color="dark" className="mb-10 text-[32px] mobile:mb-6 mobile:text-[24px]">
+              {labels.guidesTitle}
+            </Heading>
+            <ul className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-6">
+              {moreGuides.map((guide) => (
+                <li key={guide.href}>
+                  <Link
+                    href={guide.href}
+                    className="hover-lift block h-full rounded-card border border-black/10 bg-background-base p-6 hover:border-black/15 hover:shadow-e3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-red"
+                  >
+                    <span className="mb-2 block font-semibold text-lg text-foreground-primary">{guide.title}</span>
+                    <span className="block font-work-sans text-[14px] leading-[1.6] text-foreground-body">{guide.desc}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </section>
+      )}
 
       <section className="bg-background-base py-[80px] px-section-x border-t border-black/5">
         <ScrollReveal yOffset={24} className="max-w-container mx-auto text-center">

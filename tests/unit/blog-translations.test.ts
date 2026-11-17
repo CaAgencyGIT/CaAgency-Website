@@ -29,6 +29,7 @@ describe('translated blog guides', () => {
       fr: 'https://caagency.com/fr/blog/influencer-marketing-cost-2026',
     })
     expect(translationLocales('tiktok-influencer-marketing-guide')).toEqual([])
+    expect(Object.values(translatedPosts).map(({ posts }) => posts.length)).toEqual([8, 8])
   })
 
   it('gives every translation search-ready metadata and links inside its own language', () => {
@@ -40,11 +41,17 @@ describe('translated blog guides', () => {
         expect(post.content.match(/<h2>/g)?.length ?? 0).toBeGreaterThanOrEqual(5)
         const hrefs = [...post.content.matchAll(/href="([^"]+)"/g)].map((match) => match[1])
         expect(hrefs.length).toBeGreaterThan(0)
-        for (const href of hrefs) expect(href.startsWith(`/${locale}/`), `${locale} ${post.slug}: ${href}`).toBe(true)
+        for (const href of hrefs.filter((link) => link.startsWith('/'))) {
+          // In the page's language wherever that page exists; plain English paths only for English-only pages.
+          const expected = href.startsWith(`/${locale}/`) ? href : localizeHref(href, locale)
+          expect(href, `${locale} ${post.slug}: ${href}`).toBe(expected)
+          expect(href, `${locale} ${post.slug}: ${href}`).not.toBe('/influencer-marketing-usa')
+        }
         // No em dashes, matching the rest of the site copy.
         expect(post.content).not.toContain('—')
       }
       expect(translatedGuides(locale).map((guide) => guide.href)).toEqual(posts.map((post) => `/${locale}/blog/${post.slug}`))
+      expect(translatedGuides(locale, 3)).toHaveLength(3)
     }
   })
 })
