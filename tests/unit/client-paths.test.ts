@@ -16,7 +16,7 @@ describe('client locale paths', () => {
     expect(localizeHref('/influencer-marketing-usa', 'ko')).toBe('/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-dubai', 'ar')).toBe('/ar/influencer-marketing-dubai')
     expect(localizeHref('/influencer-marketing-dubai', 'ko')).toBe('/influencer-marketing-dubai')
-    expect(localizeHref('/influencer-marketing-usa', 'ar')).toBe('/influencer-marketing-usa')
+    expect(localizeHref('/influencer-marketing-usa', 'ar')).toBe('/ar/influencer-marketing-usa')
     expect(localizeHref('/influencer-marketing-germany', 'de')).toBe('/de/influencer-marketing-germany')
     expect(localizeHref('/influencer-marketing-france', 'fr')).toBe('/fr/influencer-marketing-france')
     expect(localizeHref('/influencer-marketing-france', 'de')).toBe('/influencer-marketing-france')

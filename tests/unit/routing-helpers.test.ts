@@ -46,7 +46,7 @@ describe('getLocalizedSiteRouteRedirect', () => {
     expect(getLocalizedSiteRouteRedirect('/ko/influencer-marketing-dubai')).toBe(
       '/influencer-marketing-dubai'
     )
-    expect(getLocalizedSiteRouteRedirect('/ar/influencer-marketing-usa')).toBe(
+    expect(getLocalizedSiteRouteRedirect('/zh/influencer-marketing-usa')).toBe(
       '/influencer-marketing-usa'
     )
     expect(getLocalizedSiteRouteRedirect('/ko/korean-skincare-influencer-marketing')).toBe(
