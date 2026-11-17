@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { locationPages } from '@/lib/data/locations'
 
 // The matcher in middleware.ts decides which URLs go through the i18n middleware. Names that are excluded
 // (served only by app/(site)/) must be excluded as whole path segments: "/blog2" is NOT "/blog" and has to
@@ -40,7 +41,16 @@ describe('middleware matcher', () => {
     '/blog2', '/blogger', '/en/blog2', '/admin2', '/apix', '/case-studies-extra', '/privacy-policy-old', '/terms-of-service2',
     '/business-licenses', '/korean-skincare-influencer-marketing-x', '/beauty-influencer-marketing-agency2', '/talents', '/services',
     '/', '/en', '/ar', '/about', '/contact', '/does-not-exist',
+    // Unknown market-style URLs used to skip the middleware and end in a 500.
+    '/influencer-marketing-zzz', '/influencer-marketing-', '/influencer-marketing-usa2', '/influencer-marketing-uk-old',
   ])('sends %s through the i18n middleware', (pathname) => {
     expect(runsMiddleware(pathname)).toBe(true)
+  })
+
+  it('keeps every market and category page out of the i18n middleware', () => {
+    for (const { path: pagePath } of locationPages) {
+      expect(runsMiddleware(pagePath), pagePath).toBe(false)
+      expect(runsMiddleware(`${pagePath}/`), `${pagePath}/`).toBe(false)
+    }
   })
 })

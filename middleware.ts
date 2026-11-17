@@ -126,9 +126,12 @@ export const config = {
   // isPublicAsset() above still covers the remaining root files.
   //
   // Single-page names end in (?:/|$) so they match whole path segments only: "/blog2" must still reach the
-  // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. `influencer-marketing-`,
-  // `talents/` and `services/` are intentional prefixes. Covered by tests/unit/middleware-matcher.test.ts.
+  // i18n middleware (and 404 cleanly) instead of being handed to [locale] as a locale. The market pages are
+  // listed one by one for the same reason: a bare `influencer-marketing-` prefix let /influencer-marketing-xyz
+  // skip the middleware and end in a 500. Add a new market page here (the test compares the list with
+  // lib/data/locations.ts). `talents/` and `services/` are intentional prefixes.
+  // Covered by tests/unit/middleware-matcher.test.ts.
   matcher: [
-    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|influencer-marketing-|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
+    '/((?!api(?:/|$)|_next(?:/|$)|admin(?:/|$)|(?:assets|fonts|images|videos|media)/|influencer-marketing-(?:dubai|uae|saudi-arabia|gcc|korea|asia|usa|uk|canada|australia|europe|germany|france|switzerland|nordics)(?:/|$)|korean-skincare-influencer-marketing(?:/|$)|beauty-influencer-marketing-agency(?:/|$)|skincare-influencer-marketing-agency(?:/|$)|privacy-policy(?:/|$)|terms-of-service(?:/|$)|business-license(?:/|$)|blog(?:/|$)|case-studies(?:/|$)|talents/|services/).*)',
   ],
 }
