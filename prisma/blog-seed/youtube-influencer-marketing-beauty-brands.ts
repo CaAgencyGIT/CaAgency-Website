@@ -51,6 +51,10 @@ export const post = {
   For broader benchmarks across platforms and tiers, see our <a href="/blog/influencer-marketing-cost-2026">influencer marketing cost guide</a>.
 </p>
 
+<h3>What should a YouTube campaign quote include?</h3>
+<p>Ask the agency to break out the creator’s fee, editing, permission to use the footage in ads, and the budget for buying those ads. For example, a skincare creator might film a full review for their own channel and deliver a shorter cut for the brand. The quote should say where each version can run, in which countries, and for how long. If you also need someone to buy the ads, ask who will manage the account and report on the spend.</p>
+<p>For campaigns that use creator footage in paid placements, see <a href="/services/performance-marketing">CA Agency’s performance marketing service</a>.</p>
+
 <h2>How to Brief a YouTube Creator</h2>
 <ul>
   <li><strong>Give talking points, not a script.</strong> YouTube audiences follow creators for their judgment. Scripted reads are skipped. Share the key product facts, claims you can support, and anything that must not be said — then let the creator make it theirs.</li>
