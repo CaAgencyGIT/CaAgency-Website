@@ -58,7 +58,7 @@ export const germanLocationPages = {
             text: 'Deutschland ist der größte Verbrauchermarkt der Europäischen Union, und das deutsche Publikum erwartet Inhalte in der eigenen Sprache, von Creators, denen es bereits vertraut. CA Agency plant Influencer-Kampagnen für Deutschland mit deutschsprachigen Creators, damit Ihr Produkt so erklärt wird, wie Ihre Kundinnen und Kunden danach fragen.',
           },
           {
-            text: 'Deutsche Verbraucher lesen Inhaltsstoffe, vergleichen Bewertungen und schätzen ehrliche, ausführliche Inhalte mehr als laute Werbung. Wir wählen Creators aus, deren Community, Themen und Tonalität dazu passen, und übernehmen Briefing, Verträge, Freigaben und Nutzungsrechte über unsere Europa-Division in Amsterdam.',
+            text: 'Für einen Start im deutschen Handel gehört der konkrete Verkaufsort ins Briefing. Ein Video kann zeigen, wie die Verpackung im Regal aussieht, ein anderes führt direkt zur Produktseite des Händlers. Wir stimmen die Auswahl der Creators, die Freigaben und die Nutzungsrechte mit Ihrem Team ab.',
           },
           {
             text: 'Da Deutsch auch in Österreich und im größten Teil der Schweiz gesprochen wird, erreicht eine gut geplante Kampagne die gesamte DACH-Region. Wir passen die Creator-Auswahl und die Details an, die sich je Land unterscheiden, und werten jeden Markt getrennt aus.',

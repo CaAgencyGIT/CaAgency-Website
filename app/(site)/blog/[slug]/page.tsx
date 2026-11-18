@@ -26,6 +26,12 @@ import {
   withHeadingAnchors,
 } from '@/lib/blog-html'
 
+const europeanBeautyBrief = `
+<h2>A creator brief for a European skincare launch</h2>
+<p>Suppose a moisturiser launches in German drugstores and online in the UK. The same close-up can show how much product to use. The final shot needs to change. In Germany, film the pack a shopper will see on the shelf. In the UK, show the size and price on the local product page and link to that exact item.</p>
+<p>Ask each creator to send recent audience figures for the launch country, a sample skincare demonstration and a quote that separates filming from paid usage. Specify the language for captions and voiceover, who approves product claims, and which retailer link or code belongs to each post. Report clicks by country so the two launches can be evaluated separately.</p>
+<p>For a visual reference, <a href="/case-studies/arencia-albina">Albina’s Arencia film</a> shows the application area and texture in one close-up. Use the <a href="/influencer-marketing-uk">UK market brief</a> or the <a href="/de/influencer-marketing-germany" hreflang="de">German market brief (in German)</a> to plan local distribution. Teams briefing from Spain can use the <a href="/es/influencer-marketing-europe" hreflang="es">European launch brief in Spanish</a>.</p>`
+
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
 }
@@ -104,10 +110,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  const content = slug === 'influencer-marketing-for-beauty-brands'
+    ? post.content + europeanBeautyBrief
+    : post.content
   const { processed: articleHtml, toc } = withHeadingAnchors(
-    sanitizeTrustedHtml(post.content)
+    sanitizeTrustedHtml(content)
   )
-  const minutes = readingTimeMinutes(post.content)
+  const minutes = readingTimeMinutes(content)
   const coverImage = resolveFeaturedImage(post)
   const relatedCases = relatedCaseStudiesForPost(post, currentCaseStudies())
 
