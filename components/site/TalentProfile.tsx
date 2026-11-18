@@ -32,13 +32,14 @@ interface TalentProfileProps {
   talent: TalentProfileData
   bio: string | null
   relatedTalents: { id: string; slug: string; name: string; imageUrl: string }[]
+  campaignIntroduction?: string
   campaigns: CaseStudy[]
   ui: TalentUi
   caseStudyUi: CaseStudyUi
   locale: string
 }
 
-export default function TalentProfile({ talent, bio, relatedTalents, campaigns, ui, caseStudyUi, locale }: TalentProfileProps) {
+export default function TalentProfile({ talent, bio, relatedTalents, campaigns, campaignIntroduction, ui, caseStudyUi, locale }: TalentProfileProps) {
   return (
     <>
       {/* Hero Section */}
@@ -165,6 +166,9 @@ export default function TalentProfile({ talent, bio, relatedTalents, campaigns, 
             <Heading as="h2" color="dark" className="mb-10 text-[32px] mobile:mb-6 mobile:text-[24px]">
               {ui.campaigns}
             </Heading>
+            {campaignIntroduction && (
+              <p className="mb-8 max-w-[720px] text-lg leading-relaxed">{campaignIntroduction}</p>
+            )}
             <div className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-[20px]">
               {campaigns.map((cs) => (
                 <CaseStudyCard key={cs.slug} study={cs} playVideo ui={caseStudyUi} locale={locale} />

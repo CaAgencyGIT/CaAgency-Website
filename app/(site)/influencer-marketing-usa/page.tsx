@@ -11,9 +11,9 @@ import { locationPageLanguages } from '@/lib/routing-helpers'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Influencer Marketing Agency USA | CA Agency',
+  title: 'Beauty Influencer Marketing Agency USA | CA Agency',
   description:
-    'CA Agency is an influencer marketing agency for the USA, helping brands run creator campaigns across Instagram, TikTok, and YouTube.',
+    'Plan a US beauty influencer campaign for retail or direct sales. Explore skincare creator briefs, published campaigns and talent selection for American audiences.',
   keywords: [
     'influencer marketing agency usa',
     'influencer agency usa',
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'CA Agency',
     locale: 'en_US',
-    title: 'Influencer Marketing Agency USA | US Influencer Agency',
+    title: 'Beauty Influencer Marketing Agency for US Brands',
     description:
-      'CA Agency is an influencer marketing agency for the USA, helping brands run creator campaigns across Instagram, TikTok, and YouTube.',
+      'Plan a US beauty influencer campaign for retail or direct sales. Explore skincare creator briefs, published campaigns and talent selection for American audiences.',
     url: 'https://caagency.com/influencer-marketing-usa',
     images: [
       {
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Influencer Marketing Agency USA | US Influencer Agency',
+    title: 'Beauty Influencer Marketing Agency for US Brands',
     description:
-      'CA Agency is an influencer marketing agency for the USA, helping brands run creator campaigns across Instagram, TikTok, and YouTube.',
+      'Plan a US beauty influencer campaign for retail or direct sales. Explore skincare creator briefs, published campaigns and talent selection for American audiences.',
     images: ['/images/site/og/influencer-marketing-usa-v2.jpg'],
   },
   alternates: {
@@ -59,7 +59,7 @@ const serviceSchema = {
   name: 'Influencer Marketing Agency USA',
   serviceType: 'Influencer Marketing',
   description:
-    'CA Agency is an influencer marketing agency for the USA, helping brands run creator campaigns across Instagram, TikTok, and YouTube.',
+    'Plan a US beauty influencer campaign for retail or direct sales. Explore skincare creator briefs, published campaigns and talent selection for American audiences.',
   provider: organizationRef,
   areaServed: {
   '@type': 'Country',

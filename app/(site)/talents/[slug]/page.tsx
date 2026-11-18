@@ -159,6 +159,9 @@ export default async function TalentPage({ params }: TalentPageProps) {
         bio={talent.bio}
         relatedTalents={relatedTalents}
         campaigns={campaigns}
+        campaignIntroduction={slug === 'albina-mavriqi'
+          ? 'Albina Mavriqi uses close-up skincare demonstrations to answer different shopper questions. In her Arencia film, she shows exactly where she applies the NAD+ Booster Shot. For Torriden, she dispenses the Cellmazing cream and works it into her cheek so viewers can see its texture.'
+          : undefined}
         ui={englishTalentUi}
         caseStudyUi={englishCaseStudyUi}
         locale="en"
