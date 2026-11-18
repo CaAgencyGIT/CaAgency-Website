@@ -56,6 +56,9 @@ export const post = {
   <li><strong>Absence of conflicting brand relationships.</strong> A creator who has promoted four competing supplement brands in the past six months has commoditized their endorsement. Exclusivity—even informal exclusivity—is a meaningful credibility signal in this vertical.</li>
 </ul>
 
+<h2>What should a wellness brand ask an influencer agency before signing?</h2>
+<p>Ask for a sample creator shortlist, a marked-up brief and a sample campaign report. On the shortlist, look for audience location and a recent example of the creator explaining a comparable product. In the brief, check who approves the wording and who can pause a post if something changes. In the report, look for a way to distinguish a viewer watching the content from a shopper clicking through to the product. Those three documents show how the agency would handle your launch from selection to reporting.</p>
+
 <h2>Compliance and Claims: The Non-Negotiable Reality</h2>
 <p>
   Health and wellness is one of the most tightly regulated categories in influencer marketing. The FTC requires clear and conspicuous disclosure of material connections—cash, free product, or any other compensation. Disclosures must appear where consumers will see them, not buried in hashtags or below a fold most users never reach.
