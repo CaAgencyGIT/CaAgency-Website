@@ -40,6 +40,16 @@ export const europePageDefaults: LocationPageContent = {
       },
     ],
   },
+  process: {
+    title: 'Example brief for a skincare launch in France and Germany',
+    subtitle: 'Imagine a serum arriving at a French retailer one week before its German launch. Here is how we would adapt the same campaign for both audiences.',
+    steps: [
+      { title: 'Set two launch dates', description: 'Give each creator their local listing, correct pack name and first in-stock date. Hold the German posts until shoppers can order.' },
+      { title: 'Localise the demonstration', description: 'Keep the application shot consistent. Let each creator write the voiceover and answer product questions in their audience’s language.' },
+      { title: 'Route each click', description: 'Use a separate tagged link for each retailer and market. Test the mobile landing page before approving the caption.' },
+      { title: 'Compare like with like', description: 'Compare the first seven in-stock days in each country. Report reach, saves and retailer clicks per market, alongside any sales data the retailer provides.' },
+    ],
+  },
   highlights: {
     title: 'Why Brands Hire Our European Influencer Agency',
     items: [

@@ -4,37 +4,38 @@ import { getSiteContent } from '@/lib/site-content/service'
 import { getFeaturedTalents } from '@/lib/site-content/public'
 import { LocationPageContent } from '@/lib/site-content/location-pages'
 import LocationLandingPage from '@/components/site/LocationLandingPage'
+import { locationGuides, ftcGuide } from '@/lib/data/guides'
 import { organizationRef } from '@/lib/seo/schema'
 import { locationPageLanguages } from '@/lib/routing-helpers'
 
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Influencer Marketing Agency UK | CA Agency',
+  title: 'UK Beauty Influencer Marketing Agency | CA Agency',
   description:
-    'Run UK influencer marketing campaigns with British creators across Instagram, TikTok, and YouTube, backed by a performance-led strategy and clear reporting.',
+    'Plan a UK beauty or skincare campaign with CA Agency. See creator work, compare UK audience fit and brief a launch for your brand or retail stockist.',
   openGraph: {
     type: 'website',
     siteName: 'CA Agency',
     locale: 'en_US',
-    title: 'Influencer Marketing Agency UK',
+    title: 'UK Beauty Influencer Marketing Agency',
     description:
-      'Run UK influencer marketing campaigns with British creators across Instagram, TikTok, and YouTube, backed by a performance-led strategy and clear reporting.',
+      'Plan a UK beauty or skincare campaign with CA Agency. See creator work, compare UK audience fit and brief a launch for your brand or retail stockist.',
     url: 'https://caagency.com/influencer-marketing-uk',
     images: [
       {
         url: '/images/site/og/influencer-marketing-uk-v2.jpg',
         width: 1200,
         height: 630,
-        alt: 'CA Agency, Influencer Marketing Agency UK',
+        alt: 'CA Agency, UK Beauty Influencer Marketing Agency',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Influencer Marketing Agency UK',
+    title: 'UK Beauty Influencer Marketing Agency',
     description:
-      'Run UK influencer marketing campaigns with British creators across Instagram, TikTok, and YouTube, backed by a performance-led strategy and clear reporting.',
+      'Plan a UK beauty or skincare campaign with CA Agency. See creator work, compare UK audience fit and brief a launch for your brand or retail stockist.',
     images: ['/images/site/og/influencer-marketing-uk-v2.jpg'],
   },
   alternates: {
@@ -48,10 +49,10 @@ export const metadata: Metadata = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Influencer Marketing Agency UK',
+  name: 'UK Beauty Influencer Marketing Agency',
   serviceType: 'Influencer Marketing',
   description:
-    'Run UK influencer marketing campaigns with British creators across Instagram, TikTok, and YouTube, backed by a performance-led strategy and clear reporting.',
+    'Plan a UK beauty or skincare campaign with CA Agency. See creator work, compare UK audience fit and brief a launch for your brand or retail stockist.',
   provider: organizationRef,
   areaServed: {
   '@type': 'Country',
@@ -59,6 +60,12 @@ const serviceSchema = {
 },
   url: 'https://caagency.com/influencer-marketing-uk',
 }
+
+const ukGuides = locationGuides.map((guide) => guide.href === ftcGuide.href ? {
+  href: 'https://www.asa.org.uk/resource/influencers-guide.html',
+  title: 'UK influencer advertising guidance',
+  desc: 'Read the ASA and CAP guide to making advertising clear to a UK audience.',
+} : guide)
 
 export default async function UKPage() {
   const [content, talents] = await Promise.all([
@@ -69,7 +76,7 @@ export default async function UKPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage path="/influencer-marketing-uk" content={content} talents={talents} />
+      <LocationLandingPage path="/influencer-marketing-uk" content={content} talents={talents} defaultGuides={ukGuides} />
     </>
   )
 }

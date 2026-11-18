@@ -967,29 +967,43 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
     fields: basicSeoLandingFields,
     defaultData: {
       hero: {
-        title: 'Influencer Marketing\nAgency in UK',
-        subtitle: "Connect your brand with Britain's most influential content creators. Access Europe's largest influencer marketing market with strong purchase intent and mature creator ecosystems.",
-        primaryButtonLabel: 'Get Started',
+        title: 'UK Beauty Influencer\nMarketing Agency',
+        subtitle: "CA Agency helps beauty and skincare brands reach UK shoppers on Instagram, TikTok and YouTube. We shortlist creators by their UK audience, plan the product demonstration and agree how to measure the launch.",
+        primaryButtonLabel: 'Brief us on a UK campaign',
         primaryButtonHref: '/contact',
         secondaryButtonLabel: 'View Our Work',
         secondaryButtonHref: '/work',
       },
       stats: [
-        { value: '£930M', label: 'UK Market 2024' },
-        { value: '55.5M', label: 'Social Media Users' },
-        { value: '69%', label: 'Purchase After Seeing' },
-        { value: '89%', label: 'Brands Use Instagram' },
+        { value: 'UK', label: 'Campaign market' },
+        { value: 'GBP', label: 'Shopper pricing' },
+        { value: 'Reels', label: 'Tutorials' },
+        { value: 'TikTok', label: 'Product discovery' },
       ],
-      highlights: {
-        title: 'Why Choose Influencer Marketing in the UK?',
-        items: [
-          { title: "Europe's Largest Market", description: 'The UK leads Europe in influencer marketing maturity, spend, and operational sophistication.' },
-          { title: 'High Conversion Rates', description: 'UK consumers frequently purchase after seeing creator-led recommendations.' },
-          { title: 'Sophisticated Creator Ecosystem', description: 'Brands increasingly favor long-term, authentic creator partnerships over one-off celebrity posts.' },
-          { title: 'Data-Driven Results', description: 'Performance measurement and brand safety are core expectations in the UK market.' },
+      intro: {
+        heading: 'Choosing creators for a UK beauty launch',
+        paragraphs: [
+          { text: 'Start with where a product can be bought. A high-street launch calls for a creator who can show the product on shelf and link to the UK stockist. A direct-to-consumer launch can follow one product from the first swatch to the brand’s UK checkout.' },
+          { text: 'Ask for recent audience geography on the platform that will carry the post. Compare the UK share, typical views on comparable beauty content and the questions viewers ask. A creator’s home city alone tells you very little about who will see the campaign.' },
         ],
       },
-      talents: { title: 'Our UK Market Creators', buttonLabel: 'View All Talents', buttonHref: '/talents' },
+      caseStudies: {
+        title: 'Two ways our creators show skincare in use',
+        items: [
+          { brand: 'Purito × Ardita Gashi', name: 'Texture and application in a sensitive-skin routine', image: '/images/video-thumbs/case-purito-ardita-v1.jpg', href: '/case-studies/purito-ardita' },
+          { brand: 'Arencia × Albina Mavriqi', name: 'A close-up demonstration of the NAD+ Booster Shot', image: '/images/video-thumbs/case-arencia-albina-v2.jpg', href: '/case-studies/arencia-albina' },
+        ],
+      },
+      highlights: {
+        title: 'What goes in the UK campaign brief?',
+        items: [
+          { title: 'Product and stockist', description: 'Give the creator the UK shade or product name, price in pounds, launch date and a link that shoppers can use.' },
+          { title: 'Creative format', description: 'Choose a swatch, wear test or routine that answers the question a shopper asks before buying.' },
+          { title: 'Usage rights', description: 'Agree where the asset can run, for how long and whether the brand can use it in paid social.' },
+          { title: 'Measurement', description: 'For discovery, review views and saves. For a retail launch, track clicks to the UK listing and sales where the retailer shares them.' },
+        ],
+      },
+      talents: { title: 'Meet Our Creators', buttonLabel: 'View All Talents', buttonHref: '/talents' },
       industries: {
         title: 'Top Performing Industries',
         items: [
