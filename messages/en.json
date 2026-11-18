@@ -78,6 +78,15 @@
     "usBranchLabel": "US Branch",
     "registrationNo": "Registration no.: 2417532.01"
   },
+  "europeanCampaigns": {
+    "amsterdam": "Planning a launch across several countries? Send the Amsterdam team your markets, languages and launch dates in one brief.",
+    "heading": "Plan your campaign by market",
+    "germany": "For a German-language launch, check how much of each creator’s audience is in Germany before extending the same brief to Austria.",
+    "france": "For a French skincare launch, give creators the French product names and the retailer link viewers can actually shop.",
+    "switzerland": "Choose the language region first. A French-language brief for Geneva needs a different creator shortlist from a German-language brief for Zurich.",
+    "nordics": "Decide which of Sweden, Denmark, Norway and Finland can fulfil orders, then choose creators and track results separately for each country.",
+    "uk": "Brief UK creators with prices in pounds, local stockists and a link to the product available to their audience."
+  },
   "locations": {
     "northAmerica": "North America",
     "officeDubai": "Dubai, UAE",

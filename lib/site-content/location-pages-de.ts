@@ -33,7 +33,7 @@ const agencyStats = (market: string) => [
 export const germanLocationPages = {
   germany: {
     path: '/influencer-marketing-germany',
-    title: 'Influencer Marketing Agentur Deutschland | CA Agency',
+    title: 'Influencer-Marketing-Agentur für Deutschland | CA Agency',
     description:
       'Influencer-Marketing-Agentur für Deutschland und den DACH-Raum: deutschsprachige Creators für Beauty- und Hautpflegemarken auf Instagram, TikTok und YouTube.',
     ogImage: '/images/site/og/influencer-marketing-germany-v1.jpg',
@@ -44,10 +44,11 @@ export const germanLocationPages = {
     ],
     content: {
       hero: {
-        title: 'Influencer Marketing\nAgentur Deutschland',
+        title: 'Influencer-Marketing-Agentur\nfür Deutschland',
         subtitle:
           'CA Agency ist eine Influencer-Marketing-Agentur für Deutschland und die DACH-Region. Wir verbinden Beauty- und Hautpflegemarken mit deutschsprachigen Creators auf Instagram, TikTok und YouTube.',
         ...buttons,
+        primaryButtonLabel: 'Kampagne anfragen',
       },
       stats: agencyStats('DACH'),
       intro: {
@@ -62,6 +63,15 @@ export const germanLocationPages = {
           {
             text: 'Da Deutsch auch in Österreich und im größten Teil der Schweiz gesprochen wird, erreicht eine gut geplante Kampagne die gesamte DACH-Region. Wir passen die Creator-Auswahl und die Details an, die sich je Land unterscheiden, und werten jeden Markt getrennt aus.',
           },
+        ],
+      },
+      caseStudies: {
+        title: 'So zeigen unsere Creators Hautpflege im Einsatz',
+        subtitle: 'Drei Beispiele aus unserer Arbeit zeigen, wie unsere Creators Textur und Anwendung für Beauty-Marken sichtbar machen.',
+        items: [
+          { brand: 'Purito × Ardita Gashi', name: 'Eine Pflegeroutine mit der Oat-in Calming Gel Cream', image: '/images/video-thumbs/case-purito-ardita-v1.jpg', href: '/case-studies/purito-ardita' },
+          { brand: 'Arencia × Albina Mavriqi', name: 'Der NAD+ Booster Shot in der Nahaufnahme', image: '/images/video-thumbs/case-arencia-albina-v2.jpg', href: '/case-studies/arencia-albina' },
+          { brand: 'First Aid Beauty × Albulena Mavriqi', name: 'Hautpflege als Basis für Foundation', image: '/images/video-thumbs/case-first-aid-beauty-albulena-v1.jpg', href: '/case-studies/first-aid-beauty-albulena' },
         ],
       },
       highlights: {

@@ -14,4 +14,11 @@ export const routing = defineRouting({
   // Suppress the NEXT_LOCALE Set-Cookie header so HTML responses stay
   // cacheable. Supported since next-intl v3.22.
   localeCookie: false,
+
+  // Public URLs are shared-cache keys. The unprefixed canonical always serves English.
+  localeDetection: false,
+
+  // Pages and the sitemap publish their HTTPS hreflang URLs. Behind the TLS
+  // proxy the middleware otherwise adds a second set using the HTTP origin.
+  alternateLinks: false,
 });

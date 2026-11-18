@@ -102,9 +102,9 @@ export default function Footer({
     { label: tLocations('asia'), href: '/influencer-marketing-asia' },
   ]
   const locationMenuItems = [
-    { label: tLocations('officeDubai'), href: '/contact#offices' },
-    { label: tLocations('officeDelaware'), href: '/contact#offices' },
-    { label: tLocations('officeAmsterdam'), href: '/contact#offices' },
+    { label: tLocations('officeDubai'), href: '/contact#dubai' },
+    { label: tLocations('officeDelaware'), href: '/contact#wilmington' },
+    { label: tLocations('officeAmsterdam'), href: '/contact#amsterdam' },
   ]
 
   return (

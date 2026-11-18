@@ -78,6 +78,15 @@
     "usBranchLabel": "Sucursal en EE. UU.",
     "registrationNo": "N.º de registro: 2417532.01"
   },
+  "europeanCampaigns": {
+    "amsterdam": "¿Preparas un lanzamiento en varios países? Envía al equipo de Ámsterdam un único brief con los mercados, los idiomas y las fechas de lanzamiento.",
+    "heading": "Planifica tu campaña por mercado",
+    "germany": "Antes de ampliar una campaña en alemán a Austria, comprueba qué parte de la audiencia de cada creador reside en Alemania.",
+    "france": "Para lanzar un cosmético en Francia, facilita los nombres de los productos en francés y el enlace a un comercio que entregue los pedidos a ese público.",
+    "switzerland": "Elige primero la región lingüística. Una campaña en francés para Ginebra requiere perfiles distintos de una campaña en alemán para Zúrich.",
+    "nordics": "Define a qué países puedes enviar pedidos entre Suecia, Dinamarca, Noruega y Finlandia. Selecciona a los creadores y mide los resultados por país.",
+    "uk": "Incluye precios en libras, puntos de venta británicos y un enlace al producto que la audiencia pueda comprar."
+  },
   "locations": {
     "northAmerica": "Norteamérica",
     "officeDubai": "Dubái, EAU",
