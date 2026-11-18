@@ -154,13 +154,21 @@ export const germanLocationPages = {
           },
         ],
       },
+      process: {
+        title: 'Das Briefing nach Sprachregion planen',
+        steps: [
+          { title: 'Deutschschweiz', description: 'Klären Sie mit der Creatorin oder dem Creator, ob Dialekt oder Hochdeutsch zur Community passt. Prüfen Sie die Reichweite in der Schweiz separat von der Reichweite in Deutschland.' },
+          { title: 'Romandie', description: 'Briefen Sie auf Französisch und verlinken Sie die französischsprachige Schweizer Produktseite. Eine Lieferung aus einem französischen Shop hat oft andere Konditionen.' },
+          { title: 'Tessin', description: 'Stimmen Sie die italienische Produktbezeichnung, den Preis in Franken und den lokalen Händler ab. Fragen Sie nach dem Anteil des Publikums im Tessin.' },
+        ],
+      },
       highlights: {
         title: 'Warum Marken unsere Influencer-Agentur für die Schweiz wählen',
         items: [
           { title: 'Drei Sprachregionen', description: 'Wir planen die Deutschschweiz, die Romandie und das Tessin getrennt und werten jede Region aus.' },
           { title: 'Echtes Schweizer Publikum', description: 'Wir prüfen, wo die Follower eines Creators leben, damit Ihr Budget Reichweite in der Schweiz erzielt.' },
           { title: 'Premium-Positionierung', description: 'Die Inhalte passen zu einem qualitätsbewussten Publikum mit hohen Erwartungen an Marken.' },
-          { title: 'Teil eines größeren Plans', description: 'Schweizer Aktivitäten lassen sich ohne zusätzliche Agenturen mit Kampagnen in Deutschland, Österreich und Frankreich verbinden.' },
+          { title: 'Teil eines grösseren Plans', description: 'Schweizer Aktivitäten lassen sich ohne zusätzliche Agenturen mit Kampagnen in Deutschland, Österreich und Frankreich verbinden.' },
         ],
       },
       talents: { title: 'Creators für Ihre Kampagne in der Schweiz', buttonLabel: 'Alle Talente ansehen', buttonHref: '/talents' },
