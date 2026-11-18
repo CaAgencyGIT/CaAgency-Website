@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    revalidateBlogPages()
+    revalidateBlogPages(post.slug)
     if (post.status === 'published') {
       await pingIndexNow(['/blog', `/blog/${post.slug}`])
     }

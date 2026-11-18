@@ -106,7 +106,7 @@ export async function applyPublication(id: string, revert = false) {
   })
   if (['PUBLISHED', 'REVERTED'].includes(row.status)) return row
   try {
-    if (row.kind === 'blog') revalidateBlogPages()
+    if (row.kind === 'blog') revalidateBlogPages(row.target)
     else if (row.kind === 'talent') revalidateTalentsPages()
     else revalidateSitePages()
     await prisma.websitePublication.updateMany({ where: { id, status: row.status, appliedVersion: row.appliedVersion }, data: { status: row.status === 'REVERT_APPLIED' ? 'REVERTED' : 'PUBLISHED', error: null } })

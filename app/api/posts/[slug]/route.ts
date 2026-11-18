@@ -87,7 +87,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       },
     })
 
-    revalidateBlogPages()
+    revalidateBlogPages(slug)
     if (post.status === 'published') {
       await pingIndexNow(['/blog', `/blog/${post.slug}`])
     }
@@ -119,7 +119,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       where: { slug },
     })
 
-    revalidateBlogPages()
+    revalidateBlogPages(slug)
     // Tell IndexNow the deleted URL changed so engines re-crawl and drop it.
     await pingIndexNow(['/blog', `/blog/${slug}`])
     return NextResponse.json({ message: 'Post deleted successfully' })

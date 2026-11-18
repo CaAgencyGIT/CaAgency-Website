@@ -4,6 +4,8 @@ export const post = {
   excerpt:
     'How beauty and skincare brands sell through TikTok Shop: the affiliate model, sampling at scale, commission strategy, the content formats that convert, LIVE shopping, and how to measure what it really costs.',
   content: `
+<p>On TikTok Shop UK, a beauty brand can invite selected creators to feature a product or open the offer to eligible affiliates. A creator links the item in a video or LIVE. When a shopper buys through that link, the creator earns commission. For a first campaign, choose one product that is easy to show on camera, such as a moisturiser with a distinctive texture. Give the creator the exact listing so shoppers land on the size and formula they just saw.</p>
+
 <h2>Why TikTok Shop Changed Beauty Marketing</h2>
 <p>
   For years, TikTok was where beauty products went viral and somewhere else was where they were bought. TikTok Shop closed that gap. Shoppers can now watch a creator apply a serum, tap the product link in the video, and check out without leaving the app — and the creator earns a commission on the sale.
