@@ -77,7 +77,21 @@ export default async function KoreaPage() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-      <LocationLandingPage path="/influencer-marketing-korea" content={content} talents={talents} featuredGuides={[tiktokShopBeautyGuide]} />
+      <LocationLandingPage
+        path="/influencer-marketing-korea"
+        content={content}
+        talents={talents}
+        featuredGuides={[tiktokShopBeautyGuide]}
+        relatedPages={{
+          eyebrow: 'K-beauty campaign planning',
+          title: 'Taking a Korean skincare launch to Europe',
+          items: [
+            { href: '/case-studies/anua-campaign', title: 'Anua’s guided face-massage tutorial', desc: 'See how Georgii Galaev uses on-screen instructions to show the cream and its built-in tool in action.' },
+            { href: '/case-studies/medicube-campaign', title: 'Medicube’s overnight mask demonstration', desc: 'Follow Melani Seiffert from the initial application to the peel-off reveal.' },
+            { href: '/influencer-marketing-europe', title: 'Plan the European launch', desc: 'Choose launch markets, brief creators in the audience’s language and confirm where shoppers can buy the product.' },
+          ],
+        }}
+      />
     </>
   )
 }

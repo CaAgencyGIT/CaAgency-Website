@@ -20,6 +20,7 @@ export interface CaseStudy {
   title: string
   /** Industry vertical shown as the card/eyebrow tag */
   vertical: string
+  topicPath?: string
   platforms: string[]
   /** Creator handle when the collaboration is public */
   creator?: string
@@ -325,17 +326,18 @@ const campaignCaseStudies: CaseStudy[] = [
     brand: 'Anua',
     title: 'Anua Skincare Creator Campaign',
     vertical: 'K-Beauty Skincare',
+    topicPath: '/korean-skincare-influencer-marketing',
     platforms: ['Instagram Reels', 'TikTok'],
     creator: '@pomogisebe',
     videoSrc: '/videos/redesign/rd-georgii-anua-web-v3.mp4',
     summary:
-      'A five-rule face-massage tutorial using Anua’s gua sha cream, from lymphatic drainage to sculpting.',
+      'Georgii Galaev demonstrates Anua’s gua sha cream in a five-step face-massage tutorial for Instagram Reels and TikTok.',
     brief:
-      'Anua wanted to show its gua sha cream as the product that makes face massage easy and effective. The content needed to teach technique, not just show the product. Face sculpting and lymphatic drainage are popular, but many viewers are unsure how to do them properly. The brief was to position the Anua gua sha cream as the product that makes the technique easy, and to create an educational, highly saveable video viewers would return to.',
+      'A still photograph shows what the cream and applicator look like. Anua wanted a creator to demonstrate how to hold the built-in tool, where to place it and how to move it during a routine.',
     approach:
-      'Georgii Galaev turns the video into a mini masterclass, with each step labelled on screen: open the lymphatic nodes, sculpt the jawline, lift the cheekbones, de-puff the nose and drain everything downward. He uses the Anua gua sha cream throughout, showing how the built-in tool and cream give enough slip for each movement.',
+      'Georgii labels each movement on screen. Close-ups follow the tool along the jaw, across the cheek and around the nose, then show the downward stroke that finishes the sequence. Keeping the applicator in frame lets viewers follow the direction of each movement.',
     outcome:
-      'Anua received a highly saveable, technique-led tutorial that positions its product as essential to the routine. It works as educational organic content and as paid creative for viewers interested in face sculpting.',
+      'The finished film gives Anua a step-by-step product demonstration. A viewer can pause on an individual movement or watch the full sequence to see how the cream and tool work together.',
     services: ['Talent management', 'Concept development', 'Content production'],
     metrics: [],
   },

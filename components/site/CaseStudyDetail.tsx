@@ -61,7 +61,9 @@ export default function CaseStudyDetail({ study, related, creatorTalent, ui, loc
               />
             )}
             <span className="mb-3 block font-jost text-[13px] font-medium uppercase tracking-[0.2em] text-accent-red mobile:text-[11px] mobile:tracking-[0.18em]">
-              {study.vertical} · {ui.eyebrowSuffix}
+              {study.topicPath ? (
+                <Link className="underline underline-offset-4" href={localizeHref(study.topicPath, locale)}>{study.vertical}</Link>
+              ) : study.vertical} · {ui.eyebrowSuffix}
             </span>
             <Heading as="h1" color="dark" className="mb-6 text-[48px] tablet:text-[40px] mobile:mb-4 mobile:text-[26px] mobile:leading-[1.2]">
               {study.title}

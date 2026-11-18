@@ -883,8 +883,8 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
     fields: basicSeoLandingFields,
     defaultData: {
       hero: {
-        title: 'Influencer Marketing\nAgency USA',
-        subtitle: 'CA Agency is an influencer marketing agency for the USA, helping brands run performance-led creator campaigns across Instagram, TikTok, and YouTube.',
+        title: 'Beauty Influencer Marketing\nAgency for US Brands',
+        subtitle: 'Planning a US beauty launch? We match skincare and makeup brands with creators, from the first product demonstration to retail-ready campaign content.',
         primaryButtonLabel: 'Get Started',
         primaryButtonHref: '/contact',
         secondaryButtonLabel: 'View Our Work',
@@ -897,10 +897,10 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         { value: '60%', label: 'Use TikTok Marketing' },
       ],
       intro: {
-        heading: 'The Influencer Marketing Agency US Brands Trust',
+        heading: 'How to brief creators for a US beauty launch',
         paragraphs: [
           {
-            text: 'As a full-service influencer marketing agency for the USA, CA Agency helps brands turn American creators into measurable growth. From New York and Los Angeles to Miami and Austin, we design creator campaigns that reach US audiences where they already spend their time, Instagram, TikTok, and YouTube, and tie every activation to real business outcomes.',
+            text: 'Start with where your US customer can buy the product. A retail brief should name the stockist and show how to find the right shade or formula. For a direct launch, give creators a shoppable product link and ask them to demonstrate one detail a shopper cannot see in a product photo.',
           },
           {
             text: 'The US creator economy is the largest and most competitive in the world, so the gap between a campaign that drives sales and one that disappears comes down to creator selection, briefing, and measurement. Our team handles all three: we match your brand with vetted American influencers whose audience, niche, and engagement genuinely fit your product, then manage contracting, content approvals, usage rights, and FTC-compliant disclosure end to end.',
@@ -908,6 +908,13 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           {
             text: "Whether you're a DTC beauty brand launching on TikTok Shop, a SaaS company building authority on YouTube, or a retailer scaling UGC for paid social, we build the right mix of micro, mid-tier, and macro creators for your goals and budget. Every campaign is reported against clear KPIs, reach, engagement, clicks, and conversions, so you always know what your influencer marketing spend returned.",
           },
+        ],
+      },
+      caseStudies: {
+        title: 'Two skincare demonstrations to use when briefing creators',
+        items: [
+          { brand: 'Arencia × Albina Mavriqi', name: 'Close-up shots show the texture of a booster', image: '/images/video-thumbs/case-arencia-albina-v2.jpg', href: '/case-studies/arencia-albina' },
+          { brand: 'Purito × Ardita Gashi', name: 'Product application in a sensitive-skin routine', image: '/images/video-thumbs/case-purito-ardita-v1.jpg', href: '/case-studies/purito-ardita' },
         ],
       },
       highlights: {
