@@ -1424,7 +1424,7 @@ export const spanishLocationPages: Record<string, TranslatedLocationPage> = {
   },
   "europe": {
     "path": "/influencer-marketing-europe",
-    "title": "Agencia de marketing de influencers para Europa | CA Agency",
+    "title": "Agencia de influencers para campañas en Europa | CA Agency",
     "description": "Una agencia de marketing de influencers para Europa: campañas en Alemania, Francia, Suiza, países nórdicos y Reino Unido desde nuestra división de Ámsterdam.",
     "ogImage": "/images/site/og/influencer-marketing-europe-v1.jpg",
     "areaServed": [
@@ -1467,9 +1467,9 @@ export const spanishLocationPages: Record<string, TranslatedLocationPage> = {
     ],
     "content": {
       "hero": {
-        "title": "Agencia de marketing de influencers\npara Europa",
+        "title": "Agencia de influencers\npara campañas en Europa",
         "subtitle": "CA Agency es una agencia de marketing de influencers para Europa que gestiona campañas con creadores para marcas de belleza y cuidado de la piel en Alemania, Francia, Suiza, los países nórdicos y el Reino Unido desde nuestra división de Europa en Ámsterdam.",
-        "primaryButtonLabel": "Empezar",
+        "primaryButtonLabel": "Háblanos de tu campaña",
         "primaryButtonHref": "/contact",
         "secondaryButtonLabel": "Ver nuestro trabajo",
         "secondaryButtonHref": "/work"
@@ -1504,6 +1504,13 @@ export const spanishLocationPages: Record<string, TranslatedLocationPage> = {
           {
             "text": "Trabajamos sobre todo con marcas de belleza, cuidado de la piel y lifestyle, incluidas las marcas de belleza coreana que entran en Europa por primera vez. Tanto si necesitas contenido de TikTok en alemán, creadores franceses de Instagram o alcance en inglés en los países nórdicos, construimos la combinación de creadores en torno a tus objetivos y medimos cada activación con KPI claros."
           }
+        ]
+      },
+      "caseStudies": {
+        "title": "Cómo preparar un lanzamiento europeo desde España",
+        "subtitle": "Si coordinas la campaña desde España, indica en el brief en qué países se puede comprar el producto, en qué idioma debe hablar cada creador y a qué tienda debe dirigir a su audiencia. Usa un enlace de seguimiento distinto para cada país y compara los clics después del lanzamiento.",
+        "items": [
+          { "brand": "Purito × Ardita Gashi", "name": "Una rutina que muestra la textura y la aplicación de dos productos", "image": "/images/video-thumbs/case-purito-ardita-v1.jpg", "href": "/case-studies/purito-ardita" }
         ]
       },
       "highlights": {

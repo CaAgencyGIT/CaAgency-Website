@@ -18,16 +18,16 @@ export const frenchLocationLabels: LocationLabels = {
 export const frenchLocationPages = {
   france: {
     path: '/influencer-marketing-france',
-    title: "Agence de marketing d'influence en France | CA Agency",
+    title: "Agence d’influence beauté en France | CA Agency",
     description:
       "Agence de marketing d'influence pour la France : des créateurs francophones pour les marques de beauté et de soins sur Instagram, TikTok et YouTube.",
     ogImage: '/images/site/og/influencer-marketing-france-v1.jpg',
     areaServed: [{ '@type': 'Country', name: 'France' }],
     content: {
       hero: {
-        title: "Agence de marketing\nd'influence en France",
+        title: "Agence d’influence beauté\nen France",
         subtitle:
-          "CA Agency est une agence de marketing d'influence pour la France. Nous mettons en relation les marques de beauté et de soins avec des créateurs francophones sur Instagram, TikTok et YouTube.",
+          "Vous lancez un soin en France ? Nous sélectionnons des créateurs suivis en France et préparons avec eux une démonstration adaptée au produit et à son point de vente.",
         primaryButtonLabel: 'Commencer',
         primaryButtonHref: '/contact',
         secondaryButtonLabel: 'Voir nos réalisations',
@@ -51,6 +51,13 @@ export const frenchLocationPages = {
           {
             text: "Depuis notre division Europe à Amsterdam, nous gérons la sélection des créateurs, les contrats, la validation des contenus, les droits d'utilisation et le reporting. Votre équipe dispose ainsi d'un seul interlocuteur pour la France et pour tout marché voisin que vous ajouterez ensuite.",
           },
+        ],
+      },
+      caseStudies: {
+        title: 'Comment montrer un soin en quelques secondes ?',
+        subtitle: 'Pour un lancement en enseigne, fournissez le nom français du produit, la teinte ou le format vendu, la date de mise en rayon et le lien vers la fiche produit. Vérifiez le stock avant la publication.',
+        items: [
+          { brand: 'Arencia × Albina Mavriqi', name: 'Le geste d’application du NAD+ Booster Shot en gros plan', image: '/images/video-thumbs/case-arencia-albina-v2.jpg', href: '/case-studies/arencia-albina' },
         ],
       },
       highlights: {
