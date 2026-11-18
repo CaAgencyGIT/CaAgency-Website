@@ -20,7 +20,8 @@ export function revalidateTalentsPages() {
   schedulePurgePublicSite()
 }
 
-export function revalidateBlogPages() {
+export function revalidateBlogPages(slug: string) {
+  revalidatePath(`/blog/${slug}`)
   revalidatePath('/blog')
   revalidatePath('/blog/[slug]', 'page')
   revalidatePath('/')
