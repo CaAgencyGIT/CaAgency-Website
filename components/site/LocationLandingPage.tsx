@@ -45,6 +45,7 @@ export default function LocationLandingPage({
   content,
   talents,
   featuredGuides = [],
+  defaultGuides = locationGuides,
   labels = englishLabels,
   showGuides = true,
   locale = 'en',
@@ -56,6 +57,7 @@ export default function LocationLandingPage({
   content: LocationPageContent
   talents: TalentCard[]
   featuredGuides?: GuideLink[]
+  defaultGuides?: GuideLink[]
   labels?: LocationLabels
   locale?: Locale
   // The linked guides are English-only, so translated pages omit them.
@@ -69,7 +71,7 @@ export default function LocationLandingPage({
   relatedPages?: { eyebrow: string; title: string; items: GuideLink[] }
 }) {
   const featuredHrefs = new Set(featuredGuides.map((guide) => guide.href))
-  const guides = [...featuredGuides, ...locationGuides.filter((guide) => !featuredHrefs.has(guide.href))].slice(0, 6)
+  const guides = [...featuredGuides, ...defaultGuides.filter((guide) => !featuredHrefs.has(guide.href))].slice(0, 6)
   const otherMarkets = markets.filter((market) => !path || !market.href.endsWith(path))
 
   return (
