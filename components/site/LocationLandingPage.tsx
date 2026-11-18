@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import EuropeanMarketLinks from '@/components/site/EuropeanMarketLinks'
 import Image from 'next/image'
 import BrandCarousel from '@/components/blocks/BrandCarousel'
 import Button from '@/components/ui/Button'
@@ -135,6 +136,8 @@ export default function LocationLandingPage({
           </ScrollReveal>
         </section>
       )}
+
+      {path === '/influencer-marketing-europe' && <EuropeanMarketLinks locale={locale} />}
 
       {content.caseStudies && content.caseStudies.items.length > 0 && (
         <section className="bg-background-base py-sec px-section-x border-t border-black/5">

@@ -196,6 +196,7 @@ export default async function ContactPage({ params }: Props) {
             {OFFICES.map((office) => (
               <div
                 key={office.labelKey}
+                id={office.city.toLowerCase()}
                 className="bg-background-light rounded-card shadow-[0_4px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden mobile:rounded-[16px]"
               >
                 <div className="grid md:grid-cols-2">

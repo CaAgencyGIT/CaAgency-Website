@@ -78,6 +78,15 @@
     "usBranchLabel": "Filiale américaine",
     "registrationNo": "N° d'enregistrement : 2417532.01"
   },
+  "europeanCampaigns": {
+    "amsterdam": "Vous préparez un lancement dans plusieurs pays ? Envoyez à l’équipe d’Amsterdam un brief précisant les marchés, les langues et les dates de lancement.",
+    "heading": "Préparer sa campagne marché par marché",
+    "germany": "Avant d’étendre un brief en allemand à l’Autriche, vérifiez quelle part de l’audience de chaque créateur vit en Allemagne.",
+    "france": "Pour lancer un soin en France, fournissez les noms français des produits et un lien vers un revendeur qui livre le public visé.",
+    "switzerland": "Choisissez d’abord la région linguistique. Un brief en français pour Genève et un brief en allemand pour Zurich appellent des profils différents.",
+    "nordics": "Précisez où vous livrez parmi la Suède, le Danemark, la Norvège et la Finlande. Sélectionnez les créateurs et suivez les résultats pays par pays.",
+    "uk": "Indiquez les prix en livres sterling, les revendeurs britanniques et un lien vers la fiche produit accessible à leur audience."
+  },
   "locations": {
     "northAmerica": "Amérique du Nord",
     "officeDubai": "Dubaï, EAU",

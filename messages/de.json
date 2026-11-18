@@ -78,6 +78,15 @@
     "usBranchLabel": "US-Niederlassung",
     "registrationNo": "Registrierungsnr.: 2417532.01"
   },
+  "europeanCampaigns": {
+    "amsterdam": "Planen Sie einen Start in mehreren Ländern? Schicken Sie dem Team in Amsterdam ein gemeinsames Briefing mit Zielmärkten, Sprachen und Startterminen.",
+    "heading": "Kampagnen nach Markt planen",
+    "germany": "Prüfen Sie vor dem Start, welcher Anteil der Community in Deutschland lebt. So lässt sich entscheiden, ob dasselbe Briefing auch für Österreich passt.",
+    "france": "Geben Sie den Creators für einen Skincare-Launch die französischen Produktnamen und einen Link zu einem Händler, bei dem ihre Community bestellen kann.",
+    "switzerland": "Legen Sie zuerst die Sprachregion fest. Für ein französisches Briefing in Genf kommen andere Creators infrage als für ein deutsches in Zürich.",
+    "nordics": "Klären Sie, in welche der vier Länder Schweden, Dänemark, Norwegen und Finnland Sie liefern. Wählen Sie Creators je Land aus und werten Sie die Ergebnisse getrennt aus.",
+    "uk": "Nennen Sie im Briefing Preise in Pfund und lokale Händler. Verlinken Sie das Produkt im britischen Shop."
+  },
   "locations": {
     "northAmerica": "Nordamerika",
     "officeDubai": "Dubai, VAE",

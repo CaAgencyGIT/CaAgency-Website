@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { marketRoutes } from '@/lib/data/market-routes'
 import { services } from '@/lib/data/services'
 import { locales } from '@/i18n/config'
 import {
@@ -111,7 +112,7 @@ export const organizationJsonLd = {
   },
   image: `${siteUrl}/images/site/og-cover-v2.jpg`,
   description:
-    'Global influencer marketing agency connecting beauty and skincare brands with creators across the USA and international markets.',
+    'Global influencer marketing agency connecting beauty and skincare brands with creators across Europe, North America, the Middle East and Asia.',
   foundingDate: '2019',
   email: 'info@caagency.com',
   address: {
@@ -120,6 +121,18 @@ export const organizationJsonLd = {
     addressLocality: 'Nad Al Sheba',
     addressRegion: 'Dubai',
     addressCountry: 'AE',
+  },
+  department: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/contact#amsterdam`,
+    name: 'CA Agency Europe Division',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Johan Huizingalaan 763A',
+      postalCode: '1066 VH',
+      addressLocality: 'Amsterdam',
+      addressCountry: 'NL',
+    },
   },
   contactPoint: {
     '@type': 'ContactPoint',
@@ -137,7 +150,8 @@ export const organizationJsonLd = {
     { '@type': 'Country', name: 'United States' },
     { '@type': 'Country', name: 'United Arab Emirates' },
     { '@type': 'Country', name: 'Saudi Arabia' },
-    { '@type': 'Country', name: 'United Kingdom' },
+    ...marketRoutes.europe.areaServed,
+    { '@type': 'Country', name: 'Austria' },
     { '@type': 'Country', name: 'Canada' },
     { '@type': 'Country', name: 'Australia' },
     { '@type': 'Country', name: 'South Korea' },
