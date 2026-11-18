@@ -1469,7 +1469,7 @@ export const spanishLocationPages: Record<string, TranslatedLocationPage> = {
       "hero": {
         "title": "Agencia de influencers\npara campañas en Europa",
         "subtitle": "CA Agency es una agencia de marketing de influencers para Europa que gestiona campañas con creadores para marcas de belleza y cuidado de la piel en Alemania, Francia, Suiza, los países nórdicos y el Reino Unido desde nuestra división de Europa en Ámsterdam.",
-        "primaryButtonLabel": "Cuéntanos tu campaña",
+        "primaryButtonLabel": "Háblanos de tu campaña",
         "primaryButtonHref": "/contact",
         "secondaryButtonLabel": "Ver nuestro trabajo",
         "secondaryButtonHref": "/work"
@@ -1508,7 +1508,7 @@ export const spanishLocationPages: Record<string, TranslatedLocationPage> = {
       },
       "caseStudies": {
         "title": "Cómo preparar un lanzamiento europeo desde España",
-        "subtitle": "Si coordinas la campaña desde España, indica en el brief en qué países se puede comprar el producto, en qué idioma debe hablar cada creador y a qué tienda debe dirigir a su audiencia. Reserva un enlace por país para poder comparar los clics después del lanzamiento.",
+        "subtitle": "Si coordinas la campaña desde España, indica en el brief en qué países se puede comprar el producto, en qué idioma debe hablar cada creador y a qué tienda debe dirigir a su audiencia. Usa un enlace de seguimiento distinto para cada país y compara los clics después del lanzamiento.",
         "items": [
           { "brand": "Purito × Ardita Gashi", "name": "Una rutina que muestra la textura y la aplicación de dos productos", "image": "/images/video-thumbs/case-purito-ardita-v1.jpg", "href": "/case-studies/purito-ardita" }
         ]

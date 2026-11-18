@@ -158,7 +158,7 @@ export const germanLocationPages = {
         title: 'Das Briefing nach Sprachregion planen',
         steps: [
           { title: 'Deutschschweiz', description: 'Klären Sie mit der Creatorin oder dem Creator, ob Dialekt oder Hochdeutsch zur Community passt. Prüfen Sie die Reichweite in der Schweiz separat von der Reichweite in Deutschland.' },
-          { title: 'Romandie', description: 'Briefen Sie auf Französisch und verlinken Sie die französischsprachige Schweizer Produktseite. Eine Lieferung aus einem französischen Shop hat oft andere Konditionen.' },
+          { title: 'Romandie', description: 'Briefen Sie auf Französisch und verlinken Sie die französischsprachige Schweizer Produktseite. Prüfen Sie den Preis in Franken und die Lieferbedingungen für die Schweiz.' },
           { title: 'Tessin', description: 'Stimmen Sie die italienische Produktbezeichnung, den Preis in Franken und den lokalen Händler ab. Fragen Sie nach dem Anteil des Publikums im Tessin.' },
         ],
       },
