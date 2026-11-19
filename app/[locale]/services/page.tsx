@@ -170,8 +170,12 @@ export default async function ServicesPage({ params }: Props) {
       <section className={`${styles.hero} ${styles.wrap}`}>
         <h1 className={styles.serif}>
           {t('servicesAtCA')}
-          <br />
-          Influence • Digital • Marketing
+          {locale !== 'es' && (
+            <>
+              <br />
+              Influence • Digital • Marketing
+            </>
+          )}
         </h1>
         <p>{t('subheading')}</p>
       </section>
@@ -233,8 +237,24 @@ export default async function ServicesPage({ params }: Props) {
         </div>
 
         <div className={styles.closingCopy}>
-          <p>{t('closingLead')}</p>
-          <p>{t('closingBody')}</p>
+          <p>
+            {t.rich('closingLead', {
+              purito: (label) => (
+                <Link className="underline underline-offset-4" href={localizeHref('/case-studies/purito-ardita', locale)}>
+                  {label}
+                </Link>
+              ),
+            })}
+          </p>
+          <p>
+            {t.rich('closingBody', {
+              europe: (label) => (
+                <Link className="underline underline-offset-4" href={localizeHref('/influencer-marketing-europe', locale)}>
+                  {label}
+                </Link>
+              ),
+            })}
+          </p>
         </div>
       </section>
 
