@@ -100,6 +100,10 @@ export const post = {
   Product drops require a different approach: short-window, high-urgency content designed to generate FOMO and drive rapid sell-through. This requires tight coordination between brand, creator, and platform so content goes live at the right moment and inventory matches the demand spike.
 </p>
 
+<h3>Example brief for a jacket launch in Denmark and the UK</h3>
+<p>Give each creator the jacket, the size they are wearing and a link to the exact colour on their local store. Ask them to show the fit both open and fastened, then show how much room there is for a jumper underneath. Before the post goes out, check that viewers can buy the featured size and colour in their market. If one store is still waiting for stock, move that creator’s post to its local launch date.</p>
+<p>Give each market its own tagged product link. After launch, compare product-page visits, orders and returns over the first seven days the jacket was actually on sale in each country. That gives the retail team a way to see whether the film helped shoppers choose the right size.</p>
+
 <h2>Measuring Fashion Influencer Campaigns</h2>
 <p>
   Measurement frameworks should vary by campaign type. At minimum, track:
