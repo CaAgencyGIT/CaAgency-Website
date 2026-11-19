@@ -147,7 +147,13 @@ export default async function HomePage({ params }: Props) {
               <SectionHeading align="start" eyebrow={t('eyebrowWork')} title={t('featuredWork')} />
               <div>
                 <Text color="dark" size="base" className="mb-5 text-[15px] leading-[1.8] opacity-75">
-                  {t('workDescription')}
+                  {t.rich('workDescription', {
+                    france: (label) => (
+                      <Link href={localizeHref('/influencer-marketing-france', locale)} className="underline underline-offset-4">
+                        {label}
+                      </Link>
+                    ),
+                  })}
                 </Text>
                 <Link href={localizeHref('/work', locale)} className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-jost text-[12px] font-medium uppercase tracking-[0.18em] text-foreground-primary transition-colors hover:border-black">
                   {tCommon('viewAllWork')} <span aria-hidden="true">→</span>
