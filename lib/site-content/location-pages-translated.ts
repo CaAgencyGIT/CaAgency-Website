@@ -14,6 +14,7 @@ import { spanishCategoryPages } from '@/lib/site-content/category-pages-es'
 import { arabicCategoryPages } from '@/lib/site-content/category-pages-ar'
 import { koreanCategoryPages } from '@/lib/site-content/category-pages-ko'
 import { chineseCategoryPages } from '@/lib/site-content/category-pages-zh'
+import { withEuropeanBrandCases } from '@/lib/site-content/european-brand-cases'
 
 // Market and category pages in Arabic, German, French, Spanish, Korean and Chinese, served at /<locale>/<path>.
 
@@ -27,13 +28,18 @@ export interface TranslatedLocationPage {
   content: LocationPageContent
 }
 
+/** Every page of one locale, with the European case-study block added where it belongs. */
+function pagesFor(locale: string, pages: Record<string, TranslatedLocationPage>): Record<string, TranslatedLocationPage> {
+  return Object.fromEntries(Object.entries(pages).map(([key, page]) => [key, withEuropeanBrandCases(page, locale)]))
+}
+
 export const translatedLocationPages = {
-  ar: { labels: arabicLocationLabels, pages: { ...arabicLocationPages, ...arabicMarketPages, ...arabicCategoryPages } as Record<string, TranslatedLocationPage> },
-  de: { labels: germanLocationLabels, pages: { ...germanLocationPages, ...germanMarketPages, ...germanCategoryPages } as Record<string, TranslatedLocationPage> },
-  fr: { labels: frenchLocationLabels, pages: { ...frenchLocationPages, ...frenchMarketPages, ...frenchCategoryPages } as Record<string, TranslatedLocationPage> },
-  es: { labels: spanishLocationLabels, pages: { ...spanishLocationPages, ...spanishCategoryPages } },
-  ko: { labels: koreanLocationLabels, pages: { ...koreanLocationPages, ...koreanCategoryPages } },
-  zh: { labels: chineseLocationLabels, pages: { ...chineseLocationPages, ...chineseCategoryPages } },
+  ar: { labels: arabicLocationLabels, pages: pagesFor('ar', { ...arabicLocationPages, ...arabicMarketPages, ...arabicCategoryPages } as Record<string, TranslatedLocationPage>) },
+  de: { labels: germanLocationLabels, pages: pagesFor('de', { ...germanLocationPages, ...germanMarketPages, ...germanCategoryPages } as Record<string, TranslatedLocationPage>) },
+  fr: { labels: frenchLocationLabels, pages: pagesFor('fr', { ...frenchLocationPages, ...frenchMarketPages, ...frenchCategoryPages } as Record<string, TranslatedLocationPage>) },
+  es: { labels: spanishLocationLabels, pages: pagesFor('es', { ...spanishLocationPages, ...spanishCategoryPages } as Record<string, TranslatedLocationPage>) },
+  ko: { labels: koreanLocationLabels, pages: pagesFor('ko', { ...koreanLocationPages, ...koreanCategoryPages } as Record<string, TranslatedLocationPage>) },
+  zh: { labels: chineseLocationLabels, pages: pagesFor('zh', { ...chineseLocationPages, ...chineseCategoryPages } as Record<string, TranslatedLocationPage>) },
 } satisfies Record<string, { labels: LocationLabels; pages: Record<string, TranslatedLocationPage> }>
 
 export type TranslatedLocationLocale = keyof typeof translatedLocationPages

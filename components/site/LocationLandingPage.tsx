@@ -141,53 +141,12 @@ export default function LocationLandingPage({
 
       {path === '/influencer-marketing-europe' && <EuropeanMarketLinks locale={locale} />}
 
-      {content.caseStudies && content.caseStudies.items.length > 0 && (
-        <section className="bg-background-base py-sec px-section-x border-t border-black/5">
-          <div className="max-w-container mx-auto">
-            <SectionHeading align="start" size="md" eyebrow={labels.caseStudies} title={content.caseStudies.title} className="mb-6" />
-            {content.caseStudies.subtitle && (
-              <Text color="dark" size="base" className="mb-10 max-w-[680px] opacity-70">
-                {content.caseStudies.subtitle}
-              </Text>
-            )}
-            <Stagger className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-6" stagger={0.1}>
-              {content.caseStudies.items.map((item) => (
-                <StaggerItem
-                  key={item.src ?? item.image ?? item.brand}
-                  className="hover-lift group relative overflow-hidden rounded-card ring-1 ring-black/10 hover:ring-black/20 hover:shadow-e3"
-                >
-                  {item.src ? (
-                    <VideoPlayer src={item.src} poster={posterFor(item.src)} posterSizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px" aspectRatio="9:16" autoplay muted loop ignoreReducedMotion className="rounded-card" />
-                  ) : item.image ? (
-                    <div className="relative aspect-9/16 w-full">
-                      <Image
-                        src={item.image}
-                        alt={`${item.brand}, ${item.name}`}
-                        fill
-                        sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                  ) : null}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-5">
-                    {item.href ? (
-                      <Link
-                        href={localizeHref(item.href, locale)}
-                        prefetch={false}
-                        className="pointer-events-auto font-anegra text-[20px] tracking-[0.5px] text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
-                      >
-                        {item.brand}
-                      </Link>
-                    ) : (
-                      <div className="font-anegra text-[20px] tracking-[0.5px] text-white">{item.brand}</div>
-                    )}
-                    <div className="text-white/70 text-[13px]">{item.name}</div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-          </div>
-        </section>
+      {[content.caseStudies, content.brandCaseStudies].map(
+        (block, index) =>
+          block &&
+          block.items.length > 0 && (
+            <CaseStudyGridSection key={index} block={block} eyebrow={labels.caseStudies} locale={locale} />
+          )
       )}
 
       {content.process && content.process.steps.length > 0 && (
@@ -359,5 +318,64 @@ export default function LocationLandingPage({
 
       <BrandCarousel images={brandLogos} />
     </>
+  )
+}
+
+function CaseStudyGridSection({
+  block,
+  eyebrow,
+  locale,
+}: {
+  block: NonNullable<LocationPageContent['caseStudies']>
+  eyebrow: string
+  locale: string
+}) {
+  return (
+        <section className="bg-background-base py-sec px-section-x border-t border-black/5">
+          <div className="max-w-container mx-auto">
+            <SectionHeading align="start" size="md" eyebrow={eyebrow} title={block.title} className="mb-6" />
+            {block.subtitle && (
+              <Text color="dark" size="base" className="mb-10 max-w-[680px] opacity-70">
+                {block.subtitle}
+              </Text>
+            )}
+            <Stagger className="grid grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 gap-6" stagger={0.1}>
+              {block.items.map((item) => (
+                <StaggerItem
+                  key={item.src ?? item.image ?? item.brand}
+                  className="hover-lift group relative overflow-hidden rounded-card ring-1 ring-black/10 hover:ring-black/20 hover:shadow-e3"
+                >
+                  {item.src ? (
+                    <VideoPlayer src={item.src} poster={posterFor(item.src)} posterSizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px" aspectRatio="9:16" autoplay muted loop ignoreReducedMotion className="rounded-card" />
+                  ) : item.image ? (
+                    <div className="relative aspect-9/16 w-full">
+                      <Image
+                        src={item.image}
+                        alt={`${item.brand}, ${item.name}`}
+                        fill
+                        sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 420px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-5">
+                    {item.href ? (
+                      <Link
+                        href={localizeHref(item.href, locale)}
+                        prefetch={false}
+                        className="pointer-events-auto font-anegra text-[20px] tracking-[0.5px] text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+                      >
+                        {item.brand}
+                      </Link>
+                    ) : (
+                      <div className="font-anegra text-[20px] tracking-[0.5px] text-white">{item.brand}</div>
+                    )}
+                    <div className="text-white/70 text-[13px]">{item.name}</div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </section>
   )
 }

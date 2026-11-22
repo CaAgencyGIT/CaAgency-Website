@@ -28,6 +28,9 @@ export type LocationPageContent = {
       href?: string
     }>
   }
+  // Optional second grid shown after caseStudies (e.g. European brands on the
+  // Europe, Germany and France pages). Same shape as caseStudies.
+  brandCaseStudies?: LocationPageContent['caseStudies']
   // Optional 'how we work' process steps. Pages that omit it render as before.
   process?: {
     title: string
