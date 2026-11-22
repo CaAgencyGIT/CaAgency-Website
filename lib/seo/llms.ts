@@ -4,6 +4,7 @@ import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
 import { faqKeys } from '@/lib/data/faq-schema'
 import { organizationJsonLd } from '@/lib/seo/root-metadata'
+import { countryNames, publicResultsLine } from '@/lib/data/case-study-results'
 import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
 import enMessages from '@/messages/en.json'
 
@@ -156,7 +157,7 @@ ${siteUrl}/case-studies/${study.slug}
 
 - Brand: ${study.brand}
 - Category: ${study.vertical}
-- Platforms: ${study.platforms.join(', ')}${study.creator ? `\n- Creator: ${study.creatorName ? `${study.creatorName} (${study.creator})` : study.creator}` : ''}${study.services.length ? `\n- Services: ${study.services.join(', ')}` : ''}
+- Platforms: ${study.platforms.join(', ')}${study.creator ? `\n- Creator: ${study.creatorName ? `${study.creatorName} (${study.creator})` : study.creator}` : ''}${study.services.length ? `\n- Services: ${study.services.join(', ')}` : ''}${study.creatorBase?.length ? `\n- Creator based in: ${countryNames(study.creatorBase, 'en')}` : ''}${study.publicResults ? `\n- Results: ${publicResultsLine(study.publicResults)}` : ''}
 
 ${study.showcase ? 'Overview' : 'Brief'}: ${study.brief}
 

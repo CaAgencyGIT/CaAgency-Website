@@ -12,6 +12,7 @@ import type { CaseStudy } from '@/lib/data/case-studies'
 import type { CaseStudyUi } from '@/lib/data/case-study-ui'
 import type { CreatorTalent } from '@/lib/case-study-creator'
 import { posterFor } from '@/lib/data/videos'
+import { countryNames, formatCount, formatMonth } from '@/lib/data/case-study-results'
 import { brandWatermarks } from '@/lib/data/redesign-media'
 import { localizeHref } from '@/lib/i18n/client-paths'
 import type { Locale } from '@/i18n/config'
@@ -173,8 +174,18 @@ export default function CaseStudyDetail({ study, related, creatorTalent, ui, loc
                       </dd>
                     </div>
                   )}
+                  {study.creatorBase && study.creatorBase.length > 0 && (
+                    <div>
+                      <dt className="font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">
+                        {ui.creatorBase}
+                      </dt>
+                      <dd className="font-work-sans text-[15px] text-foreground-primary font-medium">
+                        {countryNames(study.creatorBase, locale)}
+                      </dd>
+                    </div>
+                  )}
                   {study.services.length > 0 && (
-                  <div className={study.creator ? undefined : 'col-span-2'}>
+                  <div className={study.creator && !study.creatorBase?.length ? undefined : 'col-span-2'}>
                     <dt className="font-jost text-[12px] font-medium uppercase tracking-[0.15em] text-foreground-subtle mb-1">
                       {ui.services}
                     </dt>
@@ -197,6 +208,39 @@ export default function CaseStudyDetail({ study, related, creatorTalent, ui, loc
                       </div>
                     ))}
                   </div>
+                </ScrollReveal>
+              )}
+
+              {/* Public counts from the creator's own post, with the read date and a link to it */}
+              {study.metrics.length === 0 && study.publicResults && (
+                <ScrollReveal yOffset={24}>
+                  <div className="mb-3 grid grid-cols-3 mobile:grid-cols-1 gap-4">
+                    {(
+                      [
+                        [ui.views, study.publicResults.views],
+                        [ui.likes, study.publicResults.likes],
+                        [ui.comments, study.publicResults.comments],
+                      ] as const
+                    ).map(([label, value]) => (
+                      <div key={label} className="rounded-card border border-black/10 p-6 text-center">
+                        <p className="font-anegra text-[36px] font-semibold text-accent-red mb-1">{formatCount(value, locale)}</p>
+                        <p className="font-work-sans text-[14px] text-foreground-subtle">{label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mb-10 font-work-sans text-[13px] text-foreground-subtle">
+                    {ui.publicResultsNote
+                      .replace('{platform}', study.publicResults.platform)
+                      .replace('{date}', formatMonth(study.publicResults.asOf, locale))}{' '}
+                    <a
+                      href={study.publicResults.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-black/20 underline-offset-4 transition-colors hover:text-foreground-primary hover:decoration-black/60"
+                    >
+                      {ui.viewOriginalPost}
+                    </a>
+                  </p>
                 </ScrollReveal>
               )}
 

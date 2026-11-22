@@ -35,7 +35,13 @@ export const ui: CaseStudyUi = {
   "indexCtaTitle": "قد تكون علامتك التجارية التالية",
   "indexCtaText": "أخبرنا بما تستعد لإطلاقه وسنرشّح لك صنّاع المحتوى المناسبين.",
   "stillAlt": "لقطة من فيديو حملة {brand}",
-  "logoAlt": "شعار {brand}"
+  "logoAlt": "شعار {brand}",
+  "views": "المشاهدات",
+  "likes": "الإعجابات",
+  "comments": "التعليقات",
+  "creatorBase": "مقر صانع المحتوى",
+  "publicResultsNote": "أرقام علنية من منشور صانع المحتوى على {platform}، حتى {date}.",
+  "viewOriginalPost": "عرض المنشور الأصلي"
 }
 
 export const verticals: Record<string, string> = {

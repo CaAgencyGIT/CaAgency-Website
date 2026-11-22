@@ -1,3 +1,4 @@
+import { publicResultsJsonLd } from '@/lib/data/case-study-results'
 import '@/app/public-utilities.css'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -77,6 +78,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     author: organizationRef,
     publisher: organizationRef,
     datePublished: publishedDateFor(study.videoSrc),
+    ...(study.publicResults && { citation: publicResultsJsonLd(study, creatorTalent?.name) }),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://caagency.com/case-studies/${slug}`,

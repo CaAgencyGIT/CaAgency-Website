@@ -32,6 +32,12 @@ export interface CaseStudyUi {
   indexCtaText: string
   stillAlt: string
   logoAlt: string
+  views: string
+  likes: string
+  comments: string
+  creatorBase: string
+  publicResultsNote: string
+  viewOriginalPost: string
 }
 
 export const englishCaseStudyUi: CaseStudyUi = {
@@ -64,5 +70,11 @@ export const englishCaseStudyUi: CaseStudyUi = {
   "indexCtaTitle": "Your Brand Could Be Next",
   "indexCtaText": "Tell us what you're launching and we'll match you with the right creators.",
   "stillAlt": "{brand} campaign video still",
-  "logoAlt": "{brand} logo"
+  "logoAlt": "{brand} logo",
+  "views": "Views",
+  "likes": "Likes",
+  "comments": "Comments",
+  "creatorBase": "Creator based in",
+  "publicResultsNote": "Public figures from the creator's {platform} post, as of {date}.",
+  "viewOriginalPost": "View the original post"
 }
