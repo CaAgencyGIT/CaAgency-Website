@@ -211,21 +211,10 @@
 .agency-index .campaign-strip{align-items:stretch}
 .agency-index .campaign-card{aspect-ratio:auto}
 
-/* White header on this page only (Agency Index reference); same links,
-   language switcher and menu as the rest of the site. */
-body:has(.agency-index) .rd-header{background:#fff;color:#171717;border-bottom:1px solid #DCDCDC;animation:none;height:100px}
-body:has(.agency-index) .rd-header-logo img{filter:none}
-body:has(.agency-index) .rd-header-nav a{color:#171717;text-transform:none;letter-spacing:0;font-weight:400;font-size:14px;font-family:var(--font-work-sans),Arial,sans-serif}
-body:has(.agency-index) .rd-header-nav ul{gap:35px}
-body:has(.agency-index) .rd-header-actions .rd-language label{color:#171717;text-transform:none;letter-spacing:0;font-weight:400;font-size:13px}
-body:has(.agency-index) .rd-header-actions .rd-language label:hover{background:rgba(0,0,0,.05)}
-body:has(.agency-index) .rd-header-talk{color:#171717;border:1px solid #333;height:40px;padding:0 21px;text-transform:none;letter-spacing:0;font-weight:400;font-family:var(--font-work-sans),Arial,sans-serif}
-body:has(.agency-index) .rd-header-talk:hover{background:#171717;color:#fff}
-body:has(.agency-index) .rd-header-burger{color:#171717}
-body:has(.agency-index) .rd-header :where(a,button,select,label):focus-visible{outline-color:#171717}
 body:has(.agency-index) [data-breadcrumbs]{display:none}
-.agency-index{--ai-header:100px}
-@media(max-width:800px){body:has(.agency-index) .rd-header{height:78px}.agency-index{--ai-header:78px}}
+/* The site-wide black header (92px, 74px on phones) is used here too. */
+.agency-index{--ai-header:92px}
+@media(max-width:760px){.agency-index{--ai-header:74px}}
 /* The site's PostCSS step rewrites font sizes to shrink fluidly on small
    screens; the Agency Index uses the approved sizes exactly. */
 .agency-index{--text-shrink:0}
@@ -250,8 +239,6 @@ body:has(.agency-index) [data-back-to-top]{inset-inline-start:auto;inset-inline-
 .agency-index .intro-column h1{overflow-wrap:anywhere}
 /* In-page jumps (e.g. "Talent in action") stop below the sticky header. */
 .agency-index #talent-in-action,.agency-index #roster{scroll-margin-top:calc(var(--ai-header,100px) + 20px)}
-/* Phones in landscape: slimmer header so content isn't hidden under it. */
-@media(max-height:500px){body:has(.agency-index) .rd-header{height:64px}.agency-index{--ai-header:64px}}
 /* Focus ring on the campaign films sits above the video and poster. */
 .agency-index .campaign-card:focus-visible{outline:none}
 .agency-index .campaign-card:focus-visible::before{content:'';position:absolute;inset:0;border:2px solid #fff;border-radius:inherit;z-index:3;pointer-events:none}
