@@ -6,7 +6,7 @@ import { caseStudies, caseStudyStill } from '@/lib/data/case-studies'
 import caseStudyDates from '@/lib/data/case-study-dates.json'
 import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
-import {
+import { BENCHMARK_LOCALES, benchmarkPageLanguages,
   CASE_STUDY_LOCALES,
   caseStudyIndexLanguages,
   caseStudyLanguages,
@@ -167,6 +167,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return [
           { ...entry, alternates },
           ...CASE_STUDY_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/${page.path}`, alternates })),
+        ]
+      }
+      if (page.path === 'influencer-benchmarks-2026') {
+        const alternates = { languages: benchmarkPageLanguages(baseUrl) }
+        return [
+          { ...entry, alternates },
+          ...BENCHMARK_LOCALES.map((locale) => ({ ...entry, url: `${baseUrl}/${locale}/${page.path}`, alternates })),
         ]
       }
       if (page.path === 'case-studies') {

@@ -1,3 +1,4 @@
+import { europeanBrandCases } from '@/lib/site-content/european-brand-cases'
 import type { LocationPageContent } from '@/lib/site-content/location-pages'
 
 // English defaults for the European market pages (Nov 2026): Europe, Germany,
@@ -19,6 +20,7 @@ const agencyStats = (market: string) => [
 ]
 
 export const europePageDefaults: LocationPageContent = {
+  brandCaseStudies: europeanBrandCases('en'),
   hero: {
     title: 'Influencer Marketing\nAgency Europe',
     subtitle:
@@ -102,6 +104,7 @@ export const europePageDefaults: LocationPageContent = {
 }
 
 export const germanyPageDefaults: LocationPageContent = {
+  brandCaseStudies: europeanBrandCases('en'),
   hero: {
     title: 'Influencer Marketing\nAgency Germany',
     subtitle:
@@ -175,6 +178,7 @@ export const germanyPageDefaults: LocationPageContent = {
 }
 
 export const francePageDefaults: LocationPageContent = {
+  brandCaseStudies: europeanBrandCases('en'),
   hero: {
     title: 'Influencer Marketing\nAgency France',
     subtitle:

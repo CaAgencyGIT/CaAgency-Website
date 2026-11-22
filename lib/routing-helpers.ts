@@ -166,6 +166,11 @@ export const CASE_STUDY_LOCALES: readonly string[] = ['ar', 'de', 'fr', 'es', 'k
 // and the three legal pages.
 const CASE_STUDY_PATH = /^\/(?:case-studies(?:\/[a-z0-9-]+)?|talents\/[a-z0-9-]+|privacy-policy|terms-of-service|business-license)$/
 
+// The benchmark page (/influencer-benchmarks-2026) is translated into these
+// locales; copy in lib/data/benchmark-page-copy/<locale>.ts.
+export const BENCHMARK_LOCALES: readonly string[] = ['ar', 'de', 'fr', 'es', 'ko', 'zh']
+const BENCHMARK_PATH = '/influencer-benchmarks-2026'
+
 function hasTranslatedCaseStudy(pathname: string, locale: string): boolean {
   return CASE_STUDY_LOCALES.includes(locale) && CASE_STUDY_PATH.test(pathname)
 }
@@ -176,7 +181,8 @@ export function hasTranslatedPage(pathname: string, locale: string): boolean {
     hasLocalizedLocationPage(pathname, locale) ||
     (LOCALIZED_BLOG_PATHS[locale]?.includes(pathname) ?? false) ||
     (LOCALIZED_SERVICE_PATHS[locale]?.includes(pathname) ?? false) ||
-    hasTranslatedCaseStudy(pathname, locale)
+    hasTranslatedCaseStudy(pathname, locale) ||
+    (pathname === BENCHMARK_PATH && BENCHMARK_LOCALES.includes(locale))
   )
 }
 
@@ -214,6 +220,11 @@ function translatedLanguages(pathname: string, localeList: readonly string[], ba
 /** hreflang map for a page that exists in English and in every translated locale (talent profiles, legal pages). */
 export function translatedPageLanguages(pathname: string, baseUrl = 'https://caagency.com'): Record<string, string> {
   return translatedLanguages(pathname, CASE_STUDY_LOCALES, baseUrl)
+}
+
+/** hreflang map for the benchmark page. */
+export function benchmarkPageLanguages(baseUrl = 'https://caagency.com'): Record<string, string> {
+  return translatedLanguages(BENCHMARK_PATH, BENCHMARK_LOCALES, baseUrl)
 }
 
 /** hreflang map for a case study: English (also x-default) plus every translated locale. */
