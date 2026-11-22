@@ -158,11 +158,17 @@ export const organizationJsonLd = {
   ],
   knowsAbout: [
     'Influencer Marketing',
+    'Beauty Influencer Marketing',
+    'Skincare Influencer Marketing',
+    'K-Beauty and Korean Skincare Marketing',
     'Beauty Marketing',
     'Social Media Marketing',
     'Content Creation',
     'Brand Partnerships',
     'Talent Management',
+    'Creator Management',
+    'User-Generated Content (UGC)',
+    'Influencer Marketing in the UAE and GCC',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
