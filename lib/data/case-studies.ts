@@ -45,6 +45,25 @@ export interface CaseStudy {
   showcase?: boolean
   /** The film keeps its sound, so the page offers a sound toggle */
   hasAudio?: boolean
+  /**
+   * Public counts read from the creator's own post (not client data), matched
+   * to this study's video by frame. Shown as result tiles with the read date.
+   */
+  publicResults?: PublicResults
+  /** ISO 3166 codes of the countries the creator is based in, from our records */
+  creatorBase?: string[]
+}
+
+export interface PublicResults {
+  platform: 'TikTok' | 'Instagram'
+  url: string
+  /** Day the post went up (YYYY-MM-DD) */
+  postedOn: string
+  /** Day the counts were read (YYYY-MM-DD) */
+  asOf: string
+  views: number
+  likes: number
+  comments: number
 }
 
 /** Still for cards, schema and sitemaps: the photo, or the film's poster. */
@@ -169,6 +188,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'kiko-milano-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@idareen_/video/7506932343207202054',
+      postedOn: '2025-05-21',
+      asOf: '2026-11-22',
+      views: 5065,
+      likes: 159,
+      comments: 3,
+    },
+    creatorBase: ['US', 'CY'],
     brand: 'Kiko Milano',
     title: 'Kiko Milano × @_idareen_',
     vertical: 'Color Cosmetics',
@@ -188,6 +217,16 @@ const campaignCaseStudies: CaseStudy[] = [
   },
   {
     slug: 'juvias-place-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@therealbeatrixramosaj/video/7492091229350612270',
+      postedOn: '2025-04-11',
+      asOf: '2026-11-22',
+      views: 138400,
+      likes: 3039,
+      comments: 49,
+    },
+    creatorBase: ['US'],
     brand: "Juvia's Place",
     title: "Juvia's Place × @beatrixramosaj",
     vertical: 'Color Cosmetics',
@@ -462,6 +501,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'chanel-beauty-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@idareen_/video/7476814071212346629',
+      postedOn: '2025-03-01',
+      asOf: '2026-11-22',
+      views: 349700,
+      likes: 6118,
+      comments: 40,
+    },
+    creatorBase: ['US', 'CY'],
     brand: 'Chanel Beauty',
     title: 'Chanel Beauty Creator Campaign',
     vertical: 'Luxury Beauty',
@@ -542,6 +591,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'medicube-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@melaniseiffert/video/7593808338719132950',
+      postedOn: '2026-01-10',
+      asOf: '2026-11-22',
+      views: 1700000,
+      likes: 52800,
+      comments: 475,
+    },
+    creatorBase: ['AE'],
     brand: 'Medicube',
     title: 'Medicube Creator Campaign',
     vertical: 'K-Beauty Skincare',
@@ -662,6 +721,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'dr-althea-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@khutjo.matsoma/video/7698819050079669511',
+      postedOn: '2026-10-20',
+      asOf: '2026-11-22',
+      views: 13600,
+      likes: 489,
+      comments: 8,
+    },
+    creatorBase: ['ZA'],
     brand: 'Dr. Althea',
     title: 'Dr. Althea Creator Campaign',
     vertical: 'K-Beauty Skincare',
@@ -702,6 +771,15 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'beauty-of-joseon-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@saranda/video/7709210392106421556',
+      postedOn: '2026-11-17',
+      asOf: '2026-11-22',
+      views: 30400,
+      likes: 430,
+      comments: 16,
+    },
     brand: 'Beauty of Joseon',
     title: 'Beauty of Joseon Creator Campaign',
     vertical: 'K-Beauty Skincare',
@@ -722,6 +800,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'frankly-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@khutjo.matsoma/video/7470818260414450950',
+      postedOn: '2025-02-13',
+      asOf: '2026-11-22',
+      views: 1200000,
+      likes: 16600,
+      comments: 136,
+    },
+    creatorBase: ['ZA'],
     brand: 'Frankly',
     title: 'Frankly Creator Campaign',
     vertical: 'K-Beauty Skincare',
@@ -742,6 +830,16 @@ const campaignCaseStudies: CaseStudy[] = [
 
   {
     slug: 'biodance-campaign',
+    publicResults: {
+      platform: 'TikTok',
+      url: 'https://www.tiktok.com/@therealbeatrixramosaj/video/7692475926575074573',
+      postedOn: '2026-10-03',
+      asOf: '2026-11-22',
+      views: 59400,
+      likes: 3590,
+      comments: 13,
+    },
+    creatorBase: ['US'],
     brand: 'Biodance',
     title: 'Biodance Creator Campaign',
     vertical: 'K-Beauty Skincare',

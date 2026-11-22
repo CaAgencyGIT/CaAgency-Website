@@ -35,7 +35,13 @@ export const ui: CaseStudyUi = {
   "indexCtaTitle": "下一个可能就是您的品牌",
   "indexCtaText": "告诉我们您要推出什么，我们将为您匹配合适的创作者。",
   "stillAlt": "{brand} 营销活动视频画面",
-  "logoAlt": "{brand} 标志"
+  "logoAlt": "{brand} 标志",
+  "views": "播放量",
+  "likes": "点赞",
+  "comments": "评论",
+  "creatorBase": "创作者所在地",
+  "publicResultsNote": "创作者 {platform} 帖子的公开数据，截至 {date}。",
+  "viewOriginalPost": "查看原帖"
 }
 
 export const verticals: Record<string, string> = {

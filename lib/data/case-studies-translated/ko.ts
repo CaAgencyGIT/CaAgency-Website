@@ -35,7 +35,13 @@ export const ui: CaseStudyUi = {
   "indexCtaTitle": "다음은 귀사의 브랜드일 수 있습니다",
   "indexCtaText": "무엇을 론칭하는지 알려주시면 알맞은 크리에이터를 매칭해 드립니다.",
   "stillAlt": "{brand} 캠페인 영상 스틸",
-  "logoAlt": "{brand} 로고"
+  "logoAlt": "{brand} 로고",
+  "views": "조회수",
+  "likes": "좋아요",
+  "comments": "댓글",
+  "creatorBase": "크리에이터 활동 국가",
+  "publicResultsNote": "크리에이터의 {platform} 게시물 공개 수치, {date} 기준.",
+  "viewOriginalPost": "원본 게시물 보기"
 }
 
 export const verticals: Record<string, string> = {
