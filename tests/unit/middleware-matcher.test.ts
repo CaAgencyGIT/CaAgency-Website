@@ -18,7 +18,7 @@ describe('middleware matcher', () => {
 
   it.each([
     '/api', '/api/contact', '/_next/static/x.js', '/admin', '/admin/login', '/blog', '/blog/', '/blog/instagram-reels-beauty-brands',
-    '/blog/feed.xml', '/case-studies', '/case-studies/some-case', '/privacy-policy', '/terms-of-service', '/business-license',
+    '/blog/feed.xml', '/case-studies', '/case-studies/some-case', '/privacy-policy', '/terms-of-service', '/business-license', '/influencer-benchmarks-2026',
     '/korean-skincare-influencer-marketing', '/beauty-influencer-marketing-agency', '/skincare-influencer-marketing-agency',
     '/influencer-marketing-dubai', '/influencer-marketing-usa', '/talents/jane-doe', '/services/instagram',
   ])('keeps the English-only route %s out of the i18n middleware', (pathname) => {
@@ -39,7 +39,7 @@ describe('middleware matcher', () => {
 
   it.each([
     '/blog2', '/blogger', '/en/blog2', '/admin2', '/apix', '/case-studies-extra', '/privacy-policy-old', '/terms-of-service2',
-    '/business-licenses', '/korean-skincare-influencer-marketing-x', '/beauty-influencer-marketing-agency2', '/talents', '/services',
+    '/business-licenses', '/influencer-benchmarks-20266', '/korean-skincare-influencer-marketing-x', '/beauty-influencer-marketing-agency2', '/talents', '/services',
     '/', '/en', '/ar', '/about', '/contact', '/does-not-exist',
     // Unknown market-style URLs used to skip the middleware and end in a 500.
     '/influencer-marketing-zzz', '/influencer-marketing-', '/influencer-marketing-usa2', '/influencer-marketing-uk-old',

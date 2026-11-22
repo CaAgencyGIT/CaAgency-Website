@@ -80,6 +80,7 @@ export default function Footer({
     { label: tNav('caseStudies'), href: '/case-studies' },
     { label: tNav('services'), href: '/services' },
     { label: tNav('blog'), href: '/blog' },
+    { label: tNav('benchmarks'), href: '/influencer-benchmarks-2026' },
     { label: tNav('contact'), href: '/contact' },
     { label: tNav('faq'), href: '/faq' },
   ]

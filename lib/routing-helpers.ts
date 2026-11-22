@@ -43,7 +43,7 @@ export const SENSITIVE_PROBE_PATTERNS = [
 // English path instead of 404ing. Whole segments only, so /blogger is not
 // mistaken for /blog.
 const ENGLISH_ONLY_SEGMENTS =
-  '(?:(?:blog|case-studies|privacy-policy|terms-of-service|business-license|korean-skincare-influencer-marketing|beauty-influencer-marketing-agency|skincare-influencer-marketing-agency|influencer-marketing-[a-z-]+)(?=[/?#]|$)|talents\\/|services\\/)'
+  '(?:(?:blog|case-studies|privacy-policy|terms-of-service|business-license|influencer-benchmarks-2026|korean-skincare-influencer-marketing|beauty-influencer-marketing-agency|skincare-influencer-marketing-agency|influencer-marketing-[a-z-]+)(?=[/?#]|$)|talents\\/|services\\/)'
 const ENGLISH_ONLY_ROUTE = new RegExp(`^\\/${ENGLISH_ONLY_SEGMENTS}`)
 const NON_DEFAULT_LOCALES = locales.filter((locale) => locale !== defaultLocale).join('|')
 const LOCALIZED_SITE_ROUTE = new RegExp(`^\\/(${NON_DEFAULT_LOCALES})\\/${ENGLISH_ONLY_SEGMENTS}`)

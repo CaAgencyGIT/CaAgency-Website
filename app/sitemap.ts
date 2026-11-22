@@ -146,6 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: 'business-license', changeFrequency: 'yearly' as const, priority: 0.3 },
     { path: 'blog', changeFrequency: 'weekly' as const, priority: 0.7 },
     { path: 'case-studies', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: 'influencer-benchmarks-2026', changeFrequency: 'monthly' as const, priority: 0.8 },
   ]
 
   const localizedEntries = localizedPages.flatMap((page) =>
