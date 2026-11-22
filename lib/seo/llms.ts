@@ -4,6 +4,7 @@ import { services } from '@/lib/data/services'
 import { locationPages } from '@/lib/data/locations'
 import { faqKeys } from '@/lib/data/faq-schema'
 import { organizationJsonLd } from '@/lib/seo/root-metadata'
+import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
 import enMessages from '@/messages/en.json'
 
 const siteUrl = organizationJsonLd.url
@@ -18,6 +19,57 @@ async function getPublishedPosts() {
   } catch {
     return []
   }
+}
+
+export type LlmsTalent = {
+  name: string
+  slug: string
+  bio: string | null
+  instagramUrl: string | null
+  tiktokUrl: string | null
+  youtubeUrl: string | null
+}
+
+async function getTalents(): Promise<LlmsTalent[]> {
+  try {
+    const talents = await prisma.talent.findMany({
+      select: { name: true, slug: true, bio: true, instagramUrl: true, tiktokUrl: true, youtubeUrl: true },
+      orderBy: { order: 'asc' },
+    })
+    // Same rule as the sitemap: profiles without a real bio stay out.
+    return talents.filter((talent) => isIndexableTalentProfile(talent.bio))
+  } catch {
+    return []
+  }
+}
+
+function talentChannels(talent: LlmsTalent) {
+  return [
+    talent.instagramUrl && `Instagram ${talent.instagramUrl}`,
+    talent.tiktokUrl && `TikTok ${talent.tiktokUrl}`,
+    talent.youtubeUrl && `YouTube ${talent.youtubeUrl}`,
+  ].filter(Boolean) as string[]
+}
+
+export function talentLinks(talents: LlmsTalent[]) {
+  return talents
+    .map((talent) => `- [${talent.name}](${siteUrl}/talents/${talent.slug}): ${talentMetaDescription(talent.bio ?? '')}`)
+    .join('\n')
+}
+
+export function talentProfiles(talents: LlmsTalent[]) {
+  return talents
+    .map((talent) => {
+      const channels = talentChannels(talent)
+      return `### ${talent.name}
+
+${siteUrl}/talents/${talent.slug}
+
+- Roster: CA Agency talent roster${channels.length ? `\n- Channels: ${channels.join(', ')}` : ''}
+
+${(talent.bio ?? '').trim()}`
+    })
+    .join('\n\n')
 }
 
 function overview() {
@@ -52,7 +104,7 @@ function companyLinks() {
 }
 
 export async function buildLlmsTxt() {
-  const posts = await getPublishedPosts()
+  const [posts, talents] = await Promise.all([getPublishedPosts(), getTalents()])
 
   const sections = [
     overview(),
@@ -62,6 +114,7 @@ export async function buildLlmsTxt() {
     `## Case studies\n\n${caseStudies
       .map((study) => `- [${study.title}](${siteUrl}/case-studies/${study.slug}): ${study.summary}`)
       .join('\n')}`,
+    talents.length > 0 && `## Creators on the CA Agency talent roster\n\n${talentLinks(talents)}`,
     `## Markets\n\n${locationLinks()}`,
     posts.length > 0 &&
       `## Guides\n\n${posts
@@ -75,7 +128,7 @@ export async function buildLlmsTxt() {
 }
 
 export async function buildLlmsFullTxt() {
-  const posts = await getPublishedPosts()
+  const [posts, talents] = await Promise.all([getPublishedPosts(), getTalents()])
   const faq = enMessages.faq.questions
 
   const sections = [
@@ -115,6 +168,7 @@ ${study.showcase ? 'Highlights' : 'Outcome'}: ${study.outcome}`
     `## Frequently asked questions\n\n${faqKeys
       .map((key) => `### ${faq[key].question}\n\n${faq[key].answer}`)
       .join('\n\n')}`,
+    talents.length > 0 && `## Creators on the CA Agency talent roster\n\n${talentProfiles(talents)}`,
     `## Markets\n\n${locationLinks()}`,
     posts.length > 0 &&
       `## Guides\n\n${posts.map((post) => `- [${post.title}](${siteUrl}/blog/${post.slug})`).join('\n')}`,
