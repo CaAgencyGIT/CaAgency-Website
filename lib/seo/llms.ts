@@ -5,6 +5,7 @@ import { locationPages } from '@/lib/data/locations'
 import { faqKeys } from '@/lib/data/faq-schema'
 import { organizationJsonLd } from '@/lib/seo/root-metadata'
 import { countryNames, publicResultsLine } from '@/lib/data/case-study-results'
+import { BENCHMARKS_READ_ON, creatorBenchmarks2026 } from '@/lib/data/creator-benchmarks-2026'
 import { isIndexableTalentProfile, talentMetaDescription } from '@/lib/seo/talents'
 import enMessages from '@/messages/en.json'
 
@@ -97,8 +98,28 @@ function locationLinks() {
   return locationPages.map((page) => `- [${page.title}](${siteUrl}${page.path})`).join('\n')
 }
 
+/** Headline figures of the benchmark page, for llms-full.txt. */
+export function benchmarkSection() {
+  const { tiktok: tt, instagram: ig } = creatorBenchmarks2026
+  const t = (list: readonly { tier: string; viewsPerFollower: number }[], name: string) => list.find((x) => x.tier === name)!.viewsPerFollower
+  const len = (name: string) => tt.lengths.find((l) => l.length === name)!.vsCreatorTypical
+  return `## Research: Beauty Creator Benchmarks 2026
+
+${siteUrl}/influencer-benchmarks-2026 (CC BY 4.0, read on ${BENCHMARKS_READ_ON})
+
+Medians from ${tt.posts} TikToks by ${tt.creators} creators (12 months) and ${ig.reels} Instagram Reels by ${ig.creators} creators on CA Agency's beauty and skincare roster, using public counts.
+
+- A typical TikTok reaches ${tt.viewsPerFollower}% of the creator's followers: ${t(tt.tiers, 'under 100K')}% under 100K followers, ${t(tt.tiers, '100K–500K')}% at 100K–500K, ${t(tt.tiers, '500K+')}% above 500K.
+- A typical Instagram Reel reaches ${ig.viewsPerFollower}% of followers: ${t(ig.tiers, 'under 100K')}% under 100K, ${t(ig.tiers, '100K–500K')}% at 100K–500K, ${t(ig.tiers, '500K+')}% above 500K.
+- TikTok length vs the creator's typical video: 10 seconds or less ${len('≤10 s')}x, 21-30 seconds ${len('21–30 s')}x, over 60 seconds ${len('over 60 s')}x.
+- ${tt.shareOver100K}% of TikToks pass 100,000 views and ${tt.shareOver1M}% pass one million; creators post about ${Math.round(tt.postsPerWeek)} TikToks a week.
+- Engagement (likes plus comments): ${tt.engagementPerView}% of TikTok views, ${ig.engagementPerView}% of Reel views (${ig.engagementPerFollower}% of followers).
+- Caveat: one agency's roster chosen for performance, not the whole market.`
+}
+
 function companyLinks() {
-  return `- [About CA Agency](${siteUrl}/about)
+  return `- [Beauty Creator Benchmarks 2026 (original research: TikTok and Instagram Reels reach, engagement and video length)](${siteUrl}/influencer-benchmarks-2026)
+- [About CA Agency](${siteUrl}/about)
 - [Talent roster](${siteUrl}/talents)
 - [Work and campaign videos](${siteUrl}/work)
 - [Contact](${siteUrl}/contact)`
@@ -170,6 +191,7 @@ ${study.showcase ? 'Highlights' : 'Outcome'}: ${study.outcome}`
       .map((key) => `### ${faq[key].question}\n\n${faq[key].answer}`)
       .join('\n\n')}`,
     talents.length > 0 && `## Creators on the CA Agency talent roster\n\n${talentProfiles(talents)}`,
+    benchmarkSection(),
     `## Markets\n\n${locationLinks()}`,
     posts.length > 0 &&
       `## Guides\n\n${posts.map((post) => `- [${post.title}](${siteUrl}/blog/${post.slug})`).join('\n')}`,
