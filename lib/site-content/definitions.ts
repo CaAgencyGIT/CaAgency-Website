@@ -2,6 +2,7 @@ import { beautyPageDefaults, skincarePageDefaults } from '@/lib/site-content/cat
 import { australiaProcess, melbournePageDefaults, sydneyPageDefaults } from '@/lib/site-content/australia-pages'
 import { europeanBrandCases } from '@/lib/site-content/european-brand-cases'
 import { ukFaq } from '@/lib/site-content/uk-faq'
+import { withKBeautyEurope } from '@/lib/site-content/kbeauty-europe'
 import {
   australiaFaq,
   australiaIntro,
@@ -787,7 +788,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
     title: 'SEO pagina Korean Skincare / K-Beauty',
     description: 'Content for korean-skincare-influencer-marketing.',
     fields: basicSeoLandingFields,
-    defaultData: {
+    defaultData: withKBeautyEurope({
       hero: {
         title: 'Korean Skincare Influencer\nMarketing Agency',
         subtitle: 'CA Agency is a K-beauty influencer marketing agency connecting Korean skincare and beauty brands with creators who turn routines into results across Instagram, TikTok, and YouTube.',
@@ -862,7 +863,7 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
         ],
       },
       cta: { title: 'Launch Your K-Beauty Campaign', description: 'Put your Korean skincare or beauty brand in front of creators who can sell the routine. Share your goals and we will build the plan.', buttonLabel: 'Get in Touch', buttonHref: '/contact' },
-    },
+    }, 'en'),
   },
   {
     key: 'location-beauty',

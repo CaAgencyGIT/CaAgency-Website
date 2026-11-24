@@ -16,6 +16,7 @@ import { koreanCategoryPages } from '@/lib/site-content/category-pages-ko'
 import { chineseCategoryPages } from '@/lib/site-content/category-pages-zh'
 import { withEuropeanBrandCases } from '@/lib/site-content/european-brand-cases'
 import { withUkFaq } from '@/lib/site-content/uk-faq'
+import { KBEAUTY_PATH, withKBeautyEurope } from '@/lib/site-content/kbeauty-europe'
 
 // Market and category pages in Arabic, German, French, Spanish, Korean and Chinese, served at /<locale>/<path>.
 
@@ -29,9 +30,14 @@ export interface TranslatedLocationPage {
   content: LocationPageContent
 }
 
-/** Every page of one locale, with the European case-study block and the UK FAQ added where they belong. */
+/** The K-beauty page's case-study grid and UK and Europe questions. */
+function withKBeauty(page: TranslatedLocationPage, locale: string): TranslatedLocationPage {
+  return page.path === KBEAUTY_PATH ? { ...page, content: withKBeautyEurope(page.content, locale) } : page
+}
+
+/** Every page of one locale, with the European case-study block, the UK FAQ and the K-beauty additions where they belong. */
 function pagesFor(locale: string, pages: Record<string, TranslatedLocationPage>): Record<string, TranslatedLocationPage> {
-  return Object.fromEntries(Object.entries(pages).map(([key, page]) => [key, withUkFaq(withEuropeanBrandCases(page, locale), locale)]))
+  return Object.fromEntries(Object.entries(pages).map(([key, page]) => [key, withKBeauty(withUkFaq(withEuropeanBrandCases(page, locale), locale), locale)]))
 }
 
 export const translatedLocationPages = {
