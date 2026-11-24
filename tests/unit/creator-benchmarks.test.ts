@@ -90,3 +90,37 @@ describe('European brand case studies on market pages', () => {
     }
   })
 })
+
+import { siteContentDefinitions } from '@/lib/site-content/definitions'
+import { UK_PATH, ukFaq } from '@/lib/site-content/uk-faq'
+
+describe('UK market page proof and FAQ', () => {
+  it('quotes the benchmark figures in the platform answer', () => {
+    const answer = ukFaq('en').items.find((i) => i.question.includes('platforms'))!.answer
+    expect(answer).toContain(`${data.instagram.viewsPerFollower}%`)
+    expect(answer).toContain(`${data.tiktok.viewsPerFollower}%`)
+  })
+
+  it('has the same six questions in every language, with no prices', () => {
+    for (const locale of ['en', 'ar', 'de', 'es', 'fr', 'ko', 'zh']) {
+      const faq = ukFaq(locale)
+      expect(faq.items, locale).toHaveLength(6)
+      for (const item of faq.items) expect(item.answer, locale).not.toMatch(/£|\$|€|GBP \d/)
+    }
+  })
+
+  it('shows the European brands and the FAQ on the English UK page', () => {
+    const uk = siteContentDefinitions.find((d) => d.key === 'location-uk')!.defaultData as { brandCaseStudies?: { items: unknown[] }; faq?: { items: unknown[] } }
+    expect(uk.brandCaseStudies?.items).toHaveLength(EUROPEAN_CASE_SLUGS.length)
+    expect(uk.faq?.items).toHaveLength(6)
+  })
+
+  it('shows both on every translated UK page in that language', () => {
+    for (const [locale, entry] of Object.entries(translatedLocationPages)) {
+      const page = Object.values(entry.pages).find((p) => p.path === UK_PATH)
+      expect(page, locale).toBeTruthy()
+      expect(page!.content.brandCaseStudies?.title, locale).toBe(europeanBrandCases(locale).title)
+      expect(page!.content.faq?.title, locale).toBe(ukFaq(locale).title)
+    }
+  })
+})

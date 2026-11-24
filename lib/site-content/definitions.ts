@@ -1,5 +1,7 @@
 import { beautyPageDefaults, skincarePageDefaults } from '@/lib/site-content/category-pages'
 import { australiaProcess, melbournePageDefaults, sydneyPageDefaults } from '@/lib/site-content/australia-pages'
+import { europeanBrandCases } from '@/lib/site-content/european-brand-cases'
+import { ukFaq } from '@/lib/site-content/uk-faq'
 import {
   australiaFaq,
   australiaIntro,
@@ -1019,6 +1021,8 @@ export const siteContentDefinitions: SiteContentDefinition[] = [
           { icon: '🍽️', title: 'Food & Drink', description: 'Creator trust is particularly strong in food, drink, and everyday recommendations.' },
         ],
       },
+      brandCaseStudies: europeanBrandCases('en'),
+      faq: ukFaq('en'),
       cta: { title: 'Launch Your UK Campaign', description: 'Build high-trust creator partnerships for British audiences.', buttonLabel: 'Get in Touch', buttonHref: '/contact' },
     },
   },

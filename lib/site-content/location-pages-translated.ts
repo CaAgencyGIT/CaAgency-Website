@@ -15,6 +15,7 @@ import { arabicCategoryPages } from '@/lib/site-content/category-pages-ar'
 import { koreanCategoryPages } from '@/lib/site-content/category-pages-ko'
 import { chineseCategoryPages } from '@/lib/site-content/category-pages-zh'
 import { withEuropeanBrandCases } from '@/lib/site-content/european-brand-cases'
+import { withUkFaq } from '@/lib/site-content/uk-faq'
 
 // Market and category pages in Arabic, German, French, Spanish, Korean and Chinese, served at /<locale>/<path>.
 
@@ -28,9 +29,9 @@ export interface TranslatedLocationPage {
   content: LocationPageContent
 }
 
-/** Every page of one locale, with the European case-study block added where it belongs. */
+/** Every page of one locale, with the European case-study block and the UK FAQ added where they belong. */
 function pagesFor(locale: string, pages: Record<string, TranslatedLocationPage>): Record<string, TranslatedLocationPage> {
-  return Object.fromEntries(Object.entries(pages).map(([key, page]) => [key, withEuropeanBrandCases(page, locale)]))
+  return Object.fromEntries(Object.entries(pages).map(([key, page]) => [key, withUkFaq(withEuropeanBrandCases(page, locale), locale)]))
 }
 
 export const translatedLocationPages = {

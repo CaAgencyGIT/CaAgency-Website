@@ -1,7 +1,7 @@
 import { caseStudies } from '@/lib/data/case-studies'
 import type { LocationPageContent } from '@/lib/site-content/location-pages'
 
-// "European brands we have worked with" on the Europe, Germany and France
+// "European brands we have worked with" on the Europe, Germany, France and UK
 // market pages, in every language. Built from the case-study data so video,
 // brand, creator and link always match the case study it points to.
 
@@ -16,7 +16,7 @@ export const EUROPEAN_CASE_SLUGS = [
 ] as const
 
 /** Market pages that show the block. */
-export const EUROPEAN_CASE_PATHS = ['/influencer-marketing-europe', '/influencer-marketing-germany', '/influencer-marketing-france'] as const
+export const EUROPEAN_CASE_PATHS = ['/influencer-marketing-europe', '/influencer-marketing-germany', '/influencer-marketing-france', '/influencer-marketing-uk'] as const
 
 const copy: Record<string, { title: string; subtitle: string }> = {
   en: {
