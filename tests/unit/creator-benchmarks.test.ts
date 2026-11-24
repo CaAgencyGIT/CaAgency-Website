@@ -124,3 +124,34 @@ describe('UK market page proof and FAQ', () => {
     }
   })
 })
+
+import { KBEAUTY_CASE_SLUGS, KBEAUTY_PATH, kbeautyBrandCases, kbeautyEuropeFaq } from '@/lib/site-content/kbeauty-europe'
+
+describe('K-beauty page: case studies and UK and Europe questions', () => {
+  it('links every listed K-beauty study with media', () => {
+    const block = kbeautyBrandCases('en')
+    expect(block.items).toHaveLength(KBEAUTY_CASE_SLUGS.length)
+    for (const item of block.items) {
+      expect(item.href).toMatch(/^\/case-studies\//)
+      expect(item.src ?? item.image).toBeTruthy()
+    }
+  })
+
+  it('adds the grid and keeps the original FAQ on the English page', () => {
+    const page = siteContentDefinitions.find((d) => d.key === 'location-korean-skincare')!.defaultData as { brandCaseStudies?: { items: unknown[] }; faq?: { items: { question: string }[] } }
+    expect(page.brandCaseStudies?.items).toHaveLength(KBEAUTY_CASE_SLUGS.length)
+    expect(page.faq?.items).toHaveLength(7)
+    expect(page.faq?.items[0].question).toBe('Do you only work with Korean brands?')
+  })
+
+  it('appends the questions in the page language on every translated K-beauty page', () => {
+    for (const [locale, entry] of Object.entries(translatedLocationPages)) {
+      const page = Object.values(entry.pages).find((p) => p.path === KBEAUTY_PATH)
+      expect(page, locale).toBeTruthy()
+      expect(page!.content.brandCaseStudies?.title, locale).toBe(kbeautyBrandCases(locale).title)
+      const questions = page!.content.faq!.items.map((i) => i.question)
+      for (const q of kbeautyEuropeFaq(locale)) expect(questions, locale).toContain(q.question)
+      expect(new Set(questions).size, locale).toBe(questions.length)
+    }
+  })
+})
